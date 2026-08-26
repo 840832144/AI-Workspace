@@ -1,0 +1,19 @@
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local and sensitive files
+.env
+.env.*
+*.secret
+*.secrets
+credentials*
+*.pem
+*.key
+*token*
+
+# Temporary output
+*.tmp
+*.log
