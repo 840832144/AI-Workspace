@@ -4,7 +4,7 @@
 
 - Updated: 2026-08-26
 - Task: TASK-0011
-- Current state: First Run Guide and Feishu edition ready; independent planner validation required before completion
+- Current state: First Run Guide RC2 and Feishu edition ready; independent planner validation required before completion
 
 ## Objective
 
@@ -21,6 +21,7 @@
   - 脱敏中文 Markdown 生成；
   - AI Document Assistant 创建/更新/回读；
   - 成功标准和常见问题。
+- 根据 User 预验收反馈发布 RC2：在最前增加新人可直接照做的 12 步主线、从零启动提示词、逐步通过/失败条件与五句固定回复；该反馈不计作独立盲测。
 - 新增 `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`，只允许填写真实测试者、卡点、耗时、AI 引导结果和文档修订。
 - 创建飞书文档《Huuuge 新人上手指南（First Run Guide）》：
   - URL：`https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf`；
@@ -46,6 +47,7 @@
 - 飞书 `feishu_healthcheck`：environment present、token ok、API connectivity ok、Drive permission probe ok。
 - 同名文档搜索结果为空后才 create；更新使用 replace，没有重复创建。
 - `get_document` 确认标题、中文正文、云文档权限规则和独立盲测章节存在。
+- RC2 replace 后再次回读，确认“新人照着做”、第 12 步和“五句话”存在，conversion warnings 为空。
 - 新版 STDIO MCP 单次调用 `grant_company_edit` 成功并回读权限。
 
 ## Failed Attempts

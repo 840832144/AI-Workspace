@@ -1,11 +1,19 @@
 # TASK-0011 Huuuge First Run 独立策划验证记录
 
 - Status: Waiting for an uninvolved planner
-- Test guide version: pre-validation draft
+- Test guide version: RC2 pre-validation draft
 - Test package: Git repository + [Feishu document](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf) only
 - Created: 2026-08-26
 
 本记录只填写真实盲测结果。Codex、ChatGPT 或参与开发的 User 不能模拟“未参与开发的策划”，也不能预填耗时或成功结论。
+
+## 盲测前反馈
+
+以下内容来自参与项目的 User，只用于改进盲测材料，不算独立策划验证：
+
+| 日期 | 反馈 | 文档修订 | 结果 |
+| --- | --- | --- | --- |
+| 2026-08-26 | 指南描述了 AI 和技术流程，但没有让新人一眼看到自己应该逐步做什么 | 在指南最前增加 12 步“新人照着做”主线、从零启动提示词、每步通过条件、卡住时回复和五句常用话术 | 已同步 Git 与飞书 RC2；等待真实盲测 |
 
 ## 测试者与环境
 

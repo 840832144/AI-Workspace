@@ -3,11 +3,236 @@
 - 适用对象：第一次使用 Huuuge 数据采集流程的游戏策划、数值策划和数据分析人员
 - 默认操作入口：Codex，或 Trae + DeepSeek
 - 适用系统：Windows 10/11 64 位
-- 当前状态：TASK-0011 独立策划盲测前版本
+- 当前状态：TASK-0011 独立策划盲测前修订版（RC2）
 - 更新日期：2026-08-26
 - 飞书版本：[`Huuuge 新人上手指南（First Run Guide）`](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf)
 
 这份指南的目标是：新人只需要把任务交给 AI、完成本人才能完成的登录/授权、正常操作游戏，其余检查、安装、启动、整理和文档发布由 AI 主导。不要让新人手工执行长串 PowerShell、ADB、Frida 或 Proto 命令。
+
+## 0. 新人照着做：第一次只看这一节
+
+下面是新人真正需要完成的全部步骤。第一次不要先读后面的技术说明；遇到问题时让 AI 查后面的章节。
+
+### 第 1 步：打开一个 AI 工具
+
+二选一：
+
+- 打开 Codex；或
+- 打开 Trae，选择公司批准的 DeepSeek。
+
+如果电脑还没有这两个工具，请先从公司批准的软件入口安装其中一个并完成登录。不要同时配置两套；第一次先选一套跑通。
+
+打开后，新建或选择一个空目录，例如：
+
+```text
+C:\HuuugeFirstRun
+```
+
+你现在不需要 Clone 仓库，也不要打开 PowerShell。下一步让 AI 自己完成。
+
+### 第 2 步：把这段话完整发给 AI
+
+```text
+我是第一次使用 Huuuge 数据采集的新策划，请你直接作为我的本机操作员完成 First Run。
+
+请先把下面两个仓库安全 Clone 到不覆盖现有文件的位置：
+- https://github.com/840832144/AI-Workspace.git → C:\AI-Workspace
+- https://github.com/840832144/huuuge-android-research.git → C:\HuuugeResearchSource
+
+Clone 后先读取：
+- C:\AI-Workspace\projects\huuuge-android-research\FIRST_RUN_GUIDE.md
+- C:\AI-Workspace\projects\huuuge-android-research\STATUS.md
+- C:\HuuugeResearchSource\AGENTS.md
+- C:\HuuugeResearchSource\CONTRIBUTING.md
+- C:\HuuugeResearchSource\CURRENT_STATUS.md
+- C:\HuuugeResearchSource\HUUUGE_COLLECTOR_DEPLOYMENT_MANUAL.md
+- C:\HuuugeResearchSource\AI_DEPLOYMENT_PLAYBOOK.md
+- C:\HuuugeResearchSource\AGENT_DATA_USAGE_GUIDE.md
+
+然后请你直接完成：
+1. 检查这台电脑缺少什么；
+2. 安装或更新正式的 SVN 采集器；
+3. 检查专用 HuuugeResearch 模拟器；
+4. 启动采集并验证 READY；
+5. 等我正常操作游戏；
+6. 我说“可以停止”后 clean stop/finalize；
+7. 生成中文脱敏 Markdown；
+8. 通过 AI Document Assistant 写入飞书、设置企业内可编辑并回读验证。
+
+你能自己执行的检查和命令直接执行，不要让我手工复制命令或解释底层日志。
+只有 Git/SVN/AI/游戏首次登录、验证码、Windows 管理员确认和机器级修改审批可以让我操作。
+
+不得修改我日常使用的 BlueStacks 实例；只允许使用独立的 HuuugeResearch。
+任何 BlueStacks 主机文件、配置、Root 或虚拟磁盘修改前，必须先告诉我修改目标、备份位置、影响和恢复方法，并等待我明确同意。
+不得上传 Raw、完整 decoded values、账号、Session 标识或凭据，不得修改游戏请求、奖励、余额或服务器状态。
+
+现在开始。每次只告诉我：你已经确认了什么、你正在做什么、我下一步只需要做哪一件事。
+```
+
+发送后先等 AI 工作。不要因为 AI 正在检查就自己去下载一堆工具，也不要同时运行旧脚本。
+
+### 第 3 步：出现登录窗口时，由你完成登录
+
+AI 可能依次要求你完成：
+
+- GitHub 登录；
+- 公司 SVN 登录；
+- Codex 或 Trae 登录；
+- Windows 管理员确认；
+- BlueStacks / Google Play / Huuuge Casino 登录；
+- 飞书登录或由管理员完成 Document Assistant 的受控配置。
+
+你只在系统或官方登录窗口输入账号、密码和验证码。不要把密码、access token、飞书密钥或验证码发到 AI 聊天里。
+
+完成一个登录后，只回复：
+
+```text
+我已完成这个登录，请继续检查。
+```
+
+### 第 4 步：让 AI 安装缺少的软件
+
+AI 会检查 Git、SVN command line client、Python、BlueStacks 和采集器。缺少软件时：
+
+1. 让 AI 说明“缺什么、为什么需要、准备从哪里安装”；
+2. AI 能执行的安装让它直接执行；
+3. 出现 Windows 安装或管理员确认窗口时，你点击确认；
+4. 安装结束后回复：
+
+```text
+安装窗口已经完成，请你继续验证，不要只凭安装成功提示判断。
+```
+
+你不需要自己创建 Python 虚拟环境、选择依赖版本或复制安装命令。
+
+### 第 5 步：确认只使用专用模拟器
+
+AI 必须找到或准备一个名为 `HuuugeResearch` 的独立 BlueStacks 实例。
+
+你需要确认两件事：
+
+- AI 明确说不会修改日常使用的 BlueStacks 实例；
+- 如果需要修改研究实例，AI 已经列出备份位置和恢复方法。
+
+只有两项都明确时，才回复：
+
+```text
+我确认只允许修改 HuuugeResearch 专用实例，并且已经看到备份和恢复方法。请继续。
+```
+
+如果 AI 没有提供这些信息，回复：
+
+```text
+先停止修改。请说明目标实例、修改文件、备份位置、影响和恢复方法。
+```
+
+### 第 6 步：在专用模拟器中登录游戏
+
+当 AI 打开 `HuuugeResearch` 后：
+
+1. 确认窗口标题或 AI 报告的是 `HuuugeResearch`，不是日常实例；
+2. 在这个实例里登录 Huuuge Casino；
+3. 等游戏进入大厅；
+4. 回复 AI：
+
+```text
+HuuugeResearch 已进入游戏大厅，请继续启动并验证采集。
+```
+
+### 第 7 步：等到 AI 明确说 READY
+
+AI 会启动采集器并自行检查数据是否真的开始保存。你必须看到 AI 明确回复：
+
+```text
+READY，可以开始玩了
+```
+
+没有看到这句话，就不要开始操作游戏。只回复：
+
+```text
+目前还没有 READY，请你读取最新环境和控制器报告继续排查。
+```
+
+不要把大段错误日志手工复制给其他人；让当前 AI 自己读取本机报告。
+
+### 第 8 步：正常操作 5 分钟
+
+看到 READY 后，在 `HuuugeResearch` 中正常完成：
+
+1. 在大厅停留并切换一个页面；
+2. 进入一个可用的 Slots，正常完成至少一次操作；
+3. 打开一个当前可见的活动、任务、奖励或商店页面；
+4. 总计正常操作至少 5 分钟。
+
+不需要选择采集模块，不需要手工打标，也不要为了补数据购买、修改条件或触发异常操作。
+
+### 第 9 步：告诉 AI 停止
+
+操作完成后回到 AI，发送：
+
+```text
+我已完成正常操作，可以停止。请 clean stop/finalize，并自行验证结果完整后再告诉我。
+```
+
+等待 AI 完成。在 AI 明确说 finalized 前，不要强制关闭采集器或 BlueStacks。
+
+### 第 10 步：检查 AI 给你的结果
+
+AI 完成后，应给你一段简短结果，至少包含：
+
+```text
+采集状态：stopped/finalized
+RPC：大于 0
+Decoded：大于 0
+结果目录：<本机脱敏路径>
+Markdown：C:\HuuugeCollector\.local\reports\first-run\Huuuge_First_Run_Report.md
+飞书：<文档链接>
+权限：企业内可编辑 / 管理员策略阻塞
+```
+
+如果缺少其中一项，发送：
+
+```text
+请按 First Run Guide 第 9 节逐项验证，并补齐缺少的成功证据。不要用旧 Session 代替本轮结果。
+```
+
+### 第 11 步：打开 Markdown 和飞书文档
+
+1. 打开 AI 给出的 Markdown，确认正文是中文；
+2. 确认里面没有账号、token、完整余额轨迹或原始 payload；
+3. 打开 AI 给出的飞书链接；
+4. 确认标题和正文与 Markdown 对应；
+5. 确认企业同事可以编辑；如果管理员策略阻止，只记录失败，不让 AI 重复创建。
+
+### 第 12 步：判断是否完成
+
+下面全部为“是”才算完成：
+
+- AI 是主要操作入口；
+- 使用的是 `HuuugeResearch`；
+- 日常 BlueStacks 实例没有被修改；
+- 出现过 READY；
+- 本轮 Session 已 stopped/finalized；
+- RPC 和 decoded 均大于 0；
+- Markdown 已生成且脱敏；
+- 飞书已写入并回读；
+- 云文档权限为企业内可编辑，或已明确记录管理员策略阻塞。
+
+如果有任何一项为“否”，不要宣布完成。把该项原样发给 AI，让它按“常见问题”继续处理。
+
+### 新人全过程只需要说的五句话
+
+除了最开始的完整提示词，新人通常只需要说：
+
+```text
+1. 我已完成这个登录，请继续检查。
+2. 安装窗口已经完成，请你继续验证。
+3. 我确认只允许修改 HuuugeResearch 专用实例，并且已经看到备份和恢复方法。请继续。
+4. HuuugeResearch 已进入游戏大厅，请继续启动并验证采集。
+5. 我已完成正常操作，可以停止。请 clean stop/finalize，并自行验证结果完整后再告诉我。
+```
+
+后面的章节是 AI、维护人员和遇到故障时的详细参考。
 
 ## 1. 第一次完成后，你会得到什么
 
