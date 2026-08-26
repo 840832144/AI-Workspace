@@ -2,6 +2,36 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.10.0] - 2026-08-27
+
+### Added
+
+- TASK-0014：新增 4 个版本化只读 Codex Agent 模板，分别负责仓库探索、资料检索、证据测试核验和独立 Review。
+- 新增 Windows PowerShell 5.1 安装、`OFF` / `MANUAL` 开关、脱敏状态与隔离回归测试脚本。
+- 新增 [`ADR-0004`](docs/adr/ADR-0004-Codex-Subagent-Pilot.md)、[`Codex Subagent Bootstrap`](bootstrap/codex/README.md) 与 [`Pilot 记录`](docs/experiments/CODEX_SUBAGENT_PILOT.md)。
+
+### Changed
+
+- Global AGENTS 增加保守 Subagent Policy：默认单 Agent、简单任务不委派、主 Agent 唯一写入、失败自动降级。
+- AI Team 和 Architecture 明确 Subagent 只承担独立只读工作，不改变 Capability Discovery、完成标准或外部写入授权。
+- 本机安装 4 个 Agent，`config.toml` 只增加/维护 `[agents]` 开关和并发上限；试验结束必须恢复 `OFF`。
+
+### Validation
+
+- 四个 Agent TOML 均通过 `tomllib`，且 `sandbox_mode = "read-only"`；PowerShell 脚本通过 Windows PowerShell 5.1 语法与运行测试。
+- 隔离回归覆盖 legacy alias、非 Agent 配置保留、特殊 TOML 形态 fail-closed、同名模板备份、幂等安装和安装后 OFF。
+- OFF 新会话无法启动 Subagent，但普通单 Agent 任务成功；MANUAL 新会话成功启动并汇总指定 `repo_explorer`。
+- 复杂只读场景并行运行 3 个 Agent；子 Agent 发现的脚本阻断经主 Agent 修复并复测，未发生并行写冲突。
+- Reviewer 发现 MCP 继承风险后，当前 Pilot 改为在子 Agent 中禁用 `feishu-docs` 和 `node_repl`；新会话无副作用探针确认二者均不可用。
+- 模式补丁器新增独占锁、多行 TOML fail-closed 与并发竞争回归，避免覆盖同时发生的非 Agent 配置更新。
+- 最终恢复 `OFF`；新会话确认 Subagent tools 不可用、普通单 Agent 任务仍可完成，四个模板继续保留。
+- 当前客户端没有暴露可归因 usage/token 数字，因此没有记录虚构额度对比。
+
+### Boundaries
+
+- 未实现 AUTO、1+8、多 Agent 并行写、Git worktree 调度器或额度系统。
+- 未修改 Huuuge Collector、Document Assistant、MCP Server、SVN package、飞书云文档、ChatGPT 设置或其他业务仓库。
+
 ## [0.9.0] - 2026-08-26
 
 ### Added

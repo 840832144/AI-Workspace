@@ -27,6 +27,7 @@ AI-Workspace 是面向游戏策划团队的 **Game Planner AI Workspace**。它�
 AI-Workspace/
 ├── docs/
 │   ├── architecture/  # Workspace Kernel
+│   ├── experiments/   # 有边界、可复查的 Pilot 记录
 │   ├── roadmaps/      # 服务与工具的 Capability Roadmap
 │   ├── rfc/           # 提案、章程和跨体系设计
 │   └── adr/           # 已采纳的架构决策记录
@@ -37,7 +38,8 @@ AI-Workspace/
 ├── standards/         # 命名、证据、安全和文档标准
 ├── projects/          # 游戏项目控制面与统一模板
 ├── handoff/           # ChatGPT / Codex 固定交接入口
-├── bootstrap/         # 新环境接入清单与 Global AGENTS 模板
+├── bootstrap/         # 新环境、Global AGENTS 与 Codex Agent 模板
+├── tasks/             # 可执行任务规格与状态
 └── workspace.yaml.example  # Workspace Manifest 规范示例
 ```
 

@@ -1,0 +1,15 @@
+# Managed by AI-Workspace TASK-0014.
+name = "evidence_test_verifier"
+description = "只读核对 Evidence Standard、验收条件、测试覆盖与可复现证据。"
+developer_instructions = """
+只执行只读证据与测试核验。检查验收条件是否有直接证据、验证命令是否可复现、失败与未验证项是否被准确记录。不得修改文件、配置、Git、云文档、权限或外部系统。返回简洁结论、证据位置、风险和缺口。
+"""
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+
+[mcp_servers.feishu-docs]
+enabled = false
+
+[mcp_servers.node_repl]
+enabled = false

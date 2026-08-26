@@ -1,6 +1,6 @@
 # TASK-0014 — Codex Subagent Pilot with Kill Switch
 
-- Status: Ready
+- Status: Review
 - Owner: ChatGPT
 - Executor: Codex
 - Priority: P1

@@ -24,6 +24,19 @@
 
 Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 Tool Discovery。
 
+## Subagent Policy
+
+- 默认使用单 Agent。只有 User 明确要求、Task 明确允许，或存在至少两个真正独立、可并行、读多写少的工作流时，才考虑 Subagents。
+- 简单任务、单文件修改、短文档更新和明确命令不启动 Subagent。
+- 同一工作区始终只有主 Agent 可以修改代码、文档、配置和 Git；`repo_explorer`、`knowledge_retriever`、`evidence_test_verifier`、`reviewer` 全部只读。
+- 子 Agent 不得调用 Document Capability 的 `WRITE` 或 `ADMIN/SECURITY` Operation，不得修改飞书、权限、配置或其他外部系统。
+- 当前 Pilot 的版本化 Agent 模板在子 Agent 中完全禁用 `feishu-docs` 与 `node_repl`；飞书 READ 也由主 Agent 代读后提供最少必要资料。新增或改名 MCP server 后必须重新审阅，不能只依赖文字约束。
+- 主 Agent 必须等待相关子 Agent 完成，核对证据、冲突和未确认项后，独立作出最终判断并执行写入。
+- 子 Agent 只返回简洁结论、证据位置、风险和未确认项，不回传大段日志。
+- Multi-agent 为 `OFF`、Agent 不可用或委派失败时，主 Agent 继续以单 Agent 完成任务并报告降级；不得另建调度器或把缺少 Subagent 作为阻塞。
+- 最终 Handoff 必须记录实际使用的 Agent；未使用时明确写 `Subagents: none`。
+- 本 Pilot 只支持 `OFF` 与保守 `MANUAL`，不支持 `AUTO`。模式由 `bootstrap/codex/Set-CodexSubagentMode.ps1` 管理，切换后需要关闭重开 Codex 或新建会话。
+
 ## Shared Document Capability
 
 `Document Capability` 是所有项目可复用的公司文档结果契约，公共定义见 [Document Capability](https://github.com/840832144/AI-Workspace/blob/main/capabilities/document/README.md)。`Document Assistant` 是当前批准的实现 provider，不是 Capability 本身。策划使用已配置的 provider 即可，不需要读取、Clone 或安装其私有实现仓库。
@@ -60,5 +73,5 @@ Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 To
 
 ## Global 与 Workspace 边界
 
-- Capability Discovery、共享 Document Capability 和跨项目安全基线属于 Global Codex 层。
+- Capability Discovery、保守 Subagent Policy、共享 Document Capability 和跨项目安全基线属于 Global Codex 层。
 - AI-Workspace 维护可审阅的 Capability Catalog 和 Game Design 治理；它可以记录 provider-neutral contract 与实现绑定引用，但不承担运行时工具目录、安装入口、endpoint、凭据或连接状态管理。

@@ -31,6 +31,16 @@ AI Team 由 User、ChatGPT 和 Codex 共同组成，为游戏策划工作形成�
 - 在实施前读取项目规则，在实施后更新状态、变更记录和交接文档。
 - 不用实现结果替代缺失的产品决策，不擅自扩大任务范围。
 - 通过 `handoff/CODEX.md` 接收和交付固定格式的状态。
+- Codex 主 Agent 是同一工作区的唯一写入者；只读 Subagent 只能承担独立探索、资料检索、证据核验和 Review。
+
+## Codex Subagent Pilot
+
+- 默认使用单 Agent，Global 开关默认 `OFF`；User 切换为 `MANUAL` 后仍不自动委派所有任务。
+- `repo_explorer` 与 `knowledge_retriever` 承担轻量只读工作；`evidence_test_verifier` 与 `reviewer` 承担高要求的只读验证。
+- 主 Agent 拥有任务拆解、修改、配置、最终测试、Git、Handoff 和最终判断的唯一所有权。
+- 子 Agent 没有代码、文档、配置、Git、飞书、权限或外部系统写入所有权。
+- 委派失败时主 Agent 降级为单 Agent，不改变 Capability contract、Workflow 或项目完成标准。
+- 详细决策见 [`ADR-0004`](docs/adr/ADR-0004-Codex-Subagent-Pilot.md)，操作入口见 [`bootstrap/codex/README.md`](bootstrap/codex/README.md)。
 
 ## Decision Rules
 

@@ -8,7 +8,7 @@ AI-Workspace 的架构范围限定为游戏策划 AI 工作台。它不提供通
 
 ```text
 Global Codex layer — ~/.codex/AGENTS.md
-  Capability Discovery / shared Capability policy / security baseline
+  Capability Discovery / conservative Subagent policy / shared Capability policy / security baseline
                          │
                          ▼
 Governance plane — AI-Workspace
@@ -23,7 +23,7 @@ Evidence plane — verified outputs
   测试结果 / API 响应 / 版本号 / commit / artifact reference
 ```
 
-Global Codex 层负责从 User Outcome 发现 Capability，并应用一致的安全基线。AI-Workspace 提供可审阅的 Capability Catalog，管理 Game Design 中“如何协作”和“各项目处于什么状态”，但不复制执行平面的实现。
+Global Codex 层负责从 User Outcome 发现 Capability，应用一致的安全基线，并约束 Codex Subagent 的委派边界。AI-Workspace 提供可审阅的 Capability Catalog 和 Pilot 决策记录，管理 Game Design 中“如何协作”和“各项目处于什么状态”，但不复制执行平面的实现。
 
 Document Capability 等共享平台契约可以被多个项目消费；Document Assistant 等 provider 可以由外部仓库服务多个 Host。AI-Workspace 记录 provider-neutral contract 和 Game Design 使用边界，Tool 的检查与选择只发生在 Capability 的实现层，不形成独立发现体系。
 
