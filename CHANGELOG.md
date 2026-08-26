@@ -2,6 +2,27 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.5.0] - 2026-08-26
+
+### Added
+
+- TASK-0009：建立 `Huuge Research Knowledge Index` 作为整个研究知识的统一入口。
+- 建立 Slots、Systems、Events、Others 四类导航，覆盖外部 catalog 全部 37 个模块。
+- 为每个模块记录 evidence level、live/schema/static 数据来源、结构完成度和 Review 后下一步计划。
+- 定义 E3 Primary live、E2 Cross-cutting/config live、E1 Schema-only、E0 Inferred/static 四级知识证据模型。
+
+### Changed
+
+- Huuuge Project README、Memory、Workflow、Status 接入 Knowledge Index，并将当前 milestone 更新为 TASK-0009 Review。
+- 将 Huuuge 项目 README 与 Knowledge Index README 的策划入口文案改为中文，同时保留固定模块名和技术文件名。
+- Codex/ChatGPT Handoff 更新为 Knowledge Base Review gate。
+
+### Boundaries
+
+- 未修改 `huuuge-android-research`、采集器、module catalog generator、SVN release 或本机研究环境。
+- 未复制 Raw/decoded values、账号/会话数据、APK、binary、credential 或完整外部 dossier 正文。
+- 未开发新采集、分类器、Extractor、Exporter 或报告功能。
+
 ## [0.4.0] - 2026-08-26
 
 ### Added
@@ -45,7 +66,7 @@
 ### Changed
 
 - 将 AI-Workspace 从通用 AI 工作空间正式收敛为 Game Planner AI Workspace。
-- 明确目标用户为游戏策划、游戏数值策划、系统策划、活动策划和数据分析，并排除婚礼、投资等非游戏领域。
+- 明确目标用户为游戏策划、游戏数值策划、系统策划、活动策划和数据分析，并排除非游戏领域。
 - 将 Roadmap 重构为 Workspace Foundation、Document Assistant、Workspace Sync、Planner Toolkit 四阶段。
 - 完善 AI Team 的 Decision、Review、Ownership、Tool Ownership、Security 和 Escalation 规则。
 - 将项目标准从 Context、Memory、Workflow、Status 四件套扩展为包含 Reports、Assets 的统一游戏项目结构。

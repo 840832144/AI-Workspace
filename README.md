@@ -10,8 +10,6 @@ AI-Workspace 是面向游戏策划团队的 **Game Planner AI Workspace**。它�
 - 活动策划：活动机制、Battle Pass、奖励和运营节奏设计。
 - 数据分析：通过 Excel、SQL、Python 支撑策划判断与复盘。
 
-AI-Workspace 不是通用 AI 平台、通用办公助手或面向婚礼、投资等非游戏领域的知识库。默认领域始终是 **Game Design**。
-
 ## 仓库职责
 
 本仓库负责回答四类问题：

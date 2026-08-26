@@ -4,7 +4,7 @@
 
 初始化基线：
 
-- Domain：默认且唯一的业务领域是 Game Design；不登记婚礼、投资等非游戏领域内容。
+- Domain：默认且唯一的业务领域是 Game Design；不登记非游戏领域内容。
 - Evidence：Confirmed、Hypothesis、Decision、Blocker 分开记录。
 - Security：不提交 secret、token、私钥、个人数据和完整业务数据。
 - Ownership：实现归项目仓库，治理归 AI-Workspace。

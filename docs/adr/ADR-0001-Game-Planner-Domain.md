@@ -14,7 +14,7 @@ AI-Workspace 初始化时以通用 AI 协作控制面描述自身。User 已决�
 
 AI-Workspace 定位为 **Game Planner AI Workspace**，默认且唯一的业务领域为 Game Design。目标用户包括游戏策划、游戏数值策划、系统策划、活动策划和数据分析。
 
-Workspace Kernel、Capability Model、Skill Tree、Workflow、Template、Roadmap 和项目控制面都必须服务游戏策划。婚礼、投资等非游戏领域不进入本 Workspace。
+Workspace Kernel、Capability Model、Skill Tree、Workflow、Template、Roadmap 和项目控制面都必须服务游戏策划。非游戏领域不进入本 Workspace。
 
 ## Alternatives Considered
 

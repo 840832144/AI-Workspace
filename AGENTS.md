@@ -13,6 +13,7 @@ Rules:
 
 - Keep confirmed facts separate from hypotheses.
 - Keep all models, Skills, Workflows, Templates, and projects within the Game Design domain.
+- When describing domain boundaries, use the generic term “non-game domains” without listing specific examples.
 - Do not copy business code, credentials, private datasets, or full runtime logs into this repository.
 - Preserve project repositories as the source of truth for implementation.
 - Update the relevant handoff and project Status when work changes shared state.

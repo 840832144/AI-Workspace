@@ -49,6 +49,8 @@
   - Source: external TASK-0006 capability baseline.
 - TASK-0008 initializes control-plane documents only and waits for ChatGPT Review.
   - Source: User instruction on 2026-08-26.
+- TASK-0009 uses a four-category knowledge taxonomy: Slots、Systems、Events、Others. This taxonomy is a planner navigation layer and does not change external module ownership.
+  - Source: User instruction and `KNOWLEDGE/README.md`; waiting for ChatGPT Review.
 
 ## Hypotheses
 
@@ -65,5 +67,6 @@
 - Never treat a schema field name or heuristic semantic role as confirmed business meaning without live/context validation.
 - Preserve Session version, descriptor hash and source commit when deriving any report.
 - Update external research evidence first, then reflect only stable confirmed facts in this Memory and current state in Status.
+- Use the Knowledge Index as the human entrypoint, then follow the commit-pinned external dossier for detailed evidence.
 
 不得记录 credential、玩家明细、完整日志、Raw/decoded values 或业务数据副本。
