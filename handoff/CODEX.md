@@ -4,7 +4,7 @@
 
 - Updated: 2026-08-26
 - Task: TASK-0011
-- Current state: First Run Guide RC2 and Feishu edition ready; independent planner validation required before completion
+- Current state: First Run Guide RC3 and Feishu edition ready; independent planner validation required before completion
 
 ## Objective
 
@@ -22,6 +22,7 @@
   - AI Document Assistant 创建/更新/回读；
   - 成功标准和常见问题。
 - 根据 User 预验收反馈发布 RC2：在最前增加新人可直接照做的 12 步主线、从零启动提示词、逐步通过/失败条件与五句固定回复；该反馈不计作独立盲测。
+- 根据第二项 User 预验收反馈发布 RC3：新人从第一步起直接使用长期 `C:\AI-Workspace`，并由 AI 区分空目录 Clone、已有仓库更新和非空目录冲突。
 - 新增 `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`，只允许填写真实测试者、卡点、耗时、AI 引导结果和文档修订。
 - 创建飞书文档《Huuuge 新人上手指南（First Run Guide）》：
   - URL：`https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf`；

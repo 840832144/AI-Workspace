@@ -3,7 +3,7 @@
 - Updated: 2026-08-26
 - Phase: First Run validation
 - Owner: User
-- Current milestone: TASK-0011 First Run Guide RC2 waiting for independent planner validation
+- Current milestone: TASK-0011 First Run Guide RC3 waiting for independent planner validation
 - External baseline: [`0590c2c`](https://github.com/840832144/huuuge-android-research/commit/0590c2c37a0aa83b824920fa884f9f67007d3dcb)
 
 ## Confirmed Current Facts
@@ -23,6 +23,7 @@
 - The Feishu edition [`Huuuge 新人上手指南（First Run Guide）`](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf) was created through AI Document Assistant, read back successfully, and verified as company-editable (`tenant_editable`).
 - A blind-test record exists at `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`; it contains no fabricated tester、timing or success data.
 - User pre-validation feedback found that RC1 explained the AI/technical process but did not provide a sufficiently direct novice action sequence. RC2 now opens with a 12-step “新人照着做” path、zero-to-start prompt、pass conditions、recovery phrases and five common replies; this is not counted as independent planner validation.
+- User pre-validation feedback corrected the initial workspace from a disposable First Run folder to persistent `C:\AI-Workspace`. RC3 also defines empty-directory Clone、existing-repository update and non-empty conflict behavior.
 
 ## In Progress
 

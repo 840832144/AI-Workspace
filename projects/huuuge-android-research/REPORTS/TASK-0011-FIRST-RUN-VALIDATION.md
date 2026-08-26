@@ -1,7 +1,7 @@
 # TASK-0011 Huuuge First Run 独立策划验证记录
 
 - Status: Waiting for an uninvolved planner
-- Test guide version: RC2 pre-validation draft
+- Test guide version: RC3 pre-validation draft
 - Test package: Git repository + [Feishu document](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf) only
 - Created: 2026-08-26
 
@@ -14,6 +14,7 @@
 | 日期 | 反馈 | 文档修订 | 结果 |
 | --- | --- | --- | --- |
 | 2026-08-26 | 指南描述了 AI 和技术流程，但没有让新人一眼看到自己应该逐步做什么 | 在指南最前增加 12 步“新人照着做”主线、从零启动提示词、每步通过条件、卡住时回复和五句常用话术 | 已同步 Git 与飞书 RC2；等待真实盲测 |
+| 2026-08-26 | 首跑工作目录不应使用一次性目录，新人后续还要继续使用整个 AI-Workspace | 将初始目录统一为 `C:\AI-Workspace`；补充空目录 Clone、已有仓库安全更新和非空冲突保护 | 已同步 Git 与飞书 RC3；等待真实盲测 |
 
 ## 测试者与环境
 

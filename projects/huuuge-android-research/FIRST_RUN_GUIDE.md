@@ -3,7 +3,7 @@
 - 适用对象：第一次使用 Huuuge 数据采集流程的游戏策划、数值策划和数据分析人员
 - 默认操作入口：Codex，或 Trae + DeepSeek
 - 适用系统：Windows 10/11 64 位
-- 当前状态：TASK-0011 独立策划盲测前修订版（RC2）
+- 当前状态：TASK-0011 独立策划盲测前修订版（RC3）
 - 更新日期：2026-08-26
 - 飞书版本：[`Huuuge 新人上手指南（First Run Guide）`](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf)
 
@@ -22,21 +22,21 @@
 
 如果电脑还没有这两个工具，请先从公司批准的软件入口安装其中一个并完成登录。不要同时配置两套；第一次先选一套跑通。
 
-打开后，新建或选择一个空目录，例如：
+打开后，新建或选择长期使用的 Workspace 目录：
 
 ```text
-C:\HuuugeFirstRun
+C:\AI-Workspace
 ```
 
-你现在不需要 Clone 仓库，也不要打开 PowerShell。下一步让 AI 自己完成。
+这个目录以后继续用于 Knowledge、Status、Handoff 和其他游戏策划项目，不是首跑结束后丢弃的临时目录。你现在不需要手工 Clone 仓库，也不要打开 PowerShell；下一步让 AI 判断当前目录是空目录、已有仓库还是需要安全更新。
 
 ### 第 2 步：把这段话完整发给 AI
 
 ```text
 我是第一次使用 Huuuge 数据采集的新策划，请你直接作为我的本机操作员完成 First Run。
 
-请先把下面两个仓库安全 Clone 到不覆盖现有文件的位置：
-- https://github.com/840832144/AI-Workspace.git → C:\AI-Workspace
+请先准备下面两个仓库，不覆盖任何现有文件：
+- 当前 C:\AI-Workspace 如果还不是 Git 仓库且目录为空，把 https://github.com/840832144/AI-Workspace.git Clone 到当前目录；如果已经是该仓库，安全更新 main；如果目录非空且不是该仓库，停止并说明冲突，不要覆盖。
 - https://github.com/840832144/huuuge-android-research.git → C:\HuuugeResearchSource
 
 Clone 后先读取：
@@ -293,7 +293,7 @@ Markdown：C:\HuuugeCollector\.local\reports\first-run\Huuuge_First_Run_Report.m
 | AI-Workspace | `https://github.com/840832144/AI-Workspace.git` | First Run Guide、Evidence Standard、Knowledge、Status 与 Handoff |
 | huuuge-android-research | `https://github.com/840832144/huuuge-android-research.git` | 工程资料、部署 Playbook、数据使用规范和模块目录 |
 
-AI 可选择一个不覆盖现有目录的位置执行：
+默认使用下面两个长期路径。AI 必须先检查目录；只有目标不存在或为空时才 Clone，已经是正确仓库时改为安全更新，存在其他内容时停止并报告：
 
 ```powershell
 git clone https://github.com/840832144/AI-Workspace.git C:\AI-Workspace

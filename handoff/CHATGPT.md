@@ -4,7 +4,7 @@
 
 - Updated: 2026-08-26
 - Task: TASK-0011
-- Current state: Pre-validation RC2 ready; final review must wait for independent planner test
+- Current state: Pre-validation RC3 ready; final review must wait for independent planner test
 
 ## Incoming Context
 
@@ -27,6 +27,7 @@ Huuuge First Run Guide 与飞书版本已经建立，但 TASK-0011 明确要求�
 - 本次没有开发功能、修改采集器或操作 BlueStacks。
 - 文档默认中文；其他语言只保留必要技术名词、命令或对照解释。
 - User 预验收指出 RC1 缺少新人逐步动作；RC2 已增加 12 步主线与固定回复，但这不替代独立策划盲测。
+- User 随后要求长期复用整个 Workspace；RC3 将初始目录统一为 `C:\AI-Workspace`，不再使用一次性首跑目录。
 
 ## Pending Evidence
 
