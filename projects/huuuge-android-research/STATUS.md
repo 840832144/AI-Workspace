@@ -3,7 +3,7 @@
 - Updated: 2026-08-26
 - Phase: First Run validation
 - Owner: User
-- Current milestone: TASK-0011 First Run Guide RC3 waiting for independent planner validation
+- Current milestone: TASK-0011 First Run Guide RC4 public single-repository path waiting for independent planner validation
 - External baseline: [`0590c2c`](https://github.com/840832144/huuuge-android-research/commit/0590c2c37a0aa83b824920fa884f9f67007d3dcb)
 
 ## Confirmed Current Facts
@@ -24,6 +24,7 @@
 - A blind-test record exists at `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`; it contains no fabricated tester、timing or success data.
 - User pre-validation feedback found that RC1 explained the AI/technical process but did not provide a sufficiently direct novice action sequence. RC2 now opens with a 12-step “新人照着做” path、zero-to-start prompt、pass conditions、recovery phrases and five common replies; this is not counted as independent planner validation.
 - User pre-validation feedback corrected the initial workspace from a disposable First Run folder to persistent `C:\AI-Workspace`. RC3 also defines empty-directory Clone、existing-repository update and non-empty conflict behavior.
+- User confirmed that only AI-Workspace is public while the implementation repositories remain private. RC4 therefore makes public AI-Workspace the only required Git repository, moves private implementation repositories to maintainer-only context, and requires a three-minute fail-fast check for company SVN and the administrator-provisioned Document Assistant.
 
 ## In Progress
 
@@ -47,8 +48,8 @@
   - Mitigation: run the required blind test without oral help, record every stop and revise documentation/workflow only.
 - Trae + DeepSeek may not expose the company Document Assistant MCP on every workstation.
   - Mitigation: Trae may generate the sanitized Markdown; an approved Codex/MCP host performs publication without sharing credentials.
-- Private GitHub links require an authenticated collaborator session.
-  - Mitigation: keep stable paths and commit hashes in this control plane; do not copy private contents.
+- Private GitHub links require an authenticated collaborator session and are unavailable to the novice test participant.
+  - Mitigation: the 30-minute First Run uses only public AI-Workspace, the official SVN package and an administrator-provisioned Document Assistant; private links remain maintainer evidence references, not novice steps.
 
 ## Blockers
 
@@ -57,4 +58,4 @@
 
 ## Exact Next Action
 
-User designates one planner who did not participate in development and gives that person only `https://github.com/840832144/AI-Workspace.git` plus the Feishu First Run Guide. Record the blind test in `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`, then revise documents/workflow only and request ChatGPT Review.
+User designates one planner who did not participate in development and gives that person only `https://github.com/840832144/AI-Workspace.git` plus the Feishu First Run Guide. Confirm the test device already has company SVN/Feishu access and an administrator-provisioned Document Assistant, then time the public single-repository flow and record it in `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`.

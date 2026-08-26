@@ -2,6 +2,39 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.8.0] - 2026-08-26
+
+### Added
+
+- TASK-0012：新增 `bootstrap/AGENTS.md`，作为 `~/.codex/AGENTS.md` 的版本化 Global Codex 模板。
+- 建立 Tool Discovery 规则：读取生效指令、检查当前 Host 实际能力、优先专用接口、区分 READ/WRITE/ADMIN、先确认再修改、失败时不建立未经批准的替代入口。
+- 将 Document Assistant 定义为所有项目共享工具，记录实现真相源、非敏感资料入口、工具分级、搜索防重、回读验证和凭据边界。
+- 新增 ADR-0002，正式记录 Global Tool Discovery 与 AI-Workspace 职责分离。
+
+### Changed
+
+- 本机安装 `C:\Users\admin\.codex\AGENTS.md`，与仓库模板内容一致；当前没有 `AGENTS.override.md` 遮蔽该文件。
+- AI-Workspace 不再承担运行时工具入口职责，只定义 Game Design 的 Capability、Workflow、Skill、Template、项目治理和工具使用契约。
+- Architecture、Workspace Kernel、Capability Model、Manifest、Roadmap、RFC-0002、Feishu Document Skill 和 AI Team 统一移除工具目录、安装入口、endpoint、credential 与连接状态职责。
+- 新生成云文档的默认企业内可编辑规则提升为 Global Codex 规则；管理员策略失败时保留文档并报告，不重复创建。
+- 根据当前权限现实发布 First Run RC4：公共 AI-Workspace 成为新人唯一必需 Git 仓库，私有实现仓库只供维护者追溯，不再作为新人 Clone 或安装前置。
+- 将公司 SVN 和管理员预配置的 Document Assistant 加入前三分钟 fail-fast；保留“新策划在新电脑 30 分钟完成采集、Markdown、AI 写飞书”的真实盲测目标，不预填成功或耗时。
+- 同一篇飞书 First Run Guide 使用 replace 同步 RC4，保持原 document ID 与既有企业内可编辑权限，不创建副本。
+
+### Validation
+
+- 对照 OpenAI 官方 `AGENTS.md` 发现顺序确认 Global 与项目级叠加规则。
+- `bootstrap/AGENTS.md` 与本机 `~/.codex/AGENTS.md` 的 SHA-256 一致。
+- First Run 全文检查确认新人主线不再要求访问或 Clone 私有 Git 仓库。
+- 飞书回读确认 RC4、30 分钟目标、公共单仓入口和前三分钟预检均存在，两条私有仓库 Clone 指令均不存在。
+- 对原飞书 document ID 再次执行公司编辑权限回读，确认 `link_share_entity=tenant_editable`、`verified=true`。
+- 全仓检查确认没有 credential、token 或运行时 endpoint 值写入；内部链接、禁用词、diff 与 Workspace 边界验证通过。
+
+### Boundaries
+
+- 未修改 Document Assistant、`feishu-doc-mcp`、MCP 配置、ChatGPT 设置、采集器、SVN package 或业务功能。
+- Global 文件只包含稳定规则和公开仓库引用，不包含项目状态、私有 Registry、文档正文或 secrets。
+
 ## [0.7.0-rc.3] - 2026-08-26
 
 ### Changed

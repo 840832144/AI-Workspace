@@ -2,6 +2,18 @@
 
 本目录定义新环境、新 Agent 或新协作者接入 Game Planner AI Workspace 的最小步骤。
 
+## Global Codex Bootstrap
+
+[`AGENTS.md`](AGENTS.md) 是 `~/.codex/AGENTS.md` 的版本化模板，提供所有项目共享的 Tool Discovery、Document Assistant、文档语言与安全规则。
+
+1. 先检查 `~/.codex/AGENTS.override.md` 和 `~/.codex/AGENTS.md` 是否存在，不得直接覆盖已有个人或组织规则。
+2. 没有现有规则时，将本模板复制为 `~/.codex/AGENTS.md`；已有规则时逐节合并并审阅冲突。
+3. 重新启动 Codex，再确认全局与项目级 `AGENTS.md` 都已进入当前指令链。
+4. Global Codex 层负责跨项目工具发现；AI-Workspace 只负责 Game Design 治理，不作为 MCP、Connector、Plugin 或其他工具的运行时入口。
+5. 新策划只需公共 AI-Workspace 模板和管理员已配置的共享 Tool；不得要求其访问或 Clone 私有实现仓库。
+
+官方发现顺序以 [OpenAI `AGENTS.md` 文档](https://learn.chatgpt.com/docs/agent-configuration/agents-md) 为准：Global 层只读取非空的 `AGENTS.override.md` 或 `AGENTS.md` 之一，然后从仓库根目录向当前目录叠加项目指令。
+
 ## Repository Bootstrap
 
 1. Clone 私有仓库并确认 remote、branch 和访问权限。

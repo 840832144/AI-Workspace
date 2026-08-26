@@ -6,12 +6,13 @@
 - Owner for architecture/review: ChatGPT
 - Owner for future implementation/automation/testing/deployment: Codex
 - Related RFC: [`RFC-0002-Document-Assistant.md`](../rfc/RFC-0002-Document-Assistant.md)
+- Related ADR: [`ADR-0002-Global-Tool-Discovery.md`](../adr/ADR-0002-Global-Tool-Discovery.md)
 
 ## Positioning
 
 **Document Assistant** 保持现有名称，规划为公司的文档能力中台。它向 Agent、Workflow 和业务项目提供统一的文档访问、内容处理、权限、发布和治理能力，而不是某个单一 Agent 的提示词工具。
 
-Document Assistant 是共享基础设施，不改变 AI-Workspace 的 Game Design 业务领域边界。AI-Workspace 只治理它在游戏策划工作中的 Capability、Workflow、权限和交接；公司其他领域的正文、项目 Memory 和业务规则不进入本仓库。
+Document Assistant 是共享基础设施，不改变 AI-Workspace 的 Game Design 业务领域边界。Tool Discovery 与共享入口属于 Global Codex/Host 层；AI-Workspace 只治理它在游戏策划工作中的 Capability、Workflow、权限和交接，不维护安装入口、endpoint、credential 或连接状态。
 
 ## Current-state rule
 
@@ -21,6 +22,7 @@ Document Assistant 是共享基础设施，不改变 AI-Workspace 的 Game Desig
 - 外部 Document Assistant / `feishu-doc-mcp` 仓库继续作为实现真相源。
 - 现有 Feishu client、auth、document registry、Markdown converter、MCP tools 和 STDIO 接入不在本任务修改或迁移。
 - 现有实现状态必须由外部仓库的 commit、测试和运行证据确认；本 Roadmap 不把“计划能力”写成“已实现”。
+- Global AGENTS 模板只定义发现与安全规则，不复制实现，也不把 AI-Workspace 变成工具目录。
 
 ## Capability domains
 
@@ -82,7 +84,7 @@ flowchart TD
 
 状态：**Waiting for ChatGPT Review**
 
-- 审阅公司文档中台定位和 Game Design / shared infrastructure 边界。
+- 审阅公司文档中台定位、Global Tool Discovery 和 Game Design 使用契约边界。
 - 对照外部仓库建立 As-Is capability evidence，不修改实现。
 - 确认 Capability ID、Owner、READ/WRITE 分类和验收语言。
 - 决定 RFC-0002 是否可进入 Accepted，或需要修订。
@@ -98,6 +100,7 @@ flowchart TD
 - 定义幂等、部分成功、重试、冲突和错误语义。
 - 定义 credential、日志、正文、审计证据和数据保留边界。
 - 为每项 Capability 写明输入、输出、权限、副作用和验收证据。
+- 详细平台契约归外部 Document Assistant 项目；AI-Workspace 只保留 Game Design 消费侧约束。
 
 退出标准：接口和安全 contract 经过 ChatGPT Review 与 User 决策；仍不要求实现。
 
@@ -154,7 +157,7 @@ ChatGPT Review 需要明确回答：
 2. Capability domains 是否遗漏关键结果或把 Tool/Workflow 误写成 Capability？
 3. READ / WRITE / ADMIN-SECURITY 是否应作为三层，而不是两层权限模型？
 4. Registry、Revision 和 Publication 的真相源应如何分工？
-5. 哪些 Phase 必须先形成 ADR，再允许 Codex 实现？
+5. Roadmap 是否仍有任何内容会让 AI-Workspace 误承担运行时工具入口职责？
 
 ## Non-goals
 
@@ -162,3 +165,4 @@ ChatGPT Review 需要明确回答：
 - 本任务不改名、不迁移仓库、不新增 transport、不建立 tunnel、不调用 Feishu API。
 - 本任务不改变 ChatGPT 设置，不实现权限 API、同步、监控或部署。
 - 本任务不把公司文档正文、credential、token 或私有 Registry 写入 AI-Workspace。
+- 本任务不在 AI-Workspace 建立 MCP/Connector/Plugin 的运行时目录、安装入口、endpoint 或连接状态表。

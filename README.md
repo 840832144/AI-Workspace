@@ -15,7 +15,7 @@ AI-Workspace 是面向游戏策划团队的 **Game Planner AI Workspace**。它�
 本仓库负责回答四类问题：
 
 1. 游戏策划 AI 工作台如何组织：Workspace Kernel、Capability Model、RFC、ADR 和标准。
-2. AI 团队如何协作：角色所有权、审阅规则、工作流、工具边界和安全规则。
+2. AI 团队如何协作：角色所有权、审阅规则、工作流、工具使用边界和安全规则。
 3. 游戏项目当前是什么状态：Context、Memory、Workflow、Status、Reports 和 Assets。
 4. ChatGPT 与 Codex 如何交接：固定 handoff、确认事实、风险与下一动作。
 
@@ -36,7 +36,7 @@ AI-Workspace/
 ├── standards/         # 命名、证据、安全和文档标准
 ├── projects/          # 游戏项目控制面与统一模板
 ├── handoff/           # ChatGPT / Codex 固定交接入口
-├── bootstrap/         # 新环境、新 Agent 的接入清单
+├── bootstrap/         # 新环境接入清单与 Global AGENTS 模板
 └── workspace.yaml.example  # Workspace Manifest 规范示例
 ```
 
@@ -69,4 +69,8 @@ AI-Workspace/
 
 当前阶段只建立 Workspace Kernel、能力模型、Capability Roadmap、技能树和游戏项目标准，不迁移现有项目，也不实现业务功能。
 
-共享基础设施可以服务公司多个使用方，但 AI-Workspace 只治理其 Game Design 使用边界。当前 Document Assistant 规划见 [`Document Assistant Capability Roadmap`](docs/roadmaps/DocumentAssistantCapabilityRoadmap.md)。
+## 全局工具边界
+
+跨项目 Tool Discovery 和共享 Document Assistant 入口属于 Global Codex 层。版本化模板见 [`bootstrap/AGENTS.md`](bootstrap/AGENTS.md)，实际运行文件位于 `~/.codex/AGENTS.md`。公共 AI-Workspace 提供完整策划使用规则；使用已配置 Tool 不需要访问私有实现仓库。
+
+AI-Workspace 可以为 Game Design 定义某项 Tool 的用途、权限、Workflow 和验收证据，但不维护运行时工具目录、安装入口、endpoint、credential 或连接状态。Document Assistant 的游戏策划使用契约仍可参考 [`Document Assistant Capability Roadmap`](docs/roadmaps/DocumentAssistantCapabilityRoadmap.md)，实现和配置继续以外部仓库与受控环境为准。

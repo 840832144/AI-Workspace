@@ -4,11 +4,15 @@ AI-Workspace 的架构范围限定为游戏策划 AI 工作台。它不提供通
 
 ## 总体模型
 
-游戏策划 AI 协作体系分为三个平面：
+游戏策划 AI 协作体系由一个跨项目 Global 层和三个 Workspace 平面组成：
 
 ```text
+Global Codex layer — ~/.codex/AGENTS.md
+  Tool Discovery / shared Document Assistant policy / security baseline
+                         │
+                         ▼
 Governance plane — AI-Workspace
-  章程 / RFC / ADR / 标准 / 模板 / 项目索引 / 交接
+  Game Design 章程 / RFC / ADR / 标准 / 模板 / 项目索引 / 交接
                          │
                          ▼
 Execution plane — project repositories and connected systems
@@ -19,9 +23,9 @@ Evidence plane — verified outputs
   测试结果 / API 响应 / 版本号 / commit / artifact reference
 ```
 
-AI-Workspace 管理“如何协作”和“各项目处于什么状态”，但不复制执行平面的实现。
+Global Codex 层负责跨项目发现共享工具和应用一致的安全基线。AI-Workspace 管理 Game Design 中“如何协作”和“各项目处于什么状态”，但不复制执行平面的实现。
 
-Document Assistant 等共享公司基础设施可以由外部仓库服务多个业务域；AI-Workspace 只登记其对 Game Design 的 Capability、Workflow、权限和证据要求，不导入其他业务域内容。
+Document Assistant 等共享公司基础设施可以由外部仓库服务多个业务域；运行时入口与 Tool Discovery 不进入 AI-Workspace。AI-Workspace 只定义其对 Game Design 的 Capability、Workflow、权限和证据要求，不导入其他业务域内容。
 
 ## 信息架构
 
@@ -61,6 +65,8 @@ Standards 是已生效的横向规则，例如证据纪律、命名、安全边�
 | 提案与讨论结果 | `docs/rfc/` |
 | 当前项目协作状态 | `projects/<project>/STATUS.md` |
 | 当前 Agent 交接 | `handoff/` |
+| 跨项目 Tool Discovery 与共享工具规则 | `~/.codex/AGENTS.md`；版本化模板为 `bootstrap/AGENTS.md` |
+| Tool 实现、安装、endpoint 与连接状态 | 对应工具仓库、Host 配置和受控运行环境 |
 | 凭据和 secrets | Secret manager / 本机受控环境；不得进入 Git |
 
 出现冲突时，先确认信息类型，再按上表选择权威来源；不要通过复制更多文档解决冲突。

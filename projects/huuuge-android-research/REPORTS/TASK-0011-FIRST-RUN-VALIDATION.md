@@ -1,7 +1,7 @@
 # TASK-0011 Huuuge First Run 独立策划验证记录
 
 - Status: Waiting for an uninvolved planner
-- Test guide version: RC3 pre-validation draft
+- Test guide version: RC4 public single-repository pre-validation draft
 - Test package: Git repository + [Feishu document](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf) only
 - Created: 2026-08-26
 
@@ -15,6 +15,7 @@
 | --- | --- | --- | --- |
 | 2026-08-26 | 指南描述了 AI 和技术流程，但没有让新人一眼看到自己应该逐步做什么 | 在指南最前增加 12 步“新人照着做”主线、从零启动提示词、每步通过条件、卡住时回复和五句常用话术 | 已同步 Git 与飞书 RC2；等待真实盲测 |
 | 2026-08-26 | 首跑工作目录不应使用一次性目录，新人后续还要继续使用整个 AI-Workspace | 将初始目录统一为 `C:\AI-Workspace`；补充空目录 Clone、已有仓库安全更新和非空冲突保护 | 已同步 Git 与飞书 RC3；等待真实盲测 |
+| 2026-08-26 | 只有 AI-Workspace 已开放公共访问，其他实现仓库仍为私有；新人不能依赖私有 Git 权限 | RC4 将 AI-Workspace 设为唯一必需 Git 仓库；采集使用公司 SVN 正式包；Document Assistant 由管理员预配置并在前三分钟 fail fast | 已同步飞书 RC4；等待真实盲测 |
 
 ## 测试者与环境
 
@@ -24,6 +25,10 @@
 - 测试日期与时区：
 - 电脑状态：全新 / 已装部分依赖 / 已有采集环境
 - AI 入口：Codex / Trae + DeepSeek
+- 公共 AI-Workspace 可访问：是 / 否
+- 公司 SVN 与飞书可访问：是 / 否
+- Document Assistant 已由管理员配置：是 / 否
+- 是否被要求访问任何私有 Git 仓库：否 / 是（若是，记录为流程失败）
 - 开始前只收到：
   - Git 仓库：`https://github.com/840832144/AI-Workspace.git`
   - 飞书文档：`https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf`
@@ -34,6 +39,7 @@
 | 阶段 | 开始时间 | 结束时间 | 耗时 | 是否由 AI 独立引导 |
 | --- | --- | --- | --- | --- |
 | 找到 First Run 入口 |  |  |  |  |
+| 公共仓库、SVN、Document Assistant fail-fast |  |  |  |  |
 | 软件与权限预检 |  |  |  |  |
 | Git/SVN/AI 首次认证 |  |  |  |  |
 | 采集器安装/更新 |  |  |  |  |
@@ -44,6 +50,8 @@
 | 生成 Markdown |  |  |  |  |
 | 写入并回读飞书 |  |  |  |  |
 | 总计 |  |  |  |  |
+
+目标总耗时为 30 分钟以内；只有真实总计满足且全部成功证据通过，才能记录达标。
 
 ## 卡点记录
 
@@ -58,6 +66,8 @@
 | 验收项 | 结果 | 可复查证据（只填脱敏路径/状态） |
 | --- | --- | --- |
 | AI 是主要操作入口 | 通过 / 失败 |  |
+| 只使用公共 AI-Workspace 作为 Git 入口 | 通过 / 失败 |  |
+| 前三分钟确认 SVN 与 Document Assistant 可用 | 通过 / 失败 |  |
 | 使用独立 `HuuugeResearch` 实例 | 通过 / 失败 |  |
 | 日常 BlueStacks 实例未修改 | 通过 / 失败 |  |
 | READY 前已有真实 RPC 保存/解码 | 通过 / 失败 |  |
@@ -89,5 +99,6 @@
 - Result: Pending / Passed / Failed
 - AI 是否能够独立引导完成：Pending / Yes / No
 - 总耗时：Pending
+- 是否在 30 分钟内完成：Pending / Yes / No
 - 未解决阻塞：
 - ChatGPT Review 建议：

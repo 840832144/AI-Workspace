@@ -37,10 +37,5 @@ agents:
       - testing
       - deployment
 
-services:
-  - id: document-assistant
-    capability: feishu-document
-    repository: null
-    endpoint: null
-    credentials: external-secret-store
-    status: referenced-only
+# Runtime tools and services are discovered through Global Codex/Host configuration.
+# This Workspace Manifest does not register tool endpoints, credentials, or connection status.

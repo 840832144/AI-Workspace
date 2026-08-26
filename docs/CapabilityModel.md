@@ -10,7 +10,7 @@ Capability Model 定义 Game Planner AI Workspace 如何从“策划结果”分
 | Skill | 如何复用方法？ | 可独立审阅、验证和版本化的方法单元 | 跨步骤项目计划或无边界知识集合 |
 | Workflow | 如何协同完成？ | 将 Agent、Skill、Template、Tool 按顺序和关卡编排 | 单个 Skill 或执行工具 |
 | Template | 输入输出长什么样？ | Context、分析表、报告、决策记录等结构契约 | 执行逻辑或 Capability 本身 |
-| Tool | 通过什么执行？ | 对计算、查询、文档或版本系统的受控接口 | 策划判断或可交付结果 |
+| Tool | 通过什么执行？ | 由当前 Host 或外部系统提供的计算、查询、文档或版本系统受控接口 | 策划判断、可交付结果或 Workspace 内置入口 |
 
 ## 关系
 
@@ -30,13 +30,14 @@ flowchart LR
 3. Template 约束信息结构，不负责执行；Skill 或 Workflow 可以读取和产出 Template 实例。
 4. Tool 可以被替换，只要 Skill 的输入、输出、安全和验证契约不变。
 5. Agent 通过 Workflow 获得任务，通过角色所有权和权限规则使用 Tool。
+6. Tool Discovery 与共享工具入口由 Global Codex/Host 层负责；AI-Workspace 只定义 Game Design 对 Tool 的使用契约和验收证据。
 
 ## Capability 类型
 
 - Planner Capability：直接交付游戏分析、系统/数值设计、活动设计或策划报告结果。
 - Platform Capability：为 Planner Capability 提供文档、数据、同步、安全或运行支撑。平台可以由公司多个使用方共享，但 AI-Workspace 只治理其 Game Design 使用契约。
 
-Document Assistant 属于 Platform Capability。它不能以“公司共享”为由把非游戏业务项目、正文或 Memory 引入本 Workspace。
+Document Assistant 属于外部共享 Platform Capability，由 Global Codex/Host 层提供发现入口。AI-Workspace 只消费并约束它在 Game Design 中的使用，不能把其他业务项目、正文或 Memory 引入本 Workspace。
 
 ## 游戏策划示例（仅模型）
 

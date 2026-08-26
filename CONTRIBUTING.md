@@ -10,6 +10,7 @@
 2. 阅读 `AI_TEAM.md`、`ARCHITECTURE.md` 和相关 handoff。
 3. 确认修改属于游戏策划治理、协作、标准、模板或项目控制面，而不是业务实现或非游戏领域内容。
 4. 检查相关 RFC、ADR、项目 Status 和 CHANGELOG，避免重复或冲突。
+5. 需要共享工具时遵循 Global Codex Tool Discovery；不得在本仓库新增运行时工具目录、安装入口、endpoint、credential 或连接状态。
 
 ## 变更分类
 

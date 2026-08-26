@@ -55,6 +55,8 @@
   - Source: User instruction、`standards/HUUUGE_EVIDENCE_STANDARD.md` and Knowledge Index；waiting for ChatGPT Review.
 - TASK-0011 makes Codex or Trae + DeepSeek the default First Run operator. New planners handle only login、approval and normal game interaction; AI handles checks、startup、finalization、Markdown and Document Assistant publishing.
   - Source: User instruction and `FIRST_RUN_GUIDE.md`; independent planner validation pending.
+- TASK-0011 novice access uses public AI-Workspace as the only required Git repository. Private implementation repositories remain maintainer truth sources and must not be novice prerequisites; collection comes from the official SVN package and Feishu publication uses an administrator-provisioned shared Document Assistant.
+  - Source: User access decision on 2026-08-26 and `FIRST_RUN_GUIDE.md` RC4；independent 30-minute validation pending.
 - Planner-facing documents default to Chinese, and newly generated cloud documents default to company-editable access unless User explicitly requests another permission mode.
   - Source: User decisions on 2026-08-26 and repository documentation rules.
 

@@ -3,11 +3,15 @@
 - 适用对象：第一次使用 Huuuge 数据采集流程的游戏策划、数值策划和数据分析人员
 - 默认操作入口：Codex，或 Trae + DeepSeek
 - 适用系统：Windows 10/11 64 位
-- 当前状态：TASK-0011 独立策划盲测前修订版（RC3）
+- 当前状态：TASK-0011 独立策划盲测前修订版（RC4，公共单仓入口）
 - 更新日期：2026-08-26
 - 飞书版本：[`Huuuge 新人上手指南（First Run Guide）`](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf)
 
-这份指南的目标是：新人只需要把任务交给 AI、完成本人才能完成的登录/授权、正常操作游戏，其余检查、安装、启动、整理和文档发布由 AI 主导。不要让新人手工执行长串 PowerShell、ADB、Frida 或 Proto 命令。
+这份指南的目标是：一位游戏策划在新电脑上只使用公共 AI-Workspace 作为 Git 入口，在 30 分钟内完成采集、生成 Markdown 并由 AI 写入飞书。新人只需要把任务交给 AI、完成本人才能完成的登录/授权、正常操作游戏，其余检查、安装、启动、整理和文档发布由 AI 主导。不要让新人手工执行长串 PowerShell、ADB、Frida 或 Proto 命令。
+
+30 分钟目标的设备前置条件只有：可以访问公共 AI-Workspace、公司 SVN 和飞书；Codex 已由管理员接入共享 Document Assistant。其他私有 Git 仓库不是新人前置条件。如果 Document Assistant 尚未配置，AI 必须在开始采集前报告，避免做到最后才发现不能写飞书。
+
+建议计时：0–3 分钟完成入口与 Tool 预检，3–10 分钟安装/更新，10–15 分钟达到 READY，15–20 分钟正常操作，20–25 分钟停止与生成 Markdown，25–30 分钟写入并回读飞书。实际耗时必须由独立策划盲测记录，不得预填为成功。
 
 ## 0. 新人照着做：第一次只看这一节
 
@@ -35,29 +39,27 @@ C:\AI-Workspace
 ```text
 我是第一次使用 Huuuge 数据采集的新策划，请你直接作为我的本机操作员完成 First Run。
 
-请先准备下面两个仓库，不覆盖任何现有文件：
+请先准备公共 AI-Workspace，不覆盖任何现有文件：
 - 当前 C:\AI-Workspace 如果还不是 Git 仓库且目录为空，把 https://github.com/840832144/AI-Workspace.git Clone 到当前目录；如果已经是该仓库，安全更新 main；如果目录非空且不是该仓库，停止并说明冲突，不要覆盖。
-- https://github.com/840832144/huuuge-android-research.git → C:\HuuugeResearchSource
 
 Clone 后先读取：
 - C:\AI-Workspace\projects\huuuge-android-research\FIRST_RUN_GUIDE.md
-- C:\AI-Workspace\projects\huuuge-android-research\STATUS.md
-- C:\HuuugeResearchSource\AGENTS.md
-- C:\HuuugeResearchSource\CONTRIBUTING.md
-- C:\HuuugeResearchSource\CURRENT_STATUS.md
-- C:\HuuugeResearchSource\HUUUGE_COLLECTOR_DEPLOYMENT_MANUAL.md
-- C:\HuuugeResearchSource\AI_DEPLOYMENT_PLAYBOOK.md
-- C:\HuuugeResearchSource\AGENT_DATA_USAGE_GUIDE.md
+- C:\AI-Workspace\standards\HUUUGE_EVIDENCE_STANDARD.md
+- C:\AI-Workspace\bootstrap\AGENTS.md
+
+不要要求我访问或 Clone 任何私有 Git 仓库。先检查当前会话是否已经提供 feishu_healthcheck；如果没有，立即报告“共享 Document Assistant 尚未由管理员配置”，不要等采集结束后才报告，也不要让我 Clone 私有实现或输入 secret。
 
 然后请你直接完成：
-1. 检查这台电脑缺少什么；
-2. 安装或更新正式的 SVN 采集器；
-3. 检查专用 HuuugeResearch 模拟器；
-4. 启动采集并验证 READY；
-5. 等我正常操作游戏；
-6. 我说“可以停止”后 clean stop/finalize；
-7. 生成中文脱敏 Markdown；
-8. 通过 AI Document Assistant 写入飞书、设置企业内可编辑并回读验证。
+1. 在前三分钟完成公共仓库、公司 SVN 和 Document Assistant 可用性预检；
+2. 检查这台电脑缺少什么；
+3. 安装或更新正式的 SVN 采集器；
+4. 读取 C:\HuuugeCollector 内随正式包提供的说明；
+5. 检查专用 HuuugeResearch 模拟器；
+6. 启动采集并验证 READY；
+7. 等我正常操作游戏；
+8. 我说“可以停止”后 clean stop/finalize；
+9. 生成中文脱敏 Markdown；
+10. 通过 AI Document Assistant 写入飞书、设置企业内可编辑并回读验证。
 
 你能自己执行的检查和命令直接执行，不要让我手工复制命令或解释底层日志。
 只有 Git/SVN/AI/游戏首次登录、验证码、Windows 管理员确认和机器级修改审批可以让我操作。
@@ -75,7 +77,7 @@ Clone 后先读取：
 
 AI 可能依次要求你完成：
 
-- GitHub 登录；
+- GitHub 登录（只访问公共 AI-Workspace 时不需要私有仓库权限）；
 - 公司 SVN 登录；
 - Codex 或 Trae 登录；
 - Windows 管理员确认；
@@ -271,9 +273,9 @@ Markdown：C:\HuuugeCollector\.local\reports\first-run\Huuuge_First_Run_Report.m
 | Python 3 | 运行采集与整理脚本 | AI 检测/安装 |
 | BlueStacks 5 | 运行独立研究实例 | AI 检测；游戏登录由新人完成 |
 | Codex 或 Trae + DeepSeek | First Run 主要操作入口 | 新人登录，AI 执行 |
-| 公司 GitHub、SVN、飞书访问权限 | 读取资料、安装运行包、发布文档 | 新人/管理员提供 |
+| 公共 GitHub、公司 SVN、飞书访问权限 | 读取 AI-Workspace、安装运行包、发布文档 | 新人/管理员提供 |
 
-如果这台电脑需要本地运行 AI Document Assistant，还需要 Node.js 20+ 与 pnpm。AI 应先检测，缺失时再安装，不要求新人自己判断版本。
+新人不负责本地安装 Document Assistant，也不需要 Node.js、pnpm 或私有源码权限。共享工具应由管理员预先接入 Codex；AI 在前三分钟通过 `feishu_healthcheck` 进行 fail-fast 检查。
 
 ### 必须保护的现有环境
 
@@ -286,40 +288,23 @@ Markdown：C:\HuuugeCollector\.local\reports\first-run\Huuuge_First_Run_Report.m
 
 以下命令由 AI 执行；新人只在认证窗口完成首次登录。
 
-### 必需仓库
+### 新人唯一必需的 Git 仓库
 
 | 仓库 | 地址 | 用途 |
 | --- | --- | --- |
 | AI-Workspace | `https://github.com/840832144/AI-Workspace.git` | First Run Guide、Evidence Standard、Knowledge、Status 与 Handoff |
-| huuuge-android-research | `https://github.com/840832144/huuuge-android-research.git` | 工程资料、部署 Playbook、数据使用规范和模块目录 |
 
-默认使用下面两个长期路径。AI 必须先检查目录；只有目标不存在或为空时才 Clone，已经是正确仓库时改为安全更新，存在其他内容时停止并报告：
+默认使用下面的长期路径。AI 必须先检查目录；只有目标不存在或为空时才 Clone，已经是正确仓库时改为安全更新，存在其他内容时停止并报告：
 
 ```powershell
 git clone https://github.com/840832144/AI-Workspace.git C:\AI-Workspace
-git clone https://github.com/840832144/huuuge-android-research.git C:\HuuugeResearchSource
 ```
 
-### 按需仓库
+### 私有仓库不是新人前置条件
 
-只有本机尚未配置 AI Document Assistant 时，才需要：
+`huuuge-android-research` 和 Document Assistant 的实现仓库仍是维护者的工程真相源，但当前保持私有。新人首跑不得被要求访问、Clone 或安装这些仓库。采集器从公司 SVN 正式入口安装，详细运行说明从 `C:\HuuugeCollector` 正式包内读取；飞书发布只调用管理员已配置的共享 Document Assistant。
 
-```powershell
-git clone https://github.com/840832144/document-assistant.git C:\DocumentAssistant
-```
-
-`document-assistant` 只负责飞书文档能力。飞书应用凭据只能由管理员通过受控环境变量配置，不能写进 Git、配置正文、聊天或日志。
-
-Codex 路径由 AI 在 clone 后执行：
-
-```powershell
-Set-Location C:\DocumentAssistant
-pnpm install
-pnpm check
-codex mcp add feishu-docs -- powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\DocumentAssistant\scripts\start-server.ps1
-```
-
-管理员通过受控 Windows 用户环境配置 Document Assistant 所需变量后，完全退出并重新打开 Codex，再由 AI 调用 `feishu_healthcheck`。命令和 Codex 配置中只能引用变量名，不能出现真实值。Trae 只有在公司已经配置相同 MCP 时才直接发布；否则按第 8 节交给已配置的 Codex。
+如果 `feishu_healthcheck` 不存在或失败，AI 应立即给出管理员待办并停止 30 分钟验收计时。不得让新人自行配置 secret、改用原始飞书 API 或申请私有源码来继续。
 
 ### Git 与 SVN 的职责不要混淆
 
@@ -350,10 +335,12 @@ codex mcp add feishu-docs -- powershell.exe -NoProfile -ExecutionPolicy Bypass -
 
 先读取：
 1. projects/huuuge-android-research/FIRST_RUN_GUIDE.md
-2. projects/huuuge-android-research/STATUS.md
-3. standards/HUUUGE_EVIDENCE_STANDARD.md
-4. huuuge-android-research 仓库中的 AGENTS.md、CONTRIBUTING.md、CURRENT_STATUS.md、
-   HUUUGE_COLLECTOR_DEPLOYMENT_MANUAL.md、AI_DEPLOYMENT_PLAYBOOK.md、AGENT_DATA_USAGE_GUIDE.md。
+2. standards/HUUUGE_EVIDENCE_STANDARD.md
+3. bootstrap/AGENTS.md
+
+只使用公共 AI-Workspace 作为 Git 入口，不要求我访问或 Clone 私有 Git 仓库。
+前三分钟先确认公司 SVN 可达，并检查当前会话是否提供 feishu_healthcheck。
+如果 Document Assistant 未由管理员配置，立即报告并停止 30 分钟验收，不要等采集后才报告。
 
 目标：完成新电脑准备检查、安装/更新正式 SVN 采集器、验证专用 HuuugeResearch 实例、
 启动并确认 READY、在我正常操作后 clean stop/finalize、生成脱敏 Markdown，
@@ -373,12 +360,14 @@ codex mcp add feishu-docs -- powershell.exe -NoProfile -ExecutionPolicy Bypass -
 
 AI 应：
 
-1. 安全同步两个必需 Git 仓库，保留本地修改；
-2. 读取仓库规则、当前状态、部署手册和 Agent 数据规范；
-3. 检查 Windows、Git、SVN CLI、Python、BlueStacks 和选定 AI；
-4. 检查 `C:\HuuugeCollector` 是否已安装；
-5. 检查是否已有独立的 `HuuugeResearch` 实例；
-6. 输出“已满足 / 需要登录 / 需要审批 / 阻塞”，不要直接倾倒底层日志。
+1. 只安全同步公共 AI-Workspace，保留本地修改；
+2. 读取公共指南、Evidence Standard 与 Global AGENTS 模板；不要为首跑跟随维护者专用的私有证据链接；
+3. 在前三分钟检查公司 SVN 与 `feishu_healthcheck`，缺少任一项就 fail fast；
+4. 检查 Windows、Git、SVN CLI、Python、BlueStacks 和选定 AI；
+5. 检查 `C:\HuuugeCollector` 是否已安装；
+6. 安装/更新后读取正式包内的部署手册、Playbook 和 Agent 数据规范；
+7. 检查是否已有独立的 `HuuugeResearch` 实例；
+8. 输出“已满足 / 需要登录 / 需要审批 / 阻塞”，不要直接倾倒底层日志。
 
 ### 阶段 B：安装或更新正式采集器
 
@@ -398,7 +387,7 @@ Bootstrap 负责 SVN 更新、Python 环境、运行组件同步和预检。SVN 
 
 ### 阶段 C：准备独立研究实例
 
-AI 按 `AI_DEPLOYMENT_PLAYBOOK.md` 判断 S0–S8 中已经完成到哪一级，不重复执行已完成步骤。
+AI 按正式包内 `C:\HuuugeCollector\AI_DEPLOYMENT_PLAYBOOK.md` 判断 S0–S8 中已经完成到哪一级，不重复执行已完成步骤。
 
 如果缺少专用实例或采集组件：
 

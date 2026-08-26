@@ -11,6 +11,7 @@
 - 建立 Game Planner Skill Tree 和统一游戏项目模板。
 - 以 `huuuge-android-research` 验证首个游戏项目控制面；当前等待 ChatGPT Review。
 - 建立声明式 `workspace.yaml.example` 规范。
+- 建立 Global AGENTS 模板，将跨项目 Tool Discovery 和共享 Document Assistant 入口移出 AI-Workspace；等待 ChatGPT Review。
 - 后续完善 Capability/Skill 标识、审阅和版本规则，但不在本阶段实现运行时。
 
 ## Phase 2 — Document Assistant
@@ -21,6 +22,7 @@
 - 以 [`Document Assistant Capability Roadmap`](docs/roadmaps/DocumentAssistantCapabilityRoadmap.md) 定义能力域、阶段、治理关卡和非目标。
 - 面向游戏策划文档定义创建、读取、维护、审阅与交付流程。
 - 将 Feishu Document 作为 Tool/Service 接入能力模型，而不是在 Workspace 复制实现。
+- 只定义 Game Design 使用契约；运行时发现、安装、endpoint、凭据和连接状态由 Global Codex/Host 与外部实现仓库负责。
 - 定义读写权限、凭据、共享策略、失败处理和证据要求。
 - 保持 Document Assistant 的实现与测试在独立项目仓库。
 

@@ -55,10 +55,11 @@ AI Team 由 User、ChatGPT 和 Codex 共同组成，为游戏策划工作形成�
 | 架构、RFC、Workflow、Skill 设计 | ChatGPT | 产出规范、审阅标准和使用边界 |
 | Git、测试、自动化、部署工具 | Codex | 负责安全执行、验证和提交记录 |
 | Excel、SQL、Python 分析工具 | Codex | 仅在项目授权和已定义 Workflow 下执行 |
-| Feishu Document | ChatGPT 设计文档流程；Codex 维护实现与接入 | 凭据留在受控环境，Workspace 只保存规范和引用 |
+| 跨项目 Tool Discovery | Codex Host / Global AGENTS | 从当前 Host 实际能力中发现，区分 READ、WRITE、ADMIN/SECURITY；项目规则只增加限制 |
+| Document Assistant / Feishu Document | ChatGPT 设计文档流程；Codex 维护实现与接入 | Global AGENTS 提供共享入口；凭据留在受控环境，Workspace 只保存 Game Design 使用契约和引用 |
 | 外部账号、服务与发布权限 | User | User 授权后才可由对应 Agent 操作 |
 
-工具不是 Capability 的替代品；它只提供执行接口。工具关系见 `docs/CapabilityModel.md`。
+工具不是 Capability 的替代品；它只提供执行接口。AI-Workspace 不维护运行时工具清单、安装入口、endpoint 或连接状态。工具关系见 `docs/CapabilityModel.md`，Global 规则见 `bootstrap/AGENTS.md`。
 
 ## Security Rules
 

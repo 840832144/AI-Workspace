@@ -3,6 +3,7 @@
 - Status: Proposed
 - Date: 2026-08-26
 - Actors: User, ChatGPT, Codex
+- Related ADR: [`ADR-0002-Global-Tool-Discovery.md`](../adr/ADR-0002-Global-Tool-Discovery.md)
 
 ## Summary
 
@@ -16,6 +17,7 @@ AI Team 需要创建、读取、更新、授权、发布和治理协作文档。
 
 - 名称保持 `Document Assistant`，暂不改名。
 - 定位为公司文档中台，而不是单一 Feishu tool 或单一 Agent helper。
+- Tool Discovery 和共享使用入口由 Global Codex/Host 层负责；AI-Workspace 不维护运行时工具目录或连接配置。
 - 本阶段只输出 Capability Roadmap，不修改任何实现。
 - Roadmap 状态为 Waiting for ChatGPT Review。
 
@@ -35,7 +37,7 @@ Document Assistant 应提供：
 
 ## Control-plane Record
 
-若该项目登记到 `projects/`，只记录：
+若未来在 Game Design 项目控制面引用该能力，只记录：
 
 - Context：目标、外部源码仓库、能力和安全边界。
 - Memory：已确认协议、工具分类和关键决策引用。
@@ -43,6 +45,8 @@ Document Assistant 应提供：
 - Status：当前版本、验证证据、阻塞和下一步。
 
 不得复制 Document Assistant 的源码、credential、私有 Registry 或文档正文。
+
+运行时工具名称、安装方式、endpoint、凭据和连接状态不登记到 AI-Workspace Manifest；Codex 通过 Global AGENTS 和当前 Host 实际暴露的能力进行发现。
 
 ## Security Requirements
 
@@ -53,8 +57,7 @@ Document Assistant 应提供：
 
 ## Open Questions
 
-- 项目在 AI-Workspace 中采用正式登记还是仅建立外部引用？
-- READ/WRITE policy 是否需要成为全局 Standard？
+- Game Design 项目是否还需要比 Global AGENTS 更严格的 READ/WRITE 限制？
 - Remote MCP 的运行状态应由项目仓库还是集中监控系统记录？
 
 ## Non-goals
@@ -63,3 +66,4 @@ Document Assistant 应提供：
 - 本 RFC 不迁移或修改现有 Document Assistant 仓库。
 - 本 RFC 不选择具体 hosting、认证供应商或发布节奏。
 - 本 RFC 不实现 MCP 工具。
+- 本 RFC 不把 AI-Workspace 设为工具安装、发现或连接入口。

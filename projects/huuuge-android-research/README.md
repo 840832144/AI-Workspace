@@ -2,6 +2,8 @@
 
 本目录是 `huuuge-android-research` 在 Game Planner AI Workspace 中的项目控制面。它保存 Context、Memory、Workflow、Status 和稳定研究入口，不复制外部仓库的源码、采集数据或运行日志。
 
+新人 First Run 只需要公共 AI-Workspace 这一处 Git 入口；下面的私有实现仓库链接只供已授权维护者追溯证据，不是新人 30 分钟流程的前置条件。
+
 ## 项目索引
 
 - 项目背景与边界：[`CONTEXT.md`](CONTEXT.md)
