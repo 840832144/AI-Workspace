@@ -9,6 +9,7 @@
 - 建立 Game Planner AI Workspace 的领域边界和治理规则。
 - 定义 Workspace Kernel 与 Capability Model。
 - 建立 Game Planner Skill Tree 和统一游戏项目模板。
+- 以 `huuuge-android-research` 验证首个游戏项目控制面；当前等待 ChatGPT Review。
 - 建立声明式 `workspace.yaml.example` 规范。
 - 后续完善 Capability/Skill 标识、审阅和版本规则，但不在本阶段实现运行时。
 

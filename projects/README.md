@@ -49,4 +49,8 @@ projects/<project-slug>/
 - 跨项目决策：RFC/ADR。
 - 当前角色交接：`handoff/`。
 
-本阶段只提供模板，不登记或迁移任何现有游戏项目。
+## Registered Projects
+
+- [`huuuge-android-research`](huuuge-android-research/README.md) — Huuuge Casino Android 游戏系统与数值研究控制面；外部仓库保留实现和证据真相源。
+
+登记项目不会迁移外部仓库。新增项目继续从 `projects/TEMPLATE/` 创建，并先通过对应 Review gate。

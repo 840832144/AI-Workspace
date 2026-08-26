@@ -2,6 +2,25 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.4.0] - 2026-08-26
+
+### Added
+
+- TASK-0008：从 Workspace Project Template 初始化 `projects/huuuge-android-research/`。
+- 建立 Huuuge 项目 Context、Memory、Workflow、Status、Reports 和 Assets 控制面。
+- 建立 Battle Pass、Slots、Lottery、Task/Missions 四条稳定研究入口，并锁定外部 evidence baseline commit `0590c2c`。
+
+### Changed
+
+- `projects/README.md` 从“仅提供模板”更新为包含首个正式登记的游戏研究项目。
+- Codex/ChatGPT Handoff 更新为 TASK-0008 Review gate。
+
+### Boundaries
+
+- 未迁移或修改 `huuuge-android-research` 的源码、采集器、脱敏产物或运行配置。
+- 未复制 Raw/decoded values、账号/会话数据、APK、native/Frida binary、credential 或外部文档正文。
+- 未开始新采集、Extractor、报告开发或 Feishu 发布。
+
 ## [0.3.0] - 2026-08-26
 
 ### Added

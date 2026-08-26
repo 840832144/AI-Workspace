@@ -3,41 +3,45 @@
 这是 Codex 的固定交接入口。实现细节以对应外部项目仓库为准。
 
 - Updated: 2026-08-26
-- Task: TASK-0007
-- Current state: Document Assistant Capability Roadmap waiting for ChatGPT Review
+- Task: TASK-0008
+- Current state: Huuuge Project initialized; waiting for ChatGPT Review
 
 ## Objective
 
-保持 `Document Assistant` 名称和现有实现不变，将其规划为公司文档中台，只输出 Capability Roadmap，不开发功能。
+使用 AI-Workspace Project Template 接管 `huuuge-android-research` 的项目控制面，建立 Context、Memory、Workflow、Status，并梳理 Battle Pass、Slots、Lottery、Task/Missions 研究入口。
 
 ## Completed
 
-- 新增 `docs/roadmaps/DocumentAssistantCapabilityRoadmap.md`。
-- 定义 Access、Content、Collaboration、Delivery、Governance & Operations 五类共 15 个 Capability。
-- 定义 Review/Baseline、Governance Contract、Core Platform、Secure Multi-client、Publication/Sync、Operations 六个演进关卡。
-- 更新 Capability Model、Workspace Kernel、RFC-0002、Workspace Roadmap、Architecture、README、Feishu Document Skill 引用和 CHANGELOG。
+- 安全同步 AI-Workspace 与 `huuuge-android-research`。
+- 从 `projects/TEMPLATE/` 建立 `projects/huuuge-android-research/` 完整目录。
+- 将外部 commit `0590c2c37a0aa83b824920fa884f9f67007d3dcb` 固定为当前证据基线。
+- 建立四条研究入口及当前 evidence 状态：
+  - Battle Pass：schema-only / live-pending。
+  - Slots：live-confirmed；已有 broad Session 与 sanitized Spin example。
+  - Lottery：cross-cutting/config evidence；缺少专用 endpoint sample。
+  - Task/Missions：generic Missions schema-only；MiniPass task flow live-confirmed。
+- 更新项目索引、README 和 CHANGELOG。
 
 ## Confirmed Context
 
-- 名称保持 `Document Assistant`，暂不改名。
-- 外部 Document Assistant / `feishu-doc-mcp` 仓库继续作为实现真相源；本次没有读取、迁移或修改其实现。
-- 现有 Feishu client、auth、registry、Markdown converter、MCP tools 和 STDIO 接入保持现状。
-- Capability Roadmap 中的 Planned/Future 项目不代表已实现。
-- Document Assistant 是共享公司基础设施；AI-Workspace 只治理它在 Game Design 中的使用边界。
+- AI-Workspace 只拥有项目 Context、Memory、Workflow、Status 和交接。
+- External `huuuge-android-research` owns code、tests、runtime evidence、engineering logs and sanitized generated artifacts.
+- 本次没有修改外部研究仓库、Collector、SVN release、Feishu 文档或本机研究环境。
+- TASK-0006 Collector Architecture Baseline 在外部仓库仍为 Waiting for ChatGPT Review。
+- Skill categories 只是模型，不代表 Battle Pass/Slot/Lottery/Task Skill 已实现。
 
-## Risks / Open Decisions
+## Risks
 
-- RFC-0002 仍是 Proposed，尚未获得 ChatGPT Review。
-- READ / WRITE 是否需要增加 ADMIN-SECURITY 第三层仍待决定。
-- Document Registry、Revision、Publication 的真相源和冲突规则尚未确定。
-- Remote MCP、permission automation、Git → Feishu sync、monitoring 都只是规划，不得开始实现。
+- Workspace 状态可能与外部仓库漂移，必须以 commit permalink 和“external first”更新顺序控制。
+- 四个模块 evidence 完整度不一致，不能横向当作同等成熟。
+- GitHub private links 需要已授权会话；不得为方便访问而复制 private data。
 
 ## Constraints
 
-- 不修改 Document Assistant 名称、源码、MCP 配置或 ChatGPT 设置。
-- 不调用 Feishu API，不写入 credential、token、Registry 或文档正文。
-- 不在 ChatGPT Review 前授权 Codex 开发。
+- 不在 Review 前开始新采集、Extractor、报告实现或外部发布。
+- 不在 AI-Workspace 复制源码、Raw/decoded values、账号/会话标识、APK、binary 或 credential。
+- 任何研究执行继续遵守被动、安全、隔离研究环境和证据纪律。
 
 ## Exact Next Action
 
-ChatGPT 审阅 `docs/roadmaps/DocumentAssistantCapabilityRoadmap.md` 和 RFC-0002，返回 Accepted 或具体修订意见，并指出哪些阶段需要 ADR；Codex 等待 Review，不开始实现。
+ChatGPT 审阅 `projects/huuuge-android-research/`，返回 Accepted 或对 Context、Memory、Workflow、Status 和四条研究入口的具体修订意见。Codex 等待 Review，不开始实现。

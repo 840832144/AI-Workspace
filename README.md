@@ -44,6 +44,8 @@ AI-Workspace/
 
 核心对象和关系见 [`docs/architecture/WorkspaceKernel.md`](docs/architecture/WorkspaceKernel.md)，能力分层见 [`docs/CapabilityModel.md`](docs/CapabilityModel.md)。
 
+当前登记项目：[`huuuge-android-research`](projects/huuuge-android-research/README.md)。
+
 ## 阅读顺序
 
 新 Agent 或新会话按以下顺序开始：
