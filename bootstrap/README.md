@@ -1,6 +1,6 @@
 # Bootstrap
 
-本目录定义新环境、新 Agent 或新协作者接入 AI-Workspace 的最小步骤。
+本目录定义新环境、新 Agent 或新协作者接入 Game Planner AI Workspace 的最小步骤。
 
 ## Repository Bootstrap
 
@@ -13,11 +13,11 @@
 
 ## New Project Bootstrap
 
-1. 从 `templates/projects/` 复制四件套到 `projects/<slug>/`。
-2. 填写 Context，并链接外部项目仓库或系统。
+1. 从 `projects/TEMPLATE/` 复制统一结构到 `projects/<slug>/`。
+2. 填写游戏项目 Context，并链接外部项目仓库或系统。
 3. 只迁入已确认、长期有用且非敏感的 Memory。
-4. 定义 Workflow 和验证关卡。
-5. 初始化 Status，写明唯一下一动作。
+4. 定义 Workflow、Capability、Skill、Template、Tool 和验证关卡。
+5. 初始化 Reports、Assets 和 Status，写明唯一下一动作。
 6. 若项目改变整体体系，先创建 RFC。
 
 ## Session Completion

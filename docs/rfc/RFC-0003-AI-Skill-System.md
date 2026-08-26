@@ -6,7 +6,7 @@
 
 ## Summary
 
-建立可登记、可审阅、可版本化和可弃用的 AI Skill 体系，使可复用能力不依赖单次提示词或某个 Agent 的隐式记忆。
+建立面向 Game Design、可登记、可审阅、可版本化和可弃用的 AI Skill 体系，使游戏策划方法不依赖单次提示词或某个 Agent 的隐式记忆。
 
 ## Problem
 
@@ -43,6 +43,8 @@ Draft → Review → Active → Deprecated → Retired
 
 `skills/` 在本阶段只保存规范、索引和外部实现引用。具体 Skill 实现可以留在专用插件或项目仓库；是否集中托管由后续 RFC/ADR 决定。
 
+Skill Tree 仅接受游戏分析、游戏系统/数值设计、策划分析工具和文档交付方法。非游戏领域 Skill 不进入默认 Workspace。
+
 ## Open Questions
 
 - Skill manifest 采用 Markdown、JSON 还是二者组合？
@@ -52,6 +54,6 @@ Draft → Review → Active → Deprecated → Retired
 
 ## Non-goals
 
-- 本 RFC 不创建具体业务 Skill。
+- 本 RFC 不创建具体可执行 Skill。
 - 本 RFC 不安装或迁移现有 Skill。
 - 本 RFC 不定义运行时插件协议。

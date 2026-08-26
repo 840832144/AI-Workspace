@@ -1,6 +1,6 @@
 # Agent Entry Point
 
-This repository is the governance and coordination control plane for the AI collaboration system. It is not a business-code repository.
+This repository is the governance and coordination control plane for the Game Planner AI Workspace. Its default and only business domain is Game Design; it is not a general-purpose AI platform or a business-code repository.
 
 Before making changes:
 
@@ -12,6 +12,7 @@ Before making changes:
 Rules:
 
 - Keep confirmed facts separate from hypotheses.
+- Keep all models, Skills, Workflows, Templates, and projects within the Game Design domain.
 - Do not copy business code, credentials, private datasets, or full runtime logs into this repository.
 - Preserve project repositories as the source of truth for implementation.
 - Update the relevant handoff and project Status when work changes shared state.

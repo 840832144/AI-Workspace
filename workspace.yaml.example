@@ -1,0 +1,46 @@
+# Specification example only. No loader or runtime is implemented.
+workspace:
+  id: game-planner-ai-workspace
+  name: AI-Workspace
+  domain: game-design
+  version: 1
+  default_language: zh-CN
+
+repositories:
+  - id: example-game-repository
+    role: game-project
+    url: https://github.com/example/example-game.git
+    source_of_truth_for:
+      - implementation
+      - tests
+
+projects:
+  - id: example-game-project
+    path: projects/example-game-project
+    repository: example-game-repository
+    template: projects/TEMPLATE
+    status: planned
+
+agents:
+  - id: chatgpt
+    ownership:
+      - architecture
+      - rfc
+      - review
+      - workflow
+      - skill
+  - id: codex
+    ownership:
+      - implementation
+      - automation
+      - git
+      - testing
+      - deployment
+
+services:
+  - id: document-assistant
+    capability: feishu-document
+    repository: null
+    endpoint: null
+    credentials: external-secret-store
+    status: referenced-only

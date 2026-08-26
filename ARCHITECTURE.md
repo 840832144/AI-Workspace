@@ -1,8 +1,10 @@
 # Architecture
 
+AI-Workspace 的架构范围限定为游戏策划 AI 工作台。它不提供通用领域能力，也不承载业务实现。Workspace Kernel 的对象定义见 [`docs/architecture/WorkspaceKernel.md`](docs/architecture/WorkspaceKernel.md)，能力分层见 [`docs/CapabilityModel.md`](docs/CapabilityModel.md)。
+
 ## 总体模型
 
-AI 协作体系分为三个平面：
+游戏策划 AI 协作体系分为三个平面：
 
 ```text
 Governance plane — AI-Workspace
@@ -10,7 +12,7 @@ Governance plane — AI-Workspace
                          │
                          ▼
 Execution plane — project repositories and connected systems
-  业务代码 / 测试 / 部署 / 项目专属文档 / 实际配置
+  游戏项目代码 / 测试 / 部署 / 项目专属文档 / 实际配置
                          │
                          ▼
 Evidence plane — verified outputs
@@ -33,14 +35,15 @@ ADR 记录已经采纳、会长期影响体系的架构决策。ADR 只记录一
 
 Standards 是已生效的横向规则，例如证据纪律、命名、安全边界和文档质量。标准应引用其来源 RFC/ADR。
 
-### Skills 与 Workflows
+### Capabilities、Skills 与 Workflows
 
-- Skill 是可复用能力单元，定义触发条件、输入、步骤、安全限制、输出和验证。
-- Workflow 编排一个或多个 Agent、Skill、项目或外部系统，定义顺序、检查点和失败处理。
+- Capability 定义游戏策划工作台可交付的结果，不绑定具体 Agent 或工具。
+- Skill 是实现 Capability 的可复用方法单元，定义触发条件、输入、步骤、安全限制、输出和验证。
+- Workflow 编排一个或多个 Agent、Skill、Template、Tool、项目或外部系统，定义顺序、检查点和失败处理。
 
 ### Projects
 
-`projects/` 只保存项目控制面。每个项目必须具有 Context、Memory、Workflow、Status 四部分，业务实现仍留在项目自己的仓库。
+`projects/` 只保存游戏项目控制面。每个项目必须具有 Context、Memory、Workflow、Status、Reports、Assets 六部分，业务实现仍留在项目自己的仓库。
 
 ### Handoff
 

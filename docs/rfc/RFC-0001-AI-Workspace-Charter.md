@@ -6,7 +6,7 @@
 
 ## Summary
 
-建立 AI-Workspace 作为整个 AI 协作体系的治理与协调总控仓库，而不是代码仓库。
+建立 AI-Workspace 作为 Game Planner AI Workspace 的治理与协调总控仓库，而不是代码仓库或通用 AI 平台。
 
 ## Motivation
 
@@ -16,6 +16,7 @@
 
 AI-Workspace 负责：
 
+- Game Design 领域边界与 Workspace Kernel。
 - AI 团队角色和协作协议。
 - 跨项目 RFC 与长期 ADR。
 - 可复用 Skill、Workflow、Template 和 Standard 的定义与索引。
@@ -25,6 +26,7 @@ AI-Workspace 负责：
 
 ## Non-goals
 
+- 不服务婚礼、投资等非游戏领域，不建设通用 AI 能力市场。
 - 不承载业务代码、构建产物或部署配置。
 - 不替代项目自身 README、测试和 issue tracker。
 - 不保存 credential、个人数据、客户数据或完整业务数据。
@@ -56,5 +58,5 @@ AI-Workspace 负责：
 
 - 核心目录和文档存在。
 - ChatGPT 与 Codex 有固定交接文档。
-- 项目四件套和模板已定义。
+- 游戏项目 Context、Memory、Workflow、Status、Reports、Assets 结构和模板已定义。
 - 初始化内容提交并推送到 Git。

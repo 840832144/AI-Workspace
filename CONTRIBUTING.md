@@ -2,13 +2,13 @@
 
 ## 适用范围
 
-所有 User、ChatGPT、Codex 对本仓库的修改都必须遵循本规范。
+所有 User、ChatGPT、Codex 对本仓库的修改都必须遵循本规范。本仓库只接受 Game Design / 游戏策划领域的治理、模型、Skill、Workflow、Template 和项目控制面内容。
 
 ## 开始前
 
 1. 使用安全方式同步 `main`，不得 force-push 或重写他人历史。
 2. 阅读 `AI_TEAM.md`、`ARCHITECTURE.md` 和相关 handoff。
-3. 确认修改属于治理、协作、标准、模板或项目控制面，而不是业务实现。
+3. 确认修改属于游戏策划治理、协作、标准、模板或项目控制面，而不是业务实现或非游戏领域内容。
 4. 检查相关 RFC、ADR、项目 Status 和 CHANGELOG，避免重复或冲突。
 
 ## 变更分类
@@ -41,10 +41,13 @@
 
 每个 `projects/<project>/` 必须包含：
 
+- `README.md`
 - `CONTEXT.md`
 - `MEMORY.md`
 - `WORKFLOW.md`
 - `STATUS.md`
+- `REPORTS/`
+- `ASSETS/`
 
 项目实现细节应以链接或 commit 引用方式指向业务仓库，不复制源代码和敏感数据。
 
