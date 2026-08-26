@@ -3,7 +3,7 @@
 - Status: Proposed
 - Date: 2026-08-26
 - Actors: User, ChatGPT, Codex
-- Related ADR: [`ADR-0002-Global-Tool-Discovery.md`](../adr/ADR-0002-Global-Tool-Discovery.md)
+- Related ADR: [`ADR-0003-Capability-First-Discovery.md`](../adr/ADR-0003-Capability-First-Discovery.md)
 
 ## Summary
 
@@ -16,16 +16,16 @@ AI Team 需要创建、读取、更新、授权、发布和治理协作文档。
 ## Current Planning Decision
 
 - 名称保持 `Document Assistant`，暂不改名。
-- 定位为公司文档中台，而不是单一 Feishu tool 或单一 Agent helper。
-- Tool Discovery 和共享使用入口由 Global Codex/Host 层负责；AI-Workspace 不维护运行时工具目录或连接配置。
+- 定位为 `Document Capability` 的公司文档实现 provider，而不是 Capability contract、单一 Feishu tool 或单一 Agent helper。
+- Capability Discovery 由 Global Codex 层负责，稳定契约进入 [`Capability Catalog`](../../capabilities/README.md)；provider/Tool 只属于实现层。
 - 本阶段只输出 Capability Roadmap，不修改任何实现。
 - Roadmap 状态为 Waiting for ChatGPT Review。
 
 详细路线见 [`DocumentAssistantCapabilityRoadmap.md`](../roadmaps/DocumentAssistantCapabilityRoadmap.md)。
 
-## Proposed Capability Boundary
+## Proposed Provider Boundary
 
-Document Assistant 应提供：
+Document Capability 的稳定 Operations 见 [`capabilities/document/README.md`](../../capabilities/document/README.md)。Document Assistant 当前应实现：
 
 - 文档健康检查、读取、搜索和目录浏览。
 - 文档创建、追加、替换和目录管理。
@@ -46,7 +46,7 @@ Document Assistant 应提供：
 
 不得复制 Document Assistant 的源码、credential、私有 Registry 或文档正文。
 
-运行时工具名称、安装方式、endpoint、凭据和连接状态不登记到 AI-Workspace Manifest；Codex 通过 Global AGENTS 和当前 Host 实际暴露的能力进行发现。
+运行时工具名称、安装方式、endpoint、凭据和连接状态不登记到 AI-Workspace Manifest；Codex 先通过 Global AGENTS 发现 Capability，再检查当前 Host 实际暴露的 Implementation Binding。
 
 ## Security Requirements
 
@@ -66,4 +66,4 @@ Document Assistant 应提供：
 - 本 RFC 不迁移或修改现有 Document Assistant 仓库。
 - 本 RFC 不选择具体 hosting、认证供应商或发布节奏。
 - 本 RFC 不实现 MCP 工具。
-- 本 RFC 不把 AI-Workspace 设为工具安装、发现或连接入口。
+- 本 RFC 不把 AI-Workspace 设为工具安装、运行时选择或连接入口。

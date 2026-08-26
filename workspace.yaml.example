@@ -6,6 +6,14 @@ workspace:
   version: 1
   default_language: zh-CN
 
+capability_catalog:
+  path: capabilities
+  entries:
+    - id: CAP-DOC
+      contract: capabilities/document/README.md
+      scope: shared-platform
+      status: registered
+
 repositories:
   - id: example-game-repository
     role: game-project
@@ -37,5 +45,6 @@ agents:
       - testing
       - deployment
 
-# Runtime tools and services are discovered through Global Codex/Host configuration.
-# This Workspace Manifest does not register tool endpoints, credentials, or connection status.
+# Capability Discovery uses the catalog before the Host selects an implementation.
+# Runtime providers and tools remain in Host configuration; this Manifest does not
+# register tool endpoints, credentials, installation state, or connection status.

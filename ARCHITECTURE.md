@@ -1,6 +1,6 @@
 # Architecture
 
-AI-Workspace 的架构范围限定为游戏策划 AI 工作台。它不提供通用领域能力，也不承载业务实现。Workspace Kernel 的对象定义见 [`docs/architecture/WorkspaceKernel.md`](docs/architecture/WorkspaceKernel.md)，能力分层见 [`docs/CapabilityModel.md`](docs/CapabilityModel.md)。
+AI-Workspace 的架构范围限定为游戏策划 AI 工作台。它不提供通用领域业务内容，也不承载业务实现。Workspace Kernel 的对象定义见 [`docs/architecture/WorkspaceKernel.md`](docs/architecture/WorkspaceKernel.md)，能力分层见 [`docs/CapabilityModel.md`](docs/CapabilityModel.md)，发现入口见 [`Capability Catalog`](capabilities/README.md)。
 
 ## 总体模型
 
@@ -8,11 +8,11 @@ AI-Workspace 的架构范围限定为游戏策划 AI 工作台。它不提供通
 
 ```text
 Global Codex layer — ~/.codex/AGENTS.md
-  Tool Discovery / shared Document Assistant policy / security baseline
+  Capability Discovery / shared Capability policy / security baseline
                          │
                          ▼
 Governance plane — AI-Workspace
-  Game Design 章程 / RFC / ADR / 标准 / 模板 / 项目索引 / 交接
+  Capability Catalog / Game Design 章程 / RFC / ADR / 标准 / 模板 / 项目索引 / 交接
                          │
                          ▼
 Execution plane — project repositories and connected systems
@@ -23,9 +23,9 @@ Evidence plane — verified outputs
   测试结果 / API 响应 / 版本号 / commit / artifact reference
 ```
 
-Global Codex 层负责跨项目发现共享工具和应用一致的安全基线。AI-Workspace 管理 Game Design 中“如何协作”和“各项目处于什么状态”，但不复制执行平面的实现。
+Global Codex 层负责从 User Outcome 发现 Capability，并应用一致的安全基线。AI-Workspace 提供可审阅的 Capability Catalog，管理 Game Design 中“如何协作”和“各项目处于什么状态”，但不复制执行平面的实现。
 
-Document Assistant 等共享公司基础设施可以由外部仓库服务多个业务域；运行时入口与 Tool Discovery 不进入 AI-Workspace。AI-Workspace 只定义其对 Game Design 的 Capability、Workflow、权限和证据要求，不导入其他业务域内容。
+Document Capability 等共享平台契约可以被多个项目消费；Document Assistant 等 provider 可以由外部仓库服务多个 Host。AI-Workspace 记录 provider-neutral contract 和 Game Design 使用边界，Tool 的检查与选择只发生在 Capability 的实现层，不形成独立发现体系。
 
 ## 信息架构
 
@@ -44,8 +44,10 @@ Standards 是已生效的横向规则，例如证据纪律、命名、安全边�
 ### Capabilities、Skills 与 Workflows
 
 - Capability 定义游戏策划工作台可交付的结果，不绑定具体 Agent 或工具。
+- Capability Discovery 从 User Outcome 匹配 Catalog 中的稳定契约、操作等级和成功证据。
 - Skill 是实现 Capability 的可复用方法单元，定义触发条件、输入、步骤、安全限制、输出和验证。
 - Workflow 编排一个或多个 Agent、Skill、Template、Tool、项目或外部系统，定义顺序、检查点和失败处理。
+- Implementation Binding 在 Capability 已选定后，将 Operation 映射到当前 Host 的 provider 与 Tool。
 
 ### Projects
 
@@ -65,7 +67,8 @@ Standards 是已生效的横向规则，例如证据纪律、命名、安全边�
 | 提案与讨论结果 | `docs/rfc/` |
 | 当前项目协作状态 | `projects/<project>/STATUS.md` |
 | 当前 Agent 交接 | `handoff/` |
-| 跨项目 Tool Discovery 与共享工具规则 | `~/.codex/AGENTS.md`；版本化模板为 `bootstrap/AGENTS.md` |
+| 跨项目 Capability Discovery 与共享能力规则 | `~/.codex/AGENTS.md`；版本化模板为 `bootstrap/AGENTS.md` |
+| Capability Catalog 与稳定结果契约 | `capabilities/` |
 | Tool 实现、安装、endpoint 与连接状态 | 对应工具仓库、Host 配置和受控运行环境 |
 | 凭据和 secrets | Secret manager / 本机受控环境；不得进入 Git |
 

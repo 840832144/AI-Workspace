@@ -2,6 +2,34 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.9.0] - 2026-08-26
+
+### Added
+
+- TASK-0013：建立 [`Capability Catalog`](capabilities/README.md)，定义 Capability-first 发现顺序、Catalog schema、契约状态与实现状态分离规则。
+- 建立首个共享 [`Document Capability`](capabilities/document/README.md)，定义 7 个结果 Operations、READ/WRITE/ADMIN 等级、成功证据、默认权限、failure semantics 和当前 provider mapping。
+- 新增 ADR-0003，正式决定“先发现 Capability，再选择 Implementation Binding 与 Tool”。
+
+### Changed
+
+- Global AGENTS 顶层入口从 Tool-first 调整为 Capability Discovery；Tool 的检查与选择只属于 Capability 实现层。
+- `Document Assistant` 从“Capability 本身”校正为 `Document Capability` 的当前实现 provider；Feishu MCP tools 明确为 provider-specific interfaces。
+- ADR-0002 标记为 Superseded，由 ADR-0003 取代；历史内容保留，不重写原决策。
+- Architecture、Workspace Kernel、Capability Model、AI Team、Manifest、Roadmap、RFC-0002、Document Assistant Roadmap、Feishu Document Skill 与 Bootstrap 统一采用 Capability-first 模型。
+- 本机 `C:\Users\admin\.codex\AGENTS.md` 与仓库模板同步更新；公共 AI-Workspace 和现有 First Run 路径保持不变。
+
+### Validation
+
+- 对照 OpenAI 官方 `AGENTS.md` 文档确认 Global 与项目级指令仍按既有顺序叠加；Capability-first 是本 Workspace 的治理契约，不冒充 Codex 内置 resolver。
+- `bootstrap/AGENTS.md` 与本机 `~/.codex/AGENTS.md` 的 SHA-256 一致，且没有 Global override 遮蔽。
+- Catalog、Document Capability、ADR、Architecture、Kernel 和 Manifest 内部链接、边界与术语验证通过。
+- 全仓敏感值、禁用词、diff 和私有新人前置检查通过。
+
+### Boundaries
+
+- 未实现 Capability Registry、resolver、自动选择器或新 Tool。
+- 未修改 Document Assistant、MCP 配置、ChatGPT 设置、First Run 飞书文档、采集器、SVN package 或业务功能。
+
 ## [0.8.0] - 2026-08-26
 
 ### Added

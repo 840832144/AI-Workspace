@@ -48,18 +48,20 @@ AI Team 由 User、ChatGPT 和 Codex 共同组成，为游戏策划工作形成�
 - 涉及外部写入、权限、费用、发布或敏感数据的变更必须由 User 明确授权。
 - 任何 Agent 都不能仅以自己的输出作为完成证据。
 
-## Tool Ownership
+## Capability 与实现 Ownership
 
-| 工具类别 | 主要所有者 | 规则 |
+| 对象 | 主要所有者 | 规则 |
 | --- | --- | --- |
 | 架构、RFC、Workflow、Skill 设计 | ChatGPT | 产出规范、审阅标准和使用边界 |
+| Capability Catalog 与 Capability Discovery | ChatGPT | 从 User Outcome 定义稳定契约、Operation、等级和成功证据 |
 | Git、测试、自动化、部署工具 | Codex | 负责安全执行、验证和提交记录 |
 | Excel、SQL、Python 分析工具 | Codex | 仅在项目授权和已定义 Workflow 下执行 |
-| 跨项目 Tool Discovery | Codex Host / Global AGENTS | 从当前 Host 实际能力中发现，区分 READ、WRITE、ADMIN/SECURITY；项目规则只增加限制 |
-| Document Assistant / Feishu Document | ChatGPT 设计文档流程；Codex 维护实现与接入 | Global AGENTS 提供共享入口；凭据留在受控环境，Workspace 只保存 Game Design 使用契约和引用 |
+| Implementation Binding 与 Tool 选择 | Codex / 当前 Host | 在 Capability 已确定后检查实际 schema，选择最小副作用、可验证的批准实现 |
+| Document Capability | ChatGPT | 维护 provider-neutral contract、默认权限和验收标准 |
+| Document Assistant / Feishu tools | Codex | 作为 Document Capability 的实现 provider；凭据留在受控环境 |
 | 外部账号、服务与发布权限 | User | User 授权后才可由对应 Agent 操作 |
 
-工具不是 Capability 的替代品；它只提供执行接口。AI-Workspace 不维护运行时工具清单、安装入口、endpoint 或连接状态。工具关系见 `docs/CapabilityModel.md`，Global 规则见 `bootstrap/AGENTS.md`。
+Tool 不是 Capability 的替代品，只提供实现接口。ChatGPT 主审“应该交付什么”，Codex 验证“当前由什么安全实现”。AI-Workspace 不维护运行时工具清单、安装入口、endpoint 或连接状态。关系见 `docs/CapabilityModel.md`，Global 规则见 `bootstrap/AGENTS.md`。
 
 ## Security Rules
 

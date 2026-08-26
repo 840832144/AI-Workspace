@@ -12,6 +12,7 @@ Workspace Kernel 是 Game Planner AI Workspace 的最小稳定对象模型。它
 | Skill | 可复用、边界清晰的方法单元 | 描述触发条件、输入、步骤、输出、安全和验证 |
 | Workflow | 为目标编排对象的过程 | 连接 Project、Agent、Skill、Template 与 Tool，并定义关卡和失败处理 |
 | Template | 输入、过程记录或输出的结构契约 | 保证同类项目和报告结构一致、可审阅、可复用 |
+| Implementation Binding | Capability Operation 到 provider/Tool 的可替换映射 | 记录当前实现关系和 Host 约束，不改变稳定 Capability contract |
 | Tool | 由当前 Host 或外部系统提供的受控执行接口 | 提供 Excel、SQL、Python、Feishu、Git 等执行能力；不由 Workspace 负责发现或安装 |
 | Agent | 受角色、权限和所有权约束的协作者 | 进行设计、实施、审阅、验证与交接 |
 | Memory | 项目长期有效且经过分类的知识 | 保存 Confirmed、Hypothesis、Decision 及其证据引用 |
@@ -21,23 +22,26 @@ Workspace Kernel 是 Game Planner AI Workspace 的最小稳定对象模型。它
 
 ```mermaid
 flowchart TD
-    G[Global Codex Guidance] -->|discovers and constrains| TOOL[Tool]
+    G[Global Codex Guidance] -->|discovers| C[Capability]
+    CAT[Capability Catalog] -->|defines| C
     W[Workspace] -->|registers| P[Project]
-    W -->|defines| C[Capability]
+    W -->|maintains| CAT
     W -->|governs| A[Agent]
     W -->|registers| TPL[Template]
-    W -.->|documents Game Design usage contract| TOOL
 
     P -->|maintains| M[Memory]
     P -->|publishes| S[Status]
     P -->|runs| WF[Workflow]
     P -->|conforms to| TPL
 
-    C -->|is realized by| SK[Skill]
+    C -->|decomposes into| SK[Skill]
+    C -->|implemented by| B[Implementation Binding]
+    B -->|maps to| TOOL[Tool]
     WF -->|orchestrates| SK
+    WF -->|targets| C
     WF -->|assigns| A
     WF -->|uses| TPL
-    SK -->|uses| TOOL
+    SK -->|uses| B
     SK -->|produces via| TPL
     M -->|informs| WF
     S -->|selects next| WF
@@ -46,13 +50,14 @@ flowchart TD
 ## Kernel 约束
 
 1. Workspace 的默认领域是 Game Design；领域外对象不得进入默认模型。
-2. Capability 描述结果，Skill 描述方法，Workflow 描述编排，Tool 描述执行接口，四者不得混用。
+2. Capability 描述结果，Skill 描述方法，Workflow 描述编排，Implementation Binding 描述当前映射，Tool 描述执行接口，五者不得混用。
 3. Project 必须以 `projects/TEMPLATE/` 为结构基线，但不得把业务代码或敏感数据复制进 Workspace。
 4. Memory 必须区分 Confirmed、Hypothesis 与 Decision；Status 只保存当前事实和下一动作。
 5. Agent 的权限来自角色规则和 User 授权，不因 Tool 可用而自动扩大。
-6. Tool Discovery 和共享工具入口属于 Global Codex 层；Workspace 只描述 Game Design 使用契约，不登记运行时工具目录、endpoint、凭据或连接状态。
-7. 本文是信息模型，不代表已存在任何运行时、自动发现、校验或执行程序。
+6. Capability Discovery 属于 Global Codex 层，AI-Workspace 提供 Catalog。Tool 的检查与选择只能在 Capability 确定后作为实现步骤发生。
+7. Workspace 可以记录 provider-neutral contract 和非敏感 Implementation Binding 引用，但不登记运行时工具目录、endpoint、凭据或连接状态。
+8. 本文是信息模型，不代表已存在任何运行时、自动发现、校验或执行程序。
 
 ## Manifest 映射
 
-`workspace.yaml.example` 只为 Workspace、Repository、Project 与 Agent 提供声明示例。Tool 与 Service 由 Global/Host 层发现和配置，不进入 Workspace Manifest。该文件是未来实现可依赖的规范输入，不是当前可执行配置。
+`workspace.yaml.example` 为 Workspace、Capability Catalog、Repository、Project 与 Agent 提供声明示例。Provider 与 Tool 由当前 Host 配置；Manifest 不保存 endpoint、credential 或连接状态。该文件是未来实现可依赖的规范输入，不是当前可执行配置。

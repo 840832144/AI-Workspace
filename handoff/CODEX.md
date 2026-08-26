@@ -3,51 +3,47 @@
 这是 Codex 的固定交接入口。实现细节以对应外部项目仓库为准。
 
 - Updated: 2026-08-26
-- Task: TASK-0012
-- Current state: Global AGENTS installed and public First Run path preserved; waiting for ChatGPT Review
+- Task: TASK-0013
+- Current state: Capability Discovery and Document Capability ready; waiting for ChatGPT Review
 
 ## Objective
 
-把 Document Assistant 和 Tool Discovery 提升为所有 Codex 项目共享能力，让 AI-Workspace 回到 Game Design 治理与项目控制面职责，同时确保只有公共 AI-Workspace 权限的新策划仍能执行 30 分钟 First Run。
+把全局发现入口从 Tool-first 调整为 Capability-first：Agent 先识别 User 需要的稳定结果契约，再选择 Workflow、Skill、Implementation Binding 和 Tool。
 
 ## Completed
 
-- 对照 OpenAI 官方 `AGENTS.md` 发现规则，确认 Global 层读取 `~/.codex/AGENTS.override.md` 或 `~/.codex/AGENTS.md`，再从仓库根目录向当前目录叠加项目指令。
-- 检查本机 Global Codex 目录：开始时不存在 `AGENTS.md` 或 `AGENTS.override.md`，没有需要合并的既有规则。
-- 新增 `bootstrap/AGENTS.md` 版本化模板，并安装到 `C:\Users\admin\.codex\AGENTS.md`。
-- 建立 Tool Discovery 顺序、专用工具优先、READ/WRITE/ADMIN 分级、搜索防重、结果回读、缺失能力报告和禁止未批准替代入口规则。
-- 将 Document Assistant 定义为跨项目共享工具；策划只使用管理员已配置的 Tool，不需要访问、Clone 或安装私有实现仓库。
-- 将默认中文和新生成云文档默认企业内可编辑规则提升到 Global Codex 层。
-- 新增 ADR-0002；更新 README、Architecture、Kernel、Capability Model、Manifest、Roadmap、RFC-0002、AI Team、Skill、Bootstrap、CONTRIBUTING 与 CHANGELOG。
-- 根据 User 补充的访问边界，将 Huuuge First Run 更新为 RC4：公共 AI-Workspace 是唯一必需 Git 仓库；公司 SVN 提供正式采集包；Document Assistant 由管理员预配置并在前三分钟 fail fast。
+- 将仓库模板与本机 `~/.codex/AGENTS.md` 的顶层入口改为 `Capability Discovery`。
+- 明确 Tool 的检查与选择只属于 Capability 实现层，不建立独立的 Tool Discovery。
+- 新增 `capabilities/README.md`，建立 Catalog schema、发现顺序和四类状态：Registered/available、Registered/unavailable、Proposed、Unknown。
+- 新增 `capabilities/document/README.md`，定义 `CAP-DOC` 与 7 个结果型 Document Operations；`feishu_healthcheck` 只保留为 provider preflight。
+- 将 Document Assistant 定义为当前实现 provider，将 Feishu MCP tools 定义为 provider-specific Implementation Binding。
+- 新增 ADR-0003 并 supersede ADR-0002；历史 ADR 保留。
+- 更新 Architecture、Workspace Kernel、Capability Model、AI Team、Manifest、Roadmap、RFC-0002、Document Assistant Roadmap、Skill、Bootstrap、README、CONTRIBUTING 和 CHANGELOG。
 
 ## Confirmed Context
 
-- AI-Workspace 只负责 Game Design 的架构、Capability、Workflow、Skill、Template、项目状态与交接。
-- Tool Discovery、共享 Document Assistant 入口与跨项目安全基线属于 Global Codex 层。
-- Tool 实现、测试、安装、endpoint、credential 和连接状态继续属于外部实现仓库、Host 配置与受控环境。
-- 只有 AI-Workspace 已向新人开放公共访问；其他 Git 实现仓库保持私有，不能作为新人流程的前置条件。
-- 30 分钟里程碑是“新策划在新电脑完成采集、生成 Markdown、AI 写入并回读飞书”；独立真实计时尚未发生。
-- 本次没有修改 Document Assistant、MCP 配置、ChatGPT 设置、采集器、SVN 或业务功能。
+- Capability contract 回答“能交付什么结果”；Implementation Binding 回答“当前 Host 由什么实现”。
+- Capability 是否登记与当前实现是否可用必须分开报告。
+- Tool 可见不等于 Capability 已登记或已获授权；Tool 不可见不等于 Capability 不存在。
+- AI-Workspace 保存公开 Catalog 与 provider-neutral contract，但不保存运行时 endpoint、credential、安装状态或连接状态。
+- 公共 AI-Workspace 仍是新人唯一必需 Git 入口；私有实现仓库不是策划前置条件。
+- TASK-0011 的 30 分钟独立策划盲测仍未发生，本任务没有修改采集器或 First Run 云文档。
 
 ## Validation
 
-- 仓库模板与本机 Global 文件 SHA-256 一致。
-- 本机没有 `AGENTS.override.md`，不会遮蔽新建的 Global `AGENTS.md`。
-- 模板包含 Document Assistant 的 READ、WRITE、ADMIN/SECURITY 分类、默认企业内可编辑、权限失败和公共新人入口规则。
-- First Run 中不再要求新人 Clone `huuuge-android-research` 或 Document Assistant；私有仓库只保留为维护者证据来源。
-- 飞书 RC4 在同一 document ID 上 replace 并回读成功；再次验证 `link_share_entity=tenant_editable`、`verified=true`。
-- Workspace Manifest 不再登记 Service endpoint、credential 或连接状态。
-- 已执行 secret/boundary、内部链接、Git diff 和工作树检查；结果以本任务提交为准。
+- Global 模板与本机文件 SHA-256 一致；本机没有 `AGENTS.override.md`。
+- `CAP-DOC-*` Operations 全部具有 Outcome、Class、Required input 和 Success evidence。
+- Catalog 与 Document Capability 的相对链接验证通过。
+- 当前生效文档不再把 Tool-first 作为顶层发现入口；ADR-0002 和历史 CHANGELOG 只保留历史记录。
+- Secret、禁用词、私有 Clone 前置、diff 和 Git 状态检查通过。
 
 ## Risks
 
-- Codex 每次运行只构建一次 Agent 指令链；当前已打开会话可能不会自动重载新 Global 文件，重启后生效最稳妥。
-- 后续若创建 `~/.codex/AGENTS.override.md`，它会在 Global 层遮蔽 `AGENTS.md`；排障必须先检查 override。
-- 新人设备如果没有管理员预配置的 Document Assistant，就不能完成“AI 写飞书”；RC4 会在前三分钟报告，而不是在采集结束后才暴露阻塞。
-- ChatGPT 和其他 Host 不会自动读取 Codex Global 文件，需要继续使用各自批准的 MCP/Connector 接入机制。
-- TASK-0011 的独立策划盲测仍未完成，与 TASK-0012 的架构交付相互独立。
+- Capability Discovery 当前是文档治理规则，不是已实现的 registry/resolver；Agent 仍需读取 Catalog。
+- Codex 每次运行只构建一次 Agent 指令链；本次打开的会话不会证明新 Global 文件已自动重载，重启后生效最稳妥。
+- Implementation availability 依赖具体 Host；Catalog 只能记录可审阅状态，不能替代实时 healthcheck。
+- Document Assistant Roadmap 的 `DA-CAP-*` 是 provider 规划 ID，`CAP-DOC-*` 是稳定 Operation ID；后续必须避免混用。
 
 ## Exact Next Action
 
-ChatGPT Review `bootstrap/AGENTS.md`、ADR-0002、Workspace 边界与 First Run RC4，重点确认：Global 规则是否清晰、Document Assistant 是否无需私有仓库即可由策划使用、AI-Workspace 是否退出运行时工具入口职责，以及 30 分钟公共单仓路径是否没有新增前置阻塞。
+ChatGPT Review Capability Catalog、Document Capability、ADR-0003 和 Global AGENTS。重点确认：Capability-first 顺序、Catalog schema、Operation 粒度、failure semantics、provider/Tool 边界，以及 AI-Workspace 是否继续避免承担运行时工具入口职责。

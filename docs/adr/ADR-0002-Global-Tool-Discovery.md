@@ -1,10 +1,11 @@
 # ADR-0002: Global Tool Discovery
 
-- Status: Accepted
+- Status: Superseded
 - Date: 2026-08-26
 - Decision owners: User
 - Related RFC: [`RFC-0002-Document-Assistant.md`](../rfc/RFC-0002-Document-Assistant.md)
 - Supersedes: None
+- Superseded by: [`ADR-0003-Capability-First-Discovery.md`](ADR-0003-Capability-First-Discovery.md)
 
 ## Context
 

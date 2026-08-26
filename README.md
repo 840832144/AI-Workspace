@@ -15,7 +15,7 @@ AI-Workspace 是面向游戏策划团队的 **Game Planner AI Workspace**。它�
 本仓库负责回答四类问题：
 
 1. 游戏策划 AI 工作台如何组织：Workspace Kernel、Capability Model、RFC、ADR 和标准。
-2. AI 团队如何协作：角色所有权、审阅规则、工作流、工具使用边界和安全规则。
+2. AI 团队如何协作：角色所有权、Capability Discovery、审阅规则、工作流、实现边界和安全规则。
 3. 游戏项目当前是什么状态：Context、Memory、Workflow、Status、Reports 和 Assets。
 4. ChatGPT 与 Codex 如何交接：固定 handoff、确认事实、风险与下一动作。
 
@@ -31,6 +31,7 @@ AI-Workspace/
 │   ├── rfc/           # 提案、章程和跨体系设计
 │   └── adr/           # 已采纳的架构决策记录
 ├── skills/            # Game Planner Skill Tree
+├── capabilities/      # Capability Catalog 与稳定结果契约
 ├── workflows/         # 游戏策划工作流规范
 ├── templates/         # RFC、ADR、项目和交接模板
 ├── standards/         # 命名、证据、安全和文档标准
@@ -40,7 +41,7 @@ AI-Workspace/
 └── workspace.yaml.example  # Workspace Manifest 规范示例
 ```
 
-核心对象和关系见 [`docs/architecture/WorkspaceKernel.md`](docs/architecture/WorkspaceKernel.md)，能力分层见 [`docs/CapabilityModel.md`](docs/CapabilityModel.md)。
+核心对象和关系见 [`docs/architecture/WorkspaceKernel.md`](docs/architecture/WorkspaceKernel.md)，能力分层见 [`docs/CapabilityModel.md`](docs/CapabilityModel.md)，统一发现入口见 [`Capability Catalog`](capabilities/README.md)。
 
 当前登记项目：[`huuuge-android-research`](projects/huuuge-android-research/README.md)。
 
@@ -52,10 +53,11 @@ AI-Workspace/
 2. `ARCHITECTURE.md`
 3. `docs/architecture/WorkspaceKernel.md`
 4. `docs/CapabilityModel.md`
-5. `CONTRIBUTING.md`
-6. `projects/README.md`
-7. 自己对应的 `handoff/CHATGPT.md` 或 `handoff/CODEX.md`
-8. 相关 RFC、ADR 和项目 Status
+5. `capabilities/README.md`
+6. `CONTRIBUTING.md`
+7. `projects/README.md`
+8. 自己对应的 `handoff/CHATGPT.md` 或 `handoff/CODEX.md`
+9. 相关 RFC、ADR 和项目 Status
 
 ## 基本原则
 
@@ -69,8 +71,8 @@ AI-Workspace/
 
 当前阶段只建立 Workspace Kernel、能力模型、Capability Roadmap、技能树和游戏项目标准，不迁移现有项目，也不实现业务功能。
 
-## 全局工具边界
+## Capability Discovery 边界
 
-跨项目 Tool Discovery 和共享 Document Assistant 入口属于 Global Codex 层。版本化模板见 [`bootstrap/AGENTS.md`](bootstrap/AGENTS.md)，实际运行文件位于 `~/.codex/AGENTS.md`。公共 AI-Workspace 提供完整策划使用规则；使用已配置 Tool 不需要访问私有实现仓库。
+跨项目 Capability Discovery 和共享 Document Capability 规则属于 Global Codex 层。版本化模板见 [`bootstrap/AGENTS.md`](bootstrap/AGENTS.md)，实际运行文件位于 `~/.codex/AGENTS.md`。公共 AI-Workspace 提供 [`Capability Catalog`](capabilities/README.md)；策划先识别结果契约，再由当前 Host 选择实现。
 
-AI-Workspace 可以为 Game Design 定义某项 Tool 的用途、权限、Workflow 和验收证据，但不维护运行时工具目录、安装入口、endpoint、credential 或连接状态。Document Assistant 的游戏策划使用契约仍可参考 [`Document Assistant Capability Roadmap`](docs/roadmaps/DocumentAssistantCapabilityRoadmap.md)，实现和配置继续以外部仓库与受控环境为准。
+AI-Workspace 维护 Capability contract、Game Design 使用边界、Workflow 和验收证据，但不维护运行时工具目录、安装入口、endpoint、credential 或连接状态。`Document Capability` 的稳定契约见 [`capabilities/document/README.md`](capabilities/document/README.md)；Document Assistant 是当前实现 provider，其源码和配置继续以外部仓库与受控环境为准。
