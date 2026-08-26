@@ -41,7 +41,7 @@
 5. **Implementation/analysis — Codex**：仅在明确授权后修改外部仓库、运行采集/分析、测试并提交工程证据。
 6. **Review — ChatGPT**：审阅结论是否满足问题、证据纪律和 Game Design 可用性。
 7. **Project memory — Codex/ChatGPT**：外部仓库先记录实现/证据；AI-Workspace 只同步长期 Confirmed/Decision 和当前 Status。
-8. **Delivery — Owner by output**：报告只引用必要脱敏证据；Feishu/Git 发布遵循各自权限与 source-of-truth 规则。
+8. **Delivery — Owner by output**：报告只引用必要脱敏证据；Feishu/Git 发布遵循各自权限与 source-of-truth 规则。新生成云文档默认企业内可编辑，只有 User 明确要求其他权限时才覆盖。
 
 ## Validation
 

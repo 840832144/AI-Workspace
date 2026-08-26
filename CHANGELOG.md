@@ -2,6 +2,37 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.7.0-rc.1] - 2026-08-26
+
+### Added
+
+- TASK-0011 盲测前版本《Huuuge 新人上手指南（First Run Guide）》，覆盖新电脑准备、仓库 Clone、AI 主导启动、采集、Markdown、Document Assistant、成功验证和常见问题。
+- `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`，用于真实记录未参与开发策划的卡点、阶段耗时、AI 独立引导能力与后续文档修订。
+- 飞书版本 [`Huuuge 新人上手指南（First Run Guide）`](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf)。
+
+### Changed
+
+- 将 First Run 默认入口设为 Codex 或 Trae + DeepSeek；新人只处理登录、审批和正常游戏操作，AI 处理检查、启动、停止、整理、Markdown 与飞书发布。
+- 文档规范新增：面向策划/用户的正文默认使用中文，其他语言只用于必要技术内容。
+- 云文档规范新增：除非 User 明确要求其他权限，新生成文档默认企业内可编辑；管理员策略失败不得触发重复创建。
+- Huuuge 项目 README、Memory、Workflow、Status 与 Reports Index 接入 First Run Guide、云文档默认权限和验证记录。
+
+### Validation
+
+- `feishu_healthcheck` 通过环境、token、API connectivity 和 Drive permission probe。
+- 创建飞书文档无 conversion warning；`get_document` 回读标题、正文、公司编辑规则和盲测章节成功。
+- 通过当前 Document Assistant STDIO Server 执行 `grant_company_edit`，回读 `link_share_entity=tenant_editable`、`verified=true`。
+
+### Pending
+
+- 尚未由未参与开发的策划执行盲测，因此真实卡点、耗时和 AI 是否能独立引导仍为 Pending。
+- 完成盲测后只允许修订文档和流程，再发布正式 0.7.0 并进入 ChatGPT Review。
+
+### Boundaries
+
+- 未修改 `huuuge-android-research`、采集器、SVN package、BlueStacks 或本机研究实例。
+- 未开发任何新功能，也未复制 Raw、decoded values、账号/Session 数据、credential 或完整运行日志。
+
 ## [0.6.0] - 2026-08-26
 
 ### Added

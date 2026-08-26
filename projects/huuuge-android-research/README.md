@@ -8,6 +8,7 @@
 - 长期知识：[`MEMORY.md`](MEMORY.md)
 - 研究工作流：[`WORKFLOW.md`](WORKFLOW.md)
 - 当前状态：[`STATUS.md`](STATUS.md)
+- 新人首跑：[`FIRST_RUN_GUIDE.md`](FIRST_RUN_GUIDE.md)
 - 知识库：[`KNOWLEDGE/`](KNOWLEDGE/README.md)
 - 证据标准：[`Huuuge Evidence Standard`](../../standards/HUUUGE_EVIDENCE_STANDARD.md)
 - 报告索引：[`REPORTS/`](REPORTS/README.md)

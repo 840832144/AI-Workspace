@@ -14,6 +14,8 @@ Rules:
 - Keep confirmed facts separate from hypotheses.
 - Keep all models, Skills, Workflows, Templates, and projects within the Game Design domain.
 - When describing domain boundaries, use the generic term “non-game domains” without listing specific examples.
+- Write planner-facing and user-facing documents primarily in Chinese. Keep other languages only for proper names, commands, filenames, stable technical terms, or necessary side-by-side explanations.
+- Grant company-editable access to every newly generated cloud document by default unless the User explicitly requests private, read-only, or no-edit access. If an administrator policy blocks sharing, preserve the created document and report the permission failure; never create a duplicate as a retry.
 - Do not copy business code, credentials, private datasets, or full runtime logs into this repository.
 - Preserve project repositories as the source of truth for implementation.
 - Update the relevant handoff and project Status when work changes shared state.

@@ -1,9 +1,9 @@
 # Huuuge Android Research — Project Status
 
 - Updated: 2026-08-26
-- Phase: Evidence standardization
+- Phase: First Run validation
 - Owner: User
-- Current milestone: TASK-0010 Huuuge Evidence Standard waiting for ChatGPT Review
+- Current milestone: TASK-0011 First Run Guide waiting for independent planner validation
 - External baseline: [`0590c2c`](https://github.com/840832144/huuuge-android-research/commit/0590c2c37a0aa83b824920fa884f9f67007d3dcb)
 
 ## Confirmed Current Facts
@@ -19,10 +19,13 @@
 - Huuuge Evidence Standard defines L0 Unverified、L1 Schema、L2 Configured / Visible、L3 Runtime Observed and L4 Triangulated.
 - Citation types are standardized as Schema、Config、Runtime、UI and Manual with required provenance、locator、context、claim scope and limits.
 - All 37 Knowledge modules now use the standard: L3 × 11、L2 × 4、L1 × 22、L0/L4 × 0, matching the external catalog baseline without evidence promotion.
+- TASK-0011 First Run Guide is available in Git and uses Codex or Trae + DeepSeek as the default operator instead of requiring planners to execute low-level commands.
+- The Feishu edition [`Huuuge 新人上手指南（First Run Guide）`](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf) was created through AI Document Assistant, read back successfully, and verified as company-editable (`tenant_editable`).
+- A blind-test record exists at `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`; it contains no fabricated tester、timing or success data.
 
 ## In Progress
 
-- ChatGPT Review of the L0–L4 thresholds、citation contract、L4 triangulation criteria and 37-module migration.
+- Independent First Run by one planner who did not participate in development, using only the AI-Workspace Git repository and Feishu guide.
 
 ## Risks
 
@@ -38,14 +41,18 @@
   - Mitigation: Knowledge keeps commit-pinned dossier summaries; do not invent or backfill IDs before the standard is accepted and an external migration task is authorized.
 - L4 requires Runtime、UI、Manual and Schema/Config triangulation; the current catalog was not built to prove this bundle.
   - Mitigation: keep every current module at L3 or below until all L4 conditions are directly evidenced.
+- The guide has not yet been exercised on an uninvolved planner/new computer; documentation clarity and real elapsed time are unknown.
+  - Mitigation: run the required blind test without oral help, record every stop and revise documentation/workflow only.
+- Trae + DeepSeek may not expose the company Document Assistant MCP on every workstation.
+  - Mitigation: Trae may generate the sanitized Markdown; an approved Codex/MCP host performs publication without sharing credentials.
 - Private GitHub links require an authenticated collaborator session.
   - Mitigation: keep stable paths and commit hashes in this control plane; do not copy private contents.
 
 ## Blockers
 
-- Review gate: ChatGPT has not yet accepted TASK-0010 Huuuge Evidence Standard.
-- No implementation blocker is asserted because no research execution is authorized in this task.
+- Validation gate: no uninvolved planner has yet been designated or observed for the required blind test.
+- TASK-0011 cannot be marked complete and cannot honestly report elapsed time or independent AI guidance until that external validation occurs.
 
 ## Exact Next Action
 
-ChatGPT reviews `standards/HUUUGE_EVIDENCE_STANDARD.md` and the migrated Knowledge pages, then returns Accepted or specific corrections to level thresholds、citation fields、L4 criteria and mapping. Do not begin citation backfill、new capture、Evidence Registry or Extractor implementation before that review.
+User designates one planner who did not participate in development and gives that person only `https://github.com/840832144/AI-Workspace.git` plus the Feishu First Run Guide. Record the blind test in `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`, then revise documents/workflow only and request ChatGPT Review.

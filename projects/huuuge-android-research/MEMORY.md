@@ -53,6 +53,10 @@
   - Source: User instruction and `KNOWLEDGE/README.md`; waiting for ChatGPT Review.
 - TASK-0010 replaces the temporary E0–E3 navigation labels with the Huuuge L0–L4 Evidence Standard. Existing module evidence migrates without promotion: L3 × 11、L2 × 4、L1 × 22、L0/L4 × 0.
   - Source: User instruction、`standards/HUUUGE_EVIDENCE_STANDARD.md` and Knowledge Index；waiting for ChatGPT Review.
+- TASK-0011 makes Codex or Trae + DeepSeek the default First Run operator. New planners handle only login、approval and normal game interaction; AI handles checks、startup、finalization、Markdown and Document Assistant publishing.
+  - Source: User instruction and `FIRST_RUN_GUIDE.md`; independent planner validation pending.
+- Planner-facing documents default to Chinese, and newly generated cloud documents default to company-editable access unless User explicitly requests another permission mode.
+  - Source: User decisions on 2026-08-26 and repository documentation rules.
 
 ## Hypotheses
 

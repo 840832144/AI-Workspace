@@ -10,6 +10,8 @@
 - Ownership：实现归项目仓库，治理归 AI-Workspace。
 - Dates：状态文档使用绝对日期和时区。
 - Naming：RFC/ADR 使用四位连续编号；项目目录使用稳定、可读 slug。
+- Language：面向策划和用户的文档默认使用中文；只在专有名词、命令、文件名、稳定技术术语或必要解释中保留其他语言。
+- Cloud Documents：新文档默认设置企业内可编辑；User 明确要求其他权限时才覆盖。管理员策略失败不得触发重复创建。
 - Projects：每个游戏项目使用 `projects/TEMPLATE/` 的 Context、Memory、Workflow、Status、Reports、Assets 结构。
 - Handoff：必须给出唯一明确的下一动作，不能只给聊天摘要。
 - History：不用覆盖历史方式“纠错”；使用 supersede、changelog 和新 commit。

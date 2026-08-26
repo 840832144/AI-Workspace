@@ -3,41 +3,44 @@
 这是 ChatGPT 的固定交接入口。长期事实必须同步到项目 Memory/Status、RFC 或 ADR，而不是只留在聊天中。
 
 - Updated: 2026-08-26
-- Task: TASK-0010
-- Current state: Huuuge Evidence Standard review requested
+- Task: TASK-0011
+- Current state: Pre-validation package ready; final review must wait for independent planner test
 
-## Incoming Review
+## Incoming Context
 
-审阅 Huuuge Evidence Standard 与 Knowledge Base 迁移，确认 L0–L4 门槛、Schema/Config/Runtime/UI/Manual 引用合同和 L4 多源验证要求足以阻止过度结论。
+Huuuge First Run Guide 与飞书版本已经建立，但 TASK-0011 明确要求一位未参与开发的策划，仅凭 Git 仓库和飞书文档完成首跑。该真实盲测尚未发生，因此目前不是最终 Review 请求。
+
+## Prepared Files
+
+- `projects/huuuge-android-research/FIRST_RUN_GUIDE.md`
+- `projects/huuuge-android-research/REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`
+- `projects/huuuge-android-research/STATUS.md`
+- `handoff/CODEX.md`
+- Feishu：`https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf`
 
 ## Confirmed Context
 
-- 外部 baseline 为 `huuuge-android-research@0590c2c37a0aa83b824920fa884f9f67007d3dcb`。
-- 外部 catalog 有 37 modules、15 live-evidence、22 schema-only/live-pending。
-- 新标准映射后为 L3 × 11、L2 × 4、L1 × 22、L0/L4 × 0；没有证据升级。
-- L4 要求 primary Runtime + UI + Manual timeline + Schema/Config，并至少有两个独立观察周期。
-- Citation ID 与记录格式已定义，但外部 artifact 尚未批量回填，本任务不虚构 ID。
-- 本任务只建立标准并迁移导航，不开发功能、不修改采集器。
+- First Run 默认使用 Codex 或 Trae + DeepSeek 作为主要操作入口。
+- 新人只承担登录、审批、正常游戏操作；AI 承担可安全执行的检查、启动、停止、整理、Markdown 和飞书发布。
+- Git 工程/知识源与公司 SVN 运行包保持分离。
+- 飞书版本已通过 create/replace/get 回归，并验证为企业内可编辑。
+- 本次没有开发功能、修改采集器或操作 BlueStacks。
+- 文档默认中文；其他语言只保留必要技术名词、命令或对照解释。
 
-## Review Files
+## Pending Evidence
 
-- `standards/HUUUGE_EVIDENCE_STANDARD.md`
-- `projects/huuuge-android-research/KNOWLEDGE/README.md`
-- `projects/huuuge-android-research/KNOWLEDGE/SLOTS.md`
-- `projects/huuuge-android-research/KNOWLEDGE/SYSTEMS.md`
-- `projects/huuuge-android-research/KNOWLEDGE/EVENTS.md`
-- `projects/huuuge-android-research/KNOWLEDGE/OTHERS.md`
-- `projects/huuuge-android-research/STATUS.md`
+- 未参与开发的测试者身份/角色；
+- 每个阶段真实开始、结束与耗时；
+- 卡住的位置和当时理解；
+- AI 是否识别并独立解决；
+- 是否出现口头补充；
+- READY、finalized、Markdown 和飞书回读的脱敏成功证据；
+- 由真实发现触发的文档/流程修订。
 
-## Review Questions
+## Review Gate
 
-1. L0–L4 是否明确区分线索、结构、配置/可见、Runtime 观察和多源验证？
-2. L2 对 Config、cross-cutting Runtime 和 UI 的容纳是否过宽，是否需要拆分限定？
-3. L3 的 primary Runtime 判定是否足以阻止仅凭计数或关键词升级？
-4. L4 的 Runtime + UI + Manual + Schema/Config + 两次独立观察是否合适？
-5. Citation ID、provenance、locator、context、scope 和 limits 字段是否足够支持长期复查？
-6. 现有 37 modules 的 L3/L2/L1 映射是否保持了原 evidence strength？
+在盲测完成前，不应把 First Run 标为 Passed，也不应给出“AI 能独立引导完成”的结论。测试完成并只修订文档/流程后，再请求 ChatGPT 审阅：入口可发现性、操作负担、安全边界、失败恢复、耗时和是否满足新策划使用习惯。
 
 ## Exact Next Action
 
-返回 Accepted 或逐项修订意见；Review 前不向 Codex 下发新采集、Citation backfill、Evidence Registry、Extractor 或 catalog-generator 修改任务。
+等待 User 指定独立策划。测试者只收到 `https://github.com/840832144/AI-Workspace.git` 与飞书指南，不提供其他说明；结果回填后再进入最终 ChatGPT Review。
