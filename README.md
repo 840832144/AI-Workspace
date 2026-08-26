@@ -29,6 +29,7 @@ AI-Workspace 不是通用 AI 平台、通用办公助手或面向婚礼、投资
 AI-Workspace/
 ├── docs/
 │   ├── architecture/  # Workspace Kernel
+│   ├── roadmaps/      # 服务与工具的 Capability Roadmap
 │   ├── rfc/           # 提案、章程和跨体系设计
 │   └── adr/           # 已采纳的架构决策记录
 ├── skills/            # Game Planner Skill Tree
@@ -66,4 +67,6 @@ AI-Workspace/
 - 跨项目变更先写 RFC；不可逆或长期架构选择再写 ADR。
 - 每次有意义的工作都必须留下可由下一个 Agent 独立继续的记录。
 
-当前阶段只建立 Workspace Kernel、能力模型、技能树和游戏项目标准，不迁移现有项目，也不实现业务功能。
+当前阶段只建立 Workspace Kernel、能力模型、Capability Roadmap、技能树和游戏项目标准，不迁移现有项目，也不实现业务功能。
+
+共享基础设施可以服务公司多个使用方，但 AI-Workspace 只治理其 Game Design 使用边界。当前 Document Assistant 规划见 [`Document Assistant Capability Roadmap`](docs/roadmaps/DocumentAssistantCapabilityRoadmap.md)。

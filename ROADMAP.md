@@ -14,8 +14,10 @@
 
 ## Phase 2 — Document Assistant
 
-状态：Planned
+状态：Planning / Waiting for ChatGPT Review
 
+- 保持 `Document Assistant` 名称，规划为公司文档中台。
+- 以 [`Document Assistant Capability Roadmap`](docs/roadmaps/DocumentAssistantCapabilityRoadmap.md) 定义能力域、阶段、治理关卡和非目标。
 - 面向游戏策划文档定义创建、读取、维护、审阅与交付流程。
 - 将 Feishu Document 作为 Tool/Service 接入能力模型，而不是在 Workspace 复制实现。
 - 定义读写权限、凭据、共享策略、失败处理和证据要求。

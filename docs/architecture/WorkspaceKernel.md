@@ -8,7 +8,7 @@ Workspace Kernel 是 Game Planner AI Workspace 的最小稳定对象模型。它
 | --- | --- | --- |
 | Workspace | 游戏策划 AI 工作台的顶层治理边界 | 维护领域、标准、对象注册、Agent 与服务引用 |
 | Project | 一个边界明确的游戏、模块或策划课题 | 组织 Context、Memory、Workflow、Status、Reports、Assets |
-| Capability | Workspace 能向策划交付的稳定结果 | 描述“能够完成什么”，不绑定实现方式 |
+| Capability | Workspace 能向策划交付的结果，或支撑该结果的共享平台能力 | 描述“能够完成什么”，不绑定实现方式 |
 | Skill | 可复用、边界清晰的方法单元 | 描述触发条件、输入、步骤、输出、安全和验证 |
 | Workflow | 为目标编排对象的过程 | 连接 Project、Agent、Skill、Template 与 Tool，并定义关卡和失败处理 |
 | Template | 输入、过程记录或输出的结构契约 | 保证同类项目和报告结构一致、可审阅、可复用 |

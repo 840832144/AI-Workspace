@@ -21,6 +21,8 @@ Evidence plane — verified outputs
 
 AI-Workspace 管理“如何协作”和“各项目处于什么状态”，但不复制执行平面的实现。
 
+Document Assistant 等共享公司基础设施可以由外部仓库服务多个业务域；AI-Workspace 只登记其对 Game Design 的 Capability、Workflow、权限和证据要求，不导入其他业务域内容。
+
 ## 信息架构
 
 ### RFC

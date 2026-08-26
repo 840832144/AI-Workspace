@@ -6,7 +6,7 @@ Capability Model 定义 Game Planner AI Workspace 如何从“策划结果”分
 
 | 概念 | 回答的问题 | 定义 | 不是什么 |
 | --- | --- | --- | --- |
-| Capability | 能完成什么？ | 面向游戏策划结果的稳定能力契约 | 具体脚本、单次提示词或工具品牌 |
+| Capability | 能完成什么？ | 面向游戏策划结果或其共享基础设施支撑结果的稳定能力契约 | 具体脚本、单次提示词或工具品牌 |
 | Skill | 如何复用方法？ | 可独立审阅、验证和版本化的方法单元 | 跨步骤项目计划或无边界知识集合 |
 | Workflow | 如何协同完成？ | 将 Agent、Skill、Template、Tool 按顺序和关卡编排 | 单个 Skill 或执行工具 |
 | Template | 输入输出长什么样？ | Context、分析表、报告、决策记录等结构契约 | 执行逻辑或 Capability 本身 |
@@ -30,6 +30,13 @@ flowchart LR
 3. Template 约束信息结构，不负责执行；Skill 或 Workflow 可以读取和产出 Template 实例。
 4. Tool 可以被替换，只要 Skill 的输入、输出、安全和验证契约不变。
 5. Agent 通过 Workflow 获得任务，通过角色所有权和权限规则使用 Tool。
+
+## Capability 类型
+
+- Planner Capability：直接交付游戏分析、系统/数值设计、活动设计或策划报告结果。
+- Platform Capability：为 Planner Capability 提供文档、数据、同步、安全或运行支撑。平台可以由公司多个使用方共享，但 AI-Workspace 只治理其 Game Design 使用契约。
+
+Document Assistant 属于 Platform Capability。它不能以“公司共享”为由把非游戏业务项目、正文或 Memory 引入本 Workspace。
 
 ## 游戏策划示例（仅模型）
 

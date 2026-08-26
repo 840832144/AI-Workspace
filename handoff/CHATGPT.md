@@ -1,40 +1,38 @@
 # ChatGPT Handoff
 
-这是 ChatGPT 的固定交接入口。ChatGPT 开始工作前读取，向 Codex 或 User 交付后更新。长期事实必须同步到项目 Memory/Status 或 RFC/ADR，而不是只留在这里。
+这是 ChatGPT 的固定交接入口。长期事实必须同步到 RFC、ADR、Roadmap 或项目状态，而不是只留在聊天中。
 
 - Updated: 2026-08-26
-- Current state: Game Planner Workspace Kernel documented
+- Task: TASK-0007
+- Current state: Review requested
 
-## Incoming Request
+## Incoming Review
 
-审阅 Game Planner Capability Model、Skill Tree 和 RFC-0003，保持模型与 Game Design 领域一致。
+审阅 `Document Assistant Capability Roadmap`，确认公司文档中台定位、Capability 边界、权限层级、演进顺序和 ADR 需求。
 
 ## Confirmed Context
 
-- AI-Workspace 已正式收敛为 Game Planner AI Workspace，不再是通用 AI 平台。
-- 目标用户是游戏策划、游戏数值策划、系统策划、活动策划和数据分析。
-- Workspace Kernel、Capability Model、Skill Tree、项目标准和 manifest 示例已经建立。
-- 所有 Skill 分类目前仅为模型，不表示能力已实现。
-- 本次未迁移任何现有项目，未修改 `feishu-doc-mcp`。
+- User 决定继续使用 `Document Assistant` 名称，暂不改名。
+- 本阶段只规划 Capability Roadmap，不开发或迁移功能。
+- 外部实现仓库继续作为代码、测试和运行证据真相源。
+- Document Assistant 是共享公司基础设施；Game Planner AI Workspace 只治理其 Game Design 使用边界。
+- Planned/Future Capability 不能被描述为当前可用功能。
 
-## Evidence / References
+## Review Files
 
-- `docs/adr/ADR-0001-Game-Planner-Domain.md`
-- `docs/architecture/WorkspaceKernel.md`
+- `docs/roadmaps/DocumentAssistantCapabilityRoadmap.md`
+- `docs/rfc/RFC-0002-Document-Assistant.md`
 - `docs/CapabilityModel.md`
-- `skills/README.md`
-- `projects/README.md`
+- `AI_TEAM.md`
 
-## Constraints
+## Review Questions
 
-- 不扩张到婚礼、投资等非游戏领域。
-- 不复制项目源码、credential、玩家明细、私有数据或完整日志。
-- 不把规划中的 Skill 或服务写成已实现能力。
+1. 公司文档中台定位是否与 Workspace 领域边界兼容？
+2. Capability 是否与 Skill、Workflow、Template、Tool 正确分层？
+3. READ / WRITE / ADMIN-SECURITY 权限模型应如何确定？
+4. Registry、Revision、Publication 的真相源如何分工？
+5. 哪些 Phase 必须通过 ADR 后才能交给 Codex？
 
 ## Exact Next Action
 
-主审 RFC-0003，提出 Game Planner Skill manifest 的最小字段与首批 Capability 清单，交 User 决定。
-
-## Outgoing Handoff
-
-需要实现、自动化、Git、测试或部署时，将已确认的规范和验收标准交给 Codex。
+返回 Accepted 或逐项修订意见；在 Review 完成前不要把任何 Roadmap 项交给 Codex 实现。

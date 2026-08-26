@@ -2,6 +2,25 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.3.0] - 2026-08-26
+
+### Added
+
+- TASK-0007 `Document Assistant Capability Roadmap`，规划公司文档中台的 15 个 Capability、六阶段演进、Review 问题与非目标。
+- 新增 `docs/roadmaps/` 作为服务与工具 Capability Roadmap 的索引入口。
+
+### Changed
+
+- 明确 `Document Assistant` 暂不改名，现有实现保持不变，外部仓库继续作为实现真相源。
+- 将 Workspace Phase 2 标记为 Planning / Waiting for ChatGPT Review。
+- 明确共享公司基础设施可以服务多个使用方，但 AI-Workspace 只治理其 Game Design 使用边界，不导入其他领域业务内容。
+
+### Boundaries
+
+- 未修改 Document Assistant、`feishu-doc-mcp`、MCP 配置或 ChatGPT 设置。
+- 未开发 transport、permission、sync、monitoring 或 deployment 功能。
+- 未调用 Feishu API，未迁移仓库或文档数据。
+
 ## [0.2.0] - 2026-08-26
 
 ### Changed
