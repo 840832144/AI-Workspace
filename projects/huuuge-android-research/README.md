@@ -9,6 +9,7 @@
 - 研究工作流：[`WORKFLOW.md`](WORKFLOW.md)
 - 当前状态：[`STATUS.md`](STATUS.md)
 - 知识库：[`KNOWLEDGE/`](KNOWLEDGE/README.md)
+- 证据标准：[`Huuuge Evidence Standard`](../../standards/HUUUGE_EVIDENCE_STANDARD.md)
 - 报告索引：[`REPORTS/`](REPORTS/README.md)
 - 资产索引：[`ASSETS/`](ASSETS/README.md)
 - 实现与证据仓库：[`huuuge-android-research`](https://github.com/840832144/huuuge-android-research)
@@ -20,10 +21,10 @@
 
 | 研究方向 | 入口文档 | 当前证据状态 | Review 后的下一入口 |
 | --- | --- | --- | --- |
-| Battle Pass | [`battle_pass.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/battle_pass.md), [`BattlePass_schema.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/recovered/BattlePass_schema.md) | Schema-only / live sample pending | 有资格账号可用后，采集主界面、奖励轨和任务流量；不阻塞其他模块 |
-| Slots | [`slots.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/slots.md), [`broad capture summary`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/analysis/20260825_182300/summary.md) | Live-confirmed；当前最完整的主模块之一 | 基于已有 Spin 证据选择首个 normalized gameplay Extractor，或补充代表性机器样本 |
-| Lottery | [`lottery.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/lottery.md) | Cross-cutting/config live evidence；无专用交互 endpoint 样本 | 访问 lottery/draw/ticket 界面，补充专用 endpoint 与字段证据 |
-| Task / Missions | [`missions.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/missions.md), [`mini_pass.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/mini_pass.md) | Generic Missions schema-only；MiniPass task-related flow live-confirmed | 分别检查通用日/周任务与 MiniPass missions，避免把两种结构合并 |
+| Battle Pass | [`battle_pass.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/battle_pass.md), [`BattlePass_schema.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/recovered/BattlePass_schema.md) | L1 Schema；Runtime sample pending | 有资格账号可用后，采集主界面、奖励轨和任务流量；不阻塞其他模块 |
+| Slots | [`slots.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/slots.md), [`broad capture summary`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/analysis/20260825_182300/summary.md) | L3 Runtime Observed；当前最完整的主模块之一 | 基于已有 Spin 证据选择首个 normalized gameplay Extractor，或补充代表性机器样本 |
+| Lottery | [`lottery.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/lottery.md) | L2 Configured / Visible；无专用交互 endpoint 样本 | 访问 lottery/draw/ticket 界面，补充专用 endpoint 与字段证据 |
+| Task / Missions | [`missions.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/missions.md), [`mini_pass.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/mini_pass.md) | Generic Missions L1；MiniPass task flow L3 | 分别检查通用日/周任务与 MiniPass missions，避免把两种结构合并 |
 
 跨模块公共入口：
 

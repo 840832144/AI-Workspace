@@ -13,3 +13,7 @@
 - Projects：每个游戏项目使用 `projects/TEMPLATE/` 的 Context、Memory、Workflow、Status、Reports、Assets 结构。
 - Handoff：必须给出唯一明确的下一动作，不能只给聊天摘要。
 - History：不用覆盖历史方式“纠错”；使用 supersede、changelog 和新 commit。
+
+## 项目证据标准
+
+- [`Huuuge Evidence Standard`](HUUUGE_EVIDENCE_STANDARD.md)：为 Huuuge Research 定义 L0–L4、Schema/Config/Runtime/UI/Manual 引用与升级/降级规则；当前状态为 Proposed，等待 ChatGPT Review。

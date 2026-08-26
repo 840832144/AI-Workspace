@@ -51,6 +51,8 @@
   - Source: User instruction on 2026-08-26.
 - TASK-0009 uses a four-category knowledge taxonomy: Slots、Systems、Events、Others. This taxonomy is a planner navigation layer and does not change external module ownership.
   - Source: User instruction and `KNOWLEDGE/README.md`; waiting for ChatGPT Review.
+- TASK-0010 replaces the temporary E0–E3 navigation labels with the Huuuge L0–L4 Evidence Standard. Existing module evidence migrates without promotion: L3 × 11、L2 × 4、L1 × 22、L0/L4 × 0.
+  - Source: User instruction、`standards/HUUUGE_EVIDENCE_STANDARD.md` and Knowledge Index；waiting for ChatGPT Review.
 
 ## Hypotheses
 
@@ -68,5 +70,6 @@
 - Preserve Session version, descriptor hash and source commit when deriving any report.
 - Update external research evidence first, then reflect only stable confirmed facts in this Memory and current state in Status.
 - Use the Knowledge Index as the human entrypoint, then follow the commit-pinned external dossier for detailed evidence.
+- Every current claim must separate Evidence Level from Completion and cite Schema、Config、Runtime、UI or Manual using the Huuuge Evidence Standard.
 
 不得记录 credential、玩家明细、完整日志、Raw/decoded values 或业务数据副本。

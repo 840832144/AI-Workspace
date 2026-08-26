@@ -7,7 +7,7 @@
 ## Inputs and Preconditions
 
 - User 明确研究问题、目标模块和期望输出。
-- 先读本项目 [`STATUS.md`](STATUS.md)、[`MEMORY.md`](MEMORY.md) 和 [`Knowledge Index`](KNOWLEDGE/README.md)，再进入外部对应 module dossier。
+- 先读本项目 [`STATUS.md`](STATUS.md)、[`MEMORY.md`](MEMORY.md)、[`Knowledge Index`](KNOWLEDGE/README.md) 和 [`Huuuge Evidence Standard`](../../standards/HUUUGE_EVIDENCE_STANDARD.md)，再进入外部对应 module dossier。
 - 外部仓库必须安全同步；现有 Raw/local runtime 必须留在受控环境。
 - 需要新采集、外部写入、机器级变更或权限时，先获得明确授权。
 - TASK-0008 必须先通过 ChatGPT Review。
@@ -35,7 +35,7 @@
 ## Steps and Ownership
 
 1. **Intake — ChatGPT**：澄清策划问题、模块、时间范围、所需粒度、输出形式和非目标。
-2. **Evidence routing — ChatGPT**：从 Knowledge Index 选择 Category/module，再进入 dossier/schema/session entry，标注 Confirmed、Hypothesis、Derived。
+2. **Evidence routing — ChatGPT**：从 Knowledge Index 选择 Category/module，再进入 dossier/schema/session entry；为每个关键 claim 标注 L0–L4、Citation ID、scope 和 limits，并区分 Confirmed、Hypothesis、Derived。
 3. **Gap decision — ChatGPT + User**：判断现有 evidence 是否足够；若不足，选择等待、静态研究或未来授权 capture。
 4. **Execution contract — ChatGPT**：写明 Capability、输入、输出、安全限制和验收证据；需要实现时交给 Codex。
 5. **Implementation/analysis — Codex**：仅在明确授权后修改外部仓库、运行采集/分析、测试并提交工程证据。
@@ -45,7 +45,7 @@
 
 ## Validation
 
-- Evidence required: source commit、Session/descriptor/version lineage、dossier/schema link、测试或生成输出引用。
+- Evidence required: 符合统一标准的 Schema/Config/Runtime/UI/Manual 引用、source commit、Session/descriptor/version lineage、dossier/schema link、测试或生成输出引用。
 - Architecture/meaning reviewer: ChatGPT。
 - Implementation/test reviewer: Codex。
 - Final product/priority decision: User。

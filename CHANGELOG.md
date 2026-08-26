@@ -2,6 +2,28 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.6.0] - 2026-08-26
+
+### Added
+
+- TASK-0010：建立 `Huuuge Evidence Standard`，统一 L0 Unverified、L1 Schema、L2 Configured / Visible、L3 Runtime Observed、L4 Triangulated 五级判定标准。
+- 定义 Schema、Config、Runtime、UI、Manual 五类引用的合格来源、必填定位信息和单类证据上限。
+- 定义 `HGR-YYYYMMDD-TYPE-NNN` Citation ID、完整/紧凑引用格式、claim scope、limits 以及升级、降级、冲突和过期规则。
+
+### Changed
+
+- Knowledge Index 与 Slots、Systems、Events、Others 全部 37 个模块迁移到统一等级：L3 × 11、L2 × 4、L1 × 22、L0/L4 × 0。
+- 将模块证据摘要统一为 Runtime、Schema 和 Schema hint，明确 ZPK 文件名命中不能单独提升等级。
+- 项目 README、Memory、Workflow、Status 与 Codex/ChatGPT Handoff 接入统一 Evidence Standard。
+- TASK-0009 的 E0–E3 临时导航模型由 L0–L4 标准取代；历史 CHANGELOG 保留原始记录。
+
+### Boundaries
+
+- 未修改 `huuuge-android-research`、采集器、module catalog generator、SVN release 或本机研究环境。
+- 未虚构或回填当前外部 artifact 尚不存在的 Citation ID，也未把任何模块提升到 L4。
+- 未复制 Raw/decoded values、账号/会话数据、截图、完整日志、APK、binary 或 credential。
+- 未开发 Evidence Registry、采集、Extractor、Exporter 或报告功能。
+
 ## [0.5.0] - 2026-08-26
 
 ### Added
