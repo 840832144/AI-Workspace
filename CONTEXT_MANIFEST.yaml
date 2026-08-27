@@ -1,28 +1,28 @@
 schema_version: "1.0"
-generated_at: "2026-08-27T07:35:19Z"
+generated_at: "2026-08-27T08:15:06Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "126adcf3e04a20bdc43833f9fc6a65eb27375012"
+repository_head: "95901a71fe9434c36aa606154d527999b102e0fc"
 repository_branch: "codex/task-0020-namespace-governance"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
 private_repositories: "not read"
 sources:
   - path: "bootstrap/chatgpt/00_CORE_RULES.md"
-    sha256: "c0dda1b0565d73a95152e2f594affca4098261387d401c650328963b51dab5dc"
-    bytes: 7136
+    sha256: "1a7b1a4997222b768b322916e3906e153fa2f35a911a6466204a1a3180a2eae8"
+    bytes: 7590
   - path: "bootstrap/chatgpt/01_SYSTEM_CONTEXT.md"
     sha256: "a5530244b8eb930e17cd718f6ea57e482fcf6886a7ac95b7420a79e0d07e28a7"
     bytes: 5127
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "8b697744ad42b017ca95831502290b8608966ceee8f74162529d03f951904f97"
-    bytes: 7871
+    sha256: "80db3552dfc6c568fb06b85a3fd838178504e2f70d139658d4c93d20c958d0e0"
+    bytes: 7947
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
-    sha256: "af0d17655cee5b6d972520ad9670adc541b43cdfb4666c05ea0cdec71bed58cf"
-    bytes: 4995
+    sha256: "d10fc80b868aeda033c03bf26de3df233ff83a5828cd446f2bfc016a5f269e2d"
+    bytes: 5092
   - path: "bootstrap/chatgpt/PROJECT_INSTRUCTIONS.md"
-    sha256: "8dc793ea7076ae2f85817b42fb18aa4951b756896fac9a5efe85eb96a5562b32"
-    bytes: 3055
+    sha256: "a81654082e5e470c5dca37e43ddea9fe7764d340c39d7cd7ff14205d5428fe16"
+    bytes: 3190
   - path: "bootstrap/chatgpt/README.md"
     sha256: "c15a3d215cedf4b51107595ecbd3cac33fe9b0923b8ed190d8891015827747a4"
     bytes: 1707
@@ -51,20 +51,20 @@ sources:
     sha256: "f4f7919d982f9624449651a266f87afe4df06f02c663284841467a574f64af8f"
     bytes: 4390
   - path: "docs/adr/ADR-0006-Task-Identity-and-Allocation.md"
-    sha256: "480a916fcb7414aaf30f0d1f78778db9752effbfcea242f9c25cfeb2efc82eae"
-    bytes: 5496
+    sha256: "d2cf4470ae2a8fb9fc0388bc2c2c710b7295ee0c5f23bbb09fd17ffb878817e0"
+    bytes: 6568
   - path: "docs/adr/README.md"
     sha256: "961dd2ea668a09e22215472a4cfbf54c3945c399ee340a915d6d1852c60a288f"
     bytes: 1247
   - path: "docs/incidents/INCIDENT-0001-DUPLICATE-TASK-ID.md"
-    sha256: "540c6dd8efb955f9528e7011d3a3c4165f9e1618ad70a82c99100bdd74e40257"
-    bytes: 3594
+    sha256: "eb4098b4beb8b868ed622a6e3223f891c1d29609d367884c03678f84707597c6"
+    bytes: 4375
   - path: "handoff/CHATGPT.md"
     sha256: "c357d270feab7df9e6d40c2e0f17d537dba93be5808b7eab8a6ec964f5714e21"
     bytes: 5470
   - path: "handoff/CODEX.md"
-    sha256: "689e4d1f97c91fef5c9f842c5b64f760c904246ed60eede89bcaf14f878a7301"
-    bytes: 6966
+    sha256: "df85edcbcb9f9710ab24243b31106886d3c80ef12bf802f46b0cd30a88e33be1"
+    bytes: 6251
   - path: "skills/README.md"
     sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
     bytes: 1797
@@ -117,8 +117,8 @@ sources:
     sha256: "844f9881e793bd1b37a6c0f34493b62aaffa77b749fbbdbdb28a3463f878736f"
     bytes: 1793
   - path: "tasks/README.md"
-    sha256: "dc2591344968fa300088c7470b62a3ce7eca21948d53d227e0fcbc7a4a72ada4"
-    bytes: 4332
+    sha256: "5b681f402f7573816d5b9331bce50fbd4fc459911a49df020776bd6c7263abb4"
+    bytes: 4634
   - path: "tasks/TASK-0014-Codex-Subagent-Pilot.md"
     sha256: "ab5f51cb90995a31281b58eb6c039a58d75ecbc3bf104f225bccbcf415d39360"
     bytes: 10161
@@ -129,8 +129,8 @@ sources:
     sha256: "3a20d1d35f9ca7789a6c55094a232231d3350428219472ea1d2740dd1f6da108"
     bytes: 19210
   - path: "tasks/TASK-0016-EXECUTION-AUTHORIZATION.md"
-    sha256: "51aedf978b9ea880794375593e0a5023ed31d39488962c03d2a31a050315357d"
-    bytes: 2449
+    sha256: "af2759be6ce097a7c2b4562aa1998a2c9c9e044dac145e3bbc49f0ace2ef7f57"
+    bytes: 2464
   - path: "tasks/TASK-0017-Codex-Desktop-Proxy-WebSocket-Reconnect.md"
     sha256: "2a969864abcfda52b386a79cad328daaa52ab0516dbf703921cf8025f6b7e5b4"
     bytes: 11511
@@ -144,14 +144,14 @@ sources:
     sha256: "7f3ff8103e443f3757fcc7dca5132e88e5ca85603dfa8a4ff1cccb6c5c2c7bdf"
     bytes: 17739
   - path: "tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md"
-    sha256: "1fe04c6db0df5e6c32a5fd035294d5269570fd28990058d624907e306cc50869"
-    bytes: 13884
+    sha256: "b99c2af0ae197dd216f41a9e015542b19f84384b371f11d0ec39b702b37886c8"
+    bytes: 15688
   - path: "tasks/TASK-0021-Workspace-Live-Context-Hub.md"
     sha256: "00c97f9778594b5e17e8658dc2dc72fb068cb2aabb964d2aee206254d63c9f10"
     bytes: 20631
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "370ad634e213e3724f45336f24a7c1a873c47d2ccca076928a74a25063ff1de5"
-    bytes: 6761
+    sha256: "24e5a4010bd98f23ed0dd3f08f7729dad6696141e3d24be4d2eb6f9cc602a464"
+    bytes: 7691
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
     sha256: "c91aba736f7af48fd37cb5f2518ff6c1050c79df79590f0ffbf924a94a526ef0"
     bytes: 12531

@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-27T07:35:19Z
+Generated: 2026-08-27T08:15:06Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -14,7 +14,7 @@ Generated: 2026-08-27T07:35:19Z
 1. 先读取项目来源中的 `00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`。
 2. 先识别 User 需要的 Capability，再优先复用项目已有代码、本机工具、团队内部方案、官方方案和成熟开源方案；只有不适配时才自行开发。
 3. 涉及当前任务、仓库状态、功能是否已实现、给 Codex 下任务或 Review 时，先查询 AI-Workspace 及对应业务仓库的最新 Task、Status、Handoff 和 commit；不得只凭项目记忆猜测。
-4. 创建、编号、晋升或引用新 Task 前，必须同步最新 main、运行 Task Registry validator，并使用 allocator reservation；未获 User 明确批准的方向只进入 Candidate。全局 `TASK-XXXX` 是 canonical identity，`project_key` / alias 不能替代它。
+4. 创建、编号、晋升或引用新 Task 前，必须同步最新 main、运行 Task Registry validator，并在 non-main independent linked worktree 使用 remote CAS reservation；Task 进入 main 后才 finalize，未创建才 release。未获 User 明确批准的方向只进入 Candidate。全局 `TASK-XXXX` 是 canonical identity，新 canonical 必须显式写合法 `project_key`，alias 不能替代它。
 5. Huuuge 研究默认优先级：Slots → Systems → Events → Others。
 6. AI-Workspace 是治理、规则与任务真相源；业务实现、运行证据和发布状态以对应项目仓库或受控系统为准。
 7. ChatGPT 负责产品、架构、RFC、Task 设计、Workflow、Skill 和 Review；Codex 负责实现、自动化、测试、Git、部署和实现证据；User 负责优先级、付费/资源操作、外部授权和最终决策。
@@ -119,8 +119,8 @@ human_alias  = 可选阅读别名
 
 1. 枚举所有根目录 canonical Task 文件，确认已占用 ID、状态和完整文件名；
 2. 检查是否已有相同目标或重叠范围的 `Draft / Ready / In Progress / Review / Changes Requested` Task；
-3. 区分 canonical Task 与附件、授权书、Review、Candidate；附件不得伪装成第二个 canonical Task；
-4. 决定继续已有 Task、创建子任务、保留 Candidate，或通过 allocator 保留一个经 Git 验证未占用的新 ID；
+3. 区分 canonical Task 与附件、授权书、Review、Candidate；root Task 默认严格按 canonical 解析，只有显式 `Kind: companion` 且引用存在、同 ID canonical 的文件才能成为 companion；
+4. 决定继续已有 Task、创建子任务、保留 Candidate，或通过 remote Git reservation CAS 保留一个经 Git 验证未占用的新 ID；
 5. 创建后重建 Registry 并再次 validate，验证 ID 唯一、文件名与标题一致、Task 可被其他会话发现。
 
 禁止：
@@ -130,9 +130,11 @@ human_alias  = 可选阅读别名
 - 让两个不同 canonical Task 共用同一 ID；
 - 因编号冲突覆盖、删除或改写先存在 Task 的历史；
 - User 尚未确认范围时直接把讨论项升级为 `Ready` Task。
-- 手工编辑 `TASK_REGISTRY.yaml` 消除漂移，或把本地 reservation 冒充跨 Host 中心锁。
+- 手工编辑 `TASK_REGISTRY.yaml` 消除漂移，或在 canonical 进入 main 前释放 reservation。
 
-发生 duplicate、解析失败、Registry 漂移、非最新 main、active scope ambiguity 或 lock/reservation 冲突时必须 fail closed：停止执行冲突 Task，保留先存在 Task 为 canonical，明确标记误建 Task 为 `Cancelled` companion 或迁入 Candidate。不同 clone/Host 在 push、Review 和 merge 前必须针对最新 main 复验。
+所有 allocation 写操作要求包含最新 `origin/main` 的 non-main independent linked worktree。remote `task-reservations/TASK-XXXX` ref 使用 first-writer CAS 覆盖不同 clone / Host；创建或晋升 Task 后保持到 canonical 进入 main，再用 token `finalize`，只有未创建 Task 的放弃场景才 `release`。新 canonical 必须显式写合法 `project_key`，仅审计 grandfather 集合可缺省。
+
+发生 duplicate、解析失败、Registry 漂移、非最新 main、active scope ambiguity 或 lock/reservation 冲突时必须 fail closed：停止执行冲突 Task，保留先存在 Task 为 canonical，明确标记误建 Task 为 `Cancelled` companion 或迁入 Candidate。
 
 新增游戏研究默认先经过 `Feasibility Audit → ChatGPT Review → User 决定 → Collector Adapter / Productization`，不得从聊天直接跳到完整 Collector 开发。
 
@@ -370,7 +372,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - canonical ID 使用全局唯一 `TASK-XXXX`；`project_key` 是项目元数据，可选 alias 只用于阅读。
 - Markdown 是真相源，Registry 只能由完整 scan 重建；companion、authorization、review 和 candidate 必须明确分类。
 - User 未确认的新方向先进入 Candidate，不占正式 ID；晋升前检查 active scope overlap 和 User approval。
-- linked worktree 同 clone 使用 Git common-directory reservation 防并发同号；不同 Host 仍需在 push / Review / merge 前复验最新 main。
+- allocator 使用 remote Git ref first-writer CAS 防止不同 clone / Host 同号；同 clone 另有 common-directory lock。reservation 保持到 canonical 进入 main 后显式 finalize，放弃未创建 Task 才 release。
 - 冲突时 fail closed：保留先存在 canonical Task，误建项保留为 `Cancelled` companion 或 Candidate，不覆盖历史。
 - 新游戏研究默认采用 `Feasibility Audit → Review → User 决定 → Adapter / Collector → Planner Release`。
 
@@ -406,7 +408,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - ChatGPT Project Sources 是上传时的快照，不会自动跟随 Git commit 更新；本次 Core Rules 与 Current State 变化后需要重新上传 00、02、03 或使用生成的 replacement list。
 - Project Memory 可以引用同一项目内聊天和文件，但不保证每个新对话主动召回全部细节；项目指令和来源文件仍是稳定入口。
 - 任何当前功能、任务、编号、状态或 commit 的判断必须查询对应 Git 仓库，不能仅依据本文件。
-- Task Registry / allocator 已在 TASK-0020 独立分支完成并等待 Review；合入 main 前，新 Task 仍需人工完整目录预检，不能假装分支工具已成为生产治理规则。
+- Task Registry / allocator 已在 TASK-0020 独立分支完成 Review Round 1 的五项修复，等待 ChatGPT Review Round 2；合入 main 前不能假装分支工具已成为生产治理规则。
 
 ## 近期候选方向
 
@@ -420,7 +422,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T07:35:19Z
+- Generated: 2026-08-27T08:15:06Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -468,11 +470,11 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 1. 从 Git 最新 `main` 枚举完整 `tasks/` 目录，不只搜索一个猜测编号；
 2. 运行 Task Registry validator，列出 canonical / companion / candidate / review 的 ID、完整文件名和状态；
 3. 检查同 ID 冲突、同目标重复、范围重叠和附件误判；
-4. 只有 User 已确认，才通过 allocator reservation 分配全局 `TASK-XXXX`；同时记录 `project_key`，可选 alias 不替代 ID；
+4. 只有 User 已确认，才在 non-main independent linked worktree 通过 remote CAS reservation 分配全局 `TASK-XXXX`；同时显式记录合法 `project_key`，可选 alias 不替代 ID；
 5. 未确认需求先进入 Candidate，不分配正式 Task ID；
 6. 创建后重建 Registry 并再次 validate，验证 ID 唯一、文件/标题一致和可见性。
 
-不得把“当前看到的最大编号 + 1”当作充分依据，也不得根据另一个对话的记忆分配编号。非最新 main、Registry 漂移、解析失败、active scope ambiguity 或 lock/reservation 冲突均 fail closed。若发现同号，保留先存在 canonical Task，将误建项标记 `Cancelled` companion 或迁入 Candidate。不同 Host/clone 在 Review/merge 前必须重新验证最新 main。
+不得把“当前看到的最大编号 + 1”当作充分依据，也不得根据另一个对话的记忆分配编号。非最新 main、Registry 漂移、解析失败、active scope ambiguity 或 lock/reservation 冲突均 fail closed。若发现同号，保留先存在 canonical Task，将误建项标记 `Cancelled` companion 或迁入 Candidate。Task 创建后 reservation 保持到 canonical 进入 main 并显式 finalize；放弃未创建 Task 才 release。
 
 完整细节应先写入 AI-Workspace 的 `tasks/` 和 Handoff。发给 User 的 Codex 话术通常只包含：
 

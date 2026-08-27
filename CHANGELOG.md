@@ -2,6 +2,26 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.13.1] - 2026-08-27
+
+### Fixed
+
+- TASK-0020 Review Fix 1：所有 allocation 写操作统一强制 latest-main、non-main independent linked-worktree writer gate；`next` 不再能在 main 或普通 checkout 写 reservation。
+- allocator 改为 remote `task-reservations/TASK-XXXX` ref first-writer CAS，覆盖不同 clone / Host；promotion 保持 reservation 到 canonical 进入 main 后显式 `finalize`，未创建 Task 才允许 token `release`。
+- 新 canonical 强制显式合法 `project_key`，仅 `TASK-0014` 至 `TASK-0019` 使用有限审计 grandfather map；未来 Task 不再接受标题/路径推断。
+- `Draft` 纳入 active overlap；root Task 默认严格按 canonical 解析，companion 必须显式 Kind 且引用存在、同 ID canonical。
+
+### Validation
+
+- Task disposable tests 从 14 扩展为 22，新增 main/普通 checkout gate、跨 clone concurrent next/promote、promotion 生命周期/finalize、提前 release 拒绝、fault injection recovery、project_key、Draft overlap 与 companion 分类回归。
+- 原 Task 测试与 35 项 Memory 测试无退化；真实仓库保持 8 canonical、2 companion、1 Candidate、4 Review、canonical collision 0（TASK-0020 与并发进入 main 的 TASK-0018 Review 均纳入 Registry）。
+- Project Source Pack、Context Manifest 与 replacement list 刷新，状态保持 `manual upload required`；Memory 模式保持 `ASSISTED`。
+
+### Boundaries
+
+- 未执行 Cash Frenzy Candidate；未修改 TASK-0021、Huuuge Collector、Lottery、Capture、document-assistant、飞书、SVN、业务仓库或 Global runtime。
+- `Subagents: none`。
+
 ## [0.13.0] - 2026-08-27
 
 ### Added

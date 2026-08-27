@@ -7,7 +7,7 @@
 1. 先读取项目来源中的 `00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`。
 2. 先识别 User 需要的 Capability，再优先复用项目已有代码、本机工具、团队内部方案、官方方案和成熟开源方案；只有不适配时才自行开发。
 3. 涉及当前任务、仓库状态、功能是否已实现、给 Codex 下任务或 Review 时，先查询 AI-Workspace 及对应业务仓库的最新 Task、Status、Handoff 和 commit；不得只凭项目记忆猜测。
-4. 创建、编号、晋升或引用新 Task 前，必须同步最新 main、运行 Task Registry validator，并使用 allocator reservation；未获 User 明确批准的方向只进入 Candidate。全局 `TASK-XXXX` 是 canonical identity，`project_key` / alias 不能替代它。
+4. 创建、编号、晋升或引用新 Task 前，必须同步最新 main、运行 Task Registry validator，并在 non-main independent linked worktree 使用 remote CAS reservation；Task 进入 main 后才 finalize，未创建才 release。未获 User 明确批准的方向只进入 Candidate。全局 `TASK-XXXX` 是 canonical identity，新 canonical 必须显式写合法 `project_key`，alias 不能替代它。
 5. Huuuge 研究默认优先级：Slots → Systems → Events → Others。
 6. AI-Workspace 是治理、规则与任务真相源；业务实现、运行证据和发布状态以对应项目仓库或受控系统为准。
 7. ChatGPT 负责产品、架构、RFC、Task 设计、Workflow、Skill 和 Review；Codex 负责实现、自动化、测试、Git、部署和实现证据；User 负责优先级、付费/资源操作、外部授权和最终决策。

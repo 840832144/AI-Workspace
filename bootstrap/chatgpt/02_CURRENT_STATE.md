@@ -63,7 +63,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - canonical ID 使用全局唯一 `TASK-XXXX`；`project_key` 是项目元数据，可选 alias 只用于阅读。
 - Markdown 是真相源，Registry 只能由完整 scan 重建；companion、authorization、review 和 candidate 必须明确分类。
 - User 未确认的新方向先进入 Candidate，不占正式 ID；晋升前检查 active scope overlap 和 User approval。
-- linked worktree 同 clone 使用 Git common-directory reservation 防并发同号；不同 Host 仍需在 push / Review / merge 前复验最新 main。
+- allocator 使用 remote Git ref first-writer CAS 防止不同 clone / Host 同号；同 clone 另有 common-directory lock。reservation 保持到 canonical 进入 main 后显式 finalize，放弃未创建 Task 才 release。
 - 冲突时 fail closed：保留先存在 canonical Task，误建项保留为 `Cancelled` companion 或 Candidate，不覆盖历史。
 - 新游戏研究默认采用 `Feasibility Audit → Review → User 决定 → Adapter / Collector → Planner Release`。
 
@@ -99,7 +99,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - ChatGPT Project Sources 是上传时的快照，不会自动跟随 Git commit 更新；本次 Core Rules 与 Current State 变化后需要重新上传 00、02、03 或使用生成的 replacement list。
 - Project Memory 可以引用同一项目内聊天和文件，但不保证每个新对话主动召回全部细节；项目指令和来源文件仍是稳定入口。
 - 任何当前功能、任务、编号、状态或 commit 的判断必须查询对应 Git 仓库，不能仅依据本文件。
-- Task Registry / allocator 已在 TASK-0020 独立分支完成并等待 Review；合入 main 前，新 Task 仍需人工完整目录预检，不能假装分支工具已成为生产治理规则。
+- Task Registry / allocator 已在 TASK-0020 独立分支完成 Review Round 1 的五项修复，等待 ChatGPT Review Round 2；合入 main 前不能假装分支工具已成为生产治理规则。
 
 ## 近期候选方向
 
@@ -113,7 +113,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T07:35:19Z
+- Generated: 2026-08-27T08:15:06Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`

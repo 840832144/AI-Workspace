@@ -14,7 +14,7 @@
 
 ## 最低字段
 
-每个新 canonical Task 至少包含：Status、Project key、Owner、Executor、Priority、Date、Goal、Scope、Non-goals、Deliverables、Acceptance、Safety、Validation 和 Handoff。历史 Task 不为补字段批量重写；发生实质修改时补齐。
+每个新 canonical Task 至少包含：Status、Project key、Owner、Executor、Priority、Date、Goal、Scope、Non-goals、Deliverables、Acceptance、Safety、Validation 和 Handoff。`Project key` 必须使用大写字母、数字和单连字符；仅代码中明确列出的 `TASK-0014` 至 `TASK-0019` 历史 grandfather 集合可以缺省。
 
 canonical identity 采用全局唯一 `TASK-XXXX`。`project_key` 用于项目过滤，可选 `human_alias` 用于阅读；两者都不能替代 canonical ID。
 
@@ -23,7 +23,7 @@ canonical identity 采用全局唯一 `TASK-XXXX`。`project_key` 用于项目�
 - `tasks/` 根目录中，标题为 `# TASK-XXXX — ...` 且包含完整 Task 字段的文件视为 canonical Task。
 - 每个 canonical Task ID 在整个仓库中必须唯一。
 - 授权书、Review、补充说明、实验记录等不得伪装成第二个 canonical Task；新附件应放入 `tasks/support/TASK-XXXX/`、`reviews/`、`docs/experiments/` 或对应项目目录。
-- 历史上已存在的 companion 文件可以保留，但治理工具必须明确标注其类型，不能把它们当作新 Task 编号占用或第二个执行入口。
+- 历史上已存在的 companion 文件可以保留，但必须显式写 `Kind: companion`，且 canonical reference 必须解析到存在、ID 与 companion 文件名一致的 canonical Task。标题格式错误且没有显式 Kind 的文件按 malformed canonical 失败。
 
 ## 新 Task 分配规则
 
@@ -46,7 +46,7 @@ python .\tools\tasks\task_cli.py validate
 python .\tools\tasks\task_cli.py next --purpose "approved-task"
 ```
 
-`next` 先完整 scan / validate / latest-main gate，再在 Git common directory 原子保留 ID；不是只读 `max + 1`。放弃 reservation 时用返回的 token 执行 `release`。不同 clone/Host 没有中心化锁，push、Review 与 merge 前必须针对最新 main 再次验证。
+`next` 先完整 scan / validate / latest-main gate，再通过 remote Git ref first-writer CAS 保留 ID；不是只读 `max + 1`。同 clone 另有 common-directory lock，不同 clone / Host 由 remote CAS 在创建 Task 前排他。放弃未使用 reservation 时用 token 执行 `release`；创建或晋升 Task 后保留 reservation，直到 canonical 进入最新 main 才执行 `finalize`。
 
 ## Candidate 规则
 

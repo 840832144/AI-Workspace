@@ -23,7 +23,7 @@
 
 1. Task ID 分配依赖聊天/局部目录视图，没有强制读取最新 main 的完整清单。
 2. 没有机器可验证的 canonical / companion / candidate / review 分类。
-3. 没有 Registry 漂移检查、Git latest gate 或 linked worktree 并发 reservation。
+3. 没有 Registry 漂移检查、Git latest writer gate 或跨 clone / Host 的原子 reservation。
 4. 新方向在 User 决定执行前直接创建 `Ready` Task，没有 Candidate-first 缓冲层。
 
 这不是编号空间耗尽；`max + 1` 本身也不能证明目录完整或防止并发。
@@ -40,7 +40,10 @@
 - `tasks/TASK_REGISTRY.yaml` 从 Markdown 确定性生成。
 - `task_cli.py scan / validate / next / candidate / promote`。
 - 全局 `TASK-XXXX` + `project_key` + 可选 alias。
-- Git latest、non-main linked worktree、common-directory lock/reservation 和创建后验证。
+- Git latest、non-main independent linked-worktree writer gate、common-directory lock，以及 remote Git ref first-writer CAS reservation。
+- reservation 保持到 canonical Task 进入 `origin/main` 后显式 `finalize`；未使用编号通过 token `release`，异常按 expected OID 清理。
+- 新 canonical 强制显式 `project_key`；仅 `TASK-0014` 至 `TASK-0019` 使用审计 grandfather map。
+- root Task 默认严格按 canonical 解析；companion 必须显式声明 Kind，并引用存在且 ID 一致的 canonical。
 - Cash Frenzy 完整规格迁入非执行 Candidate；Cancelled stub 明确为 companion。
 - companion、review 与 canonical 可关联相同 ID，但不占第二个 canonical identity。
 
@@ -51,11 +54,13 @@
 3. 文件名、标题或 Registry ID 漂移失败；
 4. 未批准 Candidate 不分配 ID；
 5. approved Candidate 唯一晋升并保留 provenance；
-6. active 目标重叠要求明确 continue/subtask；
-7. 两个并发 allocator 不返回相同 ID；
-8. lock、目录不完整、解析失败、Registry 漂移、非最新 main 均 fail closed；
-9. 真实仓库 active canonical collision 为 0；
-10. Cash Frenzy Candidate 与 Huuuge canonical TASK-0018 同时验证。
+6. active（含 Draft）目标重叠要求明确 continue/subtask；
+7. 同 clone 与不同 clone / Host 的并发 allocator、并发 promotion 不返回相同 ID；
+8. promotion 到 merge 前不释放编号，进入 main 后 finalize；放弃 release 与 fault injection 不泄漏 remote ref；
+9. main、普通 checkout、lock、目录不完整、解析失败、Registry 漂移、非最新 main 均 fail closed；
+10. project_key 缺失/非法/grandfather 和 malformed/implicit/nonexistent/mismatched companion 均有定向回归；
+11. 真实仓库 active canonical collision 为 0；
+12. Cash Frenzy Candidate 与 Huuuge canonical TASK-0018 同时验证。
 
 ## Lessons
 

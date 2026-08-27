@@ -3,8 +3,9 @@
 
 The implementation intentionally uses only the Python standard library.  Task
 Markdown remains canonical; TASK_REGISTRY.yaml is generated and byte-compared
-to detect drift.  Allocation reservations live under Git's common directory so
-linked worktrees on one clone cannot receive the same ID.
+to detect drift. Allocation reservations use atomically created remote Git refs
+for cross-clone/Host exclusion, with token-gated local metadata for lifecycle
+operations.
 """
 
 from __future__ import annotations
@@ -28,7 +29,7 @@ from typing import Iterable, Sequence
 
 REGISTRY_SCHEMA_VERSION = "1.0"
 POLICY = "global-task-id-with-project-key-and-optional-alias"
-ACTIVE_STATUSES = {"ready", "in progress", "review", "changes requested"}
+ACTIVE_STATUSES = {"draft", "ready", "in progress", "review", "changes requested"}
 KNOWN_STATUSES = {
     "draft",
     "ready",
@@ -47,6 +48,17 @@ TASK_ID_RE = re.compile(r"TASK-\d{4}")
 FIELD_RE = re.compile(r"^- ([A-Za-z][A-Za-z0-9 _/-]*?):\s*(.*?)\s*$")
 SECTION_RE = re.compile(r"^## (.+?)\s*$")
 SAFE_SLUG_RE = re.compile(r"^[A-Z0-9]+(?:-[A-Z0-9]+)*$")
+RESERVATION_REF_PREFIX = "refs/heads/task-reservations/"
+# Audited pre-policy canonicals that may omit Project key. No future ID may be
+# added implicitly; changing this map is a governance change subject to review.
+LEGACY_PROJECT_KEYS = {
+    "TASK-0014": "WORKSPACE",
+    "TASK-0015": "HUUUGE",
+    "TASK-0016": "WORKSPACE",
+    "TASK-0017": "WORKSPACE",
+    "TASK-0018": "HUUUGE",
+    "TASK-0019": "WORKSPACE",
+}
 
 
 class TaskError(RuntimeError):
@@ -101,6 +113,15 @@ class ScanResult:
         return [record for record in self.records if record.kind == "canonical"]
 
 
+@dataclasses.dataclass(frozen=True)
+class Reservation:
+    task_id: str
+    token: str
+    path: Path
+    remote_ref: str
+    oid: str
+
+
 def emit(status: str, **values: object) -> None:
     print(json.dumps({"status": status, **values}, ensure_ascii=False, sort_keys=True))
 
@@ -150,6 +171,7 @@ def normalize_status(value: str) -> str:
 
 
 def infer_project_key(title: str, fields: dict[str, str], path: Path) -> tuple[str, str]:
+    """Best-effort classification for non-canonical records only."""
     explicit = clean_markdown(fields.get("project-key", "")).strip().upper()
     if explicit:
         return explicit, "explicit"
@@ -161,6 +183,28 @@ def infer_project_key(title: str, fields: dict[str, str], path: Path) -> tuple[s
     if "huuuge" in corpus or "lottery" in corpus:
         return "HUUUGE", "legacy-inference"
     return "WORKSPACE", "legacy-default"
+
+
+def canonical_project_key(
+    task_id: str, fields: dict[str, str], relative: str
+) -> tuple[str, list[str], list[str]]:
+    errors: list[str] = []
+    warnings: list[str] = []
+    raw = clean_markdown(fields.get("project-key", "")).strip()
+    if raw:
+        if raw != raw.upper() or not SAFE_SLUG_RE.fullmatch(raw):
+            errors.append(
+                f"{relative}: Project key must use uppercase A-Z, 0-9, and single hyphens"
+            )
+        return raw.upper(), errors, warnings
+    grandfathered = LEGACY_PROJECT_KEYS.get(task_id)
+    if grandfathered:
+        warnings.append(
+            f"{relative}: project_key={grandfathered} supplied by audited legacy grandfather map"
+        )
+        return grandfathered, errors, warnings
+    errors.append(f"{relative}: missing '- Project key:' field")
+    return "", errors, warnings
 
 
 def extract_related(text: str, own_id: str) -> tuple[str, ...]:
@@ -175,12 +219,12 @@ def section_value(sections: dict[str, str], *names: str) -> str:
     return ""
 
 
-def canonical_reference(fields: dict[str, str], text: str) -> str:
+def canonical_reference(fields: dict[str, str]) -> str:
     raw = fields.get("canonical-task", "") or fields.get("canonical-design", "")
     match = re.search(r"(?:tasks/)?(TASK-\d{4}[^`)\s]*\.md)", raw)
     if match:
         return "tasks/" + Path(match.group(1)).name
-    match = TASK_ID_RE.search(raw or text)
+    match = TASK_ID_RE.search(raw)
     return match.group(0) if match else ""
 
 
@@ -199,7 +243,9 @@ def parse_root_task(path: Path, root: Path) -> tuple[Record | None, list[str], l
     if explicit_kind and explicit_kind not in {"canonical", "companion"}:
         errors.append(f"{relative}: root Task Kind must be canonical or companion")
         return None, errors, warnings
-    kind = explicit_kind or ("canonical" if heading_match else "companion")
+    # A root Task is canonical by default. Companion classification must be
+    # explicit so malformed canonical headings cannot silently escape checks.
+    kind = explicit_kind or "canonical"
     if kind == "canonical":
         if not heading_match:
             errors.append(f"{relative}: canonical heading must be '# TASK-NNNN — Title'")
@@ -219,16 +265,17 @@ def parse_root_task(path: Path, root: Path) -> tuple[Record | None, list[str], l
         if status.lower() not in KNOWN_STATUSES:
             errors.append(f"{relative}: unsupported status '{clean_markdown(raw_status)}'")
         canonical_file = relative
+        project_key, key_errors, key_warnings = canonical_project_key(task_id, fields, relative)
+        errors.extend(key_errors)
+        warnings.extend(key_warnings)
     else:
         task_id = filename_id
         title = heading.removeprefix("# ").strip() or path.stem
         status = normalize_status(fields.get("status", "Companion"))
-        canonical_file = canonical_reference(fields, text)
+        canonical_file = canonical_reference(fields)
         if not canonical_file:
             errors.append(f"{relative}: companion must declare Canonical task/design")
-    project_key, source = infer_project_key(title, fields, path)
-    if source.startswith("legacy") and kind == "canonical":
-        warnings.append(f"{relative}: project_key={project_key} derived by {source}")
+        project_key, _ = infer_project_key(title, fields, path)
     goal = section_value(sections, "goal", "decision", "context")
     created = fields.get("created", "") or fields.get("date", "")
     updated = fields.get("updated", "") or created
@@ -286,13 +333,16 @@ def parse_candidate(path: Path, root: Path) -> tuple[Record | None, list[str], l
             errors.append(f"{relative}: Migrated to must reference TASK-NNNN")
         else:
             related = tuple(sorted(set(related) | {target_match.group(0)}))
+    project_key = clean_markdown(fields.get("project-key", "")).strip().upper()
+    if not SAFE_SLUG_RE.fullmatch(project_key):
+        errors.append(f"{relative}: Candidate Project key is invalid")
     record = Record(
         id=candidate_id,
         canonical_file=canonical_file,
         file=relative,
         title=clean_markdown(title),
         status=status,
-        project_key=clean_markdown(fields.get("project-key", "")).strip().upper(),
+        project_key=project_key,
         human_alias=clean_markdown(fields.get("human-alias", "")),
         owner=clean_markdown(fields.get("owner", "User / ChatGPT")),
         executor=clean_markdown(fields.get("executor", "none")),
@@ -365,7 +415,36 @@ def scan_repository(root: Path) -> ScanResult:
             records.append(record)
         errors.extend(item_errors)
         warnings.extend(item_warnings)
-    canonical_by_id = {record.id: record.file for record in records if record.kind == "canonical"}
+    canonical_records = [record for record in records if record.kind == "canonical"]
+    canonical_by_id = {record.id: record.file for record in canonical_records}
+    canonical_record_by_id = {record.id: record for record in canonical_records}
+    canonical_record_by_file = {record.file: record for record in canonical_records}
+    normalized_records: list[Record] = []
+    for record in records:
+        if record.kind != "companion":
+            normalized_records.append(record)
+            continue
+        target = (
+            canonical_record_by_file.get(record.canonical_file)
+            if record.canonical_file.startswith("tasks/")
+            else canonical_record_by_id.get(record.canonical_file)
+        )
+        if target is None:
+            errors.append(
+                f"{record.file}: companion canonical reference does not resolve to an existing canonical Task"
+            )
+            normalized_records.append(record)
+            continue
+        if record.id != target.id:
+            errors.append(
+                f"{record.file}: companion filename ID {record.id} does not match canonical ID {target.id}"
+            )
+        normalized_records.append(
+            dataclasses.replace(
+                record, canonical_file=target.file
+            )
+        )
+    records = normalized_records
     reviews_dir = root / "reviews"
     if reviews_dir.exists():
         for path in sorted(reviews_dir.glob("TASK-*.md")):
@@ -425,10 +504,20 @@ def atomic_write_text(path: Path, text: str) -> None:
             os.unlink(temporary)
 
 
-def run_git(root: Path, arguments: Sequence[str], check: bool = True) -> subprocess.CompletedProcess[str]:
+def run_git(
+    root: Path,
+    arguments: Sequence[str],
+    check: bool = True,
+    *,
+    input_text: str | None = None,
+    extra_env: dict[str, str] | None = None,
+) -> subprocess.CompletedProcess[str]:
+    environment = os.environ.copy()
+    if extra_env:
+        environment.update(extra_env)
     process = subprocess.run(
         ["git", *arguments], cwd=root, text=True, encoding="utf-8", errors="replace",
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, input=input_text, env=environment,
     )
     if check and process.returncode:
         raise TaskError(f"git {' '.join(arguments)} failed")
@@ -511,6 +600,25 @@ def reserved_ids(common_dir: Path) -> set[str]:
     return {path.stem for path in directory.glob("TASK-*.json") if re.fullmatch(r"TASK-\d{4}", path.stem)}
 
 
+def remote_reservations(root: Path) -> dict[str, str]:
+    result = run_git(
+        root,
+        ["ls-remote", "--heads", "origin", f"{RESERVATION_REF_PREFIX}TASK-*"],
+        check=False,
+    )
+    if result.returncode:
+        raise TaskError("cannot inspect remote allocation reservations")
+    reservations: dict[str, str] = {}
+    for line in result.stdout.splitlines():
+        parts = line.split()
+        if len(parts) != 2 or not parts[1].startswith(RESERVATION_REF_PREFIX):
+            continue
+        task_id = parts[1].removeprefix(RESERVATION_REF_PREFIX)
+        if re.fullmatch(r"TASK-\d{4}", task_id):
+            reservations[task_id] = parts[0]
+    return reservations
+
+
 def next_available_id(records: Iterable[Record], reservations: set[str]) -> str:
     occupied = {record.id for record in records if record.kind == "canonical"} | reservations
     numeric = sorted(int(value.split("-", 1)[1]) for value in occupied if re.fullmatch(r"TASK-\d{4}", value))
@@ -522,10 +630,70 @@ def next_available_id(records: Iterable[Record], reservations: set[str]) -> str:
     return f"TASK-{candidate:04d}"
 
 
-def create_reservation(common_dir: Path, task_id: str, head: str, purpose: str) -> tuple[str, Path]:
+def reserve_next_id(
+    root: Path,
+    common_dir: Path,
+    records: Iterable[Record],
+    head: str,
+    purpose: str,
+) -> Reservation:
+    occupied = reserved_ids(common_dir) | set(remote_reservations(root))
+    for _ in range(32):
+        task_id = next_available_id(records, occupied)
+        try:
+            return create_reservation(root, common_dir, task_id, head, purpose)
+        except TaskError as exc:
+            if "remote allocation reservation conflict" not in str(exc):
+                raise
+            occupied.add(task_id)
+    raise TaskError("remote allocation contention did not stabilize")
+
+
+def reservation_commit(root: Path, task_id: str, head: str, purpose: str, token: str) -> str:
+    tree = run_git(root, ["rev-parse", f"{head}^{{tree}}"]).stdout.strip()
+    timestamp = utc_now()
+    message = json.dumps(
+        {
+            "schema_version": REGISTRY_SCHEMA_VERSION,
+            "task_id": task_id,
+            "token_sha256": hashlib.sha256(token.encode("ascii")).hexdigest(),
+            "head": head,
+            "purpose": purpose,
+            "created_at": timestamp,
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+    )
+    identity = {
+        "GIT_AUTHOR_NAME": "AI-Workspace Task Allocator",
+        "GIT_AUTHOR_EMAIL": "allocator@local.invalid",
+        "GIT_COMMITTER_NAME": "AI-Workspace Task Allocator",
+        "GIT_COMMITTER_EMAIL": "allocator@local.invalid",
+    }
+    result = run_git(
+        root,
+        ["commit-tree", tree, "-p", head],
+        input_text=message + "\n",
+        extra_env=identity,
+    )
+    return result.stdout.strip()
+
+
+def create_reservation(
+    root: Path, common_dir: Path, task_id: str, head: str, purpose: str
+) -> Reservation:
     token = uuid.uuid4().hex
     path = reservation_dir(common_dir) / f"{task_id}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
+    remote_ref = f"{RESERVATION_REF_PREFIX}{task_id}"
+    oid = reservation_commit(root, task_id, head, purpose, token)
+    pushed = run_git(
+        root,
+        ["push", f"--force-with-lease={remote_ref}:", "origin", f"{oid}:{remote_ref}"],
+        check=False,
+    )
+    if pushed.returncode:
+        raise TaskError(f"remote allocation reservation conflict for {task_id}")
     payload = {
         "schema_version": REGISTRY_SCHEMA_VERSION,
         "task_id": task_id,
@@ -533,18 +701,35 @@ def create_reservation(common_dir: Path, task_id: str, head: str, purpose: str) 
         "head": head,
         "purpose": purpose,
         "created_at": utc_now(),
+        "remote_ref": remote_ref,
+        "reservation_oid": oid,
+        "state": "pending-main",
     }
     try:
         descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
     except FileExistsError as exc:
+        delete_remote_reservation(root, remote_ref, oid)
         raise TaskError(f"allocation reservation already exists for {task_id}") from exc
-    with os.fdopen(descriptor, "w", encoding="utf-8", newline="\n") as handle:
-        json.dump(payload, handle, ensure_ascii=False, indent=2, sort_keys=True)
-        handle.write("\n")
-    return token, path
+    try:
+        if os.environ.get("AI_WORKSPACE_TASK_FAULT_INJECTION") == "after-remote-reservation":
+            if not (root / ".task-test-allow-faults").exists():
+                raise TaskError("fault injection is restricted to marked disposable test fixtures")
+            raise TaskError("injected failure after remote reservation")
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="\n") as handle:
+            json.dump(payload, handle, ensure_ascii=False, indent=2, sort_keys=True)
+            handle.write("\n")
+    except Exception:
+        try:
+            os.close(descriptor)
+        except OSError:
+            pass
+        path.unlink(missing_ok=True)
+        delete_remote_reservation(root, remote_ref, oid)
+        raise
+    return Reservation(task_id, token, path, remote_ref, oid)
 
 
-def release_reservation(path: Path, token: str) -> None:
+def read_reservation(path: Path, token: str) -> dict[str, str]:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
@@ -553,7 +738,79 @@ def release_reservation(path: Path, token: str) -> None:
     actual = hashlib.sha256(token.encode("ascii")).hexdigest()
     if not expected or actual != expected:
         raise TaskError("reservation token does not match")
+    required = ("task_id", "remote_ref", "reservation_oid")
+    if any(not isinstance(payload.get(key), str) or not payload[key] for key in required):
+        raise TaskError("reservation metadata is incomplete")
+    return payload
+
+
+def delete_remote_reservation(root: Path, remote_ref: str, expected_oid: str) -> None:
+    observed = run_git(root, ["ls-remote", "origin", remote_ref], check=False)
+    if observed.returncode:
+        raise TaskError("cannot verify remote allocation reservation")
+    lines = [line.split() for line in observed.stdout.splitlines() if line.strip()]
+    if len(lines) != 1 or lines[0][0] != expected_oid:
+        raise TaskError("remote allocation reservation ownership changed or is missing")
+    deleted = run_git(
+        root,
+        [
+            "push",
+            f"--force-with-lease={remote_ref}:{expected_oid}",
+            "origin",
+            f":{remote_ref}",
+        ],
+        check=False,
+    )
+    if deleted.returncode:
+        raise TaskError("remote allocation reservation changed; refusing deletion")
+
+
+def release_reservation(root: Path, path: Path, token: str) -> dict[str, str]:
+    payload = read_reservation(path, token)
+    delete_remote_reservation(root, payload["remote_ref"], payload["reservation_oid"])
     path.unlink()
+    return payload
+
+
+def origin_main_canonical(root: Path, task_id: str) -> tuple[str, str] | None:
+    listing = run_git(
+        root,
+        ["ls-tree", "-r", "--name-only", "origin/main", "--", "tasks"],
+        check=False,
+    )
+    if listing.returncode:
+        raise TaskError("cannot inspect canonical Tasks in origin/main")
+    candidates = [
+        item
+        for item in listing.stdout.splitlines()
+        if re.fullmatch(rf"tasks/{re.escape(task_id)}-.+\.md", item)
+    ]
+    canonicals: list[tuple[str, str]] = []
+    for relative in candidates:
+        shown = run_git(root, ["show", f"origin/main:{relative}"], check=False)
+        if shown.returncode:
+            raise TaskError(f"cannot read {relative} from origin/main")
+        lines = shown.stdout.splitlines()
+        heading = next((line.strip() for line in lines if line.strip()), "")
+        heading_match = CANONICAL_HEADING_RE.match(heading)
+        fields: dict[str, str] = {}
+        for line in lines:
+            match = FIELD_RE.match(line)
+            if match:
+                fields.setdefault(normalize_field_name(match.group(1)), match.group(2).strip())
+        explicit_kind = clean_markdown(fields.get("kind", "")).lower()
+        if heading_match and heading_match.group(1) == task_id and explicit_kind != "companion":
+            project_key, errors, _ = canonical_project_key(task_id, fields, relative)
+            if errors:
+                raise TaskError("origin/main canonical is invalid: " + "; ".join(errors))
+            canonicals.append((relative, project_key))
+    if len(canonicals) > 1:
+        raise TaskError(f"origin/main contains duplicate canonical ID {task_id}")
+    return canonicals[0] if canonicals else None
+
+
+def local_has_canonical(result: ScanResult, task_id: str) -> bool:
+    return any(record.kind == "canonical" and record.id == task_id for record in result.records)
 
 
 def validate_result(root: Path, result: ScanResult, *, check_git: bool) -> tuple[list[str], list[str], dict[str, str] | None]:
@@ -732,16 +989,31 @@ def validate_command(args: argparse.Namespace) -> int:
 def next_command(args: argparse.Namespace) -> int:
     root = Path(args.root).resolve()
     result = scan_repository(root)
-    errors, warnings, git_state = validate_result(root, result, check_git=True)
-    if errors or not git_state:
+    errors, warnings, _ = validate_result(root, result, check_git=False)
+    try:
+        git_state = ensure_git_latest(
+            root, require_linked_worktree=True, require_write_branch=True
+        )
+    except TaskError as exc:
+        errors.append(str(exc))
+        git_state = None
+    if errors or git_state is None:
         emit("failed", errors=errors, warnings=warnings)
         return 1
     try:
         common_dir = Path(git_state["common_dir"])
         with AllocationLock(common_dir, args.lock_timeout):
-            task_id = next_available_id(result.records, reserved_ids(common_dir))
-            token, _ = create_reservation(common_dir, task_id, git_state["head"], args.purpose)
-        emit("reserved", task_id=task_id, reservation_token=token, branch=git_state["branch"], warnings=warnings)
+            reservation = reserve_next_id(
+                root, common_dir, result.records, git_state["head"], args.purpose
+            )
+        emit(
+            "reserved",
+            task_id=reservation.task_id,
+            reservation_token=reservation.token,
+            reservation_state="pending-main",
+            branch=git_state["branch"],
+            warnings=warnings,
+        )
         return 0
     except TaskError as exc:
         emit("failed", errors=[str(exc)], warnings=warnings)
@@ -751,15 +1023,55 @@ def next_command(args: argparse.Namespace) -> int:
 def release_command(args: argparse.Namespace) -> int:
     root = Path(args.root).resolve()
     try:
-        if not is_git_repository(root):
-            raise TaskError("reservation release requires a Git worktree")
-        common_dir = Path(run_git(root, ["rev-parse", "--path-format=absolute", "--git-common-dir"]).stdout.strip()).resolve()
-        git_dir = Path(run_git(root, ["rev-parse", "--path-format=absolute", "--git-dir"]).stdout.strip()).resolve()
-        if common_dir == git_dir:
-            raise TaskError("reservation release requires the linked worktree that created it")
+        git_state = ensure_git_latest(
+            root, require_linked_worktree=True, require_write_branch=True
+        )
+        common_dir = Path(git_state["common_dir"])
         path = reservation_dir(common_dir) / f"{args.id}.json"
-        release_reservation(path, args.token)
-        emit("released", task_id=args.id)
+        payload = read_reservation(path, args.token)
+        if payload["task_id"] != args.id:
+            raise TaskError("reservation metadata task ID does not match")
+        result = scan_repository(root)
+        errors, _, _ = validate_result(root, result, check_git=False)
+        if errors:
+            raise TaskError("cannot abandon while Task state is invalid: " + "; ".join(errors))
+        if local_has_canonical(result, args.id) or origin_main_canonical(root, args.id):
+            raise TaskError(
+                "reservation has a canonical Task; merge it to main and use finalize"
+            )
+        release_reservation(root, path, args.token)
+        emit("released-abandoned", task_id=args.id)
+        return 0
+    except TaskError as exc:
+        emit("failed", errors=[str(exc)])
+        return 1
+
+
+def finalize_command(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    try:
+        git_state = ensure_git_latest(
+            root, require_linked_worktree=True, require_write_branch=True
+        )
+        common_dir = Path(git_state["common_dir"])
+        result = scan_repository(root)
+        errors, _, _ = validate_result(root, result, check_git=False)
+        if errors:
+            raise TaskError("cannot finalize while Task state is invalid: " + "; ".join(errors))
+        path = reservation_dir(common_dir) / f"{args.id}.json"
+        payload = read_reservation(path, args.token)
+        if payload["task_id"] != args.id:
+            raise TaskError("reservation metadata task ID does not match")
+        canonical = origin_main_canonical(root, args.id)
+        if canonical is None:
+            raise TaskError("canonical Task is not yet present in latest origin/main")
+        release_reservation(root, path, args.token)
+        emit(
+            "finalized",
+            task_id=args.id,
+            canonical_file=canonical[0],
+            project_key=canonical[1],
+        )
         return 0
     except TaskError as exc:
         emit("failed", errors=[str(exc)])
@@ -806,7 +1118,7 @@ def promote_command(args: argparse.Namespace) -> int:
         emit("failed", errors=["Candidate must be inside repository"])
         return 1
     snapshots: dict[Path, bytes | None] = {}
-    reservation_path: Path | None = None
+    reservation: Reservation | None = None
     try:
         git_state = ensure_git_latest(root, require_linked_worktree=True, require_write_branch=True)
         result = scan_repository(root)
@@ -836,8 +1148,14 @@ def promote_command(args: argparse.Namespace) -> int:
             refreshed_errors, _, _ = validate_result(root, refreshed, check_git=False)
             if refreshed_errors:
                 raise TaskError("locked validation failed: " + "; ".join(refreshed_errors))
-            task_id = next_available_id(refreshed.records, reserved_ids(common_dir))
-            token, reservation_path = create_reservation(common_dir, task_id, git_state["head"], f"promote:{candidate.id}")
+            reservation = reserve_next_id(
+                root,
+                common_dir,
+                refreshed.records,
+                git_state["head"],
+                f"promote:{candidate.id}",
+            )
+            task_id = reservation.task_id
             slug = re.sub(r"[^A-Z0-9]+", "-", unicodedata.normalize("NFKD", candidate.title).upper()).strip("-")
             if not slug:
                 slug = "PROMOTED-CANDIDATE"
@@ -859,9 +1177,15 @@ def promote_command(args: argparse.Namespace) -> int:
             final_errors, _, _ = validate_result(root, final, check_git=False)
             if final_errors:
                 raise TaskError("post-promotion validation failed: " + "; ".join(final_errors))
-            release_reservation(reservation_path, token)
-            reservation_path = None
-        emit("promoted", task_id=task_id, file=target.relative_to(root).as_posix(), candidate=candidate.file, warnings=warnings)
+        emit(
+            "promoted",
+            task_id=task_id,
+            file=target.relative_to(root).as_posix(),
+            candidate=candidate.file,
+            reservation_token=reservation.token,
+            reservation_state="pending-main",
+            warnings=warnings,
+        )
         return 0
     except (TaskError, OSError) as exc:
         for path, content in reversed(list(snapshots.items())):
@@ -873,10 +1197,10 @@ def promote_command(args: argparse.Namespace) -> int:
                     path.write_bytes(content)
             except OSError:
                 pass
-        if reservation_path and reservation_path.exists():
+        if reservation is not None and reservation.path.exists():
             try:
-                reservation_path.unlink()
-            except OSError:
+                release_reservation(root, reservation.path, reservation.token)
+            except (OSError, TaskError):
                 pass
         message = str(exc) if isinstance(exc, TaskError) else f"filesystem operation failed: {type(exc).__name__}"
         emit("failed", errors=[message])
@@ -905,6 +1229,13 @@ def build_parser() -> argparse.ArgumentParser:
     release.add_argument("--id", required=True, choices=[f"TASK-{value:04d}" for value in range(1, 10000)])
     release.add_argument("--token", required=True)
     release.set_defaults(func=release_command)
+
+    finalize = subparsers.add_parser(
+        "finalize", help="release a reservation only after its canonical Task is in origin/main"
+    )
+    finalize.add_argument("--id", required=True, choices=[f"TASK-{value:04d}" for value in range(1, 10000)])
+    finalize.add_argument("--token", required=True)
+    finalize.set_defaults(func=finalize_command)
 
     candidate = subparsers.add_parser("candidate", help="create a non-executable Candidate without allocating TASK-NNNN")
     candidate.add_argument("--title", required=True)

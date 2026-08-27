@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -18,12 +19,12 @@ sys.modules[SPEC.name] = task_cli
 SPEC.loader.exec_module(task_cli)
 
 
-def canonical(task_id: str, title: str, *, status: str = "Ready", project: str = "WORKSPACE", goal: str = "建立可验证的治理能力。") -> str:
+def canonical(task_id: str, title: str, *, status: str = "Ready", project: str | None = "WORKSPACE", goal: str = "建立可验证的治理能力。") -> str:
+    project_line = f"- Project key: {project}\n" if project is not None else ""
     return f"""# {task_id} — {title}
 
 - Status: {status}
-- Project key: {project}
-- Owner: User / ChatGPT
+{project_line}- Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1
 - Date: 2026-08-27
@@ -137,14 +138,31 @@ class RepositoryFixture:
             raise AssertionError(result.errors)
         (root / "tasks" / "TASK_REGISTRY.yaml").write_text(task_cli.render_registry(result), encoding="utf-8", newline="\n")
 
-    def run(self, *args: str) -> tuple[subprocess.CompletedProcess[str], dict[str, object]]:
+    @staticmethod
+    def run_at(root: Path, *args: str, env: dict[str, str] | None = None) -> tuple[subprocess.CompletedProcess[str], dict[str, object]]:
+        process_env = os.environ.copy()
+        if env:
+            process_env.update(env)
         process = subprocess.run(
-            [sys.executable, str(MODULE_PATH), "--root", str(self.worktree), *args],
+            [sys.executable, str(MODULE_PATH), "--root", str(root), *args],
             text=True, encoding="utf-8", errors="replace", stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            env=process_env,
         )
         lines = [line for line in process.stdout.splitlines() if line.strip()]
         payload = json.loads(lines[-1]) if lines else {}
         return process, payload
+
+    def run(self, *args: str, env: dict[str, str] | None = None) -> tuple[subprocess.CompletedProcess[str], dict[str, object]]:
+        return self.run_at(self.worktree, *args, env=env)
+
+    def independent_allocator(self, name: str) -> Path:
+        clone = self.base / f"{name}-clone"
+        worktree = self.base / f"{name}-worktree"
+        self.git(self.base, "clone", "--branch", "main", str(self.remote), str(clone))
+        self.git(clone, "config", "user.name", "Task Tests")
+        self.git(clone, "config", "user.email", "task-tests@example.invalid")
+        self.git(clone, "worktree", "add", "-b", f"test/{name}", str(worktree), "main")
+        return worktree
 
 
 class TaskCliTests(unittest.TestCase):
@@ -284,6 +302,206 @@ class TaskCliTests(unittest.TestCase):
         self.assertEqual(process.returncode, 0, payload)
         self.assertFalse(payload["task_id_allocated"])
         self.assertTrue((self.fixture.worktree / payload["file"]).exists())
+
+    def test_next_writer_gate_rejects_main_and_ordinary_checkout(self) -> None:
+        main_process, main_payload = self.fixture.run_at(self.fixture.source, "next")
+        self.assertNotEqual(main_process.returncode, 0)
+        self.assertTrue(any("non-main branch" in item for item in main_payload["errors"]))
+
+        ordinary = self.fixture.base / "ordinary-clone"
+        self.fixture.git(
+            self.fixture.base, "clone", "--branch", "main", str(self.fixture.remote), str(ordinary)
+        )
+        self.fixture.git(ordinary, "checkout", "-b", "test/ordinary")
+        ordinary_process, ordinary_payload = self.fixture.run_at(ordinary, "next")
+        self.assertNotEqual(ordinary_process.returncode, 0)
+        self.assertTrue(
+            any("independent linked worktree" in item for item in ordinary_payload["errors"])
+        )
+
+    def test_cross_clone_concurrent_next_uses_remote_cas(self) -> None:
+        first_root = self.fixture.independent_allocator("host-a")
+        second_root = self.fixture.independent_allocator("host-b")
+        commands = [
+            [sys.executable, str(MODULE_PATH), "--root", str(root), "next"]
+            for root in (first_root, second_root)
+        ]
+        processes = [
+            subprocess.Popen(command, text=True, encoding="utf-8", stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            for command in commands
+        ]
+        payloads: list[dict[str, object]] = []
+        for process in processes:
+            stdout, _ = process.communicate(timeout=20)
+            payload = json.loads(stdout.strip().splitlines()[-1])
+            self.assertEqual(process.returncode, 0, payload)
+            payloads.append(payload)
+        self.assertEqual({item["task_id"] for item in payloads}, {"TASK-0020", "TASK-0021"})
+
+    def test_promote_reservation_blocks_next_until_main_and_finalize(self) -> None:
+        candidate_id = "CANDIDATE-20260827-WORKSPACE-LIFECYCLE"
+        path = self.fixture.write(
+            f"tasks/candidates/{candidate_id}.md",
+            candidate(candidate_id, "Lifecycle Candidate", decision="Approved"),
+        )
+        self.fixture.refresh_registry(self.fixture.worktree)
+        promote_process, promoted = self.fixture.run(
+            "promote", path.relative_to(self.fixture.worktree).as_posix()
+        )
+        self.assertEqual(promote_process.returncode, 0, promoted)
+        self.assertEqual(promoted["task_id"], "TASK-0020")
+        early_release, early_payload = self.fixture.run(
+            "release",
+            "--id", promoted["task_id"],
+            "--token", promoted["reservation_token"],
+        )
+        self.assertNotEqual(early_release.returncode, 0)
+        self.assertTrue(any("use finalize" in item for item in early_payload["errors"]))
+
+        other_root = self.fixture.independent_allocator("before-merge")
+        next_process, next_payload = self.fixture.run_at(other_root, "next")
+        self.assertEqual(next_process.returncode, 0, next_payload)
+        self.assertEqual(next_payload["task_id"], "TASK-0021")
+
+        self.fixture.git(self.fixture.worktree, "add", "tasks")
+        self.fixture.git(self.fixture.worktree, "commit", "-m", "test: promote task")
+        self.fixture.git(self.fixture.source, "merge", "--ff-only", "test/task")
+        self.fixture.git(self.fixture.source, "push", "origin", "main")
+        finalize_process, finalized = self.fixture.run(
+            "finalize",
+            "--id", promoted["task_id"],
+            "--token", promoted["reservation_token"],
+        )
+        self.assertEqual(finalize_process.returncode, 0, finalized)
+        self.assertEqual(finalized["status"], "finalized")
+
+    def test_fault_after_remote_reservation_recovers_without_leak(self) -> None:
+        (self.fixture.worktree / ".task-test-allow-faults").write_text("test only\n", encoding="utf-8")
+        process, payload = self.fixture.run(
+            "next", env={"AI_WORKSPACE_TASK_FAULT_INJECTION": "after-remote-reservation"}
+        )
+        self.assertNotEqual(process.returncode, 0)
+        self.assertTrue(any("injected failure" in item for item in payload["errors"]))
+        remote = task_cli.remote_reservations(self.fixture.worktree)
+        self.assertEqual(remote, {})
+        common = Path(
+            self.fixture.git(
+                self.fixture.worktree, "rev-parse", "--path-format=absolute", "--git-common-dir"
+            ).stdout.strip()
+        )
+        self.assertEqual(task_cli.reserved_ids(common), set())
+
+    def test_concurrent_promote_across_clones_allocates_distinct_ids(self) -> None:
+        first_id = "CANDIDATE-20260827-WORKSPACE-FIRST"
+        second_id = "CANDIDATE-20260827-WORKSPACE-SECOND"
+        self.fixture.write_source(
+            f"tasks/candidates/{first_id}.md", candidate(first_id, "First Promotion", decision="Approved")
+        )
+        self.fixture.write_source(
+            f"tasks/candidates/{second_id}.md", candidate(second_id, "Second Promotion", decision="Approved")
+        )
+        self.fixture.refresh_registry(self.fixture.source)
+        self.fixture.git(self.fixture.source, "add", "tasks")
+        self.fixture.git(self.fixture.source, "commit", "-m", "test: add promotion candidates")
+        self.fixture.git(self.fixture.source, "push", "origin", "main")
+        roots = [
+            self.fixture.independent_allocator("promote-a"),
+            self.fixture.independent_allocator("promote-b"),
+        ]
+        candidate_paths = [
+            f"tasks/candidates/{first_id}.md",
+            f"tasks/candidates/{second_id}.md",
+        ]
+        processes = [
+            subprocess.Popen(
+                [sys.executable, str(MODULE_PATH), "--root", str(root), "promote", candidate_path],
+                text=True, encoding="utf-8", stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            )
+            for root, candidate_path in zip(roots, candidate_paths)
+        ]
+        allocated: set[str] = set()
+        for process in processes:
+            stdout, _ = process.communicate(timeout=25)
+            payload = json.loads(stdout.strip().splitlines()[-1])
+            self.assertEqual(process.returncode, 0, payload)
+            allocated.add(str(payload["task_id"]))
+        self.assertEqual(allocated, {"TASK-0020", "TASK-0021"})
+
+    def test_project_key_is_required_validated_and_grandfathered(self) -> None:
+        missing = self.fixture.write(
+            "tasks/TASK-0020-MISSING-PROJECT.md",
+            canonical("TASK-0020", "Missing Project", project=None),
+        )
+        result = task_cli.scan_repository(self.fixture.worktree)
+        self.assertTrue(any("missing '- Project key:'" in item for item in result.errors))
+        missing.unlink()
+
+        illegal = self.fixture.write(
+            "tasks/TASK-0020-ILLEGAL-PROJECT.md",
+            canonical("TASK-0020", "Illegal Project", project="bad key"),
+        )
+        result = task_cli.scan_repository(self.fixture.worktree)
+        self.assertTrue(any("Project key must use uppercase" in item for item in result.errors))
+        illegal.unlink()
+
+        self.fixture.write(
+            "tasks/TASK-0014-GRANDFATHERED.md",
+            canonical("TASK-0014", "Grandfathered", project=None),
+        )
+        result = task_cli.scan_repository(self.fixture.worktree)
+        self.assertFalse(result.errors, result.errors)
+        record = next(item for item in result.canonical if item.id == "TASK-0014")
+        self.assertEqual(record.project_key, "WORKSPACE")
+        self.assertTrue(any("grandfather map" in item for item in result.warnings))
+
+    def test_draft_task_participates_in_candidate_overlap(self) -> None:
+        existing = self.fixture.worktree / "tasks" / "TASK-0019-EXISTING.md"
+        existing.write_text(
+            canonical("TASK-0019", "Existing Task", status="Draft", goal="建立现有任务治理。"),
+            encoding="utf-8",
+        )
+        candidate_id = "CANDIDATE-20260827-WORKSPACE-DRAFT-OVERLAP"
+        path = self.fixture.write(
+            f"tasks/candidates/{candidate_id}.md",
+            candidate(candidate_id, "Existing Task", decision="Approved", goal="建立现有任务治理。"),
+        )
+        self.fixture.refresh_registry(self.fixture.worktree)
+        process, payload = self.fixture.run("promote", path.relative_to(self.fixture.worktree).as_posix())
+        self.assertNotEqual(process.returncode, 0)
+        self.assertTrue(any("overlap requires explicit subtask" in item for item in payload["errors"]))
+
+    def test_companion_requires_explicit_kind_and_valid_matching_target(self) -> None:
+        implicit = self.fixture.write(
+            "tasks/TASK-0020-IMPLICIT.md",
+            """# TASK-0020 Companion\n\n- Status: Ready\n- Canonical task: `tasks/TASK-0019-EXISTING.md`\n""",
+        )
+        result = task_cli.scan_repository(self.fixture.worktree)
+        self.assertTrue(any("canonical heading" in item for item in result.errors))
+        implicit.unlink()
+
+        nonexistent = self.fixture.write(
+            "tasks/TASK-0020-NONEXISTENT.md",
+            """# TASK-0020 Companion\n\n- Kind: companion\n- Status: Ready\n- Canonical task: `tasks/TASK-0020-NOPE.md`\n""",
+        )
+        result = task_cli.scan_repository(self.fixture.worktree)
+        self.assertTrue(any("does not resolve" in item for item in result.errors))
+        nonexistent.unlink()
+
+        mismatch = self.fixture.write(
+            "tasks/TASK-0020-MISMATCH.md",
+            """# TASK-0020 Companion\n\n- Kind: companion\n- Status: Ready\n- Canonical task: `tasks/TASK-0019-EXISTING.md`\n""",
+        )
+        result = task_cli.scan_repository(self.fixture.worktree)
+        self.assertTrue(any("does not match canonical ID" in item for item in result.errors))
+        mismatch.unlink()
+
+        malformed = self.fixture.write(
+            "tasks/TASK-0020-MALFORMED.md",
+            """# TASK-0020 Malformed\n\n- Kind: canonical\n- Status: Ready\n- Project key: WORKSPACE\n""",
+        )
+        result = task_cli.scan_repository(self.fixture.worktree)
+        self.assertTrue(any("canonical heading" in item for item in result.errors))
+        malformed.unlink()
 
 
 if __name__ == "__main__":

@@ -27,15 +27,16 @@ human_alias  = 可选的人类可读别名
 具体规则：
 
 1. `TASK-XXXX` 在 AI-Workspace 根 `tasks/` canonical Task 中全局唯一、不可复用。
-2. 新 canonical Task 必须显式记录 `Project key`；历史 Task 不批量重写，由确定性 legacy inference 生成 Registry，并输出 warning，后续发生实质修改时再补齐。
+2. 新 canonical Task 必须显式记录格式合法的 `Project key`。只有审计白名单 `TASK-0014` 至 `TASK-0019` 可以缺省，并由代码内有限 grandfather map 提供固定值；禁止按标题或路径为未来 Task 推断。
 3. `human_alias` 只改善阅读，例如 `CF-FEASIBILITY-001`；它不参与 canonical 链接或唯一性判断。
 4. Markdown Task 是真相源。`tasks/TASK_REGISTRY.yaml` 由完整扫描重建并做 byte-for-byte 漂移验证，不可手工作为第二真相源。
-5. 根目录文件由一级标题和显式 `Kind` 分类。canonical、companion、candidate、review 可以关联同一 Task ID，但只有 `kind=canonical` 占用全局 ID。
+5. 根目录文件默认按 canonical 严格解析；只有显式 `Kind: companion` 才能分类为 companion。companion 必须引用当前存在且 ID 与自身文件名一致的 canonical 文件。
 6. 历史 `TASK-0016-EXECUTION-AUTHORIZATION.md` 作为 companion；Cancelled Cash Frenzy collision stub 增加显式 `Kind: companion` 并保留旧链接，不静默改指新的 Cash Frenzy Task。
 7. 未获 User 明确批准的新方向使用 `CANDIDATE-YYYYMMDD-<PROJECT>-<SLUG>`，不占 Task ID且不可执行。
-8. `next` 必须完整 scan、validate、fetch `origin/main` 并验证当前非 main linked worktree 包含最新 main，然后在 Git common directory 原子保留 ID。它不是只读的 `max + 1` 猜测。
-9. Candidate promotion 必须检查 User decision、active scope overlap、分配锁和创建后验证。继续已有 Task 不分配新 ID；明确子任务才可关联晋升。
-10. 不同 clone/Host 没有中心化 reservation；push、Review 和 merge gate 必须重新验证最新 main。若同号仍由不同 Host 产生，后到分支 fail closed，先进入 main 的 canonical Task 保留。
+8. `next` 与所有 allocation 写操作必须完整 scan、validate、fetch `origin/main`，并验证当前是包含最新 main 的 non-main independent linked worktree；main、普通 checkout、stale branch 或无法验证远端时 fail closed。
+9. allocator 先用 `refs/heads/task-reservations/TASK-XXXX` 和 `--force-with-lease=<ref>:` 原子创建 remote reservation。Git common-directory lock 与 token-gated local metadata 负责同 clone 串行及生命周期操作；remote ref 的 first-writer CAS 负责不同 clone / Host 排他。
+10. Candidate promotion 必须检查 User decision、`Draft / Ready / In Progress / Review / Changes Requested` overlap、分配锁和创建后验证。promotion 成功后 reservation 保持 `pending-main`，不得立即释放。
+11. canonical Task 进入最新 `origin/main` 后，创建 reservation 的 linked worktree使用 token 执行 `finalize`；未创建 Task 的放弃场景使用 `release`。`release` 发现本地或 main 已有 canonical 时拒绝，异常路径按 expected OID 删除 remote ref并清理 local metadata。
 
 本 ADR 在 ChatGPT Review 前保持 Proposed；不触发历史大规模重编号。
 
@@ -55,7 +56,7 @@ human_alias  = 可选的人类可读别名
 
 ### 4. 外部数据库或中心化分配服务
 
-可提供跨 Host 强锁，但引入账号、权限、部署、可用性和第二真相源。本阶段规模不需要；Git branch/Review gate 与本地 CAS 足够暴露冲突并 fail closed。
+可提供跨 Host 强锁，但引入账号、权限、部署、可用性和第二真相源。本阶段选择 Git remote reservation refs：沿用现有 origin 权限与原子 ref 更新，不把 Registry 或外部数据库变成第二个 Task 真相源。
 
 ## Consequences
 
@@ -63,22 +64,25 @@ human_alias  = 可选的人类可读别名
 
 - 现有 `TASK-XXXX` 链接保持有效，不批量重编号。
 - Registry 可从 Markdown 重建，漂移可检测。
-- linked worktree 同 clone 并发分配不会得到同一 ID。
+- linked worktree 同 clone 以及不同 clone / Host 的并发分配都由 first-writer CAS 排除同号。
 - Candidate 不再提前消耗编号，也不会被误当执行入口。
 - Project 过滤与 human alias 不再污染 canonical identity。
 
 ### Negative / Costs
 
-- 历史 Task 缺少显式 `Project key` 时会产生 legacy warning。
-- 不同 clone/Host 仍需依赖最新 main、push 冲突和 Review gate，不能宣称有全局中心锁。
-- `next` 会产生 Host-local reservation；放弃编号时必须用 token 释放。
+- grandfather map 中历史 Task 缺少显式 `Project key` 时会产生 warning；白名单变更必须接受治理 Review。
+- origin 会暂时存在 `task-reservations/TASK-XXXX` ref；成功 Task 合入 main 后必须显式 finalize，放弃时必须用 token release。
+- reservation metadata 与 token 只保存在创建它的 clone；Host 丢失时需人工审计 remote ref，不允许无条件删除。
 - 新 Task 创建流程比手工复制模板多一次确定性验证。
 
 ## Validation
 
 - duplicate canonical ID、canonical + companion、文件名/标题/Registry 漂移；
-- Pending / approved Candidate 和 active scope overlap；
-- 并发 allocator、lock conflict、目录不完整、解析失败、非最新 main；
+- Pending / approved Candidate，以及包含 Draft 的 active scope overlap；
+- main/普通 checkout writer gate、同 clone及跨 clone并发 allocator / promotion；
+- promotion 未 merge 时继续占号、merge 后 finalize、放弃 release、fault-injection cleanup；
+- project_key 缺失/非法/grandfather，malformed canonical 与 companion reference；
+- lock conflict、目录不完整、解析失败、非最新 main；
 - 当前真实仓库唯一 active canonical TASK-0018；
 - Cash Frenzy 完整规格位于 Candidate，Cancelled stub 保持 companion。
 

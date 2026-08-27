@@ -37,11 +37,21 @@ python .\tools\tasks\task_cli.py candidate `
 python .\tools\tasks\task_cli.py next --purpose "approved-task"
 ```
 
-`next` 不是 `max + 1` 的只读猜测：它先完成完整 scan / validate / latest-main gate，再在 Git common directory 中建立原子 reservation。并发 linked worktree 会共享该 reservation 层，因此同一 clone 内不会获得同一 ID。若放弃该 ID，使用返回的 token 释放：
+`next` 不是 `max + 1` 的只读猜测：它先完成完整 scan / validate / latest-main gate，再用 remote Git ref first-writer CAS 建立 reservation。Git common directory lock 负责同 clone 串行，remote ref 负责不同 clone / Host 排他。所有分配写操作只允许包含最新 main 的 non-main independent linked worktree。
+
+若未创建 Task 并决定放弃该 ID，使用返回的 token：
 
 ```powershell
 python .\tools\tasks\task_cli.py release --id TASK-XXXX --token <returned-token>
 ```
+
+创建或晋升 Task 后 reservation 保持 `pending-main`。先提交、Review 并合入 main；再让原 linked worktree 同步最新 main，并显式完成生命周期：
+
+```powershell
+python .\tools\tasks\task_cli.py finalize --id TASK-XXXX --token <returned-token>
+```
+
+`release` 在本地或 `origin/main` 已存在该 canonical Task 时会拒绝，防止 merge 前提前复用编号；`finalize` 在最新 main 尚无 canonical 时也会拒绝。
 
 已明确批准的 Candidate 可晋升：
 
@@ -53,8 +63,9 @@ Candidate 与 active Task 目标重叠时默认阻断。只有明确决定为子
 
 ## 并发边界
 
-- 本地 linked worktree：Git common directory 的 allocation lock + reservation 防止同号。
-- 不同 clone / Host：各分支仍可能产生候选冲突；push / Review / merge gate 必须重新运行 validator，不能把本地 reservation 描述为中心化锁。
+- 本地 linked worktree：Git common directory allocation lock 防止同 clone 写入争用。
+- 不同 clone / Host：`refs/heads/task-reservations/TASK-XXXX` 由 `--force-with-lease` 原子抢占；后到者在创建 Task 前改取下一编号。
+- promotion / manual creation：remote reservation 一直保留到 canonical 进入 main 后 `finalize`，放弃才使用 `release`。
 - `main/master`、普通主 checkout、无法 fetch `origin/main`、分支落后、lock 冲突全部 fail closed。
 - Candidate 不是可执行入口；allocator 不会自动把 Candidate 变成 `Ready`。
 
