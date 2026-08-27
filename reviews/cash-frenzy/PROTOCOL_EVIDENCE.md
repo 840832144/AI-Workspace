@@ -27,4 +27,3 @@
 ## Evidence Level
 
 当前全部为 **Static L1 / Feasibility F1**。没有 Runtime capture，不得写成“协议已解码”或“Spin 使用 Protobuf”。
-

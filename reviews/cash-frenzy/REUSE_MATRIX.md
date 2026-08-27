@@ -24,4 +24,3 @@
 ## Exit Cost
 
 若动态证明失败，只保留本次 static inventory 与独立本机目录；不需要回滚 Huuuge、SVN、飞书或业务仓库。若证明成功，后续也应新建 Cash Frenzy Adapter Task，而不是扩大 TASK-0022。
-

@@ -52,4 +52,3 @@
 - BlueStacks 5 China 5.22.170.6509。
 - Bundled `HD-Aapt` 用于 manifest/badging；bundled 7-Zip 24.09 用于只读解包。
 - 静态副本与解包目录位于 Host-local `CashFrenzyResearch/local-only`，不进入 Git。
-

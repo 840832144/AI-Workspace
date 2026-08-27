@@ -13,4 +13,3 @@
 若只能到 F2，优先提出 **Protocol Boundary Probe**，不构建 Collector。若仍为 F1/F0，则停止投入并保留 static inventory。
 
 不自动晋升，不分配编号，不执行 Static Config Adapter、Local State Adapter、RTP/EV、长期概率或产品化。
-

@@ -16,4 +16,3 @@
 需要 User 在 BlueStacks Multi-instance Manager 创建全新 Pie 64-bit 实例、命名 `CashFrenzyResearch`，并从 Google Play 安装 Cash Frenzy。登录、验证码和商店操作由 User 完成。
 
 安装完成后 Codex 将先做只读 preflight：instance name、ADB serial、package、version、ABI、foreground package 与隔离目录全部匹配，才允许进入 READY。1–5 次普通 Spin 将在后续单独提示，绝不自动购买或大量消耗资源。
-
