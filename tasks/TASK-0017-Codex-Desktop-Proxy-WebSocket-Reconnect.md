@@ -1,11 +1,12 @@
 # TASK-0017 — Codex Desktop 代理 / WebSocket 重连诊断与修复
 
-- Status: Review
+- Status: Complete / merged to `main`
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / operational reliability
 - Date: 2026-08-27
 - User authorization: 已明确要求诊断并修复
+- Merge authorization: User 于 2026-08-27 明确批准合并 `main`
 - Concurrency: TASK-0016 正在进行；本任务必须使用独立 Git worktree / branch，禁止覆盖 TASK-0016 的工作区或未提交变更
 
 ## Goal
@@ -243,4 +244,5 @@ solutions/codex/reconnecting-proxy/README.md
 - Evidence: `docs/experiments/CODEX_PROXY_TRANSPORT_DIAGNOSIS.md`。
 - Reusable solution: `solutions/codex/reconnecting-proxy/README.md`。
 - Subagents: none。
-- Next action: ChatGPT Review 本任务诊断、最小修复、回滚与三次新任务证据；Review 前不合并 `main`。
+- Merge: User 批准后，`main` 已 fast-forward 到 `45ee2bc`；合并前 PowerShell 5.1 回归、`git diff --check`、凭据扫描和当前 transport 状态均通过。
+- Next action: User 在方便时正常退出并重开一次 Codex Desktop，再运行状态命令完成外壳重启确认。

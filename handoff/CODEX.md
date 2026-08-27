@@ -2,8 +2,8 @@
 
 - Updated: 2026-08-27
 - Task: TASK-0017
-- Branch: `task-0017-codex-network`
-- Current state: implementation complete; waiting ChatGPT Review
+- Branch: `main`
+- Current state: complete; User approved and fast-forward merged to `main` at `45ee2bc`
 - Root cause: Confirmed
 - Final transport: Responses WebSocket through Aurora WinINET proxy
 - Subagents: none
@@ -44,7 +44,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\codex\networ
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\codex\network\Restore-CodexNetworkConfig.ps1
 ```
 
-不需要 User 修改 Aurora UI。当前配置处于修复后状态。Review 后可正常退出并重新打开 Codex，再运行状态命令；不要强制结束 Collector、模拟器或其他任务进程。
+不需要 User 修改 Aurora UI。当前配置处于修复后状态。可在方便时正常退出并重新打开 Codex，再运行状态命令；不要强制结束 Collector、模拟器或其他任务进程。
 
 ## Validation
 
@@ -63,14 +63,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\codex\networ
 - 当前配置 feature 在安装版本有效，但不属于稳定公开 config reference；Codex 升级后应重跑 transport matrix。上游 Windows system-proxy WebSocket issue #29958 仍是相关风险。
 - 为避免中断当前工作，没有强杀 Codex Desktop 外壳；三个新任务和每次新 CLI 进程已验证配置由新进程读取。
 
-## Review Request
+## Completion
 
-ChatGPT 请审阅：
-
-1. root-cause 排除链是否充分；
-2. `respect_system_proxy` 的预检与 fail-closed 边界；
-3. config 备份、hash gate、自动回滚和 Restore 演练；
-4. 三个新任务的完整响应与每次 HTTP 101 证据；
-5. 是否接受“完整 Desktop 外壳不强杀、由 User Review 后正常重启”的边界。
-
-Review 前不要合并 `main`，不要叠加升级、环境变量、Provider override 或 Aurora UI 改动。
+- User 于 2026-08-27 明确批准合并 `main`。
+- 合并前复验 PowerShell 5.1 脚本回归、`git diff --check`、凭据模式扫描和当前 transport 状态；结果均通过。
+- `main` 已 fast-forward 到 `45ee2bc`，TASK-0016 的未提交 `tools/memory/memory_cli.py` 改动保持未变。
+- 唯一后续：User 在方便时正常重启 Codex Desktop，然后运行状态命令完成外壳重启确认。
