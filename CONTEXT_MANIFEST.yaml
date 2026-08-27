@@ -1,10 +1,10 @@
 schema_version: "1.0"
-generated_at: "2026-08-27T04:22:54Z"
+generated_at: "2026-08-27T04:23:34Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "ea4b7587432285ebaf2f7d99967b7f8e923820a3"
+repository_head: "36ed7aeb374e18a9697f90c2aa1acb0cec1a0cad"
 repository_branch: "main"
-repository_dirty_before_refresh: true
+repository_dirty_before_refresh: false
 repository_sync: "not-requested"
 private_repositories: "not read"
 sources:
@@ -15,7 +15,7 @@ sources:
     sha256: "a5530244b8eb930e17cd718f6ea57e482fcf6886a7ac95b7420a79e0d07e28a7"
     bytes: 5127
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "45bbb87e41a0ff90efc22e9da748677a59b1df2c189070a70e092442ccc58bb4"
+    sha256: "ed04165b39bd793717e33d39a5dd920119019528ef5d0a5a2d1c5c8fe2deb4b3"
     bytes: 5306
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "81b1cc0bba8601496b5fa86365cd211a71f0755ec77b8b4517d1a2f0710f7602"
@@ -57,8 +57,8 @@ sources:
     sha256: "3c878cf05df75a871d4f7ddcf034303713bc1c9b907b204f0d755e26f46944b3"
     bytes: 2632
   - path: "handoff/CODEX.md"
-    sha256: "01a66256ea7488691ee52a25469c789785810d9e36f6ce73721a85f8e4f4f1ef"
-    bytes: 6519
+    sha256: "13d308f00d3846cd40bd8c458abc0937cc6edc6acb6f3aed2588a7fd554b0d47"
+    bytes: 6520
   - path: "skills/README.md"
     sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
     bytes: 1797
