@@ -1144,6 +1144,7 @@ def refresh_command(args: argparse.Namespace) -> int:
                 root / "bootstrap" / "chatgpt" / name for name in
                 ("PROJECT_INSTRUCTIONS.md", "00_CORE_RULES.md", "01_SYSTEM_CONTEXT.md", "02_CURRENT_STATE.md", "03_NEW_CHAT_BOOTSTRAP.md")
             ]
+            source_files.append(root / "standards" / "PLANNER_WRITING_STYLE.md")
             pack_lines = ["# ChatGPT Project Source Pack", "", f"Generated: {generated_at}", "", "本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。", ""]
             for path in source_files:
                 pack_lines.extend([f"<!-- SOURCE: {path.name} -->", path.read_text(encoding="utf-8").rstrip(), ""])
@@ -1155,7 +1156,7 @@ def refresh_command(args: argparse.Namespace) -> int:
                 "当前没有在本任务范围内获批的安全 API 用于自动替换 ChatGPT Project Sources。请在 ChatGPT Project 设置中手动替换以下来源：", "",
             ]
             replacement_lines.extend(f"- `{path.relative_to(root).as_posix()}` — `{file_sha256(path)}`" for path in source_files)
-            replacement_lines.extend(["", f"可选单文件包：`{pack_path.relative_to(root).as_posix()}` — `{file_sha256(pack_path)}`", "", "不要同时上传单文件包和五个拆分来源，以免重复。", ""])
+            replacement_lines.extend(["", f"可选单文件包：`{pack_path.relative_to(root).as_posix()}` — `{file_sha256(pack_path)}`", "", f"不要同时上传单文件包和 {len(source_files)} 个拆分来源，以免重复。", ""])
             replacement_path = root / "bootstrap" / "chatgpt" / "generated" / "PROJECT_SOURCE_REPLACEMENT_LIST.md"
             atomic_write_text(replacement_path, "\n".join(replacement_lines))
         registered_sync_failures = [

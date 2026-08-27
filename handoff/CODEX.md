@@ -24,6 +24,17 @@
 - deterministic regression：Registry 10 canonical / 0 collision；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口和 Workspace Doctor 通过；Context refresh 62 sources、0 broken link、0 secret issue。
 - 下一步：提交并 push 本分支，等待 ChatGPT Review；未经 Accepted 不合并 main 或 finalize reservation。
 
+### Review Round 1 Required Fix
+
+- Review 记录：`reviews/TASK-0023-CHATGPT-REVIEW-1.md`；Roadmap / Idea Governance 主体已通过，唯一修改项为技术术语规则。
+- `standards/PLANNER_WRITING_STYLE.md` 现为唯一 canonical 规范；Core Rules、Repository/Bootstrap/Global AGENTS、Project Instructions、ChatGPT Bootstrap 与 Generic Agent 入口均引用同一规则。
+- Context refresh 生成器现将 canonical 规范正文加入 ChatGPT 单文件 Source Pack 与 6 个拆分来源清单；Memory 回归测试包含对应断言。
+- 默认面向策划使用准确、克制、可理解的研究表达；复现、工程判断、授权、合规、安全或风险需要时必须保留真实低层术语。禁止用模糊改名规避安全、权限、授权或 Review，也不得淡化风险。
+- 本轮仅做 Review 修订和 deterministic refresh/regression，不修改 TASK-0022、Cash Frenzy、Huuuge、Document Assistant 或 Workspace Sync 模式；Subagents: none。
+- Context / Source Pack：62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口、Registry 10 canonical / 0 collision 和 Doctor 全部通过。
+- Workspace Sync 仍为 `ON_DEMAND`、0 conflict；provider unavailable，6 个发布项维持 stale，没有启用 WATCH。
+- 下一步：push 后等待 ChatGPT Review Round 2；未经 Accepted 不合并 main 或 finalize TASK-0023 reservation。
+
 ## Closed TASK-0021
 
 - ChatGPT Review Round 1：Accepted。
@@ -89,10 +100,15 @@ Task issuance 合入 main 并完成 `finalize` 后，必须从最新 main 新建
 
 
 
+
+
+
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-27T11:22:18Z
+- Generated: 2026-08-27T13:24:33Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`

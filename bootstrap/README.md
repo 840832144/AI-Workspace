@@ -25,8 +25,13 @@ Codex 子 Agent 的可关闭试运行模板、安装脚本和开关说明见 [`c
 - `01_SYSTEM_CONTEXT.md`：仓库、Capability、Provider 和 Huuuge 系统背景。
 - `02_CURRENT_STATE.md`：动态任务、里程碑、限制和近期方向快照。
 - `03_NEW_CHAT_BOOTSTRAP.md`：新对话启动、Task、Review 和自检协议。
+- `../standards/PLANNER_WRITING_STYLE.md`：中文行文与准确、克制、面向受众的技术术语规范。
 
 ChatGPT Project Sources 不替代 Git。动态状态变化后，应更新 `02_CURRENT_STATE.md` 并重新上传到 Project；涉及当前功能、Task、commit 或运行状态时仍需读取真相源。
+
+## Generic Agent Bootstrap
+
+Trae / DeepSeek 和其他 Generic Agent 从 [`generic-agent/README.md`](generic-agent/README.md) 进入，读取同一份策划行文与技术术语规范，再加载 Workspace Sync 和 Memory Adapter。Generic Agent 不维护另一套术语表。
 
 ## Repository Bootstrap
 

@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-27T11:22:18Z
+Generated: 2026-08-27T13:24:33Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -27,13 +27,14 @@ Generated: 2026-08-27T11:22:18Z
 14. Task、Review、状态查询前先执行 Workspace Sync：优先读取最新 Git `main`、`LIVE_CONTEXT_MANIFEST.json` 和 local pack；Project Sources 只作为稳定 Bootstrap/离线回退。`stale/conflict/unavailable` 必须显式报告，飞书协作草稿不能直接覆盖 Git。默认模式保持 `ON_DEMAND`，未经 User 明确批准不得启用 `WATCH`。
 15. 所有正式飞书文档必须登记到唯一的《AI Workspace｜文档导航中心》；Git 仍是真相源，导航中心只负责导航且不得人工维护。正式创建必须完成 `create_document → 文档回读 → register_document → 文档导航中心回读 → Success`；导航中心失败时不删除已创建文档、不重复创建，返回失败并等待修复。
 16. ChatGPT 在任何项目聊天中主动提出值得长期保留的产品能力、长期优化、Workflow、Capability、Collector 思路或 UX 改进时，必须先防重并判断进入 Product Roadmap 的 `Current / Backlog / Ideas / Done`；在相关 Task 收尾时主动生成 Idea Handoff 通知 Codex，不依赖 User 手工提醒。Roadmap 不自动创建 Task，进入 Current 仍需 User 批准或 active canonical Task，进入 Done 需要实现、验证和正式 Review。
+17. 所有 AI 统一遵守 `standards/PLANNER_WRITING_STYLE.md` 的技术术语规则：默认使用策划可理解、准确且克制的研究表达；复现、工程判断、授权、合规、安全或风险依赖真实机制时，必须保留 Root、Frida、Hook、逆向分析、协议解密、校验绕过、系统修改、exploit 等精确术语。不得通过改名或模糊化规避安全策略、权限检查、User 授权或 Review，也不得弱化真实风险或夸大被动研究。
 
 <!-- SOURCE: 00_CORE_RULES.md -->
 # 00 — Core Rules
 
 ## 项目定位
 
-Game Planner AI Workspace 是面向游戏策划研究、逆向分析、数值拆解、工具建设和文档协作的长期工作空间。当前重点是 Huuuge 研究、采集器、知识体系和文档基础设施。
+Game Planner AI Workspace 是面向游戏策划研究、游戏客户端研究、数值拆解、工具建设和文档协作的长期工作空间。当前重点是 Huuuge 研究、采集器、知识体系和文档基础设施。
 
 默认领域是游戏策划，不主动把其他领域带入核心架构。
 
@@ -91,6 +92,12 @@ Slots → Systems → Events → Others
 - 前几分钟完成权限、设备、环境和服务预检，避免流程末端才失败。
 
 与 User 讨论复杂方案、架构和评审时，可以展示必要的逻辑、代码和技术细节。
+
+### 技术术语与风险表述
+
+所有 AI 使用 `standards/PLANNER_WRITING_STYLE.md` 作为唯一术语规范。面向策划默认使用准确、克制、可理解的研究表达；涉及复现、技术附录、代码、日志、工程判断、授权、合规或风险时，必须保留 Root、Frida、Hook、逆向分析、协议解密、签名校验绕过、完整性校验修改、exploit 等真实术语。
+
+规则不允许通过改名或模糊化规避平台安全策略、权限检查、User 授权或 Review，也不允许弱化真实风险或把被动研究夸大为攻击。策划主流程可先给易懂结论，必要的精确机制放在括号、维护者说明或技术附录中。
 
 ## Documentation Governance
 
@@ -489,7 +496,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T11:22:18Z
+- Generated: 2026-08-27T13:24:33Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -518,6 +525,8 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 5. 判断当前请求属于：讨论、设计、执行话术、当前状态查询、Review、文档生成或排障。
 6. 只要请求涉及当前 Task、功能是否已实现、最新 commit、运行状态、给 Codex 下任务或 Review，先查询 Git 中的最新信息。
 7. `CONTEXT_MANIFEST.yaml` 与 Project Source Pack 继续作为 Memory/Bootstrap 快照；动态状态由 Live Context 和 Git 提供，不再依赖人工替换 `02_CURRENT_STATE.md` 才能获知。
+
+启动后先应用行文规范中的“技术术语与风险表述”：面向策划使用准确、克制的研究表达；真实机制影响复现、授权、合规、安全、风险或工程判断时保留精确技术术语。不得通过模糊改名规避检查或隐藏风险。
 
 ## 发给 Codex 任务前
 
@@ -624,5 +633,87 @@ Feasibility Audit
 9. 输出是否足够简洁、可执行？
 10. 本轮是否产生需要 Candidate/Review/Outbox 的长期记忆，且没有重复 canonical update？
 11. 本轮是否主动提出了值得长期保留的产品 Idea，并已分类和生成收尾 Handoff？
+12. 技术术语是否符合真实工作和当前受众，并且没有淡化风险、隐藏机制或规避检查？
 
 如果第 5 或第 6 项无法确认，先查 Git，不要猜。
+
+<!-- SOURCE: PLANNER_WRITING_STYLE.md -->
+# 策划协作行文规范
+
+- Status: Proposed / Waiting for ChatGPT Review
+- Scope: ChatGPT、Codex、Trae / DeepSeek、Generic Agent 与策划协作文档
+- Related Task: `TASK-0021` / `TASK-0023`
+
+## 目标
+
+所有 AI 默认使用自然、完整、可快速阅读的中文表达。简单问题直接回答；复杂架构、流程和评审才展开。行文应帮助策划理解结论和完成操作，而不是展示模型的思考过程。
+
+## 默认结构
+
+普通回答优先使用“结论 → 当前依据 → 下一步”。不为了形式机械增加标题，也不把一句话拆成多个单词或短句逐行排列。
+
+需要步骤时，每一步都写清：
+
+1. 做什么；
+2. 成功表现；
+3. 失败怎么办。
+
+列表只用于真正并列的信息，每项使用完整句子。回答末尾最多保留一个明确下一步，不堆叠多个跟进建议。
+
+## 格式规则
+
+- 普通说明使用完整中文段落；专有名词、命令、文件名和稳定技术术语可以保留英文。
+- 命令、代码、结构图和机器格式才使用代码块，普通散文不放入代码块。
+- 标题帮助导航，不把每一句话都变成标题。
+- 表格适合精确映射和多维比较；简单结论不强行表格化。
+- 不重复使用“我觉得”“其实”“以后”等口头填充词。
+- 不重复复述 User 已经确认的要求，除非需要指出边界或冲突。
+
+## 面向不同读者
+
+面向策划时，优先写入口、按钮、路径、成功信号和恢复话术，不要求理解 Git、MCP、API 或底层脚本。面向 User 讨论技术方案时，可以展示必要架构、核心逻辑、风险和代码证据，但先给结论。
+
+面向 Review 时，使用 `Accepted / Needs changes`，只把阻塞项列为必须修改；可选优化进入 Candidate，不扩大当前 Task。
+
+## 技术术语与风险表述
+
+术语选择先服从事实，再匹配受众。ChatGPT、Codex、Trae / DeepSeek、Generic Agent、Subagent 和后续接入的 AI 默认使用策划能够理解、同时不改变事实含义的研究表达。规则用于减少不必要的低层术语和夸张措辞，不用于淡化风险、隐藏真实操作或规避安全、权限、合规与 Review 检查。
+
+面向策划或普通协作者的主流程，优先使用以下表达：
+
+| 实际工作 | 默认表达 |
+| --- | --- |
+| 客户端资源、代码和结构研究 | 游戏客户端研究；静态审计 / 动态分析 |
+| 复制客户端已经解码或序列化的数据 | 被动数据采集 |
+| 协议、Schema、Config 或字段关系研究 | 协议或数据结构分析；证据恢复与字段映射 |
+| 运行时观察或方法拦截 | 运行时插桩；首次出现时可写“运行时插桩 / Hook” |
+| 读取客户端可见状态 | 客户端状态观察 |
+| 研究数值、消耗、进度、掉落和奖励体验 | 数值体验分析 |
+| 管理 Root、Frida、模拟器和数据边界 | 研究环境授权与隔离 |
+
+当“破解、黑客、攻击、爆破、入侵、偷取、绕过”等词不符合实际工作时，不用它们制造夸张或误导。也不得把被动研究夸大为攻击行为。
+
+以下情况必须保留精确技术术语，不能只用面向策划的概括替代：
+
+- 复现步骤、技术附录、代码、日志、风险说明和安全 Review；
+- 实际发生的 Root、Frida、Hook、逆向分析、协议解密、签名校验绕过、完整性校验修改或 exploit；
+- 授权范围、系统修改、合规边界、失败原因和风险判断；
+- 工程判断、验收结果或后续操作依赖具体机制时。
+
+例如，真实的 Frida Hook 不能只写成“数据观察”；真实的签名校验修改不能只写成“环境适配”。策划主流程可以先写可理解的结论，再在首次出现时用括号补充精确术语，并把复现和低层细节放入维护者说明或技术附录。
+
+禁止为了规避平台安全策略、权限检查、User 授权或 Review 而改名、模糊化或隐藏操作；禁止弱化真实风险；也禁止在策划主流程中堆叠与决策无关的低层术语。
+
+## 自检
+
+提交或发布前确认：
+
+- 开头能否直接看到结论；
+- 普通段落是否被错误拆成大量孤立短行；
+- 每个操作是否有成功表现和失败处理；
+- 是否把 Hypothesis、Candidate 或 Planned 写成已完成；
+- 术语是否既准确又适合读者，且没有隐藏真实机制、授权边界或风险；
+- 是否只有一个明确下一步；
+- 是否没有 Secret、Raw 数据、账号信息、完整响应或私有 Registry。
+
+`Workspace Sync doctor` 对纳入 Live Context 的行文文件执行轻量检查，阻断连续孤立短行和异常标题密度。检查只是下限，不把中文写作变成僵硬模板。

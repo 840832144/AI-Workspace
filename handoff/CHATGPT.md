@@ -10,6 +10,14 @@
 
 ## TASK-0023 — Idea Governance & Product Roadmap
 
+- ChatGPT Review Round 1 结论为 Needs changes；Roadmap / Idea Governance 主体已通过，唯一 Required Fix 是准确、克制、面向受众的技术术语规则。
+- `standards/PLANNER_WRITING_STYLE.md` 已成为唯一 canonical 规则源；Core Rules、Repository/Bootstrap/Global AGENTS、Project Instructions、ChatGPT Bootstrap、Generic Agent 入口和 Context Hub 均引用同一标准。
+- ChatGPT 单文件 Source Pack 与 6 个拆分来源清单均包含 canonical 规范正文，不再只依赖 Core Rules 摘要。
+- 默认面向策划使用准确且可理解的研究表达；复现、工程判断、授权、合规、安全或风险依赖真实机制时必须保留 Root、Frida、Hook、逆向分析、协议解密、校验绕过、系统修改、exploit 等精确术语。
+- 规则明确禁止通过改名或模糊化规避安全策略、权限检查、User 授权或 Review，不得弱化真实风险或夸大被动研究。
+- Context / Source Pack 已刷新为 62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口、Registry 10 canonical / 0 collision 与 Doctor 均通过。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider unavailable，6 个发布项保持 stale，没有启用 WATCH。
+
 - User 已批准建立新的独立治理任务；正式 Candidate 经 allocator 晋升为唯一 canonical TASK-0023，reservation 保持 `pending-main`，未手工指定编号或编辑 Registry。
 - 已建立唯一 Git Product Roadmap，固定 `Current / Backlog / Ideas / Done`，并明确它不替代 Task、Documentation Hub、Knowledge、Memory 或项目 Status。
 - ChatGPT 新规则：主动提出长期产品能力、Workflow、Capability、Collector 或 UX Idea 时，自动防重、分类，并在相关 Task 收尾时向 Codex 生成 Idea Handoff，不依赖 User 手工提醒。
@@ -89,11 +97,4 @@
 
 ## Exact Next Action
 
-Codex 执行 `TASK-0021-Workspace-Live-Context-Hub.md`：
-
-1. 同步最新 AI-Workspace 与 document-assistant，完整读取 Task、Handoff、TASK-0016、0019、0020 和活动工作区；
-2. 建立独立 linked worktree / branch，先做 Feishu Wiki / Drive / fallback Feasibility Audit；
-3. 按 Task 实施行文规范、Context Capability、Workspace Sync、Feishu Hub 和三类 Host Pilot；
-4. 若需要 User 新建知识空间、发布飞书权限或批准外部资源，只给一次性操作清单并停在可继续状态；
-5. 完成后更新两个仓库的 CHANGELOG / Handoff，把 TASK-0021 设为 Review，推送独立 branch，返回 commit / PR、飞书安全链接和验证结果；
-6. 等待 ChatGPT Review，不自动合并或启用 WATCH。
+ChatGPT 对 TASK-0023 执行 Review Round 2：只检查 `reviews/TASK-0023-CHATGPT-REVIEW-1.md` 的术语规则 Required Fix、传播一致性和 deterministic regression。未经 Accepted 不合并 main 或 finalize reservation，不扩大到 TASK-0022 或业务仓库。

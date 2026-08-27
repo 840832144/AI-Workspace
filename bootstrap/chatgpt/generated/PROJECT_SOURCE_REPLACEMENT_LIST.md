@@ -1,17 +1,18 @@
 # Project Source Replacement List
 
-Generated: 2026-08-27T11:22:18Z
+Generated: 2026-08-27T13:24:33Z
 
 Status: **manual upload required**
 
 当前没有在本任务范围内获批的安全 API 用于自动替换 ChatGPT Project Sources。请在 ChatGPT Project 设置中手动替换以下来源：
 
-- `bootstrap/chatgpt/PROJECT_INSTRUCTIONS.md` — `488509172e46acb00f2959a55a8461da5003a8bb1a67a304fe72982af2f762a0`
-- `bootstrap/chatgpt/00_CORE_RULES.md` — `9c1b8c47b72bdcce7adcc14dce679fe9306d080c679b5b3fa3695199a7884ded`
+- `bootstrap/chatgpt/PROJECT_INSTRUCTIONS.md` — `28eb0d89c16c8b32904f63d578929242e7ecbd7817a1d659b1dce7b8649d3f5d`
+- `bootstrap/chatgpt/00_CORE_RULES.md` — `a9f33971532aba4593325529774253a34c0f1b3bb9407362b5718ce4c2847074`
 - `bootstrap/chatgpt/01_SYSTEM_CONTEXT.md` — `181c2ee80db1c3092a390f7fdd856e214929429bd09d7744f7bc670887eba1d0`
-- `bootstrap/chatgpt/02_CURRENT_STATE.md` — `0514c81d70a64ed69ce5ce50495e3e64846d94335e788661d215434ffe8708ad`
-- `bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md` — `cdb22e2ebe048c77df3a796dcfcb1097d3eb849410068328e354b0f298113a74`
+- `bootstrap/chatgpt/02_CURRENT_STATE.md` — `e63f878b57f4b15ed517bb72fb853b8e765527f90e73f457d492bd2e3451cda2`
+- `bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md` — `c1baf26853c3cd31685ca35b18c224d6b48180983a554d2f6bbe6b3209ce826c`
+- `standards/PLANNER_WRITING_STYLE.md` — `a9142304f5c4cdc6453396f6ad6530d6cd6cb1f9af9c6624d2eb94b51a826193`
 
-可选单文件包：`bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md` — `bc8359d32664404eb019600a900c88c4f9371f658ef699f10d7078e85673cc67`
+可选单文件包：`bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md` — `f55936bc8ff0f6f6bf1d06f993042d8f2a5a3dd20e2b3001fd567ca6b71e8192`
 
-不要同时上传单文件包和五个拆分来源，以免重复。
+不要同时上传单文件包和 6 个拆分来源，以免重复。

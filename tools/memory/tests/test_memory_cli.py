@@ -40,6 +40,9 @@ class MemoryCliTests(unittest.TestCase):
         for name in ("PROJECT_INSTRUCTIONS.md", "00_CORE_RULES.md", "01_SYSTEM_CONTEXT.md", "03_NEW_CHAT_BOOTSTRAP.md"):
             (self.root / "bootstrap/chatgpt" / name).write_text(f"# {name}\n\nPublic source.\n", encoding="utf-8")
         (self.root / "bootstrap/chatgpt/02_CURRENT_STATE.md").write_text("# Current\n", encoding="utf-8")
+        (self.root / "standards/PLANNER_WRITING_STYLE.md").write_text(
+            "# Planner Writing Style\n\nCanonical terminology rule.\n", encoding="utf-8"
+        )
         (self.root / "tasks/TASK-TEST.md").write_text("# Task\n\n- Status: In Progress\n", encoding="utf-8")
 
     def tearDown(self) -> None:
@@ -350,8 +353,13 @@ class MemoryCliTests(unittest.TestCase):
         manifest = (self.root / "CONTEXT_MANIFEST.yaml").read_text(encoding="utf-8")
         self.assertIn("docs/incidents/INCIDENT-TEST.md", manifest)
         self.assertTrue((self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md").exists())
+        source_pack = (self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md").read_text(encoding="utf-8")
+        self.assertIn("<!-- SOURCE: PLANNER_WRITING_STYLE.md -->", source_pack)
+        self.assertIn("Canonical terminology rule.", source_pack)
         replacement = (self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_REPLACEMENT_LIST.md").read_text(encoding="utf-8")
         self.assertIn("manual upload required", replacement)
+        self.assertIn("standards/PLANNER_WRITING_STYLE.md", replacement)
+        self.assertIn("6 个拆分来源", replacement)
         current = (self.root / "bootstrap/chatgpt/02_CURRENT_STATE.md").read_text(encoding="utf-8")
         self.assertIn("MEMORY-CONTEXT:START", current)
 

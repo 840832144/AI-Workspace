@@ -93,6 +93,13 @@ Git-authoritative 内容只向 provider 发布；provider-authoritative 协作�
 - 面向策划和用户的文档默认使用中文。
 - 其他语言只用于专有名词、命令、文件名、稳定技术术语或必要的对照解释。
 
+## 技术术语与风险表述
+
+- 所有 ChatGPT、Codex、Trae / DeepSeek、Generic Agent、Subagent 和后续 AI 均遵守 [策划协作行文规范](https://github.com/840832144/AI-Workspace/blob/main/standards/PLANNER_WRITING_STYLE.md) 的唯一术语规则。
+- 默认使用策划可理解、准确且克制的研究表达；与复现、工程判断、授权、合规、安全或风险有关时，必须保留 Root、Frida、Hook、逆向分析、协议解密、签名校验绕过、完整性校验修改、exploit 等真实技术术语。
+- 不得通过改名或模糊化规避安全策略、权限检查、User 授权或 Review，不得弱化真实风险，也不得把被动研究夸大为攻击。
+- 策划主流程只保留决策和操作所需信息；必要的低层细节放到维护者说明、复现步骤或技术附录。
+
 ## 安全与仓库纪律
 
 - 遵守当前仓库更具体的 `AGENTS.md`、`CONTRIBUTING.md`、状态和交接规则。

@@ -2,6 +2,29 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.1] - 2026-08-27
+
+### Changed
+
+- 按 TASK-0023 ChatGPT Review Round 1 的唯一 Required Fix，在 `standards/PLANNER_WRITING_STYLE.md` 建立准确、克制、面向受众的技术术语规范。
+- 默认面向策划使用可理解的研究表达；复现、工程判断、授权、合规、安全与风险依赖真实机制时，强制保留 Root、Frida、Hook、逆向分析、协议解密、校验绕过、系统修改与 exploit 等精确术语。
+- Core Rules、Repository/Bootstrap/Global AGENTS、Project Instructions、ChatGPT Bootstrap、Generic Agent 入口与 Context Hub 引用同一 canonical 规则，不维护第二套术语表。
+- Context refresh 生成器把 `standards/PLANNER_WRITING_STYLE.md` 纳入 ChatGPT 单文件 Source Pack 与拆分来源替换清单；新增回归断言，避免新会话只获得摘要而漏读 canonical 规则。
+
+### Safety
+
+- 明确禁止通过改名或模糊化规避平台安全策略、权限检查、User 授权或 Review；禁止弱化真实风险，也禁止把被动研究夸大为攻击。
+
+### Validation
+
+- Context / Source Pack 刷新为 62 sources、0 broken link、0 secret issue；`planner-writing-style` 已使用新规则哈希进入 manifest 与 source pack。
+- Task 23/23、Context 13/13、Memory 35/35、PowerShell Task Registry 与 Workspace Context 入口全部通过；Registry 为 10 canonical / 0 collision，Doctor `ok: true`。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider 当前不可用，因此 6 个发布项保持 stale，没有改成 `WATCH` 或伪称已发布。
+
+### Boundaries
+
+- Product Roadmap 与 Idea Governance 主体保持不变；未修改 TASK-0022、Cash Frenzy、Huuuge、Document Assistant 或 Workspace Sync 模式；`Subagents: none`。
+
 ## [0.16.0] - 2026-08-27
 
 ### Added

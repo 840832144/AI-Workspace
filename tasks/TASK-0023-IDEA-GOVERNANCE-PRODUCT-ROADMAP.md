@@ -91,3 +91,14 @@ ChatGPT 不直接把聊天建议变成 canonical Task。它应在相关 Task 收
 - 没有修改 TASK-0022、Cash Frenzy、Huuuge、Document Assistant 仓库或 Workspace Sync 模式。
 - deterministic regression：Registry 10 canonical / 0 collision；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口和 Workspace Doctor 通过；Context refresh 62 sources、0 broken link、0 secret issue。
 - 当前状态为 Review；commit 在提交后写入最终交付消息，不在 Task 内制造自引用 commit。
+
+## Review Round 1 Required Fix — 2026-08-27
+
+- 正式 Review：`reviews/TASK-0023-CHATGPT-REVIEW-1.md`；主体 Product Roadmap 与 Idea Governance 已通过，唯一 Required Fix 为准确、克制、面向受众的技术术语规则。
+- `standards/PLANNER_WRITING_STYLE.md` 作为唯一 canonical 规则源：默认使用策划可理解的研究表达；复现、工程判断、授权、合规、安全或风险依赖真实机制时保留精确技术术语。
+- 规则明确禁止通过改名或模糊化规避平台安全策略、权限检查、User 授权或 Review，也不得弱化真实风险或把被动研究夸大为攻击。
+- 同一规则已传播到 Core Rules、根与 Global AGENTS、Project Instructions、ChatGPT Bootstrap、Generic Agent 稳定入口和 Context Hub；其他入口只引用或摘要 canonical 规则，不建立第二套术语表。
+- Context refresh 生成器已把 canonical 规范正文纳入 ChatGPT 单文件 Source Pack 和 6 个拆分来源替换清单，并用 Memory 回归测试锁定。
+- 本轮不修改 Product Roadmap、Idea Governance 主体、TASK-0022、Cash Frenzy、Huuuge、Document Assistant 或 Workspace Sync 模式；`Subagents: none`。
+- Context / Source Pack 已刷新为 62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口和 Doctor 全部通过，Registry 为 10 canonical / 0 collision。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider 不可用导致 6 个发布项 stale。本 Task 保持 Review，push 独立分支后等待 ChatGPT Review Round 2。
