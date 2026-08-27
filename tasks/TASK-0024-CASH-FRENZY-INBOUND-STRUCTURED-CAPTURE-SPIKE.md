@@ -1,6 +1,6 @@
 # TASK-0024 — Cash Frenzy Inbound Structured Capture Spike
 
-- Status: In Progress
+- Status: Review
 - Project key: CASH-FRENZY
 - Human alias: 
 - Owner: User / ChatGPT
@@ -121,3 +121,40 @@ Git 只提交：
 ### Current gate
 
 启动新的 scoped capture 后暂停，由 User 手动执行 3–5 次普通 Spin；在 User 回报完成前不进入 `BLMessage`、decrypt/framing、Local State Adapter 或完整 Collector。
+
+## Execution Result — User 5-Spin Gate
+
+### Confirmed
+
+- User 在 READY 后手动执行 5 次普通 Spin；Codex 没有点击、Auto Spin、购买、充值、修改请求或修改返回。
+- Session 捕获 65 个 type-3 inbound scopes / 65 个 scope 内 `lua_pcall` 参数事件，始终只有 1 个 dispatch thread，0 probe errors。
+- command `batch_spin` 恰好出现 5 次；5 个事件均包含同一 direct structured result entry：`arg[2].[2].list.[1]`。
+- 5/5 事件均命中 `base_win:number`、`bonus_base_win:number`、`total_win:number`、`coins:number`、`win_lines:table`、`win_pos_list:table`。字段值和绝对余额未进入 Git。
+- Spin pilot 复现率为 **5/5（100%）**。本轮只获准 3–5 次人工 Spin，样本不足以报告 20-Spin 复现率；20-Spin 结论为 `N/A`，不做外推。
+- serializer 保持 depth 4、64 elements/collection、64 KiB/message、32 pcalls/scope；Spin Session 有 159 个预期的 `depth-budget` 截断摘要，0 element/message budget overflow，0 serializer/probe error。
+
+### Route decision
+
+- 第一条结构化路线已经成功恢复 direct Result/Win/Balance 类字段，因此按顺序 Gate 停止；没有进入 `BLMessage`、decrypt/framing、`libEncryptorP` / `libsigner` / XXTEA、Stalker 或 Local State Adapter。
+- 本轮没有自然出现可确认的 Feature 字段；这不影响“至少恢复一项”的成功条件。
+
+### F3 / F4
+
+- 当前等级仍为 **F3，但证据已从 outbound-only 增强为 live inbound structured Spin result/win/balance recovered**。
+- **F4 未证明**：本轮只有一个含 Spin 的独立 Session，未满足“两独立 Session 同一 Spin schema”和 20-Spin 样本要求；也未构建可重复的一键 collector path。
+
+### Cleanup
+
+- Cash app 已 force-stop；临时 probe process、Frida server、Gadget/config 与 ADB forward 已移除并回读确认。
+- `Pie64_3` guest-`su` 两处入口已由审计工具恢复，root flag 已回到 0，VHDX clean 且 root state false；本机可回滚备份保留。
+- Huuuge repo、正常 BlueStacks、其他游戏、SVN、飞书、请求/返回和服务端状态均未修改。
+
+### Final validation
+
+- local Raw → Git 脱敏聚合逐字段回查一致；email/credential scan 0 hit，Git artifact 不含字段值或绝对余额。
+- focused probe tests 3/3、Task tests 23/23、Context tests 13/13、Memory tests 35/35、Task/Context PowerShell entry 与 Workspace Doctor 全部通过；Registry 11 canonical / 0 collision。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider unavailable，6 个发布项保持 stale，没有启用 WATCH。
+
+### Recommendation
+
+等待 ChatGPT Review。若 Review 接受本 Spike，建议 **Adopt** 既有 Session/Raw/privacy/evidence contract，**Wrap** Android 9 exact instance/package/version 与 scoped Lua preflight/cleanup，后续只在新授权 Task 中 **Build** 最小 `batch_spin` inbound schema adapter；当前不构建完整 Collector。

@@ -2,6 +2,21 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.5] - 2026-08-27
+
+### Confirmed
+
+- TASK-0024 User 5-Spin Gate 捕获 5 个 `batch_spin` direct result objects；`base_win`、`bonus_base_win`、`total_win`、`coins`、`win_lines`、`win_pos_list` 各 5/5 命中。
+- Pilot 复现率为 5/5；本轮人工授权只允许 3–5 Spin，因此 20-Spin 为样本不足，不做外推。
+- Lua 路线成功后按 Gate 停止，未进入 `BLMessage`、decrypt/framing、XXTEA、Stalker、Local State Adapter 或完整 Collector。
+- Capture 0 errors；临时 Hook/process/Gadget/server/forward 已清理，`Pie64_3` root 与 guest-`su` 已恢复，VHDX clean / root false。
+
+### Changed
+
+- value-free summarizer 新增受限 command profile 与 direct field event counts；focused tests 继续验证不输出字段值、identity 或隐私数据。
+- TASK-0024 进入 Review；等级记录为 F3 strengthened，F4 因缺少双 Session/20-Spin 证据而未证明。建议 Adopt contract + Wrap scoped Android 9 binding + future small Build。
+- 最终回归：focused 3/3、Task 23/23、Context 13/13、Memory 35/35、Task/Context PowerShell entry、Workspace Doctor 与 Registry 11 canonical / 0 collision 全部通过；Workspace Sync 为 ON_DEMAND / 0 conflict / provider unavailable / 6 stale。
+
 ## [0.16.4] - 2026-08-27
 
 ### Added

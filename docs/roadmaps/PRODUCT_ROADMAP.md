@@ -12,8 +12,8 @@
 
 ### Cash Frenzy
 
-- 当前状态：TASK-0022 Feasibility Audit 已通过 ChatGPT Review 并收口；User 已批准新的 canonical TASK-0024。
-- 当前目标：在重建的 Android 9 `AppResearch2` 上完成 Inbound Structured Capture Spike，优先恢复一次普通 Spin 的 direct `result / win / balance / feature` 至少一项。
+- 当前状态：TASK-0024 已完成 Android 9 执行并进入 ChatGPT Review；5 次人工普通 Spin 均恢复 direct inbound Result/Win/Balance 类字段。
+- 当前目标：等待 ChatGPT Review；F3 已增强但 F4 因仅一个含 Spin Session 和不足 20-Spin 样本而未证明。
 - 执行边界：严格按稳定性 Gate → inbound-scoped Lua → `BLMessage` 解码对象 → decrypt/framing fallback → Local State Adapter 推进；不构建完整 Collector，不回到 Nougat64。
 
 ### Top Tycoon

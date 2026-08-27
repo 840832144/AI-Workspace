@@ -61,7 +61,26 @@ class Task0024InboundProbeTests(unittest.TestCase):
                                 },
                             ],
                         },
-                    }
+                    },
+                    {
+                        "index": 2,
+                        "value": {
+                            "type": "table",
+                            "fields": [
+                                {"key": "[1]", "value": {"type": "string", "value": "spin_result"}},
+                                {
+                                    "key": "[2]",
+                                    "value": {
+                                        "type": "table",
+                                        "fields": [
+                                            {"key": "total_win", "value": {"type": "number", "value": 12345}},
+                                            {"key": "account_name", "value": {"type": "string", "value": "PRIVATE"}},
+                                        ],
+                                    },
+                                },
+                            ],
+                        },
+                    },
                 ],
             }
         ]
@@ -73,7 +92,12 @@ class Task0024InboundProbeTests(unittest.TestCase):
         self.assertNotIn("SECRET_RESULT", rendered)
         self.assertNotIn("987654321", rendered)
         self.assertNotIn("0xsecret", rendered)
+        self.assertNotIn("12345", rendered)
+        self.assertNotIn("PRIVATE", rendered)
         self.assertEqual(1, result["truncations"]["depth-budget"])
+        self.assertEqual("spin_result", result["commands"][0]["command"])
+        self.assertEqual(1, result["commands"][0]["direct_event_count"])
+        self.assertEqual("arg[2].[2].total_win", result["commands"][0]["direct_fields"][0]["path"])
 
 
 if __name__ == "__main__":

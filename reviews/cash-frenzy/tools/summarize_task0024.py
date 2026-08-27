@@ -2,12 +2,24 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import Counter
 from pathlib import Path
 from typing import Any, Iterable
 
 
 VALUE_KEYS = {"value", "identity", "captured_at", "error"}
+SAFE_COMMAND = re.compile(r"^[A-Za-z_][A-Za-z0-9_.:/-]{0,127}$")
+DIRECT_FIELD_NAMES = {
+    "base_win",
+    "bonus_base_win",
+    "coins",
+    "feature",
+    "result",
+    "total_win",
+    "win_lines",
+    "win_pos_list",
+}
 
 
 def iter_records(path: Path) -> Iterable[dict[str, Any]]:
@@ -34,12 +46,42 @@ def collect_value(node: Any, path: str, fields: Counter[tuple[str, str]], trunca
         collect_value(field.get("value"), f"{path}.{key}", fields, truncations)
 
 
+def table_field(node: Any, key: str) -> Any:
+    if not isinstance(node, dict) or node.get("type") != "table":
+        return None
+    for field in node.get("fields", []):
+        if isinstance(field, dict) and field.get("key") == key:
+            return field.get("value")
+    return None
+
+
+def extract_command(record: dict[str, Any]) -> str | None:
+    for argument in record.get("arguments", []):
+        if not isinstance(argument, dict) or argument.get("index") != 2:
+            continue
+        command = table_field(argument.get("value"), "[1]")
+        if not isinstance(command, dict) or command.get("type") != "string":
+            return None
+        value = command.get("value")
+        if isinstance(value, str) and SAFE_COMMAND.fullmatch(value):
+            return value
+        return "<redacted-command>"
+    return None
+
+
+def is_direct_field(path: str) -> bool:
+    return path.startswith("arg[2].[2].") and path.rsplit(".", 1)[-1] in DIRECT_FIELD_NAMES
+
+
 def summarize(records: Iterable[dict[str, Any]]) -> dict[str, Any]:
     kinds: Counter[str] = Counter()
     message_types: Counter[str] = Counter()
     fields: Counter[tuple[str, str]] = Counter()
     truncations: Counter[str] = Counter()
     scope_threads: Counter[str] = Counter()
+    commands: Counter[str] = Counter()
+    command_direct_events: Counter[str] = Counter()
+    command_direct_fields: Counter[tuple[str, str, str]] = Counter()
     record_count = 0
 
     for record in records:
@@ -54,11 +96,26 @@ def summarize(records: Iterable[dict[str, Any]]) -> dict[str, Any]:
             scope_threads[str(record.get("threadId", "unknown"))] += 1
         if kind != "lua-pcall-args":
             continue
+        record_fields: Counter[tuple[str, str]] = Counter()
         for argument in record.get("arguments", []):
             if not isinstance(argument, dict):
                 continue
             index = argument.get("index", "?")
-            collect_value(argument.get("value"), f"arg[{index}]", fields, truncations)
+            path = f"arg[{index}]"
+            collect_value(argument.get("value"), path, fields, truncations)
+            collect_value(argument.get("value"), path, record_fields, Counter())
+        command = extract_command(record)
+        if command is not None:
+            commands[command] += 1
+            direct_fields = {
+                (path, value_type)
+                for path, value_type in record_fields
+                if is_direct_field(path)
+            }
+            if direct_fields:
+                command_direct_events[command] += 1
+            for path, value_type in direct_fields:
+                command_direct_fields[(command, path, value_type)] += 1
 
     return {
         "schema_version": "task0024-structure-summary-v1",
@@ -66,6 +123,20 @@ def summarize(records: Iterable[dict[str, Any]]) -> dict[str, Any]:
         "event_kinds": dict(sorted(kinds.items())),
         "message_types": dict(sorted(message_types.items())),
         "scope_thread_count": len(scope_threads),
+        "commands": [
+            {
+                "command": command,
+                "count": count,
+                "direct_event_count": command_direct_events[command],
+                "direct_fields": [
+                    {"path": path, "type": value_type, "count": field_count}
+                    for (field_command, path, value_type), field_count
+                    in sorted(command_direct_fields.items())
+                    if field_command == command
+                ],
+            }
+            for command, count in sorted(commands.items())
+        ],
         "field_paths": [
             {"path": path, "type": value_type, "count": count}
             for (path, value_type), count in sorted(fields.items())
