@@ -16,6 +16,18 @@ Codex 子 Agent 的可关闭试运行模板、安装脚本和开关说明见 [`c
 
 官方发现顺序以 [OpenAI `AGENTS.md` 文档](https://learn.chatgpt.com/docs/agent-configuration/agents-md) 为准：Global 层只读取非空的 `AGENTS.override.md` 或 `AGENTS.md` 之一，然后从仓库根目录向当前目录叠加项目指令。
 
+## ChatGPT Project Bootstrap
+
+[`chatgpt/`](chatgpt/README.md) 提供 ChatGPT Project 的版本化项目指令和来源文件：
+
+- `PROJECT_INSTRUCTIONS.md`：复制到 ChatGPT Project 的项目指令。
+- `00_CORE_RULES.md`：稳定治理、协作、文档和安全规则。
+- `01_SYSTEM_CONTEXT.md`：仓库、Capability、Provider 和 Huuuge 系统背景。
+- `02_CURRENT_STATE.md`：动态任务、里程碑、限制和近期方向快照。
+- `03_NEW_CHAT_BOOTSTRAP.md`：新对话启动、Task、Review 和自检协议。
+
+ChatGPT Project Sources 不替代 Git。动态状态变化后，应更新 `02_CURRENT_STATE.md` 并重新上传到 Project；涉及当前功能、Task、commit 或运行状态时仍需读取真相源。
+
 ## Repository Bootstrap
 
 1. Clone 私有仓库并确认 remote、branch 和访问权限。
