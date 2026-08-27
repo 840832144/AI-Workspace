@@ -24,6 +24,7 @@ Document Capability 让 Agent 在受控权限下发现、读取、创建、维�
 | `CAP-DOC-UPDATE` | 追加或整篇替换现有文档 | WRITE | 目标 identifier、更新内容、更新模式 | 原 identifier 保持；更新后回读成功 |
 | `CAP-DOC-ORGANIZE` | 浏览或创建文档目录 | READ / WRITE | 目录 identifier 或名称 | 目录列表或新 folder identifier 可回读 |
 | `CAP-DOC-PUBLISH` | 将已审阅产物发布到公司文档系统 | WRITE | 来源、目标、发布策略 | 搜索防重、写入、回读和来源引用全部通过 |
+| `CAP-DOC-REGISTER` | 将正式文档登记到唯一导航中心 | WRITE | 文档引用、简介、分类、状态 | 文档回读、Hub 更新、Hub 回读和链接唯一性全部通过 |
 | `CAP-DOC-SHARE` | 在组织策略允许时授予查看或编辑权限 | ADMIN/SECURITY | 文档、principal、权限模式 | 权限 API 成功且回读匹配；失败时保留原文档 |
 
 ## Capability Discovery
@@ -32,6 +33,7 @@ Document Capability 让 Agent 在受控权限下发现、读取、创建、维�
 
 - “帮我找/读这篇公司文档” → `CAP-DOC-DISCOVER` + `CAP-DOC-READ`
 - “把报告写入飞书” → `CAP-DOC-PUBLISH`
+- “登记或刷新正式文档导航” → `CAP-DOC-REGISTER`
 - “更新原来的报告” → `CAP-DOC-DISCOVER` + `CAP-DOC-UPDATE`
 - “新建目录并整理文档” → `CAP-DOC-ORGANIZE`
 - “让公司/群/用户可编辑” → `CAP-DOC-SHARE`
@@ -51,7 +53,8 @@ Document Capability 让 Agent 在受控权限下发现、读取、创建、维�
 | `CAP-DOC-CREATE` | Document Assistant | `create_document` |
 | `CAP-DOC-UPDATE` | Document Assistant | `append_document`、`replace_document` |
 | `CAP-DOC-ORGANIZE` | Document Assistant | `list_folder`、`create_folder` |
-| `CAP-DOC-PUBLISH` | Document Assistant + approved Workflow | search → create/update → get → permission verify |
+| `CAP-DOC-PUBLISH` | Document Assistant + approved Workflow | search → create/update → get → register → Hub get → permission verify |
+| `CAP-DOC-REGISTER` | Document Assistant | `register_document` |
 | `CAP-DOC-SHARE` | Document Assistant | `grant_company_view`、`grant_company_edit`、`grant_group_edit`、`grant_user` |
 
 实现真相源只供已授权维护者使用：`https://github.com/840832144/document-assistant.git`。公共策划入口为 `https://github.com/840832144/AI-Workspace.git`。
@@ -61,9 +64,11 @@ Document Capability 让 Agent 在受控权限下发现、读取、创建、维�
 1. 创建前先搜索标题和目标目录；已存在时确认后更新，不重复创建。
 2. 新生成的云文档默认企业内可编辑，除非 User 明确要求私有、只读或不授予编辑权限。
 3. 管理员策略阻止共享时，保留已创建文档并报告权限失败；不得绕过策略或创建副本重试。
-4. 写入后回读正文/元数据，授权后回读权限状态。
-5. 面向策划和用户的正文默认中文；其他语言只用于必要技术内容。
-6. credential、token、私有 Registry、完整文档正文和敏感返回值不得进入 Git、Agent 指令或日志。
+4. 所有正式飞书文档必须登记到唯一的 `AI Workspace｜Documentation Hub`；Git 仍是真相源，Hub 只提供导航且不得人工维护。
+5. 正式创建必须完成文档回读、`register_document`、Hub 回读；Hub 失败时保留原文档并补登记，不得重新创建。
+6. 写入后回读正文/元数据，授权后回读权限状态。
+7. 面向策划和用户的正文默认中文；其他语言只用于必要技术内容。
+8. credential、token、私有 Registry、完整文档正文和敏感返回值不得进入 Git、Agent 指令或日志；Hub 只展示标题、链接、简介、分类、状态和最后更新时间。
 
 ## Failure Semantics
 
@@ -73,6 +78,7 @@ Document Capability 让 Agent 在受控权限下发现、读取、创建、维�
 | Capability 已登记，但当前 Host 无 provider/Tool | `Implementation unavailable`；报告管理员待办 |
 | 文档已创建，权限被管理员策略拒绝 | `Partial success`；保留 document ID，权限待处理 |
 | Tool 调用成功，但回读不一致 | Capability 未完成；停止并报告验证失败 |
+| 正式文档已创建，但 Hub 更新或回读失败 | Capability 未完成；保留原文档，修复后补登记，不得重试创建 |
 | 搜索命中多个候选 | Capability 暂停；先让 User/Workflow 确认目标 |
 
 ## Non-goals

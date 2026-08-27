@@ -18,6 +18,17 @@
 - Document Assistant PR #1：MERGED；merge commit `3a959a7e801def913cd5c8a3d78e3f8da9093ca8`。
 - TASK-0021、ADR-0007 和正式 Review 已进入 main；最终模式保持 `ON_DEMAND`，未启用 WATCH。
 
+## TASK-0021 Phase 2 — Documentation Hub
+
+- 第一阶段 Accepted 状态已从最新 main 确认；本阶段沿用 TASK-0021，不创建新 Task，当前状态为 Review。
+- 唯一 `AI Workspace｜Documentation Hub` 已建立并真实回读，登记 14 份正式文档；八分类、链接唯一和企业内可编辑权限验证通过。
+- 正式测试文档已完成“创建、文档回读、自动登记、Hub 回读”，随后删除并确认 Hub 恢复为 14 条。
+- Document Assistant 新增 `register_document` 和正式创建治理；AI-Workspace 已更新 Core Rules、Project Instructions、两级 AGENTS、Document Capability、Document Assistant Workflow 与 Workspace Sync Workflow。
+- Git 不保存 Hub 独立 ID、token、私有 Registry 或敏感返回值；安全链接仅通过当前交付消息返回。
+- 当前运行中的 Codex MCP 仍是已合并版本；新 tool 需在 Review 通过、实现分支合并并重启 MCP 会话后正式载入。
+- Workspace Sync：`ON_DEMAND`；WATCH disabled；ChatGPT 设置未修改；Subagents: none。
+- 下一步：ChatGPT Review 本阶段两个分支；Accepted 后合并，并在新 Codex 会话确认 `register_document` 出现在工具清单。
+
 ## TASK-0022 Allocation
 
 User 已明确批准 `tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md`。在包含 latest `origin/main` 的独立 linked worktree 中执行正式：

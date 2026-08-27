@@ -1,6 +1,6 @@
 # TASK-0021 — Workspace Live Context Hub
 
-- Status: Accepted
+- Status: Review
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / collaboration infrastructure
@@ -450,3 +450,27 @@ Codex 完成后必须返回：
 - Accepted implementation：`058887993a5d0aa98df68b814b8adc72477cdaf7`。
 - Final mode：`ON_DEMAND`；Acceptance 不授权启用 `WATCH`。
 - Integration：本 Task 分支与 Document Assistant PR #1 可以合并；现有 Drive Context Hub、权限和内容保持不变。
+
+## Phase 2 Enhancement — Documentation Hub — 2026-08-27
+
+第一阶段 Acceptance 保持有效。本阶段不新建 Task，在同一 TASK-0021 下增加 Workspace 正式云文档导航治理，当前进入 ChatGPT Review。
+
+### 实施结果
+
+- 创建并复用唯一的 `AI Workspace｜Documentation Hub`；Hub 使用八个固定分类，每条正式文档展示标题、可点击链接、一句话介绍、分类、状态和最后更新时间。
+- 历史扫描登记 14 份正式文档，覆盖 Workspace 项目介绍/进度、Huuuge 部署/采集/Lottery、Live Context 及现有正式规则文档；2 份历史临时连接测试被排除。
+- Document Assistant 新增 `register_document`，正式 `create_document` 强制完成文档回读、自动登记、Hub 重建与 Hub 回读；Hub 失败时保留原文档、禁止重试创建。
+- Core Rules、Project Instructions、Global AGENTS 模板、Repository AGENTS、Document Capability、Document Assistant Workflow 和 Workspace Sync Workflow 已接入统一治理规则。
+- Hub 是飞书导航入口，Git 仍是真相源；Hub 正文不展示 token、独立 document ID、私有 Registry 或其他敏感信息。
+
+### 验证
+
+- 唯一 Hub、14 条正式文档、八个固定分类、链接唯一和正文 readback 通过。
+- 真实创建正式测试文档后自动登记成功；测试文档删除后 Hub 恢复为 14 条，测试标题不再出现。
+- Hub 企业内可编辑权限回读成功；Document Assistant TypeScript 构建和 10 个测试文件 / 32 项测试通过。
+- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled；未修改 ChatGPT 设置；`Subagents: none`。
+
+### Review 请求
+
+- 请核对正式文档/临时文档边界、Hub 失败语义、历史分类和两个仓库的回归证据。
+- 本阶段独立分支等待 ChatGPT Review；未经 Review 不合并实现分支。

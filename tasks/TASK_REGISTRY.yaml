@@ -118,7 +118,7 @@ entries:
     canonical_file: "tasks/TASK-0021-Workspace-Live-Context-Hub.md"
     file: "tasks/TASK-0021-Workspace-Live-Context-Hub.md"
     title: "Workspace Live Context Hub"
-    status: "Accepted"
+    status: "Review"
     project_key: "WORKSPACE"
     human_alias: "WORKSPACE-LIVE-CONTEXT-001"
     owner: "User / ChatGPT"

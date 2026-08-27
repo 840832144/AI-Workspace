@@ -2,6 +2,28 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.15.1] - 2026-08-27
+
+### Added
+
+- TASK-0021 第二阶段新增唯一 `AI Workspace｜Documentation Hub`，作为 Workspace 所有正式飞书文档的导航入口；八个固定分类与统一元数据由 Document Assistant 自动生成。
+- 新增 Document Assistant Workflow；Document Capability 增加 `CAP-DOC-REGISTER`，当前 binding 为 `register_document`。
+
+### Changed
+
+- Core Rules、Project Instructions、Global AGENTS 模板、Repository AGENTS 和 Workspace Sync Workflow 统一要求正式文档完成“创建、文档回读、Hub 登记、Hub 回读”。
+- TASK-0021 第一阶段 Acceptance 保持有效；第二阶段增强进入 Review。
+
+### Validation
+
+- 历史扫描登记 14 份正式文档并排除 2 份临时连接测试；唯一 Hub、八分类、链接唯一、正文回读和企业内可编辑权限回读通过。
+- 真实正式测试文档完成自动登记，删除后 Hub 恢复为 14 条；Document Assistant 构建和 10 个测试文件 / 32 项测试通过。
+
+### Boundaries
+
+- Git 仍是真相源，Documentation Hub 只负责飞书导航且禁止人工维护；Git 不记录 Hub 的独立 ID、token、私有 Registry 或敏感返回值。
+- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled；未修改 ChatGPT 设置；`Subagents: none`。
+
 ## [0.15.0] - 2026-08-27
 
 ### Added
