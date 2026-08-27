@@ -199,3 +199,37 @@ Win Candidate(i) = client_coins(i+1) - client_coins(i) + bet(i)
 - Cash app 已 force-stop；临时 Cash 专属 Gadget/config、ADB `tcp:27043` forward、Frida server 和本机 probe 进程均确认无残留。
 - `HuuugeResearch` 仓库、Collector、Session、Raw 未修改；AI-Workspace governance、Top Tycoon、Gossip Harbor、WATCH 和 Capability 均未改动。
 - Subagents: none；最终模式 OFF。
+
+## Collector Demo — 2026-08-27
+
+### Review decision and positioning
+
+- User 转述 ChatGPT 已通过 Phase 1.5 Review；决定为 **Stop Spike**。本阶段不再恢复协议，不新建 Task。
+- Demo 定位为“证明当前 F3 Collector 已能支持策划体验分析”，不是数值拆解；Collector 等级保持 F3。
+- User 后续明确修正交付格式：不生成 Word；正式输出为 Git Markdown + 飞书文档 + Documentation Hub 登记。
+
+### Live Demo result
+
+- User 正常体验 Slots；Collector Session `20260827_192117` 捕获 193 个 outbound Spin 样本，0 errors，形成 192 个闭合 Balance Before / Balance After 转移和 1 个 open tail。
+- 首末 Spin 覆盖约 15.1 分钟，含自然停顿；`bet`、`lines`、`spin_count`、`client_coins`、`free_spins`、`autoSpin`、`turbo` 和 `_timestamp` 均为 193/193。
+- 观察到 5 个 Bet 档位；162 个样本为 `autoSpin=1 / turbo=1`，31 个样本为 `autoSpin=0 / turbo=0`；`lines` 保持 40。
+- 相邻 `client_coins` 只用于生成归一化 Balance Curve 和 Derived Net Delta。报告不展示绝对余额，不把 Win、Feature 或 result 写成 Confirmed。
+- User 提供覆盖不完整的 `demo.MP4`，仅用于展示时由 User 人工交叉验证；Agent 未读取视频内容，视频不进入 Git。飞书正文已预留手动拖入位置。
+
+### Deliverables
+
+- Markdown：`reviews/cash-frenzy/COLLECTOR_DEMO.md`。
+- 中文图表：`reviews/cash-frenzy/assets/collector-demo/` 下的 Spin 时间线、余额变化曲线和 Bet 档位分布 PNG/SVG。
+- 飞书：《Cash Frenzy｜老虎机体验验证（Collector Demo）》已创建，企业内可编辑权限 verified，正文与三组飞书原生中文图表回读通过；安全链接只在当前交付消息返回，不写入 Git。
+
+### Documentation Hub blocker
+
+- 当前会话的 Document Assistant 提供 create/search/get/share，但没有暴露已登记的 `register_document` binding。
+- 唯一《AI Workspace｜文档导航中心》回读确认目标标题出现 0 次，因此正式 Hub 同步尚未完成。
+- 按 Accepted governance 保留已创建文档、不重复创建、不人工修改 Hub。下一步必须在暴露 `register_document` 的会话中对现有文档补登记为 `📊 报告 / Review`，再回读 Hub 确认标题恰好出现 1 次。
+
+### Clean finalize
+
+- Demo 达成后立即停止；Cash app、Frida server、ADB forward、临时 Gadget/config、bootstrap 与 capture 进程均确认无残留。
+- Raw、逐笔绝对余额、APK、SO、完整响应、账号数据和视频保持本机；Git 只保存脱敏聚合与归一化图表。
+- 未修改 Huuuge Collector、Session、Raw、SVN、其他游戏、Capability、Workspace Sync 模式或 WATCH；Subagents: none / OFF。

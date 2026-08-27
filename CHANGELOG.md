@@ -2,6 +2,33 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.15.4] - 2026-08-27
+
+### Added
+
+- TASK-0022 新增面向游戏策划的《Cash Frenzy｜老虎机体验验证（Collector Demo）》Markdown，以及全中文 Spin 时间线、余额变化曲线和 Bet 档位分布 PNG/SVG。
+- 飞书同名正式文档已创建并回读；正文使用飞书原生中文表格/条形图，预留 User 手动拖入不完整交叉验证视频的位置。
+
+### Changed
+
+- Phase 1.5 Review 决定记录为 Stop Spike；不再恢复协议。Demo 只使用既有 F3 outbound 字段，Collector 等级保持 F3。
+- User 明确取消 Word 交付；本轮输出为 Git Markdown 与飞书文档。
+
+### Validation
+
+- Demo 捕获 193 个 Spin 样本、0 errors、192 个闭合 Balance 转移和 1 个 open tail；8 个已恢复字段均达到 193/193。
+- 三张中文图表完成 960×480 PNG 渲染与逐张视觉检查；报告不含绝对余额、Raw、账号、本机路径或完整响应。
+- 飞书创建、企业内可编辑权限、同名唯一性与正文回读通过；Document Assistant healthcheck 通过。
+
+### Known issue
+
+- 当前会话没有暴露 `register_document`，Hub 回读确认新标题出现 0 次。已创建文档保留且不重复创建；禁止人工修改 Hub，待可用 binding 对原文档补登记并回读唯一性。
+
+### Boundaries
+
+- 未继续 RTP、EV、Feature、Jackpot、result 或协议恢复；所有 Balance After / Net Delta 均标记为 Derived，Win 未写成 Confirmed。
+- Demo 后 Cash、Frida、ADB forward、临时 Gadget/config 和采集进程均已清理；未修改 Huuuge、SVN、其他游戏、Capability 或 WATCH；`Subagents: none`。
+
 ## [0.15.3] - 2026-08-27
 
 ### Changed

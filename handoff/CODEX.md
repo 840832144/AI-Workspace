@@ -2,44 +2,49 @@
 
 - Updated: 2026-08-27
 - Current task: TASK-0022 — Cash Frenzy Android Collector Feasibility Audit
-- Status: Review — Phase 1.5 complete, waiting ChatGPT Review
+- Status: Review — Collector Demo complete；Documentation Hub registration pending
 - Branch: `codex/task-0022-cash-frenzy-feasibility`
-- Latest-main sync: merge `a1d055f` includes `origin/main@cf5ec9d`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
 
-## Phase 1 result
+## Review decision
 
-- Cash Frenzy identity：package `slots.pcg.casino.games.free.android`，sample 4.78 / 478，arm64-v8a，Cocos2d-x + LuaJIT，base + 3 splits。
-- Dynamic proof：User 完成 5 次普通 Spin；live outbound Spin payload 已恢复 `bet`、`lines`、`spin_count`、`client_coins`、`free_spins`、`autoSpin`、`turbo` 与 `_timestamp`。
-- Current level：**F3 Live structured outbound fields recovered**。Inbound result 仍为 opaque binary；F4 不成立。
-- Research runtime：User 已将共享研究实例命名为 `AppResearch`。Cash Frenzy 证据继续按 package、Host-local project root、Session、Raw、APK/SO、账号数据和 manifest 隔离，不与 Huuuge 混用。
+- User 转述 ChatGPT 已通过 Phase 1.5 Review，并决定 **Stop Spike**。
+- 当前不再恢复协议；Win、result、Feature、Jackpot、RTP 和 EV 均不继续。
+- Collector 等级保持 **F3 Live structured outbound fields recovered**。
 
-## Phase 1.5 — Balance Recovery Spike
+## Collector Demo result
 
-- Scope 仅为 Balance，Win 只在低成本条件下顺带验证；没有进入新协议层、OCR/UI、完整 result、RTP/EV、Feature/Jackpot 或 Collector 重构。
-- 方法：连续 outbound Spin 请求以 `client_coins(i)` 作为 Balance Before、`client_coins(i+1)` 作为 Balance After；稳定 Bet 下计算 `next - current + bet` 作为 Win Candidate。
-- User 完成 3 次普通 Spin；probe 得到 3/3 合法样本、0 errors、2 个相邻 Balance 转移。Bet 稳定，两个 Balance 转移均变化，两个 Win Candidate 均为非负整数，其中一个非零。
-- **成功标准 A 达成**：前两次 Spin 均形成 `Spin → Balance Before → Balance After`。第三次 Spin 的 After 需要下一次请求，属于该方法的 `N` 请求 / `N-1` 闭合转移边界。
-- 成功标准 B 仅记为 **Derived candidate**；没有直接观察到服务端 `win` 字段。
-- Collector 能力保持 **F3**，不因本 Spike 升级。
+- User 正常体验 Slots；Session `20260827_192117` 捕获 193 个 outbound Spin 样本、0 errors、192 个闭合 Balance 转移和 1 个 open tail。
+- 首末 Spin 覆盖约 15.1 分钟；8 个已恢复字段均为 193/193。
+- 观察到 5 个 Bet 档位；162 个样本为 Auto + Turbo，31 个样本为非 Auto、非 Turbo；`lines` 保持 40。
+- Balance Curve 以首个 `client_coins` 为 0 做归一化；所有 Balance After 和 Net Delta 均为 **Derived**，绝对余额和 Win 不进入报告。
+- User 提供覆盖不完整的 `demo.MP4`，只用于展示时由 User 人工交叉验证。Agent 未读取视频，视频未进入 Git；飞书正文已预留手动拖入位置。
 
-## Current blocker
+## Deliverables
 
-Session 尾部 Spin 的即时 Balance After / Win 不能由当前 outbound-only 方法闭合；若要求该能力，需要进入 inbound result 或新的状态源，超出 Phase 1.5 范围。
+- Markdown：`reviews/cash-frenzy/COLLECTOR_DEMO.md`。
+- 中文图表：`reviews/cash-frenzy/assets/collector-demo/` 下的 Spin 时间线、余额变化曲线、Bet 档位分布 PNG/SVG。
+- 飞书：《Cash Frenzy｜老虎机体验验证（Collector Demo）》已创建；企业内可编辑权限 verified，正文与飞书原生中文图表回读通过。
+- User 明确取消 Word 交付；没有创建 `.docx`。
 
-## Next recommendation
+## Documentation Hub blocker
 
-停止 Balance Spike 并等待 ChatGPT Review。后续 Demo 若单独获批，可用相邻 outbound request 输出脱敏 Balance 波动与 Spin Timeline，同时标注尾部未闭合及 Win 为 Derived；当前不要开始 Demo 报告。
+- Document Capability 已登记，Document Assistant create/search/get/share 当前可用，但本会话没有暴露 `register_document` implementation binding。
+- 唯一《AI Workspace｜文档导航中心》回读确认目标标题出现 0 次，Hub 同步尚未完成。
+- 按治理规则保留已创建文档，不重复创建、不人工编辑 Hub。需要在暴露 `register_document` 的会话中对现有文档登记：
+  - Category：`📊 报告`
+  - Description：`用 193 个 Spin 样本展示 F3 Collector 对体验节奏、Bet 迁移和 Derived Balance 波动的策划分析价值。`
+  - Status：`Review`
+- 登记后回读 Hub，确认目标标题恰好出现 1 次；不得创建第二份同名文档。
 
-## Finalize and boundaries
+## Clean finalize
 
-- 逐笔 Balance/Win、Raw、APK、SO、完整响应与账号数据仅保存在 `D:\CashFrenzyResearch\local-only`，未进入 Git 或云文档。
-- Cash app 已 force-stop；临时 Cash 专属 Gadget/config、ADB `tcp:27043` forward、Frida server 和 probe 进程均确认无残留。
-- `D:\huuuge-research` 保持 clean；未修改 Huuuge Collector、Session、Raw、SVN、飞书、AI-Workspace governance、其他游戏或 Capability。
-- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled；Subagents none / OFF。
+- Cash app、Frida server、ADB `tcp:27043` forward、临时 Cash Gadget/config、bootstrap 和 capture 进程均无残留。
+- Raw、逐笔绝对余额、APK、SO、完整响应、账号数据和视频仅留本机。
+- `D:\huuuge-research` 保持 clean；未修改 Huuuge Collector、Session、Raw、SVN、其他游戏、Capability、Workspace Sync 模式或 WATCH。
 
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
@@ -53,4 +58,4 @@ Session 尾部 Spin 的即时 Balance After / Win 不能由当前 outbound-only 
 
 ## Exact Next Action
 
-ChatGPT Review TASK-0022 Phase 1 与 Phase 1.5；在 Review 结论前不开始 Demo 报告或继续协议研究。
+在具备 `register_document` binding 的 Document Assistant 会话中登记现有《Cash Frenzy｜老虎机体验验证（Collector Demo）》并回读 Hub；随后 ChatGPT Review TASK-0022 Demo。Review 前不恢复协议或扩展 Collector。
