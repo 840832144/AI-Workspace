@@ -1,6 +1,6 @@
 # TASK-0021 — Workspace Live Context Hub
 
-- Status: Review
+- Status: Accepted
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / collaboration infrastructure
@@ -451,13 +451,13 @@ Codex 完成后必须返回：
 - Final mode：`ON_DEMAND`；Acceptance 不授权启用 `WATCH`。
 - Integration：本 Task 分支与 Document Assistant PR #1 可以合并；现有 Drive Context Hub、权限和内容保持不变。
 
-## Phase 2 Enhancement — Documentation Hub — 2026-08-27
+## Phase 2 Enhancement — 文档导航中心 — 2026-08-27
 
 第一阶段 Acceptance 保持有效。本阶段不新建 Task，在同一 TASK-0021 下增加 Workspace 正式云文档导航治理，当前进入 ChatGPT Review。
 
 ### 实施结果
 
-- 创建并复用唯一的 `AI Workspace｜Documentation Hub`；Hub 使用八个固定分类，每条正式文档展示标题、可点击链接、一句话介绍、分类、状态和最后更新时间。
+- 创建并复用唯一文档导航中心；其最终展示标题为《AI Workspace｜文档导航中心》。导航中心使用八个固定分类，每条正式文档展示标题、可点击链接、一句话介绍、分类、状态和最后更新时间。
 - 历史扫描登记 14 份正式文档，覆盖 Workspace 项目介绍/进度、Huuuge 部署/采集/Lottery、Live Context 及现有正式规则文档；2 份历史临时连接测试被排除。
 - Document Assistant 新增 `register_document`，正式 `create_document` 强制完成文档回读、自动登记、Hub 重建与 Hub 回读；Hub 失败时保留原文档、禁止重试创建。
 - Core Rules、Project Instructions、Global AGENTS 模板、Repository AGENTS、Document Capability、Document Assistant Workflow 和 Workspace Sync Workflow 已接入统一治理规则。
@@ -474,3 +474,29 @@ Codex 完成后必须返回：
 
 - 请核对正式文档/临时文档边界、Hub 失败语义、历史分类和两个仓库的回归证据。
 - 本阶段独立分支等待 ChatGPT Review；未经 Review 不合并实现分支。
+
+## Final UX Closeout — 2026-08-27
+
+ChatGPT Review 2 确认主体实现通过，仅要求中文标题与项目全景入口收尾。本轮在同一 TASK-0021 中完成，不新建 Task。
+
+### 完成内容
+
+- 唯一导航入口从旧展示标题原位更名为《AI Workspace｜文档导航中心》，保留同一文档与 URL；稳定 alias、Registry Hub 标记和防重规则不依赖展示标题。
+- 导航中心首页增加三句中文说明：统一导航入口、正式文档自动登记、Git 仍是真相源且本页只负责导航。
+- 恢复 `docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md` Git 源稿；原位更新 `Game Planner AI Workspace｜项目全景说明`，在“一页式项目说明”之后依次增加“📚 下一步推荐阅读”和“🗺 项目工作流总览”；未复制正文或创建副本。
+- Documentation Governance 最终流程为 `create_document → 文档回读 → register_document → 文档导航中心回读 → Success`。导航中心失败时不删除已创建文档、不重复创建，返回失败并等待修复。
+- 新增 Proposed `RFC-0004: Research Environment Strategy`，记录 `One Research Environment → Multiple Games → Independent Evidence`；不修改当前 Cash Frenzy Candidate 或 TASK-0022。
+
+### 最终验证
+
+- 文档导航中心同一 URL、唯一标题、14 条正式文档、八分类、链接唯一、首页中文说明和企业内可编辑权限回读通过。
+- 项目全景说明同一文档，新增章节位置、可点击链接目标、飞书原生 Mermaid 白板块、正文回读和企业内可编辑权限通过；连续执行两次保持幂等。
+- “核心规则”“实时 Context Hub”和“当前状态与任务入口”三份既有正式云文档已从最新 Git 源稿原位发布，并完成各自正文回读、自动登记与导航中心回读。
+- Document Assistant 构建及 12 个测试文件 / 36 项测试通过；真实创建—登记—删除—恢复烟测通过；Workspace Task、Context、Memory 与 Doctor 回归通过。
+- Workspace Sync 保持 `ON_DEMAND`；WATCH disabled；未修改 ChatGPT 设置；`Subagents: none`。
+
+### Acceptance
+
+- TASK-0021 最终状态：**Accepted**。
+- ADR-0007 保持 Accepted，并补充最终中文导航治理决定。
+- 两个实现分支按 Review 2 要求合入 main；最终 merge 与 closeout commit 记录在 `handoff/CODEX.md`。

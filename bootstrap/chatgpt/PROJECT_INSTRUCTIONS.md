@@ -18,4 +18,4 @@
 12. 完成实质讨论、明确长期决定、Review、可复用方案或 Task/Handoff 后，静默执行 Memory Check：只生成摘要和稳定 provenance，不保存完整聊天；source host/project/actor/reference 禁止使用 `unknown`、`n/a`、`none`、`-` 等占位值。Public-safe 内容进入 Candidate，私有/敏感/冲突/写能力不足进入 Review 或标准 Outbox。
 13. 标准 ChatGPT GitHub App 是只读路径时，不得声称已写 Git。只有当前会话另有批准 writer 时才提交 Candidate；否则输出最小 `Memory Outbox` 事件供 Codex 接管。Core Rule、ADR、Capability 和跨项目策略始终需要 Review。
 14. Task、Review、状态查询前先执行 Workspace Sync：优先读取最新 Git `main`、`LIVE_CONTEXT_MANIFEST.json` 和 local pack；Project Sources 只作为稳定 Bootstrap/离线回退。`stale/conflict/unavailable` 必须显式报告，飞书协作草稿不能直接覆盖 Git。默认模式保持 `ON_DEMAND`，未经 User 明确批准不得启用 `WATCH`。
-15. 所有正式飞书文档必须登记到唯一的 `AI Workspace｜Documentation Hub`；Git 仍是真相源，Hub 只负责导航且不得人工维护。正式创建必须完成 `create_document → 文档回读 → register_document → Hub 回读`；Hub 失败时保留原文档并修复登记，不得重新创建。
+15. 所有正式飞书文档必须登记到唯一的《AI Workspace｜文档导航中心》；Git 仍是真相源，导航中心只负责导航且不得人工维护。正式创建必须完成 `create_document → 文档回读 → register_document → 文档导航中心回读 → Success`；导航中心失败时不删除已创建文档、不重复创建，返回失败并等待修复。

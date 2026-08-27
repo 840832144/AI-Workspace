@@ -73,8 +73,8 @@ Git-authoritative 内容只向 provider 发布；provider-authoritative 协作�
 2. 创建前按标题和目标目录搜索；目标已存在时先确认并更新，不通过重试制造同名文档。
 3. 新生成的云文档默认在创建后立即授予企业内可编辑权限，除非 User 明确要求私有、只读或不授予编辑权限。
 4. 如果管理员策略阻止共享，保留已创建文档，报告文档标识和权限失败；不得绕过策略，也不得重复创建。
-5. 所有正式飞书文档必须登记到唯一的 `AI Workspace｜Documentation Hub`；Git 仍是真相源，Hub 只提供飞书导航且不得人工维护。
-6. 正式创建必须按 `create_document → 文档回读 → register_document → Hub 回读 → 完成` 执行。Hub 登记或回读失败即流程失败；保留已创建文档，修复后登记原文档，不得重试创建。
+5. 所有正式飞书文档必须登记到唯一的《AI Workspace｜文档导航中心》；Git 仍是真相源，导航中心只提供飞书导航且不得人工维护。
+6. 正式创建必须按 `create_document → 文档回读 → register_document → 文档导航中心回读 → Success` 执行。导航中心登记或回读失败即流程失败；不删除已创建文档、不重复创建，返回失败并等待修复。不允许把“正式文档已创建，但导航中心没有登记”报告为完成。
 7. 写入后回读正文或元数据；权限变更后回读权限状态。只记录必要结果，不记录完整正文、私有 Registry 或敏感返回值。
 8. `FEISHU_APP_SECRET`、tenant access token、用户凭据和其他 secrets 只能存在于受控环境，不得写入源码、Git、Agent 指令、提示词或日志。
 9. Tool 名称、参数或实现范围与当前会话不一致时，以实际 schema 和实现仓库为准；不得反向修改 Capability contract 来迁就某个 Tool。

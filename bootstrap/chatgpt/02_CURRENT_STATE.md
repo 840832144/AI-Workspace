@@ -17,26 +17,26 @@ _Last reviewed: 2026-08-27_
 - Git-backed Automatic Memory 当前处于 `Review`；production 默认 `ASSISTED`，Global hook 与 production AUTO 未激活。
 - “策划在新电脑上按文档和 AI 引导完成采集与文档流程”的首轮验收暂定通过，后续通过真实使用继续优化。
 
-## 当前治理任务
+## 当前执行入口
 
 当前 User 已授权：
 
 ```text
-AI-Workspace/tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md
+AI-Workspace/tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md
 ```
 
-状态：`Review`；实现位于独立分支，等待 ChatGPT Review，尚未合入 main。
+状态：`Ready`；执行前仍需从最新 `main` 和 Handoff 确认当前边界，不得依据本离线摘要直接启动。
 
-背景：仓库曾同时出现两个不同内容的 canonical `TASK-0018`。先存在的 Huuuge Lottery Task 保持 canonical；误建 Cash Frenzy 文件现为 `Cancelled` companion，完整规格已从 Git 历史恢复为非执行 Candidate，等待 TASK-0020 Accepted 后由 User 决定是否晋升。
+背景：TASK-0020 已 Accepted 并建立正式 Task Registry / allocator；经 User 批准的 Cash Frenzy Candidate 已晋升为唯一 canonical TASK-0022。历史误建文件继续保留为 `Cancelled` companion，不作为执行入口。
 
-TASK-0020 当前结果：
+TASK-0020 已确认结果：
 
 - 已建立可重建 Registry 和 canonical / companion / candidate / review 分类；
 - 已实现 `scan / validate / next / release / candidate / promote`；
 - duplicate、格式/Registry 漂移、并发分配、lock 和非最新 Git fail closed；
 - ADR-0006 提议采用全局 `TASK-XXXX` + `project_key` + 可选 alias；
 - 14/14 disposable tests 与 PowerShell 5.1 回归通过；真实仓库当前 8 canonical、0 collision；
-- TASK-0021 在本任务期间进入 main，已重新同步并纳入 Registry，没有被覆盖；
+- TASK-0021 已 Accepted，文档导航中心与 Workspace Sync 规则进入最终状态；
 - 不执行 Cash Frenzy，不修改任何业务仓库。
 
 ## 当前 Huuuge 任务
@@ -53,7 +53,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 ## 当前并行 Workspace 任务
 
 - `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md`：`Ready`。
-- `TASK-0021-Workspace-Live-Context-Hub.md`：`Ready`；负责 Live Context / Workspace Sync，与本 Task 的 Registry / allocator 范围分离。
+- `TASK-0021-Workspace-Live-Context-Hub.md`：`Accepted`；Live Context、Workspace Sync 和文档导航治理已完成。
 
 并行任务必须使用独立 branch / linked worktree。TASK-0020 的 Registry 只登记 TASK-0021，不执行、改写或提前实现其飞书 / Context Hub 范围。
 
@@ -101,11 +101,11 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - ChatGPT Project Sources 是上传时的快照，不会自动跟随 Git commit 更新；本次 Core Rules 与 Current State 变化后需要重新上传 00、02、03 或使用生成的 replacement list。
 - Project Memory 可以引用同一项目内聊天和文件，但不保证每个新对话主动召回全部细节；项目指令和来源文件仍是稳定入口。
 - 任何当前功能、任务、编号、状态或 commit 的判断必须查询对应 Git 仓库，不能仅依据本文件。
-- Task Registry / allocator 已在 TASK-0020 独立分支完成 Review Round 1 的五项修复，等待 ChatGPT Review Round 2；合入 main 前不能假装分支工具已成为生产治理规则。
+- Task Registry / allocator 已通过 TASK-0020 Review 并进入 main；任何新 Task 仍必须通过 latest-main、独立 worktree 和 remote-CAS 流程。
 
 ## 近期候选方向
 
-- Cash Frenzy Collector Feasibility Audit：完整规格已恢复为非执行 Candidate；等待 TASK-0020 Accepted 和 User 再次确认后才可通过 allocator 晋升。
+- Cash Frenzy Collector Feasibility Audit：已由批准 Candidate 晋升为 TASK-0022；按最新 Task 与 Handoff 执行，不由 RFC-0004 回溯修改当前环境决定。
 - Top Tycoon Feasibility Audit：Cash Frenzy Review 后再建立，不并行。
 - 绯闻港口 Feasibility Audit：Top Tycoon Review 后再建立，不并行。
 - AI Report Engine：Knowledge → Template → AI → Markdown。
@@ -115,7 +115,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T09:29:42Z
+- Generated: 2026-08-27T10:36:02Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`

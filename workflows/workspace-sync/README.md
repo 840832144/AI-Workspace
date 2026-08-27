@@ -17,7 +17,7 @@
 2. fetch 最新 `main`，确认当前工作分支包含它。工作树有其他 Task 修改时使用独立 linked worktree，不 stash/reset。
 3. 运行 `Invoke-WorkspaceSync.ps1`。成功表现是 local pack、状态和 changed-only publish plan 生成；provider 不可达时 pack 仍可用但状态明确为 `unavailable/stale`。
 4. Codex Host 通过 Document Capability 对唯一 Drive Context Hub 执行 search/list → create/replace → get → permission verify。Git-authoritative 文档使用 company readable，协作草稿使用 company editable。
-5. 任何正式文档发布完成正文回读后，调用 `register_document` 更新唯一 `AI Workspace｜Documentation Hub`，再回读 Documentation Hub；登记失败即发布失败，不允许创建未登记的正式文档或通过重试制造副本。
+5. 任何正式文档发布完成正文回读后，调用 `register_document` 更新唯一《AI Workspace｜文档导航中心》，再回读文档导航中心；登记失败即发布失败，不删除已创建文档、不重复创建，返回失败并等待修复。
 6. 回读后用 `acknowledge` 记录 revision、source fingerprint 和 provider ref。provider ref 只进 Host-local state。
 7. 对 Feishu-authoritative 草稿运行 `capture-draft`。成功表现是 Memory Candidate/Review 或安全 Outbox 可定位；Git canonical 不被直接修改。
 8. 发现 `conflict` 时停止自动发布，使用 `resolve-conflict` 记录 User/Review decision。失败时双方内容都保留。
@@ -36,5 +36,5 @@
 - Lock timeout：说明已有 writer，等待或检查 stale lock，不启动第二 writer。
 - Secret/path/schema failure：fail-closed，不生成公开 publish plan。
 - 写入中失败：保留 provider 原文档，由 Document Assistant replace rollback 与 Workspace Sync state transaction 恢复。
-- Documentation Hub 更新失败：保留已发布文档，流程保持失败；修复后对原链接补充登记，不重试创建。
+- 文档导航中心更新失败：保留已发布文档，流程保持失败；不重复创建，修复后对原链接补充登记。
 - Revision conflict：不自动 retry 覆盖；进入 Conflict Review。
