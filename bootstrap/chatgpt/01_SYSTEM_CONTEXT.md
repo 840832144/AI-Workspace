@@ -11,6 +11,17 @@ AI-Workspace（治理、Task、规则、Memory、Handoff）
         └── 公司 SVN（正式包和公司资源分发）
 ```
 
+跨 Host Context 使用独立的 provider-neutral 能力：
+
+```text
+Git canonical truth
+→ Workspace Sync / fingerprint / revision / conflict gate
+→ 飞书 Drive Context Hub（协作与展示）
+→ Host-local Context Pack（ChatGPT/Codex/Generic fallback）
+```
+
+当前 provider binding 是飞书 Drive + Docx，不是 Wiki。稳定 context ID 和 authority contract 位于 `LIVE_CONTEXT_MANIFEST.json` 与 `capabilities/context/`；folder/document ID 只留 Host-local Registry。
+
 核心能力保持解耦：
 
 ```text
@@ -45,7 +56,7 @@ Collector 和报告生成是两个独立功能。AI Document Assistant 只负责
 - 非敏感运行手册镜像：`840832144/larkdoc_bot`
 - Codex MCP 名称：`feishu-docs`
 - 产品名：AI Document Assistant
-- 当前能力：健康检查、文档读取、目录浏览、搜索、创建、追加、替换、创建目录、企业内可编辑、群和用户授权。
+- 当前能力：健康检查、文档读取、目录浏览、搜索、创建、追加、替换、创建目录、企业内只读/可编辑、群和用户授权。
 - 创建文档默认企业内获得链接的人可编辑，除非 User 明确要求其他权限。
 - Codex 已可使用该能力；新的 Codex 项目通过 Global `~/.codex/AGENTS.md` 进行 Capability-first 发现。
 - ChatGPT 直接通过 Secure MCP Tunnel 连接仍受 OpenAI Control Plane 的地区限制阻塞，因此当前 ChatGPT 通常负责设计与内容，Codex 执行最终飞书读写。

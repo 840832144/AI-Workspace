@@ -48,6 +48,8 @@ Slots → Systems → Events → Others
 
 ## 文档与交互标准
 
+所有 AI 在生成面向 User 或策划的内容前读取 `standards/PLANNER_WRITING_STYLE.md`。默认使用完整中文段落，普通回答采用“结论 → 当前依据 → 下一步”，不把一句话拆成大量孤立短行。
+
 面向策划的说明文档：
 
 - 默认中文；不要求读者理解代码。
@@ -127,6 +129,13 @@ human_alias  = 可选阅读别名
 - 公司 SVN：策划可用的正式发布包和公司资源分发。
 
 项目来源和 Project Memory 只是便于新对话读取的上下文快照，不替代上述真相源。
+
+## Workspace Live Context
+
+- Task、Review、状态查询和 Handoff 前运行 `ON_DEMAND` Workspace Sync。
+- Git-authoritative 内容只向协作层发布；飞书协作草稿进入 Candidate/Review，不直接覆盖 Git。
+- 冲突时双方内容都保留，必须有 User/Review decision；provider unavailable 时使用最近验证的 local pack 并标记 stale。
+- 未经 User 明确批准，不启用生产 WATCH、外部 webhook、长期 watcher、新权限或新知识空间。
 
 ## Automatic Memory
 

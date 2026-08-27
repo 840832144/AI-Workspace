@@ -4,6 +4,8 @@ _Last reviewed: 2026-08-27_
 
 本文件是便于 ChatGPT Project 新对话快速进入状态的动态摘要。执行任务前仍需读取 Git 中的最新 Task、Status、Handoff 和业务仓库。
 
+> TASK-0021 起，本文件降级为稳定 Bootstrap / 离线回退。动态 Task、Status、Handoff 和 freshness 由 `Workspace Sync` 从最新 Git 与 `LIVE_CONTEXT_MANIFEST.json` 生成；不能访问时必须显示 `Context unavailable / stale`，不得凭本文件猜测。
+
 ## 已完成的重要里程碑
 
 - AI-Workspace 已建立 Game Planner 领域边界、Workspace Kernel、Capability Model、Skill Tree、Project Template、Evidence Standard、Task 与 Handoff 机制。
@@ -113,7 +115,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T08:31:10Z
+- Generated: 2026-08-27T09:22:42Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -124,6 +126,4 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — Review
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Ready
-- `TASK-0020-Task-Allocation-and-Namespace-Governance.md` — Review
-- `TASK-0021-Workspace-Live-Context-Hub.md` — Ready
 <!-- MEMORY-CONTEXT:END -->

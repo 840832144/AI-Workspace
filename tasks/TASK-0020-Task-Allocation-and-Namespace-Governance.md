@@ -1,6 +1,6 @@
 # TASK-0020 — Task Allocation & Namespace Governance
 
-- Status: Review
+- Status: Accepted
 - Project key: WORKSPACE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -349,3 +349,7 @@ ChatGPT Review 2 确认 Round 1 五项全部通过，仅要求消除 remote rese
 - remote CAS、release/finalize 生命周期及 Round 1 行为不变。
 
 本轮完成后 Task 继续保持 `Review`，等待 ChatGPT Review Round 3。边界、Memory `ASSISTED` 与 `Subagents: none` 不变。
+
+## Acceptance — 2026-08-27
+
+ChatGPT Review 最终结果为 `Accepted`。实现 commit `5f0f6f77fc99b321a092ca1766009264cb61208a` 已通过 User 授权，以 merge commit `31475bd` 合入 `main`。TASK-0021 后续集成必须使用正式 Task Registry validator，并同时保留 remote-CAS allocator 与 Workspace Sync 治理。

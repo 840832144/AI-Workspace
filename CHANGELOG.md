@@ -2,6 +2,49 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.14.1] - 2026-08-27
+
+### Accepted
+
+- TASK-0021 与 ADR-0007 经 ChatGPT Review Round 1 Accepted；正式 Review 记录为 `reviews/TASK-0021-CHATGPT-REVIEW-1.md`。
+- Accepted implementation 为 `058887993a5d0aa98df68b814b8adc72477cdaf7`，允许合并 AI-Workspace 分支与 Document Assistant PR #1。
+
+### Validation
+
+- 正式 Registry scan / validate、Task tests 23/23、Context tests 13/13、Memory tests 35/35、PowerShell Task Registry 与 Workspace Context 入口全部通过。
+- Registry inventory：8 canonical、2 companion、1 Candidate、6 Review、0 collision；Context refresh 为 56 sources、0 broken link、0 secret issue。
+
+### Boundaries
+
+- Workspace Sync 最终模式保持 `ON_DEMAND`；Acceptance 不授权启用 `WATCH`。
+- 现有 Drive Context Hub、文档、权限、provider IDs 和 ChatGPT Project Sources replacement 状态保持不变。
+- `Subagents: none`。
+
+## [0.14.0] - 2026-08-27
+
+### Added
+
+- TASK-0021：新增 `CAP-CONTEXT`、ADR-0007、Planner Writing Style、`LIVE_CONTEXT_MANIFEST.json`、Workspace Sync reference implementation、Windows 入口和 ChatGPT/Codex/Generic Agent bindings。
+- 建立飞书 Drive Context Hub authority model：Git-authoritative 内容只读发布，协作草稿可编辑但只进入 Candidate/Review；Wiki 因当前 scope Gate 未通过而未采用。
+
+### Changed
+
+- TASK-0020 Accepted implementation 以 merge commit `31475bd` 进入 main；TASK-0021 通过 `637840a` 同步 latest main，语义合并 allocator、Workspace Sync、中文行文和 Memory 规则。
+- TASK-0020 与 ADR-0006 状态更新为 Accepted；TASK-0021 更新为 Review。Task Registry 继续由正式 validator 重建。
+- Workspace Sync 最终模式保持 `ON_DEMAND`。Project Sources 降级为稳定 Bootstrap / 离线回退，动态状态优先使用 latest Git、Live Context manifest 和 Host-local pack。
+- Document Assistant PR [#1](https://github.com/840832144/document-assistant/pull/1) 保持 OPEN，head `29fd9f1a58f2626f180e351133f2cd7571c7b43d`，本轮未修改。
+
+### Validation
+
+- Context Python tests 13/13 与 PowerShell Workspace Context 入口通过；doctor 的 manifest、Git、Secret、path 和行文检查全部通过。
+- 正式 Task Registry scan/validate、Task tests 23/23、Memory tests 35/35 与 PowerShell Task Registry 入口通过；真实 inventory 为 8 canonical、2 companion、1 Candidate、5 Review、0 collision。
+- ON_DEMAND 本地同步生成 local pack 与 publish plan；因本轮未使用 provider snapshot，状态明确为 stale 6、unavailable 1、disabled 2、conflict 0，没有虚报 Drive 已更新。
+
+### Boundaries
+
+- 现有 Drive Context Hub、7 个唯一标题及 authority-aligned 权限保持不变；没有再次发布、改名或改权限。
+- 未启用 WATCH，未执行 Cash Frenzy，未修改 Huuuge、SVN、Collector、Capture、飞书正文、Document Assistant PR 或其他业务仓库；`Subagents: none`。
+
 ## [0.13.1] - 2026-08-27
 
 ### Fixed

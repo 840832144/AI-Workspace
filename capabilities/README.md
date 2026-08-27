@@ -39,6 +39,7 @@ Capability 是否存在与当前 Host 是否有可用实现是两个状态：
 | --- | --- | --- | --- | --- | --- | --- |
 | `CAP-DOC` | Document Capability | 发现、读取、创建、维护、发布和授权公司文档 | Shared platform，供 Game Design 等项目消费 | [`document/README.md`](document/README.md) | Registered | Document Assistant baseline available on approved Hosts；以实际会话为准 |
 | `CAP-MEM` | Memory Capability | 捕获、验证、路由、整理和刷新跨对话长期记忆 | Shared governance，供 Game Design 项目消费 | [`memory/README.md`](memory/README.md) | Registered / Waiting for ChatGPT Review | AI-Workspace reference implementation available；Host adapter 以实际会话为准 |
+| `CAP-CONTEXT` | Context Capability | 同步、诊断、发布、捕获协作草稿并安全解决跨 Host Context 冲突 | Shared governance，供 Game Design 项目消费 | [`context/README.md`](context/README.md) | Proposed / Waiting for ChatGPT Review | AI-Workspace reference implementation；当前 Feishu Drive binding 待 Review |
 
 ## 边界
 

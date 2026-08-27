@@ -24,7 +24,7 @@ Document Capability 让 Agent 在受控权限下发现、读取、创建、维�
 | `CAP-DOC-UPDATE` | 追加或整篇替换现有文档 | WRITE | 目标 identifier、更新内容、更新模式 | 原 identifier 保持；更新后回读成功 |
 | `CAP-DOC-ORGANIZE` | 浏览或创建文档目录 | READ / WRITE | 目录 identifier 或名称 | 目录列表或新 folder identifier 可回读 |
 | `CAP-DOC-PUBLISH` | 将已审阅产物发布到公司文档系统 | WRITE | 来源、目标、发布策略 | 搜索防重、写入、回读和来源引用全部通过 |
-| `CAP-DOC-SHARE` | 在组织策略允许时授予编辑权限 | ADMIN/SECURITY | 文档、principal、权限模式 | 权限 API 成功且回读匹配；失败时保留原文档 |
+| `CAP-DOC-SHARE` | 在组织策略允许时授予查看或编辑权限 | ADMIN/SECURITY | 文档、principal、权限模式 | 权限 API 成功且回读匹配；失败时保留原文档 |
 
 ## Capability Discovery
 
@@ -35,6 +35,7 @@ Document Capability 让 Agent 在受控权限下发现、读取、创建、维�
 - “更新原来的报告” → `CAP-DOC-DISCOVER` + `CAP-DOC-UPDATE`
 - “新建目录并整理文档” → `CAP-DOC-ORGANIZE`
 - “让公司/群/用户可编辑” → `CAP-DOC-SHARE`
+- “让企业内获得链接的人只读” → `CAP-DOC-SHARE`
 
 选择 Operation 后，再检查当前 Host 是否有批准的 Implementation Binding。Capability 已登记但 provider 不可用时，状态应报告为 `Implementation unavailable`，不得要求新人访问私有源码、输入 secret 或自行拼接 API。
 
@@ -51,7 +52,7 @@ Document Capability 让 Agent 在受控权限下发现、读取、创建、维�
 | `CAP-DOC-UPDATE` | Document Assistant | `append_document`、`replace_document` |
 | `CAP-DOC-ORGANIZE` | Document Assistant | `list_folder`、`create_folder` |
 | `CAP-DOC-PUBLISH` | Document Assistant + approved Workflow | search → create/update → get → permission verify |
-| `CAP-DOC-SHARE` | Document Assistant | `grant_company_edit`、`grant_group_edit`、`grant_user` |
+| `CAP-DOC-SHARE` | Document Assistant | `grant_company_view`、`grant_company_edit`、`grant_group_edit`、`grant_user` |
 
 实现真相源只供已授权维护者使用：`https://github.com/840832144/document-assistant.git`。公共策划入口为 `https://github.com/840832144/AI-Workspace.git`。
 

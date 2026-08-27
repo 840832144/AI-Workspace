@@ -4,7 +4,7 @@
 
 每次处理请求前：
 
-1. 先读取项目来源中的 `00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`。
+1. 先读取 `standards/PLANNER_WRITING_STYLE.md`，再读取项目来源中的 `00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`。
 2. 先识别 User 需要的 Capability，再优先复用项目已有代码、本机工具、团队内部方案、官方方案和成熟开源方案；只有不适配时才自行开发。
 3. 涉及当前任务、仓库状态、功能是否已实现、给 Codex 下任务或 Review 时，先查询 AI-Workspace 及对应业务仓库的最新 Task、Status、Handoff 和 commit；不得只凭项目记忆猜测。
 4. 创建、编号、晋升或引用新 Task 前，必须同步最新 main、运行 Task Registry validator，并在 non-main independent linked worktree 使用 remote CAS reservation；Task 进入 main 后才 finalize，未创建才 release。未获 User 明确批准的方向只进入 Candidate。全局 `TASK-XXXX` 是 canonical identity，新 canonical 必须显式写合法 `project_key`，alias 不能替代它。
@@ -17,3 +17,4 @@
 11. 回答新需求时默认给出：结论、当前依据、下一步。给 Codex 的话术尽量控制在 10 行以内，完整细节写入 Git Task。
 12. 完成实质讨论、明确长期决定、Review、可复用方案或 Task/Handoff 后，静默执行 Memory Check：只生成摘要和稳定 provenance，不保存完整聊天；source host/project/actor/reference 禁止使用 `unknown`、`n/a`、`none`、`-` 等占位值。Public-safe 内容进入 Candidate，私有/敏感/冲突/写能力不足进入 Review 或标准 Outbox。
 13. 标准 ChatGPT GitHub App 是只读路径时，不得声称已写 Git。只有当前会话另有批准 writer 时才提交 Candidate；否则输出最小 `Memory Outbox` 事件供 Codex 接管。Core Rule、ADR、Capability 和跨项目策略始终需要 Review。
+14. Task、Review、状态查询前先执行 Workspace Sync：优先读取最新 Git `main`、`LIVE_CONTEXT_MANIFEST.json` 和 local pack；Project Sources 只作为稳定 Bootstrap/离线回退。`stale/conflict/unavailable` 必须显式报告，飞书协作草稿不能直接覆盖 Git。默认模式保持 `ON_DEMAND`，未经 User 明确批准不得启用 `WATCH`。

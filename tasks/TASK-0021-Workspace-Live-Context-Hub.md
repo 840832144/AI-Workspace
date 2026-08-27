@@ -1,6 +1,6 @@
 # TASK-0021 — Workspace Live Context Hub
 
-- Status: Ready
+- Status: Accepted
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / collaboration infrastructure
@@ -429,3 +429,24 @@ Codex 完成后必须返回：
 - 对 AI-Workspace 的共享文件变更在最终提交前重新同步 `main` 并解决冲突；不得覆盖其他 Task 的 Task、Review、Handoff 或 generated files。
 - `document-assistant` 如有其他活动 Task，先检查最新 Handoff 和工作区；发现重叠写入时停止并报告。
 - 不停止、重启或重新配置正在运行的 Collector、模拟器、Secure Tunnel 或其他业务服务。
+
+## Execution Result — 2026-08-27
+
+- Final binding：飞书 Wiki Gate 未通过，采用现有飞书 Drive 文件夹 + 原生 Docx 的 Context Hub；Git 保持 canonical，协作草稿只进入 Candidate/Review。
+- Workspace Sync：新增 provider-neutral Context Capability、ADR-0007、稳定 manifest、Host-local pack、状态/冲突/回滚实现和 ChatGPT/Codex/Generic Agent bindings。
+- Writing standard：`standards/PLANNER_WRITING_STYLE.md` 已进入 Host instructions 与 Live Context。
+- Freshness mode：最终保持 `ON_DEMAND`；`WATCH` 未启用，且实现要求显式 User approval。
+- Drive Context Hub：原 Pilot 的唯一 Hub、7 个唯一标题、6 个 Git-authoritative `tenant_readable` 文档和 1 个协作草稿 `tenant_editable` 保持不变；本次 latest-main 集成没有再次发布、改名或改权限。
+- Document Assistant：PR [#1](https://github.com/840832144/document-assistant/pull/1) 保持 OPEN，head `29fd9f1a58f2626f180e351133f2cd7571c7b43d`，未修改；该 PR 记录 8 files / 24 tests 与 live permission/readback Pilot。
+- TASK-0020：Accepted implementation `5f0f6f7` 已通过 merge commit `31475bd` 进入 main；本分支语义合并 Workspace Sync 与正式 Task allocation governance，并将 TASK-0020 / ADR-0006 状态更新为 Accepted。
+- AI-Workspace implementation：原实现 commit `0e902b2`；latest-main integration、generated artifacts 与 Review handoff 由本 Task 最终 commit 记录。
+- Validation：Context Python tests 13/13；PowerShell Workspace Context 入口通过。正式 Task Registry、Task/Memory regression、Workspace Sync doctor、Manifest/Source Pack refresh 结果记录在最终 `handoff/CODEX.md`。
+- Boundaries：未执行 Cash Frenzy；未启用 WATCH；未修改 Huuuge、SVN 或业务仓库；`Subagents: none`。
+
+## Acceptance — 2026-08-27
+
+- ChatGPT Review Round 1：**Accepted**。
+- 正式 Review：`reviews/TASK-0021-CHATGPT-REVIEW-1.md`。
+- Accepted implementation：`058887993a5d0aa98df68b814b8adc72477cdaf7`。
+- Final mode：`ON_DEMAND`；Acceptance 不授权启用 `WATCH`。
+- Integration：本 Task 分支与 Document Assistant PR #1 可以合并；现有 Drive Context Hub、权限和内容保持不变。

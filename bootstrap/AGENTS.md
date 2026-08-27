@@ -24,16 +24,22 @@
 
 Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 Tool Discovery。
 
+## Workspace Sync Check
+
+在 Task、Review、状态查询或 Handoff 前，先同步 AI-Workspace 最新 `main`，再运行项目中的 `bootstrap/workspace-sync/Invoke-WorkspaceSync.ps1`。读取 Host-local `LOCAL_CONTEXT_PACK.md` 与状态；出现 `stale`、`conflict` 或 `unavailable` 时明确报告，不用 Project Sources 或聊天记忆猜测。
+
+Git-authoritative 内容只向 provider 发布；provider-authoritative 协作草稿只进入 Memory Candidate/Review。默认模式为 `ON_DEMAND`；未经 User 明确批准，不启用生产 `WATCH`、公网 webhook、长期 watcher 或新权限。
+
 ## Task Allocation Governance
 
 - 创建、重编号、晋升或引用新 Task 前，先同步 AI-Workspace 最新 `main`，读取完整 `tasks/` 与 Handoff，并运行版本化 Task Registry validator。
-- canonical identity 是全局唯一 `TASK-XXXX`；新 Task 同时记录 `project_key`，可选 human alias 不替代 canonical ID。
+- canonical identity 是全局唯一 `TASK-XXXX`；新 Task 必须显式记录合法 `project_key`，可选 human alias 不替代 canonical ID。
 - Markdown Task 是真相源；`TASK_REGISTRY.yaml` 只由完整扫描重建，禁止手工维护为第二真相源。
 - User 未明确批准的新方向进入 Candidate，不占 Task ID、不可执行。相同 active 目标默认阻断，必须明确继续已有 Task 或子任务。
-- 新 ID 必须通过 allocator 完整验证并建立 reservation；禁止根据聊天、memory、Project Sources、局部搜索或 `max + 1` 猜号。
+- 新 ID 只允许在 latest-main、non-main independent linked worktree 通过 allocator 建立 remote CAS reservation；禁止根据聊天、memory、Project Sources、局部搜索或 `max + 1` 猜号。
+- reservation ref 的 tree/parent 固定为 latest `origin/main`，请求分支 HEAD 只作 SHA metadata；canonical 进入 main 后 finalize，未创建 Task 的放弃场景才 release。
 - duplicate、解析失败、Registry 漂移、非最新 main、main checkout、active scope ambiguity 或 lock/reservation 冲突均 fail closed。
-- 本地 linked worktree reservation 不是跨 Host 中心锁；push、Review 和 merge 前必须针对最新 main 再验证。
-- companion、authorization、review 可以关联同一 ID，但必须明确分类，不能成为第二个 canonical 执行入口。
+- companion 必须显式分类并引用存在、同 ID 的 canonical；authorization、review 不能成为第二个 canonical 执行入口。
 
 ## Subagent Policy
 
@@ -59,7 +65,7 @@ Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 To
 - 公共新人入口：`https://github.com/840832144/AI-Workspace.git`
 - 当前 `READ` 实现：`feishu_healthcheck`、`get_document`、`list_folder`、`search_documents`
 - 当前 `WRITE` 实现：`create_document`、`append_document`、`replace_document`、`create_folder`
-- 当前 `ADMIN/SECURITY` 实现：`grant_company_edit`、`grant_group_edit`、`grant_user`
+- 当前 `ADMIN/SECURITY` 实现：`grant_company_view`、`grant_company_edit`、`grant_group_edit`、`grant_user`
 
 使用规则：
 

@@ -1,6 +1,6 @@
 # ADR-0006: Task Identity and Allocation
 
-- Status: Proposed / Waiting for ChatGPT Review
+- Status: Accepted
 - Date: 2026-08-27
 - Decision owners: User / ChatGPT
 - Executor: Codex
