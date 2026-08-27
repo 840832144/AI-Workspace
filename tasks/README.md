@@ -14,7 +14,9 @@
 
 ## 最低字段
 
-每个 canonical Task 至少包含：Status、Owner、Executor、Goal、Scope、Non-goals、Deliverables、Acceptance、Safety、Validation 和 Handoff。
+每个新 canonical Task 至少包含：Status、Project key、Owner、Executor、Priority、Date、Goal、Scope、Non-goals、Deliverables、Acceptance、Safety、Validation 和 Handoff。历史 Task 不为补字段批量重写；发生实质修改时补齐。
+
+canonical identity 采用全局唯一 `TASK-XXXX`。`project_key` 用于项目过滤，可选 `human_alias` 用于阅读；两者都不能替代 canonical ID。
 
 ## Canonical Task 与附件
 
@@ -36,11 +38,21 @@
 
 禁止根据聊天记忆、过期 Project Source、局部搜索结果或“最大编号 + 1”直接分配。编号冲突时 fail closed：先存在 Task 保持 canonical；误建 Task 标记 `Cancelled` 或迁入 Candidate；不得覆盖或删除历史。
 
-在正式分配工具完成前，所有新编号必须由人工完成上述目录级预检，并在 Task 中记录 `Allocation evidence`。
+正式工具入口：
+
+```powershell
+python .\tools\tasks\task_cli.py scan
+python .\tools\tasks\task_cli.py validate
+python .\tools\tasks\task_cli.py next --purpose "approved-task"
+```
+
+`next` 先完整 scan / validate / latest-main gate，再在 Git common directory 原子保留 ID；不是只读 `max + 1`。放弃 reservation 时用返回的 token 执行 `release`。不同 clone/Host 没有中心化锁，push、Review 与 merge 前必须针对最新 main 再次验证。
 
 ## Candidate 规则
 
 讨论中的新方向默认先进入 Candidate，不立即占用 Task ID。Candidate 至少记录：目标、所属项目、优先级建议、依赖、风险、User 是否确认。只有 User 明确批准后才转成 canonical Task。
+
+Candidate 路径与操作见 [`candidates/README.md`](candidates/README.md)。工具只接受明确 `Approved / Confirmed` 的 User decision；active 目标重叠时默认阻断，必须明确继续已有 Task 或作为子任务。
 
 新增游戏研究默认采用：
 
@@ -61,3 +73,4 @@ Feasibility Audit
 3. 实施完成后更新 Task 状态、`CHANGELOG.md` 与 `handoff/CODEX.md`，提交并推送，等待 ChatGPT Review。
 4. 密钥、token、本机私有配置值、完整运行日志和业务数据不得进入 Git。
 5. 如果发现 Task ID、标题、状态或范围存在冲突，停止实施并先报告治理问题，不得自行选择其中一个继续。
+6. 修改 Task、Candidate 或 Review 后重建 `TASK_REGISTRY.yaml` 并再次运行 validator；Registry 是可重建索引，不是第二真相源。

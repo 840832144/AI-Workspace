@@ -24,6 +24,17 @@
 
 Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 Tool Discovery。
 
+## Task Allocation Governance
+
+- 创建、重编号、晋升或引用新 Task 前，先同步 AI-Workspace 最新 `main`，读取完整 `tasks/` 与 Handoff，并运行版本化 Task Registry validator。
+- canonical identity 是全局唯一 `TASK-XXXX`；新 Task 同时记录 `project_key`，可选 human alias 不替代 canonical ID。
+- Markdown Task 是真相源；`TASK_REGISTRY.yaml` 只由完整扫描重建，禁止手工维护为第二真相源。
+- User 未明确批准的新方向进入 Candidate，不占 Task ID、不可执行。相同 active 目标默认阻断，必须明确继续已有 Task 或子任务。
+- 新 ID 必须通过 allocator 完整验证并建立 reservation；禁止根据聊天、memory、Project Sources、局部搜索或 `max + 1` 猜号。
+- duplicate、解析失败、Registry 漂移、非最新 main、main checkout、active scope ambiguity 或 lock/reservation 冲突均 fail closed。
+- 本地 linked worktree reservation 不是跨 Host 中心锁；push、Review 和 merge 前必须针对最新 main 再验证。
+- companion、authorization、review 可以关联同一 ID，但必须明确分类，不能成为第二个 canonical 执行入口。
+
 ## Subagent Policy
 
 - 默认使用单 Agent。只有 User 明确要求、Task 明确允许，或存在至少两个真正独立、可并行、读多写少的工作流时，才考虑 Subagents。

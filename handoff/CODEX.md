@@ -1,118 +1,133 @@
 # Codex Handoff
 
 - Updated: 2026-08-27
-- Latest completed task: TASK-0018 Huuuge Lottery 数值拆解报告
-- Base main: `6610fef`
-- Current state: TASK-0018 waiting ChatGPT Review；TASK-0016 Review Round 2 remains pending
-- Final Memory Mode: `ASSISTED`
-- Production Hook/AUTO: disabled
+- Task: TASK-0020 — Task Allocation & Namespace Governance
+- Status: Review
+- Base main: `070744944d02b8d493c737db74bdc3d404963158`
+- Branch: `codex/task-0020-namespace-governance`
+- Worktree: independent linked worktree
 - Subagents: none
 
-## TASK-0018 Outcome
+## Outcome
 
-- TASK-0015 已确认 Finalize 并更新为 `Complete`；TASK-0018 已更新为 `Review`；TASK-0014 保持 `Accepted`。
-- 外部业务仓库已推送 [`bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4)，包含中文报告、6 份脱敏 CSV、最小 Lottery Extractor、4 个测试和更新后的 module catalog。
-- 飞书文档 [`Huuuge Lottery 活动数值拆解（2026-08-27）`](https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3) 已回读 565 blocks，并验证企业内可编辑。
-- Finalized alias `LOT-20260827-A`：8712/8712 decode、LotteryToss 346/346、Spin 588/588、FreeSpin 45/45。
-- 933 张票消耗产生 133 张阈值返还；直接 Lottery 奖励 60 张；六次升级后的 +16 Bronze 余额变化为 `Confirmed L3`，升级因果为 `Estimate L3`。
-- Spin/FreeSpin payload 没有直接 Lottery ticket grant，因此报告未把升级产出写成单局随机掉落，也未输出伪掉率。
-- Lottery Knowledge 从 L2 提升到 L3；项目分布更新为 L3 × 12、L2 × 3、L1 × 22、L0/L4 × 0。
-- 未读取或提交 Raw、真实 Session/account ID、逐笔余额、付费价格或 credentials；未改 Collector、CR、SVN、游戏或服务端状态。
-- Subagents: none；宽松父会话下保持 Pilot OFF。
+TASK-0020 已完成实现并等待 ChatGPT Review。最终 identity policy 为：
 
-## TASK-0018 Review Files
+```text
+canonical ID = 全局唯一 TASK-XXXX
+project_key  = 必填项目元数据
+human_alias  = 可选阅读别名
+```
 
-- `projects/huuuge-android-research/REPORTS/TASK-0018-LOTTERY-NUMERICAL-REPORT.md`
-- `projects/huuuge-android-research/STATUS.md`
-- `projects/huuuge-android-research/MEMORY.md`
-- `projects/huuuge-android-research/KNOWLEDGE/README.md`
-- `projects/huuuge-android-research/KNOWLEDGE/EVENTS.md`
-- `tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md`
+现有 Task 不批量重编号。Task Markdown 保持 canonical truth，`tasks/TASK_REGISTRY.yaml` 只由完整 scan 重建并以 byte-for-byte 比较检测漂移。
 
-## Prior Review Context — TASK-0016
+## Registry and Current Inventory
 
-ChatGPT Review 1 的三个 blocking fixes 已完成：
+真实仓库最终扫描：
 
-1. Project Private Candidate 可以在 Host-local approved Registry 全部 gate 通过时写入对应私有 Git repository；未批准或错配保持 Outbox。
-2. AUTO canonical promotion 只允许 non-main linked worktree，并把 target、Candidate、Archive、index 作为一个可恢复事务。
-3. Public/Private Git Candidate 的 host/project/actor/reference 禁止占位 provenance，CLI、Event file、Generic Agent 三条入口一致。
+| Kind | Count |
+| --- | ---: |
+| canonical | 8 |
+| companion | 2 |
+| candidate | 1 |
+| review | 2 |
+| canonical collision | 0 |
 
-架构方向、ASSISTED 默认和 Candidate-first contract 未改变。没有激活 Hook、AUTO 或新外部 provider。
+Canonical Task：
 
-## Required Fix 1 — Approved Private Git Routing
+- `TASK-0014` — Accepted / WORKSPACE
+- `TASK-0015` — Complete / HUUUGE
+- `TASK-0016` — Review / WORKSPACE
+- `TASK-0017` — Complete / WORKSPACE
+- `TASK-0018` — Review / HUUUGE；唯一 canonical 文件为 Lottery report
+- `TASK-0019` — Ready / WORKSPACE
+- `TASK-0020` — Review / WORKSPACE
+- `TASK-0021` — Ready / WORKSPACE
 
-Repository classification contract：
+TASK-0021 在本任务实施期间进入 `origin/main`。首次 Registry 写入被 latest-main gate 阻断；本分支安全同步到 `0707449` 后重新读取完整 Task/Handoff，并将 TASK-0021 纳入 Registry，没有覆盖其范围。
 
-- `public-control-plane` → 只允许 `public/public`；
-- `project-private` → 对应单项目私有 Git repository；
-- `cross-project-private-hub` → User 批准的跨项目私有 Hub。
+## Tooling
 
-Private capture 必须提供 `repository_alias`。Host-local Registry 同时验证唯一 alias、`enabled`、`writer_enabled`、classification、allowed scope、allowed sensitivity、allowed source project、绝对 Git root，并拒绝目标等于或位于 public AI-Workspace 内。任一 gate 不满足时输出 sanitized Outbox，不写 public Inbox。
+入口：
 
-Disposable test / Pilot：approved private Candidate 1，private repo 中存在，public Inbox 0；unapproved alias、wrong classification、sensitivity mismatch 和 public-root 回指全部 fail closed。没有读取真实 Huuuge/CR 数据。
+```powershell
+python .\tools\tasks\task_cli.py scan
+python .\tools\tasks\task_cli.py validate
+python .\tools\tasks\task_cli.py next --purpose "approved-task"
+python .\tools\tasks\task_cli.py candidate --help
+python .\tools\tasks\task_cli.py promote --help
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\tasks\Test-TaskRegistry.ps1
+```
 
-## Required Fix 2 — Branch-safe Transactional AUTO
+- `scan`：分类 canonical / companion / candidate / review。
+- `validate`：检查 duplicate、格式、Registry 漂移和 latest `origin/main`。
+- `next`：完整验证后原子保留 ID，并返回 release token；不是只读 `max + 1`。
+- `candidate`：创建非执行 Candidate，不分配 Task ID。
+- `promote`：只晋升 User 明确批准的 Candidate；active overlap 默认阻断，子任务必须显式关联。
+- `release`：释放未使用的 Host-local reservation。
 
-AUTO curate 前置 gate：
+分配写操作要求 non-main independent linked worktree。同一 clone 的 linked worktree 共享 Git common-directory lock/reservation；不同 clone/Host 没有中心化锁，因此 push、Review 和 merge 前仍必须复验最新 main。
 
-- Git repository；
-- branch 非 `main/master`；
-- independent linked worktree；
-- 初始 dirty path 仅允许 `memory/inbox/`；
-- 事务中 branch、HEAD、Git status 不出现非 managed 变化。
+## Candidate and Incident Repair
 
-每次 promotion 保存 target、Candidate、Archive、index 的执行前字节快照。任一步失败恢复四者；rollback 自身失败时写 Host-local recovery record，存在未解决 record 时阻断后续 AUTO。
+- Cash Frenzy 完整规格从 Git commit `7f6d9a5f315c27e829e2dda75396200ee91cdf98` 恢复到 `tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md`。
+- Candidate 明确非执行，当前为条件性 User decision，不满足工具的明确 approval gate。
+- Cancelled 同号文件保留为 companion collision stub，旧链接不删除、不静默改成新的 Cash Frenzy Task。
+- Huuuge Lottery 保持唯一 canonical TASK-0018。
+- Incident：`docs/incidents/INCIDENT-0001-DUPLICATE-TASK-ID.md`。
+- Decision：`docs/adr/ADR-0006-Task-Identity-and-Allocation.md`，状态 Proposed / Waiting for ChatGPT Review。
 
-Fault injection 全部通过：
+## Validation
 
-| Fault | Result |
-| --- | --- |
-| target 写入后失败 | 四资源恢复；promoted 0 |
-| Archive 前失败 | 四资源恢复；promoted 0 |
-| Archive 后失败 | 四资源恢复；promoted 0 |
-| index save 失败 | 四资源恢复；promoted 0 |
-| Git status 发生外部变化 | 四资源恢复；promoted 0 |
-| main branch / unrelated dirty worktree | 写入前 fail closed |
+`python -m unittest discover -s tools/tasks/tests -v`：14/14 passed。
 
-## Required Fix 3 — Stable Provenance
+TASK-0020 要求的 10 类验证：
 
-所有进入 Git 的 Candidate 必须提供稳定、可复查的 `source_host`、`source_project`、`source_actor_alias`、`source_reference`。空值与 `unknown`、`n/a`、`none`、`null`、`-`、`tbd`、`unspecified` 等占位值无效。
+1. duplicate canonical ID → non-zero；
+2. canonical + companion 同 ID → 正确分类、无 collision；
+3. filename / heading / Registry drift → non-zero；
+4. Pending Candidate → 不分配 ID、promotion non-zero；
+5. Approved Candidate → disposable fixture 中唯一晋升并保留 provenance；
+6. active goal overlap → 无明确 subtask decision 时阻断；
+7. 两个并发 allocator → 分别保留不同 ID；
+8. lock busy、目录不完整、NUL/解析失败、Registry 漂移、branch 不含最新 main → fail closed；
+9. 真实仓库 → 8 canonical、0 collision；
+10. Cash Frenzy Candidate 存在且非执行，Huuuge Lottery 是唯一 canonical TASK-0018。
 
-- CLI placeholder → Outbox，public Inbox 0；
-- Event file placeholder → Outbox，public Inbox 0；
-- Generic Agent placeholder → Outbox，public Inbox 0。
+PowerShell 5.1 一键入口最终通过：Python compile、14 tests、真实 scan / validate 与 incident repair 均 PASS。首次运行暴露无 BOM 中文断言和 `$PSScriptRoot` 参数默认求值兼容问题；入口已改为 ASCII marker 与参数块后初始化，并完成回归。
 
-Local-only / route-required 事件不因来源缺失而伪造 provenance；它们只保留最小 Outbox 说明。
+## Governance Propagation
 
-## Validation and Pilot
+已统一更新 Project/Global AGENTS 模板、CONTRIBUTING、tasks README、Core Rules、New Chat Bootstrap 和 Project Instructions。规则一致要求：
 
-- `python -m unittest discover -s tools/memory/tests -v`：34/34 passed。
-- `python tools/memory/Run-MemoryPilot.py`：passed；disposable linked worktree + disposable private Git repo。
-- Round 2 Pilot：captured 3、private Git captured 1、promoted 1、review 1、local-only/Outbox 4、OFF suppressed 1、conflicts 0、failed 0。
-- false captures / missed captures：not measured；仍需真实 Host observation，不从 synthetic Pilot 推断。
-- Production `Get-MemoryStatus`：`ASSISTED`，source=`repository-default`。
-- AI-Workspace Context refresh：42 public control-plane sources、0 Secret issue、0 broken link、private repositories not read、`manual upload required=true`。
+- latest main + 完整 Registry validator；
+- 全局 ID + project_key / alias；
+- Candidate-first 和明确 User approval；
+- active scope relationship；
+- allocator reservation 与创建后复验；
+- 任一 duplicate、漂移、解析、Git 或 lock 不确定性 fail closed。
 
-## Changed Contracts and Files
+## Project Source Replacement
 
-- Implementation/tests：`tools/memory/memory_cli.py`、PowerShell capture wrapper、34-test suite、Pilot runner。
-- Contracts：Memory Capability、Governance 1.1、ADR-0005、Memory Workflow。
-- Adapters/templates：Codex、ChatGPT、Generic Agent、Event/Candidate templates。
-- Records：TASK-0016、CHANGELOG、Pilot 和本 Handoff。
+- `CONTEXT_MANIFEST.yaml`、`bootstrap/chatgpt/02_CURRENT_STATE.md`、Project Source Pack 与 replacement list 已刷新。
+- 当前状态：`manual upload required`。
+- 未调用浏览器自动化、飞书或其他外部系统；没有声称 ChatGPT Project Sources 已自动替换。
+- 按 replacement list 手工替换五个拆分来源，或只使用单文件 Source Pack；不要两者同时上传。
 
 ## Safety and Boundaries
 
-- 最终 mode 为 `ASSISTED`；没有 Host-local AUTO override。
-- 没有安装/激活 Global Hook，没有修改 `~/.codex/config.toml` 或 Global runtime。
-- 没有读取或修改 Huuuge、CR、Collector、Capture、SVN、飞书、Document Assistant 或真实私有 Registry。
-- TASK-0017 已在此前独立任务完成；本轮未修改其网络脚本、Git 分支或 Codex proxy 配置。
-- Fault injection 只有同时设置测试环境变量和 disposable marker 才启用；production worktree 默认不可触发。
+- 未执行或晋升 Cash Frenzy Candidate。
+- 未修改 Huuuge Collector、Lottery 业务结果、Capture、document-assistant、飞书、SVN、业务仓库或本机 Global Codex runtime。
+- 未读取 Raw Capture、账号、Secret、完整响应或私有 Registry。
+- 未建立外部数据库、服务、中心化锁或多 Agent 调度。
+- Subagents: none。
 
 ## Known Limits
 
-- 尚无 User 批准的真实 Project Private Registry 或 Cross-project Private Hub；production 私有 writer 仍需逐仓库授权。
-- ChatGPT Project Sources 仍需 manual upload；没有安全 API 时不自动替换。
-- Semantic dedup、graph retrieval、真实 false-positive/missed-capture 与 scheduled curator 仍是独立后续评估项。
+- Git common-directory reservation 只覆盖同一 clone；跨 Host 依赖最新 main、push 冲突和 Review/merge gate。
+- 历史 Task 没有显式 `Project key` 时使用确定性 legacy inference，并输出 warning；不为消除 warning 批量改写已接受 Task。
+- ADR-0006 和生产治理规则在 ChatGPT Review / merge 前仍是 Proposed；分支工具不能被描述为 main 已生效。
+- Project Sources 仍需人工替换；TASK-0021 的 Live Context 工作是独立任务，本任务未执行。
+
 
 
 
@@ -120,7 +135,7 @@ Local-only / route-required 事件不因来源缺失而伪造 provenance；它�
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-27T06:39:23Z
+- Generated: 2026-08-27T07:34:17Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
@@ -128,4 +143,4 @@ Local-only / route-required 事件不因来源缺失而伪造 provenance；它�
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-ChatGPT 先 Review TASK-0018 的 claim 分类、升级关联边界、结构化表与 CR 候选，返回 `Accepted` 或具体修改项。TASK-0016 Round 2 Review 与 TASK-0020 治理执行仍按 `handoff/CHATGPT.md` 独立推进；不得用本次 worktree 覆盖其变更。
+ChatGPT Review TASK-0020：核对 ADR-0006 identity policy、可重建 Registry、latest-main / linked-worktree / reservation gate、Candidate promotion、10 类回归、Cash Frenzy incident repair 和 `manual upload required` 边界；返回 `Accepted` 或具体 `Needs changes`。Review 前不执行 Cash Frenzy Candidate，不把分支工具视为 main 已生效。

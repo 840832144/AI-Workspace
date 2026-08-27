@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-27T06:39:23Z
+Generated: 2026-08-27T07:34:17Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -14,15 +14,16 @@ Generated: 2026-08-27T06:39:23Z
 1. 先读取项目来源中的 `00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`。
 2. 先识别 User 需要的 Capability，再优先复用项目已有代码、本机工具、团队内部方案、官方方案和成熟开源方案；只有不适配时才自行开发。
 3. 涉及当前任务、仓库状态、功能是否已实现、给 Codex 下任务或 Review 时，先查询 AI-Workspace 及对应业务仓库的最新 Task、Status、Handoff 和 commit；不得只凭项目记忆猜测。
-4. Huuuge 研究默认优先级：Slots → Systems → Events → Others。
-5. AI-Workspace 是治理、规则与任务真相源；业务实现、运行证据和发布状态以对应项目仓库或受控系统为准。
-6. ChatGPT 负责产品、架构、RFC、Task 设计、Workflow、Skill 和 Review；Codex 负责实现、自动化、测试、Git、部署和实现证据；User 负责优先级、付费/资源操作、外部授权和最终决策。
-7. 面向策划的文档按步骤书写，假定读者只会按部就班操作且阅读代码能力较弱。每一步写清“做什么、成功表现、失败怎么办”；优先一键安装、一键启动、一键检查和可回滚部署。与 User 讨论技术方案时可以展示必要架构、逻辑和代码。
-8. Collector、Knowledge/Analysis、Report Engine、Document Assistant 是分离能力。AI Document Assistant 负责读写文档，不负责生成业务结论；Collector 负责采集，不自动完成报告。
-9. 不在聊天、Git、飞书或项目来源中泄露 Secret、账号信息、原始采集数据、完整响应、逐笔余额、私有 Registry 或敏感日志。
-10. 回答新需求时默认给出：结论、当前依据、下一步。给 Codex 的话术尽量控制在 10 行以内，完整细节写入 Git Task。
-11. 完成实质讨论、明确长期决定、Review、可复用方案或 Task/Handoff 后，静默执行 Memory Check：只生成摘要和稳定 provenance，不保存完整聊天；source host/project/actor/reference 禁止使用 `unknown`、`n/a`、`none`、`-` 等占位值。Public-safe 内容进入 Candidate，私有/敏感/冲突/写能力不足进入 Review 或标准 Outbox。
-12. 标准 ChatGPT GitHub App 是只读路径时，不得声称已写 Git。只有当前会话另有批准 writer 时才提交 Candidate；否则输出最小 `Memory Outbox` 事件供 Codex 接管。Core Rule、ADR、Capability 和跨项目策略始终需要 Review。
+4. 创建、编号、晋升或引用新 Task 前，必须同步最新 main、运行 Task Registry validator，并使用 allocator reservation；未获 User 明确批准的方向只进入 Candidate。全局 `TASK-XXXX` 是 canonical identity，`project_key` / alias 不能替代它。
+5. Huuuge 研究默认优先级：Slots → Systems → Events → Others。
+6. AI-Workspace 是治理、规则与任务真相源；业务实现、运行证据和发布状态以对应项目仓库或受控系统为准。
+7. ChatGPT 负责产品、架构、RFC、Task 设计、Workflow、Skill 和 Review；Codex 负责实现、自动化、测试、Git、部署和实现证据；User 负责优先级、付费/资源操作、外部授权和最终决策。
+8. 面向策划的文档按步骤书写，假定读者只会按部就班操作且阅读代码能力较弱。每一步写清“做什么、成功表现、失败怎么办”；优先一键安装、一键启动、一键检查和可回滚部署。与 User 讨论技术方案时可以展示必要架构、逻辑和代码。
+9. Collector、Knowledge/Analysis、Report Engine、Document Assistant 是分离能力。AI Document Assistant 负责读写文档，不负责生成业务结论；Collector 负责采集，不自动完成报告。
+10. 不在聊天、Git、飞书或项目来源中泄露 Secret、账号信息、原始采集数据、完整响应、逐笔余额、私有 Registry 或敏感日志。
+11. 回答新需求时默认给出：结论、当前依据、下一步。给 Codex 的话术尽量控制在 10 行以内，完整细节写入 Git Task。
+12. 完成实质讨论、明确长期决定、Review、可复用方案或 Task/Handoff 后，静默执行 Memory Check：只生成摘要和稳定 provenance，不保存完整聊天；source host/project/actor/reference 禁止使用 `unknown`、`n/a`、`none`、`-` 等占位值。Public-safe 内容进入 Candidate，私有/敏感/冲突/写能力不足进入 Review 或标准 Outbox。
+13. 标准 ChatGPT GitHub App 是只读路径时，不得声称已写 Git。只有当前会话另有批准 writer 时才提交 Candidate；否则输出最小 `Memory Outbox` 事件供 Codex 接管。Core Rule、ADR、Capability 和跨项目策略始终需要 Review。
 
 <!-- SOURCE: 00_CORE_RULES.md -->
 # 00 — Core Rules
@@ -99,6 +100,41 @@ User 目标
 ```
 
 不得只在聊天中口头创造一个并不存在的 Task 文件。涉及当前任务时必须读取 Git 中的真实 Task。
+
+### Task 创建与编号分配规则
+
+创建、重编号、晋升或引用新 Task 前，必须从 Git 最新 `main` 读取完整 `tasks/` 清单和当前 Handoff，并运行 Task Registry validator；不得依据聊天、记忆、最大编号或本地过期目录分配编号。
+
+Task identity 采用：
+
+```text
+canonical ID = 全局唯一 TASK-XXXX
+project_key  = 必填项目命名空间元数据
+human_alias  = 可选阅读别名
+```
+
+`project_key` / alias 不替代 canonical ID。Task Markdown 是真相源，Registry 只能重建，不能手工维护为第二真相源。
+
+强制顺序：
+
+1. 枚举所有根目录 canonical Task 文件，确认已占用 ID、状态和完整文件名；
+2. 检查是否已有相同目标或重叠范围的 `Draft / Ready / In Progress / Review / Changes Requested` Task；
+3. 区分 canonical Task 与附件、授权书、Review、Candidate；附件不得伪装成第二个 canonical Task；
+4. 决定继续已有 Task、创建子任务、保留 Candidate，或通过 allocator 保留一个经 Git 验证未占用的新 ID；
+5. 创建后重建 Registry 并再次 validate，验证 ID 唯一、文件名与标题一致、Task 可被其他会话发现。
+
+禁止：
+
+- 猜“下一个编号”；
+- 在未检查完整 `tasks/` 目录时创建 `TASK-XXXX`；
+- 让两个不同 canonical Task 共用同一 ID；
+- 因编号冲突覆盖、删除或改写先存在 Task 的历史；
+- User 尚未确认范围时直接把讨论项升级为 `Ready` Task。
+- 手工编辑 `TASK_REGISTRY.yaml` 消除漂移，或把本地 reservation 冒充跨 Host 中心锁。
+
+发生 duplicate、解析失败、Registry 漂移、非最新 main、active scope ambiguity 或 lock/reservation 冲突时必须 fail closed：停止执行冲突 Task，保留先存在 Task 为 canonical，明确标记误建 Task 为 `Cancelled` companion 或迁入 Candidate。不同 clone/Host 在 push、Review 和 merge 前必须针对最新 main 复验。
+
+新增游戏研究默认先经过 `Feasibility Audit → ChatGPT Review → User 决定 → Collector Adapter / Productization`，不得从聊天直接跳到完整 Collector 开发。
 
 ## 证据与安全
 
@@ -283,35 +319,67 @@ _Last reviewed: 2026-08-27_
 - AI Document Assistant 已接入 Codex，可读写飞书云文档并自动设置企业内可编辑权限。
 - Codex 跨项目 Global AGENTS 已采用 Capability-first / Reuse-first 规则。
 - Codex 1+4 Subagent Pilot 已通过 Review；默认 `OFF`，可在受限权限和适合的复杂任务中手动启用。
-- Git-backed Automatic Memory 已完成 TASK-0016 Review 1 的三个 Required Fix，等待 ChatGPT Round 2 Review；production 默认 `ASSISTED`，AUTO 仅完成 linked-worktree 隔离与 fault-injection 验证，Global hook 未激活。
+- Git-backed Automatic Memory 当前处于 `Review`；production 默认 `ASSISTED`，Global hook 与 production AUTO 未激活。
 - “策划在新电脑上按文档和 AI 引导完成采集与文档流程”的首轮验收暂定通过，后续通过真实使用继续优化。
+
+## 当前治理任务
+
+当前 User 已授权：
+
+```text
+AI-Workspace/tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md
+```
+
+状态：`Review`；实现位于独立分支，等待 ChatGPT Review，尚未合入 main。
+
+背景：仓库曾同时出现两个不同内容的 canonical `TASK-0018`。先存在的 Huuuge Lottery Task 保持 canonical；误建 Cash Frenzy 文件现为 `Cancelled` companion，完整规格已从 Git 历史恢复为非执行 Candidate，等待 TASK-0020 Accepted 后由 User 决定是否晋升。
+
+TASK-0020 当前结果：
+
+- 已建立可重建 Registry 和 canonical / companion / candidate / review 分类；
+- 已实现 `scan / validate / next / release / candidate / promote`；
+- duplicate、格式/Registry 漂移、并发分配、lock 和非最新 Git fail closed；
+- ADR-0006 提议采用全局 `TASK-XXXX` + `project_key` + 可选 alias；
+- 14/14 disposable tests 与 PowerShell 5.1 回归通过；真实仓库当前 8 canonical、0 collision；
+- TASK-0021 在本任务期间进入 main，已重新同步并纳入 Registry，没有被覆盖；
+- 不执行 Cash Frenzy，不修改任何业务仓库。
 
 ## 当前 Huuuge 任务
 
-当前任务文件：
+当前相关文件包括：
 
 ```text
 AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
+AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 ```
 
-实际范围已经收窄为：
+实际状态和执行顺序必须读取文件、最新 Handoff 和 `huuuge-android-research`。TASK-0020 不得修改 Collector、Raw Capture 或 Lottery 业务分析范围。
 
-- 在 Lottery 限时活动结束前启动并维护专用 Capture；
-- User 亲自体验游戏，并决定所有付费、充值、礼包、票券购买和资源消耗行为；
-- Codex 只负责环境检查、READY、短步骤提醒、被动采集、Clean Finalize 和证据覆盖清单；
-- 本轮暂不做数值拆解、CR 方案、飞书报告或 AI Document Assistant 写入；
-- User 明确说“体验完成，可以开始分析”后，再建立独立分析任务。
+## 当前并行 Workspace 任务
 
-如果 Git 中该 Task 已更新或结束，以 Git 最新内容为准。
+- `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md`：`Ready`。
+- `TASK-0021-Workspace-Live-Context-Hub.md`：`Ready`；负责 Live Context / Workspace Sync，与本 Task 的 Registry / allocator 范围分离。
+
+并行任务必须使用独立 branch / linked worktree。TASK-0020 的 Registry 只登记 TASK-0021，不执行、改写或提前实现其飞书 / Context Hub 范围。
 
 ## 当前重要决策
+
+### Task Allocation
+
+- 新 Task 创建前必须从 Git 最新 `main` 运行 Task Registry validator，不能依赖聊天、Project Source 快照、局部搜索或“最大编号 + 1”。
+- canonical ID 使用全局唯一 `TASK-XXXX`；`project_key` 是项目元数据，可选 alias 只用于阅读。
+- Markdown 是真相源，Registry 只能由完整 scan 重建；companion、authorization、review 和 candidate 必须明确分类。
+- User 未确认的新方向先进入 Candidate，不占正式 ID；晋升前检查 active scope overlap 和 User approval。
+- linked worktree 同 clone 使用 Git common-directory reservation 防并发同号；不同 Host 仍需在 push / Review / merge 前复验最新 main。
+- 冲突时 fail closed：保留先存在 canonical Task，误建项保留为 `Cancelled` companion 或 Candidate，不覆盖历史。
+- 新游戏研究默认采用 `Feasibility Audit → Review → User 决定 → Adapter / Collector → Planner Release`。
 
 ### Automatic Memory
 
 - Git 是可审计、可回滚的长期真相源；ChatGPT Project Memory / Codex memory 只作为 recall layer。
 - Public-safe Candidate 可进入 AI-Workspace；Project Private、Cross-project Private、Local-only、Unknown 或 writer-unavailable 内容进入批准的私有目标或本机 Outbox，默认不公开。
 - Production 当前保持 `ASSISTED`。Canonical 规则、ADR、架构、冲突、高影响和敏感内容即使在 AUTO 也必须 Review。
-- ChatGPT Project Source Pack 可一键生成，但当前替换仍需人工上传。
+- ChatGPT Project Source Pack 可生成，但当前替换仍需人工上传。
 
 ### Collector / Analysis / Report / Document 解耦
 
@@ -324,7 +392,7 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 
 - 每个模拟器实例 / 账号使用独立数据库。
 - 先分析单账号行为，再通过脱敏聚合层寻找共性和分群规律。
-- 不把不同账号 Raw 数据直接混合。
+- 不把不同账号、不同游戏 Raw 数据直接混合。
 
 ### 文档和部署标准
 
@@ -334,24 +402,25 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 
 ## 当前限制与风险
 
-- ChatGPT 直接调用 AI Document Assistant 的 Secure MCP Tunnel 仍因 OpenAI Control Plane 返回 `unsupported_country_region_territory` 而不可用；Codex 本地 MCP 正常。
-- ChatGPT Project Sources 是上传时的快照，不会自动跟随 Git commit 更新；重要状态变化后需要重新上传 `02_CURRENT_STATE.md`。
+- ChatGPT 直接调用 AI Document Assistant 的 Secure MCP Tunnel 仍因 OpenAI Control Plane 地区限制不可用；Codex 本地 MCP 正常。
+- ChatGPT Project Sources 是上传时的快照，不会自动跟随 Git commit 更新；本次 Core Rules 与 Current State 变化后需要重新上传 00、02、03 或使用生成的 replacement list。
 - Project Memory 可以引用同一项目内聊天和文件，但不保证每个新对话主动召回全部细节；项目指令和来源文件仍是稳定入口。
-- 任何当前功能、任务或 commit 的判断必须查询对应 Git 仓库，不能仅依据本文件。
+- 任何当前功能、任务、编号、状态或 commit 的判断必须查询对应 Git 仓库，不能仅依据本文件。
+- Task Registry / allocator 已在 TASK-0020 独立分支完成并等待 Review；合入 main 前，新 Task 仍需人工完整目录预检，不能假装分支工具已成为生产治理规则。
 
 ## 近期候选方向
 
-- Lottery 体验完成后的独立数值分析与 CR 迁移建议 Task。
+- Cash Frenzy Collector Feasibility Audit：完整规格已恢复为非执行 Candidate；等待 TASK-0020 Accepted 和 User 再次确认后才可通过 allocator 晋升。
+- Top Tycoon Feasibility Audit：Cash Frenzy Review 后再建立，不并行。
+- 绯闻港口 Feasibility Audit：Top Tycoon Review 后再建立，不并行。
 - AI Report Engine：Knowledge → Template → AI → Markdown。
 - Planner-facing UX & Deployment Standard 的持续落地。
-- Reuse-first Solution Discovery：本地、内部、官方、成熟开源优先，自研最后。
 - 多实例独立数据库与跨账号脱敏聚合模型。
-- Workspace Sync：Git → SVN / 飞书，当前仍处于设想与后续规划阶段。
 
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T06:39:23Z
+- Generated: 2026-08-27T07:34:17Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -359,10 +428,11 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 
 ### Active public control-plane tasks
 
-- `TASK-0014-Codex-Subagent-Pilot.md` — Review
-- `TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md` — Ready
 - `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — Review
-- `TASK-0016-EXECUTION-AUTHORIZATION.md` — Ready
+- `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
+- `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Ready
+- `TASK-0020-Task-Allocation-and-Namespace-Governance.md` — Review
+- `TASK-0021-Workspace-Live-Context-Hub.md` — Ready
 <!-- MEMORY-CONTEXT:END -->
 
 <!-- SOURCE: 03_NEW_CHAT_BOOTSTRAP.md -->
@@ -391,6 +461,19 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 - 是否已有本地、内部、官方或成熟开源方案；
 - User 是否已经确认任务范围。
 
+### 新建 Task 的编号预检
+
+任何会创建新 Task 的请求，必须额外完成：
+
+1. 从 Git 最新 `main` 枚举完整 `tasks/` 目录，不只搜索一个猜测编号；
+2. 运行 Task Registry validator，列出 canonical / companion / candidate / review 的 ID、完整文件名和状态；
+3. 检查同 ID 冲突、同目标重复、范围重叠和附件误判；
+4. 只有 User 已确认，才通过 allocator reservation 分配全局 `TASK-XXXX`；同时记录 `project_key`，可选 alias 不替代 ID；
+5. 未确认需求先进入 Candidate，不分配正式 Task ID；
+6. 创建后重建 Registry 并再次 validate，验证 ID 唯一、文件/标题一致和可见性。
+
+不得把“当前看到的最大编号 + 1”当作充分依据，也不得根据另一个对话的记忆分配编号。非最新 main、Registry 漂移、解析失败、active scope ambiguity 或 lock/reservation 冲突均 fail closed。若发现同号，保留先存在 canonical Task，将误建项标记 `Cancelled` companion 或迁入 Candidate。不同 Host/clone 在 Review/merge 前必须重新验证最新 main。
+
 完整细节应先写入 AI-Workspace 的 `tasks/` 和 Handoff。发给 User 的 Codex 话术通常只包含：
 
 ```text
@@ -400,7 +483,7 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 完成后更新 Handoff，返回 commit，等待 ChatGPT Review。
 ```
 
-不得在聊天中使用一个 Git 中不存在的 Task 编号。
+不得在聊天中使用一个 Git 中不存在、存在冲突或尚未通过分配预检的 Task 编号。
 
 ## Review 输出
 
@@ -433,6 +516,20 @@ Review 默认采用：
 Confirmed / Estimate / Hypothesis / Decision proposal
 ```
 
+## 新游戏研究请求
+
+新游戏不得从讨论直接进入完整 Collector 开发。默认阶段为：
+
+```text
+Feasibility Audit
+→ ChatGPT Review
+→ User 决定是否继续
+→ Adapter / Collector Task
+→ Planner Release
+```
+
+每个游戏使用独立实例、账号别名、Session、Raw 目录和业务证据；不得与 Huuuge 或其他游戏 Raw 混合。
+
 ## 文档请求
 
 先区分：
@@ -451,9 +548,10 @@ Confirmed / Estimate / Hypothesis / Decision proposal
 3. AI-Workspace 和业务仓库谁分别是真相源？
 4. ChatGPT、Codex、User 分别负责什么？
 5. 当前 Task 是什么，是否真的从 Git 读取？
-6. 当前请求是否已有可复用 Capability 或工具？
-7. 是否涉及付费、权限、敏感信息或不可逆操作？
-8. 输出是否足够简洁、可执行？
-9. 本轮是否产生需要 Candidate/Review/Outbox 的长期记忆，且没有重复 canonical update？
+6. 若要新建 Task，是否已枚举完整目录并验证 ID 唯一？
+7. 当前请求是否已有可复用 Capability 或工具？
+8. 是否涉及付费、权限、敏感信息或不可逆操作？
+9. 输出是否足够简洁、可执行？
+10. 本轮是否产生需要 Candidate/Review/Outbox 的长期记忆，且没有重复 canonical update？
 
-如果第 5 项无法确认，先查 Git，不要猜。
+如果第 5 或第 6 项无法确认，先查 Git，不要猜。

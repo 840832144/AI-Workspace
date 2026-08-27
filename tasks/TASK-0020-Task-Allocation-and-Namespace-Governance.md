@@ -1,6 +1,7 @@
 # TASK-0020 — Task Allocation & Namespace Governance
 
-- Status: Ready
+- Status: Review
+- Project key: WORKSPACE
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / governance
@@ -308,3 +309,17 @@ Codex 完成后返回：
 - Project Source replacement 状态
 - Subagents: none（若确有使用必须解释为何符合单写入者和受限权限）
 - 等待 ChatGPT Review，不执行 Cash Frenzy Candidate
+
+## Execution Result — 2026-08-27
+
+- Final policy：全局唯一 `TASK-XXXX` + 必填 `project_key` + 可选 human alias；历史 Task 不批量重编号，ADR-0006 保持 Proposed 等待 Review。
+- Registry：`tasks/TASK_REGISTRY.yaml` 由 Markdown 全量扫描确定性重建；当前记录 8 canonical、2 companion、1 Candidate、2 Review，canonical collision 为 0。
+- Tooling：标准库 `tools/tasks/task_cli.py` 支持 `scan / validate / next / release / candidate / promote`；分配写操作要求 latest `origin/main`、non-main linked worktree，并使用 Git common-directory lock/reservation。
+- Candidate：Cash Frenzy 完整规格从 `7f6d9a5` 恢复到 `tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md`，当前 User decision 为条件性确认，工具不能晋升。
+- Incident：保留 Cancelled collision stub 并显式分类为 companion；Huuuge Lottery 是唯一 canonical TASK-0018。
+- Tests：14/14 disposable Git tests 与 Windows PowerShell 5.1 一键入口通过；覆盖本 Task 要求的 10 类冲突、Candidate、并发、reservation release、漂移和真实仓库验证。
+- Concurrency evidence：两个同时运行的 allocator 在同一 clone 返回不同 ID；真实执行期间 `origin/main` 新增 TASK-0021 后，latest-main gate 阻断 Registry 写入，重新同步后 TASK-0021 被纳入 Registry。
+- Project Sources：Source Pack、Manifest、Current State 和 replacement list 已刷新；当前仍需人工替换，未自动上传。
+- Boundaries：未执行 Cash Frenzy；未修改 Huuuge Collector、Lottery、Capture、document-assistant、飞书、SVN、业务仓库或本机 Global runtime。
+- Subagents: none。
+- Branch: `codex/task-0020-namespace-governance`；提交与 push 结果见最终 Codex Handoff / Review 交付。

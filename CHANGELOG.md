@@ -2,6 +2,31 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.13.0] - 2026-08-27
+
+### Added
+
+- TASK-0020：新增可由 Markdown 重建的 `tasks/TASK_REGISTRY.yaml`，登记 canonical、companion、candidate 与 review，并以全局 `TASK-XXXX` + `project_key` + 可选 alias 作为 identity policy。
+- 新增标准库 `task_cli.py`，支持 `scan / validate / next / release / candidate / promote`；新增 PowerShell 5.1 一键回归入口。
+- 新增 Candidate 工作流、从 Git 历史恢复的 Cash Frenzy 完整非执行 Candidate、duplicate ID incident 和 ADR-0006。
+
+### Changed
+
+- Project/Global AGENTS、CONTRIBUTING、Core Rules、New Chat Bootstrap、Project Instructions 和 tasks README 统一要求 latest-main、Registry validator、allocator reservation、Candidate-first 与创建后复验。
+- Cancelled Cash Frenzy 同号文件明确为 companion collision stub；Huuuge Lottery 保持唯一 canonical TASK-0018，现有链接和历史不重写。
+- Project Source Pack、Current State、Context Manifest 与 replacement list 刷新；Project Sources 仍为 `manual upload required`，未声称自动替换。
+
+### Validation
+
+- 14/14 disposable Git tests 通过：duplicate、companion、格式/Registry 漂移、Pending/approved Candidate、active overlap、两个并发 allocator、reservation release、lock、目录不完整、解析失败和非最新 main。
+- Windows PowerShell 5.1 入口通过；真实仓库扫描为 8 个 canonical Task、0 collision，TASK-0021 并发新增后重新同步并纳入 Registry。
+- Cash Frenzy Candidate 非执行，Huuuge Lottery 是唯一 canonical TASK-0018；没有创建真实 reservation 或晋升 Cash Frenzy。
+
+### Boundaries
+
+- 未修改 Huuuge Collector、Lottery 业务结果、Capture、document-assistant、飞书、SVN、其他业务仓库或本机 Global runtime。
+- 未执行 Cash Frenzy、未建立外部数据库/中心锁、未启用 Subagents；`Subagents: none`。
+
 ## [0.12.0] - 2026-08-27
 
 ### Added

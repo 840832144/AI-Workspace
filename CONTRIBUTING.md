@@ -38,6 +38,18 @@
 3. 不直接修改历史结论；用新 ADR 标记 Supersedes/Superseded by。
 4. ADR 必须链接相关 RFC 和受影响项目。
 
+## Task identity 与分配
+
+1. canonical Task 使用全局唯一 `TASK-XXXX`，新 Task 同时提供 `Project key`；可选 human alias 只用于阅读，不能替代 canonical ID。
+2. Task Markdown 是真相源，`tasks/TASK_REGISTRY.yaml` 只能由 `python tools/tasks/task_cli.py scan --write-registry` 重建，不手工修改。
+3. 新方向在 User 明确批准前进入 `tasks/candidates/`，不占 ID、不可执行。
+4. 新 ID 使用 `task_cli.py next` 完整验证并保留；Candidate 使用 `promote` 晋升。相同 active 目标必须明确继续已有 Task 或子任务关系。
+5. duplicate、解析失败、Registry 漂移、非最新 `origin/main`、main checkout、并发 lock/reservation 冲突全部 fail closed。
+6. companion、authorization 和 review 可以关联 canonical ID，但必须显式分类，不能成为第二个执行入口。
+7. Task / Candidate / Review 变更后重建 Registry、再次 `validate`，再提交和 push；不同 Host/clone 在 Review/merge 前仍需基于最新 main 复验。
+
+操作说明见 [`tools/tasks/README.md`](tools/tasks/README.md)，长期决策见 [`ADR-0006`](docs/adr/ADR-0006-Task-Identity-and-Allocation.md)。
+
 ## 项目记录
 
 每个 `projects/<project>/` 必须包含：
