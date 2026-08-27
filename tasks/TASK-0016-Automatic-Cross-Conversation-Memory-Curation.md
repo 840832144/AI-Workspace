@@ -379,8 +379,17 @@ Codex 完成后必须返回：
 - Reuse-first 调研完成：采用 OpenAI 原生 memory / Codex hooks 作为 Host recall 与 lifecycle 层，以 Git 作为可审计长期真相源；借鉴 Mem0、Letta/MemFS、LangMem、Graphiti 的分层与候选思想，但本阶段不安装、Fork 或引入外部服务。
 - 已实现 Memory Capability、governance、ADR、schema、Public/Private/Local-only 路由、OFF/ASSISTED/AUTO、Windows 入口、ChatGPT/Codex/Generic adapters、Context refresh 与 disabled hook reference。
 - `AUTO` 仅在隔离 Pilot 自动晋升一个新建、Public-safe、低风险 Solution；production 默认及最终模式均为 `ASSISTED`，未安装 hook。
-- 17/17 单元测试通过；隔离 Pilot captured 2、promoted 1、review 1、local-only/Outbox 3、OFF suppressed 1、failed 0。
+- Round 1 的 17/17 单元测试与 Pilot 已由 ChatGPT 接受架构方向，但 Review 1 要求补齐 Private writer、AUTO transaction 和 provenance gate。
 - 实际 AI-Workspace refresh 生成 Manifest、Current State、Source Pack 和替换清单；私有仓库未读取，ChatGPT Project Source 更新明确为 manual upload required。
 - Implementation commit: `ea4b758`（rebase 后 hash）。最终交接提交另见 `handoff/CODEX.md` 所在 Git HEAD。
 - Subagents: none。
 - 未修改 Huuuge 仓库、运行中的 Collector、当前 Capture、SVN、飞书文档、Document Assistant 或 Global runtime。
+
+### Review 1 Required Fix Result
+
+- Required Fix 1：实现 Host-local approved Repository Registry。classification 支持 `public-control-plane`、`project-private`、`cross-project-private-hub`；私有写入同时验证 alias、writer、scope、sensitivity、source project、绝对 Git root，且目标必须位于 public AI-Workspace 之外。Disposable private Git Pilot 写入 1 个 Candidate，public Inbox 为 0；未批准 alias 与错误 classification 均进入 Outbox。
+- Required Fix 2：AUTO promotion 只允许在非 main/master linked worktree 中执行，开始时只允许 `memory/inbox/` 变化；target、Candidate、Archive、index 使用执行前字节快照组成可恢复事务。target 后、Archive 前后、index save、Git status change 五类 fault injection 全部 rollback，`promoted=0`；main 与 unrelated dirty worktree 均在写入前 fail closed。
+- Required Fix 3：所有 Git Candidate 禁止空值及 `unknown`、`n/a`、`none`、`null`、`-`、`tbd` 等 placeholder provenance。CLI、Event file 和 Generic Agent 三条入口均验证缺失时进入 Outbox，public Inbox 零写入。
+- 回归：34/34 tests passed。Round 2 Pilot captured 3（approved private Git 1）、promoted 1、review 1、local-only/Outbox 4、OFF suppressed 1、failed 0；未测量 false captures / missed captures。
+- Final mode：`ASSISTED`。未激活 Hook/AUTO，未访问真实私有项目仓库，未影响 TASK-0017。
+- Review record：`reviews/TASK-0016-CHATGPT-REVIEW-1.md`；下一动作是 ChatGPT Round 2 Review。

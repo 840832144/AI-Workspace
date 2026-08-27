@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-27T04:23:34Z
+Generated: 2026-08-27T06:39:23Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -21,7 +21,7 @@ Generated: 2026-08-27T04:23:34Z
 8. Collector、Knowledge/Analysis、Report Engine、Document Assistant 是分离能力。AI Document Assistant 负责读写文档，不负责生成业务结论；Collector 负责采集，不自动完成报告。
 9. 不在聊天、Git、飞书或项目来源中泄露 Secret、账号信息、原始采集数据、完整响应、逐笔余额、私有 Registry 或敏感日志。
 10. 回答新需求时默认给出：结论、当前依据、下一步。给 Codex 的话术尽量控制在 10 行以内，完整细节写入 Git Task。
-11. 完成实质讨论、明确长期决定、Review、可复用方案或 Task/Handoff 后，静默执行 Memory Check：只生成摘要和 provenance，不保存完整聊天；Public-safe 内容进入 Candidate，私有/敏感/冲突/写能力不足进入 Review 或标准 Outbox。
+11. 完成实质讨论、明确长期决定、Review、可复用方案或 Task/Handoff 后，静默执行 Memory Check：只生成摘要和稳定 provenance，不保存完整聊天；source host/project/actor/reference 禁止使用 `unknown`、`n/a`、`none`、`-` 等占位值。Public-safe 内容进入 Candidate，私有/敏感/冲突/写能力不足进入 Review 或标准 Outbox。
 12. 标准 ChatGPT GitHub App 是只读路径时，不得声称已写 Git。只有当前会话另有批准 writer 时才提交 Candidate；否则输出最小 `Memory Outbox` 事件供 Codex 接管。Core Rule、ADR、Capability 和跨项目策略始终需要 Review。
 
 <!-- SOURCE: 00_CORE_RULES.md -->
@@ -283,7 +283,7 @@ _Last reviewed: 2026-08-27_
 - AI Document Assistant 已接入 Codex，可读写飞书云文档并自动设置企业内可编辑权限。
 - Codex 跨项目 Global AGENTS 已采用 Capability-first / Reuse-first 规则。
 - Codex 1+4 Subagent Pilot 已通过 Review；默认 `OFF`，可在受限权限和适合的复杂任务中手动启用。
-- Git-backed Automatic Memory 已完成 TASK-0016 实施并进入 Review；production 默认 `ASSISTED`，AUTO 仅完成隔离验证，Global hook 未激活。
+- Git-backed Automatic Memory 已完成 TASK-0016 Review 1 的三个 Required Fix，等待 ChatGPT Round 2 Review；production 默认 `ASSISTED`，AUTO 仅完成 linked-worktree 隔离与 fault-injection 验证，Global hook 未激活。
 - “策划在新电脑上按文档和 AI 引导完成采集与文档流程”的首轮验收暂定通过，后续通过真实使用继续优化。
 
 ## 当前 Huuuge 任务
@@ -351,7 +351,7 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T04:23:34Z
+- Generated: 2026-08-27T06:39:23Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -363,7 +363,6 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 - `TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md` — Ready
 - `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — Review
 - `TASK-0016-EXECUTION-AUTHORIZATION.md` — Ready
-- `TASK-0017-Codex-Desktop-Proxy-WebSocket-Reconnect.md` — Ready
 <!-- MEMORY-CONTEXT:END -->
 
 <!-- SOURCE: 03_NEW_CHAT_BOOTSTRAP.md -->

@@ -37,11 +37,13 @@ def event(
     summary: str,
     destination: str = "",
     reference: str = "TASK-0016-PILOT",
+    project: str = "AI-Workspace-Pilot",
+    repository_alias: str = "",
 ) -> list[str]:
     args = [
         "capture", "--title", title, "--type", memory_type, "--scope", scope,
         "--sensitivity", sensitivity, "--source-host", host,
-        "--source-project", "AI-Workspace-Pilot", "--source-actor-alias", host,
+        "--source-project", project, "--source-actor-alias", host,
         "--source-reference", reference, "--related-task", "TASK-0016",
         "--durability-score", "5", "--reuse-score", "5", "--evidence-score", "5",
         "--confidence", "0.96", "--summary", summary,
@@ -49,6 +51,8 @@ def event(
     ]
     if destination:
         args.extend(["--canonical-destination", destination])
+    if repository_alias:
+        args.extend(["--repository-alias", repository_alias])
     return args
 
 
@@ -71,11 +75,64 @@ def prepare(root: Path) -> None:
     (root / "tasks/TASK-0016.md").write_text("# TASK-0016\n\n- Status: In Progress\n", encoding="utf-8")
 
 
+def git(root: Path, *args: str) -> None:
+    subprocess.run(["git", *args], cwd=root, check=True, text=True, encoding="utf-8", capture_output=True)
+
+
+def initialize_git(root: Path) -> None:
+    git(root, "init", "-b", "main")
+    git(root, "config", "user.name", "Memory Pilot")
+    git(root, "config", "user.email", "memory-pilot@example.invalid")
+    git(root, "add", ".")
+    git(root, "commit", "-m", "pilot baseline")
+
+
+def prepare_private_repository(path: Path) -> None:
+    path.mkdir(parents=True)
+    git(path, "init", "-b", "main")
+    git(path, "config", "user.name", "Memory Pilot")
+    git(path, "config", "user.email", "memory-pilot@example.invalid")
+    (path / "README.md").write_text("# Disposable private Pilot repository\n", encoding="utf-8")
+    git(path, "add", ".")
+    git(path, "commit", "-m", "private pilot baseline")
+
+
 def main() -> int:
     with tempfile.TemporaryDirectory(prefix="task-0016-pilot-") as temp:
         base = Path(temp)
-        root, state = base / "repo", base / "state"
-        prepare(root)
+        source, root, state = base / "source", base / "worktree", base / "state"
+        private_root = base / "private-repo"
+        prepare(source)
+        initialize_git(source)
+        git(source, "worktree", "add", "-b", "memory/task-0016-pilot", str(root))
+        prepare_private_repository(private_root)
+        state.mkdir(parents=True, exist_ok=True)
+        registry = {
+            "schema_version": "1.0",
+            "repositories": [
+                {
+                    "alias": "private-pilot",
+                    "path": str(private_root),
+                    "enabled": True,
+                    "writer_enabled": True,
+                    "classification": "project-private",
+                    "allowed_scopes": ["project-private"],
+                    "allowed_sensitivities": ["internal"],
+                    "allowed_source_projects": ["Disposable-Private-Pilot"],
+                },
+                {
+                    "alias": "wrong-classification",
+                    "path": str(private_root),
+                    "enabled": True,
+                    "writer_enabled": True,
+                    "classification": "public-control-plane",
+                    "allowed_scopes": ["project-private"],
+                    "allowed_sensitivities": ["internal"],
+                    "allowed_source_projects": ["Disposable-Private-Pilot"],
+                },
+            ],
+        }
+        (state / "repositories.json").write_text(json.dumps(registry, indent=2), encoding="utf-8")
         scenarios: list[dict] = []
 
         invoke(root, state, "set-mode", "Assisted")
@@ -94,6 +151,8 @@ def main() -> int:
         )
         chatgpt_curate = invoke(root, state, "curate")
         scenarios.append({"scenario": "ChatGPT explicit decision", "capture": chatgpt, "curate": chatgpt_curate})
+        git(root, "add", ".")
+        git(root, "commit", "-m", "pilot assisted review state")
 
         invoke(root, state, "set-mode", "Auto")
         codex = invoke(
@@ -122,9 +181,48 @@ def main() -> int:
                 "project-private",
                 "internal",
                 "A reusable private project procedure that must remain outside public AI-Workspace.",
+                project="Disposable-Private-Pilot",
+                repository_alias="private-pilot",
             ),
         )
-        scenarios.append({"scenario": "Generic IDE private skill", "capture": generic})
+        scenarios.append({
+            "scenario": "Generic IDE approved private skill",
+            "capture": generic,
+            "private_candidate_exists": Path(generic.get("path", "missing")).exists(),
+            "public_inbox_count": len(list((root / "memory/inbox").glob("*.md"))),
+        })
+
+        unauthorized = invoke(
+            root,
+            state,
+            *event(
+                "Unapproved private writer",
+                "GenericIDE",
+                "skill",
+                "project-private",
+                "internal",
+                "This private event must remain in Outbox without an approved alias.",
+                project="Disposable-Private-Pilot",
+                repository_alias="not-approved",
+            ),
+        )
+        scenarios.append({"scenario": "Unapproved private writer Outbox", "capture": unauthorized})
+
+        wrong_classification = invoke(
+            root,
+            state,
+            *event(
+                "Wrong private repository classification",
+                "GenericIDE",
+                "skill",
+                "project-private",
+                "internal",
+                "A classification mismatch must fail closed to Outbox.",
+                project="Disposable-Private-Pilot",
+                repository_alias="wrong-classification",
+            ),
+        )
+        scenarios.append({"scenario": "Wrong classification Outbox", "capture": wrong_classification})
 
         read_only = invoke(
             root,
@@ -175,6 +273,7 @@ def main() -> int:
 
         metrics = {
             "captured": sum(1 for item in scenarios if item["capture"].get("status") == "captured"),
+            "private_git_captured": sum(1 for item in scenarios if item["capture"].get("repository_classification") == "project-private"),
             "promoted": sum(item.get("curate", {}).get("promoted", 0) for item in scenarios),
             "review": sum(item.get("curate", {}).get("review", 0) for item in scenarios),
             "local_only_or_outbox": sum(1 for item in scenarios if item["capture"].get("status") == "local-only"),
@@ -186,7 +285,7 @@ def main() -> int:
         }
         report = {
             "pilot": "TASK-0016",
-            "environment": "disposable repository; no production hook or private repository access",
+            "environment": "disposable linked worktree and disposable private Git repository; no production hook or real private repository access",
             "scenarios": scenarios,
             "refresh": refresh,
             "final_status": final_status,

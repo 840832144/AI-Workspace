@@ -12,7 +12,7 @@ _Last reviewed: 2026-08-27_
 - AI Document Assistant 已接入 Codex，可读写飞书云文档并自动设置企业内可编辑权限。
 - Codex 跨项目 Global AGENTS 已采用 Capability-first / Reuse-first 规则。
 - Codex 1+4 Subagent Pilot 已通过 Review；默认 `OFF`，可在受限权限和适合的复杂任务中手动启用。
-- Git-backed Automatic Memory 已完成 TASK-0016 实施并进入 Review；production 默认 `ASSISTED`，AUTO 仅完成隔离验证，Global hook 未激活。
+- Git-backed Automatic Memory 已完成 TASK-0016 Review 1 的三个 Required Fix，等待 ChatGPT Round 2 Review；production 默认 `ASSISTED`，AUTO 仅完成 linked-worktree 隔离与 fault-injection 验证，Global hook 未激活。
 - “策划在新电脑上按文档和 AI 引导完成采集与文档流程”的首轮验收暂定通过，后续通过真实使用继续优化。
 
 ## 当前 Huuuge 任务
@@ -80,7 +80,7 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T04:23:34Z
+- Generated: 2026-08-27T06:39:23Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -92,5 +92,4 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 - `TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md` — Ready
 - `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — Review
 - `TASK-0016-EXECUTION-AUTHORIZATION.md` — Ready
-- `TASK-0017-Codex-Desktop-Proxy-WebSocket-Reconnect.md` — Ready
 <!-- MEMORY-CONTEXT:END -->

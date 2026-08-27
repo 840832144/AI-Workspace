@@ -34,12 +34,14 @@ Candidate 至少包含 schema version、`memory_id`、type、scope、sensitivity
 ## Safety Contract
 
 1. Public repository 只接受 `scope=public` 且 `sensitivity=public` 的 Candidate。
-2. Project Private 写对应私有业务仓库；没有批准 writer 时进入本机 Outbox。
-3. Cross-project Private 在 User 批准私有 Context Hub 前只进入本机 Outbox。
+2. Project Private 只有在 Host-local Registry 将 alias 分类为 `project-private`，并批准 writer、scope、sensitivity、source project 与外部 Git root 时写对应私有业务仓库；否则进入本机 Outbox。
+3. Cross-project Private 只写 Registry 分类为 `cross-project-private-hub` 的 User 批准私有 Context Hub；不存在或不匹配时进入本机 Outbox。
 4. Local-only、Secret、Raw Capture、账号数据、逐笔余额、完整响应和敏感日志不得上传。
 5. scope 或 sensitivity 不明确时 fail closed，不写公共仓库。
 6. 单个 Agent 不静默覆盖 canonical file；冲突进入 Review，历史通过 `supersedes` 保留。
 7. Core Rule、ADR、Capability、权限、费用和跨项目策略在 AUTO 中仍必须 Review。
+8. 所有 Git Candidate 的 source host/project/actor/reference 禁止空值和占位值；缺失时进入 Outbox。
+9. AUTO canonical promotion 要求非 main/master linked worktree，并对 target、Candidate、Archive、index 做原子语义事务；任一失败 `promoted=0`。
 
 ## Current Implementation Binding
 
@@ -58,9 +60,11 @@ Candidate 至少包含 schema version、`memory_id`、type、scope、sensitivity
 | --- | --- |
 | OFF | `rejected/suppressed`；不写 Candidate |
 | Secret / private content targeting public Git | sanitized `local-only` Outbox；公共路径无写入 |
-| Schema / destination invalid | `failed` 或 `review`；不晋升 |
+| Schema / destination / provenance invalid | `failed`、`review` 或 sanitized Outbox；不写 Git、不晋升 |
 | Duplicate | `rejected/duplicate`；不静默删除既有 canonical |
 | Conflict | `review/conflict`；保留双方 provenance |
+| Private Registry / classification / Git writer 不匹配 | sanitized Outbox；public control-plane 零写入 |
+| AUTO branch/worktree/status/transaction failure | 四资源回滚；`promoted=0`；回滚失败时 recovery record 阻断后续 AUTO |
 | Git/permission/write failure | sanitized Outbox + `failed`；不得声称上传成功 |
 | Context Source 无安全自动替换 API | 生成替换清单并报告 `manual upload required` |
 

@@ -1,7 +1,7 @@
 # Memory Governance Standard
 
 - Status: Proposed / Waiting for ChatGPT Review
-- Version: 1.0
+- Version: 1.1
 - Date: 2026-08-27
 - Scope: Game Planner AI Workspace 与登记的游戏项目
 - Source: TASK-0016 / ADR-0005
@@ -23,6 +23,22 @@ Host 在完成实质讨论、Task、Review 或 Handoff 时执行 Memory Check。
 | Unknown | Review / Outbox；禁止写公共 Git |
 
 公共仓库中的 `internal`、`confidential`、`secret` 或 `unknown` sensitivity 一律 fail closed。
+
+### Repository classification and approved destination
+
+Git 写入目标必须先分类：
+
+| Classification | Allowed scope | Purpose |
+| --- | --- | --- |
+| `public-control-plane` | `public/public` | 当前 AI-Workspace；禁止承载私有 Candidate |
+| `project-private` | `project-private` + Registry 批准 sensitivity | 单个批准游戏项目的私有 Git repository |
+| `cross-project-private-hub` | `cross-project-private` + Registry 批准 sensitivity | User 明确批准的跨项目私有 Context Hub |
+
+Private writer 只信任 Host-local `repositories.json`。条目必须唯一匹配 `repository_alias`，并同时满足 `enabled=true`、`writer_enabled=true`、classification、`allowed_scopes`、`allowed_sensitivities`、`allowed_source_projects`、绝对 Git root path；目标必须位于 public control-plane repository 之外。任一条件缺失或冲突时进入 sanitized Outbox，不尝试猜测或降级写公共 Git。Registry 路径、仓库细节和私有内容不得写入公共 Manifest。
+
+### Git provenance gate
+
+所有进入 Git 的 Candidate 必须提供稳定、可复查的 `source_host`、`source_project`、`source_actor_alias` 和 `source_reference`。空值以及 `unknown`、`n/a`、`none`、`null`、`-`、`tbd` 等占位值无效；CLI、Event file 与 Generic Agent 入口均在写 Git 前转入 Outbox。Local-only / route-required Outbox 可以保留最小缺失说明，但不得因此伪造 provenance。
 
 ## Validation Order
 
@@ -64,9 +80,10 @@ Mode 是 Host-local kill switch。仓库保存默认值，Host 可在本机 stat
 ## Concurrency and Rollback
 
 - 写操作获取 repository-local exclusive lock；锁存在且未过期时 fail closed。
-- 自动 Git writer 只能使用独立 branch/worktree/PR 或等价隔离，不直接并发写共享 `main`。
+- AUTO canonical promotion 只允许在非 `main/master` 的独立 linked worktree 中运行；开始时工作树只能包含允许的 `memory/inbox/` Candidate，branch、HEAD 或其他 Git status 在事务中变化即失败。
 - canonical write 使用临时文件 + atomic replace；目标已存在时不覆盖。
-- Promotion 后 Candidate 保留在 Archive，index 记录 provenance、目标和 fingerprint。
+- canonical target、原 Candidate、Archive 和 index 构成一个 promotion transaction。任一步失败都按执行前字节快照恢复四者，并且 `promoted=0`；回滚本身失败时写 Host-local recovery record，存在未解决 recovery record 时禁止后续 AUTO promotion。
+- Promotion 成功后 Candidate 保留在 Archive，index 记录 provenance、目标和 fingerprint。
 - 历史记录通过 commit/revert、Archive 与 `supersedes` 恢复，不重写旧 ADR。
 
 ## Secret Handling

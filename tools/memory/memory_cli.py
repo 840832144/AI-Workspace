@@ -8,6 +8,7 @@ events, but this module owns schema, routing, secret, dedup and promotion gates.
 from __future__ import annotations
 
 import argparse
+import copy
 import contextlib
 import datetime as dt
 import hashlib
@@ -42,6 +43,14 @@ ALLOWED_DESTINATION_ROOTS = {
     "solutions", "memory", "handoff", "tasks", "projects", "skills",
     "workflows", "bootstrap",
 }
+PROVENANCE_FIELDS = ("source_host", "source_project", "source_actor_alias", "source_reference")
+PROVENANCE_PLACEHOLDERS = {
+    "", "unknown", "n a", "na", "none", "null", "not applicable", "tbd", "unspecified",
+}
+PRIVATE_CLASSIFICATION_BY_SCOPE = {
+    "project-private": "project-private",
+    "cross-project-private": "cross-project-private-hub",
+}
 SECRET_PATTERNS = {
     "private-key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----", re.I),
     "authorization-header": re.compile(r"Authorization\s*:\s*(?:Bearer|Basic)\s+[A-Za-z0-9._~+/=-]{8,}", re.I),
@@ -68,6 +77,21 @@ def atomic_write_text(path: Path, text: str) -> None:
     try:
         with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:
             handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_name, path)
+    except Exception:
+        with contextlib.suppress(OSError):
+            os.unlink(temp_name)
+        raise
+
+
+def atomic_write_bytes(path: Path, content: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temp_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(fd, "wb") as handle:
+            handle.write(content)
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temp_name, path)
@@ -157,7 +181,7 @@ def render_candidate(meta: dict[str, Any], summary: str) -> str:
     ordered = [
         "schema_version", "memory_id", "title", "type", "scope", "sensitivity",
         "status", "source_host", "source_project", "source_actor_alias",
-        "source_reference", "related_task", "related_commit", "created_at",
+        "source_reference", "related_task", "related_commit", "created_at", "repository_alias",
         "durability_score", "reuse_score", "evidence_score", "confidence",
         "normalized_key", "content_fingerprint", "canonical_destination",
         "evidence", "constraints", "supersedes", "curated_at", "review_reason",
@@ -211,6 +235,15 @@ def candidate_fingerprint(data: dict[str, Any], summary: str) -> str:
         "source_reference": normalize_text(str(data.get("source_reference", ""))),
     }
     return hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
+
+
+def provenance_errors(meta: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    for key in PROVENANCE_FIELDS:
+        value = str(meta.get(key, "")).strip()
+        if normalize_text(value) in PROVENANCE_PLACEHOLDERS:
+            errors.append(f"{key} must be stable provenance, not a placeholder")
+    return errors
 
 
 class FileLock:
@@ -316,7 +349,7 @@ def validate_destination(value: str) -> str | None:
     return None
 
 
-def validate_meta(meta: dict[str, Any], body: str) -> list[str]:
+def validate_meta(meta: dict[str, Any], body: str, require_git_provenance: bool = True) -> list[str]:
     errors: list[str] = []
     missing = sorted(REQUIRED_FIELDS - set(meta))
     if missing:
@@ -350,6 +383,8 @@ def validate_meta(meta: dict[str, Any], body: str) -> list[str]:
     for key in ("title", "source_host", "source_project", "source_actor_alias", "source_reference"):
         if not str(meta.get(key, "")).strip():
             errors.append(f"{key} must not be empty")
+    if require_git_provenance:
+        errors.extend(provenance_errors(meta))
     if len(str(meta.get("source_reference", ""))) > 500:
         errors.append("source_reference is too long; store a stable reference, not a transcript")
     destination_error = validate_destination(str(meta.get("canonical_destination", "")))
@@ -412,8 +447,203 @@ def save_index(root: Path, data: dict[str, Any]) -> None:
     atomic_write_text(root / "memory" / "index" / "memory-index.json", json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
 
 
+def git_path(root: Path, value: str) -> Path:
+    path = Path(value)
+    return path.resolve() if path.is_absolute() else (root / path).resolve()
+
+
+def validate_auto_git_context(root: Path) -> dict[str, Any]:
+    if not (root / ".git").exists():
+        raise RuntimeError("AUTO promotion requires a Git worktree")
+    branch = git(["branch", "--show-current"], root).stdout.strip()
+    if branch in {"", "main", "master"}:
+        raise RuntimeError("AUTO promotion requires a non-main branch")
+    git_dir = git_path(root, git(["rev-parse", "--git-dir"], root).stdout.strip())
+    common_dir = git_path(root, git(["rev-parse", "--git-common-dir"], root).stdout.strip())
+    if git_dir == common_dir:
+        raise RuntimeError("AUTO promotion requires an independent linked worktree")
+    status = git_status_paths(root)
+    unrelated = sorted(path for path in status if not path.startswith("memory/inbox/"))
+    if unrelated:
+        raise RuntimeError(f"AUTO promotion worktree has unrelated changes: {unrelated}")
+    return {"branch": branch, "head": git(["rev-parse", "HEAD"], root).stdout.strip(), "status": status}
+
+
+def path_snapshot(path: Path) -> bytes | None:
+    return path.read_bytes() if path.exists() else None
+
+
+def restore_path_snapshot(path: Path, content: bytes | None) -> None:
+    if content is None:
+        with contextlib.suppress(FileNotFoundError):
+            path.unlink()
+        with contextlib.suppress(OSError):
+            path.parent.rmdir()
+    else:
+        atomic_write_bytes(path, content)
+
+
+def maybe_inject_promotion_fault(root: Path, stage: str) -> None:
+    requested = os.environ.get("AI_WORKSPACE_MEMORY_FAULT_INJECTION", "").strip()
+    if not requested:
+        return
+    if not (root / ".memory-test-allow-faults").exists():
+        raise RuntimeError("fault injection is disabled outside a marked disposable worktree")
+    if requested == "git-status-change" and stage == "after-target":
+        atomic_write_text(root / ".memory-fault-unrelated", "fault injection\n")
+        return
+    if requested == stage:
+        raise RuntimeError(f"injected promotion failure at {stage}")
+
+
+def write_recovery_record(state_dir: Path, memory_id: str, error: Exception, rollback_error: Exception) -> Path:
+    path = state_dir / "recovery" / f"{memory_id}.json"
+    payload = {
+        "schema_version": SCHEMA_VERSION,
+        "memory_id": memory_id,
+        "status": "manual-recovery-required",
+        "created_at": utc_now(),
+        "error_type": type(error).__name__,
+        "rollback_error_type": type(rollback_error).__name__,
+    }
+    atomic_write_text(path, json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
+    return path
+
+
+def assert_promotion_git_state(root: Path, context: dict[str, Any], managed_paths: set[str]) -> None:
+    branch = git(["branch", "--show-current"], root).stdout.strip()
+    head = git(["rev-parse", "HEAD"], root).stdout.strip()
+    if branch != context["branch"] or head != context["head"]:
+        raise RuntimeError("Git branch or HEAD changed during AUTO promotion")
+    current = git_status_paths(root)
+    unexpected = sorted(current - set(context["status"]) - managed_paths)
+    if unexpected:
+        raise RuntimeError(f"Git status changed outside promotion transaction: {unexpected}")
+
+
+def promote_solution_transaction(
+    root: Path,
+    state_dir: Path,
+    candidate_path: Path,
+    meta: dict[str, Any],
+    summary: str,
+    index: dict[str, Any],
+    git_context: dict[str, Any],
+) -> Path:
+    recovery = state_dir / "recovery"
+    if recovery.exists() and any(recovery.glob("*.json")):
+        raise RuntimeError("unresolved promotion recovery record; AUTO promotion is blocked")
+    target = root / str(meta["canonical_destination"])
+    archive = root / "memory" / "archive" / candidate_path.name
+    index_path = root / "memory" / "index" / "memory-index.json"
+    managed = {
+        candidate_path.relative_to(root).as_posix(), target.relative_to(root).as_posix(),
+        archive.relative_to(root).as_posix(), index_path.relative_to(root).as_posix(),
+    }
+    snapshots = {path: path_snapshot(path) for path in (candidate_path, target, archive, index_path)}
+    index_before = copy.deepcopy(index)
+    try:
+        assert_promotion_git_state(root, git_context, managed)
+        atomic_write_text(target, solution_document(meta, summary))
+        maybe_inject_promotion_fault(root, "after-target")
+        assert_promotion_git_state(root, git_context, managed)
+        maybe_inject_promotion_fault(root, "before-archive")
+        archive_candidate(root, candidate_path, dict(meta), summary, "promoted", "AUTO solution allowlist")
+        maybe_inject_promotion_fault(root, "after-archive")
+        assert_promotion_git_state(root, git_context, managed)
+        index["entries"].append({
+            "memory_id": meta["memory_id"],
+            "normalized_key": meta["normalized_key"],
+            "content_fingerprint": meta["content_fingerprint"],
+            "canonical_destination": meta["canonical_destination"],
+            "promoted_at": utc_now(),
+            "source_reference": meta["source_reference"],
+        })
+        maybe_inject_promotion_fault(root, "index-save")
+        save_index(root, index)
+        assert_promotion_git_state(root, git_context, managed)
+        git_context["status"] = git_status_paths(root)
+        return target
+    except Exception as exc:
+        try:
+            for path, content in snapshots.items():
+                restore_path_snapshot(path, content)
+            index.clear()
+            index.update(index_before)
+        except Exception as rollback_exc:
+            record = write_recovery_record(state_dir, str(meta.get("memory_id", "unknown")), exc, rollback_exc)
+            raise RuntimeError(f"promotion rollback failed; recovery record: {record}") from rollback_exc
+        raise
+
+
 def git(args: list[str], root: Path, check: bool = True) -> subprocess.CompletedProcess[str]:
     return subprocess.run(["git", *args], cwd=root, text=True, encoding="utf-8", errors="replace", capture_output=True, check=check)
+
+
+def status_path(line: str) -> str:
+    value = line[3:].strip()
+    if " -> " in value:
+        value = value.split(" -> ", 1)[1]
+    if value.startswith('"'):
+        try:
+            value = json.loads(value)
+        except json.JSONDecodeError:
+            pass
+    return value.replace("\\", "/")
+
+
+def git_status_paths(root: Path) -> set[str]:
+    lines = git(["status", "--porcelain", "--untracked-files=all"], root).stdout.splitlines()
+    return {status_path(line) for line in lines if line.strip()}
+
+
+def load_repository_registry(state_dir: Path) -> list[dict[str, Any]]:
+    path = state_dir / "repositories.json"
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("schema_version") != SCHEMA_VERSION or not isinstance(data.get("repositories"), list):
+        raise ValueError("local repositories registry schema is invalid")
+    return data["repositories"]
+
+
+def approved_private_repository(data: dict[str, Any], state_dir: Path) -> tuple[Path | None, str, str]:
+    scope = str(data.get("scope", ""))
+    expected_classification = PRIVATE_CLASSIFICATION_BY_SCOPE.get(scope, "")
+    alias = str(data.get("repository_alias", "")).strip()
+    if not expected_classification:
+        return None, "", "scope is not eligible for private Git routing"
+    if not alias or normalize_text(alias) in PROVENANCE_PLACEHOLDERS:
+        return None, expected_classification, "approved repository_alias is required"
+    matches = [entry for entry in load_repository_registry(state_dir) if str(entry.get("alias", "")) == alias]
+    if len(matches) != 1:
+        return None, expected_classification, "repository alias is not uniquely approved"
+    entry = matches[0]
+    if not entry.get("enabled", False) or not entry.get("writer_enabled", False):
+        return None, expected_classification, "repository writer is not enabled"
+    if entry.get("classification") != expected_classification:
+        return None, expected_classification, "repository classification does not match scope"
+    allowed_scopes = entry.get("allowed_scopes", [])
+    allowed_sensitivities = entry.get("allowed_sensitivities", [])
+    allowed_projects = entry.get("allowed_source_projects", [])
+    if not all(isinstance(value, list) for value in (allowed_scopes, allowed_sensitivities, allowed_projects)):
+        return None, expected_classification, "repository allowlists must be lists"
+    if scope not in allowed_scopes:
+        return None, expected_classification, "scope is not approved for repository"
+    if str(data.get("sensitivity", "")) not in allowed_sensitivities:
+        return None, expected_classification, "sensitivity is not approved for repository"
+    if str(data.get("source_project", "")) not in allowed_projects:
+        return None, expected_classification, "source project is not approved for repository"
+    raw_path = Path(str(entry.get("path", "")))
+    if not raw_path.is_absolute():
+        return None, expected_classification, "approved repository path must be absolute"
+    path = raw_path.resolve()
+    if not path.is_dir():
+        return None, expected_classification, "approved repository is unavailable"
+    probe = git(["rev-parse", "--show-toplevel"], path, check=False)
+    if probe.returncode != 0 or Path(probe.stdout.strip()).resolve() != path:
+        return None, expected_classification, "approved destination is not the Git repository root"
+    return path, expected_classification, "approved"
 
 
 def commit_candidate(root: Path, candidate: Path, push: bool) -> dict[str, str]:
@@ -422,15 +652,6 @@ def commit_candidate(root: Path, candidate: Path, push: bool) -> dict[str, str]:
         raise RuntimeError("automatic candidate commits require a non-main branch")
     status = git(["status", "--porcelain", "--untracked-files=all"], root).stdout.splitlines()
     relative = candidate.relative_to(root).as_posix()
-    def status_path(line: str) -> str:
-        value = line[3:].strip()
-        if value.startswith('"'):
-            try:
-                value = json.loads(value)
-            except json.JSONDecodeError:
-                pass
-        return value.replace("\\", "/")
-
     unrelated = [line for line in status if status_path(line) != relative]
     if unrelated:
         raise RuntimeError(f"working tree contains unrelated changes; candidate commit refused: {unrelated}")
@@ -451,7 +672,7 @@ def build_event(args: argparse.Namespace) -> dict[str, Any]:
     for key in (
         "title", "type", "scope", "sensitivity", "source_host", "source_project",
         "source_actor_alias", "source_reference", "related_task", "related_commit",
-        "summary", "canonical_destination",
+        "summary", "canonical_destination", "repository_alias",
     ):
         value = getattr(args, key, None)
         if value is not None:
@@ -481,6 +702,7 @@ def build_event(args: argparse.Namespace) -> dict[str, Any]:
         "evidence_score": 0,
         "confidence": 0.0,
         "canonical_destination": "",
+        "repository_alias": "",
     }
     for key, value in defaults.items():
         data.setdefault(key, value)
@@ -513,29 +735,65 @@ def capture_command(args: argparse.Namespace) -> int:
         outbox = write_outbox(state_dir, "local-only", {**meta, "summary": summary}, "secret scan failed", secret_categories)
         emit("local-only", reason="secret scan failed", secret_categories=secret_categories, outbox=str(outbox), captured=0)
         return 0
-    validation_errors = validate_meta(meta, candidate_body)
+    validation_errors = validate_meta(meta, candidate_body, require_git_provenance=False)
     if validation_errors:
         outbox = write_outbox(state_dir, "failed-validation", {**meta, "summary": summary}, "; ".join(validation_errors))
         emit("failed", reason="candidate validation failed", errors=validation_errors, outbox=str(outbox), captured=0)
         return 2
     public_safe = meta["scope"] == "public" and meta["sensitivity"] == "public"
-    if args.force_outbox or not public_safe:
-        reason = "writer unavailable" if args.force_outbox else "non-public routing"
+    destination_root = root
+    repository_classification = "public-control-plane"
+    if args.force_outbox:
+        reason = "writer unavailable"
         outbox = write_outbox(state_dir, "route-required", {**meta, "summary": summary}, reason)
         emit("local-only", reason=reason, scope=meta["scope"], sensitivity=meta["sensitivity"], outbox=str(outbox), captured=0)
         return 0
-    candidate = root / "memory" / "inbox" / f"{memory_id}-{slugify(str(meta['title']))}.md"
+    if public_safe and str(meta.get("repository_alias", "")).strip():
+        reason = "public Candidate cannot target a private repository_alias"
+        outbox = write_outbox(state_dir, "route-required", {**meta, "summary": summary}, reason)
+        emit("local-only", reason=reason, outbox=str(outbox), captured=0)
+        return 0
+    if not public_safe:
+        try:
+            destination_root, repository_classification, route_reason = approved_private_repository(meta, state_dir)
+        except Exception as exc:
+            destination_root, repository_classification = None, ""
+            route_reason = f"repository registry rejected: {type(exc).__name__}"
+        if destination_root is not None:
+            try:
+                destination_root.relative_to(root)
+                destination_root = None
+                route_reason = "private repository must be outside the public control-plane repository"
+            except ValueError:
+                pass
+        if destination_root is None:
+            outbox = write_outbox(state_dir, "route-required", {**meta, "summary": summary}, route_reason)
+            emit(
+                "local-only", reason=route_reason, scope=meta["scope"], sensitivity=meta["sensitivity"],
+                repository_alias=meta.get("repository_alias", ""), outbox=str(outbox), captured=0,
+            )
+            return 0
+    provenance = provenance_errors(meta)
+    if provenance:
+        outbox = write_outbox(state_dir, "provenance-required", {**meta, "summary": summary}, "; ".join(provenance))
+        emit("local-only", reason="Git provenance required", errors=provenance, outbox=str(outbox), captured=0)
+        return 0
+    candidate = destination_root / "memory" / "inbox" / f"{memory_id}-{slugify(str(meta['title']))}.md"
     try:
-        with FileLock(root, state_dir):
-            duplicate = find_duplicate(root, meta["content_fingerprint"])
+        with FileLock(destination_root, state_dir):
+            duplicate = find_duplicate(destination_root, meta["content_fingerprint"])
             if duplicate:
                 emit("rejected", reason="duplicate", duplicate_of=str(duplicate), captured=0)
                 return 0
             atomic_write_text(candidate, candidate_text)
         git_result: dict[str, str] = {}
         if args.git_commit:
-            git_result = commit_candidate(root, candidate, args.git_push)
-        emit("captured", memory_id=memory_id, path=str(candidate), mode=mode, captured=1, git=git_result)
+            git_result = commit_candidate(destination_root, candidate, args.git_push)
+        emit(
+            "captured", memory_id=memory_id, path=str(candidate), mode=mode, captured=1,
+            repository_alias=meta.get("repository_alias", ""), repository_classification=repository_classification,
+            git=git_result,
+        )
         return 0
     except Exception as exc:
         outbox = write_outbox(state_dir, "failed", {**meta, "summary": summary}, f"repository write failed: {type(exc).__name__}")
@@ -634,6 +892,7 @@ def curate_command(args: argparse.Namespace) -> int:
     counts = {"promoted": 0, "review": 0, "rejected": 0, "local-only": 0, "failed": 0}
     details: list[dict[str, Any]] = []
     try:
+        git_context = validate_auto_git_context(root) if mode == "AUTO" else {}
         with FileLock(root, state_dir):
             index = load_index(root)
             for path in sorted((root / "memory" / "inbox").glob("*.md")):
@@ -686,24 +945,14 @@ def curate_command(args: argparse.Namespace) -> int:
                         counts["review"] += 1
                         details.append({"memory_id": meta["memory_id"], "result": "review", "reason": reason})
                         continue
-                    target = root / str(meta["canonical_destination"])
-                    atomic_write_text(target, solution_document(meta, summary))
-                    index["entries"].append({
-                        "memory_id": meta["memory_id"],
-                        "normalized_key": meta["normalized_key"],
-                        "content_fingerprint": meta["content_fingerprint"],
-                        "canonical_destination": meta["canonical_destination"],
-                        "promoted_at": utc_now(),
-                        "source_reference": meta["source_reference"],
-                    })
-                    archive_candidate(root, path, meta, summary, "promoted", "AUTO solution allowlist")
+                    target = promote_solution_transaction(root, state_dir, path, meta, summary, index, git_context)
                     counts["promoted"] += 1
                     details.append({"memory_id": meta["memory_id"], "result": "promoted", "target": str(target)})
                 except Exception as exc:
                     counts["failed"] += 1
                     details.append({"path": str(path), "result": "failed", "reason": str(exc)})
-            save_index(root, index)
     except Exception as exc:
+        counts["failed"] += 1
         emit("failed", reason=str(exc), **counts)
         return 1
     emit("curated", mode=mode, details=details, **counts)
@@ -944,7 +1193,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     capture = sub.add_parser("capture")
     capture.add_argument("--event")
-    for name in ("title", "type", "scope", "sensitivity", "source-host", "source-project", "source-actor-alias", "source-reference", "related-task", "related-commit", "summary", "canonical-destination"):
+    for name in ("title", "type", "scope", "sensitivity", "source-host", "source-project", "source-actor-alias", "source-reference", "related-task", "related-commit", "summary", "canonical-destination", "repository-alias"):
         capture.add_argument(f"--{name}", dest=name.replace("-", "_"))
     for name in ("durability-score", "reuse-score", "evidence-score"):
         capture.add_argument(f"--{name}", dest=name.replace("-", "_"), type=int)

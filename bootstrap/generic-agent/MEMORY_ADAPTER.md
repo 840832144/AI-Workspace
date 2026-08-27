@@ -8,9 +8,10 @@
 
 1. 只生成 `templates/memory/MEMORY_EVENT.yaml` 的结构化摘要，不附完整聊天或日志。
 2. 标记 `scope` 与 `sensitivity`。不明确时使用 `unknown`，禁止写公共 Git。
-3. 有 AI-Workspace writer：运行 `Capture-MemoryCandidate`；无 writer：加 `--force-outbox`，把返回的 Outbox 路径交给 Codex/Curator。
-4. Public candidate 的自动 commit 只在 clean、非 `main` branch 上使用 `--git-commit`；未经授权不 push、不创建 PR。
-5. 任何 Secret、Raw Capture、账号数据、逐笔余额、完整响应或敏感日志只记录被拦截 category，不复制 value。
+3. `source_host`、`source_project`、`source_actor_alias`、`source_reference` 必须是稳定且可复查的真实来源；`unknown`、`n/a`、`none`、`-` 等占位值只能进入 Outbox，不能写 Git Candidate。
+4. Public 内容有 AI-Workspace writer 时运行 `Capture-MemoryCandidate`；无 writer时加 `--force-outbox`。Project Private / Cross-project Private 还必须提供 Host-local Registry 中已批准的 `-RepositoryAlias`，并由 classification、scope、sensitivity、source project 四重 gate 决定是否写对应私有 Git repository；缺失或不匹配继续 Outbox。
+5. Public candidate 的自动 commit 只在 clean、非 `main` branch 上使用 `--git-commit`；未经授权不 push、不创建 PR。
+6. 任何 Secret、Raw Capture、账号数据、逐笔余额、完整响应或敏感日志只记录被拦截 category，不复制 value。
 
 ## Minimal command
 

@@ -29,6 +29,7 @@ param(
     [string[]]$Constraint,
     [string[]]$Supersedes,
     [string]$CanonicalDestination,
+    [string]$RepositoryAlias,
     [switch]$ForceOutbox,
     [switch]$GitCommit,
     [switch]$GitPush
@@ -46,7 +47,7 @@ $mapping = [ordered]@{
     RelatedCommit = '--related-commit'; DurabilityScore = '--durability-score'
     ReuseScore = '--reuse-score'; EvidenceScore = '--evidence-score'
     Confidence = '--confidence'; Summary = '--summary'
-    CanonicalDestination = '--canonical-destination'
+    CanonicalDestination = '--canonical-destination'; RepositoryAlias = '--repository-alias'
 }
 foreach ($entry in $mapping.GetEnumerator()) {
     if ($PSBoundParameters.ContainsKey($entry.Key)) {

@@ -1,10 +1,10 @@
 schema_version: "1.0"
-generated_at: "2026-08-27T04:23:34Z"
+generated_at: "2026-08-27T06:39:23Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "36ed7aeb374e18a9697f90c2aa1acb0cec1a0cad"
+repository_head: "aa18233e27e99b619795399aac4343e658048f4c"
 repository_branch: "main"
-repository_dirty_before_refresh: false
+repository_dirty_before_refresh: true
 repository_sync: "not-requested"
 private_repositories: "not read"
 sources:
@@ -15,14 +15,14 @@ sources:
     sha256: "a5530244b8eb930e17cd718f6ea57e482fcf6886a7ac95b7420a79e0d07e28a7"
     bytes: 5127
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "ed04165b39bd793717e33d39a5dd920119019528ef5d0a5a2d1c5c8fe2deb4b3"
-    bytes: 5306
+    sha256: "9be110dda10c960a2b593446d5dc3a16c45b87be63ef94f27d9a7aa107d7a56c"
+    bytes: 5317
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "81b1cc0bba8601496b5fa86365cd211a71f0755ec77b8b4517d1a2f0710f7602"
     bytes: 3354
   - path: "bootstrap/chatgpt/PROJECT_INSTRUCTIONS.md"
-    sha256: "cff813c814b641732e801eddb0508163be3159966ad25348546e64f5c9cca516"
-    bytes: 2666
+    sha256: "f68d26b854759ee2cea71fede2480ef68c44500239d6c4e6211a31180673072c"
+    bytes: 2768
   - path: "bootstrap/chatgpt/README.md"
     sha256: "c15a3d215cedf4b51107595ecbd3cac33fe9b0923b8ed190d8891015827747a4"
     bytes: 1707
@@ -33,8 +33,8 @@ sources:
     sha256: "bb24b7f6d49a582e1b73628a04a4b6255f522f19456183210156ce34e5ddebdf"
     bytes: 5422
   - path: "capabilities/memory/README.md"
-    sha256: "03cf06d7bc5b5abe6febf0a7d35b83d32529dc070c5f55af5b746d4f9575ddad"
-    bytes: 4937
+    sha256: "a15c76a6e09ea79342faf9716488bcf436149317adad373414e62e38bb21ca49"
+    bytes: 5714
   - path: "docs/adr/ADR-0001-Game-Planner-Domain.md"
     sha256: "59b07670c07b14965658adabe154cc6a813bfd2cab9e52852ca992d5694fb67d"
     bytes: 2032
@@ -48,17 +48,17 @@ sources:
     sha256: "d0596de044c1f4205410b29f7fdf412e915f5adb69fab66c63cf8d2e124d9ba5"
     bytes: 5065
   - path: "docs/adr/ADR-0005-Git-Backed-Automatic-Memory.md"
-    sha256: "cb41bc76050758640a2f458c97393e63708e346f85157fb8b1e86fb6b66fe040"
-    bytes: 3401
+    sha256: "a37e6efb61689e7ff05f1eaf6fc1e204c013f1dd52ffb8d35a5105cc6b3fb011"
+    bytes: 4381
   - path: "docs/adr/README.md"
     sha256: "ab2a67e89394abb84d9a7c71f3cf3db0571cac5eb52aa04689ccc267847e5f5b"
     bytes: 990
   - path: "handoff/CHATGPT.md"
-    sha256: "3c878cf05df75a871d4f7ddcf034303713bc1c9b907b204f0d755e26f46944b3"
-    bytes: 2632
+    sha256: "c1d7cdabf39dd153b8fc558e35a469765228e78a2868a01c147788571955f618"
+    bytes: 2544
   - path: "handoff/CODEX.md"
-    sha256: "13d308f00d3846cd40bd8c458abc0937cc6edc6acb6f3aed2588a7fd554b0d47"
-    bytes: 6520
+    sha256: "5e071c1db35ec457f02213a09c3dba224c4c4d7acc68a2c2232b03387c93aa9f"
+    bytes: 6012
   - path: "skills/README.md"
     sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
     bytes: 1797
@@ -96,14 +96,17 @@ sources:
     sha256: "c9599f14a865a9ebbef50479373fc680b297457e99851d130f4f473ad4c408cb"
     bytes: 170
   - path: "solutions/README.md"
-    sha256: "c7d8ec26e6b18e5168b0992aa614ab396cdedd70015e4ab0f44c8f9f60025d69"
-    bytes: 350
+    sha256: "d5e977f4b5204b0b47fd0897bae9211a9fbc59b859f3b160f73d3ce493285923"
+    bytes: 525
+  - path: "solutions/codex/reconnecting-proxy/README.md"
+    sha256: "4fb810787fc21182c22fca88a78359c03280a13af9a5678362805f2c0fe46760"
+    bytes: 3513
   - path: "standards/HUUUGE_EVIDENCE_STANDARD.md"
     sha256: "6158dcd8bbc23aa2ec6bba052ab9acc16b657202435440e126dec328cf3cc58f"
     bytes: 8519
   - path: "standards/MEMORY_GOVERNANCE.md"
-    sha256: "c89d351efae88194f3cb8e29dada6b69a3360a7a4c7e3a03701c5f288ac7a310"
-    bytes: 4000
+    sha256: "14e1f7df21700018961d512c9b068d46d97ac321fce7eb4a3369acd92282c65c"
+    bytes: 5864
   - path: "standards/README.md"
     sha256: "844f9881e793bd1b37a6c0f34493b62aaffa77b749fbbdbdb28a3463f878736f"
     bytes: 1793
@@ -117,20 +120,20 @@ sources:
     sha256: "952f6faa9d55ed7d7448e8ccfa597dface59c48adb5d55e5ac52b504b1742a10"
     bytes: 7616
   - path: "tasks/TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md"
-    sha256: "e1022809168227959b1ae2733b6733ab84edf57f14dbe5413fdf79cbbc111911"
-    bytes: 17606
+    sha256: "77f95a832f8a0548505bc3491161a426d0a4a0f3782d2946e5f777c15ef89cee"
+    bytes: 19187
   - path: "tasks/TASK-0016-EXECUTION-AUTHORIZATION.md"
     sha256: "51aedf978b9ea880794375593e0a5023ed31d39488962c03d2a31a050315357d"
     bytes: 2449
   - path: "tasks/TASK-0017-Codex-Desktop-Proxy-WebSocket-Reconnect.md"
-    sha256: "c72770b23b0f5f4eb93de9b0271c6bbbf655d5865de02a16f573d1678de2c99a"
-    bytes: 9893
+    sha256: "8e0d9ef0cc37518555764231c42ca23980ac5751781fba9f0a9b8b9eda58ecbd"
+    bytes: 11506
   - path: "workflows/README.md"
     sha256: "a02cbe1f0a1fe433eec6dcfcaffa959bc58966afbee81395ba4e08337ec85db1"
     bytes: 487
   - path: "workflows/memory-curation/README.md"
-    sha256: "def8c7eeb78bb163bc4610d25fd794f85b70308362ab07ba1c8ec21c763ca754"
-    bytes: 1243
+    sha256: "8a66ade5f728356529526945cdd7d5bdf9cc6abf8fc7ba501552a456b16c0d52"
+    bytes: 1715
 checks:
   secret_issues: 0
   broken_links: 0

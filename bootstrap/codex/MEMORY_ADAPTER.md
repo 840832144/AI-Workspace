@@ -7,13 +7,15 @@
 1. 完成正常任务和验证，不让 Memory 流程替代原始交付。
 2. 执行静默 Memory Check：长期决定、可复用修复、状态变化、被证伪假设或新 Workflow 才捕获。
 3. 当前 Task 已直接更新 Task/Status/Handoff 时不重复生成 Candidate。
-4. 需要 Candidate 时调用 `tools/memory/Capture-MemoryCandidate.ps1`，提供最小摘要、稳定 source reference、scope、sensitivity 和 evidence。
+4. 需要 Candidate 时调用 `tools/memory/Capture-MemoryCandidate.ps1`，提供最小摘要、稳定且非占位的 source host/project/actor/reference、scope、sensitivity 和 evidence。
 5. 运行 validator；ASSISTED 下交给 Review，AUTO 只允许治理标准中的低风险 allowlist。
 
 ## Git writer
 
 - 默认只写工作树，由当前 Task 的 Git 流程统一提交。
 - 自动 Candidate commit 必须在 clean、非 `main` branch 上显式使用 `--git-commit`；push 需要再显式使用 `--git-push`。
+- Private Candidate 还需要 Host-local Registry 的批准 alias；classification、scope、sensitivity、source project、writer 或外部 Git root 任一不匹配都保持 Outbox，禁止回写 public AI-Workspace。
+- AUTO canonical promotion 只在非 main/master linked worktree 运行；target、Candidate、Archive、index 任一步失败都恢复执行前状态。
 - writer/permission 失败时由 CLI 写本机 Outbox；输出不得说“已上传”。
 
 ## Hooks

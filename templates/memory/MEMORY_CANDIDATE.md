@@ -20,6 +20,7 @@ confidence: 0.0
 normalized_key: ""
 content_fingerprint: ""
 canonical_destination: ""
+repository_alias: ""
 evidence: []
 constraints: []
 supersedes: []

@@ -1,71 +1,110 @@
 # Codex Handoff
 
 - Updated: 2026-08-27
-- Task: TASK-0017
-- Branch: `main`
-- Current state: complete; User approved and fast-forward merged to `main` at `45ee2bc`
-- Root cause: Confirmed
-- Final transport: Responses WebSocket through Aurora WinINET proxy
+- Task: TASK-0016 Review Fix Round 1
+- Base main: `aa18233`（包含已完成 TASK-0017 merge record）
+- Current state: three Required Fixes implemented; waiting ChatGPT Review Round 2
+- Final Memory Mode: `ASSISTED`
+- Production Hook/AUTO: disabled
 - Subagents: none
 
 ## Outcome
 
-TASK-0017 已完成真实分层诊断、最小可回滚修复、回滚演练、连续三个新任务验证和本地集成检查。确认 Codex 默认未将 Aurora 的 WinINET loopback proxy 用于 Responses WebSocket，导致 WebSocket timeout 后 HTTPS fallback；Aurora 本身可以完成 WebSocket HTTP 101，TLS、DNS、登录和 HTTPS inference 正常。
+ChatGPT Review 1 的三个 blocking fixes 已完成：
 
-## Environment and Evidence
+1. Project Private Candidate 可以在 Host-local approved Registry 全部 gate 通过时写入对应私有 Git repository；未批准或错配保持 Outbox。
+2. AUTO canonical promotion 只允许 non-main linked worktree，并把 target、Candidate、Archive、index 作为一个可恢复事务。
+3. Public/Private Git Candidate 的 host/project/actor/reference 禁止占位 provenance，CLI、Event file、Generic Agent 三条入口一致。
 
-- Windows 10 Pro 10.0.19045 / build 19045。
-- Codex Desktop 26.820.7780.0；bundled CLI `0.150.0-alpha.8`。
-- Proxy：WinINET loopback port 29290，监听进程 Aurora；版本未确认。WinHTTP Direct；无 proxy env；无 CA env。
-- Baseline：WebSocket timeout，无 101；HTTPS inference reachable；CDN HTTP 200；无 TLS error。
-- Temporary `respect_system_proxy` override：WebSocket HTTP 101。
-- Process-only explicit proxy：WebSocket HTTP 101。
-- Persisted fix：WebSocket HTTP 101，HTTPS inference 与 CDN 正常，无 TLS error。
+架构方向、ASSISTED 默认和 Candidate-first contract 未改变。没有激活 Hook、AUTO 或新外部 provider。
 
-详细证据：`docs/experiments/CODEX_PROXY_TRANSPORT_DIAGNOSIS.md`。
+## Required Fix 1 — Approved Private Git Routing
 
-## Fix and Commands
+Repository classification contract：
 
-实际配置修改只有：
+- `public-control-plane` → 只允许 `public/public`；
+- `project-private` → 对应单项目私有 Git repository；
+- `cross-project-private-hub` → User 批准的跨项目私有 Hub。
 
-```toml
-[features]
-respect_system_proxy = true
-```
+Private capture 必须提供 `repository_alias`。Host-local Registry 同时验证唯一 alias、`enabled`、`writer_enabled`、classification、allowed scope、allowed sensitivity、allowed source project、绝对 Git root，并拒绝目标等于或位于 public AI-Workspace 内。任一 gate 不满足时输出 sanitized Outbox，不写 public Inbox。
 
-```powershell
-# 状态
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\codex\network\Get-CodexNetworkStatus.ps1
+Disposable test / Pilot：approved private Candidate 1，private repo 中存在，public Inbox 0；unapproved alias、wrong classification、sensitivity mismatch 和 public-root 回指全部 fail closed。没有读取真实 Huuuge/CR 数据。
 
-# 修复（幂等；预检、备份、验证、失败回滚）
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\codex\network\Repair-CodexReconnect.ps1
+## Required Fix 2 — Branch-safe Transactional AUTO
 
-# 恢复修改前配置（默认 hash gate）
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\codex\network\Restore-CodexNetworkConfig.ps1
-```
+AUTO curate 前置 gate：
 
-不需要 User 修改 Aurora UI。当前配置处于修复后状态。可在方便时正常退出并重新打开 Codex，再运行状态命令；不要强制结束 Collector、模拟器或其他任务进程。
+- Git repository；
+- branch 非 `main/master`；
+- independent linked worktree；
+- 初始 dirty path 仅允许 `memory/inbox/`；
+- 事务中 branch、HEAD、Git status 不出现非 managed 变化。
 
-## Validation
+每次 promotion 保存 target、Candidate、Archive、index 的执行前字节快照。任一步失败恢复四者；rollback 自身失败时写 Host-local recovery record，存在未解决 record 时阻断后续 AUTO。
 
-- Windows PowerShell 5.1 syntax/config/state regression：PASS。
-- Restore：首次修复后 hash `508E...3AA6` 精确恢复到原 hash `77EB...C51`；三个新任务导致 Codex 写入无关设置后，surgical restore 又只撤销本任务键并保留 6 个新结构项；两种恢复都重现 baseline timeout，reapply 后 101；重复 Repair 幂等。当前最终 hash 为 `2911...E08D`。
-- New task 1：`01a04187-2548-7601-9279-2f6df193b4e0`，完整返回 `TASK-0017 validation #1 OK`；随后 101。
-- New task 2：`01a04187-8458-75d2-8420-c3cbedb399fe`，完整返回 `TASK-0017 validation #2 OK`；随后 101。
-- New task 3：`01a04187-e143-7f20-8be0-923462754c5d`，完整返回 `TASK-0017 validation #3 OK`；随后 101。
-- `feishu-docs`：environment/token/API/Drive permission healthcheck 全部 ok；stdio 不走 HTTP proxy。
-- Git：`fetch origin main` 正常；branch push 在最终提交后验证。
+Fault injection 全部通过：
 
-## Safety and Known Limits
+| Fault | Result |
+| --- | --- |
+| target 写入后失败 | 四资源恢复；promoted 0 |
+| Archive 前失败 | 四资源恢复；promoted 0 |
+| Archive 后失败 | 四资源恢复；promoted 0 |
+| index save 失败 | 四资源恢复；promoted 0 |
+| Git status 发生外部变化 | 四资源恢复；promoted 0 |
+| main branch / unrelated dirty worktree | 写入前 fail closed |
 
-- 未修改 TASK-0016 worktree、Huuuge 仓库、Collector、Capture、Aurora 配置、Windows proxy、TLS trust、Provider 或 MCP 配置。
-- Desktop bounded logs 没有足够精确的 model transport 事件；使用同版本 bundled CLI 的 `doctor --all --json` 取得 protocol-level 证据。
-- 当前配置 feature 在安装版本有效，但不属于稳定公开 config reference；Codex 升级后应重跑 transport matrix。上游 Windows system-proxy WebSocket issue #29958 仍是相关风险。
-- 为避免中断当前工作，没有强杀 Codex Desktop 外壳；三个新任务和每次新 CLI 进程已验证配置由新进程读取。
+## Required Fix 3 — Stable Provenance
 
-## Completion
+所有进入 Git 的 Candidate 必须提供稳定、可复查的 `source_host`、`source_project`、`source_actor_alias`、`source_reference`。空值与 `unknown`、`n/a`、`none`、`null`、`-`、`tbd`、`unspecified` 等占位值无效。
 
-- User 于 2026-08-27 明确批准合并 `main`。
-- 合并前复验 PowerShell 5.1 脚本回归、`git diff --check`、凭据模式扫描和当前 transport 状态；结果均通过。
-- `main` 已 fast-forward 到 `45ee2bc`，TASK-0016 的未提交 `tools/memory/memory_cli.py` 改动保持未变。
-- 唯一后续：User 在方便时正常重启 Codex Desktop，然后运行状态命令完成外壳重启确认。
+- CLI placeholder → Outbox，public Inbox 0；
+- Event file placeholder → Outbox，public Inbox 0；
+- Generic Agent placeholder → Outbox，public Inbox 0。
+
+Local-only / route-required 事件不因来源缺失而伪造 provenance；它们只保留最小 Outbox 说明。
+
+## Validation and Pilot
+
+- `python -m unittest discover -s tools/memory/tests -v`：34/34 passed。
+- `python tools/memory/Run-MemoryPilot.py`：passed；disposable linked worktree + disposable private Git repo。
+- Round 2 Pilot：captured 3、private Git captured 1、promoted 1、review 1、local-only/Outbox 4、OFF suppressed 1、conflicts 0、failed 0。
+- false captures / missed captures：not measured；仍需真实 Host observation，不从 synthetic Pilot 推断。
+- Production `Get-MemoryStatus`：`ASSISTED`，source=`repository-default`。
+- AI-Workspace Context refresh：42 public control-plane sources、0 Secret issue、0 broken link、private repositories not read、`manual upload required=true`。
+
+## Changed Contracts and Files
+
+- Implementation/tests：`tools/memory/memory_cli.py`、PowerShell capture wrapper、34-test suite、Pilot runner。
+- Contracts：Memory Capability、Governance 1.1、ADR-0005、Memory Workflow。
+- Adapters/templates：Codex、ChatGPT、Generic Agent、Event/Candidate templates。
+- Records：TASK-0016、CHANGELOG、Pilot 和本 Handoff。
+
+## Safety and Boundaries
+
+- 最终 mode 为 `ASSISTED`；没有 Host-local AUTO override。
+- 没有安装/激活 Global Hook，没有修改 `~/.codex/config.toml` 或 Global runtime。
+- 没有读取或修改 Huuuge、CR、Collector、Capture、SVN、飞书、Document Assistant 或真实私有 Registry。
+- TASK-0017 已在此前独立任务完成；本轮未修改其网络脚本、Git 分支或 Codex proxy 配置。
+- Fault injection 只有同时设置测试环境变量和 disposable marker 才启用；production worktree 默认不可触发。
+
+## Known Limits
+
+- 尚无 User 批准的真实 Project Private Registry 或 Cross-project Private Hub；production 私有 writer 仍需逐仓库授权。
+- ChatGPT Project Sources 仍需 manual upload；没有安全 API 时不自动替换。
+- Semantic dedup、graph retrieval、真实 false-positive/missed-capture 与 scheduled curator 仍是独立后续评估项。
+
+
+
+
+<!-- MEMORY-REFRESH:START -->
+## Memory Context Refresh
+
+- Generated: 2026-08-27T06:39:23Z
+- Effective mode: `ASSISTED`
+- Manifest: `CONTEXT_MANIFEST.yaml`
+- ChatGPT Project Sources: `manual upload required`
+- Private repositories: not read unless explicitly registered and authorized
+<!-- MEMORY-REFRESH:END -->
+## Exact Next Action
+
+ChatGPT Review Round 2：核对 Review 1 三项 Required Fix、Registry fail-closed contract、linked-worktree transaction、五类 fault injection、三入口 provenance、Round 2 Pilot 和最终 `ASSISTED` 边界。给出 `Accepted` 或新的 `Needs changes`；Review 前不启用 Hook/AUTO，不创建真实 Private Registry。

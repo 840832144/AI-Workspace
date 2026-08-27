@@ -2,6 +2,25 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.11.2] - 2026-08-27
+
+### Fixed
+
+- TASK-0016 Review Fix 1：新增 repository classification 与 Host-local approved destination contract；Project Private Candidate 只有在 alias、writer、classification、scope、sensitivity、source project 和外部 Git root 全部匹配时写入私有 repository，否则进入 Outbox。
+- TASK-0016 Review Fix 2：AUTO canonical promotion 现在要求非 main/master linked worktree、仅允许 Inbox dirty scope，并将 target、Candidate、Archive、index 作为可回滚事务；Git identity/status 变化 fail closed。
+- TASK-0016 Review Fix 3：CLI、Event file、Generic Agent 三条 Git Candidate 入口拒绝空值及 `unknown` / `n/a` / `none` / `-` 等占位 provenance。
+
+### Validation
+
+- 34/34 单元测试通过；新增 disposable private Git routing、未批准/无效 Registry、classification/sensitivity mismatch、public alias 冲突、private path 回指 public repository、main/dirty worktree gate 与三入口 provenance 回归。
+- 五类 fault injection（target 后、Archive 前、Archive 后、index save、Git status change）均恢复 target/Candidate/Archive/index 执行前状态，`promoted=0`，无 recovery record。
+- Round 2 隔离 Pilot：captured 3（其中 approved private Git 1）、promoted 1、review 1、local-only/Outbox 4、OFF suppressed 1、failed 0；最终模式 `ASSISTED`。
+
+### Boundaries
+
+- Private 测试只使用 disposable Git repository；未读取或修改真实 Huuuge、CR、Collector、Capture、SVN、飞书或 Document Assistant。
+- 未激活 Hook、Global runtime 或 production AUTO；未修改 TASK-0017 网络脚本、分支或 Codex proxy 配置。
+
 ## [0.11.1] - 2026-08-27
 
 ### Added
