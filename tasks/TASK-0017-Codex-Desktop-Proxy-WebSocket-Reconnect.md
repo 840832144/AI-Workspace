@@ -1,6 +1,6 @@
 # TASK-0017 — Codex Desktop 代理 / WebSocket 重连诊断与修复
 
-- Status: Ready
+- Status: In Progress
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / operational reliability
