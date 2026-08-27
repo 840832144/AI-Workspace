@@ -76,6 +76,69 @@
 ### Recovered validation issue
 
 - 当前 Codex 会话仍连接缺少 `register_document` 的旧 MCP 进程；使用其 `get_document` 做回读后，项目全景说明的本机治理 metadata 被旧进程写回时丢失。未创建重复文档；改用 Document Assistant 当前 `main` 新进程重新登记并回读，Hub 恢复为 15 条正式文档、链接唯一。后续云验证不再调用该旧进程的写 Registry 路径。
+## [0.15.5] - 2026-08-27
+
+### Changed
+
+- TASK-0022 停止 Collector Demo，继续同 Task 的 Cash Frenzy Slots Deep Research 子阶段，并切换到 User 指定的独立 `AppResearch2`。
+- Nougat64 legacy native bridge 适配已验证；补充 `BLMessage.type @ +0x24`、type 3 inbound dispatch 与 Cocos Value conversion 边界证据。
+
+### Validation
+
+- AppResearch2 identity、Android 7.1.1、package 4.78 / 478、arm64 translation、Frida 17.17.0 server 与 arm64 Gadget handle 均现场确认。
+- 20 秒无操作 BLSocket 边界复验通过；23 条入站均为 type 3，dispatch-scope `ccvalue_to_luaval=0`，probe errors=0。
+- 1 GB / 2 CPU 和 4 GB / 4 CPU 两组 clean Gadget run 均复现 `gum-js-loop` + GLThread SIGSEGV，确认不是单纯资源不足。
+
+### Result and boundaries
+
+- Balance 保持 Phase 1.5 Derived recovery；Win 仍为 Derived candidate，direct Win / Result / Feature / Jackpot 未恢复，F3 不变。
+- 本轮 0 Spin；仅执行 guest 入口和免费 starter login reward 的两个单点 UI tap，无购买、充值、付费奖励、Auto Spin 或挂机。
+- root / CPU / RAM 已回滚，临时 server、Gadget/config、forwards 和 Cash process 已清理；未修改 Huuuge、其他游戏、Collector 主架构、Documentation、Report 或 WATCH；`Subagents: none`。
+
+## [0.15.4] - 2026-08-27
+
+### Added
+
+- TASK-0022 新增面向游戏策划的《Cash Frenzy｜老虎机体验验证（Collector Demo）》Markdown，以及全中文 Spin 时间线、余额变化曲线和 Bet 档位分布 PNG/SVG。
+- 飞书同名正式文档已创建并回读；正文使用飞书原生中文表格/条形图，预留 User 手动拖入不完整交叉验证视频的位置。
+
+### Changed
+
+- Phase 1.5 Review 决定记录为 Stop Spike；不再恢复协议。Demo 只使用既有 F3 outbound 字段，Collector 等级保持 F3。
+- User 明确取消 Word 交付；本轮输出为 Git Markdown 与飞书文档。
+
+### Validation
+
+- Demo 捕获 193 个 Spin 样本、0 errors、192 个闭合 Balance 转移和 1 个 open tail；8 个已恢复字段均达到 193/193。
+- 三张中文图表完成 960×480 PNG 渲染与逐张视觉检查；报告不含绝对余额、Raw、账号、本机路径或完整响应。
+- 飞书创建、企业内可编辑权限、同名唯一性与正文回读通过；Document Assistant healthcheck 通过。
+
+### Known issue
+
+- 当前会话没有暴露 `register_document`，Hub 回读确认新标题出现 0 次。已创建文档保留且不重复创建；禁止人工修改 Hub，待可用 binding 对原文档补登记并回读唯一性。
+
+### Boundaries
+
+- 未继续 RTP、EV、Feature、Jackpot、result 或协议恢复；所有 Balance After / Net Delta 均标记为 Derived，Win 未写成 Confirmed。
+- Demo 后 Cash、Frida、ADB forward、临时 Gadget/config 和采集进程均已清理；未修改 Huuuge、SVN、其他游戏、Capability 或 WATCH；`Subagents: none`。
+
+## [0.15.3] - 2026-08-27
+
+### Changed
+
+- TASK-0022 增加 Phase 1.5 Balance Recovery Spike：复用已确认的 outbound Spin payload，以相邻 `client_coins` 形成 Balance Before/After，并在 Bet 稳定时生成脱敏 Win Candidate。
+- 3 个普通 Spin 样本形成 2 个闭合 Balance 转移，成功标准 A 达成；Win 仅保留为 Derived candidate，Collector 等级保持 F3，未解析 opaque inbound result。
+
+### Boundaries
+
+- 达标后停止 Spike；未开始 Demo 报告，未扩大到 RTP、EV、Feature、Jackpot、OCR/UI、完整 result 或 Collector 重构。
+- 逐笔 Balance/Win、Raw、APK、SO、完整响应和账号数据只留本机；未修改 Huuuge、Workspace governance、其他游戏、Capability 或 WATCH。
+- 临时 Cash 专属 Gadget/config、ADB forward、Frida server 和 probe 进程已清理；`Subagents: none`。
+
+### Validation
+
+- 3/3 样本满足既有 Spin shape，Bet 数值且稳定，`client_coins` 数值；2/2 相邻转移发生 Balance 变化，2/2 Win Candidate 为非负整数，probe errors 为 0。
+- 清理后 Cash 进程、Frida server、`tcp:27043` forward、本机 probe 进程及临时 Gadget/config 均不存在；Huuuge 仓库保持 clean。
 
 ## [0.15.2] - 2026-08-27
 
