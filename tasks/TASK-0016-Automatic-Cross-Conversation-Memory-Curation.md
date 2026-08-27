@@ -1,6 +1,6 @@
 # TASK-0016 — Automatic Cross-Conversation Memory Capture & Curation
 
-- Status: Draft
+- Status: In Progress
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1
