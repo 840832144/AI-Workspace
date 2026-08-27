@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-08-27T09:42:02Z"
+generated_at: "2026-08-27T10:29:11Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "694e955b76405bd6fb97203110d6bc6f9a1185b2"
+repository_head: "6697dce660f2563a252a0dd9e3e138cb8b46134a"
 repository_branch: "codex/task-0022-cash-frenzy-feasibility"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -15,8 +15,8 @@ sources:
     sha256: "df8c538ce21ff9d72e864bb502bda2bb5ed8dd9b76f199dea566c748a33d3adb"
     bytes: 5633
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "9f99fb1b2eb666dbff8dc37571b6901379328a64589cbdda83e4a3fcfc577878"
-    bytes: 8186
+    sha256: "7be5c158b43339cc6abaed45dc96b891a529116fe6d6de9c220b1b0e30429088"
+    bytes: 8181
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "33517605d9e3b3c9c098b4cbb325e434aa0a22d56e2ddeb40b2bc1d8496fb942"
     bytes: 5366
@@ -69,8 +69,8 @@ sources:
     sha256: "c357d270feab7df9e6d40c2e0f17d537dba93be5808b7eab8a6ec964f5714e21"
     bytes: 5470
   - path: "handoff/CODEX.md"
-    sha256: "21bdcf1cb0a313383fa0b3f53c1d8b02143eef6abd67001a8b9506a58971b88c"
-    bytes: 3959
+    sha256: "35768fc3269898f53ca5a2909bc9763cdd703fb5dabd21f010f5d1ec947618c6"
+    bytes: 5031
   - path: "skills/README.md"
     sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
     bytes: 1797
@@ -159,14 +159,14 @@ sources:
     sha256: "5c994d9f0258e43af8bf23190a84ff4e195e2f13f86fb60ff85e8d8167a37756"
     bytes: 22886
   - path: "tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md"
-    sha256: "a6d759a8bf5818d942ea89b59bc0a0a0216b0c29441e9cd4b5f2b8a1bc8ca0d6"
-    bytes: 8325
+    sha256: "e878fa4bab12138fe37a9306e7542622fa76bad4e4f62a8fe32f42fe4664b283"
+    bytes: 10176
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "7776d29c90399233c349b9398cdf5ddbc7441562c5a70da14617bafcf5b0a3a5"
-    bytes: 9172
+    sha256: "d73d1491f2f7eb9efdbf8719b1c0ec9b5ececa836ea7e76afbe83d1cbfda0833"
+    bytes: 9167
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
-    sha256: "b67e26cf37ac2891b372de65871b4798b00e8d5b94a61c6596f08f9f7aa61c49"
-    bytes: 13276
+    sha256: "3c5e584190ef35e85b3689d5c1289fb6cf17caa6d861d7ac15c4abfdfb4b2a2f"
+    bytes: 13800
   - path: "tasks/candidates/README.md"
     sha256: "89820e73a5c089de7031c3f6c825ddaad9321a541f2b6411ce0c39157addc648"
     bytes: 1810

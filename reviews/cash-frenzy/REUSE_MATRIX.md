@@ -3,24 +3,34 @@
 ## Baseline
 
 - Huuuge reference：`huuuge-android-research@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`，Collector 1.0.1。
-- 使用方式：只读架构与 Workflow 参考，不复制工程、不运行 Collector、不读取 Huuuge Raw。
+- 使用方式：只读架构、Houdini bootstrap 与 lifecycle contract 参考；不复制工程、不运行 Huuuge Collector、不读取 Huuuge Session/Raw。
+- 最新 User environment decision：多个测试 App 共用 `Pie64_1 / AppResearch`；隔离责任下沉到 package、project root、Session、Raw、manifest 和账号数据。
 
-| Decision | Capability / component | Reason | Cash Frenzy boundary |
+| Decision | Capability / component | Result | Cash Frenzy boundary |
 | --- | --- | --- | --- |
-| Adopt | Start → READY → Stop/Finalize lifecycle contract | 已验证、对游戏无关 | 新实现不得调用 Huuuge runtime |
-| Adopt | Session alias、manifest、automatic markers | 可复查采集范围 | 使用 Cash Frenzy 独立 namespace |
-| Adopt | Raw immutability、inventory/catalog、sanitized report | 证据与隐私模式通用 | Raw 和 DB 绝不进入 Huuuge 路径 |
-| Adopt | Evidence L0–L4 与 Confirmed/Hypothesis discipline | 防止 static 被误写为 live | 当前结论最高 Static L1 / F1 |
-| Wrap | BlueStacks/ADB target binding | Host 工具可复用 | 强制 instance=`CashFrenzyResearch`、package 精确匹配 |
-| Wrap | APK/split inventory 与 hash | 通用静态步骤 | package/version/ABI 每次现场复核 |
-| Wrap | Planner GUI/health-check 模式 | 策划入口可复用 | 不复用 Huuuge 按钮、目录或状态文件 |
-| Build | `BLSocket` / TLS plaintext Adapter | Cash Frenzy-specific | 先定位明文边界，不改写请求 |
-| Build | LuaJIT command/schema mapping | 未发现业务 descriptor | 只恢复最小 Spin 字段链 |
-| Build | Cash Frenzy module taxonomy | Systems/Themes 结构不同 | Slots、Feature、Events、Offers 分开标级 |
-| Reject | Huuuge Protobuf descriptor / decoder | 协议与 package 不同 | 禁止套用 Huuuge schema |
-| Reject | Huuuge Session / Raw / database / Collector process | 会污染 evidence | 任意跨读写均 fail closed |
-| Defer | 完整 Collector、RTP/EV、长期概率 | 超出 Feasibility | ChatGPT Review 与新 Task 前不实施 |
+| Adopt | Start → READY → Stop/Finalize lifecycle | baseline、Spin A、Spin B 均验证；0 errors | Cash 专属 local Session，不调用 Huuuge controller |
+| Adopt | manifest、state、Raw immutability | 最小本机实现验证 | 数据仅在 `CashFrenzyResearch/local-only` |
+| Adopt | Confirmed / Inference / Blocker discipline | 避免把 command 推断或 opaque input 写成已解码 | Git 只保留 schema/aggregate |
+| Adopt | Houdini ARM64 Gadget bootstrap mechanism | 成功命中 Cash arm64 namespace | 仅复用通用加载机制；无 Huuuge hook/agent/schema |
+| Wrap | BlueStacks / ADB target binding | `Pie64_1 / AppResearch` + package 双重校验 | 不再依赖旧 display name；拒绝前台 package 不匹配 |
+| Wrap | Frida server / Gadget lifecycle | 17.17.0 版本匹配；任务后完整清理 | Gadget 临时复制到 Cash app namespace；不写 Huuuge app |
+| Wrap | APK/split inventory 与 hash | 4.78 / 478 / base + 3 splits 复核 | 每个版本重新验证 |
+| Build | Cash `BLSocket` + UDP Raw adapter | `sendto/recvfrom` 已达到 F2 | 需要 fd/endpoint 归属和稳定 packet framing |
+| Build | Lua request schema adapter | Spin request 字段达到 F3 | 只记录字段名/类型；值保持 local-only |
+| Build | Inbound decoder / message dispatch hook | 尚未完成 | 必须定位解密后 `BLMessage` 构造或 dispatch |
+| Build | Cash module taxonomy | 尚未完成 | Systems/Themes 与 Huuuge domain 不同 |
+| Reject | Huuuge Protobuf descriptor / decoder | 协议不匹配 | 禁止套用 Huuuge schema |
+| Reject | Huuuge Session / Raw / database / agent.js | 会污染 evidence | 任意跨 App 读写 fail closed |
+| Defer | GUI、完整 Collector、RTP/EV、长期概率 | 超出 Feasibility | ChatGPT Review 与新 Task 前不实施 |
 
-## Exit Cost
+## Reuse Outcome
 
-若动态证明失败，只保留本次 static inventory 与独立本机目录；不需要回滚 Huuuge、SVN、飞书或业务仓库。若证明成功，后续也应新建 Cash Frenzy Adapter Task，而不是扩大 TASK-0022。
+结论为 **Adopt contract + Wrap host binding + Build protocol adapter**。Huuuge Collector 软件本体不可直接复用；真正可复用的是控制面契约、证据纪律与已审计 native-bridge 加载方法。Cash-specific 的 UDP framing、Lua command/schema、inbound decode 和 module mapping 必须独立实现。
+
+## Exit / Rollback
+
+- Capture、shape probe、Frida server、ADB forward 均已停止。
+- Cash 专属 Gadget 与 config 已从 Cash app native-lib 目录删除；重装 App 仍是完整兜底恢复方式。
+- 预存 Frida server 二进制未删除，避免破坏既有研究环境；仅终止本次进程。
+- `AppResearch` 保留为 User 指定的共享研究模拟器；各 App 的 local project root 与 Raw 不合并。
+- 不需要回滚 Huuuge repo、Collector、SVN、飞书或业务仓库。

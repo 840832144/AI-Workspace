@@ -2,28 +2,39 @@
 
 ## Confirmed Static Signals
 
-1. `assets/src64/Utils/Protocol.luac` 包含业务 command map，例如 `BATCH_SPIN`、`ENTER_THEME`、`KEEP_ALIVE`、`RECONNECT`、`JACKPOT_DATA` 和 reward/gift commands。
-2. `assets/src64/Network.luac` 包含 `BLSocket`、socket open/message state、server/port、keepalive、reconnect、send support 与 command dispatch。
-3. `assets/src64/HttpRequestController.luac` 负责资源下载、hash/cache、JSON POST 与 retry queue；它不能单独证明 Spin 走 HTTP。
-4. `libcocos2dlua.so` 包含 `SSL_read`、`SSL_write`、LuaSocket、WebSocket、TCP/UDP/TLS、XXTEA、Protobuf 与 `setFixProtocolParseError` 静态符号。
-5. `libEncryptorP.so` 和 `libsigner.so` 分别提供 encryption 与 signing/SHA 候选边界。
-6. network security config 对 loopback/部分私网开发地址允许 cleartext，并在 debug override 中声明 user/system trust anchors；这只说明配置能力，不证明生产流量可由系统代理直接观察。
+1. `assets/src64/Utils/Protocol.luac` 含 `BATCH_SPIN`、`ENTER_THEME`、`KEEP_ALIVE`、`RECONNECT`、`JACKPOT_DATA` 等业务 command map。
+2. `assets/src64/Network.luac` 含 `BLSocket`、open/message state、server/port、keepalive、reconnect、send support 与 dispatch。
+3. `libcocos2dlua.so` 导出 `BLSocket::sendMsg/sendTable/onSocketCallback/onUIThreadReceiveMessage`、`SSL_read/write`、BIO、LuaSocket、WebSocket 与 Protobuf parse/serialize symbols。
+4. `libEncryptorP.so`、`libsigner.so`、XXTEA/OpenSSL symbols 是 encryption/signing 候选；APK 内 23 个 proto/textproto 均属于 SDK 范围，没有游戏业务 descriptor。
 
-## Current Interpretation
+## Confirmed Runtime Boundary
 
-**Hypothesis**：核心游戏动作更可能经过自定义 `BLSocket` 二进制协议，LuaJIT command map 提供 command 名，native 层负责 socket、加密/签名和可能的 Protobuf 编解码。HTTP/JSON 主要信号更偏资源下载和 SDK；WebSocket/Ktor/OkHttp 还可能来自第三方 SDK，不能直接归因于 Spin。
+- Outer root Frida process view 为 x64，只看到系统 crypto/TLS；arm64 `libcocos2dlua.so` 必须通过 Houdini namespace 中的 Frida Gadget 观察。
+- arm64 module view 中 `libcocos2dlua.so` 与 `libsigner.so` 可见；所有目标 symbols 均可 Hook。
+- 大厅 20 秒边界计数：`BLSocket::sendMsg` 8、`sendTable` 3、`sendTickMsg` 5、`onSocketCallback` 16、`onUIThreadReceiveMessage` 8；同期间 `SSL_read/write`、BIO、LuaSocket 与 WebSocket 均为 0。
+- 同期 process syscall 为 `sendto` 5 / 139 bytes、`recvfrom` 5 / 291 bytes，`send/recv` 为 0；次数与 BLSocket heartbeat 对齐，确认核心 live socket 为 UDP path。
+- 15 秒基线 capture 得到 outbound 5、inbound 5、585 bytes、0 errors；均为 opaque binary，不是 JSON、gzip、zlib 或 zip。
 
-**Static blocker**：没有游戏业务 `.proto`、descriptor set 或可直接读取的 Lua source。仅凭 `protobuf` 字符串不能确认 wire schema，更不能确认 bet/result/win/balance 字段。
+## Confirmed Spin Correlation
 
-## Minimal Dynamic Targets
+- User 累计 5 次普通 Spin，Bet 10000，无 Feature。
+- 3-Spin Session：36 outbound / 2,048 bytes，38 inbound / 14,793 bytes；恰好 3 个新的 255-byte outbound packet，随后出现 1.1–2.5 KB inbound bursts。
+- 2-Spin schema Session：31 outbound / 1,617 bytes，34 inbound / 9,960 bytes；恰好 2 个 255-byte outbound packet，并捕获 2 个同构 Lua request shape。
+- Lua request stack 为 `userdata + table`；table 是 `[1]=command string`、`[2]=payload table`、`[3]=metadata table`。
+- 两个 Spin-correlated shape 的 payload fields：`autoSpin:number`、`bet:number`、`client_coins:number`、`free_spins:number`、`lines:number`、`spin_count:number`、`turbo:number`；metadata field：`_timestamp:number`。
+- 无操作 shape 还确认 `theme_id:number`；这证明 schema hook 能区分 command payload，而非只观察固定 packet header。
 
-按最小副作用顺序验证：
+## Inference
 
-1. 先观察独立实例的 socket/TLS connection 与 package PID，不安装代理证书、不改系统信任。
-2. 若普通代理不可见，优先在 app 明文边界被动复制 `BLSocket` send/recv 或 `SSL_write`/`SSL_read` buffer；不改参数和返回值。
-3. 将一次 User Spin 的 command、方向、长度、时间与 UI action 对齐。
-4. 只有成功恢复稳定字段后才建立 schema mapping；未知 bytes 原样留 local Raw。
+Spin-correlated command string 长度为 10；结合 static command map 中的 `BATCH_SPIN`、字段集合、恰好两次 User 动作和两个同构 request，推断 command 为 `BATCH_SPIN`，置信度高。本任务故意不读取 command 值，因此仍标为 Inference。
+
+## Blocker
+
+- 入站 UDP Raw 仍是不透明二进制；未确认 framing、compression、encryption 或业务 serialization。
+- Spin proof 中 `BLMessage.getObj` 未触发，说明当前 Lua getter 不是 inbound business object 的稳定边界。
+- 尚未恢复 `result`、`win`、`balance`、reel/stop、feature/update 字段，不能建立 request → result → balance change 数值闭环。
+- 不能仅凭 native Protobuf symbols 宣称游戏协议为 Protobuf，也不能从 outbound `client_coins` 字段存在推导真实余额值。
 
 ## Evidence Level
 
-当前全部为 **Static L1 / Feasibility F1**。没有 Runtime capture，不得写成“协议已解码”或“Spin 使用 Protobuf”。
+当前为 **Feasibility F3**：真实 Spin 的 outbound structured fields 已恢复，Raw path 可重复 start/READY/stop；inbound structured decode 和 F4 Huuuge-like collection path 尚未证明。

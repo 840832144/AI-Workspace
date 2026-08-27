@@ -11,7 +11,9 @@
 | SDK | minSdk 24 / targetSdk 35 |
 | Signing | APK Signature Scheme v3 |
 | Primary ABI | arm64-v8a |
-| Emulator ABI baseline | x86_64 with arm64 native bridge；独立实例待复核 |
+| Research instance | `Pie64_1 / AppResearch`（User 指定共享研究模拟器） |
+| Android / ADB alias | Android 9 / `emulator-5564`（本次现场别名） |
+| Emulator ABI / bridge | x86_64 + arm64 translation / `libnb.so` |
 | Engine | Cocos2d-x + LuaJIT |
 | Android entry | `org.cocos2dx.lua.AppActivity` |
 
@@ -50,5 +52,7 @@
 ## Tooling
 
 - BlueStacks 5 China 5.22.170.6509。
+- Host / server / Gadget Frida 17.17.0；outer x64 与 arm64 Gadget module view 均已现场验证。
 - Bundled `HD-Aapt` 用于 manifest/badging；bundled 7-Zip 24.09 用于只读解包。
 - 静态副本与解包目录位于 Host-local `CashFrenzyResearch/local-only`，不进入 Git。
+- 动态任务结束后 Cash 专属 Gadget、ADB forward、Frida server process 与 Cash app process 均已清理；预存 server binary 未删除。

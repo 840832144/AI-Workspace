@@ -132,7 +132,7 @@ entries:
     canonical_file: "tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md"
     file: "tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md"
     title: "Cash Frenzy Android Collector Feasibility Audit"
-    status: "In Progress"
+    status: "Review"
     project_key: "CASH-FRENZY"
     human_alias: "CF-FEASIBILITY-001"
     owner: "User / ChatGPT"

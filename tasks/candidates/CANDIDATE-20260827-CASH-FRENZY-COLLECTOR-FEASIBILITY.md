@@ -38,7 +38,7 @@
 
 1. Huuuge Lottery 实时 Capture 已结束或 Collector 明确 idle；不得打断限时证据保全。
 2. 同步 AI-Workspace 与业务真相源最新 main，读取届时 Task、Status、Handoff 和 Collector 能力边界。
-3. 使用独立模拟器实例和独立本机数据目录；不得复用或修改 `Pie64_1 / HuuugeResearch`。
+3. 执行时采用 User 最新决定的共享 `Pie64_1 / AppResearch`，但必须使用独立 package 与 Host-local 数据目录；不得读取或修改 Huuuge Collector/Session/Raw/app data。
 4. 新建实例、安装游戏、账号登录、商店认证等需要 User 操作或授权时，由 User 决定并执行。
 5. Cash Frenzy、Top Tycoon、绯闻港口一个一个建立 Feasibility Audit，不并行开发。
 
@@ -46,13 +46,12 @@ Gate 未满足时必须报告阻塞并停止，不得扩大权限或绕过 P0 �
 
 ### Research Environment Decision
 
-历史 main commit `7eb16b0` 曾记录“多个游戏共用同一 Research 模拟器”。该内容已被 User 在 TASK-0022 启动指令中的更晚、范围更具体决定 supersede：
+执行决定按时间线记录：历史 main commit `7eb16b0` 曾记录“多个游戏共用同一 Research 模拟器”；TASK-0022 启动指令随后要求独立 `CashFrenzyResearch`；动态安装门槛处 User 又作出最新、明确覆盖：将原 `HuuugeResearch` 重命名为 `AppResearch`，以后测试 App 共用该实例。
 
-- 为 Cash Frenzy 建立独立 `CashFrenzyResearch` 环境；
-- 不修改或复用 `HuuugeResearch`；
-- Cash Frenzy 使用独立 Session、Capture、Manifest、Raw、Database 与 Evidence；
-- Cash Frenzy Adapter 不得读取 Huuuge 或其他游戏数据；
-- 任何共用 Host 级 Root / Frida 变更必须先证明必要性、影响与回滚，并取得 User 确认。
+- 最终实例为 `Pie64_1 / AppResearch`，不是独立 `CashFrenzyResearch`。
+- 隔离边界必须落在 package、Host-local project root、Session、Capture、Manifest、Raw、Database、账号数据与 Evidence；共享模拟器不得导致跨 App 数据混用。
+- Cash Frenzy Adapter 不得读取 Huuuge 或其他游戏 Session/Raw/database。
+- 共用 Host 级 Root / Frida 变更仍须证明必要性、影响与回滚；TASK-0022 使用的 Cash 专属 Gadget、forward 与临时 server process 已在 proof 后清理。
 
 开始 Cash Frenzy 采集前仍必须验证前台包名等于本次确认的 Cash Frenzy package；否则拒绝进入 READY。
 
@@ -95,7 +94,7 @@ Gate 未满足时必须报告阻塞并停止，不得扩大权限或绕过 P0 �
 
 公开资料结论必须有来源；商店描述只能证明产品功能，不可证明客户端协议。
 
-### Phase C — Isolated research environment
+### Phase C — Isolated research environment（原始建议；执行时由 User override）
 
 建立或确认独立研究实例，建议显示名 `CashFrenzyResearch`。要求：
 
@@ -227,7 +226,7 @@ NEXT_TASK_PROPOSAL.md
 5. 完成 Huuuge Reuse Matrix 和 Cash Frenzy Adapter 边界。
 6. 给出 F0–F4 分项等级、置信度、风险和 Adopt/Wrap/Fork/Build/Stop 决策。
 7. 所有结论标为 Confirmed / Estimate / Hypothesis / Decision proposal。
-8. Huuuge 生产 Collector、SVN 策划包和 `HuuugeResearch` 实例未被修改。
+8. Huuuge 生产 Collector、Session/Raw、SVN 策划包和 Huuuge app 数据未被修改；实例显示名按 User 决定改为 `AppResearch`，临时 instrumentation 已恢复。
 9. 本机 Raw/二进制/账号数据未进入 Git、飞书或聊天。
 10. 若使用 Subagents，父会话为受限权限、主 Agent 唯一写入、Handoff 列出实际 Agents，并在结束后恢复 OFF。
 11. 更新 canonical Task、CHANGELOG 和 `handoff/CODEX.md`，提交并 push，等待 ChatGPT Review。

@@ -1,6 +1,6 @@
 # TASK-0022 — Cash Frenzy Android Collector Feasibility Audit
 
-- Status: In Progress
+- Status: Review
 - Project key: CASH-FRENZY
 - Human alias: CF-FEASIBILITY-001
 - Owner: User / ChatGPT
@@ -154,5 +154,10 @@ NEXT_TASK_PROPOSAL.md
 - Reuse-first：完成 Huuuge 1.0.1 control-plane/Session/manifest/Raw/inventory/privacy 只读审计，决定 Adopt workflow contract、Wrap host binding、Build Cash-specific protocol adapter；不复制 Huuuge 工程。
 - Static identity：确认 package `slots.pcg.casino.games.free.android`、sample 4.78 / 478、arm64-v8a、Cocos2d-x + LuaJIT、base + 3 splits。
 - Protocol/resource：确认 `BLSocket`/command map、TLS/WebSocket/LuaSocket/XXTEA/Protobuf static signals、16,887 LuaJIT bytecode 与 Systems/Themes 目录；未恢复游戏业务 descriptor。
-- Current level：整体 F1 Static-only；dynamic path F0。
-- Gate：等待 User 建立独立 `CashFrenzyResearch` 并安装游戏。未修改 `HuuugeResearch`，未混用 Session/Raw，未启用 WATCH；Subagents none / OFF。
+- User environment decision：执行门槛处 User 明确将原 `Pie64_1 / HuuugeResearch` 重命名为共享研究实例 `AppResearch`，用于后续测试 App；该决定 supersede 本 Task 早期“独立 `CashFrenzyResearch` 实例”建议。隔离边界改为 package、Host-local project root、Session、Raw、APK/SO、账号数据和 manifest，不允许跨 App 混用。
+- Dynamic environment：`Pie64_1 / AppResearch`、Android 9、ADB alias `emulator-5564`、x86_64 Host ABI + `libnb.so` arm64 native bridge；Cash Frenzy 4.78 / 478 / arm64-v8a 现场复核通过。
+- Runtime boundary：outer Frida 只能看到 x64；通过已审计 Houdini bootstrap 将通用 Frida 17.17.0 Gadget 临时放入 Cash Frenzy 自己的 arm64 namespace，确认 `libcocos2dlua.so`。`SSL_read/write`、BIO、LuaSocket 与 WebSocket 在大厅静置期均 0；真实业务链为 `BLSocket` + process `sendto/recvfrom`。
+- Dynamic proof：User 累计执行 5 次普通 Spin（Bet 10000；金猪主题机台，名称未完整记录；无自然 Feature）。首轮 3 次与 3 个新 255-byte outbound packet 及 1.1–2.5 KB inbound bursts 对齐；第二轮 2 次与 2 个同构 outbound Lua request 对齐。
+- Structured fields：live schema-only Lua hook 确认 request table 形态为 `[command-string, payload-table, metadata-table]`，Spin payload 包含 `bet`、`lines`、`spin_count`、`client_coins`、`free_spins`、`autoSpin`、`turbo`，metadata 包含 `_timestamp`。未记录字段值；command 仅依据长度、static map 与动作关联推断为 `BATCH_SPIN`，不写成直接观察。
+- Current level：**F3 Live structured outbound fields recovered**。入站仍为 opaque binary Raw，未恢复 result/win/balance/update，完整数值链与可重复 Huuuge-like decoder 未达到，F4 不成立。
+- Finalize：所有 capture/shape Session Clean Stop、0 errors、无残留进程；Cash 专属 Gadget 文件、27043 forward 与临时 Frida server 已移除，Cash app 已 force-stop。Huuuge repo/Collector/Session/Raw 未修改，WATCH 未启用；Subagents none / OFF。

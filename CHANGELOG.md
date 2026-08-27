@@ -2,6 +2,25 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.15.2] - 2026-08-27
+
+### Completed
+
+- TASK-0022 feasibility audit 达到 F3：Cash Frenzy 4.78 / 478 的 live UDP Raw、`BLSocket` 活动与 Lua request schema 已通过 5 次 User 普通 Spin 验证。
+- Spin request live fields 包含 `bet`、`lines`、`spin_count`、`client_coins`、`free_spins`、`autoSpin`、`turbo` 与 `_timestamp`；字段值、command 值、账号与逐笔余额未进入 Git。
+- 三次 Spin 与 3 个 novel 255-byte outbound packet 对齐；额外两次 Spin 与 2 个同构 Lua request 对齐。入站仍为 opaque binary，result/win/balance/update 未恢复，F4 不成立。
+
+### Decision
+
+- User 在动态门槛处将原 `HuuugeResearch` 重命名为共享 `AppResearch`，并明确后续测试 App 共用该实例；该决定 supersede 早期独立 `CashFrenzyResearch` 建议。
+- 共享实例采用 package + Host-local project root + Session/Raw/manifest/account data 隔离。架构建议保持 Adopt Huuuge control-plane contract、Wrap host binding、Build Cash-specific inbound decoder；不复制 Huuuge Collector。
+
+### Validation and Cleanup
+
+- baseline、3-Spin、2-Spin capture 均完成 start/READY/stop；正式 Sessions 为 0 errors。Windows manifest lock fault-injection 以 0 Raw Clean Stop，有限重试后未复现。
+- Cash 专属 Gadget/config、ADB 27043 forward、临时 Frida server 与 Cash app process 已清理；本机 Raw/APK/SO/完整响应保留在 Cash 项目 local-only root。
+- Huuuge repo 保持 clean，Collector/Session/Raw/SVN/飞书/业务仓库未修改；Workspace Sync `ON_DEMAND`，WATCH disabled，Subagents none / OFF。
+
 ## [0.15.1] - 2026-08-27
 
 ### Added
