@@ -2,6 +2,29 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.12.1] - 2026-08-27
+
+### Added
+
+- 新增 `docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md`，以稳定视角说明立项原因、能力蓝图、整体架构、设计框架、核心逻辑、角色和安全边界，不承载实时 Task 清单。
+- 新增 `docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md`，独立维护当前能力、已完成、未完成、阻塞、主线、支线 Candidate、证据、最后核验时间和同文档更新规则。
+- 通过 Document Capability 防重创建两份互相链接的飞书正式文档，并保留 Git 源稿作为真相源。
+
+### Changed
+
+- TASK-0019 进入 Review；进度文档同步至 `main@0707449`，纳入 TASK-0018 冲突止损、Cash Frenzy Cancelled、TASK-0020、Huuuge Lottery 报告交接、TASK-0021 与最新 ChatGPT Handoff。
+
+### Validation
+
+- `feishu_healthcheck` 全部通过；精确标题搜索各命中 1 份，项目搜索恰好命中 2 份正式文档。
+- 两份飞书文档回读标题、正文、互链、基线与表格通过（全景 7 张，进度 9 张）；权限均验证为 company edit / `tenant_editable`，转换 warning 为 0。
+- Git 源稿完成职责边界、相对链接、敏感模式和 `git diff --check` 验证；Huuuge、SVN 与 Document Assistant 仅做只读核验。
+
+### Boundaries
+
+- 未创建第三份正式文档，未把动态 Task 清单写入项目全景说明，未把 Candidate/Planned/Blocked 状态升格为已完成。
+- 未修改 TASK-0016、两个 TASK-0018、TASK-0020/0021、Huuuge 业务工作树、SVN、Document Assistant 或本机敏感配置；Subagents: none。
+
 ## [0.12.0] - 2026-08-27
 
 ### Added
