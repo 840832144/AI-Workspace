@@ -4,7 +4,7 @@
 
 ### Project and collector
 
-- External implementation/evidence source is [`huuuge-android-research`](https://github.com/840832144/huuuge-android-research), current baseline commit [`bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4).
+- External implementation/evidence source is [`huuuge-android-research`](https://github.com/840832144/huuuge-android-research), current baseline commit [`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b).
   - Evidence: User decision in TASK-0008 and TASK-0018 synchronized Git state on 2026-08-27.
 - The proven chain is isolated research environment → x86_64 Frida server → Houdini namespace → ARM64 Gadget → three high-level `Casino.RpcMessage` hooks → descriptor-backed decode.
   - Evidence: external [`CURRENT_STATUS.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/CURRENT_STATUS.md).
@@ -29,8 +29,10 @@
 
 ### Lottery
 
-- Lottery now has L3 Runtime Observed evidence from finalized alias `LOT-20260827-A`: 346/346 primary `LotteryToss` pairs, plus 588/588 Spin and 45/45 FreeSpin pairs used for source reconciliation.
-  - Evidence: external [`Lottery report`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/reports/lottery/20260827_lottery-ticket-puzzle/LOTTERY_NUMERICAL_BREAKDOWN.md) and [`lottery dossier`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/artifacts/module_catalog/lottery.md).
+- Lottery now has L3 Runtime Observed evidence from finalized alias `LOT-20260827-A`: 346/346 primary `LotteryToss` pairs, plus 588/588 ordinary chip-bet Spin and 45/45 FreeSpin pairs used for source reconciliation.
+  - Evidence: external [`Lottery report`](https://github.com/840832144/huuuge-android-research/blob/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b/reports/lottery/20260827_lottery-ticket-puzzle/LOTTERY_NUMERICAL_BREAKDOWN.md) and [`lottery dossier`](https://github.com/840832144/huuuge-android-research/blob/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b/artifacts/module_catalog/lottery.md).
+- Four observed and User-confirmed real-money purchases succeeded: 54.43 SGD total, granting 763 Lottery tickets and 235 loyalty points. Because every bundle includes loyalty points, apparent per-ticket cost is descriptive and cannot be treated as a standalone ticket price.
+  - Evidence: external [`PURCHASES.csv`](https://github.com/840832144/huuuge-android-research/blob/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b/reports/lottery/20260827_lottery-ticket-puzzle/PURCHASES.csv) and the planner-first report; request/product/store/order identifiers remain excluded.
 - In the observed Session, every 7 consumed ticket units returned one Bronze ticket; 933 units produced 133 returns from initial progress 1 and ended at progress 3.
   - Evidence: external report and `PROGRESSION_MODEL.csv`; scope is one account/build/Session.
 - Spin/FreeSpin responses contain no direct Lottery ticket grant. Six post-level balance transitions total +16 Bronze; the transitions are Confirmed L3, while level-up causation is Estimate L3 supported by repeated timing and User Manual evidence.

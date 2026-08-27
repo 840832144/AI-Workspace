@@ -2,50 +2,23 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
-## [0.13.1] - 2026-08-27
+## [0.12.1] - 2026-08-27
 
 ### Fixed
 
-- TASK-0020 Review Fix 1：所有 allocation 写操作统一强制 latest-main、non-main independent linked-worktree writer gate；`next` 不再能在 main 或普通 checkout 写 reservation。
-- allocator 改为 remote `task-reservations/TASK-XXXX` ref first-writer CAS，覆盖不同 clone / Host；promotion 保持 reservation 到 canonical 进入 main 后显式 `finalize`，未创建 Task 才允许 token `release`。
-- 新 canonical 强制显式合法 `project_key`，仅 `TASK-0014` 至 `TASK-0019` 使用有限审计 grandfather map；未来 Task 不再接受标题/路径推断。
-- `Draft` 纳入 active overlap；root Task 默认严格按 canonical 解析，companion 必须显式 Kind 且引用存在、同 ID canonical。
-
-### Validation
-
-- Task disposable tests 从 14 扩展为 22，新增 main/普通 checkout gate、跨 clone concurrent next/promote、promotion 生命周期/finalize、提前 release 拒绝、fault injection recovery、project_key、Draft overlap 与 companion 分类回归。
-- 原 Task 测试与 35 项 Memory 测试无退化；真实仓库保持 8 canonical、2 companion、1 Candidate、4 Review、canonical collision 0（TASK-0020 与并发进入 main 的 TASK-0018 Review 均纳入 Registry）。
-- Project Source Pack、Context Manifest 与 replacement list 刷新，状态保持 `manual upload required`；Memory 模式保持 `ASSISTED`。
-
-### Boundaries
-
-- 未执行 Cash Frenzy Candidate；未修改 TASK-0021、Huuuge Collector、Lottery、Capture、document-assistant、飞书、SVN、业务仓库或 Global runtime。
-- `Subagents: none`。
-
-## [0.13.0] - 2026-08-27
-
-### Added
-
-- TASK-0020：新增可由 Markdown 重建的 `tasks/TASK_REGISTRY.yaml`，登记 canonical、companion、candidate 与 review，并以全局 `TASK-XXXX` + `project_key` + 可选 alias 作为 identity policy。
-- 新增标准库 `task_cli.py`，支持 `scan / validate / next / release / candidate / promote`；新增 PowerShell 5.1 一键回归入口。
-- 新增 Candidate 工作流、从 Git 历史恢复的 Cash Frenzy 完整非执行 Candidate、duplicate ID incident 和 ADR-0006。
+- TASK-0018 Review Round 1 修改完成：策划优先报告结构、真实货币购买提取、普通筹码下注术语、礼包价值限制与技术附录表述已经统一。
+- 原飞书文档使用替换接口原位更新，未创建重复文档；最终回读确认标题唯一、章节完整并保持企业内可编辑。
 
 ### Changed
 
-- Project/Global AGENTS、CONTRIBUTING、Core Rules、New Chat Bootstrap、Project Instructions 和 tasks README 统一要求 latest-main、Registry validator、allocator reservation、Candidate-first 与创建后复验。
-- Cancelled Cash Frenzy 同号文件明确为 companion collision stub；Huuuge Lottery 保持唯一 canonical TASK-0018，现有链接和历史不重写。
-- Project Source Pack、Current State、Context Manifest 与 replacement list 刷新；Project Sources 仍为 `manual upload required`，未声称自动替换。
+- Huuuge 项目控制面切换到外部证据 commit `4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`，TASK-0018 保持 `Review` 并进入 ChatGPT Review Round 2。
+- Lottery Memory 与报告索引补充四次成功购买的脱敏聚合：54.43 SGD、763 张票、235 loyalty points；礼包表观每票成本不得解释为独立票价或长期付费回报。
 
 ### Validation
 
-- 14/14 disposable Git tests 通过：duplicate、companion、格式/Registry 漂移、Pending/approved Candidate、active overlap、两个并发 allocator、reservation release、lock、目录不完整、解析失败和非最新 main。
-- Windows PowerShell 5.1 入口通过；真实仓库扫描为 8 个 canonical Task、0 collision，TASK-0021 并发新增后重新同步并纳入 Registry。
-- Cash Frenzy Candidate 非执行，Huuuge Lottery 是唯一 canonical TASK-0018；没有创建真实 reservation 或晋升 Cash Frenzy。
-
-### Boundaries
-
-- 未修改 Huuuge Collector、Lottery 业务结果、Capture、document-assistant、飞书、SVN、其他业务仓库或本机 Global runtime。
-- 未执行 Cash Frenzy、未建立外部数据库/中心锁、未启用 Subagents；`Subagents: none`。
+- 外部 Extractor 编译通过，7/7 单元测试通过，四次购买聚合和票务总账复算通过。
+- 飞书原文档最终回读 367 blocks、4568 个正文字符、单一标题；权限回读为企业内可编辑。
+- 未复制 Raw、decoded values、真实 Session/account/request/product/store/order 标识、绝对余额、完整余额轨迹或 credentials；未修改 Collector、CR、SVN、游戏或服务端状态。
 
 ## [0.12.0] - 2026-08-27
 

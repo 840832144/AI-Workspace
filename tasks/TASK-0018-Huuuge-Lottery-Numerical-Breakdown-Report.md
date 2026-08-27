@@ -1,6 +1,7 @@
 # TASK-0018 — Huuuge Lottery 活动数值拆解报告
 
 - Status: Review
+- Review state: Round 1 fixes complete；waiting for ChatGPT Review Round 2
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / business analysis
@@ -439,3 +440,14 @@ Codex 完成后返回：
 - 飞书文档已搜索防重、创建、回读，并验证为企业内可编辑：`https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3`。
 - 核心边界：Spin payload 没有直接 Lottery 票 grant；六次等级变化后的 +16 Bronze 状态变化为 `Confirmed L3`，升级因果归因为 `Estimate L3`，不写成单局随机掉落。
 - 未新增采集、付费或游戏内操作；未修改 Collector、CR、SVN、游戏或服务端状态；Subagents: none。
+
+## Review Round 1 Fix Record — 2026-08-27
+
+- 正式 Review：`reviews/TASK-0018-HUUUGE-LOTTERY-CHATGPT-REVIEW-1.md`，结果 `Needs changes`，Review commit `b278afa70a01b4c40b72aec62b6d8bbd6f909ac4`。
+- 修订交付：`huuuge-android-research@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`；主报告已按策划阅读顺序重组。
+- `MakeInAppPurchase` 购买链已重新提取并脱敏：四次成功购买合计 54.43 SGD、763 张票、235 loyalty points；每个礼包均含其他奖励，表观每票成本不作为独立票价。
+- 588 次普通筹码下注、45 次 Free Spin 与真实货币购买已分别命名和统计；117.516 描述性比值只保留在技术附录，并明确不等于 RTP、ROI 或付费回报。
+- Extractor 增加 `PURCHASES.csv` 与购买链失败闭合；单元测试扩展为 7/7 passed。
+- 原飞书文档 `IK5adiJyWoHVJzxlovEcjxiWnO3` 已原位替换，没有创建重复文档；最终回读 367 blocks、单一标题、章节完整且企业内可编辑。
+- 未新增 Capture、付费或游戏内操作；未修改 Collector、CR、SVN、游戏或服务端状态；Subagents: none。
+- 当前状态保持 `Review`，等待 ChatGPT Review Round 2。
