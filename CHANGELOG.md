@@ -2,6 +2,24 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.13.1] - 2026-08-27
+
+### Fixed
+
+- TASK-0020 Review Round 1：allocation 写操作统一 latest-main / non-main independent linked-worktree gate；remote ref CAS 覆盖跨 clone / Host；reservation 保持到 main 后 finalize；新 canonical 强制 `project_key`；Draft overlap 与 companion 严格分类。
+- TASK-0020 Review Round 2：reservation commit 的 tree 与唯一 parent 固定为 latest `origin/main`，requesting branch HEAD 只保留为 SHA metadata，不再通过 reservation ref 推送未合并 branch tree 或 commit graph。
+
+### Validation
+
+- Task disposable tests 23/23、Memory tests 35/35 通过；新增跨 clone sentinel 回归证明未推送 sentinel 文件、commit object 和 ancestry 均不能由 reservation ref 访问，且 reservation parent/tree 等于 `origin/main`。
+- Windows PowerShell 5.1 入口、真实 Registry scan/validate 通过；真实仓库保持 8 canonical、2 companion、1 Candidate、5 Review、canonical collision 0。
+- Context Manifest、Project Source Pack 与 replacement list 刷新；Project Sources 保持 `manual upload required`，Memory 保持 `ASSISTED`。
+
+### Boundaries
+
+- 未执行 Cash Frenzy Candidate；未修改 TASK-0021、Huuuge Collector、Lottery、Capture、document-assistant、飞书、SVN 或其他业务仓库。
+- `Subagents: none`。
+
 ## [0.12.1] - 2026-08-27
 
 ### Fixed

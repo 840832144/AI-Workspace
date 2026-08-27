@@ -1,12 +1,15 @@
 # TASK-0018 — Cash Frenzy Android Collector Feasibility Audit
 
+- Kind: companion
 - Status: Cancelled
+- Project key: CASH-FRENZY
 - Owner: User / ChatGPT
 - Executor: none
 - Priority: P1 candidate
 - Date: 2026-08-27
 - Cancellation reason: canonical Task ID collision
-- Canonical existing TASK-0018: `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md`
+- Canonical task: `tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md`
+- Companion role: cancelled collision stub; not an attachment to the Lottery scope
 - Replacement: pending `TASK-0020 — Task Allocation & Namespace Governance` and later reissue under a verified unique ID
 
 ## Decision

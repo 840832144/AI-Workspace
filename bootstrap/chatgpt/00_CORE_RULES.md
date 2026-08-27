@@ -75,15 +75,25 @@ User 目标
 
 ### Task 创建与编号分配规则
 
-创建、重编号或引用新 Task 前，必须先从 Git 最新 `main` 读取完整 `tasks/` 清单和当前 Handoff，不得依据聊天、记忆、最大编号猜测或本地过期目录分配编号。
+创建、重编号、晋升或引用新 Task 前，必须从 Git 最新 `main` 读取完整 `tasks/` 清单和当前 Handoff，并运行 Task Registry validator；不得依据聊天、记忆、最大编号或本地过期目录分配编号。
+
+Task identity 采用：
+
+```text
+canonical ID = 全局唯一 TASK-XXXX
+project_key  = 必填项目命名空间元数据
+human_alias  = 可选阅读别名
+```
+
+`project_key` / alias 不替代 canonical ID。Task Markdown 是真相源，Registry 只能重建，不能手工维护为第二真相源。
 
 强制顺序：
 
 1. 枚举所有根目录 canonical Task 文件，确认已占用 ID、状态和完整文件名；
 2. 检查是否已有相同目标或重叠范围的 `Draft / Ready / In Progress / Review / Changes Requested` Task；
-3. 区分 canonical Task 与附件、授权书、Review、Candidate；附件不得伪装成第二个 canonical Task；
-4. 决定继续已有 Task、创建子任务、保留 Candidate，或分配一个经 Git 验证未占用的新 ID；
-5. 创建后立即重新读取目录，验证 ID 唯一、文件名与标题一致、Task 可被其他会话发现。
+3. 区分 canonical Task 与附件、授权书、Review、Candidate；root Task 默认严格按 canonical 解析，只有显式 `Kind: companion` 且引用存在、同 ID canonical 的文件才能成为 companion；
+4. 决定继续已有 Task、创建子任务、保留 Candidate，或通过 remote Git reservation CAS 保留一个经 Git 验证未占用的新 ID；
+5. 创建后重建 Registry 并再次 validate，验证 ID 唯一、文件名与标题一致、Task 可被其他会话发现。
 
 禁止：
 
@@ -92,8 +102,11 @@ User 目标
 - 让两个不同 canonical Task 共用同一 ID；
 - 因编号冲突覆盖、删除或改写先存在 Task 的历史；
 - User 尚未确认范围时直接把讨论项升级为 `Ready` Task。
+- 手工编辑 `TASK_REGISTRY.yaml` 消除漂移，或在 canonical 进入 main 前释放 reservation。
 
-发生冲突时必须 fail closed：停止执行冲突 Task，保留先存在 Task 为 canonical，明确标记误建 Task 为 `Cancelled` 或迁入 Candidate，随后使用经验证的空闲编号创建治理/修复 Task。
+所有 allocation 写操作要求包含最新 `origin/main` 的 non-main independent linked worktree。remote `task-reservations/TASK-XXXX` ref 使用 first-writer CAS 覆盖不同 clone / Host；创建或晋升 Task 后保持到 canonical 进入 main，再用 token `finalize`，只有未创建 Task 的放弃场景才 `release`。新 canonical 必须显式写合法 `project_key`，仅审计 grandfather 集合可缺省。
+
+发生 duplicate、解析失败、Registry 漂移、非最新 main、active scope ambiguity 或 lock/reservation 冲突时必须 fail closed：停止执行冲突 Task，保留先存在 Task 为 canonical，明确标记误建 Task 为 `Cancelled` companion 或迁入 Candidate。
 
 新增游戏研究默认先经过 `Feasibility Audit → ChatGPT Review → User 决定 → Collector Adapter / Productization`，不得从聊天直接跳到完整 Collector 开发。
 

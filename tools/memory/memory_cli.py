@@ -987,6 +987,12 @@ def task_statuses(root: Path) -> list[tuple[str, str]]:
     statuses: list[tuple[str, str]] = []
     for path in sorted((root / "tasks").glob("TASK-*.md")):
         text = path.read_text(encoding="utf-8", errors="replace")
+        heading = next((line.strip() for line in text.splitlines() if line.strip()), "")
+        if not re.fullmatch(r"# TASK-\d{4} — .+", heading):
+            continue
+        kind = re.search(r"^- Kind:\s*(.+)$", text, re.M | re.I)
+        if kind and normalize_text(kind.group(1)).lower() != "canonical":
+            continue
         match = re.search(r"^- Status:\s*(.+)$", text, re.M)
         if match:
             statuses.append((path.name, match.group(1).strip()))
@@ -1091,7 +1097,7 @@ def refresh_command(args: argparse.Namespace) -> int:
     root, state_dir = Path(args.root).resolve(), Path(args.state_dir).resolve()
     mode, mode_source = get_mode(root, state_dir)
     generated_at = utc_now()
-    include_roots = ["capabilities", "standards", "docs/adr", "skills", "workflows", "solutions", "tasks", "handoff", "bootstrap/chatgpt"]
+    include_roots = ["capabilities", "standards", "docs/adr", "docs/incidents", "skills", "workflows", "solutions", "tasks", "handoff", "bootstrap/chatgpt"]
     try:
         repo_state = repository_state(root, args.sync)
         registered_states, private_status = registered_repository_states(

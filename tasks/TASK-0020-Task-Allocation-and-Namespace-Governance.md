@@ -1,6 +1,7 @@
 # TASK-0020 — Task Allocation & Namespace Governance
 
-- Status: Ready
+- Status: Review
+- Project key: WORKSPACE
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / governance
@@ -308,3 +309,43 @@ Codex 完成后返回：
 - Project Source replacement 状态
 - Subagents: none（若确有使用必须解释为何符合单写入者和受限权限）
 - 等待 ChatGPT Review，不执行 Cash Frenzy Candidate
+
+## Execution Result — 2026-08-27
+
+- Final policy：全局唯一 `TASK-XXXX` + 必填 `project_key` + 可选 human alias；历史 Task 不批量重编号，ADR-0006 保持 Proposed 等待 Review。
+- Registry：`tasks/TASK_REGISTRY.yaml` 由 Markdown 全量扫描确定性重建；当前记录 8 canonical、2 companion、1 Candidate、2 Review，canonical collision 为 0。
+- Tooling：标准库 `tools/tasks/task_cli.py` 支持 `scan / validate / next / release / finalize / candidate / promote`；分配写操作要求 latest `origin/main`、non-main independent linked worktree，并使用 common-directory lock + remote Git ref CAS reservation。
+- Candidate：Cash Frenzy 完整规格从 `7f6d9a5` 恢复到 `tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md`，当前 User decision 为条件性确认，工具不能晋升。
+- Incident：保留 Cancelled collision stub 并显式分类为 companion；Huuuge Lottery 是唯一 canonical TASK-0018。
+- Tests：首轮 14/14 disposable Git tests 与 Windows PowerShell 5.1 一键入口通过；Review Round 1 后扩展为 22 项，覆盖 writer gate、reservation 生命周期、跨 clone/Host、project_key、Draft overlap、companion 和 fault injection。
+- Concurrency evidence：两个同时运行的 allocator 在同一 clone 返回不同 ID；真实执行期间 `origin/main` 新增 TASK-0021 后，latest-main gate 阻断 Registry 写入，重新同步后 TASK-0021 被纳入 Registry。
+- Project Sources：Source Pack、Manifest、Current State 和 replacement list 已刷新；当前仍需人工替换，未自动上传。
+- Boundaries：未执行 Cash Frenzy；未修改 Huuuge Collector、Lottery、Capture、document-assistant、飞书、SVN、业务仓库或本机 Global runtime。
+- Subagents: none。
+- Branch: `codex/task-0020-namespace-governance`；提交与 push 结果见最终 Codex Handoff / Review 交付。
+- Implementation commit: `126adcf3e04a20bdc43833f9fc6a65eb27375012`。
+
+## Review Fix Round 1 — 2026-08-27
+
+ChatGPT Review 1 的五项 Required Fix 已全部实施，状态保持 `Review`：
+
+1. `next`、`release`、`finalize`、`candidate`、`promote` 与 Registry 写入统一要求 latest `origin/main`、non-main independent linked worktree；main 和普通 checkout fail closed。
+2. `next` / `promote` 先原子创建 `refs/heads/task-reservations/TASK-XXXX`。promotion 成功后保持 `pending-main`，canonical 进入 main 后才用 token `finalize`；未创建 Task 的放弃才 `release`。
+3. remote ref 使用 `--force-with-lease=<ref>:` first-writer CAS，不同 clone / Host 的后到者在创建 Task 前冲突并改取下一 ID；同 clone 仍使用 common-directory lock。
+4. 新 canonical 缩紧为显式合法 `project_key`；只有有限审计 map 中的 `TASK-0014` 至 `TASK-0019` 可缺省。未来 ID 不再按标题或路径推断。
+5. `Draft` 纳入 active overlap。root Task 默认按 canonical 严格解析；只有显式 `Kind: companion` 且 reference 指向存在、同 ID canonical 时才分类为 companion。
+
+针对性回归包括 main/普通 checkout、受支持 next+release、同 clone与跨 clone并发 next、跨 clone并发 promote、promote→pre-merge next→main→finalize、提前 release 拒绝、fault-injection remote cleanup、project_key 三类、Draft overlap 及四类 malformed companion。原 14 项 Task 测试与 35 项 Memory 测试必须在最终 Handoff 中给出不退化证据。
+
+边界未变化：不执行或晋升 Cash Frenzy Candidate；不修改 TASK-0021、Huuuge Collector、Lottery、Capture、飞书、SVN、document-assistant 或其他业务仓库；Memory 保持 `ASSISTED`；`Subagents: none`。
+
+## Review Fix Round 2 — 2026-08-27
+
+ChatGPT Review 2 确认 Round 1 五项全部通过，仅要求消除 remote reservation 对调用分支对象图的意外发布路径。修复后：
+
+- reservation commit 的 tree 固定为 latest `origin/main^{tree}`，唯一 parent 固定为 latest `origin/main`；
+- requesting branch HEAD 只作为 SHA metadata 记录，不再作为 tree 或 parent，未合并 branch graph 不会因 reservation push 进入 origin；
+- 新增跨 clone sentinel 回归：在 allocator worktree 创建未推送 sentinel commit，另一 clone 获取 reservation ref 后验证 parent/tree 等于 `origin/main`、sentinel 文件不存在、sentinel commit object 不可访问且不是 reservation ancestor；
+- remote CAS、release/finalize 生命周期及 Round 1 行为不变。
+
+本轮完成后 Task 继续保持 `Review`，等待 ChatGPT Review Round 3。边界、Memory `ASSISTED` 与 `Subagents: none` 不变。
