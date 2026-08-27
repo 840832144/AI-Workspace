@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-27T08:31:10Z
+Generated: 2026-08-27T08:45:45Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -11,7 +11,7 @@ Generated: 2026-08-27T08:31:10Z
 
 每次处理请求前：
 
-1. 先读取项目来源中的 `00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`。
+1. 先读取 `standards/PLANNER_WRITING_STYLE.md`，再读取项目来源中的 `00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`。
 2. 先识别 User 需要的 Capability，再优先复用项目已有代码、本机工具、团队内部方案、官方方案和成熟开源方案；只有不适配时才自行开发。
 3. 涉及当前任务、仓库状态、功能是否已实现、给 Codex 下任务或 Review 时，先查询 AI-Workspace 及对应业务仓库的最新 Task、Status、Handoff 和 commit；不得只凭项目记忆猜测。
 4. 创建、编号、晋升或引用新 Task 前，必须同步最新 main、运行 Task Registry validator，并在 non-main independent linked worktree 使用 remote CAS reservation；Task 进入 main 后才 finalize，未创建才 release。未获 User 明确批准的方向只进入 Candidate。全局 `TASK-XXXX` 是 canonical identity，新 canonical 必须显式写合法 `project_key`，alias 不能替代它。
@@ -24,6 +24,7 @@ Generated: 2026-08-27T08:31:10Z
 11. 回答新需求时默认给出：结论、当前依据、下一步。给 Codex 的话术尽量控制在 10 行以内，完整细节写入 Git Task。
 12. 完成实质讨论、明确长期决定、Review、可复用方案或 Task/Handoff 后，静默执行 Memory Check：只生成摘要和稳定 provenance，不保存完整聊天；source host/project/actor/reference 禁止使用 `unknown`、`n/a`、`none`、`-` 等占位值。Public-safe 内容进入 Candidate，私有/敏感/冲突/写能力不足进入 Review 或标准 Outbox。
 13. 标准 ChatGPT GitHub App 是只读路径时，不得声称已写 Git。只有当前会话另有批准 writer 时才提交 Candidate；否则输出最小 `Memory Outbox` 事件供 Codex 接管。Core Rule、ADR、Capability 和跨项目策略始终需要 Review。
+14. Task、Review、状态查询前先执行 Workspace Sync：优先读取最新 Git `main`、`LIVE_CONTEXT_MANIFEST.json` 和 local pack；Project Sources 只作为稳定 Bootstrap/离线回退。`stale/conflict/unavailable` 必须显式报告，飞书协作草稿不能直接覆盖 Git。默认模式保持 `ON_DEMAND`，未经 User 明确批准不得启用 `WATCH`。
 
 <!-- SOURCE: 00_CORE_RULES.md -->
 # 00 — Core Rules
@@ -75,6 +76,8 @@ Slots → Systems → Events → Others
 “发现候选方案”不等于“自动安装或采用”。新增依赖、外部服务、系统配置和权限变更仍需遵守安全与授权规则。
 
 ## 文档与交互标准
+
+所有 AI 在生成面向 User 或策划的内容前读取 `standards/PLANNER_WRITING_STYLE.md`。默认使用完整中文段落，普通回答采用“结论 → 当前依据 → 下一步”，不把一句话拆成大量孤立短行。
 
 面向策划的说明文档：
 
@@ -156,6 +159,13 @@ human_alias  = 可选阅读别名
 
 项目来源和 Project Memory 只是便于新对话读取的上下文快照，不替代上述真相源。
 
+## Workspace Live Context
+
+- Task、Review、状态查询和 Handoff 前运行 `ON_DEMAND` Workspace Sync。
+- Git-authoritative 内容只向协作层发布；飞书协作草稿进入 Candidate/Review，不直接覆盖 Git。
+- 冲突时双方内容都保留，必须有 User/Review decision；provider unavailable 时使用最近验证的 local pack 并标记 stale。
+- 未经 User 明确批准，不启用生产 WATCH、外部 webhook、长期 watcher、新权限或新知识空间。
+
 ## Automatic Memory
 
 - 重要内容在产生时先转成结构化 Candidate，不依赖事后遍历全部聊天。
@@ -177,6 +187,17 @@ AI-Workspace（治理、Task、规则、Memory、Handoff）
         ├── CR 等业务项目仓库（各自实现真相源）
         └── 公司 SVN（正式包和公司资源分发）
 ```
+
+跨 Host Context 使用独立的 provider-neutral 能力：
+
+```text
+Git canonical truth
+→ Workspace Sync / fingerprint / revision / conflict gate
+→ 飞书 Drive Context Hub（协作与展示）
+→ Host-local Context Pack（ChatGPT/Codex/Generic fallback）
+```
+
+当前 provider binding 是飞书 Drive + Docx，不是 Wiki。稳定 context ID 和 authority contract 位于 `LIVE_CONTEXT_MANIFEST.json` 与 `capabilities/context/`；folder/document ID 只留 Host-local Registry。
 
 核心能力保持解耦：
 
@@ -212,7 +233,7 @@ Collector 和报告生成是两个独立功能。AI Document Assistant 只负责
 - 非敏感运行手册镜像：`840832144/larkdoc_bot`
 - Codex MCP 名称：`feishu-docs`
 - 产品名：AI Document Assistant
-- 当前能力：健康检查、文档读取、目录浏览、搜索、创建、追加、替换、创建目录、企业内可编辑、群和用户授权。
+- 当前能力：健康检查、文档读取、目录浏览、搜索、创建、追加、替换、创建目录、企业内只读/可编辑、群和用户授权。
 - 创建文档默认企业内获得链接的人可编辑，除非 User 明确要求其他权限。
 - Codex 已可使用该能力；新的 Codex 项目通过 Global `~/.codex/AGENTS.md` 进行 Capability-first 发现。
 - ChatGPT 直接通过 Secure MCP Tunnel 连接仍受 OpenAI Control Plane 的地区限制阻塞，因此当前 ChatGPT 通常负责设计与内容，Codex 执行最终飞书读写。
@@ -312,6 +333,8 @@ Conversation / Agent
 _Last reviewed: 2026-08-27_
 
 本文件是便于 ChatGPT Project 新对话快速进入状态的动态摘要。执行任务前仍需读取 Git 中的最新 Task、Status、Handoff 和业务仓库。
+
+> TASK-0021 起，本文件降级为稳定 Bootstrap / 离线回退。动态 Task、Status、Handoff 和 freshness 由 `Workspace Sync` 从最新 Git 与 `LIVE_CONTEXT_MANIFEST.json` 生成；不能访问时必须显示 `Context unavailable / stale`，不得凭本文件猜测。
 
 ## 已完成的重要里程碑
 
@@ -422,7 +445,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T08:31:10Z
+- Generated: 2026-08-27T08:45:45Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -433,8 +456,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — Review
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Ready
-- `TASK-0020-Task-Allocation-and-Namespace-Governance.md` — Review
-- `TASK-0021-Workspace-Live-Context-Hub.md` — Ready
+- `TASK-0021-Workspace-Live-Context-Hub.md` — Review
 <!-- MEMORY-CONTEXT:END -->
 
 <!-- SOURCE: 03_NEW_CHAT_BOOTSTRAP.md -->
@@ -444,12 +466,13 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 ## 启动顺序
 
-1. 读取 `00_CORE_RULES.md`。
-2. 读取 `01_SYSTEM_CONTEXT.md`。
-3. 读取 `02_CURRENT_STATE.md`。
-4. 判断当前请求属于：讨论、设计、执行话术、当前状态查询、Review、文档生成或排障。
-5. 只要请求涉及当前 Task、功能是否已实现、最新 commit、运行状态、给 Codex 下任务或 Review，先查询 Git 中的最新信息。
-6. 读取 `CONTEXT_MANIFEST.yaml` 和 Project Source replacement 状态；Project Sources 是快照，出现 `manual upload required` 时以 Git 为准。
+1. 读取 `standards/PLANNER_WRITING_STYLE.md`。
+2. 读取 `00_CORE_RULES.md` 与 `01_SYSTEM_CONTEXT.md`。
+3. 运行 Workspace Sync，读取最新 Git、`LIVE_CONTEXT_MANIFEST.json` 和 Host-local Context Pack。
+4. 只有 Workspace Sync unavailable 时才把 `02_CURRENT_STATE.md` 当离线回退，并明确它可能过期。
+5. 判断当前请求属于：讨论、设计、执行话术、当前状态查询、Review、文档生成或排障。
+6. 只要请求涉及当前 Task、功能是否已实现、最新 commit、运行状态、给 Codex 下任务或 Review，先查询 Git 中的最新信息。
+7. `CONTEXT_MANIFEST.yaml` 与 Project Source Pack 继续作为 Memory/Bootstrap 快照；动态状态由 Live Context 和 Git 提供，不再依赖人工替换 `02_CURRENT_STATE.md` 才能获知。
 
 ## 发给 Codex 任务前
 
