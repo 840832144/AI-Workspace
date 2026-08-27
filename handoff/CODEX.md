@@ -1,15 +1,23 @@
 # Codex Handoff
 
 - Updated: 2026-08-27
-- Current task: TASK-0022 — Cash Frenzy Android Collector Feasibility Audit
-- Status: Ready — issuance pending merge to main and allocator finalize
-- Branch: `codex/cash-frenzy-feasibility-issuance`
-- Initial base: `origin/main@ac6d3edc6168c486f5c82f1f272dd4047de7dc4e`
-- Latest-main merge: `569f504` includes `origin/main@7eb16b0`
+- Current task: TASK-0024 — Cash Frenzy Inbound Structured Capture Spike
+- Status: Ready — canonical issuance pending main merge and allocator finalize
+- Branch: `codex/cash-frenzy-inbound-structured-capture-spike`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
+
+## Current Task — TASK-0024
+
+- User 明确要求新建独立 Spike，不继续扩大已完成的 TASK-0022；Candidate 已由正式 CLI 创建并经 allocator 分配唯一 `TASK-0024`，relationship 为 `new`。
+- 执行 contract：稳定性 Gate → `onUIThreadReceiveMessage` scope 内 `LuaStack/lua_pcall` 参数 → `BLMessage` 解码后对象 → decrypt/framing fallback → Local State Adapter。
+- 优先实现深度 4、每集合 64 元素、单消息 64 KiB 的受限递归 Lua serializer；只在 Cash inbound dispatch thread/scope 激活，禁止全局高频 Lua API 日志。
+- 只有 Lua 与 BLMessage 路线都失败才进入 `libEncryptorP` / `libsigner` / XXTEA 与单消息 Stalker summary。
+- 新 `AppResearch2` 与历史同名实例不是同一环境；执行前重新确认 Android 9、internal instance ID、ADB serial、package/version/ABI/native bridge 和前台包。
+- 真实 Spin 必须由 User 手动执行 3–5 次；在 User 操作前先完成 0 Spin 的 clean Gadget 稳定性 Gate。
+- 当前 issuance 仅修改 AI-Workspace 控制面；Huuuge repo、Cash runtime、模拟器、游戏、SVN、飞书正文与 WATCH 尚未修改。
 
 ## Closed Governance Task — TASK-0023
 
@@ -41,66 +49,46 @@
 - Review Round 2 已 Accepted；执行上述 main / finalize / cleanup 收口，不再等待 Review。
 
 ## Closed TASK-0021
+## Current decision
 
-- ChatGPT Review Round 1：Accepted。
-- AI-Workspace merge commit：`ac6d3edc6168c486f5c82f1f272dd4047de7dc4e`，已推送 main。
-- Document Assistant PR #1：MERGED；merge commit `3a959a7e801def913cd5c8a3d78e3f8da9093ca8`。
-- TASK-0021、ADR-0007 和正式 Review 已进入 main；最终模式保持 `ON_DEMAND`，未启用 WATCH。
+- User 明确停止 Demo，继续同一 `TASK-0022` 的 Cash Frenzy Slots Deep Research；不新建 Task。
+- 本轮使用 User 新建的 `AppResearch2`，没有使用旧 `AppResearch`，没有修改 Huuuge / Top Tycoon / Gossip Harbor / Collector 主架构。
+- User stop gate 已触发：direct Win 需要新的 inbound protocol / runtime 层，且 AppResearch2 的 arm64 Gadget 可复现崩溃；动态研究已停止。
 
-## TASK-0021 Phase 2 — 文档导航中心
+## Current recovery state
 
-- 第一阶段 Accepted 状态已从最新 main 确认；本阶段沿用 TASK-0021，不创建新 Task，当前状态为 Review。
-- 唯一《AI Workspace｜文档导航中心》已建立并真实回读，登记 14 份正式文档；八分类、链接唯一和企业内可编辑权限验证通过。
-- 正式测试文档已完成“创建、文档回读、自动登记、Hub 回读”，随后删除并确认 Hub 恢复为 14 条。
-- Document Assistant 新增 `register_document` 和正式创建治理；AI-Workspace 已更新 Core Rules、Project Instructions、两级 AGENTS、Document Capability、Document Assistant Workflow 与 Workspace Sync Workflow。
-- Git 不保存 Hub 独立 ID、token、私有 Registry 或敏感返回值；安全链接仅通过当前交付消息返回。
-- 当前运行中的 Codex MCP 仍是已合并版本；新 tool 需在 Review 通过、实现分支合并并重启 MCP 会话后正式载入。
-- Workspace Sync：`ON_DEMAND`；WATCH disabled；ChatGPT 设置未修改；Subagents: none。
-- 下一步：ChatGPT Review 本阶段两个分支；Accepted 后合并，并在新 Codex 会话确认 `register_document` 出现在工具清单。
+- **Balance — Recovered / Derived**：Phase 1.5 已用相邻 outbound `client_coins` 形成 Balance Before / After；Session 尾部仍有 open transition。
+- **Win — Derived candidate only**：`next_balance - current_balance + bet` 可复算；未观察到 direct / server `win` 字段。
+- **Result — Not recovered**：已定位 `BLMessage.type @ +0x24` 和 type 3 inbound dispatch，但未恢复明文字段。
+- **Feature / Jackpot — Not recovered**：仅有 static command/module names；本轮 0 Spin。
+- Collector 等级保持 **F3 Live structured outbound fields recovered**。
 
-## TASK-0021 Final UX Closeout
+## AppResearch2 proof
 
-- ChatGPT Review 2 的主体实现已通过；中文标题和项目全景入口两项收尾已完成，TASK-0021 最终状态为 Accepted。
-- 唯一入口已在同一 URL 原位更名为《AI Workspace｜文档导航中心》，保留 14 条正式文档、八分类、链接唯一和企业内可编辑权限。
-- `Game Planner AI Workspace｜项目全景说明` 已原位增加“📚 下一步推荐阅读”，其后新增“🗺 项目工作流总览”；章节位置、导航链接、飞书原生白板图和权限均已回读。
-- `docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md` 已从 TASK-0019 历史分支恢复为 Git 源稿；公共 Git 不保存租户文档 URL，发布时由 Document Assistant 绑定唯一链接。
-- “核心规则”“实时 Context Hub”和“当前状态与任务入口”已原位同步最新 Git 源稿，并逐份完成正文回读、自动登记和导航中心回读。
-- Documentation Governance 最终流程：`create_document → 文档回读 → register_document → 文档导航中心回读 → Success`。导航失败时不删除已创建文档、不重复创建，返回失败并等待修复。
-- 新增 Proposed RFC-0004，记录“一套 Research Environment、多游戏、Evidence 独立”的长期方向；没有修改当前 Cash Frenzy Candidate、TASK-0022 或执行环境。
-- Document Assistant：12 个 test files / 36 tests，真实创建—登记—删除—恢复烟测通过；Workspace：Task 23/23、Context 13/13、Memory 35/35、Doctor 通过。
-- Document Assistant 正式 `main` 已启动全新的 STDIO MCP 进程；`tools/list` 含 `register_document`，13 个正式工具与 healthcheck 均通过。
-- 最终模式：`ON_DEMAND`；WATCH disabled；ChatGPT 设置未修改；Subagents: none。
-- Merge commits：AI-Workspace `4c2b9b8fa87c65adb2876189de991eeb4a839f52d`；Document Assistant `b0292c3159db16542906948511b6b1ec58c360fd`。两个 main 均已完成本地合并，closeout commit 记录后推送。
+- Environment：`Nougat64 / AppResearch2`，Android 7.1.1，ADB `127.0.0.1:5555`，x86_64 + `libnb.so` arm64 translation；Android ID 与旧 AppResearch 不同。
+- App：`slots.pcg.casino.games.free.android` 4.78 / 478 / arm64-v8a。
+- Nougat64 使用 legacy `NativeBridgeLoadLibrary(path, flags)`；Cash-local bootstrap 从 `/data/local/tmp` 成功加载 Frida 17.17.0 arm64 Gadget 并返回非空 handle，最小 probe 确认 `Process.arch=arm64`。
+- 20 秒无操作 boundary：`sendMsg=6`、`sendTable=1`、`sendTickMsg=5`、`onSocketCallback=12`、`onUIThreadReceiveMessage=6`。
+- guest / lobby Session 捕获 23 条 inbound message，全部 type 3，`ccvalue_to_luaval` dispatch-scope conversions=0，errors=0。
+- Codex 只执行两个单点 UI tap：进入 guest 流程、领取免费 starter login reward；无 Spin、购买、充值、付费奖励、Auto Spin 或挂机。
 
-## TASK-0022 Allocation
+## Exact blocker
 
-User 已明确批准 `tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md`。在包含 latest `origin/main` 的独立 linked worktree 中执行正式：
+- AppResearch2 拒绝向 `/data/app/.../lib/arm64` 写入，不能复用 Pie64 app namespace staging；只能从临时路径走 legacy bridge。
+- 一次 delegate-vtable 枚举触发 SIGSEGV 后已永久停止该探针。
+- 后续不加载业务 hook 的 clean Gadget run 仍复现 `gum-js-loop` + GLThread SIGSEGV；将资源从 1 GB / 2 CPU 提高到 4 GB / 4 CPU 后仍复现，排除单纯资源不足。
+- 下一技术路线必须二选一：在 Android 9 级稳定 runtime 中继续 `BLMessage` / EventCustom 明文边界，或正式进入 UDP inbound framing / decrypt / dispatch 恢复。两者都属于新运行时或新协议层，当前不继续。
 
-```text
-python tools/tasks/task_cli.py promote tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md
-```
+## Prior Demo state — frozen out of scope
 
-allocator 实际分配 `TASK-0022`，没有猜号或手工编辑 Registry。Candidate 现为 Migrated；canonical 文件为 `tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md`。Remote reservation `refs/heads/task-reservations/TASK-0022` 保持 `pending-main`；token 只留 Host-local allocator state，不进入 Git 或 Handoff。
+- 既有 Collector Demo Markdown、图表和飞书文档保持原状；本轮不更新 Documentation / Report，不处理历史 Hub registration blocker，也不重复创建文档。
 
-正式 Registry validate 已通过：9 canonical、2 companion、1 个已 Migrated Candidate record、6 Review、0 collision；当前待决 Candidate 为 0。
+## Clean finalize
 
-## Execution Boundary
-
-Task issuance 合入 main 并完成 `finalize` 后，必须从最新 main 新建独立执行 linked worktree。先完成 Reuse-first、package/version/ABI/engine、APK/split、protocol 和 static resource audit，再建立独立 `CashFrenzyResearch` 环境。
-
-- 不修改或复用 `HuuugeResearch`。
-- Cash Frenzy Session / Raw / APK / SO / 完整响应 / 账号数据只留本机，不与 Huuuge 混用。
-- 不自动付费，不替 User 消耗大量资源，不伪造或重放请求。
-- 需要安装、登录、验证码或 1–5 次普通 Spin 时，停下并只给 User 明确界面操作顺序。
-- 当前会话为宽松文件权限，按 Subagent 安全规则保持 OFF；主 Agent 单独执行并唯一写入。
-
-`origin/main@7eb16b0` 增加的“共用 Research 模拟器”历史说明与本轮直接指令冲突，现已在 Candidate 中保留审计引用并明确标记为 superseded；当前有效决定是独立 `CashFrenzyResearch`。
-
-
-
-
-
-
+- Cash app force-stop；AppResearch2 专属 Frida server、Gadget/config、ADB `tcp:27042` / `tcp:27043` forwards 均删除或移除并回读确认。
+- AppResearch2 root / CPU / RAM 已回滚到 `off / 2 / 1024 MB`；重启后 `su: not found`，Cash process 不存在。
+- 新 Session、探针、runtime 和截图只留 `D:\CashFrenzyResearch\local-only`；没有 Raw、账号、字段值、APK、SO 或完整响应进入 Git。
+- `D:\huuuge-research` 未修改；Workspace Sync `ON_DEMAND`，WATCH disabled；Subagents none / OFF。
 
 
 
@@ -122,6 +110,7 @@ Task issuance 合入 main 并完成 `finalize` 后，必须从最新 main 新建
 - ChatGPT Project Sources: `manual upload required`
 - Private repositories: not read unless explicitly registered and authorized
 <!-- MEMORY-REFRESH:END -->
+
 ## Exact Next Action
 
-提交并合并 TASK-0022 issuance 到 main；在原 issuance linked worktree 同步 latest main 后执行 `task_cli.py finalize`，然后建立独立 execution linked worktree继续 TASK-0022。
+将 TASK-0024 canonical issuance 合入最新 main 并 finalize allocator reservation；随后在新 Android 9 `AppResearch2` 上重新确认 identity，先执行 0 Spin clean Gadget 稳定性 Gate。需要 gameplay event 时暂停并等待 User 手动执行 3–5 次普通 Spin。

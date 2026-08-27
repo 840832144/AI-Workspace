@@ -12,9 +12,9 @@
 
 ### Cash Frenzy
 
-- 当前状态：已批准并进入 canonical TASK-0022。
-- 产品目标：完成 Android Collector Feasibility Audit，判断是否值得进入独立 Adapter / Collector 实现。
-- 执行边界：由 TASK-0022 与对应 Review 决定；本 Roadmap 不修改其环境、范围或状态。
+- 当前状态：TASK-0022 Feasibility Audit 已通过 ChatGPT Review 并收口；User 已批准新的 canonical TASK-0024。
+- 当前目标：在重建的 Android 9 `AppResearch2` 上完成 Inbound Structured Capture Spike，优先恢复一次普通 Spin 的 direct `result / win / balance / feature` 至少一项。
+- 执行边界：严格按稳定性 Gate → inbound-scoped Lua → `BLMessage` 解码对象 → decrypt/framing fallback → Local State Adapter 推进；不构建完整 Collector，不回到 Nougat64。
 
 ### Top Tycoon
 
