@@ -2,6 +2,24 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.12.0] - 2026-08-27
+
+### Added
+
+- TASK-0018 Lottery 数值拆解交付索引，固定外部 Git 报告 commit 与企业内可编辑飞书文档。
+
+### Changed
+
+- TASK-0015 从 `Ready` 更新为 `Complete`，TASK-0018 从 `Ready` 更新为 `Review`；TASK-0014 保持 `Accepted`。
+- Huuuge Project Status、Memory 和 Knowledge Index 同步 Lottery L3 Runtime Observed 基线；证据分布调整为 L3 × 12、L2 × 3、L1 × 22。
+- Lottery 知识明确区分直接 Toss 奖励、阈值返还、购买发放与升级关联产出；升级后的余额变化为 Confirmed，升级因果保持 Estimate。
+
+### Validation
+
+- 外部 `huuuge-android-research@bfed5f30e098522ffb98ef5eb7d63e824d68b1c4` 已推送，报告与 6 份脱敏 CSV 可定位。
+- 飞书正文回读 565 blocks，关键 Finalize、升级关联与 CR 章节存在；企业内可编辑权限验证通过。
+- 未复制 Raw、decoded values、真实 Session/account ID、绝对余额、付费价格或 credentials；未修改 Collector、CR、SVN、游戏或服务端状态。
+
 ## [0.11.2] - 2026-08-27
 
 ### Fixed

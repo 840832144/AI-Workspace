@@ -4,8 +4,8 @@
 
 ### Project and collector
 
-- External implementation/evidence source is [`huuuge-android-research`](https://github.com/840832144/huuuge-android-research), baseline commit [`0590c2c`](https://github.com/840832144/huuuge-android-research/commit/0590c2c37a0aa83b824920fa884f9f67007d3dcb).
-  - Evidence: User decision in TASK-0008 and synchronized Git state on 2026-08-26.
+- External implementation/evidence source is [`huuuge-android-research`](https://github.com/840832144/huuuge-android-research), current baseline commit [`bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4).
+  - Evidence: User decision in TASK-0008 and TASK-0018 synchronized Git state on 2026-08-27.
 - The proven chain is isolated research environment → x86_64 Frida server → Houdini namespace → ARM64 Gadget → three high-level `Casino.RpcMessage` hooks → descriptor-backed decode.
   - Evidence: external [`CURRENT_STATUS.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/CURRENT_STATUS.md).
 - Existing proven Sessions include 84/84, 741/741 and 91/91 descriptor-decoded RPCs.
@@ -29,8 +29,13 @@
 
 ### Lottery
 
-- Lottery currently has cross-cutting/config-only live evidence but no dedicated interactive Lottery endpoint in the broad capture.
-  - Evidence: external [`lottery.md`](https://github.com/840832144/huuuge-android-research/blob/0590c2c37a0aa83b824920fa884f9f67007d3dcb/artifacts/module_catalog/lottery.md).
+- Lottery now has L3 Runtime Observed evidence from finalized alias `LOT-20260827-A`: 346/346 primary `LotteryToss` pairs, plus 588/588 Spin and 45/45 FreeSpin pairs used for source reconciliation.
+  - Evidence: external [`Lottery report`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/reports/lottery/20260827_lottery-ticket-puzzle/LOTTERY_NUMERICAL_BREAKDOWN.md) and [`lottery dossier`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/artifacts/module_catalog/lottery.md).
+- In the observed Session, every 7 consumed ticket units returned one Bronze ticket; 933 units produced 133 returns from initial progress 1 and ended at progress 3.
+  - Evidence: external report and `PROGRESSION_MODEL.csv`; scope is one account/build/Session.
+- Spin/FreeSpin responses contain no direct Lottery ticket grant. Six post-level balance transitions total +16 Bronze; the transitions are Confirmed L3, while level-up causation is Estimate L3 supported by repeated timing and User Manual evidence.
+  - Evidence: external `SLOT_ITEM_DROP_STATS.csv`、`PROGRESSION_MODEL.csv` and Evidence Matrix.
+- The connector-verified Feishu report is company-editable: [`Huuuge Lottery 活动数值拆解（2026-08-27）`](https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3).
 
 ### Task / Missions
 
@@ -59,6 +64,8 @@
   - Source: User access decision on 2026-08-26 and `FIRST_RUN_GUIDE.md` RC4；independent 30-minute validation pending.
 - Planner-facing documents default to Chinese, and newly generated cloud documents default to company-editable access unless User explicitly requests another permission mode.
   - Source: User decisions on 2026-08-26 and repository documentation rules.
+- Lottery source attribution must distinguish direct Toss rewards、threshold rebates、purchases and upgrade-linked outcomes. A balance transition may be Confirmed while its causal grant remains Estimate.
+  - Source: TASK-0018 evidence review and User correction on 2026-08-27.
 
 ## Hypotheses
 
@@ -66,8 +73,8 @@
   - Validation needed: ChatGPT/User priority decision and field-level extractor acceptance criteria.
 - Missions or Offers may be suitable as the first meta/economy Extractor.
   - Validation needed: compare live coverage, planner value and schema completeness.
-- Additional Lottery and generic Task interaction may expose dedicated endpoints already present in recovered schema.
-  - Validation needed: a future authorized unrestricted capture visiting those surfaces.
+- Higher Bet may increase upgrade-linked Lottery ticket acquisition only indirectly by accelerating progression; no direct Spin ticket field was observed.
+  - Validation needed: fixed-level-range、fixed-duration Bet comparison plus matching UI/runtime upgrade evidence.
 
 ## Reusable Knowledge
 

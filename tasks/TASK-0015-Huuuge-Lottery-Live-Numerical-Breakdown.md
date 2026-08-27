@@ -1,6 +1,6 @@
 # TASK-0015 — Huuuge Lottery 限时活动实时采集与体验证据保全
 
-- Status: Ready
+- Status: Complete
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / time-critical
@@ -170,3 +170,11 @@ User 按自己的体验计划游玩 Slots。Codex 记录：
 - 本机证据位置；
 - 是否可以进入下一阶段分析；
 - `Subagents: none`（除非后续任务另行批准）。
+
+## Completion Record — 2026-08-27
+
+- 脱敏 Session alias：`LOT-20260827-A`；manifest `stopped`，四个 lifecycle marker 完整。
+- 8712/8712 RPC 已解码，LotteryToss 346/346、Spin 588/588、FreeSpin 45/45。
+- Raw、decoded values、真实 Session/account 标识保留在本机，未进入 AI-Workspace、Git 或飞书。
+- TASK-0018 已使用该证据完成分析并进入 `Review`。
+- Subagents: none。

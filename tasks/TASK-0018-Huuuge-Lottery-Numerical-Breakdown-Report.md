@@ -1,6 +1,6 @@
 # TASK-0018 — Huuuge Lottery 活动数值拆解报告
 
-- Status: Ready
+- Status: Review
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / business analysis
@@ -430,3 +430,12 @@ Codex 完成后返回：
 - TASK-0014 / 0015 / 0018 最终状态；
 - 新发现的优化项，仅作为下个 Task 候选，不擅自实施；
 - `Subagents: none` 或实际使用记录。
+
+## Completion Record — 2026-08-27
+
+- TASK-0015 Session 已确认 `stopped`，四个 lifecycle markers 完整，8712/8712 RPC decode；TASK-0015 状态更新为 `Complete`。
+- TASK-0014 已由 ChatGPT Review 接受，保持 `Accepted`；未重新实施。
+- 脱敏 Git 报告与最小 Extractor 已提交至 `huuuge-android-research@bfed5f30e098522ffb98ef5eb7d63e824d68b1c4`。
+- 飞书文档已搜索防重、创建、回读，并验证为企业内可编辑：`https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3`。
+- 核心边界：Spin payload 没有直接 Lottery 票 grant；六次等级变化后的 +16 Bronze 状态变化为 `Confirmed L3`，升级因果归因为 `Estimate L3`，不写成单局随机掉落。
+- 未新增采集、付费或游戏内操作；未修改 Collector、CR、SVN、游戏或服务端状态；Subagents: none。

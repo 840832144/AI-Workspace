@@ -1,10 +1,10 @@
 # Huuuge Android Research — Project Status
 
-- Updated: 2026-08-26
-- Phase: First Run validation
+- Updated: 2026-08-27
+- Phase: Lottery numerical report review；First Run validation remains parallel
 - Owner: User
-- Current milestone: TASK-0011 First Run Guide RC4 public single-repository path waiting for independent planner validation
-- External baseline: [`0590c2c`](https://github.com/840832144/huuuge-android-research/commit/0590c2c37a0aa83b824920fa884f9f67007d3dcb)
+- Current milestone: TASK-0018 Lottery numerical breakdown waiting for ChatGPT Review
+- External baseline: [`bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4)
 
 ## Confirmed Current Facts
 
@@ -12,13 +12,15 @@
 - External implementation and evidence remain in `huuuge-android-research`; no source, capture or runtime asset was migrated.
 - Battle Pass entry is schema-only/live-pending.
 - Slots entry is live-confirmed and supported by the broad 741/741 decoded Session plus a sanitized 29-Spin-pair example.
-- Lottery entry has cross-cutting/config evidence but no dedicated interactive endpoint sample.
+- Lottery now has L3 primary Runtime evidence: 346/346 `LotteryToss` request/response pairs from finalized alias `LOT-20260827-A`; the external report separates direct Lottery rewards from upgrade-linked ticket outcomes.
 - Generic Missions is schema-only/live-pending; MiniPass has a separate live-confirmed task/missions flow.
 - TASK-0006 collector architecture baseline remains Waiting for ChatGPT Review in the external repository.
 - TASK-0009 Knowledge Index covers all 37 external dossiers under Slots 1、Systems 10、Events 14、Others 12.
 - Huuuge Evidence Standard defines L0 Unverified、L1 Schema、L2 Configured / Visible、L3 Runtime Observed and L4 Triangulated.
 - Citation types are standardized as Schema、Config、Runtime、UI and Manual with required provenance、locator、context、claim scope and limits.
-- All 37 Knowledge modules now use the standard: L3 × 11、L2 × 4、L1 × 22、L0/L4 × 0, matching the external catalog baseline without evidence promotion.
+- All 37 Knowledge modules use the standard. After TASK-0018, Lottery moves from L2 to L3: L3 × 12、L2 × 3、L1 × 22、L0/L4 × 0.
+- TASK-0015 is `Complete` and TASK-0018 is `Review`; TASK-0014 remains `Accepted`.
+- The connector-verified report [`Huuuge Lottery 活动数值拆解（2026-08-27）`](https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3) was read back and verified as company-editable.
 - TASK-0011 First Run Guide is available in Git and uses Codex or Trae + DeepSeek as the default operator instead of requiring planners to execute low-level commands.
 - The Feishu edition [`Huuuge 新人上手指南（First Run Guide）`](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf) was created through AI Document Assistant, read back successfully, and verified as company-editable (`tenant_editable`).
 - A blind-test record exists at `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`; it contains no fabricated tester、timing or success data.
@@ -28,14 +30,17 @@
 
 ## In Progress
 
-- Independent First Run by one planner who did not participate in development, using only the AI-Workspace Git repository and Feishu guide.
+- ChatGPT Review of TASK-0018 claim classification, upgrade-linked attribution and CR candidates.
+- Independent First Run by one planner who did not participate in development remains a separate validation track.
 
 ## Risks
 
 - Workspace state can drift from the external repo if stable commit links and Status are not refreshed after meaningful research changes.
   - Mitigation: external repo updates first; Workspace only promotes reviewed durable facts.
-- Existing evidence is uneven: Slots is live-rich while Battle Pass, Lottery dedicated endpoints and generic Missions remain incomplete.
+- Existing evidence is uneven: Slots and Lottery now have primary live evidence, while Battle Pass and generic Missions remain incomplete.
   - Mitigation: label status per module and never compare them as equally complete.
+- Lottery upgrade-linked ticket causation lacks an explicit grant payload or matching UI artifact.
+  - Mitigation: preserve `Confirmed L3` for the six balance transitions and `Estimate L3` for level-up causation; do not promote to L4.
 - Skill categories exist only as model entries; they are not executable research Skills.
   - Mitigation: every execution still requires an explicit Workflow and external-tool evidence.
 - The four-category taxonomy is optimized for planner navigation and may not match protocol ownership one-to-one.
@@ -53,9 +58,9 @@
 
 ## Blockers
 
-- Validation gate: no uninvolved planner has yet been designated or observed for the required blind test.
-- TASK-0011 cannot be marked complete and cannot honestly report elapsed time or independent AI guidance until that external validation occurs.
+- TASK-0018 has no implementation blocker; it is waiting for ChatGPT Review.
+- TASK-0011 still has a separate validation gate: no uninvolved planner has yet been designated or observed for the required blind test.
 
 ## Exact Next Action
 
-User designates one planner who did not participate in development and gives that person only `https://github.com/840832144/AI-Workspace.git` plus the Feishu First Run Guide. Confirm the test device already has company SVN/Feishu access and an administrator-provisioned Document Assistant, then time the public single-repository flow and record it in `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`.
+ChatGPT reviews the TASK-0018 Git report and Feishu edition, returning `Accepted` or specific changes. Do not start another Capture or modify Collector/CR before Review. TASK-0011 blind validation remains independently pending.

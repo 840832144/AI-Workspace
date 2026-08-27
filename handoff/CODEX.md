@@ -1,14 +1,35 @@
 # Codex Handoff
 
 - Updated: 2026-08-27
-- Task: TASK-0016 Review Fix Round 1
-- Base main: `aa18233`（包含已完成 TASK-0017 merge record）
-- Current state: three Required Fixes implemented; waiting ChatGPT Review Round 2
+- Latest completed task: TASK-0018 Huuuge Lottery 数值拆解报告
+- Base main: `6610fef`
+- Current state: TASK-0018 waiting ChatGPT Review；TASK-0016 Review Round 2 remains pending
 - Final Memory Mode: `ASSISTED`
 - Production Hook/AUTO: disabled
 - Subagents: none
 
-## Outcome
+## TASK-0018 Outcome
+
+- TASK-0015 已确认 Finalize 并更新为 `Complete`；TASK-0018 已更新为 `Review`；TASK-0014 保持 `Accepted`。
+- 外部业务仓库已推送 [`bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4)，包含中文报告、6 份脱敏 CSV、最小 Lottery Extractor、4 个测试和更新后的 module catalog。
+- 飞书文档 [`Huuuge Lottery 活动数值拆解（2026-08-27）`](https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3) 已回读 565 blocks，并验证企业内可编辑。
+- Finalized alias `LOT-20260827-A`：8712/8712 decode、LotteryToss 346/346、Spin 588/588、FreeSpin 45/45。
+- 933 张票消耗产生 133 张阈值返还；直接 Lottery 奖励 60 张；六次升级后的 +16 Bronze 余额变化为 `Confirmed L3`，升级因果为 `Estimate L3`。
+- Spin/FreeSpin payload 没有直接 Lottery ticket grant，因此报告未把升级产出写成单局随机掉落，也未输出伪掉率。
+- Lottery Knowledge 从 L2 提升到 L3；项目分布更新为 L3 × 12、L2 × 3、L1 × 22、L0/L4 × 0。
+- 未读取或提交 Raw、真实 Session/account ID、逐笔余额、付费价格或 credentials；未改 Collector、CR、SVN、游戏或服务端状态。
+- Subagents: none；宽松父会话下保持 Pilot OFF。
+
+## TASK-0018 Review Files
+
+- `projects/huuuge-android-research/REPORTS/TASK-0018-LOTTERY-NUMERICAL-REPORT.md`
+- `projects/huuuge-android-research/STATUS.md`
+- `projects/huuuge-android-research/MEMORY.md`
+- `projects/huuuge-android-research/KNOWLEDGE/README.md`
+- `projects/huuuge-android-research/KNOWLEDGE/EVENTS.md`
+- `tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md`
+
+## Prior Review Context — TASK-0016
 
 ChatGPT Review 1 的三个 blocking fixes 已完成：
 
@@ -107,4 +128,4 @@ Local-only / route-required 事件不因来源缺失而伪造 provenance；它�
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-ChatGPT Review Round 2：核对 Review 1 三项 Required Fix、Registry fail-closed contract、linked-worktree transaction、五类 fault injection、三入口 provenance、Round 2 Pilot 和最终 `ASSISTED` 边界。给出 `Accepted` 或新的 `Needs changes`；Review 前不启用 Hook/AUTO，不创建真实 Private Registry。
+ChatGPT 先 Review TASK-0018 的 claim 分类、升级关联边界、结构化表与 CR 候选，返回 `Accepted` 或具体修改项。TASK-0016 Round 2 Review 与 TASK-0020 治理执行仍按 `handoff/CHATGPT.md` 独立推进；不得用本次 worktree 覆盖其变更。

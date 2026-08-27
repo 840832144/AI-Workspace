@@ -26,7 +26,7 @@
 | --- | --- | --- |
 | Battle Pass | `battle_pass.md` + `BattlePass_schema.md` | 先做 schema-level question；需要 live values 时等待 eligible account 和授权 capture |
 | Slots | `slots.md` + broad capture summary | 优先复用现有 live evidence；选择 Extractor 前由 ChatGPT/User 定义问题和验收 |
-| Lottery | `lottery.md` | 明确区分 config/cross-cutting evidence 与专用 endpoint；不足时规划未来 normal-play capture |
+| Lottery | `lottery.md` + TASK-0018 report | 明确区分直接 Toss 奖励、阈值返还、购买与升级关联产出；因果不足时保持 Estimate 并规划 UI/runtime 对照 |
 | Task / Missions | `missions.md` + `mini_pass.md` | 分开 generic Missions 与 MiniPass task flow，禁止混写成同一系统 |
 | Cross-module | `MODULE_INDEX.md` + collector capability/data-flow docs | 先更新结构目录，再决定是否进入单模块深挖 |
 
