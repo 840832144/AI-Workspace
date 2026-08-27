@@ -39,3 +39,7 @@ TASK-0021 要求优先验证 Wiki。官方 Wiki API 存在，但当前应用对�
 未来切换 Wiki 必须先获得 User 授权并满足完整 Gate；切换只替换 provider binding，不改变 CAP-CONTEXT contract 或稳定 context ID。
 
 `WATCH` 不属于本 ADR 的已启用范围；任何生产 watcher、webhook、Scheduled Task 或长期进程仍需 User 另行明确批准。
+
+## Final UX Closeout
+
+TASK-0021 最终收尾采用唯一《AI Workspace｜文档导航中心》作为所有正式飞书文档的统一入口。展示标题可以原位调整，但稳定 alias、Registry Hub 标记和文档链接保持不变；正式文档只有在正文回读、自动登记和导航中心回读全部通过后才算成功。导航中心失败时保留已创建文档并返回失败，不删除、不重复创建。面向策划的项目全景说明在靠前位置提供导航入口和可视化工作流，发布后必须同时回读章节顺序、链接与原生图形块。

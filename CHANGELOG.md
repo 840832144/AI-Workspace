@@ -2,6 +2,54 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.15.2] - 2026-08-27
+
+### Accepted
+
+- TASK-0021 最终 UX 收尾完成并更新为 Accepted；ADR-0007 保持 Accepted，补充中文文档导航治理。
+
+### Changed
+
+- 唯一飞书入口原位更名为《AI Workspace｜文档导航中心》，保持同一 URL、14 条正式文档、八分类和企业内可编辑权限。
+- 恢复 `docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md` Git 源稿；项目全景说明原位增加“📚 下一步推荐阅读”和紧随其后的“🗺 项目工作流总览”，可直接进入文档导航中心并以图形理解完整协作链路。
+- Core Rules、Project Instructions、Global AGENTS 模板、Repository AGENTS、Document Capability、Document Assistant Workflow、Workspace Sync Workflow 和 Context Hub Index 统一采用最终创建/登记/回读失败语义。
+
+### Added
+
+- 新增 Proposed `RFC-0004: Research Environment Strategy`，记录共享 Research Runtime、按游戏隔离 Evidence、单一活动 Capture 与前台包名 READY Gate；不修改当前 Cash Frenzy Candidate 或 TASK-0022。
+
+### Validation
+
+- 文档导航中心标题、首页说明、唯一性、链接、14 条登记与权限回读通过；项目全景说明章节位置、链接目标、原生 Mermaid 白板块、正文和权限回读通过，连续发布两次保持幂等。
+- “核心规则”“实时 Context Hub”和“当前状态与任务入口”原位发布最新 Git 源稿，正文回读、自动登记和导航中心回读通过。
+- Document Assistant 12 个测试文件 / 36 项测试及真实创建—登记—删除—恢复烟测通过；Workspace Task 23/23、Context 13/13、Memory 35/35 与 Doctor 通过。
+
+### Boundaries
+
+- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled；未修改 ChatGPT 设置或当前 Cash Frenzy 执行环境；`Subagents: none`。
+
+## [0.15.1] - 2026-08-27
+
+### Added
+
+- TASK-0021 第二阶段新增唯一 `AI Workspace｜Documentation Hub`，作为 Workspace 所有正式飞书文档的导航入口；八个固定分类与统一元数据由 Document Assistant 自动生成。
+- 新增 Document Assistant Workflow；Document Capability 增加 `CAP-DOC-REGISTER`，当前 binding 为 `register_document`。
+
+### Changed
+
+- Core Rules、Project Instructions、Global AGENTS 模板、Repository AGENTS 和 Workspace Sync Workflow 统一要求正式文档完成“创建、文档回读、Hub 登记、Hub 回读”。
+- TASK-0021 第一阶段 Acceptance 保持有效；第二阶段增强进入 Review。
+
+### Validation
+
+- 历史扫描登记 14 份正式文档并排除 2 份临时连接测试；唯一 Hub、八分类、链接唯一、正文回读和企业内可编辑权限回读通过。
+- 真实正式测试文档完成自动登记，删除后 Hub 恢复为 14 条；Document Assistant 构建和 10 个测试文件 / 32 项测试通过。
+
+### Boundaries
+
+- Git 仍是真相源，Documentation Hub 只负责飞书导航且禁止人工维护；Git 不记录 Hub 的独立 ID、token、私有 Registry 或敏感返回值。
+- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled；未修改 ChatGPT 设置；`Subagents: none`。
+
 ## [0.15.0] - 2026-08-27
 
 ### Added
