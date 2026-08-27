@@ -19,6 +19,7 @@ Rules:
 - Grant company-editable access to every newly generated cloud document by default unless the User explicitly requests private, read-only, or no-edit access. If an administrator policy blocks sharing, preserve the created document and report the permission failure; never create a duplicate as a retry.
 - Do not copy business code, credentials, private datasets, or full runtime logs into this repository.
 - Preserve project repositories as the source of truth for implementation.
+- Before creating, renumbering, or telling another Agent to execute a new Task, enumerate the complete latest `tasks/` directory, verify the canonical ID is unique, check related active Tasks, and record the allocation evidence. Never guess the next ID from chat, memory, a partial search, or `max + 1` alone. On collision, fail closed and preserve the first canonical Task.
 - Update the relevant handoff and project Status when work changes shared state.
 - Commit documentation and coordination records together, then push before handoff.
 
