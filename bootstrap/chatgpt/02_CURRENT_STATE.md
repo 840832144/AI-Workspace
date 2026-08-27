@@ -12,35 +12,58 @@ _Last reviewed: 2026-08-27_
 - AI Document Assistant 已接入 Codex，可读写飞书云文档并自动设置企业内可编辑权限。
 - Codex 跨项目 Global AGENTS 已采用 Capability-first / Reuse-first 规则。
 - Codex 1+4 Subagent Pilot 已通过 Review；默认 `OFF`，可在受限权限和适合的复杂任务中手动启用。
-- Git-backed Automatic Memory 已完成 TASK-0016 Review 1 的三个 Required Fix，等待 ChatGPT Round 2 Review；production 默认 `ASSISTED`，AUTO 仅完成 linked-worktree 隔离与 fault-injection 验证，Global hook 未激活。
+- Git-backed Automatic Memory 当前处于 `Review`；production 默认 `ASSISTED`，Global hook 与 production AUTO 未激活。
 - “策划在新电脑上按文档和 AI 引导完成采集与文档流程”的首轮验收暂定通过，后续通过真实使用继续优化。
+
+## 当前治理任务
+
+当前 User 已授权：
+
+```text
+AI-Workspace/tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md
+```
+
+状态：`Ready`。
+
+背景：仓库曾同时出现两个不同内容的 canonical `TASK-0018`。先存在的 Huuuge Lottery Task 保持 canonical；误建的 Cash Frenzy Task 已标记 `Cancelled`，完整规格保留在 Git 历史，等待 TASK-0020 完成后迁入 Candidate 并重新分配唯一编号。
+
+TASK-0020 目标：
+
+- 建立 Task Registry 和 canonical / companion / candidate 分类；
+- 实现 `scan / validate / next / candidate / promote` 最小工具；
+- 重复 ID、格式漂移、并发分配和非最新 Git 全部 fail closed；
+- 建立 Candidate-first 工作流；
+- 用 ADR 决定长期编号与 namespace 方案；
+- 更新 Core Rules、Global AGENTS、ChatGPT 00–03、Context Manifest 和 Handoff；
+- 不执行 Cash Frenzy，不修改任何业务仓库。
 
 ## 当前 Huuuge 任务
 
-当前任务文件：
+当前相关文件包括：
 
 ```text
 AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
+AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 ```
 
-实际范围已经收窄为：
-
-- 在 Lottery 限时活动结束前启动并维护专用 Capture；
-- User 亲自体验游戏，并决定所有付费、充值、礼包、票券购买和资源消耗行为；
-- Codex 只负责环境检查、READY、短步骤提醒、被动采集、Clean Finalize 和证据覆盖清单；
-- 本轮暂不做数值拆解、CR 方案、飞书报告或 AI Document Assistant 写入；
-- User 明确说“体验完成，可以开始分析”后，再建立独立分析任务。
-
-如果 Git 中该 Task 已更新或结束，以 Git 最新内容为准。
+实际状态和执行顺序必须读取文件、最新 Handoff 和 `huuuge-android-research`。TASK-0020 不得修改 Collector、Raw Capture 或 Lottery 业务分析范围。
 
 ## 当前重要决策
+
+### Task Allocation
+
+- 新 Task 创建前必须从 Git 最新 `main` 枚举完整 `tasks/`，不能依赖聊天、Project Source 快照、局部搜索或“最大编号 + 1”。
+- 每个 canonical Task ID 全局唯一；companion、authorization、review 和 candidate 必须明确分类。
+- User 未确认的新方向先进入 Candidate，不占正式 ID。
+- 冲突时 fail closed：保留先存在 Task，误建项 `Cancelled` 或迁入 Candidate，不覆盖历史。
+- 新游戏研究默认采用 `Feasibility Audit → Review → User 决定 → Adapter / Collector → Planner Release`。
 
 ### Automatic Memory
 
 - Git 是可审计、可回滚的长期真相源；ChatGPT Project Memory / Codex memory 只作为 recall layer。
 - Public-safe Candidate 可进入 AI-Workspace；Project Private、Cross-project Private、Local-only、Unknown 或 writer-unavailable 内容进入批准的私有目标或本机 Outbox，默认不公开。
 - Production 当前保持 `ASSISTED`。Canonical 规则、ADR、架构、冲突、高影响和敏感内容即使在 AUTO 也必须 Review。
-- ChatGPT Project Source Pack 可一键生成，但当前替换仍需人工上传。
+- ChatGPT Project Source Pack 可生成，但当前替换仍需人工上传。
 
 ### Collector / Analysis / Report / Document 解耦
 
@@ -53,7 +76,7 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 
 - 每个模拟器实例 / 账号使用独立数据库。
 - 先分析单账号行为，再通过脱敏聚合层寻找共性和分群规律。
-- 不把不同账号 Raw 数据直接混合。
+- 不把不同账号、不同游戏 Raw 数据直接混合。
 
 ### 文档和部署标准
 
@@ -63,33 +86,28 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 
 ## 当前限制与风险
 
-- ChatGPT 直接调用 AI Document Assistant 的 Secure MCP Tunnel 仍因 OpenAI Control Plane 返回 `unsupported_country_region_territory` 而不可用；Codex 本地 MCP 正常。
-- ChatGPT Project Sources 是上传时的快照，不会自动跟随 Git commit 更新；重要状态变化后需要重新上传 `02_CURRENT_STATE.md`。
+- ChatGPT 直接调用 AI Document Assistant 的 Secure MCP Tunnel 仍因 OpenAI Control Plane 地区限制不可用；Codex 本地 MCP 正常。
+- ChatGPT Project Sources 是上传时的快照，不会自动跟随 Git commit 更新；本次 Core Rules 与 Current State 变化后需要重新上传 00、02、03 或使用生成的 replacement list。
 - Project Memory 可以引用同一项目内聊天和文件，但不保证每个新对话主动召回全部细节；项目指令和来源文件仍是稳定入口。
-- 任何当前功能、任务或 commit 的判断必须查询对应 Git 仓库，不能仅依据本文件。
+- 任何当前功能、任务、编号、状态或 commit 的判断必须查询对应 Git 仓库，不能仅依据本文件。
+- 自动 Task Registry / allocator 尚未实施；在 TASK-0020 Accepted 前，新 Task 必须人工完成完整目录级预检。
 
 ## 近期候选方向
 
-- Lottery 体验完成后的独立数值分析与 CR 迁移建议 Task。
+- Cash Frenzy Collector Feasibility Audit：已获 User 方向确认，但当前为非执行 Candidate，等待 TASK-0020 Accepted 后重新分配唯一 Task ID。
+- Top Tycoon Feasibility Audit：Cash Frenzy Review 后再建立，不并行。
+- 绯闻港口 Feasibility Audit：Top Tycoon Review 后再建立，不并行。
 - AI Report Engine：Knowledge → Template → AI → Markdown。
 - Planner-facing UX & Deployment Standard 的持续落地。
-- Reuse-first Solution Discovery：本地、内部、官方、成熟开源优先，自研最后。
 - 多实例独立数据库与跨账号脱敏聚合模型。
-- Workspace Sync：Git → SVN / 飞书，当前仍处于设想与后续规划阶段。
 
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T06:39:23Z
+- Last generated refresh: 2026-08-27T06:39:23Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
 - Private repositories: not read by default; explicit registry and authorization required
-
-### Active public control-plane tasks
-
-- `TASK-0014-Codex-Subagent-Pilot.md` — Review
-- `TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md` — Ready
-- `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — Review
-- `TASK-0016-EXECUTION-AUTHORIZATION.md` — Ready
+- Note: TASK-0020 must regenerate this block and the Project Source replacement list before Review.
 <!-- MEMORY-CONTEXT:END -->
