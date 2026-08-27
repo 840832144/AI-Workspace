@@ -31,6 +31,8 @@ Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 To
 - 同一工作区始终只有主 Agent 可以修改代码、文档、配置和 Git；`repo_explorer`、`knowledge_retriever`、`evidence_test_verifier`、`reviewer` 全部只读。
 - 子 Agent 不得调用 Document Capability 的 `WRITE` 或 `ADMIN/SECURITY` Operation，不得修改飞书、权限、配置或其他外部系统。
 - 当前 Pilot 的版本化 Agent 模板在子 Agent 中完全禁用 `feishu-docs` 与 `node_repl`；飞书 READ 也由主 Agent 代读后提供最少必要资料。新增或改名 MCP server 后必须重新审阅，不能只依赖文字约束。
+- `MANUAL` 严禁与 `--yolo`、Full access、`danger-full-access`、宽松 `/permissions` 或其他等价的父 turn 权限同时使用。Codex 会把父 turn 的 live sandbox/permission override 重新应用到子 Agent，模板中的 `sandbox_mode = "read-only"` 不是这类 override 下的绝对隔离。
+- 当前 Host 不能由模式脚本可靠检测 live permission。无法确认父会话保持受限权限时必须维持 `OFF`，先关闭宽松权限并新建受限会话；不得以提示词或 MCP deny 代替 sandbox 前提。
 - 主 Agent 必须等待相关子 Agent 完成，核对证据、冲突和未确认项后，独立作出最终判断并执行写入。
 - 子 Agent 只返回简洁结论、证据位置、风险和未确认项，不回传大段日志。
 - Multi-agent 为 `OFF`、Agent 不可用或委派失败时，主 Agent 继续以单 Agent 完成任务并报告降级；不得另建调度器或把缺少 Subagent 作为阻塞。

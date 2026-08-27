@@ -15,7 +15,7 @@ Codex 原生提供 Subagents、自定义 Agent、全局开关和并发上限。�
 ## Decision
 
 1. 第一阶段采用 1 个主 Agent 加 4 个专职只读 Agent：仓库探索、资料检索、证据测试核验和独立 Review。
-2. 本机安装后的默认模式是 `OFF`；只有 User 明确切换到 `MANUAL` 后，新会话才加载多 Agent 能力。
+2. 安装器必须先完成并验证 `OFF`，再创建或替换 Agent 模板；OFF 失败时配置字节和 Agent 模板均不得改变，也不得输出安装成功。
 3. `MANUAL` 的并发上限为 4 个 spawned-agent threads，但是否委派仍由任务复杂度和独立性规则约束。
 4. 同一工作区坚持单写入者：只有主 Agent 可以修改文件、配置、Git、云文档或外部系统。
 5. 四个自定义 Agent 固定 `sandbox_mode = "read-only"`；当前 Pilot 在子 Agent 中禁用 Document provider 与 `node_repl`，需要的飞书 READ 由主 Agent 代读后提供脱敏摘要，并在各自 instructions 中再次禁止写入。
@@ -23,6 +23,10 @@ Codex 原生提供 Subagents、自定义 Agent、全局开关和并发上限。�
 7. `OFF`、Agent 不可用或委派失败时，主 Agent 自动降级为单 Agent；不实现第二套调度器。
 8. 本阶段不采用 1+8：尚无实际证据证明额外四个角色的收益能够抵消额度、等待、重复阅读和冲突核对成本。
 9. 本阶段不提供 `AUTO`，避免简单任务被无条件并行化。
+10. `MANUAL` 严禁与 `--yolo`、Full access、`danger-full-access`、宽松 `/permissions` 或等价父 turn 权限同时使用。官方行为会把 live sandbox/permission override 重新应用到子 Agent，Agent TOML 的 `read-only` 不能抵消该 override。
+11. 当前 Host 无法由脚本可靠检测 live permission。状态未知时必须维持 `OFF`，先关闭宽松权限并新建受限会话；MCP deny、developer instructions 与单写入者规则只是纵深防护。
+
+上述父 turn override 行为以 OpenAI 官方 [Codex Subagents](https://developers.openai.com/codex/subagents/) 文档为依据。
 
 ## Rationale
 
@@ -33,6 +37,8 @@ Codex 原生提供 Subagents、自定义 Agent、全局开关和并发上限。�
 ### 为什么默认 OFF
 
 安装模板不等于授权消耗额度。默认关闭使升级可逆，也确保现有单 Agent、MCP、配置和项目流程不依赖 Pilot 才能工作。
+
+OFF 同时是安装提交门：模板复制只发生在配置已经切换并验证为 OFF 之后。这样 config 锁定或不支持的 TOML 不会留下本轮新增/替换的可生效模板。
 
 ### 为什么单写入者
 
@@ -56,6 +62,7 @@ Codex 原生提供 Subagents、自定义 Agent、全局开关和并发上限。�
 - 模式切换需要关闭重开 Codex 或新建会话，当前会话不会动态证明新配置已加载。
 - Subagent 会消耗额外额度；当前客户端若不暴露 usage/token，就只能记录 Agent 数、模型、时长和返工。
 - 只读沙箱、当前 MCP deny、instructions 和主 Agent 复核共同形成纵深约束；MCP server 新增或改名后必须重新审阅，不能仅凭角色名称假设安全。
+- 父 turn 的 live permissions 可以覆盖 Agent sandbox 默认值；因此 MANUAL 需要人工确认受限会话，不能和 full-access 类模式并用，也不能声称脚本已经自动检测。
 - MANUAL 不等于自动并行，主 Agent 仍需判断工作是否真正独立。
 
 ## Review Gate

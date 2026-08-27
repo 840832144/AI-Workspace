@@ -12,6 +12,21 @@ $requiredTemplates = @(
     'reviewer.toml'
 )
 
+foreach ($fileName in $requiredTemplates) {
+    $source = Join-Path $templateDirectory $fileName
+    if (-not (Test-Path -LiteralPath $source)) {
+        throw "Missing versioned Agent template: $source"
+    }
+}
+
+$setModeScript = Join-Path $PSScriptRoot 'Set-CodexSubagentMode.ps1'
+$statusScript = Join-Path $PSScriptRoot 'Get-CodexSubagentStatus.ps1'
+$offResult = @(& $setModeScript -Mode Off)
+$statusResult = @(& $statusScript)
+if ($statusResult -notcontains 'Current mode: OFF') {
+    throw 'OFF verification failed; Agent templates were not installed.'
+}
+
 if (-not (Test-Path -LiteralPath $targetDirectory)) {
     New-Item -ItemType Directory -Path $targetDirectory -Force | Out-Null
 }
@@ -21,9 +36,6 @@ $backupDirectory = $null
 foreach ($fileName in $requiredTemplates) {
     $source = Join-Path $templateDirectory $fileName
     $target = Join-Path $targetDirectory $fileName
-    if (-not (Test-Path -LiteralPath $source)) {
-        throw "Missing versioned Agent template: $source"
-    }
 
     $needsCopy = $true
     if (Test-Path -LiteralPath $target) {
@@ -46,7 +58,8 @@ foreach ($fileName in $requiredTemplates) {
     $installed.Add($fileName)
 }
 
-& (Join-Path $PSScriptRoot 'Set-CodexSubagentMode.ps1') -Mode Off
+$offResult
+'OFF verified before template installation: True'
 "Installed templates: $($installed -join ', ')"
 "Agent directory: $targetDirectory"
 if ($null -ne $backupDirectory) {

@@ -242,3 +242,7 @@ if ($null -ne $backupPath) {
 }
 "Config changed: $changed"
 'Restart/new session required: Yes after a mode change'
+if ($Mode -eq 'Manual') {
+    'Safety prerequisite: MANUAL is forbidden with --yolo, full-access, danger-full-access, or equivalent permissive live permissions.'
+    'Live permission detection: unavailable; keep OFF unless the parent session is confirmed restricted.'
+}

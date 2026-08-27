@@ -2,6 +2,25 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.10.1] - 2026-08-27
+
+### Fixed
+
+- TASK-0014 Review Fix：安装器现在先完成并验证 OFF，再创建或替换 Agent 模板；config OFF 失败不会触碰 Agent 目录或输出误导性成功信息。
+- Global AGENTS、Bootstrap README、ADR-0004 与 Pilot 明确禁止 MANUAL 和 `--yolo`、Full access、`danger-full-access`、宽松 `/permissions` 或等价父 turn 权限并用。
+- `knowledge_retriever` 定位改为读取本地/已提供资料；飞书继续由主 Agent 代读并提供最少、脱敏摘要。
+
+### Validation
+
+- 新增安装失败原子性回归：inline、multiline、config lock 三类 OFF 失败均保持配置字节和既有模板哈希不变，不新增其余模板，不输出 `Installation default: OFF`。
+- MANUAL 切换输出明确的权限前提和“无法自动检测 live permission”；本轮宽松权限环境保持 OFF，没有启动 Subagent。
+- Windows PowerShell 5.1、幂等安装、配置完整性、Global 模板同步和最终 OFF 状态重新验证通过。
+
+### Boundaries
+
+- 未实现不可靠的 live permission 自动检测，也未在宽松权限环境启用 MANUAL。
+- 未修改 Agent 数、并发上限、MCP Server、业务仓库、飞书云文档或 ChatGPT 设置。
+
 ## [0.10.0] - 2026-08-27
 
 ### Added

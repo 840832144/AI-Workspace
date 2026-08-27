@@ -34,6 +34,28 @@ Shell 能定位 WindowsApps 中的 `codex.exe`，但直接执行 `codex --versio
 - 初始 Global AGENTS SHA-256 为 `3BA984FEA9C4DC7981DD8D9C172493FF498EFD10A330D142C8B8AD42DF8497F3`；最终同步结果在结束校验记录。
 - 验证输出只保存哈希、模式和 Agent 名称，没有输出 MCP 或 secret 值。
 
+## ChatGPT Review Required Fix
+
+2026-08-27 的 ChatGPT Review 指出两个收尾风险。
+
+### 安装安全提交顺序
+
+旧安装器先复制模板、最后才设置 OFF。现已调整为：先验证版本化源文件，再切换并通过状态脚本确认 OFF，之后才创建或修改 `%USERPROFILE%\.codex\agents\`。
+
+隔离回归分别使用 inline `agents`、multiline TOML 和被独占锁占用的 config 执行安装。三种场景均确认：
+
+- 安装失败；
+- `config.toml` SHA-256 不变；
+- 既有同名模板 SHA-256 不变；
+- 其余三个模板没有新增；
+- 输出中没有 `Installation default: OFF`。
+
+### 父 turn live permission 边界
+
+OpenAI 官方 [Codex Subagents](https://developers.openai.com/codex/subagents/) 文档确认，Subagent spawn 会重新应用父 turn 的 live sandbox/permission override，包括 `--yolo` 或交互式权限变更。模板 `sandbox_mode = "read-only"` 因此只是受限父会话中的默认值，不是 full-access override 下的绝对隔离。
+
+Pilot 现规定 MANUAL 与 `--yolo`、Full access、`danger-full-access`、宽松 `/permissions` 或等价权限互斥。当前脚本不能可靠自动检测 live permission，因此只输出明确安全前提；状态未知时维持 OFF。本轮修订环境本身为宽松权限，所以没有重新启用 MANUAL 或 spawn Agent，`Subagents: none`。
+
 ## MANUAL 复杂只读场景
 
 23:21:10 开始并行启动 3 个 Agent，约 6 分 29 秒内全部返回：
@@ -61,10 +83,15 @@ Shell 能定位 WindowsApps 中的 `codex.exe`，但直接执行 `codex --versio
 | 复杂实现演练 | 通过 | 子 Agent 全部只读期间，仅主 Agent 修改 Global Policy、ADR 和文档；未发生并行写冲突 |
 | 切换回 OFF | 通过 | 最终 `enabled=false`、并发值保留 4；四个模板仍安装；新会话报告 `Subagent unavailable` 并单 Agent 完成 `9 × 7 = 63` |
 | 配置完整性 | 通过 | 最终切换即时前后非 `[agents]` 语义哈希均为 `B1BEA162553918B79E8809CE90451280518BA95C638F5B7A6AB44E3ED813160F`；Global、MCP deny 和外部仓库检查通过 |
+| 安装 OFF 失败原子性 | 通过 | inline、multiline、config lock 三种隔离回归均保持 config 与模板不变，且无成功提示 |
+| MANUAL 权限互斥 | 通过（规则与提示） | Global/README/ADR 明确禁止 full-access 类组合；模式脚本提示无法自动检测，宽松权限环境保持 OFF，未运行 Subagent |
+| Review Fix 真实重装 | 通过 | 安装器先验证 OFF 再同步模板；非 `[agents]` 语义哈希前后均为 `8CB66F625293ACC45D81E009DC9F13D9362BCB244CED7D4F0F7F7AB484C746E0`，四个模板及 Global AGENTS 与版本化文件一致 |
 
 新会话 OFF 验证耗时约 2 分钟；MANUAL 新会话启动、等待并汇总 `repo_explorer` 耗时约 5 分 32 秒；MCP deny 新会话验证耗时约 4 分 52 秒。这些会话都没有修改文件或外部系统，完成后作为临时 Pilot 任务归档。
 
 最终 OFF 新会话耗时约 2 分 50 秒，确认 Subagent tools 不可用、普通任务继续完成、usage/token 仍为 `null`。验证结束后 5 个临时 Pilot 任务均已归档。
+
+Review Fix 收尾在宽松权限环境中始终保持 OFF，没有启用 MANUAL 或启动 Subagent。真实重装结束后状态脚本确认 `Current mode: OFF`、并发值 4。
 
 ## Usage / Token
 
@@ -75,4 +102,5 @@ Shell 能定位 WindowsApps 中的 `codex.exe`，但直接执行 `codex --versio
 - 1+4 的角色边界足以开展 Pilot，不应立即扩到 1+8。
 - 默认 OFF 与单写入者必须保留。
 - MANUAL 的价值主要来自独立缺陷发现，不等于所有任务都更快。
+- MANUAL 只允许在确认受限的父会话中使用；live permission 未知或宽松时一律保持 OFF。
 - 最终模式是 `OFF`。是否长期启用 MANUAL、是否扩大角色或并发，由 User 在 ChatGPT Review 后决定。

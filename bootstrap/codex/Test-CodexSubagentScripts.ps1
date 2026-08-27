@@ -80,7 +80,10 @@ else:
         throw 'Status did not read the legacy max_threads alias.'
     }
     $before = Get-NonAgentSemanticHash -Path $configPath
-    & $setScript -Mode Manual | Out-Null
+    $manualOutput = @(& $setScript -Mode Manual)
+    if (($manualOutput -join "`n") -notmatch 'MANUAL is forbidden with --yolo') {
+        throw 'MANUAL did not emit the live-permission safety prerequisite.'
+    }
     $after = Get-NonAgentSemanticHash -Path $configPath
     if ($before -ne $after) {
         throw 'Non-agent configuration changed.'
@@ -89,7 +92,7 @@ else:
     if ((Get-ChildItem -LiteralPath $codexDirectory -Filter 'config.toml.bak.*').Count -ne 1) {
         throw 'Timestamped config backup was not created.'
     }
-    'legacy-alias-and-preservation: PASS'
+    'legacy-alias-preservation-and-manual-warning: PASS'
 
     Write-Utf8NoBom -Path $configPath -Content "[ `"agents`" ]`n`"enabled`" = true`n`"max_concurrent_threads_per_session`" = 7`n"
     & $setScript -Mode Off | Out-Null
@@ -146,10 +149,62 @@ else:
     }
     'unsupported-shapes-and-multiline-fail-closed: PASS'
 
-    Write-Utf8NoBom -Path $configPath -Content ''
     $agentDirectory = Join-Path $codexDirectory 'agents'
     New-Item -ItemType Directory -Path $agentDirectory -Force | Out-Null
-    Write-Utf8NoBom -Path (Join-Path $agentDirectory 'repo-explorer.toml') -Content "name = `"custom_existing`"`n"
+    $existingTemplate = Join-Path $agentDirectory 'repo-explorer.toml'
+    $existingContent = "name = `"custom_existing`"`n"
+    $installFailureFixtures = @(
+        @{ Name = 'inline'; Content = "agents = { enabled = true }`n"; Lock = $false },
+        @{ Name = 'multiline'; Content = "text = $tripleDoubleQuote`n[agents]`nenabled = true`n$tripleDoubleQuote`n"; Lock = $false },
+        @{ Name = 'locked'; Content = "[agents]`nenabled = true`nmax_concurrent_threads_per_session = 4`n"; Lock = $true }
+    )
+    foreach ($fixture in $installFailureFixtures) {
+        Get-ChildItem -LiteralPath $agentDirectory -File -Filter '*.toml' | Remove-Item -Force
+        Write-Utf8NoBom -Path $existingTemplate -Content $existingContent
+        Write-Utf8NoBom -Path $configPath -Content $fixture.Content
+        $configHashBefore = (Get-FileHash -Algorithm SHA256 -LiteralPath $configPath).Hash
+        $templateHashBefore = (Get-FileHash -Algorithm SHA256 -LiteralPath $existingTemplate).Hash
+        $lock = $null
+        if ($fixture.Lock) {
+            $lock = [System.IO.File]::Open($configPath, [System.IO.FileMode]::Open, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::None)
+        }
+        $installFailed = $false
+        $installOutput = @()
+        try {
+            try {
+                $installOutput = @(& $installScript 2>&1)
+            }
+            catch {
+                $installFailed = $true
+                $installOutput += $_.Exception.Message
+            }
+        }
+        finally {
+            if ($null -ne $lock) {
+                $lock.Dispose()
+            }
+        }
+        if (-not $installFailed) {
+            throw "Installation unexpectedly succeeded for $($fixture.Name)."
+        }
+        if ((Get-FileHash -Algorithm SHA256 -LiteralPath $configPath).Hash -ne $configHashBefore) {
+            throw "Installation changed config.toml after OFF failure for $($fixture.Name)."
+        }
+        if ((Get-FileHash -Algorithm SHA256 -LiteralPath $existingTemplate).Hash -ne $templateHashBefore) {
+            throw "Installation replaced an existing template after OFF failure for $($fixture.Name)."
+        }
+        $unexpectedTemplates = Get-ChildItem -LiteralPath $agentDirectory -File -Filter '*.toml' | Where-Object { $_.Name -ne 'repo-explorer.toml' }
+        if (@($unexpectedTemplates).Count -ne 0) {
+            throw "Installation added templates after OFF failure for $($fixture.Name)."
+        }
+        if (($installOutput -join "`n") -match 'Installation default: OFF') {
+            throw "Installation emitted a false success message for $($fixture.Name)."
+        }
+    }
+    'install-off-failure-atomicity: PASS'
+
+    Write-Utf8NoBom -Path $configPath -Content ''
+    Write-Utf8NoBom -Path $existingTemplate -Content $existingContent
     & $installScript | Out-Null
     $backups = Get-ChildItem -LiteralPath (Join-Path $agentDirectory '.backup') -Recurse -File -Filter 'repo-explorer.toml.bak'
     if ($backups.Count -ne 1) {

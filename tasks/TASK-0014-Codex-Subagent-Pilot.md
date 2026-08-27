@@ -25,7 +25,7 @@
 第一阶段采用 **1 个主 Agent + 4 个只读子 Agent**：
 
 1. `repo_explorer`：定位仓库结构、真实调用链、相关文件和符号。
-2. `knowledge_retriever`：读取项目文档、Memory、RFC、飞书文档和外部资料，返回有来源的摘要。
+2. `knowledge_retriever`：读取本地项目文档、Memory、RFC、已提供资料和外部公开资料，返回有来源的摘要；飞书由主 Agent 代读后提供最少、脱敏摘要。
 3. `evidence_test_verifier`：核对 Evidence Standard、验收条件、测试覆盖和可复现证据。
 4. `reviewer`：独立审查正确性、安全、回归、范围漂移和遗漏。
 
@@ -51,6 +51,8 @@
 本阶段**不实现 AUTO 模式**，不允许 Codex 对所有任务主动并行。
 
 安装与试验结束后，本机默认恢复为 `OFF`；由 User 决定何时切换到 `MANUAL`。
+
+`MANUAL` 不得与 `--yolo`、Full access、`danger-full-access`、宽松 `/permissions` 或等价父 turn 权限同时使用。当前 Host 无法可靠自动检测 live permission；无法确认受限权限时必须保持 `OFF`。
 
 ## Deliverables
 
@@ -180,3 +182,12 @@ Codex 完成后必须返回：
 - 六类 Validation 结果
 - 是否能观察到 usage/token；若不能必须明确说明
 - 发现的优化项，单独列入下一个 Task 候选，不擅自实施
+
+## Review Fixes — 2026-08-27
+
+- Review decision commit: `1eeb8d8`，状态曾为 `Changes Requested`。
+- Required Fix 1：安装器改为先完成并验证 OFF，再触碰 Agent 目录；inline、multiline 与 config lock 失败回归确认配置字节、既有模板和未安装模板均不变，且没有成功提示。
+- Required Fix 2：Global Policy、Bootstrap、ADR 与 Pilot 明确禁止 MANUAL 和 full-access 类 live permissions 并用；当前脚本不能可靠自动检测，状态未知时保持 OFF。
+- Optional cleanup：`knowledge_retriever` 改为只读本地/已提供资料；飞书由主 Agent 代读。
+- Final validation：隔离回归、PowerShell 5.1 解析、真实重装、非 Agent 配置完整性、四个模板与 Global AGENTS 同步均通过；最终模式为 `OFF`，并发值 4。
+- Resubmission status: `Review`；等待 ChatGPT Review。
