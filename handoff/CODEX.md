@@ -1,13 +1,23 @@
 # Codex Handoff
 
 - Updated: 2026-08-27
-- Current task: TASK-0022 — Cash Frenzy Android Collector Feasibility Audit
-- Status: Review — Slots Deep Research stopped at AppResearch2 runtime / inbound boundary
-- Branch: `codex/task-0022-cash-frenzy-feasibility`
+- Current task: TASK-0024 — Cash Frenzy Inbound Structured Capture Spike
+- Status: Ready — canonical issuance pending main merge and allocator finalize
+- Branch: `codex/cash-frenzy-inbound-structured-capture-spike`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
+
+## Current Task — TASK-0024
+
+- User 明确要求新建独立 Spike，不继续扩大已完成的 TASK-0022；Candidate 已由正式 CLI 创建并经 allocator 分配唯一 `TASK-0024`，relationship 为 `new`。
+- 执行 contract：稳定性 Gate → `onUIThreadReceiveMessage` scope 内 `LuaStack/lua_pcall` 参数 → `BLMessage` 解码后对象 → decrypt/framing fallback → Local State Adapter。
+- 优先实现深度 4、每集合 64 元素、单消息 64 KiB 的受限递归 Lua serializer；只在 Cash inbound dispatch thread/scope 激活，禁止全局高频 Lua API 日志。
+- 只有 Lua 与 BLMessage 路线都失败才进入 `libEncryptorP` / `libsigner` / XXTEA 与单消息 Stalker summary。
+- 新 `AppResearch2` 与历史同名实例不是同一环境；执行前重新确认 Android 9、internal instance ID、ADB serial、package/version/ABI/native bridge 和前台包。
+- 真实 Spin 必须由 User 手动执行 3–5 次；在 User 操作前先完成 0 Spin 的 clean Gadget 稳定性 Gate。
+- 当前 issuance 仅修改 AI-Workspace 控制面；Huuuge repo、Cash runtime、模拟器、游戏、SVN、飞书正文与 WATCH 尚未修改。
 
 ## Closed Governance Task — TASK-0023
 
@@ -103,4 +113,4 @@
 
 ## Exact Next Action
 
-ChatGPT Review 本轮 TASK-0022 Slots Deep Research 结论。Review 前不再启动 Cash、注入 Gadget、执行 Spin、处理 Demo/Documentation，或扩展 Collector。若未来批准继续，优先选择 Android 9 级独立 Cash runtime 复验 `BLMessage` / EventCustom；否则新协议层应先形成单独审计范围再执行。
+将 TASK-0024 canonical issuance 合入最新 main 并 finalize allocator reservation；随后在新 Android 9 `AppResearch2` 上重新确认 identity，先执行 0 Spin clean Gadget 稳定性 Gate。需要 gameplay event 时暂停并等待 User 手动执行 3–5 次普通 Spin。

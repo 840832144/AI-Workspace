@@ -1,15 +1,15 @@
 # CANDIDATE-20260827-CASH-FRENZY-INBOUND-STRUCTURED-CAPTURE — Cash Frenzy Inbound Structured Capture Spike
 
 - Kind: candidate
-- Status: Candidate
+- Status: Migrated
 - Project key: CASH-FRENZY
 - Suggested priority: P1 / focused research spike
 - User decision: Approved
 - Source: User instruction in Codex task on 2026-08-27; this request is the execution contract
 - Created: 2026-08-27
 - Updated: 2026-08-27
-- Migrated to:
-- Migrated at:
+- Migrated to: TASK-0024 (`tasks/TASK-0024-CASH-FRENZY-INBOUND-STRUCTURED-CAPTURE-SPIKE.md`)
+- Migrated at: 2026-08-27T13:49:38Z
 
 ## Goal
 

@@ -2,6 +2,23 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.3] - 2026-08-27
+
+### Added
+
+- 通过 User 已批准 Candidate 与 remote-CAS allocator 创建唯一 canonical `TASK-0024 — Cash Frenzy Inbound Structured Capture Spike`；Allocation relationship 为 `new`，不是 TASK-0022 子任务。
+- Task 固定 Android 9 入站研究顺序、Lua serializer 安全预算、人工 Spin Gate、数据边界和停止条件。
+
+### Changed
+
+- 合入 ChatGPT Review 已 Accepted 的 TASK-0022 脱敏结果并将 canonical 状态收口为 `Complete`；没有向 TASK-0022 增加技术范围。
+- Product Roadmap 的 Cash Frenzy Current 从 TASK-0022 Feasibility 更新为 TASK-0024 focused spike；不自动授权完整 Collector。
+
+### Boundaries
+
+- 新 Task 仅研究 Cash Frenzy Android 9；不继续 Nougat64，不自动 Spin/购买/充值，不修改请求、返回、余额或服务器状态。
+- Raw、APK、`.so`、完整响应、账号与绝对余额留在本机；`Subagents: none`。
+
 ## [0.16.2] - 2026-08-27
 
 ### Accepted
