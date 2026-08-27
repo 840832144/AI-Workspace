@@ -44,44 +44,17 @@
 
 Gate 未满足时必须报告阻塞并停止，不得扩大权限或绕过 P0 任务。
 
-### Research Environment
+### Research Environment Decision
 
-User 已确认：
+历史 main commit `7eb16b0` 曾记录“多个游戏共用同一 Research 模拟器”。该内容已被 User 在 TASK-0022 启动指令中的更晚、范围更具体决定 supersede：
 
-当前及后续待研究游戏（例如 Huuuge、Cash Frenzy、Top Tycoon、Gossip Harbor）统一安装在同一个 Research 模拟器中。
+- 为 Cash Frenzy 建立独立 `CashFrenzyResearch` 环境；
+- 不修改或复用 `HuuugeResearch`；
+- Cash Frenzy 使用独立 Session、Capture、Manifest、Raw、Database 与 Evidence；
+- Cash Frenzy Adapter 不得读取 Huuuge 或其他游戏数据；
+- 任何共用 Host 级 Root / Frida 变更必须先证明必要性、影响与回滚，并取得 User 确认。
 
-目的：
-
-- 共用 Root
-- 共用 Frida Runtime
-- 共用 Collector Runtime
-- 共用部署环境
-- 减少维护成本
-
-不是每个游戏单独创建模拟器。
-
-必须满足：
-
-- 每个游戏拥有独立 Session
-- 独立 Capture
-- 独立 Manifest
-- 独立 Raw
-- 独立 Database
-- 独立 Evidence
-
-任何 Adapter 不得读取其他游戏的数据。
-
-Collector 在任意时刻只允许：
-
-一个前台游戏
-
-进入 Capture。
-
-开始采集前必须验证：
-
-当前前台包名 == 本次研究游戏。
-
-否则拒绝进入 READY。
+开始 Cash Frenzy 采集前仍必须验证前台包名等于本次确认的 Cash Frenzy package；否则拒绝进入 READY。
 
 ## Success Questions
 

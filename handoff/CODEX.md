@@ -4,7 +4,8 @@
 - Current task: TASK-0022 — Cash Frenzy Android Collector Feasibility Audit
 - Status: Ready — issuance pending merge to main and allocator finalize
 - Branch: `codex/cash-frenzy-feasibility-issuance`
-- Base: `origin/main@ac6d3edc6168c486f5c82f1f272dd4047de7dc4e`
+- Initial base: `origin/main@ac6d3edc6168c486f5c82f1f272dd4047de7dc4e`
+- Latest-main merge: `569f504` includes `origin/main@7eb16b0`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
 - Memory mode: `ASSISTED`
@@ -39,11 +40,14 @@ Task issuance 合入 main 并完成 `finalize` 后，必须从最新 main 新建
 - 需要安装、登录、验证码或 1–5 次普通 Spin 时，停下并只给 User 明确界面操作顺序。
 - 当前会话为宽松文件权限，按 Subagent 安全规则保持 OFF；主 Agent 单独执行并唯一写入。
 
+`origin/main@7eb16b0` 增加的“共用 Research 模拟器”历史说明与本轮直接指令冲突，现已在 Candidate 中保留审计引用并明确标记为 superseded；当前有效决定是独立 `CashFrenzyResearch`。
+
+
 
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-27T09:26:51Z
+- Generated: 2026-08-27T09:29:42Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`

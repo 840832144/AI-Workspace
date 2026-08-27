@@ -13,6 +13,7 @@
 
 - `CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY` 的 User decision 更新为 `Approved`，状态由 Candidate 更新为 Migrated，并记录实际 canonical 路径。
 - Task Registry 由 allocator 自动重建为 9 canonical、2 companion、1 个已 Migrated Candidate record、6 Review、0 collision；当前待决 Candidate 为 0，未手工编辑 Registry。
+- 同步 main commit `7eb16b0` 后，按本轮更晚且更具体的 User 指令，将“共用 Research 模拟器”历史说明标记为 superseded；TASK-0022 使用独立 `CashFrenzyResearch`，不修改或复用 `HuuugeResearch`。
 
 ### Boundaries
 
