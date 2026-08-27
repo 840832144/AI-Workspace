@@ -20,6 +20,8 @@
 
 **Decision proposal**：不复制 Huuuge Collector。Adopt 其 lifecycle/manifest/Raw/privacy contract，Wrap `AppResearch` package binding，Build Cash-specific inbound decoder、command/schema mapping 与 module taxonomy。下一步应先定位 `BLMessage` 构造/dispatch 的解密后边界，再决定是否构建 Passive Collector Adapter。
 
+**Deep Research follow-up · AppResearch2**：User 指定的 `Nougat64 / Android 7.1.1` 新实例可通过 legacy native bridge 临时加载 arm64 Gadget，并确认 `BLMessage.type @ +0x24` 与 type 3 入站 dispatch；但明文转换路径仍未命中。Gadget 在无业务 hook 的 clean run 中也会复现 `gum-js-loop` + GLThread SIGSEGV，增加 CPU / RAM 无法消除。Balance 保持 Phase 1.5 Derived recovery，direct Win / Result 未恢复；F3 不变，当前应 **Stop AppResearch2 dynamic path**。
+
 ## 分项等级
 
 | Area | Level | Confirmed evidence | Gap |
@@ -39,3 +41,4 @@
 - 两个 Cash 专属 Gadget 文件、ADB forward 和临时 Frida server 已移除；Cash app 已停止，无残留 capture 进程。
 - `huuuge-android-research@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b` 保持 clean；Huuge Collector、Session、Raw、SVN 未修改。
 - Subagents: none；mode OFF；Workspace Sync `ON_DEMAND`；WATCH disabled。
+- Deep Research 结束后 AppResearch2 root / CPU / RAM 已回滚，临时 Frida/Gadget/forwards 与 Cash process 无残留；本轮未修改旧 AppResearch 或其他项目。

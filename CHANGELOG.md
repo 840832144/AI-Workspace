@@ -2,6 +2,25 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.15.5] - 2026-08-27
+
+### Changed
+
+- TASK-0022 停止 Collector Demo，继续同 Task 的 Cash Frenzy Slots Deep Research 子阶段，并切换到 User 指定的独立 `AppResearch2`。
+- Nougat64 legacy native bridge 适配已验证；补充 `BLMessage.type @ +0x24`、type 3 inbound dispatch 与 Cocos Value conversion 边界证据。
+
+### Validation
+
+- AppResearch2 identity、Android 7.1.1、package 4.78 / 478、arm64 translation、Frida 17.17.0 server 与 arm64 Gadget handle 均现场确认。
+- 20 秒无操作 BLSocket 边界复验通过；23 条入站均为 type 3，dispatch-scope `ccvalue_to_luaval=0`，probe errors=0。
+- 1 GB / 2 CPU 和 4 GB / 4 CPU 两组 clean Gadget run 均复现 `gum-js-loop` + GLThread SIGSEGV，确认不是单纯资源不足。
+
+### Result and boundaries
+
+- Balance 保持 Phase 1.5 Derived recovery；Win 仍为 Derived candidate，direct Win / Result / Feature / Jackpot 未恢复，F3 不变。
+- 本轮 0 Spin；仅执行 guest 入口和免费 starter login reward 的两个单点 UI tap，无购买、充值、付费奖励、Auto Spin 或挂机。
+- root / CPU / RAM 已回滚，临时 server、Gadget/config、forwards 和 Cash process 已清理；未修改 Huuuge、其他游戏、Collector 主架构、Documentation、Report 或 WATCH；`Subagents: none`。
+
 ## [0.15.4] - 2026-08-27
 
 ### Added

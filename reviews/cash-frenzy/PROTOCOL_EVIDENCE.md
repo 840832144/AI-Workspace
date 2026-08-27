@@ -38,3 +38,22 @@ Spin-correlated command string 长度为 10；结合 static command map 中的 `
 ## Evidence Level
 
 当前为 **Feasibility F3**：真实 Spin 的 outbound structured fields 已恢复，Raw path 可重复 start/READY/stop；inbound structured decode 和 F4 Huuuge-like collection path 尚未证明。
+
+## AppResearch2 Inbound Dispatch Follow-up
+
+### Confirmed
+
+- Nougat64 / Android 7.1.1 暴露 legacy `NativeBridgeLoadLibrary(path, flags)`，不暴露 Android 9 路径使用的 `NativeBridgeLoadLibraryExt(..., namespace)`。
+- legacy bridge 可从 `/data/local/tmp` 加载 arm64 Frida Gadget 并返回非空 handle；`Process.arch=arm64`。
+- `BLMessage.getType` arm64 指令读取对象 `+0x24`；`BLSocket::onUIThreadReceiveMessage` 对 type 2–5 分支并同步派发 `EventCustom`。
+- guest / lobby 的 23 条入站 dispatch 全部为 type 3；`ccvalue_to_luaval` 在该 dispatch scope 中为 0，说明当前结果消费链不是该通用 Cocos Value → Lua 转换边界。
+
+### Runtime risk
+
+- AppResearch2 对 `/data/app/.../lib/arm64` 的写入被拒绝，无法复用 Pie64 的 app namespace staging。
+- Gadget 在无业务 hook 的 clean run 中仍可复现 `gum-js-loop` 与 GLThread SIGSEGV；提高实例 CPU / RAM 后不消失。
+- 继续 direct Win 需要新的 inbound framing / decrypt / dispatch 研究或更换稳定 Android 9 runtime；不应在 Nougat64 上继续反复注入或自动 Spin。
+
+### Result
+
+Balance 仍为 outbound-adjacent Derived recovery；direct Win、Result、Feature、Jackpot 未恢复，F3 不变。

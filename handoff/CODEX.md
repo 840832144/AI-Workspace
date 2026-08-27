@@ -2,49 +2,53 @@
 
 - Updated: 2026-08-27
 - Current task: TASK-0022 — Cash Frenzy Android Collector Feasibility Audit
-- Status: Review — Collector Demo complete；Documentation Hub registration pending
+- Status: Review — Slots Deep Research stopped at AppResearch2 runtime / inbound boundary
 - Branch: `codex/task-0022-cash-frenzy-feasibility`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
 
-## Review decision
+## Current decision
 
-- User 转述 ChatGPT 已通过 Phase 1.5 Review，并决定 **Stop Spike**。
-- 当前不再恢复协议；Win、result、Feature、Jackpot、RTP 和 EV 均不继续。
+- User 明确停止 Demo，继续同一 `TASK-0022` 的 Cash Frenzy Slots Deep Research；不新建 Task。
+- 本轮使用 User 新建的 `AppResearch2`，没有使用旧 `AppResearch`，没有修改 Huuuge / Top Tycoon / Gossip Harbor / Collector 主架构。
+- User stop gate 已触发：direct Win 需要新的 inbound protocol / runtime 层，且 AppResearch2 的 arm64 Gadget 可复现崩溃；动态研究已停止。
+
+## Current recovery state
+
+- **Balance — Recovered / Derived**：Phase 1.5 已用相邻 outbound `client_coins` 形成 Balance Before / After；Session 尾部仍有 open transition。
+- **Win — Derived candidate only**：`next_balance - current_balance + bet` 可复算；未观察到 direct / server `win` 字段。
+- **Result — Not recovered**：已定位 `BLMessage.type @ +0x24` 和 type 3 inbound dispatch，但未恢复明文字段。
+- **Feature / Jackpot — Not recovered**：仅有 static command/module names；本轮 0 Spin。
 - Collector 等级保持 **F3 Live structured outbound fields recovered**。
 
-## Collector Demo result
+## AppResearch2 proof
 
-- User 正常体验 Slots；Session `20260827_192117` 捕获 193 个 outbound Spin 样本、0 errors、192 个闭合 Balance 转移和 1 个 open tail。
-- 首末 Spin 覆盖约 15.1 分钟；8 个已恢复字段均为 193/193。
-- 观察到 5 个 Bet 档位；162 个样本为 Auto + Turbo，31 个样本为非 Auto、非 Turbo；`lines` 保持 40。
-- Balance Curve 以首个 `client_coins` 为 0 做归一化；所有 Balance After 和 Net Delta 均为 **Derived**，绝对余额和 Win 不进入报告。
-- User 提供覆盖不完整的 `demo.MP4`，只用于展示时由 User 人工交叉验证。Agent 未读取视频，视频未进入 Git；飞书正文已预留手动拖入位置。
+- Environment：`Nougat64 / AppResearch2`，Android 7.1.1，ADB `127.0.0.1:5555`，x86_64 + `libnb.so` arm64 translation；Android ID 与旧 AppResearch 不同。
+- App：`slots.pcg.casino.games.free.android` 4.78 / 478 / arm64-v8a。
+- Nougat64 使用 legacy `NativeBridgeLoadLibrary(path, flags)`；Cash-local bootstrap 从 `/data/local/tmp` 成功加载 Frida 17.17.0 arm64 Gadget 并返回非空 handle，最小 probe 确认 `Process.arch=arm64`。
+- 20 秒无操作 boundary：`sendMsg=6`、`sendTable=1`、`sendTickMsg=5`、`onSocketCallback=12`、`onUIThreadReceiveMessage=6`。
+- guest / lobby Session 捕获 23 条 inbound message，全部 type 3，`ccvalue_to_luaval` dispatch-scope conversions=0，errors=0。
+- Codex 只执行两个单点 UI tap：进入 guest 流程、领取免费 starter login reward；无 Spin、购买、充值、付费奖励、Auto Spin 或挂机。
 
-## Deliverables
+## Exact blocker
 
-- Markdown：`reviews/cash-frenzy/COLLECTOR_DEMO.md`。
-- 中文图表：`reviews/cash-frenzy/assets/collector-demo/` 下的 Spin 时间线、余额变化曲线、Bet 档位分布 PNG/SVG。
-- 飞书：《Cash Frenzy｜老虎机体验验证（Collector Demo）》已创建；企业内可编辑权限 verified，正文与飞书原生中文图表回读通过。
-- User 明确取消 Word 交付；没有创建 `.docx`。
+- AppResearch2 拒绝向 `/data/app/.../lib/arm64` 写入，不能复用 Pie64 app namespace staging；只能从临时路径走 legacy bridge。
+- 一次 delegate-vtable 枚举触发 SIGSEGV 后已永久停止该探针。
+- 后续不加载业务 hook 的 clean Gadget run 仍复现 `gum-js-loop` + GLThread SIGSEGV；将资源从 1 GB / 2 CPU 提高到 4 GB / 4 CPU 后仍复现，排除单纯资源不足。
+- 下一技术路线必须二选一：在 Android 9 级稳定 runtime 中继续 `BLMessage` / EventCustom 明文边界，或正式进入 UDP inbound framing / decrypt / dispatch 恢复。两者都属于新运行时或新协议层，当前不继续。
 
-## Documentation Hub blocker
+## Prior Demo state — frozen out of scope
 
-- Document Capability 已登记，Document Assistant create/search/get/share 当前可用，但本会话没有暴露 `register_document` implementation binding。
-- 唯一《AI Workspace｜文档导航中心》回读确认目标标题出现 0 次，Hub 同步尚未完成。
-- 按治理规则保留已创建文档，不重复创建、不人工编辑 Hub。需要在暴露 `register_document` 的会话中对现有文档登记：
-  - Category：`📊 报告`
-  - Description：`用 193 个 Spin 样本展示 F3 Collector 对体验节奏、Bet 迁移和 Derived Balance 波动的策划分析价值。`
-  - Status：`Review`
-- 登记后回读 Hub，确认目标标题恰好出现 1 次；不得创建第二份同名文档。
+- 既有 Collector Demo Markdown、图表和飞书文档保持原状；本轮不更新 Documentation / Report，不处理历史 Hub registration blocker，也不重复创建文档。
 
 ## Clean finalize
 
-- Cash app、Frida server、ADB `tcp:27043` forward、临时 Cash Gadget/config、bootstrap 和 capture 进程均无残留。
-- Raw、逐笔绝对余额、APK、SO、完整响应、账号数据和视频仅留本机。
-- `D:\huuuge-research` 保持 clean；未修改 Huuuge Collector、Session、Raw、SVN、其他游戏、Capability、Workspace Sync 模式或 WATCH。
+- Cash app force-stop；AppResearch2 专属 Frida server、Gadget/config、ADB `tcp:27042` / `tcp:27043` forwards 均删除或移除并回读确认。
+- AppResearch2 root / CPU / RAM 已回滚到 `off / 2 / 1024 MB`；重启后 `su: not found`，Cash process 不存在。
+- 新 Session、探针、runtime 和截图只留 `D:\CashFrenzyResearch\local-only`；没有 Raw、账号、字段值、APK、SO 或完整响应进入 Git。
+- `D:\huuuge-research` 未修改；Workspace Sync `ON_DEMAND`，WATCH disabled；Subagents none / OFF。
 
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
@@ -58,4 +62,4 @@
 
 ## Exact Next Action
 
-在具备 `register_document` binding 的 Document Assistant 会话中登记现有《Cash Frenzy｜老虎机体验验证（Collector Demo）》并回读 Hub；随后 ChatGPT Review TASK-0022 Demo。Review 前不恢复协议或扩展 Collector。
+ChatGPT Review 本轮 TASK-0022 Slots Deep Research 结论。Review 前不再启动 Cash、注入 Gadget、执行 Spin、处理 Demo/Documentation，或扩展 Collector。若未来批准继续，优先选择 Android 9 级独立 Cash runtime 复验 `BLMessage` / EventCustom；否则新协议层应先形成单独审计范围再执行。

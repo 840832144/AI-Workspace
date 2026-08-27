@@ -93,3 +93,32 @@ schema-only Lua hook 捕获 13 个 outbound shapes、3 种唯一形态、0 error
 - Cash app force-stop；Cash 专属 Gadget/config 删除；ADB 27043 forward 删除；临时 Frida server process 停止。
 - 预存 Frida server binary 未删除；`AppResearch` 保留为 User 指定共享研究实例。
 - Huuge repo clean；Huuge Collector、Session、Raw、SVN、飞书和业务仓库未修改。
+
+## AppResearch2 Deep Research Follow-up
+
+### Environment
+
+- User 指定新实例 `AppResearch2`；现场映射为 `Nougat64` / Android 7.1.1 / ADB `127.0.0.1:5555`，与旧 `AppResearch` Android ID 隔离。
+- package / version / ABI 仍为 `slots.pcg.casino.games.free.android` 4.78 / 478 / arm64-v8a，native bridge 为 `libnb.so`。
+- 本轮 0 Spin。Codex 仅以两个单点 `adb input tap` 完成 guest 入口与免费 starter login reward；无购买、充值、付费奖励、Auto Spin 或挂机。
+
+### Confirmed progress
+
+- 临时 root 后，x64 Frida server 17.17.0 可用；Nougat64 的 legacy `NativeBridgeLoadLibrary(path, flags)` 成功返回 arm64 Gadget 非空 handle。
+- `on_load=resume` 下最小 Gadget probe 确认 `Process.arch=arm64`、pointer size 8。
+- 20 秒无操作 boundary：`sendMsg=6`、`sendTable=1`、`sendTickMsg=5`、`onSocketCallback=12`、`onUIThreadReceiveMessage=6`。
+- 指令级检查确认 `BLMessage.type` 偏移为 `+0x24`；23 条 guest / lobby 入站消息均为 type 3，`ccvalue_to_luaval` dispatch 内转换为 0，probe errors 为 0。
+
+### Blocker and stop
+
+- 一次 delegate-vtable 枚举触发 SIGSEGV 后该探针被停止，不再重试。
+- 后续 clean cold start 不加载业务 hook，仅加载 Gadget，仍出现 `gum-js-loop` + GLThread SIGSEGV；资源由 1 GB / 2 CPU 临时提高到 4 GB / 4 CPU 后仍复现。
+- 因此 `AppResearch2 / Nougat64` 不是可重复的 arm64 Gadget Host。直接 Win 仍需要新的 inbound framing/decrypt/dispatch 层，或切换到 Android 9 级稳定研究 runtime；按 User stop gate 停止。
+
+### Final state
+
+- Balance：Phase 1.5 已恢复相邻 outbound 的 Derived Before / After。
+- Win：只有 Derived candidate；direct Win 未恢复。
+- Result / Feature / Jackpot：未恢复。
+- F3 保持不变；没有执行 Spin，也没有进入 OCR。
+- root / CPU / RAM 已回滚，临时 server、Gadget/config、forwards 和 Cash process 均无残留。

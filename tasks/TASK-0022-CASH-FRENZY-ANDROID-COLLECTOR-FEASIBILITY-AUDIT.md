@@ -233,3 +233,50 @@ Win Candidate(i) = client_coins(i+1) - client_coins(i) + bet(i)
 - Demo 达成后立即停止；Cash app、Frida server、ADB forward、临时 Gadget/config、bootstrap 与 capture 进程均确认无残留。
 - Raw、逐笔绝对余额、APK、SO、完整响应、账号数据和视频保持本机；Git 只保存脱敏聚合与归一化图表。
 - 未修改 Huuuge Collector、Session、Raw、SVN、其他游戏、Capability、Workspace Sync 模式或 WATCH；Subagents: none / OFF。
+
+## Slots Deep Research — AppResearch2
+
+### User decision and stop gate
+
+- User 要求继续同一 `TASK-0022`、停止 Demo，并将后续长期子阶段限定为 Cash Frenzy Slots Deep Research；优先级为 Balance → Win → Result → Feature / Jackpot。
+- 本轮沿用既有独立 branch / linked worktree，不新建 Task，不修改 Collector 主架构；动态环境改为 User 新建并已打开的 `AppResearch2`。
+- 停止条件为恢复 Balance 或 Win、需要 OCR、需要新的协议层，或连续较长时间没有有效进展。本轮因直接 Win 需要新的入站协议/运行时层且 AppResearch2 Gadget 可复现崩溃而停止。
+
+### Confirmed environment and isolation
+
+- `AppResearch2` 映射为 BlueStacks `Nougat64`，Android 7.1.1，ADB `127.0.0.1:5555`，x86_64 + `libnb.so` arm64 translation；其 Android ID 与 `AppResearch` 不同。
+- Cash Frenzy 现场版本仍为 4.78 / 478 / arm64-v8a，package 为 `slots.pcg.casino.games.free.android`。
+- 新 Session、探针、runtime 与截图只位于 `CashFrenzyResearch/local-only/deep-research` 或同一 Cash 专属 local-only root；没有进入旧 Cash Session、Huuuge Session / Raw、Git 或云文档。
+- Codex 通过两次单点 `adb input tap` 进入 guest 流程并领取免费 starter login reward，以抵达大厅；没有 Spin、Auto Spin、购买、充值、付费奖励、长时间挂机，亦未篡改请求、返回、内存或服务器状态。
+
+### Static and hook progress
+
+- Nougat64 使用 legacy `_ZN7android23NativeBridgeLoadLibraryEPKci`，而非 Pie64 已验证的 `NativeBridgeLoadLibraryExt(..., namespace)`；Cash-local bootstrap 已恢复该 legacy bridge 的 arm64 Gadget load，非空 handle 现场确认。
+- Nougat64 拒绝向 `/data/app/.../lib/arm64` 写入，即使 root、完整 capabilities 和 SELinux permissive 均成立；Gadget 因此只能从 `/data/local/tmp` 通过 legacy bridge 临时加载。
+- 无操作 20 秒边界复验：`BLSocket::sendMsg=6`、`sendTable=1`、`sendTickMsg=5`、`onSocketCallback=12`、`onUIThreadReceiveMessage=6`，再次确认 active path 为 BLSocket。
+- arm64 指令级检查确认 `BLMessage.type` 位于对象 `+0x24`；`onUIThreadReceiveMessage` 对 type 2–5 分支后同步派发 `EventCustom`。guest / lobby probe 捕获 23 条入站消息，全部为 type 3，0 probe errors。
+- `ccvalue_to_luaval` 在上述 23 条入站 dispatch 内触发 0 次；既有 `BLMessage.getObj` 路径仍不是稳定明文边界。没有恢复 direct `win`、`result` 或 server balance 字段。
+
+### Runtime blocker and stopping result
+
+- 一次 delegate-vtable 只读枚举触发 SIGSEGV 后，该高风险探针被永久停止。
+- 随后的 clean cold start 不加载业务 hook，仅加载 Gadget，仍在约 15 秒后出现 `gum-js-loop` 与 GLThread SIGSEGV；将 AppResearch2 从 1 GB / 2 CPU 临时对齐到 4 GB / 4 CPU 后，clean Gadget load 仍立即复现同类崩溃，排除单纯资源不足。
+- 直接 Win 的剩余路线必须进入新的 inbound framing/decrypt/dispatch 或更换 Android 9 级稳定 runtime；当前 AppResearch2 不能作为可重复的 arm64 Gadget Host。按 User stop gate 停止，不执行 Spin。
+
+### Current recovery state
+
+| Priority | Current state | Evidence |
+| --- | --- | --- |
+| Balance | **Recovered · Derived transition** | Phase 1.5 相邻 outbound `client_coins` 已形成 Balance Before / After；尾部仍为 open |
+| Win | **Derived candidate only** | `next_balance - current_balance + bet` 可复算；未观察到 server/direct `win` 字段 |
+| Result | **Not recovered** | type 3 dispatch 已定位，但明文对象与字段 schema 未恢复 |
+| Feature / Jackpot | **Not recovered** | 只有 static command/module names；本轮 0 Spin |
+
+Collector 等级保持 **F3**，不升级 F4。
+
+### Clean finalize
+
+- Cash app force-stop；AppResearch2 专属 Frida server、Gadget/config、ADB `tcp:27042` / `tcp:27043` forward 全部删除或移除并回读确认。
+- AppResearch2 的 root、CPU、RAM 配置已回滚到原始 `off / 2 / 1024 MB`，重启后 `su: not found`；实例保持在 launcher，Cash 进程不存在。
+- 旧 `AppResearch`、正常 BlueStacks、Huuuge、Top Tycoon、Gossip Harbor、Workspace Sync、Documentation、Report、Collector 主架构和 WATCH 均未修改。
+- Subagents: none；最终模式 OFF。
