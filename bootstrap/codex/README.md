@@ -105,3 +105,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\codex\Test-C
 ```
 
 该测试只在系统临时目录创建隔离 `USERPROFILE`，覆盖 legacy alias、保留非 Agent 配置、并发锁、特殊 TOML/multiline 形态 fail-closed、OFF 失败时模板零变更、模板冲突备份、MCP deny 配置和安装后 OFF；结束后清理临时目录。
+
+## Desktop 网络诊断
+
+Windows Codex Desktop 在 WinINET 本机代理下出现 WebSocket timeout 或完整重连后才回退 HTTPS 时，使用 [`network/README.md`](network/README.md) 的脱敏状态、transport matrix、最小修复和精确恢复入口。该工具不修改 Windows 全局代理、TLS 校验、Provider、MCP 或其他应用路由。

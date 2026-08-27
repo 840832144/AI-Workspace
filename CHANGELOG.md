@@ -2,6 +2,30 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.11.1] - 2026-08-27
+
+### Added
+
+- TASK-0017：新增 Windows PowerShell 5.1 Codex Desktop 网络状态、transport matrix、最小修复、恢复和脚本回归入口。
+- 新增脱敏实验记录与可复用 reconnecting-proxy Solution，记录 Aurora / WinINET / WebSocket / HTTPS / TLS 的分层证据。
+
+### Fixed
+
+- Codex 用户配置启用当前版本已验证的 `features.respect_system_proxy = true`，使 Responses WebSocket 经 WinINET loopback proxy 建立 HTTP 101；没有修改 Windows 或 Aurora 全局路由。
+- Restore 以 post-fix hash 选择精确恢复或仅撤销本任务键，保留 Codex 后续写入的无关设置，并兼容 Windows PowerShell 5.1 JSON 对象属性扩展；键冲突时 fail-closed，Repair 与 Restore 失败都回到操作前配置。
+
+### Validation
+
+- Baseline 稳定复现 WebSocket timeout 与 HTTPS inference reachable；temporary system-proxy override、explicit proxy 和持久修复均得到 HTTP 101，未观察到 TLS 或 DNS failure。
+- 完成 restore exact-hash、保留后续配置的 surgical restore、reapply、Repair 幂等和 PowerShell 5.1 回归。
+- 三个新 Codex 任务连续返回完整验证串，每次随后 transport probe 均为 WebSocket HTTP 101、HTTPS ok、TLS ok。
+- `feishu-docs` healthcheck 与 Git fetch / branch push 正常。
+
+### Boundaries
+
+- 未修改 TASK-0016 worktree、Huuuge 仓库、Collector、Capture、Aurora 配置、Windows 全局 proxy、TLS trust、Provider 或 MCP 配置。
+- 未强制结束当前 Codex Desktop 外壳；新任务和新 CLI 进程已验证配置重载，完整外壳退出重开留给 User 在 Review 后正常执行。
+
 ## [0.11.0] - 2026-08-27
 
 ### Added

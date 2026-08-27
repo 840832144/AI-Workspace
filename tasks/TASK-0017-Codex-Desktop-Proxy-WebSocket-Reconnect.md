@@ -1,6 +1,6 @@
 # TASK-0017 — Codex Desktop 代理 / WebSocket 重连诊断与修复
 
-- Status: In Progress
+- Status: Review
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / operational reliability
@@ -232,3 +232,15 @@ solutions/codex/reconnecting-proxy/README.md
 - `Subagents: none`，除非本任务在受限权限下由 User 明确启用。
 
 等待 ChatGPT Review 后再合并到 `main`。
+
+## Execution Result — 2026-08-27
+
+- Root cause: **Confirmed**。Codex 默认未将 Aurora 的 WinINET loopback proxy 用于 Responses WebSocket；baseline 握手 timeout，但 HTTPS inference 可达。临时 system-proxy override 与 explicit proxy 均得到 HTTP 101，排除 Aurora WebSocket、TLS、DNS 和服务端整体可达性问题。
+- Fix: 只在预检成功后为 Codex 用户配置增加 `features.respect_system_proxy = true`；未修改 Aurora、Windows 全局 proxy、Provider、TLS trust、MCP 或其他仓库。
+- Restore: exact-hash 恢复到原配置已演练；Codex 后续写入无关设置时，surgical restore 只撤销本任务键并保留新设置；恢复后重新复现 baseline，再应用修复成功；重复 Repair 幂等。
+- Fresh threads: 连续 3 个新任务返回完整 `TASK-0017 validation #1/#2/#3 OK`，每次随后 transport probe 均为 WebSocket HTTP 101、HTTPS ok、TLS ok。
+- Local integrations: `feishu-docs` stdio healthcheck 全部 ok；Git fetch 正常，独立 branch push 由最终提交完成。
+- Evidence: `docs/experiments/CODEX_PROXY_TRANSPORT_DIAGNOSIS.md`。
+- Reusable solution: `solutions/codex/reconnecting-proxy/README.md`。
+- Subagents: none。
+- Next action: ChatGPT Review 本任务诊断、最小修复、回滚与三次新任务证据；Review 前不合并 `main`。
