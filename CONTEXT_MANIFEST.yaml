@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-08-27T08:45:45Z"
+generated_at: "2026-08-27T09:22:42Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "637840a3bab8d4a193e2034456a83d89e654c519"
+repository_head: "058887993a5d0aa98df68b814b8adc72477cdaf7"
 repository_branch: "codex/task-0021-live-context"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -15,8 +15,8 @@ sources:
     sha256: "421f861229241e3d5bfcc2166b636d3ae5c4ae9363734c491a631714f826de9e"
     bytes: 5617
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "4ae1eac162df3a52b633631dd3cda3903eab35dd7b4a3f78877ddd0fa1ce30e8"
-    bytes: 8160
+    sha256: "a48d698b95122538367252103ee3e29e3dc7bb3fff3c630b6453c9780473c1e2"
+    bytes: 8105
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "33517605d9e3b3c9c098b4cbb325e434aa0a22d56e2ddeb40b2bc1d8496fb942"
     bytes: 5366
@@ -57,11 +57,11 @@ sources:
     sha256: "dbc646c18dfc89f4f31bf9a7326a6114e9be47dbcb1201925a3af65199e77761"
     bytes: 7043
   - path: "docs/adr/ADR-0007-Workspace-Live-Context-Hub.md"
-    sha256: "7e82101fdbaa1804e5aa3914ac70f55044e72c8349c82e2e3d418d9536cd46dd"
-    bytes: 2512
+    sha256: "c881ab196d27dc7e6d6bff4eb3b1babc210f9a5bf772d210c17f34639c306f28"
+    bytes: 2679
   - path: "docs/adr/README.md"
-    sha256: "5a9dd5c244f88f59e64f9ca0fab829250e06a06f498e57d5610bd9f3e703f8f1"
-    bytes: 1433
+    sha256: "f7a8cade27c0b225c4363692bb1c8f2e9044fa12ed6d3f51a3b3c7345431e2b2"
+    bytes: 1420
   - path: "docs/incidents/INCIDENT-0001-DUPLICATE-TASK-ID.md"
     sha256: "4825d43d3e66d834a2e514ac9291d081a1948046fd191cf3745908249aba76d5"
     bytes: 4387
@@ -69,8 +69,8 @@ sources:
     sha256: "c357d270feab7df9e6d40c2e0f17d537dba93be5808b7eab8a6ec964f5714e21"
     bytes: 5470
   - path: "handoff/CODEX.md"
-    sha256: "52f53d125d590d4246bfc5ca4a9c4a3c433e86b3833809ffa8322af4c46a62ff"
-    bytes: 4951
+    sha256: "8825020e3e5ce573f4dc10ae2b90227fc4474c0f44cf6619353a79e6f3506b4a"
+    bytes: 5019
   - path: "skills/README.md"
     sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
     bytes: 1797
@@ -156,11 +156,11 @@ sources:
     sha256: "13a6959e10bc655e09d70d31caaa31933be0fb358a9659aee09965c7f228d6d6"
     bytes: 17004
   - path: "tasks/TASK-0021-Workspace-Live-Context-Hub.md"
-    sha256: "893714e6c2fd39ac424c880c2833d9b81f0d9ab3abea3b9d634631a7417b5905"
-    bytes: 22451
+    sha256: "cd55f85df932575c6e190b1ef2a63c1e791bbab5243ca20dda20c2204a9d32cf"
+    bytes: 22862
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "3f814c722cf81f22975d793e8d607540f199e0d6469308df30ab666954752bf6"
-    bytes: 8172
+    sha256: "eab0e23b684052e60326341e6eda1c6bd5f4da49e12eaf110d0cc4f15bebe818"
+    bytes: 8607
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
     sha256: "c91aba736f7af48fd37cb5f2518ff6c1050c79df79590f0ffbf924a94a526ef0"
     bytes: 12531

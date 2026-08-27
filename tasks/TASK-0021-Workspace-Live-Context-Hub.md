@@ -1,6 +1,6 @@
 # TASK-0021 — Workspace Live Context Hub
 
-- Status: Review
+- Status: Accepted
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0 / collaboration infrastructure
@@ -442,3 +442,11 @@ Codex 完成后必须返回：
 - AI-Workspace implementation：原实现 commit `0e902b2`；latest-main integration、generated artifacts 与 Review handoff 由本 Task 最终 commit 记录。
 - Validation：Context Python tests 13/13；PowerShell Workspace Context 入口通过。正式 Task Registry、Task/Memory regression、Workspace Sync doctor、Manifest/Source Pack refresh 结果记录在最终 `handoff/CODEX.md`。
 - Boundaries：未执行 Cash Frenzy；未启用 WATCH；未修改 Huuuge、SVN 或业务仓库；`Subagents: none`。
+
+## Acceptance — 2026-08-27
+
+- ChatGPT Review Round 1：**Accepted**。
+- 正式 Review：`reviews/TASK-0021-CHATGPT-REVIEW-1.md`。
+- Accepted implementation：`058887993a5d0aa98df68b814b8adc72477cdaf7`。
+- Final mode：`ON_DEMAND`；Acceptance 不授权启用 `WATCH`。
+- Integration：本 Task 分支与 Document Assistant PR #1 可以合并；现有 Drive Context Hub、权限和内容保持不变。

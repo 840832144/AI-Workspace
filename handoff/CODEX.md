@@ -2,7 +2,7 @@
 
 - Updated: 2026-08-27
 - Task: TASK-0021 — Workspace Live Context Hub
-- Status: Review
+- Status: Accepted — pending integration to main
 - Branch: `codex/task-0021-live-context`
 - Original implementation: `0e902b2ef4c60044a7cb5bac3e75de8cb07c76ad`
 - TASK-0020 main merge: `31475bd`
@@ -15,12 +15,14 @@
 
 ## Outcome
 
+ChatGPT Review Round 1 已返回 **Accepted**。正式 Review 记录为 `reviews/TASK-0021-CHATGPT-REVIEW-1.md`；TASK-0021 与 ADR-0007 已更新为 Accepted。最终模式继续为 `ON_DEMAND`，本次 Acceptance 不授权启用 `WATCH`。
+
 TASK-0020 已通过 ChatGPT Review，并先以 merge commit `31475bd` 合入、推送 main。TASK-0021 随后同步该 main，在共享规则中语义保留两套已批准治理：
 
 - Task Registry、显式 `project_key`、latest-main writer gate、remote-CAS reservation、release/finalize 和严格 companion 分类；
 - Workspace Sync、Planner Writing Style、Git/飞书 authority、冲突保护、Memory Candidate/Review 和 `ON_DEMAND` freshness。
 
-TASK-0020 与 ADR-0006 现为 Accepted；TASK-0021 为 Review。没有覆盖 TASK-0020、TASK-0021、Lottery 或其他并行 Task 的正文。
+TASK-0020、TASK-0021、ADR-0006 与 ADR-0007 现均为 Accepted。没有覆盖 Lottery 或其他并行 Task 的正文。
 
 ## Context Hub Decision
 
@@ -55,10 +57,10 @@ Document Assistant PR [#1](https://github.com/840832144/document-assistant/pull/
 | canonical | 8 |
 | companion | 2 |
 | candidate | 1 |
-| review | 5 |
+| review | 6 |
 | canonical collision | 0 |
 
-关键状态：TASK-0020 Accepted；TASK-0021 Review。
+关键状态：TASK-0020 Accepted；TASK-0021 Accepted。
 
 - Context Python tests：13/13 passed。
 - PowerShell Workspace Context entry：PASS。
@@ -92,10 +94,11 @@ Project Sources 没有自动替换；Source Pack 只是 Bootstrap / offline fall
 - Subagents: none。
 
 
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-27T08:45:45Z
+- Generated: 2026-08-27T09:22:42Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
@@ -103,4 +106,4 @@ Project Sources 没有自动替换；Source Pack 只是 Bootstrap / offline fall
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-ChatGPT Review TASK-0021：审查 Drive Context Hub 选型、authority model、Workspace Sync/冲突保护、Planner Writing Style、`ON_DEMAND` kill switch、TASK-0020 allocator 语义集成和 Document Assistant PR #1。返回 `Accepted` 或具体 `Needs changes`；Review 前不合并 TASK-0021、不启用 WATCH、不改动现有 Drive Hub。
+将 Accepted 的 `codex/task-0021-live-context` 合入 AI-Workspace `main`，合并 Document Assistant PR #1；保持 `ON_DEMAND`，不得启用 `WATCH`。

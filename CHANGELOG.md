@@ -2,6 +2,24 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.14.1] - 2026-08-27
+
+### Accepted
+
+- TASK-0021 与 ADR-0007 经 ChatGPT Review Round 1 Accepted；正式 Review 记录为 `reviews/TASK-0021-CHATGPT-REVIEW-1.md`。
+- Accepted implementation 为 `058887993a5d0aa98df68b814b8adc72477cdaf7`，允许合并 AI-Workspace 分支与 Document Assistant PR #1。
+
+### Validation
+
+- 正式 Registry scan / validate、Task tests 23/23、Context tests 13/13、Memory tests 35/35、PowerShell Task Registry 与 Workspace Context 入口全部通过。
+- Registry inventory：8 canonical、2 companion、1 Candidate、6 Review、0 collision；Context refresh 为 56 sources、0 broken link、0 secret issue。
+
+### Boundaries
+
+- Workspace Sync 最终模式保持 `ON_DEMAND`；Acceptance 不授权启用 `WATCH`。
+- 现有 Drive Context Hub、文档、权限、provider IDs 和 ChatGPT Project Sources replacement 状态保持不变。
+- `Subagents: none`。
+
 ## [0.14.0] - 2026-08-27
 
 ### Added

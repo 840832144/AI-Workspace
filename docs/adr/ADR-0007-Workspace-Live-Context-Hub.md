@@ -1,10 +1,11 @@
 # ADR-0007 — Workspace Live Context Hub
 
-- Status: Proposed / Waiting for ChatGPT Review
+- Status: Accepted
 - Date: 2026-08-27
 - Decision owner: User / ChatGPT
 - Implementer: Codex
 - Related Task: `TASK-0021`
+- Accepted by: ChatGPT Review Round 1 on 2026-08-27
 - Numbering note: ADR-0006 is reserved by the active TASK-0020 allocation-governance work; this independent branch uses ADR-0007 to avoid collision.
 
 ## Context
@@ -36,3 +37,5 @@ TASK-0021 要求优先验证 Wiki。官方 Wiki API 存在，但当前应用对�
 优点是立即复用已验证 Provider，不新增权限、服务或 Secret，退出成本低。代价是 ChatGPT 直连飞书不可用时仍依赖自动 Git mirror/local pack；Drive 不是 Wiki，不能伪称知识库。Company-readable 权限能力需要 Document Assistant 的最小增量并单独测试。
 
 未来切换 Wiki 必须先获得 User 授权并满足完整 Gate；切换只替换 provider binding，不改变 CAP-CONTEXT contract 或稳定 context ID。
+
+`WATCH` 不属于本 ADR 的已启用范围；任何生产 watcher、webhook、Scheduled Task 或长期进程仍需 User 另行明确批准。
