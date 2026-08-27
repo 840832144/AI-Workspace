@@ -1,0 +1,28 @@
+{
+  "schema_version": "task0024-structure-summary-v1",
+  "record_count": 43,
+  "event_kinds": {
+    "hook-status": 1,
+    "inbound-scope-summary": 21,
+    "lua-pcall-args": 21
+  },
+  "message_types": {
+    "3": 42
+  },
+  "scope_thread_count": 1,
+  "field_paths": [
+    {"path": "arg[1]", "type": "number", "count": 21},
+    {"path": "arg[2]", "type": "table", "count": 21},
+    {"path": "arg[2].[1]", "type": "string", "count": 21},
+    {"path": "arg[2].[2]", "type": "table", "count": 21},
+    {"path": "arg[2].[2].avg_bet", "type": "table", "count": 6},
+    {"path": "arg[2].[2].avg_bet.bc", "type": "number", "count": 6},
+    {"path": "arg[2].[2].chips", "type": "number", "count": 6},
+    {"path": "arg[2].[2].coins", "type": "number", "count": 6},
+    {"path": "arg[2].[2].keepalive_from", "type": "number", "count": 6},
+    {"path": "arg[2].[2].time", "type": "number", "count": 6},
+    {"path": "arg[2].[3]", "type": "table", "count": 21},
+    {"path": "arg[2].[3]._timestamp", "type": "number", "count": 21}
+  ],
+  "truncations": {}
+}

@@ -2,7 +2,7 @@
 
 - Updated: 2026-08-27
 - Current task: TASK-0024 — Cash Frenzy Inbound Structured Capture Spike
-- Status: Ready — canonical issuance pending main merge and allocator finalize
+- Status: In Progress — Android 9 stability/Lua Gate passed; awaiting User manual Spins
 - Branch: `codex/cash-frenzy-inbound-structured-capture-spike`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
@@ -18,6 +18,9 @@
 - 新 `AppResearch2` 与历史同名实例不是同一环境；执行前重新确认 Android 9、internal instance ID、ADB serial、package/version/ABI/native bridge 和前台包。
 - 真实 Spin 必须由 User 手动执行 3–5 次；在 User 操作前先完成 0 Spin 的 clean Gadget 稳定性 Gate。
 - 当前 issuance 仅修改 AI-Workspace 控制面；Huuuge repo、Cash runtime、模拟器、游戏、SVN、飞书正文与 WATCH 尚未修改。
+- Android 9 identity 已重新确认；本机完成可回滚 `Pie64_3` Root、Frida 17.17.0 staging 与 120 秒 clean Gadget Gate，0 crash signature。
+- 60 秒无操作 scoped Lua baseline 为 21 inbound scopes / 21 pcalls / 1 thread / 0 errors / 0 truncation；`tick=15`、`keepalive=6`，路径命中 `coins`、`chips`、`avg_bet.bc`。
+- 这些是 direct inbound structured fields，但尚未与普通 Spin 关联；当前只等待 User 手动执行 3–5 次普通 Spin。
 
 ## Closed Governance Task — TASK-0023
 
@@ -113,4 +116,4 @@
 
 ## Exact Next Action
 
-将 TASK-0024 canonical issuance 合入最新 main 并 finalize allocator reservation；随后在新 Android 9 `AppResearch2` 上重新确认 identity，先执行 0 Spin clean Gadget 稳定性 Gate。需要 gameplay event 时暂停并等待 User 手动执行 3–5 次普通 Spin。
+保持 scoped capture READY，由 User 在 `AppResearch2` 中手动执行 3–5 次普通 Spin并回复完成；Codex 随后停止/汇总 Session，判断 direct result / win / balance / feature 与 F3/F4。User 回复前不进入 BLMessage、decrypt/framing 或 Local State fallback。

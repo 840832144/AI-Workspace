@@ -2,6 +2,23 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.4] - 2026-08-27
+
+### Added
+
+- TASK-0024 新增 inbound-scoped Lua probe、受限递归 serializer、value-free structure summarizer 与 3 项 focused tests。
+- 新增 TASK-0024 Dynamic Proof 与脱敏 Lua baseline summary；Raw、字段值、绝对余额和完整响应继续只留本机。
+
+### Confirmed
+
+- 新 `Pie64_3 / AppResearch2` 为 Android 9；Cash Frenzy 4.78 / 478、arm64-v8a、`libnb.so` 现场确认。
+- clean Gadget 零操作 120 秒保持稳定，0 errors、0 crash signature；旧 Android 7 约 15 秒 crash blocker 未复现。
+- 60 秒 scoped baseline 捕获 21/21 type-3 inbound scope / `lua_pcall` 对，1 个 dispatch thread，0 errors、0 truncation；value-free 路径命中 `coins`、`chips` 与 `avg_bet.bc`。
+
+### Gate
+
+- `coins/chips` 当前来自 keepalive，不能写成普通 Spin direct Balance。下一步仅等待 User 手动执行 3–5 次普通 Spin；不进入 BLMessage/decrypt fallback。
+
 ## [0.16.3] - 2026-08-27
 
 ### Added

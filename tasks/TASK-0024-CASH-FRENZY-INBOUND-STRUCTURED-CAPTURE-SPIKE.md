@@ -1,6 +1,6 @@
 # TASK-0024 — Cash Frenzy Inbound Structured Capture Spike
 
-- Status: Ready
+- Status: In Progress
 - Project key: CASH-FRENZY
 - Human alias: 
 - Owner: User / ChatGPT
@@ -96,3 +96,28 @@ Git 只提交：
 ## Handoff
 
 更新本 Task、`CHANGELOG.md` 与 `handoff/CODEX.md`，提交并 push 后返回：实际稳定性、命中的结构化边界、恢复字段、20-Spin 复现率或失败证据、F3/F4 判断、下一步 Adopt / Wrap / Build 建议、`Subagents: none`，然后等待 ChatGPT Review。不得自行扩大为完整 Collector。
+
+## Execution Progress — Pre-Spin Gate
+
+### Confirmed environment
+
+- 新同名实例现场确认为 BlueStacks internal ID `Pie64_3`、display name `AppResearch2`、Android 9、ADB `127.0.0.1:5585`、x86_64 Host + `libnb.so` arm64 native bridge。
+- Cash Frenzy package `slots.pcg.casino.games.free.android`，版本 `4.78 / 478`，primary ABI `arm64-v8a`；旧 Android 7 `Nougat64` identity 未复用。
+- Root 前完成 clean VHDX、配置/磁盘/descriptor 本机备份与 SHA-256 一致性验证；只修改 `Pie64_3` 的 root flag 和两个已审计 guest-`su` 三字节入口，现场 `uid=0(root)`。正常 `Pie64` 保持 root flag 0，`Pie64_1` 未启动。
+
+### Stability Gate
+
+- Android 9 clean Gadget 在 120 秒零操作测试中完成 arm64 `libcocos2dlua.so` namespace load，Cash 始终存活且前台包正确。
+- 0 probe errors、0 matching `gum-js-loop` / GLThread SIGSEGV / Fatal signal；计划内 `application-requested` detach 的 `crash_present=false`。
+- 结论：旧 Android 7 约 15 秒 crash blocker 在当前 Android 9 Gate 中未复现，可以进入 scoped Hook。
+
+### Inbound-scoped Lua baseline
+
+- 60 秒零操作 Lua baseline：21 个 type-3 `onUIThreadReceiveMessage` scope、21 个 scope 内 `lua_pcall` 参数事件，全部来自 1 个 dispatch thread。
+- 事件结构为 `arg[1]: number`、`arg[2]: table`；`arg[2].[1]` 是 command string，`arg[2].[2]` 是 payload，`arg[2].[3]._timestamp` 是 metadata。
+- command 聚合为 `tick=15`、`keepalive=6`。keepalive payload 的 value-free 路径包含 `avg_bet.bc`、`chips`、`coins`、`keepalive_from`、`time`。
+- 0 errors、0 truncation；没有全局 Lua API 日志。`coins/chips` 已证明 direct inbound structured Balance 类边界存在，但尚未与普通 Spin 关联，不能作为 Task 第一目标完成证据。
+
+### Current gate
+
+启动新的 scoped capture 后暂停，由 User 手动执行 3–5 次普通 Spin；在 User 回报完成前不进入 `BLMessage`、decrypt/framing、Local State Adapter 或完整 Collector。
