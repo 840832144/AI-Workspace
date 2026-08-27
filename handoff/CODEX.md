@@ -2,8 +2,8 @@
 
 - Updated: 2026-08-27
 - Current task: TASK-0024 — Cash Frenzy Inbound Structured Capture Spike
-- Status: Review — 5/5 direct inbound Spin result recovered; awaiting ChatGPT Review
-- Branch: `codex/cash-frenzy-inbound-structured-capture-spike`
+- Status: Complete — ChatGPT Review Round 1 Accepted and branch merged
+- Branch: `main`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
 - Memory mode: `ASSISTED`
@@ -11,6 +11,10 @@
 
 ## Current Task — TASK-0024
 
+- ChatGPT Review Round 1 已 Accepted；正式 Review 为 `reviews/TASK-0024-CHATGPT-REVIEW-1.md`，reviewed commit `1f666e79995537febce7a0bf2b98e7ba96100ea9`，Review main commit `17f776553c9d6450c25d145404c46ebaa59a3c3c`。
+- Review 分支已合入 main，canonical TASK-0024 状态为 `Complete`；不在本 Task 内继续完整 Collector、20-Spin、adapter 或其他模块研究。
+- 收口时 Registry writer 在 main 与普通 checkout 均按设计 fail closed；改用独立 linked worktree 后成功重建为 11 canonical / 0 collision，没有绕过 gate。
+- 收口回归：focused 3/3、Task 23/23、Context 13/13、Memory 35/35、Task/Context PowerShell entry、JavaScript syntax 与 Workspace Doctor 全部通过；Workspace Sync ON_DEMAND / 0 conflict / provider unavailable / 6 stale。
 - User 明确要求新建独立 Spike，不继续扩大已完成的 TASK-0022；Candidate 已由正式 CLI 创建并经 allocator 分配唯一 `TASK-0024`，relationship 为 `new`。
 - 执行 contract：稳定性 Gate → `onUIThreadReceiveMessage` scope 内 `LuaStack/lua_pcall` 参数 → `BLMessage` 解码后对象 → decrypt/framing fallback → Local State Adapter。
 - 优先实现深度 4、每集合 64 元素、单消息 64 KiB 的受限递归 Lua serializer；只在 Cash inbound dispatch thread/scope 激活，禁止全局高频 Lua API 日志。
@@ -120,4 +124,4 @@
 
 ## Exact Next Action
 
-由 ChatGPT Review TASK-0024 分支及脱敏证据。Review 接受前不合入 main、不创建后续 Task、不构建完整 Collector；若接受，建议未来独立授权后 Adopt evidence/Raw contract、Wrap Android 9 scoped Lua lifecycle、Build 最小 `batch_spin` schema adapter。
+TASK-0024 无后续执行动作。未来若 User 决定产品化或研究其他模块，先检查 Product Roadmap，再通过 Candidate / allocator 创建独立新 Task；不得复用 TASK-0024 扩大范围。

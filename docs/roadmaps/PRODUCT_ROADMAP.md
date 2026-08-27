@@ -10,17 +10,11 @@
 
 ## 🔥 Current
 
-### Cash Frenzy
-
-- 当前状态：TASK-0024 已完成 Android 9 执行并进入 ChatGPT Review；5 次人工普通 Spin 均恢复 direct inbound Result/Win/Balance 类字段。
-- 当前目标：等待 ChatGPT Review；F3 已增强但 F4 因仅一个含 Spin Session 和不足 20-Spin 样本而未证明。
-- 执行边界：严格按稳定性 Gate → inbound-scoped Lua → `BLMessage` 解码对象 → decrypt/framing fallback → Local State Adapter 推进；不构建完整 Collector，不回到 Nougat64。
-
 ### Top Tycoon
 
-- 当前状态：已确定为 Cash Frenzy Review 之后的下一研究候选，当前不并行执行。
+- 当前状态：Cash Frenzy Review 已完成；等待 User 决定是否建立 Top Tycoon Candidate / Task，当前未开始研究。
 - 产品目标：未来按 Feasibility Audit 路线评估其被动采集、结构化证据和策划研究价值。
-- 进入动作：Cash Frenzy 完成 Review 后，由 User 决定是否创建 Candidate / Task。
+- 进入动作：只有 User 明确批准后才创建 Candidate / Task；TASK-0024 收口不自动授权本方向。
 
 ## 📋 Backlog
 
@@ -48,6 +42,12 @@
 - 主要 Gate：单活动 Capture、前台包名校验、游戏级数据隔离和对现有独立环境决策的兼容性 Review。
 
 ## ✅ Done
+
+### Cash Frenzy Inbound Structured Capture Spike
+
+- 已交付：Android 9 inbound-scoped Lua 边界、5/5 `batch_spin` direct Result/Win/Balance 字段路径、受限 serializer、脱敏聚合与 clean finalize。
+- 完成依据：TASK-0024 ChatGPT Review Round 1 Accepted；等级为 F3 strengthened，F4 未证明。
+- 后续边界：完整 Collector、20-Spin、最小 adapter 或其他模块必须另走 Roadmap / Candidate / 新 Task。
 
 ### Documentation Hub
 

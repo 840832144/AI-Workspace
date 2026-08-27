@@ -1,6 +1,6 @@
 # TASK-0024 — Cash Frenzy Inbound Structured Capture Spike
 
-- Status: Review
+- Status: Complete
 - Project key: CASH-FRENZY
 - Human alias: 
 - Owner: User / ChatGPT
@@ -157,4 +157,11 @@ Git 只提交：
 
 ### Recommendation
 
-等待 ChatGPT Review。若 Review 接受本 Spike，建议 **Adopt** 既有 Session/Raw/privacy/evidence contract，**Wrap** Android 9 exact instance/package/version 与 scoped Lua preflight/cleanup，后续只在新授权 Task 中 **Build** 最小 `batch_spin` inbound schema adapter；当前不构建完整 Collector。
+ChatGPT Review 已接受本 Spike。未来若 User 另行授权，建议 **Adopt** 既有 Session/Raw/privacy/evidence contract，**Wrap** Android 9 exact instance/package/version 与 scoped Lua preflight/cleanup，并在独立新 Task 中 **Build** 最小 `batch_spin` inbound schema adapter；TASK-0024 本身不构建完整 Collector。
+
+## ChatGPT Review Closure
+
+- ChatGPT Review Round 1：**Accepted**；正式记录为 `reviews/TASK-0024-CHATGPT-REVIEW-1.md`，reviewed commit 为 `1f666e79995537febce7a0bf2b98e7ba96100ea9`，Review main commit 为 `17f776553c9d6450c25d145404c46ebaa59a3c3c`。
+- Review 分支已合入 `main`，本 Task 状态更新为 `Complete`；F3 strengthened / F4 未证明的结论保持不变。
+- TASK-0024 到此停止。完整 Collector、20-Spin 验证、最小 `batch_spin` adapter 或其他模块研究均不在本 Task 内继续；未来需要时必须重新经过 Roadmap / Candidate / 新 Task 授权。
+- 收口回归：focused 3/3、Task 23/23、Context 13/13、Memory 35/35、Task/Context PowerShell entry、JavaScript syntax、Workspace Doctor 与 Registry 11 canonical / 0 collision 全部通过；Workspace Sync 为 ON_DEMAND / 0 conflict / provider unavailable / 6 stale。

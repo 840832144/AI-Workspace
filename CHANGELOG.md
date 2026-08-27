@@ -2,6 +2,24 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.6] - 2026-08-27
+
+### Accepted
+
+- TASK-0024 ChatGPT Review Round 1 Accepted；正式 Review main commit 为 `17f776553c9d6450c25d145404c46ebaa59a3c3c`，reviewed branch commit 为 `1f666e79995537febce7a0bf2b98e7ba96100ea9`。
+- `codex/cash-frenzy-inbound-structured-capture-spike` 已合入 main，canonical TASK-0024 状态收口为 `Complete`；F3 strengthened / F4 未证明保持不变。
+
+### Boundaries
+
+- 不在 TASK-0024 内继续完整 Collector、20-Spin、最小 adapter 或其他模块研究；未来方向必须另走 Roadmap / Candidate / 新 Task。
+- Product Roadmap 将 Cash Frenzy Spike 从 Current 移入 Done；Top Tycoon 仅等待 User 决策，没有自动创建或执行 Task。
+
+### Validation
+
+- Registry writer 在 main 和普通 checkout 两次按设计 fail closed，均未改写 Registry；转入独立 linked worktree 后成功重建并验证为 11 canonical / 0 collision。
+- focused 3/3、Task 23/23、Context 13/13、Memory 35/35、Task/Context PowerShell entry、JavaScript syntax 与 Workspace Doctor 全部通过。
+- Workspace Sync 保持 ON_DEMAND / 0 conflict；provider unavailable，6 stale；WATCH disabled。
+
 ## [0.16.5] - 2026-08-27
 
 ### Confirmed
