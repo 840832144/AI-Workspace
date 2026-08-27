@@ -2,7 +2,7 @@
 
 - Updated: 2026-08-27
 - Current task: TASK-0024 — Cash Frenzy Inbound Structured Capture Spike
-- Status: Ready — canonical issuance pending main merge and allocator finalize
+- Status: Review — 5/5 direct inbound Spin result recovered; awaiting ChatGPT Review
 - Branch: `codex/cash-frenzy-inbound-structured-capture-spike`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
@@ -17,7 +17,14 @@
 - 只有 Lua 与 BLMessage 路线都失败才进入 `libEncryptorP` / `libsigner` / XXTEA 与单消息 Stalker summary。
 - 新 `AppResearch2` 与历史同名实例不是同一环境；执行前重新确认 Android 9、internal instance ID、ADB serial、package/version/ABI/native bridge 和前台包。
 - 真实 Spin 必须由 User 手动执行 3–5 次；在 User 操作前先完成 0 Spin 的 clean Gadget 稳定性 Gate。
-- 当前 issuance 仅修改 AI-Workspace 控制面；Huuuge repo、Cash runtime、模拟器、游戏、SVN、飞书正文与 WATCH 尚未修改。
+- Huuuge repo、正常 BlueStacks、其他游戏、SVN、飞书正文与 WATCH 未修改；Cash 研究实例只做了可回滚的临时 runtime 变更。
+- Android 9 identity 已重新确认；本机完成可回滚 `Pie64_3` Root、Frida 17.17.0 staging 与 120 秒 clean Gadget Gate，0 crash signature。
+- 60 秒无操作 scoped Lua baseline 为 21 inbound scopes / 21 pcalls / 1 thread / 0 errors / 0 truncation；`tick=15`、`keepalive=6`，路径命中 `coins`、`chips`、`avg_bet.bc`。
+- User 手动完成 5 次普通 Spin；`batch_spin=5`，direct result boundary `arg[2].[2].list.[1]` 的 `base_win`、`bonus_base_win`、`total_win`、`coins`、`win_lines`、`win_pos_list` 均为 5/5。
+- Pilot 复现率 5/5；本轮只授权 3–5 Spin，20-Spin 样本不足，不外推。Lua 路线成功后没有进入 BLMessage/decrypt/XXTEA/Stalker/Local State。
+- F3 strengthened；F4 因只有一个含 Spin Session、未满足双 Session/20-Spin Gate 而未证明。临时 probe/Gadget/server/forward 已清理，`Pie64_3` root/guest-`su` 已恢复且 VHDX clean。
+- 脱敏聚合与 local summary 回查一致；focused 3/3、Task 23/23、Context 13/13、Memory 35/35、Task/Context PowerShell entry、Workspace Doctor、Registry 11 canonical / 0 collision 与 email/credential scan 全部通过。
+- Workspace Sync 保持 ON_DEMAND / 0 conflict；provider unavailable，6 stale；WATCH disabled。Subagents: none。
 
 ## Closed Governance Task — TASK-0023
 
@@ -113,4 +120,4 @@
 
 ## Exact Next Action
 
-将 TASK-0024 canonical issuance 合入最新 main 并 finalize allocator reservation；随后在新 Android 9 `AppResearch2` 上重新确认 identity，先执行 0 Spin clean Gadget 稳定性 Gate。需要 gameplay event 时暂停并等待 User 手动执行 3–5 次普通 Spin。
+由 ChatGPT Review TASK-0024 分支及脱敏证据。Review 接受前不合入 main、不创建后续 Task、不构建完整 Collector；若接受，建议未来独立授权后 Adopt evidence/Raw contract、Wrap Android 9 scoped Lua lifecycle、Build 最小 `batch_spin` schema adapter。

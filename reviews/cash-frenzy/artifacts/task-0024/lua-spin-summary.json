@@ -1,0 +1,39 @@
+{
+  "schema_version": "task0024-spin-structure-summary-v1",
+  "user_manual_spin_count": 5,
+  "inbound_scope_count": 65,
+  "scoped_lua_pcall_count": 65,
+  "scope_thread_count": 1,
+  "message_type": 3,
+  "probe_error_count": 0,
+  "batch_spin": {
+    "event_count": 5,
+    "direct_event_count": 5,
+    "pilot_reproducibility": "5/5",
+    "field_paths": [
+      {"path": "arg[2].[2].list.[1].base_win", "type": "number", "count": 5},
+      {"path": "arg[2].[2].list.[1].bonus_base_win", "type": "number", "count": 5},
+      {"path": "arg[2].[2].list.[1].coins", "type": "number", "count": 5},
+      {"path": "arg[2].[2].list.[1].total_win", "type": "number", "count": 5},
+      {"path": "arg[2].[2].list.[1].win_lines", "type": "table", "count": 5},
+      {"path": "arg[2].[2].list.[1].win_pos_list", "type": "table", "count": 5}
+    ]
+  },
+  "serializer": {
+    "max_depth": 4,
+    "max_elements": 64,
+    "max_message_bytes": 65536,
+    "max_pcalls_per_scope": 32,
+    "depth_budget_summaries": 159,
+    "element_or_message_budget_overflows": 0
+  },
+  "twenty_spin": {
+    "performed": false,
+    "result": "N/A",
+    "reason": "The authorized manual sample was limited to 3-5 Spins."
+  },
+  "route": {
+    "selected": "inbound-scoped-lua",
+    "later_routes_executed": false
+  }
+}

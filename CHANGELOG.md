@@ -2,6 +2,38 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.5] - 2026-08-27
+
+### Confirmed
+
+- TASK-0024 User 5-Spin Gate 捕获 5 个 `batch_spin` direct result objects；`base_win`、`bonus_base_win`、`total_win`、`coins`、`win_lines`、`win_pos_list` 各 5/5 命中。
+- Pilot 复现率为 5/5；本轮人工授权只允许 3–5 Spin，因此 20-Spin 为样本不足，不做外推。
+- Lua 路线成功后按 Gate 停止，未进入 `BLMessage`、decrypt/framing、XXTEA、Stalker、Local State Adapter 或完整 Collector。
+- Capture 0 errors；临时 Hook/process/Gadget/server/forward 已清理，`Pie64_3` root 与 guest-`su` 已恢复，VHDX clean / root false。
+
+### Changed
+
+- value-free summarizer 新增受限 command profile 与 direct field event counts；focused tests 继续验证不输出字段值、identity 或隐私数据。
+- TASK-0024 进入 Review；等级记录为 F3 strengthened，F4 因缺少双 Session/20-Spin 证据而未证明。建议 Adopt contract + Wrap scoped Android 9 binding + future small Build。
+- 最终回归：focused 3/3、Task 23/23、Context 13/13、Memory 35/35、Task/Context PowerShell entry、Workspace Doctor 与 Registry 11 canonical / 0 collision 全部通过；Workspace Sync 为 ON_DEMAND / 0 conflict / provider unavailable / 6 stale。
+
+## [0.16.4] - 2026-08-27
+
+### Added
+
+- TASK-0024 新增 inbound-scoped Lua probe、受限递归 serializer、value-free structure summarizer 与 3 项 focused tests。
+- 新增 TASK-0024 Dynamic Proof 与脱敏 Lua baseline summary；Raw、字段值、绝对余额和完整响应继续只留本机。
+
+### Confirmed
+
+- 新 `Pie64_3 / AppResearch2` 为 Android 9；Cash Frenzy 4.78 / 478、arm64-v8a、`libnb.so` 现场确认。
+- clean Gadget 零操作 120 秒保持稳定，0 errors、0 crash signature；旧 Android 7 约 15 秒 crash blocker 未复现。
+- 60 秒 scoped baseline 捕获 21/21 type-3 inbound scope / `lua_pcall` 对，1 个 dispatch thread，0 errors、0 truncation；value-free 路径命中 `coins`、`chips` 与 `avg_bet.bc`。
+
+### Gate
+
+- `coins/chips` 当前来自 keepalive，不能写成普通 Spin direct Balance。下一步仅等待 User 手动执行 3–5 次普通 Spin；不进入 BLMessage/decrypt fallback。
+
 ## [0.16.3] - 2026-08-27
 
 ### Added
