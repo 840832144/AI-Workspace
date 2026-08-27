@@ -5,9 +5,10 @@ This repository is the governance and coordination control plane for the Game Pl
 Before making changes:
 
 1. Pull the latest `main` safely.
-2. Read `AI_TEAM.md`, `ARCHITECTURE.md`, and `CONTRIBUTING.md`.
-3. Read the relevant file under `handoff/`.
-4. Read the affected RFC, ADR, project Status, and `CHANGELOG.md`.
+2. Run `bootstrap/workspace-sync/Invoke-WorkspaceSync.ps1` when available; treat `stale/conflict/unavailable` as explicit state, not permission to guess.
+3. Read `AI_TEAM.md`, `ARCHITECTURE.md`, `CONTRIBUTING.md`, and `standards/PLANNER_WRITING_STYLE.md`.
+4. Read the relevant file under `handoff/`.
+5. Read the affected RFC, ADR, project Status, and `CHANGELOG.md`.
 
 Rules:
 
@@ -22,6 +23,7 @@ Rules:
 - Before creating, renumbering, or telling another Agent to execute a new Task, enumerate the complete latest `tasks/` directory, verify the canonical ID is unique, check related active Tasks, and record the allocation evidence. Never guess the next ID from chat, memory, a partial search, or `max + 1` alone. On collision, fail closed and preserve the first canonical Task.
 - Update the relevant handoff and project Status when work changes shared state.
 - Commit documentation and coordination records together, then push before handoff.
+- Keep Workspace Sync in `ON_DEMAND` unless the User explicitly approves `WATCH`. Provider drafts enter Candidate/Review; they never overwrite Git canonical content directly.
 
 ## Memory Check
 

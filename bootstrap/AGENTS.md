@@ -24,6 +24,12 @@
 
 Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 Tool Discovery。
 
+## Workspace Sync Check
+
+在 Task、Review、状态查询或 Handoff 前，先同步 AI-Workspace 最新 `main`，再运行项目中的 `bootstrap/workspace-sync/Invoke-WorkspaceSync.ps1`。读取 Host-local `LOCAL_CONTEXT_PACK.md` 与状态；出现 `stale`、`conflict` 或 `unavailable` 时明确报告，不用 Project Sources 或聊天记忆猜测。
+
+Git-authoritative 内容只向 provider 发布；provider-authoritative 协作草稿只进入 Memory Candidate/Review。默认模式为 `ON_DEMAND`；未经 User 明确批准，不启用生产 `WATCH`、公网 webhook、长期 watcher 或新权限。
+
 ## Subagent Policy
 
 - 默认使用单 Agent。只有 User 明确要求、Task 明确允许，或存在至少两个真正独立、可并行、读多写少的工作流时，才考虑 Subagents。
@@ -48,7 +54,7 @@ Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 To
 - 公共新人入口：`https://github.com/840832144/AI-Workspace.git`
 - 当前 `READ` 实现：`feishu_healthcheck`、`get_document`、`list_folder`、`search_documents`
 - 当前 `WRITE` 实现：`create_document`、`append_document`、`replace_document`、`create_folder`
-- 当前 `ADMIN/SECURITY` 实现：`grant_company_edit`、`grant_group_edit`、`grant_user`
+- 当前 `ADMIN/SECURITY` 实现：`grant_company_view`、`grant_company_edit`、`grant_group_edit`、`grant_user`
 
 使用规则：
 

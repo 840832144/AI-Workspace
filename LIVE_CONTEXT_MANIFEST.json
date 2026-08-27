@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "context_set_id": "workspace-live-context",
+  "default_mode": "ON_DEMAND",
+  "provider_binding": {
+    "type": "feishu-drive-docx",
+    "folder_alias": "workspace-live-context-hub",
+    "registry": "host-local-only"
+  },
+  "contexts": [
+    {
+      "context_id": "workspace-hub-index",
+      "title": "Workspace 入口与同步状态",
+      "authority": "git",
+      "scope": "public",
+      "sensitivity": "public",
+      "git_path": "context/HUB_INDEX.md",
+      "provider_alias": "workspace-hub-index",
+      "sync_direction": "git-to-provider",
+      "sharing": "company_readable",
+      "include_in_pack": true,
+      "style_check": true
+    },
+    {
+      "context_id": "core-rules",
+      "title": "核心规则",
+      "authority": "git",
+      "scope": "public",
+      "sensitivity": "public",
+      "git_path": "bootstrap/chatgpt/00_CORE_RULES.md",
+      "provider_alias": "workspace-core-rules",
+      "sync_direction": "git-to-provider",
+      "sharing": "company_readable",
+      "include_in_pack": true
+    },
+    {
+      "context_id": "system-context",
+      "title": "系统上下文与能力边界",
+      "authority": "git",
+      "scope": "public",
+      "sensitivity": "public",
+      "git_path": "bootstrap/chatgpt/01_SYSTEM_CONTEXT.md",
+      "provider_alias": "workspace-system-context",
+      "sync_direction": "git-to-provider",
+      "sharing": "company_readable",
+      "include_in_pack": true
+    },
+    {
+      "context_id": "current-state",
+      "title": "当前状态与任务入口",
+      "authority": "git",
+      "scope": "public",
+      "sensitivity": "public",
+      "generator": "git-current-state",
+      "provider_alias": "workspace-current-state",
+      "sync_direction": "git-to-provider",
+      "sharing": "company_readable",
+      "include_in_pack": true
+    },
+    {
+      "context_id": "project-overview",
+      "title": "项目全景说明",
+      "authority": "external-review",
+      "scope": "public",
+      "sensitivity": "public",
+      "provider_alias": "task-0019-project-overview",
+      "sync_direction": "external-link",
+      "sharing": "existing",
+      "enabled": false,
+      "status": "pending-task-0019-review",
+      "include_in_pack": false
+    },
+    {
+      "context_id": "project-progress",
+      "title": "项目进度与能力状态",
+      "authority": "external-review",
+      "scope": "public",
+      "sensitivity": "public",
+      "provider_alias": "task-0019-project-progress",
+      "sync_direction": "external-link",
+      "sharing": "existing",
+      "enabled": false,
+      "status": "pending-task-0019-review",
+      "include_in_pack": false
+    },
+    {
+      "context_id": "collaboration-notes",
+      "title": "策划协作与待确认事项",
+      "authority": "feishu",
+      "scope": "public",
+      "sensitivity": "public",
+      "provider_alias": "workspace-collaboration-notes",
+      "sync_direction": "provider-to-candidate",
+      "sharing": "company_editable",
+      "include_in_pack": false
+    },
+    {
+      "context_id": "planner-writing-style",
+      "title": "AI 行文规范",
+      "authority": "git",
+      "scope": "public",
+      "sensitivity": "public",
+      "git_path": "standards/PLANNER_WRITING_STYLE.md",
+      "provider_alias": "workspace-writing-style",
+      "sync_direction": "git-to-provider",
+      "sharing": "company_readable",
+      "include_in_pack": true,
+      "style_check": true
+    },
+    {
+      "context_id": "capability-workflow-skill-index",
+      "title": "Capability / Workflow / Skill 索引",
+      "authority": "git",
+      "scope": "public",
+      "sensitivity": "public",
+      "git_path": "context/CAPABILITY_WORKFLOW_SKILL_INDEX.md",
+      "provider_alias": "workspace-capability-index",
+      "sync_direction": "git-to-provider",
+      "sharing": "company_readable",
+      "include_in_pack": true,
+      "style_check": true
+    }
+  ]
+}

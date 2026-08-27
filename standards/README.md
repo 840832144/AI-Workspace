@@ -23,3 +23,7 @@
 ## Memory 标准
 
 - [`Memory Governance Standard`](MEMORY_GOVERNANCE.md)：定义 Candidate-first 捕获、Public/Private/Local-only 路由、Secret gate、去重、冲突、AUTO allowlist、Review、Archive、并发与 Context refresh；当前状态为 Proposed，等待 ChatGPT Review。
+
+## 行文标准
+
+- [`策划协作行文规范`](PLANNER_WRITING_STYLE.md)：定义完整中文段落、结论—依据—下一步、策划步骤、格式边界和轻量检查；当前状态为 Proposed，等待 ChatGPT Review。

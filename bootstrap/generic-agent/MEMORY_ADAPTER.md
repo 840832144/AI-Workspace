@@ -2,6 +2,8 @@
 
 适用于 Trae + DeepSeek 和其他能执行 Python/PowerShell 的项目 Agent。复制本规则到项目级 Agent instructions，不需要安装插件、访问私有实现仓库或配置 Secret。
 
+Task、Review 或状态查询前先按 [`WORKSPACE_SYNC_ADAPTER.md`](WORKSPACE_SYNC_ADAPTER.md) 刷新 Context；本文件只负责 Memory Candidate 路由。
+
 ## Rule
 
 完成长期决定、可复用修复、Task/Handoff、Workflow/Skill 或重要失败经验后：

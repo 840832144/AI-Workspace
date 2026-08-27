@@ -5,10 +5,10 @@
 ## 安装到 ChatGPT Project
 
 1. 打开 ChatGPT Project 的设置，把 `PROJECT_INSTRUCTIONS.md` 内容复制到“项目指令”。
-2. 在项目主页的“来源 / Sources”中上传：
+2. 在项目主页的“来源 / Sources”中上传稳定 Bootstrap：
    - `00_CORE_RULES.md`
    - `01_SYSTEM_CONTEXT.md`
-   - `02_CURRENT_STATE.md`
+   - `02_CURRENT_STATE.md`（仅作为离线回退）
    - `03_NEW_CHAT_BOOTSTRAP.md`
 3. 把与本项目有关的重要历史对话移动到同一个 Project。
 4. 新建一个测试对话，发送：
@@ -24,9 +24,10 @@
 
 - `00_CORE_RULES.md`：稳定治理规则，只有长期规则改变时更新。
 - `01_SYSTEM_CONTEXT.md`：系统架构和仓库关系，能力边界变化时更新。
-- `02_CURRENT_STATE.md`：动态状态；重要任务、里程碑、阻塞或决策变化后更新并重新上传。
+- `02_CURRENT_STATE.md`：离线回退；动态状态优先由 Workspace Sync 从 Git 生成，不再把人工重新上传当作唯一 freshness 机制。
 - `03_NEW_CHAT_BOOTSTRAP.md`：新对话启动协议，通常保持稳定。
 - Git 中的 AI-Workspace、对应业务仓库、Task、Status 和 Handoff 始终是最新真相源；Project Sources 是便于检索的快照，不代替 Git。
+- 新对话涉及 Task、Review 或状态时先读取 `LIVE_CONTEXT_MANIFEST.json` 并运行 Workspace Sync；无法同步时明确显示 stale/unavailable。
 
 ## 边界
 

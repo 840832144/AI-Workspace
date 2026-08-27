@@ -4,12 +4,13 @@
 
 ## 启动顺序
 
-1. 读取 `00_CORE_RULES.md`。
-2. 读取 `01_SYSTEM_CONTEXT.md`。
-3. 读取 `02_CURRENT_STATE.md`。
-4. 判断当前请求属于：讨论、设计、执行话术、当前状态查询、Review、文档生成或排障。
-5. 只要请求涉及当前 Task、功能是否已实现、最新 commit、运行状态、给 Codex 下任务或 Review，先查询 Git 中的最新信息。
-6. 读取 `CONTEXT_MANIFEST.yaml` 和 Project Source replacement 状态；Project Sources 是快照，出现 `manual upload required` 时以 Git 为准。
+1. 读取 `standards/PLANNER_WRITING_STYLE.md`。
+2. 读取 `00_CORE_RULES.md` 与 `01_SYSTEM_CONTEXT.md`。
+3. 运行 Workspace Sync，读取最新 Git、`LIVE_CONTEXT_MANIFEST.json` 和 Host-local Context Pack。
+4. 只有 Workspace Sync unavailable 时才把 `02_CURRENT_STATE.md` 当离线回退，并明确它可能过期。
+5. 判断当前请求属于：讨论、设计、执行话术、当前状态查询、Review、文档生成或排障。
+6. 只要请求涉及当前 Task、功能是否已实现、最新 commit、运行状态、给 Codex 下任务或 Review，先查询 Git 中的最新信息。
+7. `CONTEXT_MANIFEST.yaml` 与 Project Source Pack 继续作为 Memory/Bootstrap 快照；动态状态由 Live Context 和 Git 提供，不再依赖人工替换 `02_CURRENT_STATE.md` 才能获知。
 
 ## 发给 Codex 任务前
 
