@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-08-27T13:24:33Z"
+generated_at: "2026-08-27T13:39:12Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "00a012976854a5cc4f535052c4b8b3a167dcc6e9"
+repository_head: "bc0d3ad1e519fb908dce53a78a35f9c3687a5b51"
 repository_branch: "codex/idea-governance-product-roadmap"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -15,8 +15,8 @@ sources:
     sha256: "181c2ee80db1c3092a390f7fdd856e214929429bd09d7744f7bc670887eba1d0"
     bytes: 6039
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "e63f878b57f4b15ed517bb72fb853b8e765527f90e73f457d492bd2e3451cda2"
-    bytes: 8470
+    sha256: "0cd35f02ec7d5d73d62ab77548344d2e9600030bdfd78e0d50480fc15cceee56"
+    bytes: 8464
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "c1baf26853c3cd31685ca35b18c224d6b48180983a554d2f6bbe6b3209ce826c"
     bytes: 6040
@@ -66,11 +66,11 @@ sources:
     sha256: "4825d43d3e66d834a2e514ac9291d081a1948046fd191cf3745908249aba76d5"
     bytes: 4387
   - path: "handoff/CHATGPT.md"
-    sha256: "26dfcffe18389d40940462e70415814fb107f5767147c430a17fda5864edac72"
-    bytes: 8533
+    sha256: "5d385871878ccfe62c48612871765bcbdb5ad156df6105b26c0d9b9fea0b9ed8"
+    bytes: 9129
   - path: "handoff/CODEX.md"
-    sha256: "02fb82c4c365aa0e6be1b2bd5fc6b061b1d41b038deca5c4c4836d9a91174bcf"
-    bytes: 9852
+    sha256: "9bf41a13420d751d8e038677d35dc1732c69a0478884ab77db420159bbc8a633"
+    bytes: 10541
   - path: "skills/README.md"
     sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
     bytes: 1797
@@ -117,17 +117,17 @@ sources:
     sha256: "6158dcd8bbc23aa2ec6bba052ab9acc16b657202435440e126dec328cf3cc58f"
     bytes: 8519
   - path: "standards/IDEA_GOVERNANCE.md"
-    sha256: "b4d7a2b2d6cc4737ede2e5927324912607b62a227020af1e198a22e8ba79fd3c"
-    bytes: 3650
+    sha256: "c2236dbe2810a9cf2c01bf1a3b2ca8a6781aca05a795ff24c6cf81afa5fcb176"
+    bytes: 3632
   - path: "standards/MEMORY_GOVERNANCE.md"
     sha256: "eeb88fd91c79899370784c6faa6a529af8d35e309cb33065e322d14d20423c2a"
     bytes: 5890
   - path: "standards/PLANNER_WRITING_STYLE.md"
-    sha256: "a9142304f5c4cdc6453396f6ad6530d6cd6cb1f9af9c6624d2eb94b51a826193"
-    bytes: 4815
+    sha256: "82db82a5df4a35ae164fec7fc7bb42d347500887b8ea66e53139598fd6a997e5"
+    bytes: 4794
   - path: "standards/README.md"
-    sha256: "007f863ee763196ff7b62f84345bed765fba9637e4d98ff0c1a0799757e26b7a"
-    bytes: 2279
+    sha256: "a0f6e684d3a1cb3e56dcdb3728fb157fd4fb2c1480d4ac749927ff827f760033"
+    bytes: 2254
   - path: "tasks/README.md"
     sha256: "243be3c488fed873f23e3c68b821dfd36a7140750451fc05fd7bd69e318165ec"
     bytes: 4637
@@ -165,11 +165,11 @@ sources:
     sha256: "51e615e2a33f555c606a58dac4acc013e5c72cd7c1fef159d69b9a53f11b8660"
     bytes: 7347
   - path: "tasks/TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md"
-    sha256: "89c773aaa32515f93094f4b3223ea7291542adb5ffa07a281dcd5be4cec2df86"
-    bytes: 8433
+    sha256: "639a78948662cb03022a78f02aca6d6d22ba681f7cde2ee54122c91575f51719"
+    bytes: 9331
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "c0259cf30aa056bf8b48477a0dbb48579c7f385d53398a7c69900a574ac634b4"
-    bytes: 11528
+    sha256: "e93ec8f55e58535bc96906930d59f8efe7e07f490c672053a99582368016f169"
+    bytes: 11968
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
     sha256: "b67e26cf37ac2891b372de65871b4798b00e8d5b94a61c6596f08f9f7aa61c49"
     bytes: 13276

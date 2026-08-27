@@ -1,6 +1,6 @@
 # 策划协作行文规范
 
-- Status: Proposed / Waiting for ChatGPT Review
+- Status: Accepted / Active
 - Scope: ChatGPT、Codex、Trae / DeepSeek、Generic Agent 与策划协作文档
 - Related Task: `TASK-0021` / `TASK-0023`
 

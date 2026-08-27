@@ -2,6 +2,28 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.2] - 2026-08-27
+
+### Accepted
+
+- TASK-0023 ChatGPT Review Round 2 Accepted；reviewed commit 为 `bc0d3ad1e519fb908dce53a78a35f9c3687a5b51`，正式记录为 `reviews/TASK-0023-CHATGPT-REVIEW-2.md`。
+- Idea Governance 与 Planner Writing Style 转为 `Accepted / Active`，Product Roadmap 和技术术语治理正式生效。
+
+### Changed
+
+- 更新 Standards 索引、Task、Handoff、Registry、Context Manifest 和 ChatGPT Source Pack，进入 main 收口与 allocator finalize 流程。
+
+### Validation
+
+- Context / Source Pack 刷新为 62 sources、0 broken link、0 secret issue；TASK-0023、两项 Active 标准与 Review 2 已进入刷新产物。
+- Task 23/23、Context 13/13、Memory 35/35、PowerShell Task Registry 与 Workspace Context 入口全部通过；Registry 为 10 canonical / 0 collision，Doctor `ok: true`。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider unavailable，6 个发布项保持 stale，没有启用 WATCH。
+- main push、allocator finalize 与清理结果在执行完成后通过最终交付 commit 和命令证据确认，不在提交内容中制造自引用 hash。
+
+### Boundaries
+
+- 不修改 TASK-0022、Cash Frenzy、Huuuge、Document Assistant 或 Workspace Sync 模式；`Subagents: none`。
+
 ## [0.16.1] - 2026-08-27
 
 ### Changed

@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-27T13:24:33Z
+Generated: 2026-08-27T13:39:12Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -416,7 +416,7 @@ TASK-0020 已确认结果：
 - ADR-0006 提议采用全局 `TASK-XXXX` + `project_key` + 可选 alias；
 - 14/14 disposable tests 与 PowerShell 5.1 回归通过；真实仓库当前 8 canonical、0 collision；
 - TASK-0021 已 Accepted，文档导航中心与 Workspace Sync 规则进入最终状态；
-- TASK-0023 已建立唯一 Product Roadmap 与 Idea Governance，当前等待 ChatGPT Review；Roadmap 不改变 TASK-0022 的状态或执行顺序；
+- TASK-0023 已完成 ChatGPT Review Round 2 并 Accepted；唯一 Product Roadmap、Idea Governance 与 Planner Writing Style 正式生效，且不改变 TASK-0022 的状态或执行顺序；
 - 不执行 Cash Frenzy，不修改任何业务仓库。
 
 ## 当前 Huuuge 任务
@@ -434,7 +434,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 - `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md`：`Ready`。
 - `TASK-0021-Workspace-Live-Context-Hub.md`：`Accepted`；Live Context、Workspace Sync 和文档导航治理已完成。
-- `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md`：`Review`；唯一 Product Roadmap、Idea Governance 与两个正式文档入口已完成，等待 ChatGPT Review。
+- `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md`：`Accepted`；唯一 Product Roadmap、Idea Governance、技术术语规则与两个正式文档入口已完成并正式生效。
 
 并行任务必须使用独立 branch / linked worktree。TASK-0020 的 Registry 只登记 TASK-0021，不执行、改写或提前实现其飞书 / Context Hub 范围。
 
@@ -496,7 +496,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T13:24:33Z
+- Generated: 2026-08-27T13:39:12Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -508,7 +508,6 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Ready
 - `TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md` — Ready
-- `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md` — Review
 <!-- MEMORY-CONTEXT:END -->
 
 <!-- SOURCE: 03_NEW_CHAT_BOOTSTRAP.md -->
@@ -640,7 +639,7 @@ Feasibility Audit
 <!-- SOURCE: PLANNER_WRITING_STYLE.md -->
 # 策划协作行文规范
 
-- Status: Proposed / Waiting for ChatGPT Review
+- Status: Accepted / Active
 - Scope: ChatGPT、Codex、Trae / DeepSeek、Generic Agent 与策划协作文档
 - Related Task: `TASK-0021` / `TASK-0023`
 

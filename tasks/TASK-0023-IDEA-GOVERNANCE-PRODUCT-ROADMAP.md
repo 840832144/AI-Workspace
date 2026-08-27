@@ -1,6 +1,6 @@
 # TASK-0023 — Idea Governance & Product Roadmap
 
-- Status: Review
+- Status: Accepted
 - Project key: WORKSPACE
 - Human alias: 
 - Owner: User / ChatGPT
@@ -101,4 +101,12 @@ ChatGPT 不直接把聊天建议变成 canonical Task。它应在相关 Task 收
 - Context refresh 生成器已把 canonical 规范正文纳入 ChatGPT 单文件 Source Pack 和 6 个拆分来源替换清单，并用 Memory 回归测试锁定。
 - 本轮不修改 Product Roadmap、Idea Governance 主体、TASK-0022、Cash Frenzy、Huuuge、Document Assistant 或 Workspace Sync 模式；`Subagents: none`。
 - Context / Source Pack 已刷新为 62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口和 Doctor 全部通过，Registry 为 10 canonical / 0 collision。
-- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider 不可用导致 6 个发布项 stale。本 Task 保持 Review，push 独立分支后等待 ChatGPT Review Round 2。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider 不可用导致 6 个发布项 stale。Round 1 阶段保持 Review，并在 push 独立分支后等待 ChatGPT Review Round 2。
+
+## Acceptance — 2026-08-27
+
+- ChatGPT Review Round 2：Accepted；正式记录为 `reviews/TASK-0023-CHATGPT-REVIEW-2.md`，reviewed commit 为 `bc0d3ad1e519fb908dce53a78a35f9c3687a5b51`。
+- Product Roadmap、Idea Governance 与准确、克制、面向受众的技术术语规则正式生效。
+- 收口顺序固定为：更新 Registry / Context → deterministic regression → 合并并 push main → 原 allocator worktree finalize reservation → 0 collision 复验 → 清理任务 branch/worktree。
+- 收口前回归：Context / Source Pack 62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口、Registry 10 canonical / 0 collision 与 Doctor 全部通过。
+- 本次 Acceptance 不扩大范围，不修改 TASK-0022、Cash Frenzy、Huuuge、Document Assistant 或 Workspace Sync 模式；`Subagents: none`。

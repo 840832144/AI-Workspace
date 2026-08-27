@@ -1,6 +1,6 @@
 # Idea Governance
 
-- Status: Review / Waiting for ChatGPT Review
+- Status: Accepted / Active
 - Related Task: `TASK-0023`
 - Canonical Product Roadmap: `docs/roadmaps/PRODUCT_ROADMAP.md`
 

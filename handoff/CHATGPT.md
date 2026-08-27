@@ -3,12 +3,17 @@
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
 - Updated: 2026-08-27
-- Current Review request: `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md`
-- TASK-0023 status: `Review`
+- Current Review request: none — TASK-0023 Review Round 2 Accepted
+- TASK-0023 status: `Accepted`
 - Project key: `WORKSPACE`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
 
 ## TASK-0023 — Idea Governance & Product Roadmap
+
+- ChatGPT Review Round 2：Accepted；正式记录为 `reviews/TASK-0023-CHATGPT-REVIEW-2.md`，reviewed commit 为 `bc0d3ad1e519fb908dce53a78a35f9c3687a5b51`。
+- Idea Governance 与 Planner Writing Style 已转为 `Accepted / Active`；Product Roadmap 和统一技术术语规则正式生效。
+- 收口前回归：Context / Source Pack 62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口、Registry 10 canonical / 0 collision 与 Doctor 全部通过。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider unavailable，6 个发布项保持 stale，没有启用 WATCH。
 
 - ChatGPT Review Round 1 结论为 Needs changes；Roadmap / Idea Governance 主体已通过，唯一 Required Fix 是准确、克制、面向受众的技术术语规则。
 - `standards/PLANNER_WRITING_STYLE.md` 已成为唯一 canonical 规则源；Core Rules、Repository/Bootstrap/Global AGENTS、Project Instructions、ChatGPT Bootstrap、Generic Agent 入口和 Context Hub 均引用同一标准。
@@ -26,7 +31,7 @@
 - Registry 10 canonical / 0 collision；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口和 Workspace Doctor 通过；Context refresh 62 sources、0 broken link、0 secret issue。
 - TASK-0022、Cash Frenzy、Huuuge、Document Assistant 和 Workspace Sync 状态均未修改；`ON_DEMAND` 保持不变，WATCH disabled，Subagents: none。
 - Review 重点：分类 Gate 是否足够严格、Top Tycoon 的 Current 表达是否符合 User 给出的顺序、ChatGPT Idea Handoff 是否既主动又不会越权创建 Task。
-- Accepted 后：合并本分支到 main，在原 worktree 同步 latest main 并 finalize TASK-0023 reservation。
+- 收口：完成 deterministic regression 后合并并 push main，在原 allocator worktree finalize TASK-0023 reservation，复验 0 collision 后清理分支/worktree。
 
 ### Failed attempts
 
@@ -97,4 +102,4 @@
 
 ## Exact Next Action
 
-ChatGPT 对 TASK-0023 执行 Review Round 2：只检查 `reviews/TASK-0023-CHATGPT-REVIEW-1.md` 的术语规则 Required Fix、传播一致性和 deterministic regression。未经 Accepted 不合并 main 或 finalize reservation，不扩大到 TASK-0022 或业务仓库。
+TASK-0023 已 Accepted；Codex 完成 main 合并、allocator finalize、0 collision 复验和任务 branch/worktree 清理，不扩大到 TASK-0022 或业务仓库。
