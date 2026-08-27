@@ -37,7 +37,7 @@ python .\tools\tasks\task_cli.py candidate `
 python .\tools\tasks\task_cli.py next --purpose "approved-task"
 ```
 
-`next` 不是 `max + 1` 的只读猜测：它先完成完整 scan / validate / latest-main gate，再用 remote Git ref first-writer CAS 建立 reservation。Git common directory lock 负责同 clone 串行，remote ref 负责不同 clone / Host 排他。所有分配写操作只允许包含最新 main 的 non-main independent linked worktree。
+`next` 不是 `max + 1` 的只读猜测：它先完成完整 scan / validate / latest-main gate，再用 remote Git ref first-writer CAS 建立 reservation。reservation commit 的 tree 和唯一 parent 都来自已验证的 `origin/main`；调用分支 HEAD 只写为 SHA metadata，不会通过 reservation ref 发布未合并文件或 commit graph。Git common directory lock 负责同 clone 串行，remote ref 负责不同 clone / Host 排他。所有分配写操作只允许包含最新 main 的 non-main independent linked worktree。
 
 若未创建 Task 并决定放弃该 ID，使用返回的 token：
 
@@ -65,6 +65,7 @@ Candidate 与 active Task 目标重叠时默认阻断。只有明确决定为子
 
 - 本地 linked worktree：Git common directory allocation lock 防止同 clone 写入争用。
 - 不同 clone / Host：`refs/heads/task-reservations/TASK-XXXX` 由 `--force-with-lease` 原子抢占；后到者在创建 Task 前改取下一编号。
+- 最小发布：reservation ref 的 parent/tree 等于 latest `origin/main`；请求分支 commit 不可从该 ref 到达。
 - promotion / manual creation：remote reservation 一直保留到 canonical 进入 main 后 `finalize`，放弃才使用 `release`。
 - `main/master`、普通主 checkout、无法 fetch `origin/main`、分支落后、lock 冲突全部 fail closed。
 - Candidate 不是可执行入口；allocator 不会自动把 Candidate 变成 `Ready`。

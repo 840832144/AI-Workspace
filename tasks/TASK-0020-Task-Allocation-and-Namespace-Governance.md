@@ -338,3 +338,14 @@ ChatGPT Review 1 的五项 Required Fix 已全部实施，状态保持 `Review`�
 针对性回归包括 main/普通 checkout、受支持 next+release、同 clone与跨 clone并发 next、跨 clone并发 promote、promote→pre-merge next→main→finalize、提前 release 拒绝、fault-injection remote cleanup、project_key 三类、Draft overlap 及四类 malformed companion。原 14 项 Task 测试与 35 项 Memory 测试必须在最终 Handoff 中给出不退化证据。
 
 边界未变化：不执行或晋升 Cash Frenzy Candidate；不修改 TASK-0021、Huuuge Collector、Lottery、Capture、飞书、SVN、document-assistant 或其他业务仓库；Memory 保持 `ASSISTED`；`Subagents: none`。
+
+## Review Fix Round 2 — 2026-08-27
+
+ChatGPT Review 2 确认 Round 1 五项全部通过，仅要求消除 remote reservation 对调用分支对象图的意外发布路径。修复后：
+
+- reservation commit 的 tree 固定为 latest `origin/main^{tree}`，唯一 parent 固定为 latest `origin/main`；
+- requesting branch HEAD 只作为 SHA metadata 记录，不再作为 tree 或 parent，未合并 branch graph 不会因 reservation push 进入 origin；
+- 新增跨 clone sentinel 回归：在 allocator worktree 创建未推送 sentinel commit，另一 clone 获取 reservation ref 后验证 parent/tree 等于 `origin/main`、sentinel 文件不存在、sentinel commit object 不可访问且不是 reservation ancestor；
+- remote CAS、release/finalize 生命周期及 Round 1 行为不变。
+
+本轮完成后 Task 继续保持 `Review`，等待 ChatGPT Review Round 3。边界、Memory `ASSISTED` 与 `Subagents: none` 不变。

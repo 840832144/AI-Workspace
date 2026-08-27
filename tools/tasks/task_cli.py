@@ -649,15 +649,23 @@ def reserve_next_id(
     raise TaskError("remote allocation contention did not stabilize")
 
 
-def reservation_commit(root: Path, task_id: str, head: str, purpose: str, token: str) -> str:
-    tree = run_git(root, ["rev-parse", f"{head}^{{tree}}"]).stdout.strip()
+def reservation_commit(
+    root: Path, task_id: str, head: str, purpose: str, token: str
+) -> tuple[str, str]:
+    # The remote reservation ref must never publish the requesting branch's
+    # objects. Its tree and sole parent are anchored to the already-fetched
+    # canonical origin/main; the requesting HEAD is inert metadata only.
+    base_oid = run_git(root, ["rev-parse", "origin/main"]).stdout.strip()
+    tree = run_git(root, ["rev-parse", f"{base_oid}^{{tree}}"]).stdout.strip()
     timestamp = utc_now()
     message = json.dumps(
         {
             "schema_version": REGISTRY_SCHEMA_VERSION,
             "task_id": task_id,
             "token_sha256": hashlib.sha256(token.encode("ascii")).hexdigest(),
-            "head": head,
+            "requesting_head": head,
+            "base_ref": "origin/main",
+            "base_oid": base_oid,
             "purpose": purpose,
             "created_at": timestamp,
         },
@@ -672,11 +680,11 @@ def reservation_commit(root: Path, task_id: str, head: str, purpose: str, token:
     }
     result = run_git(
         root,
-        ["commit-tree", tree, "-p", head],
+        ["commit-tree", tree, "-p", base_oid],
         input_text=message + "\n",
         extra_env=identity,
     )
-    return result.stdout.strip()
+    return result.stdout.strip(), base_oid
 
 
 def create_reservation(
@@ -686,7 +694,7 @@ def create_reservation(
     path = reservation_dir(common_dir) / f"{task_id}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     remote_ref = f"{RESERVATION_REF_PREFIX}{task_id}"
-    oid = reservation_commit(root, task_id, head, purpose, token)
+    oid, base_oid = reservation_commit(root, task_id, head, purpose, token)
     pushed = run_git(
         root,
         ["push", f"--force-with-lease={remote_ref}:", "origin", f"{oid}:{remote_ref}"],
@@ -699,6 +707,8 @@ def create_reservation(
         "task_id": task_id,
         "token_sha256": hashlib.sha256(token.encode("ascii")).hexdigest(),
         "head": head,
+        "base_ref": "origin/main",
+        "base_oid": base_oid,
         "purpose": purpose,
         "created_at": utc_now(),
         "remote_ref": remote_ref,

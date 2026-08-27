@@ -34,7 +34,7 @@ human_alias  = 可选的人类可读别名
 6. 历史 `TASK-0016-EXECUTION-AUTHORIZATION.md` 作为 companion；Cancelled Cash Frenzy collision stub 增加显式 `Kind: companion` 并保留旧链接，不静默改指新的 Cash Frenzy Task。
 7. 未获 User 明确批准的新方向使用 `CANDIDATE-YYYYMMDD-<PROJECT>-<SLUG>`，不占 Task ID且不可执行。
 8. `next` 与所有 allocation 写操作必须完整 scan、validate、fetch `origin/main`，并验证当前是包含最新 main 的 non-main independent linked worktree；main、普通 checkout、stale branch 或无法验证远端时 fail closed。
-9. allocator 先用 `refs/heads/task-reservations/TASK-XXXX` 和 `--force-with-lease=<ref>:` 原子创建 remote reservation。Git common-directory lock 与 token-gated local metadata 负责同 clone 串行及生命周期操作；remote ref 的 first-writer CAS 负责不同 clone / Host 排他。
+9. allocator 先用 `refs/heads/task-reservations/TASK-XXXX` 和 `--force-with-lease=<ref>:` 原子创建 remote reservation。reservation commit 的 tree 与唯一 parent 必须固定为已验证的最新 `origin/main`；调用分支 HEAD 只能作为 SHA metadata，不能成为 ref 可达 tree、parent 或 commit graph。Git common-directory lock 与 token-gated local metadata 负责同 clone 串行及生命周期操作；remote ref 的 first-writer CAS 负责不同 clone / Host 排他。
 10. Candidate promotion 必须检查 User decision、`Draft / Ready / In Progress / Review / Changes Requested` overlap、分配锁和创建后验证。promotion 成功后 reservation 保持 `pending-main`，不得立即释放。
 11. canonical Task 进入最新 `origin/main` 后，创建 reservation 的 linked worktree使用 token 执行 `finalize`；未创建 Task 的放弃场景使用 `release`。`release` 发现本地或 main 已有 canonical 时拒绝，异常路径按 expected OID 删除 remote ref并清理 local metadata。
 
@@ -72,6 +72,7 @@ human_alias  = 可选的人类可读别名
 
 - grandfather map 中历史 Task 缺少显式 `Project key` 时会产生 warning；白名单变更必须接受治理 Review。
 - origin 会暂时存在 `task-reservations/TASK-XXXX` ref；成功 Task 合入 main 后必须显式 finalize，放弃时必须用 token release。
+- reservation ref 只新增一个基于 `origin/main` 的 metadata commit，不发布调用分支未合并文件或 commit graph。
 - reservation metadata 与 token 只保存在创建它的 clone；Host 丢失时需人工审计 remote ref，不允许无条件删除。
 - 新 Task 创建流程比手工复制模板多一次确定性验证。
 
@@ -81,6 +82,7 @@ human_alias  = 可选的人类可读别名
 - Pending / approved Candidate，以及包含 Draft 的 active scope overlap；
 - main/普通 checkout writer gate、同 clone及跨 clone并发 allocator / promotion；
 - promotion 未 merge 时继续占号、merge 后 finalize、放弃 release、fault-injection cleanup；
+- 未推送 sentinel branch 经 reservation 后，在另一 clone 中保持文件和 commit 均不可达，reservation parent/tree 等于 `origin/main`；
 - project_key 缺失/非法/grandfather，malformed canonical 与 companion reference；
 - lock conflict、目录不完整、解析失败、非最新 main；
 - 当前真实仓库唯一 active canonical TASK-0018；

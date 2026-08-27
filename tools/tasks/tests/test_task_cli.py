@@ -338,6 +338,76 @@ class TaskCliTests(unittest.TestCase):
             payloads.append(payload)
         self.assertEqual({item["task_id"] for item in payloads}, {"TASK-0020", "TASK-0021"})
 
+    def test_remote_reservation_does_not_publish_requesting_branch_graph(self) -> None:
+        sentinel_name = "unreviewed-sentinel.txt"
+        self.fixture.write(sentinel_name, "must remain local to the requesting branch\n")
+        self.fixture.git(self.fixture.worktree, "add", sentinel_name)
+        self.fixture.git(
+            self.fixture.worktree, "commit", "-m", "test: add unpushed sentinel"
+        )
+        sentinel_oid = self.fixture.git(
+            self.fixture.worktree, "rev-parse", "HEAD"
+        ).stdout.strip()
+        origin_main_oid = self.fixture.git(
+            self.fixture.worktree, "rev-parse", "origin/main"
+        ).stdout.strip()
+
+        process, payload = self.fixture.run("next", "--purpose", "sentinel-isolation")
+        self.assertEqual(process.returncode, 0, payload)
+        task_id = str(payload["task_id"])
+        remote_ref = f"refs/heads/task-reservations/{task_id}"
+
+        observer = self.fixture.base / "sentinel-observer"
+        self.fixture.git(
+            self.fixture.base, "clone", "--branch", "main", str(self.fixture.remote), str(observer)
+        )
+        observer_ref = "refs/remotes/origin/sentinel-reservation"
+        self.fixture.git(observer, "fetch", "origin", f"{remote_ref}:{observer_ref}")
+        reservation_parent = self.fixture.git(
+            observer, "rev-parse", f"{observer_ref}^"
+        ).stdout.strip()
+        reservation_tree = self.fixture.git(
+            observer, "rev-parse", f"{observer_ref}^{{tree}}"
+        ).stdout.strip()
+        main_tree = self.fixture.git(
+            observer, "rev-parse", f"{origin_main_oid}^{{tree}}"
+        ).stdout.strip()
+        self.assertEqual(reservation_parent, origin_main_oid)
+        self.assertEqual(reservation_tree, main_tree)
+        self.assertNotEqual(
+            self.fixture.git(
+                observer, "cat-file", "-e", f"{observer_ref}:{sentinel_name}", check=False
+            ).returncode,
+            0,
+        )
+        self.assertNotEqual(
+            self.fixture.git(observer, "cat-file", "-e", sentinel_oid, check=False).returncode,
+            0,
+        )
+        self.assertNotEqual(
+            self.fixture.git(
+                observer, "merge-base", "--is-ancestor", sentinel_oid, observer_ref, check=False
+            ).returncode,
+            0,
+        )
+
+        common = Path(
+            self.fixture.git(
+                self.fixture.worktree, "rev-parse", "--path-format=absolute", "--git-common-dir"
+            ).stdout.strip()
+        )
+        metadata = json.loads(
+            (task_cli.reservation_dir(common) / f"{task_id}.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(metadata["head"], sentinel_oid)
+        self.assertEqual(metadata["base_ref"], "origin/main")
+        self.assertEqual(metadata["base_oid"], origin_main_oid)
+
+        release_process, released = self.fixture.run(
+            "release", "--id", task_id, "--token", str(payload["reservation_token"])
+        )
+        self.assertEqual(release_process.returncode, 0, released)
+
     def test_promote_reservation_blocks_next_until_main_and_finalize(self) -> None:
         candidate_id = "CANDIDATE-20260827-WORKSPACE-LIFECYCLE"
         path = self.fixture.write(
