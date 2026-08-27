@@ -5,18 +5,34 @@
 - Updated: 2026-08-27
 - New User-authorized task: `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md`
 - TASK-0019 status: `Ready`
-- Executor: Codex
-- Execution rule: 独立 branch / worktree；不得覆盖其他任务或未提交修改
+- TASK-0016 review state: **Needs changes — Round 2**
+- Execution rule: 并行任务使用独立 branch / worktree；不得覆盖其他任务或未提交修改
 
 ## Current Queue and Governance Notes
 
-- `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md`：当前为 `Review`；Codex 已完成 Round 1 required fixes，等待 ChatGPT Review Round 2。未收到 Review 结论前不要继续修改。
+- `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md`：Round 1 三个 Required Fix 的主体实现已通过；Round 2 Review 仍发现两个安全阻塞项。正式记录：[`reviews/TASK-0016-CHATGPT-REVIEW-2.md`](../reviews/TASK-0016-CHATGPT-REVIEW-2.md)。
 - `TASK-0017-Codex-Desktop-Proxy-WebSocket-Reconnect.md`：已完成并合入 `main`。
 - 仓库当前存在两个不同内容但同为 `TASK-0018` 的 Ready 文件：
   - `TASK-0018-Cash-Frenzy-Android-Collector-Feasibility-Audit.md`
   - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md`
 - 执行或汇报 0018 时必须使用完整文件名，不能只写编号；编号冲突由后续治理修复处理，不在 TASK-0019 中重命名这两个既有任务。
 - `TASK-0019` 使用新的唯一编号，不修改 Huuuge、Cash Frenzy、Memory 或 Document Assistant 的实现。
+
+## TASK-0016 Review Round 2
+
+### Passed
+
+- Approved Project-private Git routing 已具备 Registry、writer、classification、scope、sensitivity、source project 和外部 Git root 校验；错配或未授权进入 Outbox。
+- AUTO 已限制为 non-main linked worktree；canonical target、Candidate、Archive、index 使用可回滚事务，五类 fault injection 均保持 `promoted=0`。
+- CLI、Event file、Generic Agent 已拒绝 `unknown`、`n/a`、`none` 等占位 provenance。
+- 34/34 回归、Round 2 Pilot、最终 `ASSISTED`、Hook/AUTO 未激活和真实业务仓库未触碰的边界可保留。
+
+### Required Fixes
+
+1. **ASCII `-` provenance 漏洞**：Governance 声明 `-` 无效，但实现的 placeholder set 未包含 `-`，测试也未覆盖。需要对全部 documented placeholder 做参数化回归，三类入口均进入 Outbox，Git Inbox 为 0。
+2. **Secret classification hard deny**：Registry 只能收紧权限，不能通过 `allowed_sensitivities` 放开 `sensitivity=secret`。即使 Registry 误配允许 `secret`，也必须只写脱敏本机 Outbox，Public / Private Git Inbox 均为 0；`scope=local-only` 同样不可被 repository alias 提升。
+
+TASK-0016 最终模式继续保持 `ASSISTED`；不激活 Hook 或 production AUTO，不新增外部 Memory Provider。
 
 ## TASK-0019 Outcome
 
@@ -39,7 +55,7 @@ docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md
 
 飞书发布通过 `feishu-docs` 完成。创建前必须 healthcheck、搜索防重；写入后回读正文、表格和企业内编辑权限。
 
-## Boundaries
+## Shared Boundaries
 
 - Git 与业务仓库是状态真相源，飞书只是面向人的在线展示层。
 - 每项 `Available / Completed` 必须附 Task、Status、Review、commit、release、test 或 healthcheck 证据。
@@ -47,6 +63,7 @@ docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md
 - 不读取或复制未授权 Raw Capture，不触碰游戏请求、奖励、余额、付费或服务器状态。
 - Secret、Token、账号、完整响应、逐笔余额、私有 Registry 和敏感日志不得进入 Git、飞书或聊天。
 
-## Exact Next Action
+## Exact Next Actions
 
-User 转发“执行 TASK-0019”后，Codex 同步 AI-Workspace `main`，读取完整 Task、最新 Task / Status / Review / Handoff 与已登记业务仓库，使用独立 worktree 实施。完成后将 TASK-0019 更新为 `Review`，更新 CHANGELOG 与 `handoff/CODEX.md`，提交并 push 独立 branch，返回 commit 和两份飞书链接，等待 ChatGPT Review；不得自行合并 `main`。
+1. TASK-0016 Codex：同步 `main`，读取 Round 2 Review，完成两个小范围安全修复和回归，更新 Task、CHANGELOG、Pilot、Governance、Capability、ADR 与 `handoff/CODEX.md`，提交并再次等待 ChatGPT Review。
+2. TASK-0019 Codex：继续遵循独立 worktree / branch 规则实施，不得覆盖 TASK-0016 或两个 TASK-0018。
