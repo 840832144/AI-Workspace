@@ -500,3 +500,5 @@ ChatGPT Review 2 确认主体实现通过，仅要求中文标题与项目全景
 - TASK-0021 最终状态：**Accepted**。
 - ADR-0007 保持 Accepted，并补充最终中文导航治理决定。
 - 两个实现分支按 Review 2 要求合入 main；最终 merge 与 closeout commit 记录在 `handoff/CODEX.md`。
+- AI-Workspace merge commit：`4c2b9b8fa87c65adb2876189de991eeb4a839f52d`；Document Assistant merge commit：`b0292c3159db16542906948511b6b1ec58c360fd`。
+- 从 Document Assistant 正式 `main` 启动新 STDIO MCP 进程，`tools/list` 已确认 `register_document` 位于 13 个正式工具清单中，healthcheck 通过。

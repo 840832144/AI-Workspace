@@ -23,6 +23,8 @@
 - 文档导航中心标题、首页说明、唯一性、链接、14 条登记与权限回读通过；项目全景说明章节位置、链接目标、原生 Mermaid 白板块、正文和权限回读通过，连续发布两次保持幂等。
 - “核心规则”“实时 Context Hub”和“当前状态与任务入口”原位发布最新 Git 源稿，正文回读、自动登记和导航中心回读通过。
 - Document Assistant 12 个测试文件 / 36 项测试及真实创建—登记—删除—恢复烟测通过；Workspace Task 23/23、Context 13/13、Memory 35/35 与 Doctor 通过。
+- Review 2 要求的两个实现分支已分别合入 main：AI-Workspace `4c2b9b8f`，Document Assistant `b0292c31`。
+- Document Assistant 正式 `main` 新启 STDIO MCP 进程的 `tools/list` 已确认包含 `register_document`，healthcheck 通过。
 
 ### Boundaries
 

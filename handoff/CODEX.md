@@ -39,8 +39,9 @@
 - Documentation Governance 最终流程：`create_document → 文档回读 → register_document → 文档导航中心回读 → Success`。导航失败时不删除已创建文档、不重复创建，返回失败并等待修复。
 - 新增 Proposed RFC-0004，记录“一套 Research Environment、多游戏、Evidence 独立”的长期方向；没有修改当前 Cash Frenzy Candidate、TASK-0022 或执行环境。
 - Document Assistant：12 个 test files / 36 tests，真实创建—登记—删除—恢复烟测通过；Workspace：Task 23/23、Context 13/13、Memory 35/35、Doctor 通过。
+- Document Assistant 正式 `main` 已启动全新的 STDIO MCP 进程；`tools/list` 含 `register_document`，13 个正式工具与 healthcheck 均通过。
 - 最终模式：`ON_DEMAND`；WATCH disabled；ChatGPT 设置未修改；Subagents: none。
-- Merge commits：待本分支与 Document Assistant 分支按 Review 2 要求合入 main 后，在 closeout commit 中回填。
+- Merge commits：AI-Workspace `4c2b9b8fa87c65adb2876189de991eeb4a839f52d`；Document Assistant `b0292c3159db16542906948511b6b1ec58c360fd`。两个 main 均已完成本地合并，closeout commit 记录后推送。
 
 ## TASK-0022 Allocation
 
@@ -70,10 +71,12 @@ Task issuance 合入 main 并完成 `finalize` 后，必须从最新 main 新建
 
 
 
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-27T10:36:02Z
+- Generated: 2026-08-27T10:39:09Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
