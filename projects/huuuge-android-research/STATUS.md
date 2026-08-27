@@ -1,10 +1,10 @@
 # Huuuge Android Research — Project Status
 
 - Updated: 2026-08-27
-- Phase: Lottery numerical report review；First Run validation remains parallel
+- Phase: Lottery numerical report Review Round 2；First Run validation remains parallel
 - Owner: User
-- Current milestone: TASK-0018 Lottery numerical breakdown waiting for ChatGPT Review
-- External baseline: [`bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4)
+- Current milestone: TASK-0018 Review Round 1 fixes complete, waiting for ChatGPT Review Round 2
+- External baseline: [`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)
 
 ## Confirmed Current Facts
 
@@ -12,7 +12,9 @@
 - External implementation and evidence remain in `huuuge-android-research`; no source, capture or runtime asset was migrated.
 - Battle Pass entry is schema-only/live-pending.
 - Slots entry is live-confirmed and supported by the broad 741/741 decoded Session plus a sanitized 29-Spin-pair example.
-- Lottery now has L3 primary Runtime evidence: 346/346 `LotteryToss` request/response pairs from finalized alias `LOT-20260827-A`; the external report separates direct Lottery rewards from upgrade-linked ticket outcomes.
+- Lottery now has L3 primary Runtime evidence: 346/346 `LotteryToss` request/response pairs from finalized alias `LOT-20260827-A`; the external report separates direct Lottery rewards, threshold rebates, real-money purchases and upgrade-linked ticket outcomes.
+- Review Round 1 purchase re-extraction confirms four successful real-money purchases totaling 54.43 SGD, 763 Lottery tickets and 235 loyalty points. All four bundles contain another reward, so apparent per-ticket cost is not a standalone ticket price.
+- The revised public terms identify 588 ordinary chip-bet Spins and 45 FreeSpins separately from real-money purchases.
 - Generic Missions is schema-only/live-pending; MiniPass has a separate live-confirmed task/missions flow.
 - TASK-0006 collector architecture baseline remains Waiting for ChatGPT Review in the external repository.
 - TASK-0009 Knowledge Index covers all 37 external dossiers under Slots 1、Systems 10、Events 14、Others 12.
@@ -20,7 +22,7 @@
 - Citation types are standardized as Schema、Config、Runtime、UI and Manual with required provenance、locator、context、claim scope and limits.
 - All 37 Knowledge modules use the standard. After TASK-0018, Lottery moves from L2 to L3: L3 × 12、L2 × 3、L1 × 22、L0/L4 × 0.
 - TASK-0015 is `Complete` and TASK-0018 is `Review`; TASK-0014 remains `Accepted`.
-- The connector-verified report [`Huuuge Lottery 活动数值拆解（2026-08-27）`](https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3) was read back and verified as company-editable.
+- The original connector-verified report [`Huuuge Lottery 活动数值拆解（2026-08-27）`](https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3) was replaced in place without creating a duplicate; final readback found 367 blocks, one title, complete planner section order and company-editable permission.
 - TASK-0011 First Run Guide is available in Git and uses Codex or Trae + DeepSeek as the default operator instead of requiring planners to execute low-level commands.
 - The Feishu edition [`Huuuge 新人上手指南（First Run Guide）`](https://gfok27asqq.feishu.cn/docx/Ffibd2Cx2oXFgfxdKnJcE6uUnZf) was created through AI Document Assistant, read back successfully, and verified as company-editable (`tenant_editable`).
 - A blind-test record exists at `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`; it contains no fabricated tester、timing or success data.
@@ -30,7 +32,7 @@
 
 ## In Progress
 
-- ChatGPT Review of TASK-0018 claim classification, upgrade-linked attribution and CR candidates.
+- ChatGPT Review Round 2 of TASK-0018 planner structure, purchase table and limits, ordinary-bet terminology, Extractor tests and original Feishu replacement.
 - Independent First Run by one planner who did not participate in development remains a separate validation track.
 
 ## Risks
@@ -58,9 +60,9 @@
 
 ## Blockers
 
-- TASK-0018 has no implementation blocker; it is waiting for ChatGPT Review.
+- TASK-0018 has no implementation blocker; Review Round 1 fixes are complete and it is waiting for ChatGPT Review Round 2.
 - TASK-0011 still has a separate validation gate: no uninvolved planner has yet been designated or observed for the required blind test.
 
 ## Exact Next Action
 
-ChatGPT reviews the TASK-0018 Git report and Feishu edition, returning `Accepted` or specific changes. Do not start another Capture or modify Collector/CR before Review. TASK-0011 blind validation remains independently pending.
+ChatGPT performs Review Round 2 on `huuuge-android-research@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b` and the original Feishu document, returning `Accepted` or specific changes. Do not start another Capture or modify Collector/CR before Review. TASK-0011 blind validation remains independently pending.

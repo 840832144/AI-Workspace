@@ -16,7 +16,7 @@
 - 报告索引：[`REPORTS/`](REPORTS/README.md)
 - 资产索引：[`ASSETS/`](ASSETS/README.md)
 - 实现与证据仓库：[`huuuge-android-research`](https://github.com/840832144/huuuge-android-research)
-- 当前证据基线：[`bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4)
+- 当前证据基线：[`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)
 
 ## 研究入口
 
@@ -26,7 +26,7 @@
 | --- | --- | --- | --- |
 | Battle Pass | [`battle_pass.md`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/artifacts/module_catalog/battle_pass.md), [`BattlePass_schema.md`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/artifacts/recovered/BattlePass_schema.md) | L1 Schema；Runtime sample pending | 有资格账号可用后，采集主界面、奖励轨和任务流量；不阻塞其他模块 |
 | Slots | [`slots.md`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/artifacts/module_catalog/slots.md), [`broad capture summary`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/artifacts/analysis/20260825_182300/summary.md) | L3 Runtime Observed；当前最完整的主模块之一 | 基于已有 Spin 证据选择首个 normalized gameplay Extractor，或补充代表性机器样本 |
-| Lottery | [`lottery.md`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/artifacts/module_catalog/lottery.md)、[`TASK-0018 报告`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/reports/lottery/20260827_lottery-ticket-puzzle/LOTTERY_NUMERICAL_BREAKDOWN.md) | L3 Runtime Observed；346/346 Toss 闭环 | ChatGPT Review 后补升级奖励 UI/runtime 对照和完整拼图周期 |
+| Lottery | [`lottery.md`](https://github.com/840832144/huuuge-android-research/blob/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b/artifacts/module_catalog/lottery.md)、[`TASK-0018 报告`](https://github.com/840832144/huuuge-android-research/blob/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b/reports/lottery/20260827_lottery-ticket-puzzle/LOTTERY_NUMERICAL_BREAKDOWN.md) | L3 Runtime Observed；346/346 Toss 闭环 | ChatGPT Review Round 2 后补升级奖励 UI/runtime 对照和完整拼图周期 |
 | Task / Missions | [`missions.md`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/artifacts/module_catalog/missions.md), [`mini_pass.md`](https://github.com/840832144/huuuge-android-research/blob/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4/artifacts/module_catalog/mini_pass.md) | Generic Missions L1；MiniPass task flow L3 | 分别检查通用日/周任务与 MiniPass missions，避免把两种结构合并 |
 
 跨模块公共入口：

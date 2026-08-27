@@ -2,6 +2,24 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.12.1] - 2026-08-27
+
+### Fixed
+
+- TASK-0018 Review Round 1 修改完成：策划优先报告结构、真实货币购买提取、普通筹码下注术语、礼包价值限制与技术附录表述已经统一。
+- 原飞书文档使用替换接口原位更新，未创建重复文档；最终回读确认标题唯一、章节完整并保持企业内可编辑。
+
+### Changed
+
+- Huuuge 项目控制面切换到外部证据 commit `4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`，TASK-0018 保持 `Review` 并进入 ChatGPT Review Round 2。
+- Lottery Memory 与报告索引补充四次成功购买的脱敏聚合：54.43 SGD、763 张票、235 loyalty points；礼包表观每票成本不得解释为独立票价或长期付费回报。
+
+### Validation
+
+- 外部 Extractor 编译通过，7/7 单元测试通过，四次购买聚合和票务总账复算通过。
+- 飞书原文档最终回读 367 blocks、4568 个正文字符、单一标题；权限回读为企业内可编辑。
+- 未复制 Raw、decoded values、真实 Session/account/request/product/store/order 标识、绝对余额、完整余额轨迹或 credentials；未修改 Collector、CR、SVN、游戏或服务端状态。
+
 ## [0.12.0] - 2026-08-27
 
 ### Added

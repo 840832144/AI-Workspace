@@ -1,23 +1,26 @@
 # Codex Handoff
 
 - Updated: 2026-08-27
-- Latest completed task: TASK-0018 Huuuge Lottery 数值拆解报告
-- Base main: `6610fef`
-- Current state: TASK-0018 waiting ChatGPT Review；TASK-0016 Review Round 2 remains pending
+- Latest completed task: TASK-0018 Review Round 1 fixes
+- Review source main: `b278afa`
+- Current state: TASK-0018 waiting ChatGPT Review Round 2；other active Tasks remain independent
 - Final Memory Mode: `ASSISTED`
 - Production Hook/AUTO: disabled
 - Subagents: none
 
-## TASK-0018 Outcome
+## TASK-0018 Review Round 1 Fix Outcome
 
 - TASK-0015 已确认 Finalize 并更新为 `Complete`；TASK-0018 已更新为 `Review`；TASK-0014 保持 `Accepted`。
-- 外部业务仓库已推送 [`bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4)，包含中文报告、6 份脱敏 CSV、最小 Lottery Extractor、4 个测试和更新后的 module catalog。
-- 飞书文档 [`Huuuge Lottery 活动数值拆解（2026-08-27）`](https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3) 已回读 565 blocks，并验证企业内可编辑。
-- Finalized alias `LOT-20260827-A`：8712/8712 decode、LotteryToss 346/346、Spin 588/588、FreeSpin 45/45。
+- Review Round 1 `Needs changes` 已按 `reviews/TASK-0018-HUUUGE-LOTTERY-CHATGPT-REVIEW-1.md` 完整修订。
+- 外部业务仓库已推送 [`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)，包含策划优先中文报告、7 份脱敏 CSV、购买链 Extractor 与 7 个测试。
+- 原飞书文档 [`Huuuge Lottery 活动数值拆解（2026-08-27）`](https://gfok27asqq.feishu.cn/docx/IK5adiJyWoHVJzxlovEcjxiWnO3) 已原位替换；没有创建副本。最终回读 367 blocks、4568 个正文字符、一个标题，并验证企业内可编辑。
+- Finalized alias `LOT-20260827-A`：8712/8712 decode、LotteryToss 346/346、普通筹码下注 588/588、FreeSpin 45/45。
+- 四次真实货币购买全部成功，合计 54.43 SGD、763 张 Lottery 票和 235 loyalty points；每个礼包都有其他奖励，表观每票成本不能当作独立票价。
 - 933 张票消耗产生 133 张阈值返还；直接 Lottery 奖励 60 张；六次升级后的 +16 Bronze 余额变化为 `Confirmed L3`，升级因果为 `Estimate L3`。
 - Spin/FreeSpin payload 没有直接 Lottery ticket grant，因此报告未把升级产出写成单局随机掉落，也未输出伪掉率。
 - Lottery Knowledge 从 L2 提升到 L3；项目分布更新为 L3 × 12、L2 × 3、L1 × 22、L0/L4 × 0。
-- 未读取或提交 Raw、真实 Session/account ID、逐笔余额、付费价格或 credentials；未改 Collector、CR、SVN、游戏或服务端状态。
+- 117.516 只保留在技术附录，定义为排除真实货币购买的筹码奖励输出与普通 Spin 筹码成本描述性比值；不是 RTP、ROI 或付费回报。
+- 未提交 Raw、真实 Session/account/request/product/store/order 标识、绝对余额、完整余额轨迹或 credentials；未改 Collector、CR、SVN、游戏或服务端状态。
 - Subagents: none；宽松父会话下保持 Pilot OFF。
 
 ## TASK-0018 Review Files
@@ -28,6 +31,8 @@
 - `projects/huuuge-android-research/KNOWLEDGE/README.md`
 - `projects/huuuge-android-research/KNOWLEDGE/EVENTS.md`
 - `tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md`
+- 外部 [`PURCHASES.csv`](https://github.com/840832144/huuuge-android-research/blob/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b/reports/lottery/20260827_lottery-ticket-puzzle/PURCHASES.csv)
+- 外部 [`Extractor tests`](https://github.com/840832144/huuuge-android-research/tree/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b/tools/analysis/lottery/tests)
 
 ## Prior Review Context — TASK-0016
 
@@ -128,4 +133,4 @@ Local-only / route-required 事件不因来源缺失而伪造 provenance；它�
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-ChatGPT 先 Review TASK-0018 的 claim 分类、升级关联边界、结构化表与 CR 候选，返回 `Accepted` 或具体修改项。TASK-0016 Round 2 Review 与 TASK-0020 治理执行仍按 `handoff/CHATGPT.md` 独立推进；不得用本次 worktree 覆盖其变更。
+ChatGPT 对 `huuuge-android-research@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`、本仓库 TASK-0018 索引和原飞书文档执行 Review Round 2，重点复核策划结构、购买表、礼包限制、普通下注术语、Extractor 测试和飞书排版，返回 `Accepted` 或具体修改项。其他活动任务继续在各自独立 worktree 推进；不得互相覆盖。

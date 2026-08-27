@@ -1,9 +1,9 @@
 # Huuuge 研究知识索引
 
 - 任务：TASK-0010
-- 状态：TASK-0018 等待 ChatGPT Review
+- 状态：TASK-0018 等待 ChatGPT Review Round 2
 - 更新日期：2026-08-27
-- 外部证据基线：[`huuuge-android-research@bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4)
+- 外部证据基线：[`huuuge-android-research@4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)
 
 这是整个 Huuuge Research 的统一知识导航。它把外部 module catalog 的 37 个 dossier 组织成策划可理解的四个入口，不复制源码、Raw capture、decoded values 或完整外部文档。
 
