@@ -20,8 +20,9 @@
 | 项目全景说明 | TASK-0019 Review branch | 阅读；等待 Review 后纳入 canonical sync |
 | 项目进度与能力状态 | TASK-0019 Review branch | 阅读；动态更新在该文档维护 |
 | 策划协作与待确认事项 | Feishu | 可编辑；内容先进入 Candidate/Review |
-| AI 行文规范 | Git | 所有 AI 在生成内容前读取 |
+| AI 行文与技术术语规范 | Git | 所有 AI 在生成内容前读取；默认面向策划，精确术语按真实风险保留 |
 | Capability / Workflow / Skill 索引 | Git | 从结果能力进入执行入口 |
 | 文档导航中心 | Feishu | 浏览全部正式云文档；不直接维护目录 |
+| Product Roadmap | Git / Feishu 正式发布 | 查看 Current、Backlog、Ideas、Done；不据此直接执行或手工建 Task |
 
 Provider 链接由 Host-local Registry 注入飞书 Index；公共 Git 只保存稳定别名和 authority。

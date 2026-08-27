@@ -26,4 +26,8 @@
 
 ## 行文标准
 
-- [`策划协作行文规范`](PLANNER_WRITING_STYLE.md)：定义完整中文段落、结论—依据—下一步、策划步骤、格式边界和轻量检查；当前状态为 Proposed，等待 ChatGPT Review。
+- [`策划协作行文规范`](PLANNER_WRITING_STYLE.md)：已正式生效；定义完整中文段落、结论—依据—下一步、策划步骤、准确且面向受众的技术术语、风险表述和轻量检查。
+
+## 产品想法治理
+
+- [`Idea Governance`](IDEA_GOVERNANCE.md)：已正式生效；定义长期产品 Idea 的防重、Current/Backlog/Ideas/Done 分类、ChatGPT 收尾 Handoff 与 Codex Product Roadmap 更新规则。

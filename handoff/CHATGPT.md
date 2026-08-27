@@ -3,11 +3,41 @@
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
 - Updated: 2026-08-27
-- New User-authorized task: `TASK-0021-Workspace-Live-Context-Hub.md`
-- TASK-0021 status: `Ready`
+- Current Review request: none — TASK-0023 Review Round 2 Accepted
+- TASK-0023 status: `Accepted`
 - Project key: `WORKSPACE`
-- Human alias: `WORKSPACE-LIVE-CONTEXT-001`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
+
+## TASK-0023 — Idea Governance & Product Roadmap
+
+- ChatGPT Review Round 2：Accepted；正式记录为 `reviews/TASK-0023-CHATGPT-REVIEW-2.md`，reviewed commit 为 `bc0d3ad1e519fb908dce53a78a35f9c3687a5b51`。
+- Idea Governance 与 Planner Writing Style 已转为 `Accepted / Active`；Product Roadmap 和统一技术术语规则正式生效。
+- 收口前回归：Context / Source Pack 62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口、Registry 10 canonical / 0 collision 与 Doctor 全部通过。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider unavailable，6 个发布项保持 stale，没有启用 WATCH。
+
+- ChatGPT Review Round 1 结论为 Needs changes；Roadmap / Idea Governance 主体已通过，唯一 Required Fix 是准确、克制、面向受众的技术术语规则。
+- `standards/PLANNER_WRITING_STYLE.md` 已成为唯一 canonical 规则源；Core Rules、Repository/Bootstrap/Global AGENTS、Project Instructions、ChatGPT Bootstrap、Generic Agent 入口和 Context Hub 均引用同一标准。
+- ChatGPT 单文件 Source Pack 与 6 个拆分来源清单均包含 canonical 规范正文，不再只依赖 Core Rules 摘要。
+- 默认面向策划使用准确且可理解的研究表达；复现、工程判断、授权、合规、安全或风险依赖真实机制时必须保留 Root、Frida、Hook、逆向分析、协议解密、校验绕过、系统修改、exploit 等精确术语。
+- 规则明确禁止通过改名或模糊化规避安全策略、权限检查、User 授权或 Review，不得弱化真实风险或夸大被动研究。
+- Context / Source Pack 已刷新为 62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口、Registry 10 canonical / 0 collision 与 Doctor 均通过。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider unavailable，6 个发布项保持 stale，没有启用 WATCH。
+
+- User 已批准建立新的独立治理任务；正式 Candidate 经 allocator 晋升为唯一 canonical TASK-0023，reservation 保持 `pending-main`，未手工指定编号或编辑 Registry。
+- 已建立唯一 Git Product Roadmap，固定 `Current / Backlog / Ideas / Done`，并明确它不替代 Task、Documentation Hub、Knowledge、Memory 或项目 Status。
+- ChatGPT 新规则：主动提出长期产品能力、Workflow、Capability、Collector 或 UX Idea 时，自动防重、分类，并在相关 Task 收尾时向 Codex 生成 Idea Handoff，不依赖 User 手工提醒。
+- 唯一正式飞书 Product Roadmap 已创建、回读、企业内可编辑并自动登记；项目全景说明已原位增加 Roadmap 入口，导航中心当前登记 15 份正式文档。
+- 真实临时 Idea 已进入 Ideas 并回读，随后删除；正式 Roadmap 已恢复，四分区各出现一次。
+- Registry 10 canonical / 0 collision；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口和 Workspace Doctor 通过；Context refresh 62 sources、0 broken link、0 secret issue。
+- TASK-0022、Cash Frenzy、Huuuge、Document Assistant 和 Workspace Sync 状态均未修改；`ON_DEMAND` 保持不变，WATCH disabled，Subagents: none。
+- Review 重点：分类 Gate 是否足够严格、Top Tycoon 的 Current 表达是否符合 User 给出的顺序、ChatGPT Idea Handoff 是否既主动又不会越权创建 Task。
+- 收口：完成 deterministic regression 后合并并 push main，在原 allocator worktree finalize TASK-0023 reservation，复验 0 collision 后清理分支/worktree。
+
+### Failed attempts
+
+- Candidate 首次使用带说明的 User decision 文本，被 allocator 按枚举 Gate 拒绝；修正为规范 `Approved` 后才分配 canonical ID，首次失败未占号。
+- 首次临时发布脚本因 CommonJS 不支持 top-level await，在编译阶段退出且没有云写入；改为 `async main()` 后完整发布与恢复通过。
+- 当前 Codex 会话的旧 MCP 进程缺少 `register_document`；其 `get_document` 回读会按旧 Registry schema 写回，导致项目全景说明治理 metadata 暂时丢失。未创建副本；使用 Document Assistant 当前 `main` 新进程重新登记后，Hub 恢复 15 条、链接唯一，项目全景与 Roadmap 均存在。
 
 ## Allocation and Current Queue
 
@@ -72,11 +102,4 @@
 
 ## Exact Next Action
 
-Codex 执行 `TASK-0021-Workspace-Live-Context-Hub.md`：
-
-1. 同步最新 AI-Workspace 与 document-assistant，完整读取 Task、Handoff、TASK-0016、0019、0020 和活动工作区；
-2. 建立独立 linked worktree / branch，先做 Feishu Wiki / Drive / fallback Feasibility Audit；
-3. 按 Task 实施行文规范、Context Capability、Workspace Sync、Feishu Hub 和三类 Host Pilot；
-4. 若需要 User 新建知识空间、发布飞书权限或批准外部资源，只给一次性操作清单并停在可继续状态；
-5. 完成后更新两个仓库的 CHANGELOG / Handoff，把 TASK-0021 设为 Review，推送独立 branch，返回 commit / PR、飞书安全链接和验证结果；
-6. 等待 ChatGPT Review，不自动合并或启用 WATCH。
+TASK-0023 已 Accepted；Codex 完成 main 合并、allocator finalize、0 collision 复验和任务 branch/worktree 清理，不扩大到 TASK-0022 或业务仓库。

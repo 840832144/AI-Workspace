@@ -1,31 +1,31 @@
 schema_version: "1.0"
-generated_at: "2026-08-27T10:39:09Z"
+generated_at: "2026-08-27T13:39:12Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "4c2b9b8fa87c65adb2876189de991eeb4a839f52"
-repository_branch: "main"
+repository_head: "bc0d3ad1e519fb908dce53a78a35f9c3687a5b51"
+repository_branch: "codex/idea-governance-product-roadmap"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
 private_repositories: "not read"
 sources:
   - path: "bootstrap/chatgpt/00_CORE_RULES.md"
-    sha256: "5425f1e421f958986ac2ee2824ff4fc5254cf72b536d692f33d684cacea8e5fc"
-    bytes: 9315
+    sha256: "a9f33971532aba4593325529774253a34c0f1b3bb9407362b5718ce4c2847074"
+    bytes: 11249
   - path: "bootstrap/chatgpt/01_SYSTEM_CONTEXT.md"
-    sha256: "df8c538ce21ff9d72e864bb502bda2bb5ed8dd9b76f199dea566c748a33d3adb"
-    bytes: 5633
+    sha256: "181c2ee80db1c3092a390f7fdd856e214929429bd09d7744f7bc670887eba1d0"
+    bytes: 6039
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "d25eb9da76a7269d5f8cdd4a0ddac13a16ad288f8a6b01b7ff961158bca68064"
-    bytes: 8091
+    sha256: "0cd35f02ec7d5d73d62ab77548344d2e9600030bdfd78e0d50480fc15cceee56"
+    bytes: 8464
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
-    sha256: "33517605d9e3b3c9c098b4cbb325e434aa0a22d56e2ddeb40b2bc1d8496fb942"
-    bytes: 5366
+    sha256: "c1baf26853c3cd31685ca35b18c224d6b48180983a554d2f6bbe6b3209ce826c"
+    bytes: 6040
   - path: "bootstrap/chatgpt/PROJECT_INSTRUCTIONS.md"
-    sha256: "c4026c721534d26cf4dfe95fa1dd22d6c68bddcda98256cdf8d55dd64abb38ad"
-    bytes: 4002
+    sha256: "28eb0d89c16c8b32904f63d578929242e7ecbd7817a1d659b1dce7b8649d3f5d"
+    bytes: 4982
   - path: "bootstrap/chatgpt/README.md"
-    sha256: "46a10057a64ca0a46fc2ad6dbbde7ec94e358490d4bb3e0e25dbe4a8f99c9897"
-    bytes: 1948
+    sha256: "3d97a1f6ae0bfcf18b09b85e6a08059a7b54fdfb23333ed0c297fc291b7a0319"
+    bytes: 2458
   - path: "capabilities/README.md"
     sha256: "8f0102b574ef94b13a2f2726bd99580a9e970f1484a4ecb287227725139d62d3"
     bytes: 3408
@@ -39,17 +39,17 @@ sources:
     sha256: "8c1b6c1fc4e9e35c87f1afde47efdbe3be9b18b7578af35591658fe16f5903e4"
     bytes: 5723
   - path: "docs/adr/ADR-0001-Game-Planner-Domain.md"
-    sha256: "72fabc416bdaa0195e6cfacda643ff417987fced85ea631c6bc2440348bbda3c"
-    bytes: 1986
+    sha256: "59b07670c07b14965658adabe154cc6a813bfd2cab9e52852ca992d5694fb67d"
+    bytes: 2032
   - path: "docs/adr/ADR-0002-Global-Tool-Discovery.md"
-    sha256: "5412bf45ac5bc2730008053caf6142adde75208c2c69506b330d7761a94b38a1"
-    bytes: 3471
+    sha256: "12afd2bd6acf3c9740afa44c8bf7d8a90b18a6f85f8796804384c4fe326bf326"
+    bytes: 3531
   - path: "docs/adr/ADR-0003-Capability-First-Discovery.md"
-    sha256: "f73d8dea8df1557be0918d8cd78aa0bcd98717b3e67f1f9946bf3a3488f93575"
-    bytes: 3559
+    sha256: "efd9ce564f66010e8a06f55fefee41727888822c0e68e7ae7dac1add7f27c37f"
+    bytes: 3629
   - path: "docs/adr/ADR-0004-Codex-Subagent-Pilot.md"
-    sha256: "9a397c6a8b21bae9aada6844a95cf734cc42b842748727fe5c098a64d26e2011"
-    bytes: 4995
+    sha256: "d0596de044c1f4205410b29f7fdf412e915f5adb69fab66c63cf8d2e124d9ba5"
+    bytes: 5065
   - path: "docs/adr/ADR-0005-Git-Backed-Automatic-Memory.md"
     sha256: "f4f7919d982f9624449651a266f87afe4df06f02c663284841467a574f64af8f"
     bytes: 4390
@@ -66,47 +66,47 @@ sources:
     sha256: "4825d43d3e66d834a2e514ac9291d081a1948046fd191cf3745908249aba76d5"
     bytes: 4387
   - path: "handoff/CHATGPT.md"
-    sha256: "c357d270feab7df9e6d40c2e0f17d537dba93be5808b7eab8a6ec964f5714e21"
-    bytes: 5470
+    sha256: "5d385871878ccfe62c48612871765bcbdb5ad156df6105b26c0d9b9fea0b9ed8"
+    bytes: 9129
   - path: "handoff/CODEX.md"
-    sha256: "5cd29a7dd86bff01b705e8a7cb2c53dbb9972fd04dc8c0bbefa664dffc3770db"
-    bytes: 6413
+    sha256: "9bf41a13420d751d8e038677d35dc1732c69a0478884ab77db420159bbc8a633"
+    bytes: 10541
   - path: "skills/README.md"
-    sha256: "e9b76f78608b019fee5ffc400a9e95f1cee7929b11762c1b280fc96864ae3b9c"
-    bytes: 1768
+    sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
+    bytes: 1797
   - path: "skills/battle-pass/README.md"
-    sha256: "1b6bb60856f9761206626c9bc46a4b82a10f439a9ea64a0697723c824a3c4c4c"
-    bytes: 174
+    sha256: "d519424d68e0c84a8d7e42cf199fe106cc6789dac161370ad090f6f9ad8d1d7d"
+    bytes: 177
   - path: "skills/economy-design/README.md"
-    sha256: "5fe7b2a756f3548a48c0b375156cefaf0072e6884e1dac1cfbaea4268a99d48d"
-    bytes: 164
+    sha256: "77a7db97e56512d2e6e42833a1488ef6faba950507b91310fcfdae63d89c5b17"
+    bytes: 167
   - path: "skills/excel/README.md"
-    sha256: "9b061e9d7ca7e4448d0d3d5e641556c0ac46d125e3f6b19767df5a46de8cf7b4"
-    bytes: 167
+    sha256: "09fddd01149d2a500520783625910029d3179fc1460182c445d0dafac7a38991"
+    bytes: 170
   - path: "skills/feishu-document/README.md"
-    sha256: "993f20be11b12ef23f12b4e7d8f9ebc2d970314e6a3bd5f102a91db900d4519d"
-    bytes: 852
+    sha256: "26c328081da8a8261c772066ed62ff94a6d0e154f0af89c66c9f542150f2183d"
+    bytes: 859
   - path: "skills/game-analysis/README.md"
-    sha256: "079ba7ad5eb6767acdada6970df54a1d8c86df72d64d8e47d2ea7fa662dfc749"
-    bytes: 166
+    sha256: "fd98298ca0c2c5cd89d185a795fc6a5fb0c2c6e6c3de80cf77b26b7c4159851f"
+    bytes: 169
   - path: "skills/lottery/README.md"
-    sha256: "b3f4041a80fafcd960364e8b21b0ffdae413bfe33056bf54678c229951c3c535"
-    bytes: 157
+    sha256: "543e9e2ac09b3a51797d8caea74d8ac1898c0594071d607b42baa27455d38ba3"
+    bytes: 160
   - path: "skills/python/README.md"
-    sha256: "be285e6f2d9c83e7d662c141a2b1097f4ad8f686f7619c0843607984892af551"
-    bytes: 150
+    sha256: "449a731d105e4f048024de7bcd903ebfb50b5491612ac32613450968d3ac77b0"
+    bytes: 153
   - path: "skills/report-writing/README.md"
-    sha256: "33a1e6a9f1b8f56be54f7416594cd5461bf72816b58a55824757fd9b1e315fdc"
-    bytes: 176
+    sha256: "a8d02b2f4c6ca6414cb11c5ed2e43ca36f41d41824d0ff5c6248990ff0104947"
+    bytes: 179
   - path: "skills/slot-analysis/README.md"
-    sha256: "68e37ac8af6ae5dbe9c9f94ee97e03e262bd6de07e437d2b9985ba1f989d8b7e"
-    bytes: 172
+    sha256: "f646473e0741179dce728b3c01ce9ab1402758ff6165557a4c4e11029b437662"
+    bytes: 175
   - path: "skills/sql/README.md"
-    sha256: "b9b7742d6aedea80ce875371d7c308f44559f1705199f94072f06d8a34efd716"
-    bytes: 174
+    sha256: "5bf14555e72f303fc40709d07be50c371589c9eb041664702c4407687f6ea019"
+    bytes: 177
   - path: "skills/task-system/README.md"
-    sha256: "7825d1ecfea819dd9bd510f311a571ac78b13d27d04363a00085763ae538a5dd"
-    bytes: 167
+    sha256: "c9599f14a865a9ebbef50479373fc680b297457e99851d130f4f473ad4c408cb"
+    bytes: 170
   - path: "solutions/README.md"
     sha256: "d5e977f4b5204b0b47fd0897bae9211a9fbc59b859f3b160f73d3ce493285923"
     bytes: 525
@@ -114,17 +114,20 @@ sources:
     sha256: "4fb810787fc21182c22fca88a78359c03280a13af9a5678362805f2c0fe46760"
     bytes: 3513
   - path: "standards/HUUUGE_EVIDENCE_STANDARD.md"
-    sha256: "92e9342b96c1072cdb387906ab2ebaba838e757bed702311f8e43dc3ff25506d"
-    bytes: 8394
+    sha256: "6158dcd8bbc23aa2ec6bba052ab9acc16b657202435440e126dec328cf3cc58f"
+    bytes: 8519
+  - path: "standards/IDEA_GOVERNANCE.md"
+    sha256: "c2236dbe2810a9cf2c01bf1a3b2ca8a6781aca05a795ff24c6cf81afa5fcb176"
+    bytes: 3632
   - path: "standards/MEMORY_GOVERNANCE.md"
     sha256: "eeb88fd91c79899370784c6faa6a529af8d35e309cb33065e322d14d20423c2a"
     bytes: 5890
   - path: "standards/PLANNER_WRITING_STYLE.md"
-    sha256: "4a634d2cb5e5a2af6d5c4e8de39d5dca8e18db2f49696ce7cefbd6253bf76adf"
-    bytes: 2442
+    sha256: "82db82a5df4a35ae164fec7fc7bb42d347500887b8ea66e53139598fd6a997e5"
+    bytes: 4794
   - path: "standards/README.md"
-    sha256: "205ef6746abb3000103f3089cc9593d41fc6b77f417d93f6fc6a34937b84dada"
-    bytes: 2028
+    sha256: "a0f6e684d3a1cb3e56dcdb3728fb157fd4fb2c1480d4ac749927ff827f760033"
+    bytes: 2254
   - path: "tasks/README.md"
     sha256: "243be3c488fed873f23e3c68b821dfd36a7140750451fc05fd7bd69e318165ec"
     bytes: 4637
@@ -156,26 +159,35 @@ sources:
     sha256: "8edd5dd05cf60699fad2aadcbeaf22c572db513cded9d69c76a55a1a01a7df6e"
     bytes: 17010
   - path: "tasks/TASK-0021-Workspace-Live-Context-Hub.md"
-    sha256: "10c23bb7dd2249bd59fa5c1f2c2b7521b5da38aef5f797d74b0d5206873fbc9c"
-    bytes: 27575
+    sha256: "4fc8987d64dbdb51065604470671e123e9cb780b7c94b60cf99265077aa28b00"
+    bytes: 27578
   - path: "tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md"
     sha256: "51e615e2a33f555c606a58dac4acc013e5c72cd7c1fef159d69b9a53f11b8660"
     bytes: 7347
+  - path: "tasks/TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md"
+    sha256: "639a78948662cb03022a78f02aca6d6d22ba681f7cde2ee54122c91575f51719"
+    bytes: 9331
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "54cb21f4a15e963e20c360697f19fd5e5a20f77f6a95c875d939cabfd4ce799a"
-    bytes: 9901
+    sha256: "e93ec8f55e58535bc96906930d59f8efe7e07f490c672053a99582368016f169"
+    bytes: 11968
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
     sha256: "b67e26cf37ac2891b372de65871b4798b00e8d5b94a61c6596f08f9f7aa61c49"
     bytes: 13276
+  - path: "tasks/candidates/CANDIDATE-20260827-WORKSPACE-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md"
+    sha256: "f9044d14e425d8615935ae2694fadfe0f2a52528db3cdfe685b699305329cc06"
+    bytes: 1076
   - path: "tasks/candidates/README.md"
     sha256: "89820e73a5c089de7031c3f6c825ddaad9321a541f2b6411ce0c39157addc648"
     bytes: 1810
   - path: "workflows/README.md"
-    sha256: "16d71e948b8fb7a00400598367ff2799702ee15c4a6c3c6fb53959a52c07e8a8"
-    bytes: 808
+    sha256: "eed85568bad84d39fdc6483a03dc4333f7bd0a31370c5e6b387b6979f66066b2"
+    bytes: 967
   - path: "workflows/document-assistant/README.md"
     sha256: "b20ada8933f944955e0d8f27833d44a10e408972af88ef52868d77c6377c54e0"
     bytes: 2388
+  - path: "workflows/idea-governance/README.md"
+    sha256: "05a09fb4178c761cf2103dce947212cdb71ab72746d6aa61ea3faf65db3698fa"
+    bytes: 1734
   - path: "workflows/memory-curation/README.md"
     sha256: "c85ae4d95ff5b3cac58b958538af7c768103ad7bd7fc82488b8a5aa14375c5ca"
     bytes: 1720

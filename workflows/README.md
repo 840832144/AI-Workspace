@@ -8,3 +8,4 @@ Workflow 描述游戏策划目标中多个 Agent、Skill、Template、Tool、项
 
 - [`workspace-sync/`](workspace-sync/README.md)：在 Task、Review、状态查询和 Handoff 前刷新 Git、飞书协作层与 Host-local Context Pack。
 - [`document-assistant/`](document-assistant/README.md)：创建或维护正式公司文档，并自动登记到唯一《AI Workspace｜文档导航中心》。
+- [`idea-governance/`](idea-governance/README.md)：将聊天中的长期产品想法防重、分类并交接到唯一 Product Roadmap，不自动创建 Task。

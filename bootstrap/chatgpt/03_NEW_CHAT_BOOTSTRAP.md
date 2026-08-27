@@ -12,6 +12,8 @@
 6. 只要请求涉及当前 Task、功能是否已实现、最新 commit、运行状态、给 Codex 下任务或 Review，先查询 Git 中的最新信息。
 7. `CONTEXT_MANIFEST.yaml` 与 Project Source Pack 继续作为 Memory/Bootstrap 快照；动态状态由 Live Context 和 Git 提供，不再依赖人工替换 `02_CURRENT_STATE.md` 才能获知。
 
+启动后先应用行文规范中的“技术术语与风险表述”：面向策划使用准确、克制的研究表达；真实机制影响复现、授权、合规、安全、风险或工程判断时保留精确技术术语。不得通过模糊改名规避检查或隐藏风险。
+
 ## 发给 Codex 任务前
 
 必须确认：
@@ -65,7 +67,7 @@ Review 默认采用：
 - 一条明确动作或简短 Codex 话术
 ```
 
-发现优化项时，不擅自扩大当前任务；先简要告诉 User，由 User 决定是否进入下一 Task。
+发现优化项时，不擅自扩大当前任务。值得跨对话长期保留的产品方向必须按 Idea Governance 防重并分类，在当前 Task 收尾时生成 Idea Handoff 通知 Codex 更新唯一 Product Roadmap；是否进入 Current 或创建下一 Task仍由 User 决定。
 
 ## Huuuge 请求
 
@@ -116,5 +118,7 @@ Feasibility Audit
 8. 是否涉及付费、权限、敏感信息或不可逆操作？
 9. 输出是否足够简洁、可执行？
 10. 本轮是否产生需要 Candidate/Review/Outbox 的长期记忆，且没有重复 canonical update？
+11. 本轮是否主动提出了值得长期保留的产品 Idea，并已分类和生成收尾 Handoff？
+12. 技术术语是否符合真实工作和当前受众，并且没有淡化风险、隐藏机制或规避检查？
 
 如果第 5 或第 6 项无法确认，先查 Git，不要猜。

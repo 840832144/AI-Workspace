@@ -1,6 +1,6 @@
 # Roadmap
 
-路线图只描述 Game Planner AI Workspace 的能力建设顺序。当前阶段不实现业务功能；具体游戏项目里程碑应放在各自 `projects/<project>/STATUS.md`。
+本文件只描述 Game Planner AI Workspace 的阶段性能力建设顺序，不是长期产品 Idea 排期。唯一产品规划入口见 [`docs/roadmaps/PRODUCT_ROADMAP.md`](docs/roadmaps/PRODUCT_ROADMAP.md)；具体游戏项目里程碑仍放在各自 `projects/<project>/STATUS.md`。
 
 ## Phase 1 — Workspace Foundation
 

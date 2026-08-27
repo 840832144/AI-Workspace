@@ -2,7 +2,7 @@
 
 ## 项目定位
 
-Game Planner AI Workspace 是面向游戏策划研究、逆向分析、数值拆解、工具建设和文档协作的长期工作空间。当前重点是 Huuuge 研究、采集器、知识体系和文档基础设施。
+Game Planner AI Workspace 是面向游戏策划研究、游戏客户端研究、数值拆解、工具建设和文档协作的长期工作空间。当前重点是 Huuuge 研究、采集器、知识体系和文档基础设施。
 
 默认领域是游戏策划，不主动把其他领域带入核心架构。
 
@@ -60,6 +60,12 @@ Slots → Systems → Events → Others
 - 前几分钟完成权限、设备、环境和服务预检，避免流程末端才失败。
 
 与 User 讨论复杂方案、架构和评审时，可以展示必要的逻辑、代码和技术细节。
+
+### 技术术语与风险表述
+
+所有 AI 使用 `standards/PLANNER_WRITING_STYLE.md` 作为唯一术语规范。面向策划默认使用准确、克制、可理解的研究表达；涉及复现、技术附录、代码、日志、工程判断、授权、合规或风险时，必须保留 Root、Frida、Hook、逆向分析、协议解密、签名校验绕过、完整性校验修改、exploit 等真实术语。
+
+规则不允许通过改名或模糊化规避平台安全策略、权限检查、User 授权或 Review，也不允许弱化真实风险或把被动研究夸大为攻击。策划主流程可先给易懂结论，必要的精确机制放在括号、维护者说明或技术附录中。
 
 ## Documentation Governance
 
@@ -119,6 +125,26 @@ human_alias  = 可选阅读别名
 发生 duplicate、解析失败、Registry 漂移、非最新 main、active scope ambiguity 或 lock/reservation 冲突时必须 fail closed：停止执行冲突 Task，保留先存在 Task 为 canonical，明确标记误建 Task 为 `Cancelled` companion 或迁入 Candidate。
 
 新增游戏研究默认先经过 `Feasibility Audit → ChatGPT Review → User 决定 → Collector Adapter / Productization`，不得从聊天直接跳到完整 Collector 开发。
+
+## Idea Governance
+
+任何值得长期保留的产品想法，不允许只停留在聊天。新的产品能力、长期优化、Workflow、Capability、Collector 思路和 UX 改进必须经过防重，并进入唯一 Product Roadmap 的四个固定分区之一：
+
+```text
+🔥 Current
+📋 Backlog
+💡 Ideas
+✅ Done
+```
+
+- `Current` 只允许当前正在开发或已经批准即将开发的方向。
+- `Backlog` 保存大概率会做、但尚未批准进入当前开发的方向。
+- `Ideas` 保存长期设想、待验证方向和探索性建议。
+- `Done` 只保存已经实现、验证并完成正式 Review 的能力。
+
+ChatGPT 在任何项目聊天中主动提出值得长期保留的新方向时，必须在对应 Task 收尾时生成 Idea Handoff，主动通知 Codex 更新 Product Roadmap，不再依赖 User 手工提醒。Codex 必须读取最新 Git、防重并更新 canonical 源稿；Roadmap 更新不等于执行授权，也不会自动创建 Task。需要执行时仍由 User 决定并通过 Candidate 与正式 allocator。
+
+Product Roadmap 是长期产品规划唯一入口，不与 Task、Documentation Hub、Knowledge、Memory 或项目 Status 混合。详细规则见 `standards/IDEA_GOVERNANCE.md`。
 
 ## 证据与安全
 

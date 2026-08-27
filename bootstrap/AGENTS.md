@@ -41,6 +41,14 @@ Git-authoritative 内容只向 provider 发布；provider-authoritative 协作�
 - duplicate、解析失败、Registry 漂移、非最新 main、main checkout、active scope ambiguity 或 lock/reservation 冲突均 fail closed。
 - companion 必须显式分类并引用存在、同 ID 的 canonical；authorization、review 不能成为第二个 canonical 执行入口。
 
+## Idea Governance
+
+- 任何值得跨对话长期保留的产品能力、长期优化、Workflow、Capability、Collector 方向或 UX 改进，不得只停留在聊天。
+- ChatGPT 主动提出这类想法时，必须先检查唯一 Product Roadmap，判断进入 `Current / Backlog / Ideas / Done`，并在相关 Task 收尾时向 Codex 提交最小 Idea Handoff；不依赖 User 再次提醒。
+- `Current` 只允许正在开发或经 User 批准即将开发的方向；`Done` 必须有实现、验证和正式 Review 证据。未经批准的长期设想不得越级。
+- Codex 是默认 Git writer：从最新 Git 防重、更新 `docs/roadmaps/PRODUCT_ROADMAP.md`、发布正式飞书版并回读；没有 writer 时只保留 Handoff/Outbox，不伪称已登记。
+- Product Roadmap 不替代 Task、Documentation Hub、Knowledge、Memory 或项目 Status，也不自动创建 Future Task。需要执行时仍通过 Candidate 和正式 allocator。
+
 ## Subagent Policy
 
 - 默认使用单 Agent。只有 User 明确要求、Task 明确允许，或存在至少两个真正独立、可并行、读多写少的工作流时，才考虑 Subagents。
@@ -84,6 +92,13 @@ Git-authoritative 内容只向 provider 发布；provider-authoritative 协作�
 
 - 面向策划和用户的文档默认使用中文。
 - 其他语言只用于专有名词、命令、文件名、稳定技术术语或必要的对照解释。
+
+## 技术术语与风险表述
+
+- 所有 ChatGPT、Codex、Trae / DeepSeek、Generic Agent、Subagent 和后续 AI 均遵守 [策划协作行文规范](https://github.com/840832144/AI-Workspace/blob/main/standards/PLANNER_WRITING_STYLE.md) 的唯一术语规则。
+- 默认使用策划可理解、准确且克制的研究表达；与复现、工程判断、授权、合规、安全或风险有关时，必须保留 Root、Frida、Hook、逆向分析、协议解密、签名校验绕过、完整性校验修改、exploit 等真实技术术语。
+- 不得通过改名或模糊化规避安全策略、权限检查、User 授权或 Review，不得弱化真实风险，也不得把被动研究夸大为攻击。
+- 策划主流程只保留决策和操作所需信息；必要的低层细节放到维护者说明、复现步骤或技术附录。
 
 ## 安全与仓库纪律
 

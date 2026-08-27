@@ -22,6 +22,18 @@ Git canonical truth
 
 当前 provider binding 是飞书 Drive + Docx，不是 Wiki。稳定 context ID 和 authority contract 位于 `LIVE_CONTEXT_MANIFEST.json` 与 `capabilities/context/`；folder/document ID 只留 Host-local Registry。
 
+长期产品方向使用独立治理链路：
+
+```text
+项目聊天中的长期 Idea
+→ ChatGPT 防重与 Current / Backlog / Ideas / Done 分类
+→ Task 收尾 Idea Handoff
+→ Codex 更新 Git Product Roadmap
+→ 飞书正式发布与导航中心登记
+```
+
+Product Roadmap 不替代 Task、Documentation Hub、Knowledge、Memory 或项目 Status，也不会自动创建 Future Task。
+
 核心能力保持解耦：
 
 ```text
@@ -39,7 +51,7 @@ Collector 和报告生成是两个独立功能。AI Document Assistant 只负责
 
 - GitHub：`840832144/AI-Workspace`
 - 定位：Game Planner AI Workspace 的治理与任务真相源。
-- 保存：Capability Catalog、Workflow、Skill、标准、Project Control Plane、Task、ADR、Handoff、Bootstrap。
+- 保存：Capability Catalog、Workflow、Skill、标准、Product Roadmap、Project Control Plane、Task、ADR、Handoff、Bootstrap。
 - 不保存：业务代码、运行时 endpoint、Secret、原始采集数据、私有 Registry。
 
 ### huuuge-android-research

@@ -11,6 +11,35 @@
 - Memory mode: `ASSISTED`
 - Subagents: none
 
+## Closed Governance Task — TASK-0023
+
+- ChatGPT Review Round 2：Accepted；正式记录为 `reviews/TASK-0023-CHATGPT-REVIEW-2.md`，reviewed commit 为 `bc0d3ad1e519fb908dce53a78a35f9c3687a5b51`。
+- Idea Governance 与 Planner Writing Style 已转为 `Accepted / Active`，统一 Product Roadmap 与术语规则正式生效。
+- 收口前回归：Context / Source Pack 62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口、Registry 10 canonical / 0 collision 与 Doctor 全部通过。
+- Workspace Sync 保持 `ON_DEMAND`、0 conflict；provider unavailable，6 个发布项保持 stale，没有启用 WATCH。
+
+- 独立 worktree / branch：`codex/idea-governance-product-roadmap`；不修改 TASK-0022 的 canonical 文件、reservation、执行分支或环境。
+- Candidate 由正式 CLI 创建并经 allocator 晋升为唯一 canonical TASK-0023；Registry 仅由工具重建，reservation 保持 `pending-main`，token 未写入 Git/Handoff。
+- 已建立 `docs/roadmaps/PRODUCT_ROADMAP.md`、Idea Governance standard/workflow，并更新 Core Rules、Project Instructions、AGENTS、ChatGPT Bootstrap、AI Team、Architecture 和入口索引。
+- 唯一正式飞书 Product Roadmap 已完成创建、正文回读、企业内可编辑、自动登记与 Hub 回读；项目全景说明原位加入 Roadmap 链接且原生流程图仍存在。
+- 临时测试 Idea 成功进入 Ideas，回读后已删除，正式 Roadmap 恢复；四个固定分区各出现一次，Hub 当前 15 条正式链接且无重复。
+- 失败记录：Candidate 的非规范 User decision 文本被 allocator 拒绝且未占号；临时发布脚本首次在编译阶段因 top-level await 失败且未产生云写入，修正后通过。
+- 当前桌面会话仍挂载缺少 `register_document` 的旧 MCP 进程；其 `get_document` 回读按旧 schema 写回后暂时移除了项目全景说明的治理 metadata。没有新建文档；改用 Document Assistant 当前 `main` 新进程重新登记，Hub 已恢复为 15 条、链接唯一。后续不要再用该旧进程做治理回读；新会话加载正式 main 后再使用。
+- Workspace Sync：`ON_DEMAND`；WATCH disabled；Memory：`ASSISTED`；Subagents: none。
+- deterministic regression：Registry 10 canonical / 0 collision；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口和 Workspace Doctor 通过；Context refresh 62 sources、0 broken link、0 secret issue。
+- 收口动作：完成 deterministic regression，合并并 push main；随后在原 allocator worktree finalize TASK-0023 reservation，复验 0 collision 并清理任务 branch/worktree。
+
+### Review Round 1 Required Fix
+
+- Review 记录：`reviews/TASK-0023-CHATGPT-REVIEW-1.md`；Roadmap / Idea Governance 主体已通过，唯一修改项为技术术语规则。
+- `standards/PLANNER_WRITING_STYLE.md` 现为唯一 canonical 规范；Core Rules、Repository/Bootstrap/Global AGENTS、Project Instructions、ChatGPT Bootstrap 与 Generic Agent 入口均引用同一规则。
+- Context refresh 生成器现将 canonical 规范正文加入 ChatGPT 单文件 Source Pack 与 6 个拆分来源清单；Memory 回归测试包含对应断言。
+- 默认面向策划使用准确、克制、可理解的研究表达；复现、工程判断、授权、合规、安全或风险需要时必须保留真实低层术语。禁止用模糊改名规避安全、权限、授权或 Review，也不得淡化风险。
+- 本轮仅做 Review 修订和 deterministic refresh/regression，不修改 TASK-0022、Cash Frenzy、Huuuge、Document Assistant 或 Workspace Sync 模式；Subagents: none。
+- Context / Source Pack：62 sources、0 broken link、0 secret issue；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口、Registry 10 canonical / 0 collision 和 Doctor 全部通过。
+- Workspace Sync 仍为 `ON_DEMAND`、0 conflict；provider unavailable，6 个发布项维持 stale，没有启用 WATCH。
+- Review Round 2 已 Accepted；执行上述 main / finalize / cleanup 收口，不再等待 Review。
+
 ## Closed TASK-0021
 
 - ChatGPT Review Round 1：Accepted。
@@ -73,10 +102,21 @@ Task issuance 合入 main 并完成 `finalize` 后，必须从最新 main 新建
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-27T10:39:09Z
+- Generated: 2026-08-27T13:39:12Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
