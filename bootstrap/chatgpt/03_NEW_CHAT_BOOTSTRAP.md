@@ -29,13 +29,13 @@
 任何会创建新 Task 的请求，必须额外完成：
 
 1. 从 Git 最新 `main` 枚举完整 `tasks/` 目录，不只搜索一个猜测编号；
-2. 列出所有 canonical Task 的 ID、完整文件名和状态；
+2. 运行 Task Registry validator，列出 canonical / companion / candidate / review 的 ID、完整文件名和状态；
 3. 检查同 ID 冲突、同目标重复、范围重叠和附件误判；
-4. 只有 User 已确认且 ID 经目录验证未占用时，才创建 `Ready` Task；
+4. 只有 User 已确认，才在 non-main independent linked worktree 通过 remote CAS reservation 分配全局 `TASK-XXXX`；同时显式记录合法 `project_key`，可选 alias 不替代 ID；
 5. 未确认需求先进入 Candidate，不分配正式 Task ID；
-6. 创建后重新读取 `tasks/`，验证 ID 唯一和文件可见性。
+6. 创建后重建 Registry 并再次 validate，验证 ID 唯一、文件/标题一致和可见性。
 
-不得把“当前看到的最大编号 + 1”当作充分依据，也不得根据另一个对话的记忆分配编号。若发现冲突，停止执行、保留先存在 Task、将误建项标记 `Cancelled` 或迁入 Candidate，并先建立治理修复 Task。
+不得把“当前看到的最大编号 + 1”当作充分依据，也不得根据另一个对话的记忆分配编号。非最新 main、Registry 漂移、解析失败、active scope ambiguity 或 lock/reservation 冲突均 fail closed。若发现同号，保留先存在 canonical Task，将误建项标记 `Cancelled` companion 或迁入 Candidate。Task 创建后 reservation 保持到 canonical 进入 main 并显式 finalize；放弃未创建 Task 才 release。
 
 完整细节应先写入 AI-Workspace 的 `tasks/` 和 Handoff。发给 User 的 Codex 话术通常只包含：
 

@@ -30,6 +30,17 @@ Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 To
 
 Git-authoritative 内容只向 provider 发布；provider-authoritative 协作草稿只进入 Memory Candidate/Review。默认模式为 `ON_DEMAND`；未经 User 明确批准，不启用生产 `WATCH`、公网 webhook、长期 watcher 或新权限。
 
+## Task Allocation Governance
+
+- 创建、重编号、晋升或引用新 Task 前，先同步 AI-Workspace 最新 `main`，读取完整 `tasks/` 与 Handoff，并运行版本化 Task Registry validator。
+- canonical identity 是全局唯一 `TASK-XXXX`；新 Task 必须显式记录合法 `project_key`，可选 human alias 不替代 canonical ID。
+- Markdown Task 是真相源；`TASK_REGISTRY.yaml` 只由完整扫描重建，禁止手工维护为第二真相源。
+- User 未明确批准的新方向进入 Candidate，不占 Task ID、不可执行。相同 active 目标默认阻断，必须明确继续已有 Task 或子任务。
+- 新 ID 只允许在 latest-main、non-main independent linked worktree 通过 allocator 建立 remote CAS reservation；禁止根据聊天、memory、Project Sources、局部搜索或 `max + 1` 猜号。
+- reservation ref 的 tree/parent 固定为 latest `origin/main`，请求分支 HEAD 只作 SHA metadata；canonical 进入 main 后 finalize，未创建 Task 的放弃场景才 release。
+- duplicate、解析失败、Registry 漂移、非最新 main、main checkout、active scope ambiguity 或 lock/reservation 冲突均 fail closed。
+- companion 必须显式分类并引用存在、同 ID 的 canonical；authorization、review 不能成为第二个 canonical 执行入口。
+
 ## Subagent Policy
 
 - 默认使用单 Agent。只有 User 明确要求、Task 明确允许，或存在至少两个真正独立、可并行、读多写少的工作流时，才考虑 Subagents。

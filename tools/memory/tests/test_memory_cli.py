@@ -28,7 +28,7 @@ class MemoryCliTests(unittest.TestCase):
         for relative in (
             "memory/inbox", "memory/review", "memory/archive", "memory/index",
             "solutions", "tasks", "handoff", "capabilities", "standards",
-            "docs/adr", "skills", "workflows", "bootstrap/chatgpt/generated",
+            "docs/adr", "docs/incidents", "skills", "workflows", "bootstrap/chatgpt/generated",
         ):
             (self.root / relative).mkdir(parents=True, exist_ok=True)
         (self.root / "memory/index/default-mode.json").write_text(
@@ -341,16 +341,31 @@ class MemoryCliTests(unittest.TestCase):
         self.assertFalse(list((self.root / "memory/inbox").glob("*.md")))
 
     def test_refresh_generates_manifest_pack_and_manual_upload_list(self) -> None:
+        (self.root / "docs/incidents/INCIDENT-TEST.md").write_text("# Incident\n", encoding="utf-8")
         _, output = self.run_cli("refresh")
         self.assertEqual("refreshed", output["status"])
         self.assertTrue(output["manual_upload_required"])
         self.assertEqual("not read", output["private_repositories"])
         self.assertTrue((self.root / "CONTEXT_MANIFEST.yaml").exists())
+        manifest = (self.root / "CONTEXT_MANIFEST.yaml").read_text(encoding="utf-8")
+        self.assertIn("docs/incidents/INCIDENT-TEST.md", manifest)
         self.assertTrue((self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md").exists())
         replacement = (self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_REPLACEMENT_LIST.md").read_text(encoding="utf-8")
         self.assertIn("manual upload required", replacement)
         current = (self.root / "bootstrap/chatgpt/02_CURRENT_STATE.md").read_text(encoding="utf-8")
         self.assertIn("MEMORY-CONTEXT:START", current)
+
+    def test_refresh_active_tasks_excludes_companion(self) -> None:
+        (self.root / "tasks/TASK-0001-CANONICAL.md").write_text(
+            "# TASK-0001 — Canonical\n\n- Status: Review\n", encoding="utf-8"
+        )
+        (self.root / "tasks/TASK-0001-AUTHORIZATION.md").write_text(
+            "# TASK-0001 Authorization\n\n- Kind: companion\n- Status: Ready\n", encoding="utf-8"
+        )
+        self.run_cli("refresh")
+        current = (self.root / "bootstrap/chatgpt/02_CURRENT_STATE.md").read_text(encoding="utf-8")
+        self.assertIn("TASK-0001-CANONICAL.md", current)
+        self.assertNotIn("TASK-0001-AUTHORIZATION.md", current)
 
     def test_refresh_sync_does_not_claim_latest_when_repository_is_dirty(self) -> None:
         subprocess.run(["git", "init", "-b", "main"], cwd=self.root, check=True, capture_output=True)

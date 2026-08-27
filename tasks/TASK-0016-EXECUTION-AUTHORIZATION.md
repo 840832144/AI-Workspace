@@ -1,5 +1,6 @@
 # TASK-0016 Execution Authorization
 
+- Kind: companion
 - Status: Ready
 - Authorized by: User
 - Authorized at: 2026-08-27

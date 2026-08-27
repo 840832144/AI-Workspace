@@ -11,7 +11,7 @@
 - Platform: Android client in an isolated BlueStacks 5 China research environment
 - Target users: 游戏策划、游戏数值策划、系统/活动策划、数据分析
 - External repository: [`840832144/huuuge-android-research`](https://github.com/840832144/huuuge-android-research)
-- Current evidence baseline: [`bfed5f3`](https://github.com/840832144/huuuge-android-research/commit/bfed5f30e098522ffb98ef5eb7d63e824d68b1c4)
+- Current evidence baseline: [`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)
 
 ## Objective
 
