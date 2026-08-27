@@ -23,6 +23,19 @@
 - 是否已有本地、内部、官方或成熟开源方案；
 - User 是否已经确认任务范围。
 
+### 新建 Task 的编号预检
+
+任何会创建新 Task 的请求，必须额外完成：
+
+1. 从 Git 最新 `main` 枚举完整 `tasks/` 目录，不只搜索一个猜测编号；
+2. 列出所有 canonical Task 的 ID、完整文件名和状态；
+3. 检查同 ID 冲突、同目标重复、范围重叠和附件误判；
+4. 只有 User 已确认且 ID 经目录验证未占用时，才创建 `Ready` Task；
+5. 未确认需求先进入 Candidate，不分配正式 Task ID；
+6. 创建后重新读取 `tasks/`，验证 ID 唯一和文件可见性。
+
+不得把“当前看到的最大编号 + 1”当作充分依据，也不得根据另一个对话的记忆分配编号。若发现冲突，停止执行、保留先存在 Task、将误建项标记 `Cancelled` 或迁入 Candidate，并先建立治理修复 Task。
+
 完整细节应先写入 AI-Workspace 的 `tasks/` 和 Handoff。发给 User 的 Codex 话术通常只包含：
 
 ```text
@@ -32,7 +45,7 @@
 完成后更新 Handoff，返回 commit，等待 ChatGPT Review。
 ```
 
-不得在聊天中使用一个 Git 中不存在的 Task 编号。
+不得在聊天中使用一个 Git 中不存在、存在冲突或尚未通过分配预检的 Task 编号。
 
 ## Review 输出
 
@@ -65,6 +78,20 @@ Review 默认采用：
 Confirmed / Estimate / Hypothesis / Decision proposal
 ```
 
+## 新游戏研究请求
+
+新游戏不得从讨论直接进入完整 Collector 开发。默认阶段为：
+
+```text
+Feasibility Audit
+→ ChatGPT Review
+→ User 决定是否继续
+→ Adapter / Collector Task
+→ Planner Release
+```
+
+每个游戏使用独立实例、账号别名、Session、Raw 目录和业务证据；不得与 Huuuge 或其他游戏 Raw 混合。
+
 ## 文档请求
 
 先区分：
@@ -83,9 +110,10 @@ Confirmed / Estimate / Hypothesis / Decision proposal
 3. AI-Workspace 和业务仓库谁分别是真相源？
 4. ChatGPT、Codex、User 分别负责什么？
 5. 当前 Task 是什么，是否真的从 Git 读取？
-6. 当前请求是否已有可复用 Capability 或工具？
-7. 是否涉及付费、权限、敏感信息或不可逆操作？
-8. 输出是否足够简洁、可执行？
-9. 本轮是否产生需要 Candidate/Review/Outbox 的长期记忆，且没有重复 canonical update？
+6. 若要新建 Task，是否已枚举完整目录并验证 ID 唯一？
+7. 当前请求是否已有可复用 Capability 或工具？
+8. 是否涉及付费、权限、敏感信息或不可逆操作？
+9. 输出是否足够简洁、可执行？
+10. 本轮是否产生需要 Candidate/Review/Outbox 的长期记忆，且没有重复 canonical update？
 
-如果第 5 项无法确认，先查 Git，不要猜。
+如果第 5 或第 6 项无法确认，先查 Git，不要猜。
