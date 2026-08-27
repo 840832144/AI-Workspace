@@ -2,76 +2,44 @@
 
 - Updated: 2026-08-27
 - Current task: TASK-0022 — Cash Frenzy Android Collector Feasibility Audit
-- Status: Ready — issuance pending merge to main and allocator finalize
-- Branch: `codex/cash-frenzy-feasibility-issuance`
-- Initial base: `origin/main@ac6d3edc6168c486f5c82f1f272dd4047de7dc4e`
-- Latest-main merge: `569f504` includes `origin/main@7eb16b0`
+- Status: Review — Phase 1.5 complete, waiting ChatGPT Review
+- Branch: `codex/task-0022-cash-frenzy-feasibility`
+- Latest-main sync: merge `a1d055f` includes `origin/main@cf5ec9d`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
 
-## Closed TASK-0021
+## Phase 1 result
 
-- ChatGPT Review Round 1：Accepted。
-- AI-Workspace merge commit：`ac6d3edc6168c486f5c82f1f272dd4047de7dc4e`，已推送 main。
-- Document Assistant PR #1：MERGED；merge commit `3a959a7e801def913cd5c8a3d78e3f8da9093ca8`。
-- TASK-0021、ADR-0007 和正式 Review 已进入 main；最终模式保持 `ON_DEMAND`，未启用 WATCH。
+- Cash Frenzy identity：package `slots.pcg.casino.games.free.android`，sample 4.78 / 478，arm64-v8a，Cocos2d-x + LuaJIT，base + 3 splits。
+- Dynamic proof：User 完成 5 次普通 Spin；live outbound Spin payload 已恢复 `bet`、`lines`、`spin_count`、`client_coins`、`free_spins`、`autoSpin`、`turbo` 与 `_timestamp`。
+- Current level：**F3 Live structured outbound fields recovered**。Inbound result 仍为 opaque binary；F4 不成立。
+- Research runtime：User 已将共享研究实例命名为 `AppResearch`。Cash Frenzy 证据继续按 package、Host-local project root、Session、Raw、APK/SO、账号数据和 manifest 隔离，不与 Huuuge 混用。
 
-## TASK-0021 Phase 2 — 文档导航中心
+## Phase 1.5 — Balance Recovery Spike
 
-- 第一阶段 Accepted 状态已从最新 main 确认；本阶段沿用 TASK-0021，不创建新 Task，当前状态为 Review。
-- 唯一《AI Workspace｜文档导航中心》已建立并真实回读，登记 14 份正式文档；八分类、链接唯一和企业内可编辑权限验证通过。
-- 正式测试文档已完成“创建、文档回读、自动登记、Hub 回读”，随后删除并确认 Hub 恢复为 14 条。
-- Document Assistant 新增 `register_document` 和正式创建治理；AI-Workspace 已更新 Core Rules、Project Instructions、两级 AGENTS、Document Capability、Document Assistant Workflow 与 Workspace Sync Workflow。
-- Git 不保存 Hub 独立 ID、token、私有 Registry 或敏感返回值；安全链接仅通过当前交付消息返回。
-- 当前运行中的 Codex MCP 仍是已合并版本；新 tool 需在 Review 通过、实现分支合并并重启 MCP 会话后正式载入。
-- Workspace Sync：`ON_DEMAND`；WATCH disabled；ChatGPT 设置未修改；Subagents: none。
-- 下一步：ChatGPT Review 本阶段两个分支；Accepted 后合并，并在新 Codex 会话确认 `register_document` 出现在工具清单。
+- Scope 仅为 Balance，Win 只在低成本条件下顺带验证；没有进入新协议层、OCR/UI、完整 result、RTP/EV、Feature/Jackpot 或 Collector 重构。
+- 方法：连续 outbound Spin 请求以 `client_coins(i)` 作为 Balance Before、`client_coins(i+1)` 作为 Balance After；稳定 Bet 下计算 `next - current + bet` 作为 Win Candidate。
+- User 完成 3 次普通 Spin；probe 得到 3/3 合法样本、0 errors、2 个相邻 Balance 转移。Bet 稳定，两个 Balance 转移均变化，两个 Win Candidate 均为非负整数，其中一个非零。
+- **成功标准 A 达成**：前两次 Spin 均形成 `Spin → Balance Before → Balance After`。第三次 Spin 的 After 需要下一次请求，属于该方法的 `N` 请求 / `N-1` 闭合转移边界。
+- 成功标准 B 仅记为 **Derived candidate**；没有直接观察到服务端 `win` 字段。
+- Collector 能力保持 **F3**，不因本 Spike 升级。
 
-## TASK-0021 Final UX Closeout
+## Current blocker
 
-- ChatGPT Review 2 的主体实现已通过；中文标题和项目全景入口两项收尾已完成，TASK-0021 最终状态为 Accepted。
-- 唯一入口已在同一 URL 原位更名为《AI Workspace｜文档导航中心》，保留 14 条正式文档、八分类、链接唯一和企业内可编辑权限。
-- `Game Planner AI Workspace｜项目全景说明` 已原位增加“📚 下一步推荐阅读”，其后新增“🗺 项目工作流总览”；章节位置、导航链接、飞书原生白板图和权限均已回读。
-- `docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md` 已从 TASK-0019 历史分支恢复为 Git 源稿；公共 Git 不保存租户文档 URL，发布时由 Document Assistant 绑定唯一链接。
-- “核心规则”“实时 Context Hub”和“当前状态与任务入口”已原位同步最新 Git 源稿，并逐份完成正文回读、自动登记和导航中心回读。
-- Documentation Governance 最终流程：`create_document → 文档回读 → register_document → 文档导航中心回读 → Success`。导航失败时不删除已创建文档、不重复创建，返回失败并等待修复。
-- 新增 Proposed RFC-0004，记录“一套 Research Environment、多游戏、Evidence 独立”的长期方向；没有修改当前 Cash Frenzy Candidate、TASK-0022 或执行环境。
-- Document Assistant：12 个 test files / 36 tests，真实创建—登记—删除—恢复烟测通过；Workspace：Task 23/23、Context 13/13、Memory 35/35、Doctor 通过。
-- Document Assistant 正式 `main` 已启动全新的 STDIO MCP 进程；`tools/list` 含 `register_document`，13 个正式工具与 healthcheck 均通过。
-- 最终模式：`ON_DEMAND`；WATCH disabled；ChatGPT 设置未修改；Subagents: none。
-- Merge commits：AI-Workspace `4c2b9b8fa87c65adb2876189de991eeb4a839f52d`；Document Assistant `b0292c3159db16542906948511b6b1ec58c360fd`。两个 main 均已完成本地合并，closeout commit 记录后推送。
+Session 尾部 Spin 的即时 Balance After / Win 不能由当前 outbound-only 方法闭合；若要求该能力，需要进入 inbound result 或新的状态源，超出 Phase 1.5 范围。
 
-## TASK-0022 Allocation
+## Next recommendation
 
-User 已明确批准 `tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md`。在包含 latest `origin/main` 的独立 linked worktree 中执行正式：
+停止 Balance Spike 并等待 ChatGPT Review。后续 Demo 若单独获批，可用相邻 outbound request 输出脱敏 Balance 波动与 Spin Timeline，同时标注尾部未闭合及 Win 为 Derived；当前不要开始 Demo 报告。
 
-```text
-python tools/tasks/task_cli.py promote tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md
-```
+## Finalize and boundaries
 
-allocator 实际分配 `TASK-0022`，没有猜号或手工编辑 Registry。Candidate 现为 Migrated；canonical 文件为 `tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md`。Remote reservation `refs/heads/task-reservations/TASK-0022` 保持 `pending-main`；token 只留 Host-local allocator state，不进入 Git 或 Handoff。
-
-正式 Registry validate 已通过：9 canonical、2 companion、1 个已 Migrated Candidate record、6 Review、0 collision；当前待决 Candidate 为 0。
-
-## Execution Boundary
-
-Task issuance 合入 main 并完成 `finalize` 后，必须从最新 main 新建独立执行 linked worktree。先完成 Reuse-first、package/version/ABI/engine、APK/split、protocol 和 static resource audit，再建立独立 `CashFrenzyResearch` 环境。
-
-- 不修改或复用 `HuuugeResearch`。
-- Cash Frenzy Session / Raw / APK / SO / 完整响应 / 账号数据只留本机，不与 Huuuge 混用。
-- 不自动付费，不替 User 消耗大量资源，不伪造或重放请求。
-- 需要安装、登录、验证码或 1–5 次普通 Spin 时，停下并只给 User 明确界面操作顺序。
-- 当前会话为宽松文件权限，按 Subagent 安全规则保持 OFF；主 Agent 单独执行并唯一写入。
-
-`origin/main@7eb16b0` 增加的“共用 Research 模拟器”历史说明与本轮直接指令冲突，现已在 Candidate 中保留审计引用并明确标记为 superseded；当前有效决定是独立 `CashFrenzyResearch`。
-
-
-
-
-
-
+- 逐笔 Balance/Win、Raw、APK、SO、完整响应与账号数据仅保存在 `D:\CashFrenzyResearch\local-only`，未进入 Git 或云文档。
+- Cash app 已 force-stop；临时 Cash 专属 Gadget/config、ADB `tcp:27043` forward、Frida server 和 probe 进程均确认无残留。
+- `D:\huuuge-research` 保持 clean；未修改 Huuuge Collector、Session、Raw、SVN、飞书、AI-Workspace governance、其他游戏或 Capability。
+- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled；Subagents none / OFF。
 
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
@@ -82,6 +50,7 @@ Task issuance 合入 main 并完成 `finalize` 后，必须从最新 main 新建
 - ChatGPT Project Sources: `manual upload required`
 - Private repositories: not read unless explicitly registered and authorized
 <!-- MEMORY-REFRESH:END -->
+
 ## Exact Next Action
 
-提交并合并 TASK-0022 issuance 到 main；在原 issuance linked worktree 同步 latest main 后执行 `task_cli.py finalize`，然后建立独立 execution linked worktree继续 TASK-0022。
+ChatGPT Review TASK-0022 Phase 1 与 Phase 1.5；在 Review 结论前不开始 Demo 报告或继续协议研究。

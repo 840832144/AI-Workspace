@@ -161,3 +161,41 @@ NEXT_TASK_PROPOSAL.md
 - Structured fields：live schema-only Lua hook 确认 request table 形态为 `[command-string, payload-table, metadata-table]`，Spin payload 包含 `bet`、`lines`、`spin_count`、`client_coins`、`free_spins`、`autoSpin`、`turbo`，metadata 包含 `_timestamp`。未记录字段值；command 仅依据长度、static map 与动作关联推断为 `BATCH_SPIN`，不写成直接观察。
 - Current level：**F3 Live structured outbound fields recovered**。入站仍为 opaque binary Raw，未恢复 result/win/balance/update，完整数值链与可重复 Huuuge-like decoder 未达到，F4 不成立。
 - Finalize：所有 capture/shape Session Clean Stop、0 errors、无残留进程；Cash 专属 Gadget 文件、27043 forward 与临时 Frida server 已移除，Cash app 已 force-stop。Huuuge repo/Collector/Session/Raw 未修改，WATCH 未启用；Subagents none / OFF。
+
+## Phase 1.5 — Balance Recovery Spike
+
+### Decision and scope
+
+- 仅尝试恢复 `balance`，并在不增加协议层的前提下顺带验证 `win` 推导；未继续研究 RTP、EV、Feature、Jackpot、完整 result、Collector 重构或 OCR/UI 双轨。
+- 复用 Phase 1 已确认的 outbound Spin payload，不解析 opaque inbound，不新增 Collector Capability，不提高 F0–F4 等级。
+
+### Minimal method
+
+连续 Spin 请求中的 `client_coins` 可形成相邻状态：请求 `i` 的值作为 Spin `i` 的 Balance Before，请求 `i+1` 的值作为 Spin `i` 的 Balance After。Bet 稳定且两次请求之间没有其他游戏动作时，可脱敏推导：
+
+```text
+Win Candidate(i) = client_coins(i+1) - client_coins(i) + bet(i)
+```
+
+该方法只读取客户端已序列化的 outbound payload；不修改请求、返回、内存、余额或服务器状态。逐笔数值只保存在 `D:\CashFrenzyResearch\local-only`，不进入 Git、Handoff 或云文档。
+
+### Fault-bounded live result
+
+- User 完成 3 次普通 Spin；probe 捕获 3 个符合既有 Spin shape 的样本，0 errors，形成 2 个相邻 Balance 转移。
+- 3 个样本的 `bet` 均为数值且保持稳定，`client_coins` 均为数值；两个相邻转移均发生 Balance 变化。
+- 两个 Win Candidate 均为非负整数，其中一个为非零；这证明公式可复算，但在未恢复 inbound result 的条件下仍标记为 **Derived**，不宣称为服务端 Win 字段。
+- **成功标准 A 达成**：对连续请求中前两次 Spin，可恢复 `Spin → Balance Before → Balance After`。第三次 Spin 的 Balance After 需要下一次 Spin 请求作为后继状态，因此当前方法天然提供 `N` 个请求对应 `N-1` 个闭合转移。
+- **成功标准 B 为 Derived candidate**：可结合稳定 Bet 推导 Win Candidate；未将其升级为直接观察到的 `win`。
+- Collector 能力等级保持 **F3**。没有进入新协议层，也没有恢复 opaque inbound `result`。
+
+### Current blocker and next recommendation
+
+- Current blocker：最后一次 Spin 的 Balance After 只有在下一条 Spin 请求出现后才能闭合；Session 末尾即时 Balance/Win 仍需要 inbound result 或其他新的状态源，超出本 Spike 边界。
+- Next recommendation：停止 Spike，保留 F3；后续 Demo 若获单独授权，可使用相邻 outbound request 构建脱敏 Balance 波动与 Spin Timeline，并明确尾部未闭合和 Win 为 Derived。当前不开始 Demo 报告。
+
+### Clean finalize
+
+- 达到成功标准后立即停止，没有扩大到 OCR/UI、完整协议解析或其他游戏。
+- Cash app 已 force-stop；临时 Cash 专属 Gadget/config、ADB `tcp:27043` forward、Frida server 和本机 probe 进程均确认无残留。
+- `HuuugeResearch` 仓库、Collector、Session、Raw 未修改；AI-Workspace governance、Top Tycoon、Gossip Harbor、WATCH 和 Capability 均未改动。
+- Subagents: none；最终模式 OFF。

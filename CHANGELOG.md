@@ -2,6 +2,24 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.15.3] - 2026-08-27
+
+### Changed
+
+- TASK-0022 增加 Phase 1.5 Balance Recovery Spike：复用已确认的 outbound Spin payload，以相邻 `client_coins` 形成 Balance Before/After，并在 Bet 稳定时生成脱敏 Win Candidate。
+- 3 个普通 Spin 样本形成 2 个闭合 Balance 转移，成功标准 A 达成；Win 仅保留为 Derived candidate，Collector 等级保持 F3，未解析 opaque inbound result。
+
+### Boundaries
+
+- 达标后停止 Spike；未开始 Demo 报告，未扩大到 RTP、EV、Feature、Jackpot、OCR/UI、完整 result 或 Collector 重构。
+- 逐笔 Balance/Win、Raw、APK、SO、完整响应和账号数据只留本机；未修改 Huuuge、Workspace governance、其他游戏、Capability 或 WATCH。
+- 临时 Cash 专属 Gadget/config、ADB forward、Frida server 和 probe 进程已清理；`Subagents: none`。
+
+### Validation
+
+- 3/3 样本满足既有 Spin shape，Bet 数值且稳定，`client_coins` 数值；2/2 相邻转移发生 Balance 变化，2/2 Win Candidate 为非负整数，probe errors 为 0。
+- 清理后 Cash 进程、Frida server、`tcp:27043` forward、本机 probe 进程及临时 Gadget/config 均不存在；Huuuge 仓库保持 clean。
+
 ## [0.15.2] - 2026-08-27
 
 ### Accepted
