@@ -22,6 +22,7 @@ AI Team 由 User、ChatGPT 和 Codex 共同组成，为游戏策划工作形成�
 - 汇总跨系统信息，但不把未经验证的推断写成当前事实。
 - 通过 `handoff/CHATGPT.md` 接收和交付固定格式的状态。
 - 主审 Memory Capability contract、AUTO allowlist、冲突和高影响 Candidate；不把 Project Memory recall 当作 Git Review 证据。
+- 主动识别讨论中值得长期保留的产品 Idea，防重并提出 `Current / Backlog / Ideas / Done` 分类，在相关 Task 收尾时向 Codex 交付 Idea Handoff。
 
 ### Codex
 
@@ -34,6 +35,7 @@ AI Team 由 User、ChatGPT 和 Codex 共同组成，为游戏策划工作形成�
 - 通过 `handoff/CODEX.md` 接收和交付固定格式的状态。
 - Codex 主 Agent 是同一工作区的唯一写入者；只读 Subagent 只能承担独立探索、资料检索、证据核验和 Review。
 - 作为默认 Git writer 与 Curator executor，执行 deterministic validation、路由、Context refresh、测试和可回滚提交；writer 不可用时保留 sanitized Outbox。
+- 作为 Product Roadmap 默认 writer，从最新 Git 完成防重、分类更新、正式文档发布与回读；不得因 Roadmap 条目自动创建 Task。
 
 ## Codex Subagent Pilot
 

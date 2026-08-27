@@ -120,6 +120,26 @@ human_alias  = 可选阅读别名
 
 新增游戏研究默认先经过 `Feasibility Audit → ChatGPT Review → User 决定 → Collector Adapter / Productization`，不得从聊天直接跳到完整 Collector 开发。
 
+## Idea Governance
+
+任何值得长期保留的产品想法，不允许只停留在聊天。新的产品能力、长期优化、Workflow、Capability、Collector 思路和 UX 改进必须经过防重，并进入唯一 Product Roadmap 的四个固定分区之一：
+
+```text
+🔥 Current
+📋 Backlog
+💡 Ideas
+✅ Done
+```
+
+- `Current` 只允许当前正在开发或已经批准即将开发的方向。
+- `Backlog` 保存大概率会做、但尚未批准进入当前开发的方向。
+- `Ideas` 保存长期设想、待验证方向和探索性建议。
+- `Done` 只保存已经实现、验证并完成正式 Review 的能力。
+
+ChatGPT 在任何项目聊天中主动提出值得长期保留的新方向时，必须在对应 Task 收尾时生成 Idea Handoff，主动通知 Codex 更新 Product Roadmap，不再依赖 User 手工提醒。Codex 必须读取最新 Git、防重并更新 canonical 源稿；Roadmap 更新不等于执行授权，也不会自动创建 Task。需要执行时仍由 User 决定并通过 Candidate 与正式 allocator。
+
+Product Roadmap 是长期产品规划唯一入口，不与 Task、Documentation Hub、Knowledge、Memory 或项目 Status 混合。详细规则见 `standards/IDEA_GOVERNANCE.md`。
+
 ## 证据与安全
 
 - Confirmed、Estimate、Hypothesis、Decision proposal 必须明确区分。

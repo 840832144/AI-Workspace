@@ -65,6 +65,7 @@ Standards 是已生效的横向规则，例如证据纪律、命名、安全边�
 | --- | --- |
 | 业务代码、测试、构建配置 | 对应项目仓库 |
 | 跨项目章程、标准、路线图 | AI-Workspace |
+| 长期产品方向与优先级分区 | `docs/roadmaps/PRODUCT_ROADMAP.md`；飞书只提供正式阅读入口 |
 | 长期架构决策 | `docs/adr/` |
 | 提案与讨论结果 | `docs/rfc/` |
 | 当前项目协作状态 | `projects/<project>/STATUS.md` |

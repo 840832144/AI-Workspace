@@ -11,6 +11,19 @@
 - Memory mode: `ASSISTED`
 - Subagents: none
 
+## Parallel Governance Task — TASK-0023
+
+- 独立 worktree / branch：`codex/idea-governance-product-roadmap`；不修改 TASK-0022 的 canonical 文件、reservation、执行分支或环境。
+- Candidate 由正式 CLI 创建并经 allocator 晋升为唯一 canonical TASK-0023；Registry 仅由工具重建，reservation 保持 `pending-main`，token 未写入 Git/Handoff。
+- 已建立 `docs/roadmaps/PRODUCT_ROADMAP.md`、Idea Governance standard/workflow，并更新 Core Rules、Project Instructions、AGENTS、ChatGPT Bootstrap、AI Team、Architecture 和入口索引。
+- 唯一正式飞书 Product Roadmap 已完成创建、正文回读、企业内可编辑、自动登记与 Hub 回读；项目全景说明原位加入 Roadmap 链接且原生流程图仍存在。
+- 临时测试 Idea 成功进入 Ideas，回读后已删除，正式 Roadmap 恢复；四个固定分区各出现一次，Hub 当前 15 条正式链接且无重复。
+- 失败记录：Candidate 的非规范 User decision 文本被 allocator 拒绝且未占号；临时发布脚本首次在编译阶段因 top-level await 失败且未产生云写入，修正后通过。
+- 当前桌面会话仍挂载缺少 `register_document` 的旧 MCP 进程；其 `get_document` 回读按旧 schema 写回后暂时移除了项目全景说明的治理 metadata。没有新建文档；改用 Document Assistant 当前 `main` 新进程重新登记，Hub 已恢复为 15 条、链接唯一。后续不要再用该旧进程做治理回读；新会话加载正式 main 后再使用。
+- Workspace Sync：`ON_DEMAND`；WATCH disabled；Memory：`ASSISTED`；Subagents: none。
+- deterministic regression：Registry 10 canonical / 0 collision；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口和 Workspace Doctor 通过；Context refresh 62 sources、0 broken link、0 secret issue。
+- 下一步：提交并 push 本分支，等待 ChatGPT Review；未经 Accepted 不合并 main 或 finalize reservation。
+
 ## Closed TASK-0021
 
 - ChatGPT Review Round 1：Accepted。
@@ -73,10 +86,13 @@ Task issuance 合入 main 并完成 `finalize` 后，必须从最新 main 新建
 
 
 
+
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-27T10:39:09Z
+- Generated: 2026-08-27T11:22:18Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`

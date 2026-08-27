@@ -2,6 +2,36 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.0] - 2026-08-27
+
+### Added
+
+- 通过正式 Candidate 与 remote-CAS allocator 创建唯一 canonical `TASK-0023 — Idea Governance & Product Roadmap`；没有手工指定编号或编辑 Registry。
+- 新增唯一 Git 源稿 `docs/roadmaps/PRODUCT_ROADMAP.md`，固定使用 `🔥 Current / 📋 Backlog / 💡 Ideas / ✅ Done` 四个分区。
+- 新增 `standards/IDEA_GOVERNANCE.md` 与 `workflows/idea-governance/README.md`，定义 ChatGPT 主动发现、分类、Task 收尾 Idea Handoff 和 Codex 更新职责。
+- 创建唯一正式飞书《AI Workspace｜产品路线图（Product Roadmap）》，自动登记到文档导航中心并默认企业内可编辑。
+
+### Changed
+
+- Core Rules、Project Instructions、Repository/Bootstrap/Global AGENTS、ChatGPT New Chat Bootstrap、AI Team 和 Architecture 纳入 Idea Governance。
+- 项目全景说明原位增加 Product Roadmap 可点击入口，保留原生项目工作流图；文档导航中心自动增加 Roadmap 链接。
+- 根目录 `ROADMAP.md` 明确只维护 Workspace 阶段建设，长期产品方向以唯一 Product Roadmap 为准。
+
+### Validation
+
+- 飞书 Product Roadmap 标题唯一且最终只保留四个固定二级分区；临时测试 Idea 成功进入 Ideas，回读后删除并恢复正式正文。
+- 文档导航中心和项目全景说明均可进入 Roadmap；Roadmap、Hub、项目全景说明正文与企业内可编辑权限回读通过，Hub 登记恢复为 15 份正式文档且链接唯一。
+- Task Registry 为 10 canonical / 0 collision；Task 23/23、Context 13/13、Memory 35/35、两个 PowerShell 入口与 Workspace Doctor 全部通过；Context refresh 为 62 sources、0 broken link、0 secret issue。
+- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled。
+
+### Boundaries
+
+- 未修改 TASK-0022、Cash Frenzy、Huuuge、Document Assistant 仓库或 Workspace Sync 运行状态；`Subagents: none`。
+
+### Recovered validation issue
+
+- 当前 Codex 会话仍连接缺少 `register_document` 的旧 MCP 进程；使用其 `get_document` 做回读后，项目全景说明的本机治理 metadata 被旧进程写回时丢失。未创建重复文档；改用 Document Assistant 当前 `main` 新进程重新登记并回读，Hub 恢复为 15 条正式文档、链接唯一。后续云验证不再调用该旧进程的写 Registry 路径。
+
 ## [0.15.2] - 2026-08-27
 
 ### Accepted

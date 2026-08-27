@@ -41,6 +41,14 @@ Git-authoritative 内容只向 provider 发布；provider-authoritative 协作�
 - duplicate、解析失败、Registry 漂移、非最新 main、main checkout、active scope ambiguity 或 lock/reservation 冲突均 fail closed。
 - companion 必须显式分类并引用存在、同 ID 的 canonical；authorization、review 不能成为第二个 canonical 执行入口。
 
+## Idea Governance
+
+- 任何值得跨对话长期保留的产品能力、长期优化、Workflow、Capability、Collector 方向或 UX 改进，不得只停留在聊天。
+- ChatGPT 主动提出这类想法时，必须先检查唯一 Product Roadmap，判断进入 `Current / Backlog / Ideas / Done`，并在相关 Task 收尾时向 Codex 提交最小 Idea Handoff；不依赖 User 再次提醒。
+- `Current` 只允许正在开发或经 User 批准即将开发的方向；`Done` 必须有实现、验证和正式 Review 证据。未经批准的长期设想不得越级。
+- Codex 是默认 Git writer：从最新 Git 防重、更新 `docs/roadmaps/PRODUCT_ROADMAP.md`、发布正式飞书版并回读；没有 writer 时只保留 Handoff/Outbox，不伪称已登记。
+- Product Roadmap 不替代 Task、Documentation Hub、Knowledge、Memory 或项目 Status，也不自动创建 Future Task。需要执行时仍通过 Candidate 和正式 allocator。
+
 ## Subagent Policy
 
 - 默认使用单 Agent。只有 User 明确要求、Task 明确允许，或存在至少两个真正独立、可并行、读多写少的工作流时，才考虑 Subagents。

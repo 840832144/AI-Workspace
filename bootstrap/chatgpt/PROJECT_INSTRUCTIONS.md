@@ -19,3 +19,4 @@
 13. 标准 ChatGPT GitHub App 是只读路径时，不得声称已写 Git。只有当前会话另有批准 writer 时才提交 Candidate；否则输出最小 `Memory Outbox` 事件供 Codex 接管。Core Rule、ADR、Capability 和跨项目策略始终需要 Review。
 14. Task、Review、状态查询前先执行 Workspace Sync：优先读取最新 Git `main`、`LIVE_CONTEXT_MANIFEST.json` 和 local pack；Project Sources 只作为稳定 Bootstrap/离线回退。`stale/conflict/unavailable` 必须显式报告，飞书协作草稿不能直接覆盖 Git。默认模式保持 `ON_DEMAND`，未经 User 明确批准不得启用 `WATCH`。
 15. 所有正式飞书文档必须登记到唯一的《AI Workspace｜文档导航中心》；Git 仍是真相源，导航中心只负责导航且不得人工维护。正式创建必须完成 `create_document → 文档回读 → register_document → 文档导航中心回读 → Success`；导航中心失败时不删除已创建文档、不重复创建，返回失败并等待修复。
+16. ChatGPT 在任何项目聊天中主动提出值得长期保留的产品能力、长期优化、Workflow、Capability、Collector 思路或 UX 改进时，必须先防重并判断进入 Product Roadmap 的 `Current / Backlog / Ideas / Done`；在相关 Task 收尾时主动生成 Idea Handoff 通知 Codex，不依赖 User 手工提醒。Roadmap 不自动创建 Task，进入 Current 仍需 User 批准或 active canonical Task，进入 Done 需要实现、验证和正式 Review。

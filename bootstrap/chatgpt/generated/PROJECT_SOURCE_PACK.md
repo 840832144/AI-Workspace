@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-27T10:39:09Z
+Generated: 2026-08-27T11:22:18Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -26,6 +26,7 @@ Generated: 2026-08-27T10:39:09Z
 13. 标准 ChatGPT GitHub App 是只读路径时，不得声称已写 Git。只有当前会话另有批准 writer 时才提交 Candidate；否则输出最小 `Memory Outbox` 事件供 Codex 接管。Core Rule、ADR、Capability 和跨项目策略始终需要 Review。
 14. Task、Review、状态查询前先执行 Workspace Sync：优先读取最新 Git `main`、`LIVE_CONTEXT_MANIFEST.json` 和 local pack；Project Sources 只作为稳定 Bootstrap/离线回退。`stale/conflict/unavailable` 必须显式报告，飞书协作草稿不能直接覆盖 Git。默认模式保持 `ON_DEMAND`，未经 User 明确批准不得启用 `WATCH`。
 15. 所有正式飞书文档必须登记到唯一的《AI Workspace｜文档导航中心》；Git 仍是真相源，导航中心只负责导航且不得人工维护。正式创建必须完成 `create_document → 文档回读 → register_document → 文档导航中心回读 → Success`；导航中心失败时不删除已创建文档、不重复创建，返回失败并等待修复。
+16. ChatGPT 在任何项目聊天中主动提出值得长期保留的产品能力、长期优化、Workflow、Capability、Collector 思路或 UX 改进时，必须先防重并判断进入 Product Roadmap 的 `Current / Backlog / Ideas / Done`；在相关 Task 收尾时主动生成 Idea Handoff 通知 Codex，不依赖 User 手工提醒。Roadmap 不自动创建 Task，进入 Current 仍需 User 批准或 active canonical Task，进入 Done 需要实现、验证和正式 Review。
 
 <!-- SOURCE: 00_CORE_RULES.md -->
 # 00 — Core Rules
@@ -150,6 +151,26 @@ human_alias  = 可选阅读别名
 
 新增游戏研究默认先经过 `Feasibility Audit → ChatGPT Review → User 决定 → Collector Adapter / Productization`，不得从聊天直接跳到完整 Collector 开发。
 
+## Idea Governance
+
+任何值得长期保留的产品想法，不允许只停留在聊天。新的产品能力、长期优化、Workflow、Capability、Collector 思路和 UX 改进必须经过防重，并进入唯一 Product Roadmap 的四个固定分区之一：
+
+```text
+🔥 Current
+📋 Backlog
+💡 Ideas
+✅ Done
+```
+
+- `Current` 只允许当前正在开发或已经批准即将开发的方向。
+- `Backlog` 保存大概率会做、但尚未批准进入当前开发的方向。
+- `Ideas` 保存长期设想、待验证方向和探索性建议。
+- `Done` 只保存已经实现、验证并完成正式 Review 的能力。
+
+ChatGPT 在任何项目聊天中主动提出值得长期保留的新方向时，必须在对应 Task 收尾时生成 Idea Handoff，主动通知 Codex 更新 Product Roadmap，不再依赖 User 手工提醒。Codex 必须读取最新 Git、防重并更新 canonical 源稿；Roadmap 更新不等于执行授权，也不会自动创建 Task。需要执行时仍由 User 决定并通过 Candidate 与正式 allocator。
+
+Product Roadmap 是长期产品规划唯一入口，不与 Task、Documentation Hub、Knowledge、Memory 或项目 Status 混合。详细规则见 `standards/IDEA_GOVERNANCE.md`。
+
 ## 证据与安全
 
 - Confirmed、Estimate、Hypothesis、Decision proposal 必须明确区分。
@@ -208,6 +229,18 @@ Git canonical truth
 
 当前 provider binding 是飞书 Drive + Docx，不是 Wiki。稳定 context ID 和 authority contract 位于 `LIVE_CONTEXT_MANIFEST.json` 与 `capabilities/context/`；folder/document ID 只留 Host-local Registry。
 
+长期产品方向使用独立治理链路：
+
+```text
+项目聊天中的长期 Idea
+→ ChatGPT 防重与 Current / Backlog / Ideas / Done 分类
+→ Task 收尾 Idea Handoff
+→ Codex 更新 Git Product Roadmap
+→ 飞书正式发布与导航中心登记
+```
+
+Product Roadmap 不替代 Task、Documentation Hub、Knowledge、Memory 或项目 Status，也不会自动创建 Future Task。
+
 核心能力保持解耦：
 
 ```text
@@ -225,7 +258,7 @@ Collector 和报告生成是两个独立功能。AI Document Assistant 只负责
 
 - GitHub：`840832144/AI-Workspace`
 - 定位：Game Planner AI Workspace 的治理与任务真相源。
-- 保存：Capability Catalog、Workflow、Skill、标准、Project Control Plane、Task、ADR、Handoff、Bootstrap。
+- 保存：Capability Catalog、Workflow、Skill、标准、Product Roadmap、Project Control Plane、Task、ADR、Handoff、Bootstrap。
 - 不保存：业务代码、运行时 endpoint、Secret、原始采集数据、私有 Registry。
 
 ### huuuge-android-research
@@ -376,6 +409,7 @@ TASK-0020 已确认结果：
 - ADR-0006 提议采用全局 `TASK-XXXX` + `project_key` + 可选 alias；
 - 14/14 disposable tests 与 PowerShell 5.1 回归通过；真实仓库当前 8 canonical、0 collision；
 - TASK-0021 已 Accepted，文档导航中心与 Workspace Sync 规则进入最终状态；
+- TASK-0023 已建立唯一 Product Roadmap 与 Idea Governance，当前等待 ChatGPT Review；Roadmap 不改变 TASK-0022 的状态或执行顺序；
 - 不执行 Cash Frenzy，不修改任何业务仓库。
 
 ## 当前 Huuuge 任务
@@ -393,6 +427,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 - `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md`：`Ready`。
 - `TASK-0021-Workspace-Live-Context-Hub.md`：`Accepted`；Live Context、Workspace Sync 和文档导航治理已完成。
+- `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md`：`Review`；唯一 Product Roadmap、Idea Governance 与两个正式文档入口已完成，等待 ChatGPT Review。
 
 并行任务必须使用独立 branch / linked worktree。TASK-0020 的 Registry 只登记 TASK-0021，不执行、改写或提前实现其飞书 / Context Hub 范围。
 
@@ -454,7 +489,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T10:39:09Z
+- Generated: 2026-08-27T11:22:18Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -466,6 +501,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Ready
 - `TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md` — Ready
+- `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md` — Review
 <!-- MEMORY-CONTEXT:END -->
 
 <!-- SOURCE: 03_NEW_CHAT_BOOTSTRAP.md -->
@@ -536,7 +572,7 @@ Review 默认采用：
 - 一条明确动作或简短 Codex 话术
 ```
 
-发现优化项时，不擅自扩大当前任务；先简要告诉 User，由 User 决定是否进入下一 Task。
+发现优化项时，不擅自扩大当前任务。值得跨对话长期保留的产品方向必须按 Idea Governance 防重并分类，在当前 Task 收尾时生成 Idea Handoff 通知 Codex 更新唯一 Product Roadmap；是否进入 Current 或创建下一 Task仍由 User 决定。
 
 ## Huuuge 请求
 
@@ -587,5 +623,6 @@ Feasibility Audit
 8. 是否涉及付费、权限、敏感信息或不可逆操作？
 9. 输出是否足够简洁、可执行？
 10. 本轮是否产生需要 Candidate/Review/Outbox 的长期记忆，且没有重复 canonical update？
+11. 本轮是否主动提出了值得长期保留的产品 Idea，并已分类和生成收尾 Handoff？
 
 如果第 5 或第 6 项无法确认，先查 Git，不要猜。

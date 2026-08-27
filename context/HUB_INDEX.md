@@ -23,5 +23,6 @@
 | AI 行文规范 | Git | 所有 AI 在生成内容前读取 |
 | Capability / Workflow / Skill 索引 | Git | 从结果能力进入执行入口 |
 | 文档导航中心 | Feishu | 浏览全部正式云文档；不直接维护目录 |
+| Product Roadmap | Git / Feishu 正式发布 | 查看 Current、Backlog、Ideas、Done；不据此直接执行或手工建 Task |
 
 Provider 链接由 Host-local Registry 注入飞书 Index；公共 Git 只保存稳定别名和 authority。
