@@ -323,3 +323,4 @@ Codex 完成后返回：
 - Boundaries：未执行 Cash Frenzy；未修改 Huuuge Collector、Lottery、Capture、document-assistant、飞书、SVN、业务仓库或本机 Global runtime。
 - Subagents: none。
 - Branch: `codex/task-0020-namespace-governance`；提交与 push 结果见最终 Codex Handoff / Review 交付。
+- Implementation commit: `126adcf3e04a20bdc43833f9fc6a65eb27375012`。

@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-08-27T07:34:17Z"
+generated_at: "2026-08-27T07:35:19Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "070744944d02b8d493c737db74bdc3d404963158"
+repository_head: "126adcf3e04a20bdc43833f9fc6a65eb27375012"
 repository_branch: "codex/task-0020-namespace-governance"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -15,7 +15,7 @@ sources:
     sha256: "a5530244b8eb930e17cd718f6ea57e482fcf6886a7ac95b7420a79e0d07e28a7"
     bytes: 5127
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "37e3df5b56f38ddfdd22de1d06fc3c51b4a9f15f619a3af27b97667355db37a7"
+    sha256: "8b697744ad42b017ca95831502290b8608966ceee8f74162529d03f951904f97"
     bytes: 7871
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "af0d17655cee5b6d972520ad9670adc541b43cdfb4666c05ea0cdec71bed58cf"
@@ -63,8 +63,8 @@ sources:
     sha256: "c357d270feab7df9e6d40c2e0f17d537dba93be5808b7eab8a6ec964f5714e21"
     bytes: 5470
   - path: "handoff/CODEX.md"
-    sha256: "225bccfaf1705f522b2b8d945458333c359f95539a8211df908f94c5aab12049"
-    bytes: 6897
+    sha256: "689e4d1f97c91fef5c9f842c5b64f760c904246ed60eede89bcaf14f878a7301"
+    bytes: 6966
   - path: "skills/README.md"
     sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
     bytes: 1797
@@ -144,8 +144,8 @@ sources:
     sha256: "7f3ff8103e443f3757fcc7dca5132e88e5ca85603dfa8a4ff1cccb6c5c2c7bdf"
     bytes: 17739
   - path: "tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md"
-    sha256: "ba30357be5d7a168f927780d5c70f5796ee448e2a6740bdff80f36a2dd3aee9a"
-    bytes: 13813
+    sha256: "1fe04c6db0df5e6c32a5fd035294d5269570fd28990058d624907e306cc50869"
+    bytes: 13884
   - path: "tasks/TASK-0021-Workspace-Live-Context-Hub.md"
     sha256: "00c97f9778594b5e17e8658dc2dc72fb068cb2aabb964d2aee206254d63c9f10"
     bytes: 20631
