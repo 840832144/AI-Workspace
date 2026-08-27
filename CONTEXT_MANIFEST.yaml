@@ -1,9 +1,9 @@
 schema_version: "1.0"
-generated_at: "2026-08-27T09:22:42Z"
+generated_at: "2026-08-27T09:26:51Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "058887993a5d0aa98df68b814b8adc72477cdaf7"
-repository_branch: "codex/task-0021-live-context"
+repository_head: "ac6d3edc6168c486f5c82f1f272dd4047de7dc4e"
+repository_branch: "codex/cash-frenzy-feasibility-issuance"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
 private_repositories: "not read"
@@ -12,29 +12,29 @@ sources:
     sha256: "c067aa35bc2ce639101a52f86d05bf4a4544898aeca3ac8ecfc1f2522d875b27"
     bytes: 8334
   - path: "bootstrap/chatgpt/01_SYSTEM_CONTEXT.md"
-    sha256: "421f861229241e3d5bfcc2166b636d3ae5c4ae9363734c491a631714f826de9e"
-    bytes: 5617
+    sha256: "df8c538ce21ff9d72e864bb502bda2bb5ed8dd9b76f199dea566c748a33d3adb"
+    bytes: 5633
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "a48d698b95122538367252103ee3e29e3dc7bb3fff3c630b6453c9780473c1e2"
-    bytes: 8105
+    sha256: "c05ad94d8159e6988c177d9d997a43acee39e135850e076f63c62f51780d18c7"
+    bytes: 8180
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "33517605d9e3b3c9c098b4cbb325e434aa0a22d56e2ddeb40b2bc1d8496fb942"
     bytes: 5366
   - path: "bootstrap/chatgpt/PROJECT_INSTRUCTIONS.md"
-    sha256: "f8e3507bebc1ea527d6e915f13a3e2f5243a7688f8332bc728f12355abc3f7a2"
-    bytes: 3607
+    sha256: "113d86bbabfd9f79425964b7fd373ac8ce89d8ce89f66a983b5cd7285bdda299"
+    bytes: 3612
   - path: "bootstrap/chatgpt/README.md"
-    sha256: "d10070811bfc6d8d307111663b1c986aa1ef64123dc1b8798f699b134ea6c791"
-    bytes: 1943
+    sha256: "46a10057a64ca0a46fc2ad6dbbde7ec94e358490d4bb3e0e25dbe4a8f99c9897"
+    bytes: 1948
   - path: "capabilities/README.md"
-    sha256: "ffe8830ae8cdf58e98b2bf122ad8add8838f117f78bda1d4bf3faac0a54a2ed1"
-    bytes: 3406
+    sha256: "8f0102b574ef94b13a2f2726bd99580a9e970f1484a4ecb287227725139d62d3"
+    bytes: 3408
   - path: "capabilities/context/README.md"
-    sha256: "e11de5245f5a4be65eea4b23642d72c616ac0e548172025a7944d300a1785af2"
-    bytes: 4051
+    sha256: "abcebbc75eaa2a97899a7650ef126a83f79561ce306c7a071af1e3938d7d3b93"
+    bytes: 4111
   - path: "capabilities/document/README.md"
-    sha256: "bda14c9189d31ffe586dd98157eb0fe8fa9f29428d0d1d63b4a7e63a02390442"
-    bytes: 5516
+    sha256: "e746215bd7ce37742a7252142b397176327a5817d8899e7cf2a6228c238985f9"
+    bytes: 5520
   - path: "capabilities/memory/README.md"
     sha256: "8c1b6c1fc4e9e35c87f1afde47efdbe3be9b18b7578af35591658fe16f5903e4"
     bytes: 5723
@@ -54,14 +54,14 @@ sources:
     sha256: "f4f7919d982f9624449651a266f87afe4df06f02c663284841467a574f64af8f"
     bytes: 4390
   - path: "docs/adr/ADR-0006-Task-Identity-and-Allocation.md"
-    sha256: "dbc646c18dfc89f4f31bf9a7326a6114e9be47dbcb1201925a3af65199e77761"
-    bytes: 7043
+    sha256: "39972586bafddb2f77a642ad576e8f404fa5a248c271c6f3c0ae0cd51fc02a38"
+    bytes: 7044
   - path: "docs/adr/ADR-0007-Workspace-Live-Context-Hub.md"
-    sha256: "c881ab196d27dc7e6d6bff4eb3b1babc210f9a5bf772d210c17f34639c306f28"
-    bytes: 2679
+    sha256: "1884b2188d3b5de5bb7d6252cef07762a00ff34e9280685ccb0f03c2fc9ebd89"
+    bytes: 2720
   - path: "docs/adr/README.md"
-    sha256: "f7a8cade27c0b225c4363692bb1c8f2e9044fa12ed6d3f51a3b3c7345431e2b2"
-    bytes: 1420
+    sha256: "1311345e98797d4813c74a37ed10844edf82c36600690ac083d8eea8fa082cd8"
+    bytes: 1422
   - path: "docs/incidents/INCIDENT-0001-DUPLICATE-TASK-ID.md"
     sha256: "4825d43d3e66d834a2e514ac9291d081a1948046fd191cf3745908249aba76d5"
     bytes: 4387
@@ -69,8 +69,8 @@ sources:
     sha256: "c357d270feab7df9e6d40c2e0f17d537dba93be5808b7eab8a6ec964f5714e21"
     bytes: 5470
   - path: "handoff/CODEX.md"
-    sha256: "8825020e3e5ce573f4dc10ae2b90227fc4474c0f44cf6619353a79e6f3506b4a"
-    bytes: 5019
+    sha256: "56ddd7378c78e4125c682f8fc64878c7ffb408322c88d95fd73d35a1ae62ca51"
+    bytes: 2818
   - path: "skills/README.md"
     sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
     bytes: 1797
@@ -120,11 +120,11 @@ sources:
     sha256: "eeb88fd91c79899370784c6faa6a529af8d35e309cb33065e322d14d20423c2a"
     bytes: 5890
   - path: "standards/PLANNER_WRITING_STYLE.md"
-    sha256: "3aa1df26f4308a462bc9bc64c3abb54f5ddd5ff70aad46fafa14905c8db77e25"
-    bytes: 2393
+    sha256: "4a634d2cb5e5a2af6d5c4e8de39d5dca8e18db2f49696ce7cefbd6253bf76adf"
+    bytes: 2442
   - path: "standards/README.md"
-    sha256: "67c4592dd6e295bbe4d5a923fab6bab2b995506d3e7562f4b64ff4c5414b6ebc"
-    bytes: 2023
+    sha256: "205ef6746abb3000103f3089cc9593d41fc6b77f417d93f6fc6a34937b84dada"
+    bytes: 2028
   - path: "tasks/README.md"
     sha256: "243be3c488fed873f23e3c68b821dfd36a7140750451fc05fd7bd69e318165ec"
     bytes: 4637
@@ -153,29 +153,32 @@ sources:
     sha256: "7f3ff8103e443f3757fcc7dca5132e88e5ca85603dfa8a4ff1cccb6c5c2c7bdf"
     bytes: 17739
   - path: "tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md"
-    sha256: "13a6959e10bc655e09d70d31caaa31933be0fb358a9659aee09965c7f228d6d6"
-    bytes: 17004
+    sha256: "8edd5dd05cf60699fad2aadcbeaf22c572db513cded9d69c76a55a1a01a7df6e"
+    bytes: 17010
   - path: "tasks/TASK-0021-Workspace-Live-Context-Hub.md"
-    sha256: "cd55f85df932575c6e190b1ef2a63c1e791bbab5243ca20dda20c2204a9d32cf"
-    bytes: 22862
+    sha256: "5c994d9f0258e43af8bf23190a84ff4e195e2f13f86fb60ff85e8d8167a37756"
+    bytes: 22886
+  - path: "tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md"
+    sha256: "0e8d869c8f5c7943ca6b960455377a2248723e9881a50a8202b90815e039be3f"
+    bytes: 7198
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "eab0e23b684052e60326341e6eda1c6bd5f4da49e12eaf110d0cc4f15bebe818"
-    bytes: 8607
+    sha256: "bc5fdff0a0d265024812d1bb406e887c2f983d134d8d3d98f903cc66d3632c24"
+    bytes: 9166
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
-    sha256: "c91aba736f7af48fd37cb5f2518ff6c1050c79df79590f0ffbf924a94a526ef0"
-    bytes: 12531
+    sha256: "4d1007ad1c868ac34e7c4761218c681d8647d1129eea07cbdc411b5a6f6558ff"
+    bytes: 12311
   - path: "tasks/candidates/README.md"
     sha256: "89820e73a5c089de7031c3f6c825ddaad9321a541f2b6411ce0c39157addc648"
     bytes: 1810
   - path: "workflows/README.md"
-    sha256: "c7507fada356ed2826ced828f653699a7ba969985e17987410692a0a20debb3a"
-    bytes: 643
+    sha256: "d9582cd8617eb95a7185b82bb15298d7ed2732eb9306867978bcc80e3c53db4a"
+    bytes: 646
   - path: "workflows/memory-curation/README.md"
     sha256: "c85ae4d95ff5b3cac58b958538af7c768103ad7bd7fc82488b8a5aa14375c5ca"
     bytes: 1720
   - path: "workflows/workspace-sync/README.md"
-    sha256: "e3bd059f29d70d18b0369c90ef62914e98eb87f5cad0f6f6fa05b68b780cdcfd"
-    bytes: 2579
+    sha256: "87d7fd36c42e138a35de622800fe38879364eafee16c913ad0f890c1913935c5"
+    bytes: 2617
 checks:
   secret_issues: 0
   broken_links: 0

@@ -2,6 +2,23 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.15.0] - 2026-08-27
+
+### Added
+
+- User 明确批准 Cash Frenzy Collector Feasibility Candidate 后，正式 `task_cli.py promote` 通过 remote-CAS allocator 分配唯一 canonical ID `TASK-0022`。
+- 新增 `tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md`；完整规格保留 Candidate provenance，Task 初始状态为 Ready。
+
+### Changed
+
+- `CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY` 的 User decision 更新为 `Approved`，状态由 Candidate 更新为 Migrated，并记录实际 canonical 路径。
+- Task Registry 由 allocator 自动重建为 9 canonical、2 companion、1 个已 Migrated Candidate record、6 Review、0 collision；当前待决 Candidate 为 0，未手工编辑 Registry。
+
+### Boundaries
+
+- Task issuance 阶段尚未创建模拟器、拉取 APK、启动 Capture 或访问业务数据；reservation 保持 `pending-main`，待 canonical 进入 main 后执行 `finalize`。
+- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled；未修改 Huuuge、SVN、飞书或业务仓库；`Subagents: none`。
+
 ## [0.14.1] - 2026-08-27
 
 ### Accepted
