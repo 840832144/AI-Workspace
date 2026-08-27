@@ -1,6 +1,6 @@
 # TASK-0016 — Automatic Cross-Conversation Memory Capture & Curation
 
-- Status: In Progress
+- Status: Review
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1
@@ -373,3 +373,14 @@ Codex 完成后必须返回：
 - 自动捕获、自动晋升、Review、Outbox 的 Pilot 结果；
 - Project Source Pack 刷新方式；
 - 未解决限制和下一 Task 候选。
+
+## Execution Result
+
+- Reuse-first 调研完成：采用 OpenAI 原生 memory / Codex hooks 作为 Host recall 与 lifecycle 层，以 Git 作为可审计长期真相源；借鉴 Mem0、Letta/MemFS、LangMem、Graphiti 的分层与候选思想，但本阶段不安装、Fork 或引入外部服务。
+- 已实现 Memory Capability、governance、ADR、schema、Public/Private/Local-only 路由、OFF/ASSISTED/AUTO、Windows 入口、ChatGPT/Codex/Generic adapters、Context refresh 与 disabled hook reference。
+- `AUTO` 仅在隔离 Pilot 自动晋升一个新建、Public-safe、低风险 Solution；production 默认及最终模式均为 `ASSISTED`，未安装 hook。
+- 17/17 单元测试通过；隔离 Pilot captured 2、promoted 1、review 1、local-only/Outbox 3、OFF suppressed 1、failed 0。
+- 实际 AI-Workspace refresh 生成 Manifest、Current State、Source Pack 和替换清单；私有仓库未读取，ChatGPT Project Source 更新明确为 manual upload required。
+- Implementation commit: `ea4b758`（rebase 后 hash）。最终交接提交另见 `handoff/CODEX.md` 所在 Git HEAD。
+- Subagents: none。
+- 未修改 Huuuge 仓库、运行中的 Collector、当前 Capture、SVN、飞书文档、Document Assistant 或 Global runtime。

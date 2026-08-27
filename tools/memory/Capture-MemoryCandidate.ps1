@@ -60,5 +60,6 @@ if ($ForceOutbox) { $captureArguments += '--force-outbox' }
 if ($GitCommit) { $captureArguments += '--git-commit' }
 if ($GitPush) { $captureArguments += '--git-push' }
 
-& (Join-Path $PSScriptRoot 'Invoke-MemoryCli.ps1') @globalArguments @captureArguments
+$commandArguments = @($globalArguments + $captureArguments)
+& (Join-Path $PSScriptRoot 'Invoke-MemoryCli.ps1') -CliArguments $commandArguments
 exit $LASTEXITCODE

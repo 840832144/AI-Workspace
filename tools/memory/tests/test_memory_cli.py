@@ -11,6 +11,10 @@ import unittest
 
 CLI = Path(__file__).resolve().parents[1] / "memory_cli.py"
 CAPTURE_PS1 = CLI.with_name("Capture-MemoryCandidate.ps1")
+STATUS_PS1 = CLI.with_name("Get-MemoryStatus.ps1")
+MODE_PS1 = CLI.with_name("Set-MemoryMode.ps1")
+CURATE_PS1 = CLI.with_name("Curate-MemoryCandidates.ps1")
+REFRESH_PS1 = CLI.with_name("Refresh-ProjectContext.ps1")
 
 
 class MemoryCliTests(unittest.TestCase):
@@ -229,6 +233,25 @@ class MemoryCliTests(unittest.TestCase):
         output = json.loads(result.stdout.splitlines()[-1])
         self.assertEqual("captured", output["status"])
         self.assertTrue(Path(output["path"]).exists())
+
+    @unittest.skipUnless(sys.platform.startswith("win"), "PowerShell wrapper test is Windows-specific")
+    def test_powershell_thin_wrappers_do_not_append_empty_argument(self) -> None:
+        commands = (
+            [str(STATUS_PS1), "-Root", str(self.root), "-StateDir", str(self.state)],
+            [str(MODE_PS1), "-Mode", "Assisted", "-Root", str(self.root), "-StateDir", str(self.state)],
+            [str(CURATE_PS1), "-Root", str(self.root), "-StateDir", str(self.state)],
+            [str(REFRESH_PS1), "-Root", str(self.root), "-StateDir", str(self.state)],
+        )
+        for command in commands:
+            result = subprocess.run(
+                ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", *command],
+                text=True,
+                encoding="utf-8",
+                capture_output=True,
+            )
+            self.assertEqual(0, result.returncode, msg=result.stdout + result.stderr)
+            self.assertTrue(result.stdout.strip(), msg=result.stderr)
+            json.loads(result.stdout.splitlines()[-1])
 
 
 if __name__ == "__main__":

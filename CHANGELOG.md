@@ -2,6 +2,36 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.11.0] - 2026-08-27
+
+### Added
+
+- TASK-0016：新增 Git-backed Memory Capability、治理标准、ADR-0005、Memory Event/Candidate/Review schema、Inbox/Review/Archive/Index 与 Public-safe Solution 目录。
+- 新增跨平台 Python 标准库实现和 Windows PowerShell 入口，支持 Capture、Validate、Curate、Refresh、Status 与 OFF/ASSISTED/AUTO 模式切换。
+- 新增 ChatGPT Project、Codex、Generic IDE Agent adapters，以及默认禁用的 Codex SessionEnd hook reference。
+- 新增 Context Manifest、ChatGPT Project Source Pack、Source replacement list 和隔离 Pilot。
+
+### Changed
+
+- Global/Project AGENTS、ChatGPT 00–03 Sources、AI Team、Architecture、Capability Catalog 和相关 README 加入 source-side Memory Check 与安全路由。
+- Reuse-first 结论采用 OpenAI 原生 recall/lifecycle 能力与 Git 真相源的组合；不安装外部 Memory SaaS、数据库或高权限 App。
+- Production 和仓库默认模式为 `ASSISTED`；`AUTO` 只在隔离 Pilot 验证受限的低风险新 Solution 晋升。
+
+### Fixed
+
+- 最终回归发现 PowerShell `ValueFromRemainingArguments` 会把省略参数转成空字符串；薄 wrapper 现在构造显式命令数组并以命名参数交给通用 launcher，Status/Mode/Curate/Refresh 一键入口均加入真实回归。
+
+### Validation
+
+- 17/17 单元测试通过，覆盖 schema/fingerprint、Secret、dedup、conflict、concurrency、rollback/no-overwrite、Git gate、dirty sync fail-closed、Windows named parameters 和所有无额外参数的薄 wrapper。
+- 隔离 Pilot：captured 2、promoted 1、review 1、local-only/Outbox 3、OFF suppressed 1、conflicts 0、failed 0；未虚构 false-positive 或 missed-capture rate。
+- 最终 AI-Workspace refresh：41 public control-plane sources、0 Secret issue、0 broken link、private repositories not read、manual upload required。
+
+### Boundaries
+
+- 未安装或激活 Global hook，未切换 production AUTO，未自动替换 ChatGPT Project Sources，未创建外部服务、私有 Context Hub 或新权限。
+- 未修改 Huuuge 仓库、运行中的 Collector、当前 Capture、SVN、飞书云文档、Document Assistant 或其他业务仓库。
+
 ## [0.10.1] - 2026-08-27
 
 ### Fixed

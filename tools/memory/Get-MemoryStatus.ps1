@@ -8,5 +8,7 @@ param(
 $globalArguments = @()
 if ($Root) { $globalArguments += @('--root', $Root) }
 if ($StateDir) { $globalArguments += @('--state-dir', $StateDir) }
-& (Join-Path $PSScriptRoot 'Invoke-MemoryCli.ps1') @globalArguments status @CliArguments
+$commandArguments = @($globalArguments + @('status'))
+if ($CliArguments) { $commandArguments += $CliArguments }
+& (Join-Path $PSScriptRoot 'Invoke-MemoryCli.ps1') -CliArguments $commandArguments
 exit $LASTEXITCODE

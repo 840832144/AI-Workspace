@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-27T04:17:31Z
+Generated: 2026-08-27T04:22:54Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -283,6 +283,7 @@ _Last reviewed: 2026-08-27_
 - AI Document Assistant 已接入 Codex，可读写飞书云文档并自动设置企业内可编辑权限。
 - Codex 跨项目 Global AGENTS 已采用 Capability-first / Reuse-first 规则。
 - Codex 1+4 Subagent Pilot 已通过 Review；默认 `OFF`，可在受限权限和适合的复杂任务中手动启用。
+- Git-backed Automatic Memory 已完成 TASK-0016 实施并进入 Review；production 默认 `ASSISTED`，AUTO 仅完成隔离验证，Global hook 未激活。
 - “策划在新电脑上按文档和 AI 引导完成采集与文档流程”的首轮验收暂定通过，后续通过真实使用继续优化。
 
 ## 当前 Huuuge 任务
@@ -304,6 +305,13 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 如果 Git 中该 Task 已更新或结束，以 Git 最新内容为准。
 
 ## 当前重要决策
+
+### Automatic Memory
+
+- Git 是可审计、可回滚的长期真相源；ChatGPT Project Memory / Codex memory 只作为 recall layer。
+- Public-safe Candidate 可进入 AI-Workspace；Project Private、Cross-project Private、Local-only、Unknown 或 writer-unavailable 内容进入批准的私有目标或本机 Outbox，默认不公开。
+- Production 当前保持 `ASSISTED`。Canonical 规则、ADR、架构、冲突、高影响和敏感内容即使在 AUTO 也必须 Review。
+- ChatGPT Project Source Pack 可一键生成，但当前替换仍需人工上传。
 
 ### Collector / Analysis / Report / Document 解耦
 
@@ -343,7 +351,7 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-27T04:17:31Z
+- Generated: 2026-08-27T04:22:54Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -353,8 +361,9 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 
 - `TASK-0014-Codex-Subagent-Pilot.md` — Review
 - `TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md` — Ready
-- `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — In Progress
+- `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — Review
 - `TASK-0016-EXECUTION-AUTHORIZATION.md` — Ready
+- `TASK-0017-Codex-Desktop-Proxy-WebSocket-Reconnect.md` — Ready
 <!-- MEMORY-CONTEXT:END -->
 
 <!-- SOURCE: 03_NEW_CHAT_BOOTSTRAP.md -->

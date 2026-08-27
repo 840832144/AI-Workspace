@@ -11,5 +11,6 @@ if ($StateDir) { $globalArguments += @('--state-dir', $StateDir) }
 $refreshArguments = @('refresh')
 if ($Sync) { $refreshArguments += '--sync' }
 if ($IncludeRegisteredRepositories) { $refreshArguments += '--include-registered-repositories' }
-& (Join-Path $PSScriptRoot 'Invoke-MemoryCli.ps1') @globalArguments @refreshArguments
+$commandArguments = @($globalArguments + $refreshArguments)
+& (Join-Path $PSScriptRoot 'Invoke-MemoryCli.ps1') -CliArguments $commandArguments
 exit $LASTEXITCODE

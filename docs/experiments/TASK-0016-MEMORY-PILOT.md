@@ -63,7 +63,7 @@
 
 ## Regression Evidence
 
-`python -m unittest discover -s tools/memory/tests -v`：16/16 passed。
+`python -m unittest discover -s tools/memory/tests -v`：17/17 passed。
 
 覆盖：
 
@@ -82,7 +82,7 @@
 - dirty repository 下请求 sync 时 fail-closed，不声称已是 latest。
 - Windows PowerShell named-parameter capture wrapper。
 
-实际 AI-Workspace refresh：40 sources、0 Secret issue、0 broken link、private repositories not read。
+最终 AI-Workspace refresh：41 sources、0 Secret issue、0 broken link、private repositories not read。第 41 个 source 来自并发加入远端 `main` 的 TASK-0017；本轮仅安全 rebase 和索引，没有执行该任务。
 
 ## User Decision Applied
 
