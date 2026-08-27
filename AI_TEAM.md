@@ -21,6 +21,7 @@ AI Team 由 User、ChatGPT 和 Codex 共同组成，为游戏策划工作形成�
 - 审阅方案完整性、领域一致性、证据质量和策划可读性。
 - 汇总跨系统信息，但不把未经验证的推断写成当前事实。
 - 通过 `handoff/CHATGPT.md` 接收和交付固定格式的状态。
+- 主审 Memory Capability contract、AUTO allowlist、冲突和高影响 Candidate；不把 Project Memory recall 当作 Git Review 证据。
 
 ### Codex
 
@@ -32,6 +33,7 @@ AI Team 由 User、ChatGPT 和 Codex 共同组成，为游戏策划工作形成�
 - 不用实现结果替代缺失的产品决策，不擅自扩大任务范围。
 - 通过 `handoff/CODEX.md` 接收和交付固定格式的状态。
 - Codex 主 Agent 是同一工作区的唯一写入者；只读 Subagent 只能承担独立探索、资料检索、证据核验和 Review。
+- 作为默认 Git writer 与 Curator executor，执行 deterministic validation、路由、Context refresh、测试和可回滚提交；writer 不可用时保留 sanitized Outbox。
 
 ## Codex Subagent Pilot
 
@@ -64,6 +66,8 @@ AI Team 由 User、ChatGPT 和 Codex 共同组成，为游戏策划工作形成�
 | --- | --- | --- |
 | 架构、RFC、Workflow、Skill 设计 | ChatGPT | 产出规范、审阅标准和使用边界 |
 | Capability Catalog 与 Capability Discovery | ChatGPT | 从 User Outcome 定义稳定契约、Operation、等级和成功证据 |
+| Memory contract、Governance 与高影响 Review | ChatGPT / User | 定义 scope、AUTO allowlist、冲突与 production mode gate |
+| Memory reference implementation、Curator 与 Git evidence | Codex | 实施 deterministic gate、Host adapter、Context refresh 和隔离测试 |
 | Git、测试、自动化、部署工具 | Codex | 负责安全执行、验证和提交记录 |
 | Excel、SQL、Python 分析工具 | Codex | 仅在项目授权和已定义 Workflow 下执行 |
 | Implementation Binding 与 Tool 选择 | Codex / 当前 Host | 在 Capability 已确定后检查实际 schema，选择最小副作用、可验证的批准实现 |

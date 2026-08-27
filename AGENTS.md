@@ -21,3 +21,13 @@ Rules:
 - Preserve project repositories as the source of truth for implementation.
 - Update the relevant handoff and project Status when work changes shared state.
 - Commit documentation and coordination records together, then push before handoff.
+
+## Memory Check
+
+After a substantive Task, Review, decision, reusable fix, workflow change or Handoff, silently check whether durable information was created. Follow `standards/MEMORY_GOVERNANCE.md`:
+
+- never store a full transcript, Secret, Raw Capture, account data, full response or sensitive log;
+- route Public-safe content to a Candidate, project-private content to its private repository, and unavailable/unclear routes to the local Outbox;
+- run deterministic validation before Git write and never silently overwrite canonical memory;
+- respect the Host-local OFF / ASSISTED / AUTO mode;
+- update canonical Task, Status and Handoff directly when the current task already requires those changes; do not create a duplicate Candidate for the same edit.

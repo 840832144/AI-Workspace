@@ -90,3 +90,11 @@ User 目标
 - 公司 SVN：策划可用的正式发布包和公司资源分发。
 
 项目来源和 Project Memory 只是便于新对话读取的上下文快照，不替代上述真相源。
+
+## Automatic Memory
+
+- 重要内容在产生时先转成结构化 Candidate，不依赖事后遍历全部聊天。
+- Candidate 只保留摘要、来源、evidence、scope 和 sensitivity，不保存完整 transcript。
+- Public / Project Private / Cross-project Private / Local-only 分流；不明确时禁止写公共 Git。
+- Project Memory 与 Host local memory 是 recall layer，Git 和业务仓库仍是 canonical source。
+- OFF / ASSISTED / AUTO 是独立 kill switch；生产默认 ASSISTED，AUTO 不能绕过高影响 Review gate。

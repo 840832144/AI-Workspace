@@ -68,3 +68,20 @@ AI-Workspace/tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md
 - Reuse-first Solution Discovery：本地、内部、官方、成熟开源优先，自研最后。
 - 多实例独立数据库与跨账号脱敏聚合模型。
 - Workspace Sync：Git → SVN / 飞书，当前仍处于设想与后续规划阶段。
+
+<!-- MEMORY-CONTEXT:START -->
+## Automatic Memory Context
+
+- Generated: 2026-08-27T04:17:31Z
+- Effective mode during refresh: `ASSISTED`
+- Context Manifest: `CONTEXT_MANIFEST.yaml`
+- Project Sources update: `manual upload required`
+- Private repositories: not read by default; explicit registry and authorization required
+
+### Active public control-plane tasks
+
+- `TASK-0014-Codex-Subagent-Pilot.md` — Review
+- `TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md` — Ready
+- `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — In Progress
+- `TASK-0016-EXECUTION-AUTHORIZATION.md` — Ready
+<!-- MEMORY-CONTEXT:END -->

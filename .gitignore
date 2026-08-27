@@ -17,3 +17,11 @@ credentials*
 # Temporary output
 *.tmp
 *.log
+
+# Host-local Memory Capability state
+.memory-local/
+.memory.lock
+
+# Python cache
+__pycache__/
+*.py[cod]

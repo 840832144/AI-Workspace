@@ -126,3 +126,15 @@ Raw 数据不跨账号直接合并；聚合层统一字段和统计口径后，�
 ## 项目记忆与跨对话
 
 ChatGPT Project 的项目指令、来源文件和同一 Project 内的历史对话用于减少重复说明；新对话仍必须在涉及“当前状态、是否已实现、Task、commit、运行结果”时查询 Git 或相应受控系统，不能把项目记忆当作实时数据库。
+
+### Git-backed Memory Capability
+
+```text
+Conversation / Agent
+→ Memory Event / Candidate
+→ deterministic validator + scope router
+→ ASSISTED Review / AUTO allowlist promotion / Local Outbox
+→ Canonical Git + Context Manifest + Project Source Pack
+```
+
+标准 ChatGPT GitHub App 只读时使用 Outbox handoff；Codex 是默认 Git writer/Curator。Global hook、外部服务和生产 AUTO 不在默认接入中。

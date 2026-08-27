@@ -90,6 +90,16 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\codex\Get-Co
 - MANUAL 的长期安全前提是受限父会话。除非 Codex 提供可靠 live permission introspection，否则不得把提示信息升级为“自动检测通过”。
 - 以上只是下一个 Task 候选，本轮不实施；是否长期开启 MANUAL 由 User 决定。
 
+
+<!-- MEMORY-REFRESH:START -->
+## Memory Context Refresh
+
+- Generated: 2026-08-27T04:17:31Z
+- Effective mode: `ASSISTED`
+- Manifest: `CONTEXT_MANIFEST.yaml`
+- ChatGPT Project Sources: `manual upload required`
+- Private repositories: not read unless explicitly registered and authorized
+<!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
 ChatGPT 复审两个 Required Fix，给出 `Accepted` 或 `Needs changes`。Review 前不启用 MANUAL，不扩大角色、并发或 Host 范围。

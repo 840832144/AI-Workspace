@@ -36,6 +36,9 @@ AI-Workspace/
 ├── workflows/         # 游戏策划工作流规范
 ├── templates/         # RFC、ADR、项目和交接模板
 ├── standards/         # 命名、证据、安全和文档标准
+├── memory/            # Public-safe Candidate、Review、Archive 与索引
+├── solutions/         # 已验证、可复用的 Public-safe Solution records
+├── tools/memory/      # Memory reference implementation 与 Windows 入口
 ├── projects/          # 游戏项目控制面与统一模板
 ├── handoff/           # ChatGPT / Codex 固定交接入口
 ├── bootstrap/         # 新环境、Global AGENTS 与 Codex Agent 模板
@@ -73,8 +76,12 @@ AI-Workspace/
 
 当前阶段只建立 Workspace Kernel、能力模型、Capability Roadmap、技能树和游戏项目标准，不迁移现有项目，也不实现业务功能。
 
+TASK-0016 增加了治理控制面的 Memory reference implementation；它只处理 public-safe 元数据、Candidate 和 Context refresh，不把本仓库变成通用 Agent memory service，也不承载私有业务数据。
+
 ## Capability Discovery 边界
 
 跨项目 Capability Discovery 和共享 Document Capability 规则属于 Global Codex 层。版本化模板见 [`bootstrap/AGENTS.md`](bootstrap/AGENTS.md)，实际运行文件位于 `~/.codex/AGENTS.md`。公共 AI-Workspace 提供 [`Capability Catalog`](capabilities/README.md)；策划先识别结果契约，再由当前 Host 选择实现。
 
 AI-Workspace 维护 Capability contract、Game Design 使用边界、Workflow 和验收证据，但不维护运行时工具目录、安装入口、endpoint、credential 或连接状态。`Document Capability` 的稳定契约见 [`capabilities/document/README.md`](capabilities/document/README.md)；Document Assistant 是当前实现 provider，其源码和配置继续以外部仓库与受控环境为准。
+
+`Memory Capability` 的稳定契约见 [`capabilities/memory/README.md`](capabilities/memory/README.md)。版本化 reference implementation 属于本仓库治理自动化，但 Host-local mode、Outbox、hook activation 和私有 repository registry 不进入公共 Git。

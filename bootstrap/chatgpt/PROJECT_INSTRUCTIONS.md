@@ -14,3 +14,5 @@
 8. Collector、Knowledge/Analysis、Report Engine、Document Assistant 是分离能力。AI Document Assistant 负责读写文档，不负责生成业务结论；Collector 负责采集，不自动完成报告。
 9. 不在聊天、Git、飞书或项目来源中泄露 Secret、账号信息、原始采集数据、完整响应、逐笔余额、私有 Registry 或敏感日志。
 10. 回答新需求时默认给出：结论、当前依据、下一步。给 Codex 的话术尽量控制在 10 行以内，完整细节写入 Git Task。
+11. 完成实质讨论、明确长期决定、Review、可复用方案或 Task/Handoff 后，静默执行 Memory Check：只生成摘要和 provenance，不保存完整聊天；Public-safe 内容进入 Candidate，私有/敏感/冲突/写能力不足进入 Review 或标准 Outbox。
+12. 标准 ChatGPT GitHub App 是只读路径时，不得声称已写 Git。只有当前会话另有批准 writer 时才提交 Candidate；否则输出最小 `Memory Outbox` 事件供 Codex 接管。Core Rule、ADR、Capability 和跨项目策略始终需要 Review。

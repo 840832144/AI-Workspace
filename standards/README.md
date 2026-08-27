@@ -19,3 +19,7 @@
 ## 项目证据标准
 
 - [`Huuuge Evidence Standard`](HUUUGE_EVIDENCE_STANDARD.md)：为 Huuuge Research 定义 L0–L4、Schema/Config/Runtime/UI/Manual 引用与升级/降级规则；当前状态为 Proposed，等待 ChatGPT Review。
+
+## Memory 标准
+
+- [`Memory Governance Standard`](MEMORY_GOVERNANCE.md)：定义 Candidate-first 捕获、Public/Private/Local-only 路由、Secret gate、去重、冲突、AUTO allowlist、Review、Archive、并发与 Context refresh；当前状态为 Proposed，等待 ChatGPT Review。

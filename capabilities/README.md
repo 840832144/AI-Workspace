@@ -38,6 +38,7 @@ Capability 是否存在与当前 Host 是否有可用实现是两个状态：
 | ID | Capability | Outcome | Scope | Contract | Contract status | Implementation status |
 | --- | --- | --- | --- | --- | --- | --- |
 | `CAP-DOC` | Document Capability | 发现、读取、创建、维护、发布和授权公司文档 | Shared platform，供 Game Design 等项目消费 | [`document/README.md`](document/README.md) | Registered | Document Assistant baseline available on approved Hosts；以实际会话为准 |
+| `CAP-MEM` | Memory Capability | 捕获、验证、路由、整理和刷新跨对话长期记忆 | Shared governance，供 Game Design 项目消费 | [`memory/README.md`](memory/README.md) | Registered / Waiting for ChatGPT Review | AI-Workspace reference implementation available；Host adapter 以实际会话为准 |
 
 ## 边界
 

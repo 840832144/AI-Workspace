@@ -9,6 +9,7 @@
 3. 读取 `02_CURRENT_STATE.md`。
 4. 判断当前请求属于：讨论、设计、执行话术、当前状态查询、Review、文档生成或排障。
 5. 只要请求涉及当前 Task、功能是否已实现、最新 commit、运行状态、给 Codex 下任务或 Review，先查询 Git 中的最新信息。
+6. 读取 `CONTEXT_MANIFEST.yaml` 和 Project Source replacement 状态；Project Sources 是快照，出现 `manual upload required` 时以 Git 为准。
 
 ## 发给 Codex 任务前
 
@@ -85,5 +86,6 @@ Confirmed / Estimate / Hypothesis / Decision proposal
 6. 当前请求是否已有可复用 Capability 或工具？
 7. 是否涉及付费、权限、敏感信息或不可逆操作？
 8. 输出是否足够简洁、可执行？
+9. 本轮是否产生需要 Candidate/Review/Outbox 的长期记忆，且没有重复 canonical update？
 
 如果第 5 项无法确认，先查 Git，不要猜。

@@ -1,0 +1,17 @@
+{
+  "description": "TASK-0016 disabled reference only. Do not install without User activation approval.",
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File <AI_WORKSPACE>\\tools\\memory\\hooks\\Codex-MemoryCheck.ps1",
+            "timeout": 3,
+            "statusMessage": "Recording a transcript-free memory check"
+          }
+        ]
+      }
+    ]
+  }
+}

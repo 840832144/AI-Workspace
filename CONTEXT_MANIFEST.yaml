@@ -1,0 +1,134 @@
+schema_version: "1.0"
+generated_at: "2026-08-27T04:17:31Z"
+memory_mode: "ASSISTED"
+repository_scope: "public-control-plane"
+repository_head: "5620c10de7593d5afd5c3a1e5ddc5de7d23d284d"
+repository_branch: "main"
+repository_dirty_before_refresh: true
+repository_sync: "not-requested"
+private_repositories: "not read"
+sources:
+  - path: "bootstrap/chatgpt/00_CORE_RULES.md"
+    sha256: "fe696d6a0e8a4ef4c886097468985f02518e6dbf6f2088cb0a17568685eed92f"
+    bytes: 4948
+  - path: "bootstrap/chatgpt/01_SYSTEM_CONTEXT.md"
+    sha256: "bea34c3509e499f3858f3aaea64b3bf93faf0c18436cfb1779324f24b3a8ffc9"
+    bytes: 5114
+  - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
+    sha256: "3950365dc0dee7cfdd53921fa54e1c726dc34c98c190226cc7c85452563dbbab"
+    bytes: 4514
+  - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
+    sha256: "f771fea56074689dc0696fef6e5f248414169c7bc40eafa517bd62fe3919fa5c"
+    bytes: 3350
+  - path: "bootstrap/chatgpt/PROJECT_INSTRUCTIONS.md"
+    sha256: "c64bc03b6c3054a9fb064c8d52aa2c662f4f7c875e3ac8744538951d1fe2be16"
+    bytes: 2663
+  - path: "bootstrap/chatgpt/README.md"
+    sha256: "c15a3d215cedf4b51107595ecbd3cac33fe9b0923b8ed190d8891015827747a4"
+    bytes: 1707
+  - path: "capabilities/README.md"
+    sha256: "d9da064a76217433ac602f3390bc5c5da3034634b8193e6527deb5a1dfdbf0fc"
+    bytes: 3065
+  - path: "capabilities/document/README.md"
+    sha256: "bb24b7f6d49a582e1b73628a04a4b6255f522f19456183210156ce34e5ddebdf"
+    bytes: 5422
+  - path: "capabilities/memory/README.md"
+    sha256: "9e79e5de6ccb798aeed3630d1f7e1db39ef59f13d059d4f1501e7fecf4543722"
+    bytes: 4864
+  - path: "docs/adr/ADR-0001-Game-Planner-Domain.md"
+    sha256: "59b07670c07b14965658adabe154cc6a813bfd2cab9e52852ca992d5694fb67d"
+    bytes: 2032
+  - path: "docs/adr/ADR-0002-Global-Tool-Discovery.md"
+    sha256: "12afd2bd6acf3c9740afa44c8bf7d8a90b18a6f85f8796804384c4fe326bf326"
+    bytes: 3531
+  - path: "docs/adr/ADR-0003-Capability-First-Discovery.md"
+    sha256: "efd9ce564f66010e8a06f55fefee41727888822c0e68e7ae7dac1add7f27c37f"
+    bytes: 3629
+  - path: "docs/adr/ADR-0004-Codex-Subagent-Pilot.md"
+    sha256: "d0596de044c1f4205410b29f7fdf412e915f5adb69fab66c63cf8d2e124d9ba5"
+    bytes: 5065
+  - path: "docs/adr/ADR-0005-Git-Backed-Automatic-Memory.md"
+    sha256: "3bb52802bb71a9e4fe7522d44feb04eb82db1b96889f1521cdedb913b798694b"
+    bytes: 3349
+  - path: "docs/adr/README.md"
+    sha256: "e497066023b5a3b413cf0c4b4d4f33dd744d205d84a3bd3ea916d6dd136b2727"
+    bytes: 988
+  - path: "handoff/CHATGPT.md"
+    sha256: "3c878cf05df75a871d4f7ddcf034303713bc1c9b907b204f0d755e26f46944b3"
+    bytes: 2632
+  - path: "handoff/CODEX.md"
+    sha256: "60fcf0d51bec9c936f010c04215bfc4e5a2754dbc8df06c5527aac6a1ec284ad"
+    bytes: 7599
+  - path: "skills/README.md"
+    sha256: "c1d70df53f6624517f8015d782c468f1435423762ad953ade074374811937377"
+    bytes: 1797
+  - path: "skills/battle-pass/README.md"
+    sha256: "d519424d68e0c84a8d7e42cf199fe106cc6789dac161370ad090f6f9ad8d1d7d"
+    bytes: 177
+  - path: "skills/economy-design/README.md"
+    sha256: "77a7db97e56512d2e6e42833a1488ef6faba950507b91310fcfdae63d89c5b17"
+    bytes: 167
+  - path: "skills/excel/README.md"
+    sha256: "09fddd01149d2a500520783625910029d3179fc1460182c445d0dafac7a38991"
+    bytes: 170
+  - path: "skills/feishu-document/README.md"
+    sha256: "26c328081da8a8261c772066ed62ff94a6d0e154f0af89c66c9f542150f2183d"
+    bytes: 859
+  - path: "skills/game-analysis/README.md"
+    sha256: "fd98298ca0c2c5cd89d185a795fc6a5fb0c2c6e6c3de80cf77b26b7c4159851f"
+    bytes: 169
+  - path: "skills/lottery/README.md"
+    sha256: "543e9e2ac09b3a51797d8caea74d8ac1898c0594071d607b42baa27455d38ba3"
+    bytes: 160
+  - path: "skills/python/README.md"
+    sha256: "449a731d105e4f048024de7bcd903ebfb50b5491612ac32613450968d3ac77b0"
+    bytes: 153
+  - path: "skills/report-writing/README.md"
+    sha256: "a8d02b2f4c6ca6414cb11c5ed2e43ca36f41d41824d0ff5c6248990ff0104947"
+    bytes: 179
+  - path: "skills/slot-analysis/README.md"
+    sha256: "f646473e0741179dce728b3c01ce9ab1402758ff6165557a4c4e11029b437662"
+    bytes: 175
+  - path: "skills/sql/README.md"
+    sha256: "5bf14555e72f303fc40709d07be50c371589c9eb041664702c4407687f6ea019"
+    bytes: 177
+  - path: "skills/task-system/README.md"
+    sha256: "c9599f14a865a9ebbef50479373fc680b297457e99851d130f4f473ad4c408cb"
+    bytes: 170
+  - path: "solutions/README.md"
+    sha256: "553e2a03e76020c631271d19b34a6f2d5eebf45a502de240390cb8c6d7eee960"
+    bytes: 345
+  - path: "standards/HUUUGE_EVIDENCE_STANDARD.md"
+    sha256: "6158dcd8bbc23aa2ec6bba052ab9acc16b657202435440e126dec328cf3cc58f"
+    bytes: 8519
+  - path: "standards/MEMORY_GOVERNANCE.md"
+    sha256: "b2e3e7918317bf814d38afd8a8afca3202b427ae8d6d74933cd9fd16ba4249ce"
+    bytes: 3918
+  - path: "standards/README.md"
+    sha256: "5c42245d81173b7abb5b97883bbfbf37f4cad247cdcad9a4f4fadba6513a35fb"
+    bytes: 1787
+  - path: "tasks/README.md"
+    sha256: "99cf6e25b29a0bac8c7c077af563b4f5907230b28e103d3d0f2990de17499696"
+    bytes: 1132
+  - path: "tasks/TASK-0014-Codex-Subagent-Pilot.md"
+    sha256: "c8ed8561dd86bd3e2b235b46f981c801c8579c4a2ec0d1437bbe1c85bad569e0"
+    bytes: 9248
+  - path: "tasks/TASK-0015-Huuuge-Lottery-Live-Numerical-Breakdown.md"
+    sha256: "952f6faa9d55ed7d7448e8ccfa597dface59c48adb5d55e5ac52b504b1742a10"
+    bytes: 7616
+  - path: "tasks/TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md"
+    sha256: "d04ffd92f7c94617651edaae52ae084977563b918840873ed78a4f09dea82760"
+    bytes: 16351
+  - path: "tasks/TASK-0016-EXECUTION-AUTHORIZATION.md"
+    sha256: "51aedf978b9ea880794375593e0a5023ed31d39488962c03d2a31a050315357d"
+    bytes: 2449
+  - path: "workflows/README.md"
+    sha256: "a02cbe1f0a1fe433eec6dcfcaffa959bc58966afbee81395ba4e08337ec85db1"
+    bytes: 487
+  - path: "workflows/memory-curation/README.md"
+    sha256: "d809c052619bea18cef30c0673608d72b031dce1e92bc0d6278c41fa44c8abfb"
+    bytes: 1208
+checks:
+  secret_issues: 0
+  broken_links: 0
+project_source_update: "manual upload required"

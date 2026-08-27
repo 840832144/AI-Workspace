@@ -25,6 +25,8 @@ Evidence plane — verified outputs
 
 Global Codex 层负责从 User Outcome 发现 Capability，应用一致的安全基线，并约束 Codex Subagent 的委派边界。AI-Workspace 提供可审阅的 Capability Catalog 和 Pilot 决策记录，管理 Game Design 中“如何协作”和“各项目处于什么状态”，但不复制执行平面的实现。
 
+TASK-0016 在 Governance plane 内加入 Git-backed Memory 管道：Host 在内容产生时输出结构化 Event/Candidate，deterministic validator 负责 Secret、scope、sensitivity、dedup、conflict 与 destination gate，Curator 再进入 Review、Archive 或 allowlist promotion。Host local memory 仍是 recall layer，不属于 Evidence plane 或 canonical truth。
+
 Document Capability 等共享平台契约可以被多个项目消费；Document Assistant 等 provider 可以由外部仓库服务多个 Host。AI-Workspace 记录 provider-neutral contract 和 Game Design 使用边界，Tool 的检查与选择只发生在 Capability 的实现层，不形成独立发现体系。
 
 ## 信息架构
@@ -67,6 +69,9 @@ Standards 是已生效的横向规则，例如证据纪律、命名、安全边�
 | 提案与讨论结果 | `docs/rfc/` |
 | 当前项目协作状态 | `projects/<project>/STATUS.md` |
 | 当前 Agent 交接 | `handoff/` |
+| Public-safe Memory Candidate / Review / Archive | `memory/`；Canonical 仍按信息类型进入 ADR、Skill、Solution、Status 或项目仓库 |
+| Host-local mode、Outbox、private repository registry | 受控本机 state directory；不得进入公共 Git |
+| ChatGPT / Codex 内置 memory | Host recall layer；不得作为必须执行规则或实时状态的唯一来源 |
 | 跨项目 Capability Discovery 与共享能力规则 | `~/.codex/AGENTS.md`；版本化模板为 `bootstrap/AGENTS.md` |
 | Capability Catalog 与稳定结果契约 | `capabilities/` |
 | Tool 实现、安装、endpoint 与连接状态 | 对应工具仓库、Host 配置和受控运行环境 |

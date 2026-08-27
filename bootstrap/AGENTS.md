@@ -77,3 +77,16 @@ Tool 的检查和选择只属于 Capability 的实现层，不建立独立的 To
 
 - Capability Discovery、保守 Subagent Policy、共享 Document Capability 和跨项目安全基线属于 Global Codex 层。
 - AI-Workspace 维护可审阅的 Capability Catalog 和 Game Design 治理；它可以记录 provider-neutral contract 与实现绑定引用，但不承担运行时工具目录、安装入口、endpoint、凭据或连接状态管理。
+
+## Automatic Memory Check
+
+完成实质 Task、Review、长期决定、可复用修复、Workflow/Skill 变化或 Handoff 后，执行一次静默 Memory Check：
+
+1. 只捕获长期有效、可复用、有来源的摘要；不保存完整聊天、Secret、Raw Capture、账号数据、逐笔余额、完整响应或敏感日志。
+2. Public-safe 内容可生成 Git Candidate；项目私有内容只写对应私有仓库；跨项目私有或目标不明时写本机 Outbox 并提示一次。
+3. 先 Candidate、后 validator/curator；单个对话不得静默覆盖 Canonical Memory。
+4. 尊重 Host-local `OFF` / `ASSISTED` / `AUTO`。`OFF` 不产生 Candidate；`AUTO` 也不得自动修改 Core Rule、ADR、Capability、权限、费用、跨项目策略或冲突事实。
+5. 当前 Task 已要求直接更新 Task/Status/Handoff 时，完成该 canonical update 即可，不再制造重复 Candidate。
+6. 当前 Host 没有已批准 writer 时报告 `Implementation unavailable` 或生成标准 Outbox event，不得声称已提交。
+
+版本化 contract 与 reference implementation 位于 AI-Workspace 的 `capabilities/memory/`、`standards/MEMORY_GOVERNANCE.md` 和 `tools/memory/`。不要在未获 User 授权时安装 Global hook、替换运行中的 Global AGENTS 或把生产默认切为 AUTO。
