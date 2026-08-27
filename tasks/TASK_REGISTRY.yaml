@@ -6,7 +6,7 @@ entries:
     canonical_file: ""
     file: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
     title: "Cash Frenzy Android Collector Feasibility Audit"
-    status: "Candidate"
+    status: "Migrated"
     project_key: "CASH-FRENZY"
     human_alias: "CF-FEASIBILITY-001"
     owner: "User / ChatGPT"
@@ -14,7 +14,7 @@ entries:
     priority: "P1 candidate"
     created_date: "2026-08-27"
     updated_date: "2026-08-27"
-    related_tasks: ["TASK-0018", "TASK-0020"]
+    related_tasks: ["TASK-0018", "TASK-0020", "TASK-0022"]
     kind: "candidate"
   - id: "TASK-0014"
     canonical_file: "tasks/TASK-0014-Codex-Subagent-Pilot.md"
@@ -127,6 +127,20 @@ entries:
     created_date: "2026-08-27"
     updated_date: "2026-08-27"
     related_tasks: ["TASK-0014", "TASK-0016", "TASK-0018", "TASK-0019", "TASK-0020"]
+    kind: "canonical"
+  - id: "TASK-0022"
+    canonical_file: "tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md"
+    file: "tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md"
+    title: "Cash Frenzy Android Collector Feasibility Audit"
+    status: "Ready"
+    project_key: "CASH-FRENZY"
+    human_alias: "CF-FEASIBILITY-001"
+    owner: "User / ChatGPT"
+    executor: "Codex"
+    priority: "P1 candidate"
+    created_date: "2026-08-27"
+    updated_date: "2026-08-27"
+    related_tasks: ["TASK-0018", "TASK-0020"]
     kind: "canonical"
   - id: "TASK-0016"
     canonical_file: "tasks/TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md"
