@@ -1,6 +1,6 @@
 # TASK-0014 — Codex Subagent Pilot with Kill Switch
 
-- Status: Review
+- Status: Accepted
 - Owner: ChatGPT
 - Executor: Codex
 - Priority: P1
@@ -190,4 +190,19 @@ Codex 完成后必须返回：
 - Required Fix 2：Global Policy、Bootstrap、ADR 与 Pilot 明确禁止 MANUAL 和 full-access 类 live permissions 并用；当前脚本不能可靠自动检测，状态未知时保持 OFF。
 - Optional cleanup：`knowledge_retriever` 改为只读本地/已提供资料；飞书由主 Agent 代读。
 - Final validation：隔离回归、PowerShell 5.1 解析、真实重装、非 Agent 配置完整性、四个模板与 Global AGENTS 同步均通过；最终模式为 `OFF`，并发值 4。
-- Resubmission status: `Review`；等待 ChatGPT Review。
+- Resubmission commit: `ab34a7f`。
+
+## ChatGPT Review — 2026-08-27
+
+**Result: Accepted**
+
+- Required Fix 1 已满足：OFF 成为模板安装前的强制安全门，失败路径保持配置和 Agent 目录不变。
+- Required Fix 2 已满足：MANUAL 与 `--yolo`、Full access、`danger-full-access`、宽松 `/permissions` 明确互斥；无法确认父会话受限权限时保持 OFF。
+- `knowledge_retriever` 已收窄为本地/已提供资料只读检索，飞书继续由主 Agent 代读。
+- PowerShell 5.1、幂等安装、锁与特殊 TOML fail-closed、MCP/非 Agent 配置完整性、最终 OFF 状态均有可复查验证记录。
+
+**Operational decision**
+
+- 默认继续 `OFF`。
+- 只有 Task 明确允许、存在至少两个独立只读工作流、父会话为受限权限时，才可由 User 手动切到 `MANUAL`。
+- 主 Agent始终是唯一写入者；完成任务后切回 `OFF` 并在 Handoff 记录实际使用的 Subagents。
