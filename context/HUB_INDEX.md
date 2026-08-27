@@ -7,6 +7,7 @@
 1. 先看“Workspace 入口与同步状态”。成功表现是更新时间、Git commit 和各 Context 状态清晰；显示 stale/conflict 时不要继续引用旧状态。
 2. 查规则和当前任务时打开只读内容，修改建议写入“策划协作与待确认事项”。不要直接把飞书修改当作已生效规则。
 3. 策划只需在协作草稿中写完整问题、期望结果和证据。成功表现是下一次 Workspace Sync 生成 Candidate/Review；失败时联系 Codex 查看 sync 状态。
+4. 阅读正式云文档时，从唯一的《AI Workspace｜文档导航中心》进入；Provider 链接由 Host-local Registry 提供，Git 不保存私有标识。
 
 ## Context Set
 
@@ -21,5 +22,6 @@
 | 策划协作与待确认事项 | Feishu | 可编辑；内容先进入 Candidate/Review |
 | AI 行文规范 | Git | 所有 AI 在生成内容前读取 |
 | Capability / Workflow / Skill 索引 | Git | 从结果能力进入执行入口 |
+| 文档导航中心 | Feishu | 浏览全部正式云文档；不直接维护目录 |
 
 Provider 链接由 Host-local Registry 注入飞书 Index；公共 Git 只保存稳定别名和 authority。

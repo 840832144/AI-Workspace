@@ -61,6 +61,14 @@ Slots → Systems → Events → Others
 
 与 User 讨论复杂方案、架构和评审时，可以展示必要的逻辑、代码和技术细节。
 
+## Documentation Governance
+
+- 所有正式飞书文档必须登记到唯一的《AI Workspace｜文档导航中心》。Git 继续作为规则、Task、ADR、状态和实现的真相源；文档导航中心只是飞书导航入口，不是真相源。
+- 导航中心使用固定分类和统一元数据，由 Document Assistant 自动生成，不允许人工维护目录，也不允许创建第二个同名入口。
+- 正式文档创建流程固定为 `create_document → 文档回读 → register_document → 文档导航中心回读 → Success`。
+- 导航中心更新或回读失败即流程失败：不删除已创建文档、不重复创建，返回失败并等待修复。不允许出现“正式文档已创建，但导航中心没有登记”的完成状态。
+- 正式文档默认企业内可编辑，除非 User 明确要求私有、只读或不授予编辑权限。导航中心不展示 token、独立 document ID、私有 Registry 或其他敏感信息。
+
 ## Task 协作协议
 
 ```text

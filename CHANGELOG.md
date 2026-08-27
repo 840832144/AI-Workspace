@@ -4,39 +4,53 @@
 
 ## [0.15.2] - 2026-08-27
 
-### Completed
+### Accepted
 
-- TASK-0022 feasibility audit 达到 F3：Cash Frenzy 4.78 / 478 的 live UDP Raw、`BLSocket` 活动与 Lua request schema 已通过 5 次 User 普通 Spin 验证。
-- Spin request live fields 包含 `bet`、`lines`、`spin_count`、`client_coins`、`free_spins`、`autoSpin`、`turbo` 与 `_timestamp`；字段值、command 值、账号与逐笔余额未进入 Git。
-- 三次 Spin 与 3 个 novel 255-byte outbound packet 对齐；额外两次 Spin 与 2 个同构 Lua request 对齐。入站仍为 opaque binary，result/win/balance/update 未恢复，F4 不成立。
+- TASK-0021 最终 UX 收尾完成并更新为 Accepted；ADR-0007 保持 Accepted，补充中文文档导航治理。
 
-### Decision
+### Changed
 
-- User 在动态门槛处将原 `HuuugeResearch` 重命名为共享 `AppResearch`，并明确后续测试 App 共用该实例；该决定 supersede 早期独立 `CashFrenzyResearch` 建议。
-- 共享实例采用 package + Host-local project root + Session/Raw/manifest/account data 隔离。架构建议保持 Adopt Huuuge control-plane contract、Wrap host binding、Build Cash-specific inbound decoder；不复制 Huuuge Collector。
+- 唯一飞书入口原位更名为《AI Workspace｜文档导航中心》，保持同一 URL、14 条正式文档、八分类和企业内可编辑权限。
+- 恢复 `docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md` Git 源稿；项目全景说明原位增加“📚 下一步推荐阅读”和紧随其后的“🗺 项目工作流总览”，可直接进入文档导航中心并以图形理解完整协作链路。
+- Core Rules、Project Instructions、Global AGENTS 模板、Repository AGENTS、Document Capability、Document Assistant Workflow、Workspace Sync Workflow 和 Context Hub Index 统一采用最终创建/登记/回读失败语义。
 
-### Validation and Cleanup
+### Added
 
-- baseline、3-Spin、2-Spin capture 均完成 start/READY/stop；正式 Sessions 为 0 errors。Windows manifest lock fault-injection 以 0 Raw Clean Stop，有限重试后未复现。
-- Cash 专属 Gadget/config、ADB 27043 forward、临时 Frida server 与 Cash app process 已清理；本机 Raw/APK/SO/完整响应保留在 Cash 项目 local-only root。
-- Huuuge repo 保持 clean，Collector/Session/Raw/SVN/飞书/业务仓库未修改；Workspace Sync `ON_DEMAND`，WATCH disabled，Subagents none / OFF。
+- 新增 Proposed `RFC-0004: Research Environment Strategy`，记录共享 Research Runtime、按游戏隔离 Evidence、单一活动 Capture 与前台包名 READY Gate；不修改当前 Cash Frenzy Candidate 或 TASK-0022。
+
+### Validation
+
+- 文档导航中心标题、首页说明、唯一性、链接、14 条登记与权限回读通过；项目全景说明章节位置、链接目标、原生 Mermaid 白板块、正文和权限回读通过，连续发布两次保持幂等。
+- “核心规则”“实时 Context Hub”和“当前状态与任务入口”原位发布最新 Git 源稿，正文回读、自动登记和导航中心回读通过。
+- Document Assistant 12 个测试文件 / 36 项测试及真实创建—登记—删除—恢复烟测通过；Workspace Task 23/23、Context 13/13、Memory 35/35 与 Doctor 通过。
+- Review 2 要求的两个实现分支已分别合入 main：AI-Workspace `4c2b9b8f`，Document Assistant `b0292c31`。
+- Document Assistant 正式 `main` 新启 STDIO MCP 进程的 `tools/list` 已确认包含 `register_document`，healthcheck 通过。
+
+### Boundaries
+
+- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled；未修改 ChatGPT 设置或当前 Cash Frenzy 执行环境；`Subagents: none`。
 
 ## [0.15.1] - 2026-08-27
 
 ### Added
 
-- TASK-0022 In Progress checkpoint：新增 Cash Frenzy feasibility、Reuse Matrix、Static Inventory、Protocol Evidence、Dynamic Proof 与 Next Task Proposal 六份脱敏记录。
-- 确认 4.78 / 478 arm64-v8a sample、Cocos2d-x + LuaJIT、base + 3 splits、`BLSocket`/command map 和 native TLS/WebSocket/LuaSocket/XXTEA/Protobuf static signals。
+- TASK-0021 第二阶段新增唯一 `AI Workspace｜Documentation Hub`，作为 Workspace 所有正式飞书文档的导航入口；八个固定分类与统一元数据由 Document Assistant 自动生成。
+- 新增 Document Assistant Workflow；Document Capability 增加 `CAP-DOC-REGISTER`，当前 binding 为 `register_document`。
 
-### Decision
+### Changed
 
-- 当前只达到 F1 Static-only；建议 Wrap Huuuge workflow contract + Build Cash-specific Adapter，不复制 Huuuge Collector，也不把 SDK Protobuf 写成游戏协议已解码。
-- 动态阶段停在 User installation gate；目标是全新 `CashFrenzyResearch`，不得修改 `HuuugeResearch` 或混用 Session/Raw。
+- Core Rules、Project Instructions、Global AGENTS 模板、Repository AGENTS 和 Workspace Sync Workflow 统一要求正式文档完成“创建、文档回读、Hub 登记、Hub 回读”。
+- TASK-0021 第一阶段 Acceptance 保持有效；第二阶段增强进入 Review。
+
+### Validation
+
+- 历史扫描登记 14 份正式文档并排除 2 份临时连接测试；唯一 Hub、八分类、链接唯一、正文回读和企业内可编辑权限回读通过。
+- 真实正式测试文档完成自动登记，删除后 Hub 恢复为 14 条；Document Assistant 构建和 10 个测试文件 / 32 项测试通过。
 
 ### Boundaries
 
-- APK、split、SO、完整字符串与提取目录只留本机；Git 仅保存 hash、结构摘要与判断。
-- Huuuge repo `4a5dddf` 保持 clean，Collector 未运行或修改；WATCH disabled；Subagents none / OFF。
+- Git 仍是真相源，Documentation Hub 只负责飞书导航且禁止人工维护；Git 不记录 Hub 的独立 ID、token、私有 Registry 或敏感返回值。
+- Workspace Sync 保持 `ON_DEMAND`，WATCH disabled；未修改 ChatGPT 设置；`Subagents: none`。
 
 ## [0.15.0] - 2026-08-27
 
