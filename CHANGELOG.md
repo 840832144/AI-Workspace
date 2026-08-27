@@ -2,6 +2,23 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.15.1] - 2026-08-27
+
+### Added
+
+- TASK-0022 In Progress checkpoint：新增 Cash Frenzy feasibility、Reuse Matrix、Static Inventory、Protocol Evidence、Dynamic Proof 与 Next Task Proposal 六份脱敏记录。
+- 确认 4.78 / 478 arm64-v8a sample、Cocos2d-x + LuaJIT、base + 3 splits、`BLSocket`/command map 和 native TLS/WebSocket/LuaSocket/XXTEA/Protobuf static signals。
+
+### Decision
+
+- 当前只达到 F1 Static-only；建议 Wrap Huuuge workflow contract + Build Cash-specific Adapter，不复制 Huuuge Collector，也不把 SDK Protobuf 写成游戏协议已解码。
+- 动态阶段停在 User installation gate；目标是全新 `CashFrenzyResearch`，不得修改 `HuuugeResearch` 或混用 Session/Raw。
+
+### Boundaries
+
+- APK、split、SO、完整字符串与提取目录只留本机；Git 仅保存 hash、结构摘要与判断。
+- Huuuge repo `4a5dddf` 保持 clean，Collector 未运行或修改；WATCH disabled；Subagents none / OFF。
+
 ## [0.15.0] - 2026-08-27
 
 ### Added

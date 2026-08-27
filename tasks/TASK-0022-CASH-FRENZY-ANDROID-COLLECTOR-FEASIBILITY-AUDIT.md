@@ -1,6 +1,6 @@
 # TASK-0022 — Cash Frenzy Android Collector Feasibility Audit
 
-- Status: Ready
+- Status: In Progress
 - Project key: CASH-FRENZY
 - Human alias: CF-FEASIBILITY-001
 - Owner: User / ChatGPT
@@ -147,3 +147,12 @@ NEXT_TASK_PROPOSAL.md
 ## Handoff
 
 未来执行完成后必须返回：AI-Workspace commit、实际 package/version/ABI/engine、动态证明与 Evidence Level、F0–F4 结果、Adopt/Wrap/Fork/Build/Stop 建议、可复用 Huuuge 能力与新增 Adapter、下一 Task 建议、`Subagents: <names>` 或 `none`、最终 Subagent mode（应为 OFF），并等待 ChatGPT Review。
+
+## Execution Progress — 2026-08-27
+
+- Task issuance：正式 allocator 分配 `TASK-0022`，main merge `694e955b76405bd6fb97203110d6bc6f9a1185b2`，reservation 已 finalize。
+- Reuse-first：完成 Huuuge 1.0.1 control-plane/Session/manifest/Raw/inventory/privacy 只读审计，决定 Adopt workflow contract、Wrap host binding、Build Cash-specific protocol adapter；不复制 Huuuge 工程。
+- Static identity：确认 package `slots.pcg.casino.games.free.android`、sample 4.78 / 478、arm64-v8a、Cocos2d-x + LuaJIT、base + 3 splits。
+- Protocol/resource：确认 `BLSocket`/command map、TLS/WebSocket/LuaSocket/XXTEA/Protobuf static signals、16,887 LuaJIT bytecode 与 Systems/Themes 目录；未恢复游戏业务 descriptor。
+- Current level：整体 F1 Static-only；dynamic path F0。
+- Gate：等待 User 建立独立 `CashFrenzyResearch` 并安装游戏。未修改 `HuuugeResearch`，未混用 Session/Raw，未启用 WATCH；Subagents none / OFF。
