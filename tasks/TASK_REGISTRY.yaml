@@ -90,7 +90,7 @@ entries:
     canonical_file: "tasks/TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md"
     file: "tasks/TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md"
     title: "Automatic Cross-Conversation Memory Capture & Curation"
-    status: "Review"
+    status: "Accepted"
     project_key: "WORKSPACE"
     human_alias: ""
     owner: "User / ChatGPT"
@@ -98,7 +98,7 @@ entries:
     priority: "P1"
     created_date: "2026-08-27"
     updated_date: "2026-08-27"
-    related_tasks: ["TASK-0015", "TASK-0017"]
+    related_tasks: ["TASK-0015", "TASK-0017", "TASK-0023", "TASK-0024"]
     kind: "canonical"
   - id: "TASK-0017"
     canonical_file: "tasks/TASK-0017-Codex-Desktop-Proxy-WebSocket-Reconnect.md"
@@ -281,6 +281,20 @@ entries:
     created_date: "2026-08-27"
     updated_date: "2026-08-27"
     related_tasks: ["TASK-0018", "TASK-0019"]
+    kind: "review"
+  - id: "TASK-0016"
+    canonical_file: "tasks/TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md"
+    file: "reviews/TASK-0016-CHATGPT-REVIEW-3.md"
+    title: "TASK-0016 ChatGPT Review — Round 3"
+    status: "Accepted"
+    project_key: "WORKSPACE"
+    human_alias: ""
+    owner: "ChatGPT"
+    executor: "none"
+    priority: ""
+    created_date: "2026-08-28"
+    updated_date: "2026-08-28"
+    related_tasks: []
     kind: "review"
   - id: "TASK-0018"
     canonical_file: "tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md"

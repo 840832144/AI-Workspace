@@ -22,6 +22,15 @@ Git canonical truth
 
 当前 provider binding 是飞书 Drive + Docx，不是 Wiki。稳定 context ID 和 authority contract 位于 `LIVE_CONTEXT_MANIFEST.json` 与 `capabilities/context/`；folder/document ID 只留 Host-local Registry。
 
+跨会话长期记忆继续使用同一个 Git-backed Memory pipeline：
+
+```text
+Memory Event → Candidate → Validator → Curator
+→ memory/context/WORKSPACE.md（唯一 public-safe 稳定读入口）
+```
+
+新会话 Git-live-first 读取最新 `main` 的 Workspace Memory，再核对相关 Task、Review、Handoff 和业务证据。Project Source Pack 只是离线快照，云文档只面向人类阅读与导航；两者都不替代 Git 真相源。
+
 长期产品方向使用独立治理链路：
 
 ```text

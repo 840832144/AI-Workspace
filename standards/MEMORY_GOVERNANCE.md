@@ -1,7 +1,7 @@
 # Memory Governance Standard
 
-- Status: Proposed / Waiting for ChatGPT Review
-- Version: 1.1
+- Status: Accepted / Active
+- Version: 1.2
 - Date: 2026-08-27
 - Scope: Game Planner AI Workspace 与登记的游戏项目
 - Source: TASK-0016 / ADR-0005
@@ -35,6 +35,8 @@ Git 写入目标必须先分类：
 | `cross-project-private-hub` | `cross-project-private` + Registry 批准 sensitivity | User 明确批准的跨项目私有 Context Hub |
 
 Private writer 只信任 Host-local `repositories.json`。条目必须唯一匹配 `repository_alias`，并同时满足 `enabled=true`、`writer_enabled=true`、classification、`allowed_scopes`、`allowed_sensitivities`、`allowed_source_projects`、绝对 Git root path；目标必须位于 public control-plane repository 之外。任一条件缺失或冲突时进入 sanitized Outbox，不尝试猜测或降级写公共 Git。Registry 路径、仓库细节和私有内容不得写入公共 Manifest。
+
+Registry 只能进一步收紧 Global Safety Contract，不能放宽它。无论 Registry 如何配置，`sensitivity=secret` 与 `scope=local-only` 都在读取 Registry 前进入本机 Outbox；声明为 Secret 的正文和来源字段在 Outbox 中整体抑制，避免未被 pattern 识别的 literal 泄漏。
 
 ### Git provenance gate
 
@@ -92,7 +94,13 @@ Mode 是 Host-local kill switch。仓库保存默认值，Host 可在本机 stat
 
 ## Context Refresh
 
-Refresh 只读取批准范围内的 versioned public-safe 文件。私有仓库必须由显式 registry 与授权启用；默认不读取。生成物包含 hash manifest、Current State managed block、Project Source Pack 和替换清单。没有安全 API 时固定报告 `manual upload required`。
+Refresh 只读取批准范围内的 versioned public-safe 文件。私有仓库必须由显式 registry 与授权启用；默认不读取。生成物包含 hash manifest、Current State managed block、Project Source Pack 和替换清单，并明确输出 `memory/context/WORKSPACE.md` 的路径、SHA-256 与读取时 Git HEAD。没有安全 API 时固定报告 `manual upload required`。
+
+## Workspace Memory read view
+
+`memory/context/WORKSPACE.md` 是跨会话唯一 public-safe 长期记忆读入口。记录必须有稳定 key、状态、摘要、scope、source reference、关联 Task/Review/commit、生效日期和 supersedes。只有高分、高置信、有 evidence、无冲突且由已授权 writer 在 ASSISTED 下显式批准的 Candidate 才能由 Curator 写入；普通 ASSISTED curate 仍进入 Review。相同 key 冲突时进入 Review，显式 supersede 才能更新当前记录，并在历史区保留旧来源与时间。
+
+新会话读取遵循 Git-live-first：最新 `main` 的 Workspace Memory 优先，随后读取相关事实来源。Project Source Pack 是 snapshot；Git unavailable 时才能回退并标记 stale。
 
 ## Review and Archive
 

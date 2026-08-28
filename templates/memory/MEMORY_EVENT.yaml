@@ -8,7 +8,11 @@ source_project: "AI-Workspace"
 source_actor_alias: "ChatGPT"
 source_reference: "task-or-chat-id-without-transcript"
 related_task: ""
+related_review: ""
 related_commit: ""
+memory_key: ""
+workspace_status: ""
+effective_date: ""
 durability_score: 0
 reuse_score: 0
 evidence_score: 0

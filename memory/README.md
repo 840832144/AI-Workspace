@@ -1,6 +1,8 @@
 # Memory Candidate Store
 
-本目录只保存 **Public-safe** Memory Candidate、Review、Archive 和索引。任何 Project Private、Cross-project Private、Local-only、Secret、Raw Capture、账号数据、完整响应或敏感日志都不得进入这里。
+本目录只保存 **Public-safe** Memory Candidate、Review、Archive、索引和唯一稳定读视图 `context/WORKSPACE.md`。任何 Project Private、Cross-project Private、Local-only、Secret、Raw Capture、账号数据、完整响应或敏感日志都不得进入这里。
+
+`context/WORKSPACE.md` 只由现有 Curator 在 `ASSISTED` 模式下根据明确批准写入，不允许 Agent 绕过 Candidate/Validator 直接维护。相同 key 去重，冲突进入 Review，supersede 保留旧来源与时间。新会话以最新 Git `main` 版本为准；Project Source Pack 只是可能过期的快照。
 
 ```text
 memory/

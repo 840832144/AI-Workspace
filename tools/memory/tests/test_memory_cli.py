@@ -26,7 +26,7 @@ class MemoryCliTests(unittest.TestCase):
         self.root = base / "repo"
         self.state = base / "state"
         for relative in (
-            "memory/inbox", "memory/review", "memory/archive", "memory/index",
+            "memory/inbox", "memory/review", "memory/archive", "memory/index", "memory/context",
             "solutions", "tasks", "handoff", "capabilities", "standards",
             "docs/adr", "docs/incidents", "skills", "workflows", "bootstrap/chatgpt/generated",
         ):
@@ -36,6 +36,9 @@ class MemoryCliTests(unittest.TestCase):
         )
         (self.root / "memory/index/memory-index.json").write_text(
             json.dumps({"schema_version": "1.0", "entries": []}), encoding="utf-8"
+        )
+        (self.root / "memory/context/WORKSPACE.md").write_text(
+            "# AI Workspace｜跨会话长期记忆\n\n## 当前记录\n\n## 历史记录\n\n暂无。\n", encoding="utf-8"
         )
         for name in ("PROJECT_INSTRUCTIONS.md", "00_CORE_RULES.md", "01_SYSTEM_CONTEXT.md", "03_NEW_CHAT_BOOTSTRAP.md"):
             (self.root / "bootstrap/chatgpt" / name).write_text(f"# {name}\n\nPublic source.\n", encoding="utf-8")
@@ -97,7 +100,7 @@ class MemoryCliTests(unittest.TestCase):
         self.git(self.root, "add", ".")
         self.git(self.root, "commit", "-m", message)
 
-    def prepare_private_registry(self, *, classification: str = "project-private", writer_enabled: bool = True) -> Path:
+    def prepare_private_registry(self, *, classification: str = "project-private", writer_enabled: bool = True, allowed_sensitivities: list[str] | None = None, allowed_scopes: list[str] | None = None) -> Path:
         private = self.base / "private-repo"
         private.mkdir()
         self.git(private, "init", "-b", "main")
@@ -115,8 +118,8 @@ class MemoryCliTests(unittest.TestCase):
                 "enabled": True,
                 "writer_enabled": writer_enabled,
                 "classification": classification,
-                "allowed_scopes": ["project-private"],
-                "allowed_sensitivities": ["internal"],
+                "allowed_scopes": allowed_scopes or ["project-private"],
+                "allowed_sensitivities": allowed_sensitivities or ["internal"],
                 "allowed_source_projects": ["Private-Pilot"],
             }],
         }
@@ -228,6 +231,33 @@ class MemoryCliTests(unittest.TestCase):
         self.assertNotIn(secret, text)
         self.assertIn("REDACTED", text)
         self.assertFalse(list((self.root / "memory/inbox").glob("*.md")))
+
+    def test_registry_cannot_allow_declared_secret(self) -> None:
+        private = self.prepare_private_registry(allowed_sensitivities=["internal", "secret"])
+        secret_literal = "SHOULD_NEVER_REACH_ANY_GIT_INBOX"
+        args = self.private_capture_args()
+        args[args.index("--sensitivity") + 1] = "secret"
+        args[args.index("--summary") + 1] = secret_literal
+        _, output = self.run_cli(*args)
+        self.assertEqual("local-only", output["status"])
+        self.assertIn("Global Safety Contract", output["reason"])
+        outbox = Path(output["outbox"]).read_text(encoding="utf-8")
+        self.assertNotIn(secret_literal, outbox)
+        self.assertIn("REDACTED:declared-secret", outbox)
+        self.assertFalse(list((self.root / "memory/inbox").glob("*.md")))
+        self.assertFalse(list((private / "memory/inbox").glob("*.md")))
+
+    def test_registry_cannot_promote_local_only_scope(self) -> None:
+        private = self.prepare_private_registry(
+            classification="project-private", allowed_scopes=["project-private", "local-only"]
+        )
+        args = self.private_capture_args()
+        args[args.index("--scope") + 1] = "local-only"
+        _, output = self.run_cli(*args)
+        self.assertEqual("local-only", output["status"])
+        self.assertIn("Global Safety Contract", output["reason"])
+        self.assertFalse(list((self.root / "memory/inbox").glob("*.md")))
+        self.assertFalse(list((private / "memory/inbox").glob("*.md")))
 
     def test_deterministic_duplicate_rejected(self) -> None:
         _, first = self.run_cli(*self.capture_args())
@@ -343,6 +373,89 @@ class MemoryCliTests(unittest.TestCase):
         self.assertEqual("Git provenance required", output["reason"])
         self.assertFalse(list((self.root / "memory/inbox").glob("*.md")))
 
+    def test_all_documented_provenance_placeholders_route_to_outbox(self) -> None:
+        placeholders = ("", "-", "unknown", "n/a", "na", "none", "null", "not applicable", "tbd", "unspecified", "___")
+        fields = ("--source-host", "--source-project", "--source-actor-alias", "--source-reference")
+        for field in fields:
+            for index, placeholder in enumerate(placeholders):
+                with self.subTest(field=field, placeholder=placeholder):
+                    args = self.capture_args(title=f"Provenance {field} {index}")
+                    args[args.index(field) + 1] = placeholder
+                    _, output = self.run_cli(*args)
+                    self.assertEqual("local-only", output["status"])
+                    self.assertEqual("Git provenance required", output["reason"])
+        self.assertFalse(list((self.root / "memory/inbox").glob("*.md")))
+
+    def test_ascii_dash_fails_closed_for_cli_event_and_generic_agent(self) -> None:
+        cli = self.capture_args(title="Dash CLI")
+        cli[cli.index("--source-host") + 1] = "-"
+        _, cli_output = self.run_cli(*cli)
+
+        event = self.base / "dash-event.yaml"
+        event.write_text(
+            "\n".join([
+                'schema_version: "1.0"', 'title: "Dash Event"', 'type: "solution"',
+                'scope: "public"', 'sensitivity: "public"', 'source_host: "codex"',
+                'source_project: "AI-Workspace"', 'source_actor_alias: "Codex"',
+                'source_reference: "-"', 'summary: "Dash must not route to Git."',
+                'durability_score: 5', 'reuse_score: 5', 'evidence_score: 5', 'confidence: 0.95',
+                'evidence: ["event-test"]', 'constraints: []', 'supersedes: []',
+                'canonical_destination: "solutions/dash-event/README.md"',
+            ]) + "\n", encoding="utf-8",
+        )
+        _, event_output = self.run_cli("capture", "--event", str(event))
+
+        generic = self.capture_args(title="Dash Generic")
+        generic[generic.index("--source-host") + 1] = "GenericIDE"
+        generic[generic.index("--source-actor-alias") + 1] = "-"
+        _, generic_output = self.run_cli(*generic)
+
+        self.assertEqual(["local-only"] * 3, [cli_output["status"], event_output["status"], generic_output["status"]])
+        self.assertFalse(list((self.root / "memory/inbox").glob("*.md")))
+
+    def workspace_capture_args(self, *, title: str, key: str, summary: str, source: str, supersedes: str | None = None) -> list[str]:
+        args = self.capture_args(
+            title=title, summary=summary, destination="memory/context/WORKSPACE.md", memory_type="decision"
+        ) + [
+            "--memory-key", key, "--workspace-status", "Accepted", "--effective-date", "2026-08-28",
+            "--related-review", source,
+        ]
+        args[args.index("--source-reference") + 1] = source
+        if supersedes:
+            args.extend(["--supersedes", supersedes])
+        return args
+
+    def test_assisted_workspace_memory_requires_explicit_approval(self) -> None:
+        _, captured = self.run_cli(*self.workspace_capture_args(
+            title="Workspace decision", key="workspace.git-memory", summary="Git is authoritative.", source="reviews/TEST.md"
+        ))
+        _, curated = self.run_cli("curate")
+        self.assertEqual(0, curated["promoted"])
+        self.assertEqual(1, curated["review"])
+        self.assertNotIn("workspace.git-memory", (self.root / "memory/context/WORKSPACE.md").read_text(encoding="utf-8"))
+
+    def test_assisted_workspace_memory_promotes_deduplicates_and_conflicts(self) -> None:
+        _, captured = self.run_cli(*self.workspace_capture_args(
+            title="Workspace decision", key="workspace.git-memory", summary="Git is authoritative.", source="reviews/TEST.md"
+        ))
+        _, curated = self.run_cli("curate", "--approve-workspace", captured["path"])
+        self.assertEqual(1, curated["promoted"])
+        view = (self.root / "memory/context/WORKSPACE.md").read_text(encoding="utf-8")
+        self.assertEqual(1, view.count("### `workspace.git-memory`"))
+
+        _, duplicate = self.run_cli(*self.workspace_capture_args(
+            title="Workspace decision", key="workspace.git-memory", summary="Git is authoritative.", source="reviews/TEST.md"
+        ))
+        self.assertEqual("rejected", duplicate["status"])
+
+        _, conflict = self.run_cli(*self.workspace_capture_args(
+            title="Workspace changed", key="workspace.git-memory", summary="Cloud snapshot is authoritative.", source="reviews/TEST-2.md"
+        ))
+        _, conflict_result = self.run_cli("curate", "--approve-workspace", conflict["path"])
+        self.assertEqual(0, conflict_result["promoted"])
+        self.assertEqual(1, conflict_result["review"])
+        self.assertNotIn("Cloud snapshot is authoritative", (self.root / "memory/context/WORKSPACE.md").read_text(encoding="utf-8"))
+
     def test_refresh_generates_manifest_pack_and_manual_upload_list(self) -> None:
         (self.root / "docs/incidents/INCIDENT-TEST.md").write_text("# Incident\n", encoding="utf-8")
         _, output = self.run_cli("refresh")
@@ -355,11 +468,15 @@ class MemoryCliTests(unittest.TestCase):
         self.assertTrue((self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md").exists())
         source_pack = (self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md").read_text(encoding="utf-8")
         self.assertIn("<!-- SOURCE: PLANNER_WRITING_STYLE.md -->", source_pack)
+        self.assertIn("<!-- SOURCE: WORKSPACE.md -->", source_pack)
         self.assertIn("Canonical terminology rule.", source_pack)
         replacement = (self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_REPLACEMENT_LIST.md").read_text(encoding="utf-8")
         self.assertIn("manual upload required", replacement)
         self.assertIn("standards/PLANNER_WRITING_STYLE.md", replacement)
-        self.assertIn("6 个拆分来源", replacement)
+        self.assertIn("7 个拆分来源", replacement)
+        self.assertEqual("memory/context/WORKSPACE.md", output["workspace_memory"]["path"])
+        self.assertTrue(output["workspace_memory"]["sha256"])
+        self.assertIn("git_head", output["workspace_memory"])
         current = (self.root / "bootstrap/chatgpt/02_CURRENT_STATE.md").read_text(encoding="utf-8")
         self.assertIn("MEMORY-CONTEXT:START", current)
 

@@ -15,7 +15,12 @@ param(
     [string]$SourceActorAlias,
     [string]$SourceReference,
     [string]$RelatedTask,
+    [string]$RelatedReview,
     [string]$RelatedCommit,
+    [string]$MemoryKey,
+    [ValidateSet('Active','Accepted','Complete','Stopped')]
+    [string]$WorkspaceStatus,
+    [string]$EffectiveDate,
     [ValidateRange(0, 5)]
     [int]$DurabilityScore,
     [ValidateRange(0, 5)]
@@ -44,7 +49,9 @@ $mapping = [ordered]@{
     Sensitivity = '--sensitivity'; SourceHost = '--source-host'
     SourceProject = '--source-project'; SourceActorAlias = '--source-actor-alias'
     SourceReference = '--source-reference'; RelatedTask = '--related-task'
-    RelatedCommit = '--related-commit'; DurabilityScore = '--durability-score'
+    RelatedReview = '--related-review'; RelatedCommit = '--related-commit'
+    MemoryKey = '--memory-key'; WorkspaceStatus = '--workspace-status'
+    EffectiveDate = '--effective-date'; DurabilityScore = '--durability-score'
     ReuseScore = '--reuse-score'; EvidenceScore = '--evidence-score'
     Confidence = '--confidence'; Summary = '--summary'
     CanonicalDestination = '--canonical-destination'; RepositoryAlias = '--repository-alias'

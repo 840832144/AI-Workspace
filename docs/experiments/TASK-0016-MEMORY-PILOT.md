@@ -1,6 +1,6 @@
 # TASK-0016 Automatic Memory Pilot
 
-- Status: Completed / Waiting for ChatGPT Review
+- Status: Completed / Accepted
 - Date: 2026-08-27
 - Executor: Codex
 - Environment: disposable linked worktree、disposable private Git repository 与 isolated Host state directory
@@ -111,3 +111,13 @@ python .\tools\memory\Run-MemoryPilot.py
 python -m unittest discover -s .\tools\memory\tests -v
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\memory\Refresh-ProjectContext.ps1
 ```
+
+## Round 3 — Cross-session Git Memory closure
+
+- Production mode remained `ASSISTED`; production AUTO、Hook、WATCH 与外部服务均未启用。
+- 复用现有 Candidate / Validator / Curator，以显式 `--approve-workspace` 将三个 User 已批准、public-safe、高置信且有证据的 Candidate 写入唯一 `memory/context/WORKSPACE.md`；3 promoted、0 review、0 failed，Candidate 全部进入 Archive，Inbox 为 0。
+- 三个独立来源分别为 TASK-0016 support User 决定、TASK-0024 Accepted Review、TASK-0023 Accepted Review。当前 read view 为 3 个唯一 key / 3 个唯一 source reference / 0 重复。
+- 新会话读取测试验证固定顺序为 Core/System/Writing Style → 最新 Git Workspace Memory → 相关 Task/Review/Handoff/业务证据 → Git unavailable 时的 stale-marked Source Pack fallback；最终 Memory 回归为 44/44。
+- 状态测试确认 Cash Frenzy 为 F3 strengthened、F4 未证明，并保留 TASK-0024 已停止路线，防止新会话重复建议；冲突 Candidate 在隔离回归中进入 Review，未改变 canonical view。
+- Round 2 安全修复：所有 documented provenance placeholder（含 ASCII `-` 与纯标点）在 CLI/Event/Generic Agent 路径进入 Outbox；误配 Registry 即使允许 `secret` 或 `local-only`，public/private Inbox 仍为 0，Secret 声明内容在 Outbox 整体抑制。
+- Context refresh 将 Workspace Memory 纳入 Manifest 与 Source Pack，并输出 path、SHA-256 和读取时 Git HEAD；Project Sources 仍为 `manual upload required` snapshot。
