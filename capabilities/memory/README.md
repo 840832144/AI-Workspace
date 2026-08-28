@@ -1,7 +1,7 @@
 # Memory Capability
 
 - ID: `CAP-MEM`
-- Status: Registered / Waiting for ChatGPT Review
+- Status: Accepted / Active
 - Scope: Shared governance capability consumed by Game Design projects
 - Contract owner: ChatGPT
 - Implementation owner: Codex / current Host

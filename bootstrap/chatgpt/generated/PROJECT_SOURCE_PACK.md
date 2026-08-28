@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-28T06:48:50Z
+Generated: 2026-08-28T06:54:26Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -485,20 +485,20 @@ TASK-0024 已直接恢复 Cash Frenzy 普通 Spin 的 Result、Win、Balance 类
 
 ### `workspace.git-memory-truth`
 
-- 状态：`Active`
+- 状态：`Accepted`
 - 范围：`public`
-- 来源：`tasks/support/TASK-0016/WORKSPACE-MEMORY-CROSS-SESSION-CLOSURE.md`
+- 来源：`reviews/TASK-0016-CHATGPT-REVIEW-3.md`
 - 关联 Task：`TASK-0016`
-- 关联 Review：`reviews/TASK-0016-CHATGPT-REVIEW-2.md`
-- 关联 Commit：`ca75576fe124985e14a06c72cc336a59f1f00120`
+- 关联 Review：`reviews/TASK-0016-CHATGPT-REVIEW-3.md`
+- 关联 Commit：`d3dd72592fc8c176f317ffe6d0ac1362eed5930e`
 - 生效日期：`2026-08-28`
-- 取代：`N/A`
+- 取代：`MEM-20260828-B2DDD4B84544`
 
-Git Memory 是 AI 跨会话长期真相源；云文档主要供人类阅读与导航，不作为 AI 长期记忆真相源。
+TASK-0016 已 Accepted；Git Memory 是 AI 跨会话长期真相源，云文档主要供人类阅读与导航，不作为 AI 长期记忆真相源。生产模式保持 ASSISTED。
 
 ## 历史记录
 
-暂无。
+- `workspace.git-memory-truth` / `MEM-20260828-B2DDD4B84544` / `2026-08-28` / 来源 `tasks/support/TASK-0016/WORKSPACE-MEMORY-CROSS-SESSION-CLOSURE.md`：Git Memory 是 AI 跨会话长期真相源；云文档主要供人类阅读与导航，不作为 AI 长期记忆真相源。
 
 <!-- SOURCE: PROJECT_INSTRUCTIONS.md -->
 # Project Instructions — Game Planner AI Workspace
@@ -646,7 +646,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-28T06:48:50Z
+- Generated: 2026-08-28T06:54:26Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -654,7 +654,6 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 ### Active public control-plane tasks
 
-- `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — Review
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Ready
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md` — Ready

@@ -11,13 +11,14 @@
 
 ## Governance Task — TASK-0016 Review Round 3
 
+- ChatGPT Review Round 3 已 Accepted；正式记录 `reviews/TASK-0016-CHATGPT-REVIEW-3.md`，reviewed commit `d3dd72592fc8c176f317ffe6d0ac1362eed5930e`。TASK-0016 与 Memory Capability/Governance 已转为 Accepted / Active。
 - Review Round 2 两个安全问题已修复：全部 provenance placeholders（含 ASCII `-` / 纯标点）在 CLI、Event file、Generic Agent 路径 fail closed 到 Outbox；`secret/local-only` 在 Registry 前 hard deny，恶意 allowlist 不能写 public/private Inbox，Secret literal 不留 Outbox。
 - 唯一跨会话 Git Memory 读入口为 `memory/context/WORKSPACE.md`。现有 Candidate/Validator/Curator 在 ASSISTED 下通过显式批准晋升 3 个 public-safe Seed，得到 3 unique key / 3 unique source / 0 duplicate；Candidate 已归档。
 - 新会话固定 Git-live-first：Core/System/Writing Style → 最新 Git Workspace Memory → 相关 Task/Review/Status/Handoff/业务证据 → Git unavailable 时 stale-marked Source Pack。测试确认 F3 strengthened / F4 未证明，且不重复 TASK-0024 已停止路线。
 - Context refresh 已纳入 Workspace Memory，并输出 path/hash/read Git HEAD；不读私有仓库，Project Sources 仍为 manual upload required snapshot。
 - 最终 production mode `ASSISTED`；AUTO 未启用、Hook 未安装/启用、Workspace Sync `ON_DEMAND`、WATCH disabled、无新增外部服务。Subagents: none。
 - 回归：Memory 44/44、Task 23/23、Context 13/13；Registry 已由正式 CLI 重建为 12 canonical / 0 collision / status valid；Workspace Doctor 通过；Context refresh 68 sources / 0 secret issue / 0 broken link。
-- 下一步：提交并 push `codex/task-0016-memory-review-r3`，等待 ChatGPT Review Round 3。
+- 合并前审计与收口回归全部通过：默认 ASSISTED、Registry hard deny、canonical gate、Git-live-first priority 与调试开关均符合要求。本收口提交合入并 push main 后 TASK-0016 结束，无后续执行项。
 
 ## Current Task — TASK-0025
 
@@ -135,10 +136,12 @@
 
 
 
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-28T06:48:50Z
+- Generated: 2026-08-28T06:54:26Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`

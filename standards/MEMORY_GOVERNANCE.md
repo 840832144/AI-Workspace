@@ -1,7 +1,7 @@
 # Memory Governance Standard
 
-- Status: Proposed / Waiting for ChatGPT Review
-- Version: 1.1
+- Status: Accepted / Active
+- Version: 1.2
 - Date: 2026-08-27
 - Scope: Game Planner AI Workspace 与登记的游戏项目
 - Source: TASK-0016 / ADR-0005

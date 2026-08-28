@@ -2,6 +2,18 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.9] - 2026-08-28
+
+### Accepted
+
+- TASK-0016 ChatGPT Review Round 3 Accepted；正式记录为 `reviews/TASK-0016-CHATGPT-REVIEW-3.md`，reviewed implementation commit 为 `d3dd72592fc8c176f317ffe6d0ac1362eed5930e`。
+- TASK-0016 转为 Accepted；Memory Capability 与 Memory Governance 转为 Active。
+
+### Validation
+
+- 合并前人工复核通过：默认模式 `ASSISTED`；Secret/Local-only hard deny 早于 Registry；Workspace canonical gate 精确且冲突 fail closed；Git-live-first 与业务真相源优先级明确；无生产调试开关残留。
+- 保持 production AUTO / Hook / WATCH disabled，不新增外部服务，不修改业务模块；`Subagents: none`。
+
 ## [0.16.8] - 2026-08-28
 
 ### Fixed

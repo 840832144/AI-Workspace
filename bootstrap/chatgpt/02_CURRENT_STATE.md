@@ -117,7 +117,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-28T06:48:50Z
+- Generated: 2026-08-28T06:54:26Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -125,7 +125,6 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 ### Active public control-plane tasks
 
-- `TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md` — Review
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Ready
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md` — Ready

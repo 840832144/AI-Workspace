@@ -1,6 +1,6 @@
 # TASK-0016 — Automatic Cross-Conversation Memory Capture & Curation
 
-- Status: Review
+- Status: Accepted
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1
@@ -407,3 +407,9 @@ Codex 完成后必须返回：
 - 最终回归：Memory 44/44、Task 23/23、Context 13/13；Registry 12 canonical / 0 collision / status valid，Workspace Doctor 通过，Context refresh 68 sources / 0 secret issue / 0 broken link。
 - 最终 production mode 保持 `ASSISTED`；AUTO 未启用，Hook 未安装/启用，Workspace Sync 保持 `ON_DEMAND` 且 WATCH disabled；未新增外部服务。Subagents: none。
 - 当前状态：实现完成，等待 ChatGPT Review Round 3。
+
+### ChatGPT Review Round 3 Closure
+
+- 正式 Review：`reviews/TASK-0016-CHATGPT-REVIEW-3.md`；Decision **Accepted**，reviewed commit `d3dd72592fc8c176f317ffe6d0ac1362eed5930e`。
+- 合并前人工复核确认：默认模式与 Host 隔离状态均为 ASSISTED；Secret/Local-only hard deny 早于 Registry；Workspace canonical gate 精确且冲突 fail closed；Git-live-first 不替代业务真相源；fault injection 只在 disposable test marker 下可用。
+- TASK-0016 转为 Accepted；Memory Capability / Governance 正式生效。生产 AUTO、Hook、WATCH 与外部服务继续禁用。
