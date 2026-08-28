@@ -1,13 +1,23 @@
 # Codex Handoff
 
 - Updated: 2026-08-28
-- Current task: TASK-0025 — Top Tycoon Android F4 Collection Feasibility Audit
+- Current task: TASK-0026 — 【游戏】 Collector 1.0 Engineering
 - Status: Ready — canonical issuance pending merge/finalize
-- Branch: `chatgpt/top-tycoon-f4-feasibility`
+- Branch: `codex/cash-frenzy-collector-1-engineering`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
+
+## Current Task — TASK-0026
+
+- User 已明确把当前目标切换为 Collector 1.0 工程化；Approved Candidate 已从最新 main 的独立 linked worktree经官方 allocator 以 `relationship=new` 晋升为唯一 canonical TASK-0026，不续写 TASK-0024。
+- 正式 GitHub 仓库已按 User 指令从 `CashFrenzy_collect` 改名为 `CF_collect`；面向用户的介绍使用“【游戏】”，运行所需 package、command 与代码技术标识保持不变。
+- 固定交付为 `adapters/batch_spin`、`adapters/keepalive`、`adapters/registry`、统一 `event + adapter + source + payload` Event contract，以及 `session_manifest.json / source_events.jsonl / events.jsonl / spin_records.jsonl / summary.*` Session layout。
+- `batch_spin` 只允许 TASK-0024 已确认的 `base_win / bonus_base_win / total_win / coins / win_lines / win_pos_list` 六字段；额外键必须被忽略，不允许字段发现或 schema 扩展。
+- 只选择性采用 DS Sidecar 的 exact-target gate、fail-closed/type/truncation handling 与合成测试思想；禁止迁移 `.local/`、真实 Session、fixture/artifact、Git 历史、schema expansion、`same_object_fields` 或实验文件。
+- Android 9 inbound Hook、受限 serializer、Gadget/Frida lifecycle、部署顺序、人工操作与清理路线不修改；不执行新 Spin、20-Spin/F4 或其他协议/模块研究。
+- issuance reservation 当前保持 `pending-main`，token 不写入 Git/Handoff；canonical 合入 main 后必须 finalize 才进入正式仓库实施。Workspace Sync `ON_DEMAND`，WATCH disabled；Subagents: none。
 
 ## Governance Task — TASK-0016 Review Round 3
 
@@ -20,9 +30,9 @@
 - 回归：Memory 44/44、Task 23/23、Context 13/13；Registry 已由正式 CLI 重建为 12 canonical / 0 collision / status valid；Workspace Doctor 通过；Context refresh 68 sources / 0 secret issue / 0 broken link。
 - 合并前审计与收口回归全部通过：默认 ASSISTED、Registry hard deny、canonical gate、Git-live-first priority 与调试开关均符合要求。本收口提交合入并 push main 后 TASK-0016 结束，无后续执行项。
 
-## Current Task — TASK-0025
+## Deferred Ready Task — TASK-0025
 
-- User 已明确批准启动 Top Tycoon F4 可行性审计；Approved Candidate 已从最新 main 的独立 linked worktree 先重建 Registry，再由官方 allocator 以 `relationship=new` 晋升为唯一 canonical TASK-0025。
+- User 曾明确批准启动 Top Tycoon F4 可行性审计；canonical TASK-0025 保持 `Ready`，但尚未执行。2026-08-28 的后续 User 决定把当前优先级切换到 TASK-0026，因此本方向暂存 Backlog。
 - reservation 当前保持 `pending-main`，token 不写入 Git/Handoff；canonical Task 合入 main 后必须从原 linked worktree同步最新 main 并 `finalize`，完成前不得执行动态或静态研究。
 - 固定研究环境为 User 新建、显示名 `topTycoon` 的模拟器；执行前现场复核 internal instance ID、ADB serial、package/version/versionCode/split/ABI/native bridge 与前台包，不匹配即 fail closed。
 - 动态样本 Gate：Codex 先完成零游戏操作稳定性与结构边界准备，再明确回复 `READY`；Spin、资源消耗、购买、充值及继续/停止决定全部由 User 操作。禁止 Auto Spin、自动点击、请求/响应修改与重放。
@@ -149,4 +159,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-将 canonical TASK-0025 issuance commit push 到 `chatgpt/top-tycoon-f4-feasibility`，合入并 push 最新 `main`；随后在原 linked worktree同步 main、finalize reservation，确认 Registry 无冲突后才开始 Task Phase A。
+将 canonical TASK-0026 issuance commit push 到 `codex/cash-frenzy-collector-1-engineering`，合入并 push 最新 `main`；随后在原 allocator worktree同步 main、finalize reservation，确认 Registry 无冲突后才在 `CF_collect` 新分支实施 Collector 1.0。TASK-0025 暂不执行。

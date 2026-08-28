@@ -2,6 +2,23 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.17.0] - 2026-08-28
+
+### Added
+
+- 通过 User 已批准 Candidate 与 remote-CAS allocator 创建唯一 canonical `TASK-0026 — 【游戏】 Collector 1.0 Engineering`；Allocation relationship 为 `new`，不续写已完成的 TASK-0024。
+- Task 固定 Adapter Registry、`event + adapter + source + payload` 统一 Event contract、Session/Manifest/Events/Spin Records artifact layout，以及 DS Sidecar 选择性迁移 allowlist。
+
+### Changed
+
+- User 将当前产品优先级从尚未执行的 TASK-0025 切换到 TASK-0026；Top Tycoon 保留 `Ready` 并进入 Backlog，不在 Collector 1.0 期间并行执行。
+- 正式实现仓库由 `CashFrenzy_collect` 改名为 `CF_collect`；面向用户的介绍改用“【游戏】”，运行所需 package、command 与技术标识不做破坏性替换。
+
+### Boundaries
+
+- 不继续恢复字段，不扩大 `batch_spin` 六字段 schema，不做 20-Spin/F4，不改 Android 9 Hook/serializer/部署路线。
+- 不迁移 DS Sidecar Git 历史、`.local/`、真实 Session、fixtures/artifacts、schema expansion、`same_object_fields` 或实验文件；`Subagents: none`。
+
 ## [0.16.9] - 2026-08-28
 
 ### Accepted
