@@ -1,0 +1,2440 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-08-27T07:48:07.740455+00:00",
+  "workbook_count": 14,
+  "source_counts": {
+    "designer_workbooks": 14
+  },
+  "workbooks": [
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/1+6礼包.xlsx",
+      "filename": "1+6礼包.xlsx",
+      "size_bytes": 684378,
+      "modified_at": "2026-08-13T10:44:13.584491+00:00",
+      "sha256": "832fb519430f9e7efcf463ef1e25123f38a09ac4c559ed77072cde9f0b0030b6",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 18,
+          "columns": 16,
+          "nonempty_rows": 18,
+          "header_preview": [
+            "Id",
+            "Group",
+            "Type",
+            "ItemIDgp",
+            "ItemIDiap",
+            "Money",
+            "Sort",
+            "rewardType_3_0",
+            "rewardId_3_0",
+            "rewardNum_3_0",
+            "rewardType_3_1",
+            "rewardId_3_1"
+          ],
+          "name": "OnePlusSixGift"
+        },
+        {
+          "rows": 8,
+          "columns": 27,
+          "nonempty_rows": 8,
+          "header_preview": [
+            "价格",
+            "14.98",
+            "id",
+            "类型",
+            "数量",
+            "等价美金",
+            "单位金币",
+            "单位钻石",
+            "商店折扣"
+          ],
+          "name": "frenzy"
+        },
+        {
+          "rows": 28,
+          "columns": 20,
+          "nonempty_rows": 28,
+          "header_preview": [
+            "分组定价",
+            "id",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9美金(查表) 17美金金币",
+            "奖励物品ID1 1金币 2钻石 3物品id",
+            "奖励数量1",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9美金(查表) 17美金金币",
+            "奖励物品ID1 1金币 2钻石 3物品id",
+            "奖励数量1",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9美金(查表) 17美金金币",
+            "奖励物品ID1 1金币 2钻石 3物品id",
+            "奖励数量1",
+            "等价美金"
+          ],
+          "name": "数值体验表"
+        },
+        {
+          "rows": 82,
+          "columns": 4,
+          "nonempty_rows": 82,
+          "header_preview": [
+            "name",
+            "_comm",
+            "itemID",
+            "价值"
+          ],
+          "name": "道具id表"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/CR数值整理.xlsx",
+      "filename": "CR数值整理.xlsx",
+      "size_bytes": 2025883,
+      "modified_at": "2026-08-13T10:44:13.588480+00:00",
+      "sha256": "f68bf7b3075c847473fe5a55e924c09bfe8943486988dd866e8b1c7f6aec01c7",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 15,
+          "columns": 7,
+          "nonempty_rows": 15,
+          "header_preview": [
+            "等级",
+            "√",
+            "√",
+            "√",
+            "√",
+            "×"
+          ],
+          "name": "总览"
+        },
+        {
+          "rows": 24,
+          "columns": 19,
+          "nonempty_rows": 23,
+          "header_preview": [
+            "等级",
+            "膨胀",
+            "等级",
+            "膨胀",
+            "等级",
+            "膨胀"
+          ],
+          "name": "等级"
+        },
+        {
+          "rows": 16,
+          "columns": 5,
+          "nonempty_rows": 16,
+          "header_preview": [
+            "VIP 等级",
+            "旧CR",
+            "frenzy",
+            "经验",
+            "新CR"
+          ],
+          "name": "vip"
+        },
+        {
+          "rows": 15,
+          "columns": 4,
+          "nonempty_rows": 13,
+          "header_preview": [
+            "奖励",
+            "旧CR",
+            "frenzy",
+            "新CR"
+          ],
+          "name": "时间礼包"
+        },
+        {
+          "rows": 22,
+          "columns": 11,
+          "nonempty_rows": 20,
+          "header_preview": [
+            "任务id",
+            "关卡ID",
+            "阶段id",
+            "机器id",
+            "任务类型  游戏内系统共用",
+            "任务奖励",
+            "任务ICON",
+            "任务内容",
+            "达成条件",
+            "#收集symbol的id",
+            "#收集symbol的name"
+          ],
+          "name": "新手之路"
+        },
+        {
+          "rows": 39,
+          "columns": 22,
+          "nonempty_rows": 28,
+          "header_preview": [
+            "等价spin",
+            "24",
+            "120",
+            "240",
+            "500",
+            "750",
+            "2000"
+          ],
+          "name": "每日任务"
+        },
+        {
+          "rows": 4,
+          "columns": 4,
+          "nonempty_rows": 4,
+          "header_preview": [
+            "参数",
+            "旧CR",
+            "frenzy",
+            "新CR"
+          ],
+          "name": "bp"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/CR等级+buff新.xlsx",
+      "filename": "CR等级+buff新.xlsx",
+      "size_bytes": 27210084,
+      "modified_at": "2026-08-13T10:44:13.655302+00:00",
+      "sha256": "84a709d30ba5a325f38c9b20de06f669401cd9ae6379b7b28689b52c77f0af81",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 35,
+          "columns": 20,
+          "nonempty_rows": 32,
+          "header_preview": [
+            "底注",
+            "一局金币",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "name": "付费"
+        },
+        {
+          "rows": 17,
+          "columns": 8,
+          "nonempty_rows": 17,
+          "header_preview": [
+            "物品",
+            "美金",
+            "钻石",
+            "金币",
+            "道具类型",
+            "道具id",
+            "商店金币"
+          ],
+          "name": "定价"
+        },
+        {
+          "rows": 85,
+          "columns": 86,
+          "nonempty_rows": 85,
+          "header_preview": [
+            "锦标赛关卡",
+            "目标场底注",
+            "目标场所需局数",
+            "当前关奖励",
+            "累计返还比",
+            "段位rank1",
+            "排名1奖励",
+            "段位rank20",
+            "排名20奖励",
+            "奖励缩放系数",
+            "当前关的奖励",
+            "奖励占比"
+          ],
+          "name": "锦标赛"
+        },
+        {
+          "rows": 43,
+          "columns": 99,
+          "nonempty_rows": 43,
+          "header_preview": [
+            "3",
+            "0.514285714285714",
+            "60000",
+            "0.1",
+            "0.99",
+            "60000",
+            "105000",
+            "175000",
+            "700000",
+            "10000",
+            "1.5",
+            "2.5"
+          ],
+          "name": "赢钱宝箱规划-奖励"
+        },
+        {
+          "rows": 37,
+          "columns": 56,
+          "nonempty_rows": 37,
+          "header_preview": [
+            "每关牌局数",
+            "1000",
+            "3000",
+            "10000",
+            "20000",
+            "50000",
+            "100000",
+            "200000",
+            "500000",
+            "1000000",
+            "1000",
+            "1"
+          ],
+          "name": "航海"
+        },
+        {
+          "rows": 204,
+          "columns": 2063,
+          "nonempty_rows": 204,
+          "header_preview": [
+            "// 等级",
+            "// 提升至下一级所需经验",
+            "15",
+            "60",
+            "150",
+            "300",
+            "450",
+            "600",
+            "900",
+            "1050",
+            "// 提升至下一级所需经验",
+            "vip积分"
+          ],
+          "name": "等级-2倍-新版10.23"
+        },
+        {
+          "rows": 1004,
+          "columns": 2064,
+          "nonempty_rows": 1004,
+          "header_preview": [
+            "// 等级",
+            "// 提升至下一级所需经验",
+            "15",
+            "60",
+            "150",
+            "300",
+            "450",
+            "600",
+            "900",
+            "1050",
+            "// 提升至下一级所需经验",
+            "vip积分"
+          ],
+          "name": "等级-2倍-新版12.3"
+        },
+        {
+          "rows": 5004,
+          "columns": 2064,
+          "nonempty_rows": 5004,
+          "header_preview": [
+            "// 等级",
+            "// 提升至下一级所需经验",
+            "15",
+            "60",
+            "150",
+            "300",
+            "450",
+            "600",
+            "900",
+            "1050",
+            "// 提升至下一级所需经验",
+            "vip积分"
+          ],
+          "name": "等级-2倍-新版12.4"
+        },
+        {
+          "rows": 5004,
+          "columns": 2065,
+          "nonempty_rows": 5004,
+          "header_preview": [
+            "// 等级",
+            "// 提升至下一级所需经验",
+            "15",
+            "60",
+            "150",
+            "300",
+            "450",
+            "600",
+            "900",
+            "1050",
+            "// 提升至下一级所需经验",
+            "vip积分"
+          ],
+          "name": "等级-2倍-新版12.4-经验非线性"
+        },
+        {
+          "rows": 66,
+          "columns": 27,
+          "nonempty_rows": 66,
+          "header_preview": [
+            "1",
+            "20000",
+            "1",
+            "1",
+            "金币",
+            "1",
+            "1",
+            "20000",
+            "加速buff",
+            "2",
+            "1",
+            "12"
+          ],
+          "name": "挖宝"
+        },
+        {
+          "rows": 209,
+          "columns": 115,
+          "nonempty_rows": 209,
+          "header_preview": [
+            "// 等级",
+            "// 提升至下一级所需经验",
+            "15",
+            "60",
+            "150",
+            "300",
+            "450",
+            "600",
+            "900",
+            "1050",
+            "// 提升至下一级所需经验",
+            "vip积分"
+          ],
+          "name": "等级-2倍-新版10.15"
+        },
+        {
+          "rows": 65,
+          "columns": 37,
+          "nonempty_rows": 61,
+          "header_preview": [
+            "底注",
+            "一局金币",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "name": "付费膨胀-2倍-新版"
+        },
+        {
+          "rows": 68,
+          "columns": 36,
+          "nonempty_rows": 64,
+          "header_preview": [
+            "底注",
+            "一局金币",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "name": "付费膨胀-2倍"
+        },
+        {
+          "rows": 204,
+          "columns": 105,
+          "nonempty_rows": 204,
+          "header_preview": [
+            "// 等级",
+            "// 提升至下一级所需经验",
+            "15",
+            "60",
+            "150",
+            "300",
+            "450",
+            "600",
+            "900",
+            "1050",
+            "// 提升至下一级所需经验",
+            "vip积分"
+          ],
+          "name": "等级-2倍-新版"
+        },
+        {
+          "rows": 68,
+          "columns": 37,
+          "nonempty_rows": 64,
+          "header_preview": [
+            "2000",
+            "1000",
+            "100000",
+            "0.05",
+            "0.0487804878048781",
+            "0.0476190476190476",
+            "0.0465116279069767",
+            "0.0454545454545455",
+            "0.0444444444444444",
+            "0.0434782608695652",
+            "0.0425531914893617",
+            "0.0416666666666667"
+          ],
+          "name": "付费膨胀-2倍 (2)"
+        },
+        {
+          "rows": 68,
+          "columns": 36,
+          "nonempty_rows": 62,
+          "header_preview": [
+            "底注",
+            "一局金币",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "name": "付费膨胀-3倍"
+        },
+        {
+          "rows": 68,
+          "columns": 36,
+          "nonempty_rows": 62,
+          "header_preview": [
+            "底注",
+            "一局金币",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "name": "付费膨胀-原始"
+        },
+        {
+          "rows": 41,
+          "columns": 99,
+          "nonempty_rows": 41,
+          "header_preview": [
+            "// 等级",
+            "// 提升至下一级所需经验",
+            "15",
+            "60",
+            "150",
+            "300",
+            "450",
+            "600",
+            "900",
+            "1050",
+            "// 提升至下一级所需经验",
+            "累积台费消耗"
+          ],
+          "name": "赢钱宝箱规划-废弃"
+        },
+        {
+          "rows": 5000,
+          "columns": 42,
+          "nonempty_rows": 5000,
+          "header_preview": [
+            "等级",
+            "最大bet",
+            "sipn",
+            "消耗",
+            "单级经验",
+            "升级奖励",
+            "奖励美金",
+            "消耗美金",
+            "返还比",
+            "倍数",
+            "vip点数",
+            "累计vip"
+          ],
+          "name": "等级+buff"
+        },
+        {
+          "rows": 301,
+          "columns": 31,
+          "nonempty_rows": 301,
+          "header_preview": [
+            "等级",
+            "最大bet",
+            "sipn",
+            "消耗",
+            "升级奖励",
+            "奖励美金",
+            "消耗美金",
+            "返还比",
+            "倍数",
+            "vip点数",
+            "累计vip",
+            "vip"
+          ],
+          "name": "cashFrenzy等级"
+        },
+        {
+          "rows": 24,
+          "columns": 1,
+          "nonempty_rows": 24,
+          "header_preview": [
+            "10000"
+          ],
+          "name": "cashFrenzy下注"
+        },
+        {
+          "rows": 25,
+          "columns": 3,
+          "nonempty_rows": 25,
+          "header_preview": [
+            "0",
+            "10000",
+            "1"
+          ],
+          "name": "Sheet1"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/quest数值.xlsx",
+      "filename": "quest数值.xlsx",
+      "size_bytes": 6260434,
+      "modified_at": "2026-08-13T10:44:13.665275+00:00",
+      "sha256": "782eb98cd397a984493a75c942a4c62c91ee4cb9dda258a88e2627965d9eb494",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 23,
+          "columns": 20,
+          "nonempty_rows": 23,
+          "header_preview": [
+            "关卡ID",
+            "金币",
+            "美金",
+            "钻石",
+            "道具",
+            "凿子",
+            "关卡ID",
+            "金币",
+            "美金",
+            "钻石",
+            "道具",
+            "凿子"
+          ],
+          "name": "cashFrenzy数值"
+        },
+        {
+          "rows": 82,
+          "columns": 4,
+          "nonempty_rows": 82,
+          "header_preview": [
+            "name",
+            "_comm",
+            "itemID",
+            "价值"
+          ],
+          "name": "道具id表"
+        },
+        {
+          "rows": 28,
+          "columns": 7,
+          "nonempty_rows": 28,
+          "header_preview": [
+            "Id",
+            "Type",
+            "BetId",
+            "Probability",
+            "Points",
+            "Probability",
+            "Points"
+          ],
+          "name": "QuestPickaxeGet"
+        },
+        {
+          "rows": 44,
+          "columns": 5,
+          "nonempty_rows": 44,
+          "header_preview": [
+            "关卡ID",
+            "升到下级积分数(升级后积分清0)",
+            "满级奖励凿子数",
+            "经验倍率"
+          ],
+          "name": "QuestGetLevel"
+        },
+        {
+          "rows": 16,
+          "columns": 7,
+          "nonempty_rows": 16,
+          "header_preview": [
+            "任务ID",
+            "任务类型 1：完成关卡 2：使用凿子数量 3：挖出宝石数",
+            "任务数值",
+            "奖励经验",
+            "备注",
+            "等价凿子数"
+          ],
+          "name": "QuestBPTask"
+        },
+        {
+          "rows": 99,
+          "columns": 25,
+          "nonempty_rows": 99,
+          "header_preview": [
+            "turn",
+            "levelId",
+            "type",
+            "itemType1",
+            "itemId1",
+            "num1",
+            "itemType2",
+            "itemId2",
+            "num2",
+            "questDayMin",
+            "questDayMax",
+            "exp"
+          ],
+          "name": "QuestBlastLevelCfg"
+        },
+        {
+          "rows": 121,
+          "columns": 19,
+          "nonempty_rows": 121,
+          "header_preview": [
+            "Id",
+            "Type",
+            "Group",
+            "Category",
+            "LevelId",
+            "LevelExp",
+            "LevelDiamond",
+            "reward_type_4_0",
+            "reward_Id_4_0",
+            "reward_Num_4_0",
+            "reward_type_4_1",
+            "reward_Id_4_1"
+          ],
+          "name": "CommonBPLevel"
+        },
+        {
+          "rows": 16,
+          "columns": 9,
+          "nonempty_rows": 16,
+          "header_preview": [
+            "Id",
+            "Type",
+            "Group",
+            "Category",
+            "CommonPayKey",
+            "ItemId_gp",
+            "ItemID_iap",
+            "remark",
+            "OldPrice"
+          ],
+          "name": "CommonBPPrice"
+        },
+        {
+          "rows": 14,
+          "columns": 7,
+          "nonempty_rows": 14,
+          "header_preview": [
+            "int_key",
+            "int",
+            "int",
+            "string",
+            "string",
+            "int",
+            "int"
+          ],
+          "name": "QuestItemPack"
+        },
+        {
+          "rows": 25,
+          "columns": 13,
+          "nonempty_rows": 25,
+          "header_preview": [
+            "id",
+            "bet",
+            "单次产出",
+            "需要次数",
+            "单位消耗",
+            "消耗美金",
+            "单次消耗美金",
+            "目标凿子数",
+            "类型",
+            "type",
+            "抽成",
+            "倍率"
+          ],
+          "name": "bet对应表"
+        },
+        {
+          "rows": 0,
+          "columns": 0,
+          "nonempty_rows": 0,
+          "header_preview": [],
+          "name": "QuestPickaxeGetCheatSheet"
+        },
+        {
+          "rows": 64,
+          "columns": 60,
+          "nonempty_rows": 63,
+          "header_preview": [
+            "2",
+            "9",
+            "1",
+            "375",
+            "15",
+            "28",
+            "3.75",
+            "7",
+            "240000",
+            "448000",
+            "0.25",
+            "2"
+          ],
+          "name": "数值体验表"
+        },
+        {
+          "rows": 67,
+          "columns": 54,
+          "nonempty_rows": 66,
+          "header_preview": [
+            "2",
+            "9",
+            "1",
+            "375",
+            "15",
+            "28",
+            "3.75",
+            "7",
+            "240000",
+            "448000",
+            "0.25",
+            "2"
+          ],
+          "name": "v5以上数值体验表"
+        },
+        {
+          "rows": 67,
+          "columns": 54,
+          "nonempty_rows": 66,
+          "header_preview": [
+            "2",
+            "9",
+            "1",
+            "750",
+            "15",
+            "28",
+            "7.5",
+            "14",
+            "120000",
+            "224000",
+            "0.5",
+            "2"
+          ],
+          "name": "数值体验表备份"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/免费奖励数值.xlsx",
+      "filename": "免费奖励数值.xlsx",
+      "size_bytes": 18125,
+      "modified_at": "2026-08-13T10:44:13.665275+00:00",
+      "sha256": "571d350b4b92a61fcff1ecfa4f8925cf7523ca81014970c164ca6df38164625f",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 29,
+          "columns": 27,
+          "nonempty_rows": 29,
+          "header_preview": [
+            "id",
+            "playerLevel",
+            "level",
+            "betNeed",
+            "花费时间min",
+            "1",
+            "0.02",
+            "1",
+            "1",
+            "0",
+            "0",
+            "900"
+          ],
+          "name": "数值体验表"
+        },
+        {
+          "rows": 22,
+          "columns": 8,
+          "nonempty_rows": 22,
+          "header_preview": [
+            "id",
+            "level",
+            "moduleNameId",
+            "coins",
+            "weightType",
+            "weight",
+            "interval",
+            "maxRate"
+          ],
+          "name": "FreeBonusHourly"
+        },
+        {
+          "rows": 46,
+          "columns": 11,
+          "nonempty_rows": 46,
+          "header_preview": [
+            "level",
+            "payType",
+            "moduleNameId",
+            "multi",
+            "weightType",
+            "weight",
+            "group",
+            "ItemIDgp",
+            "ItemIDiap",
+            "CommonPayKey",
+            "Money"
+          ],
+          "name": "FreeBonusWheel"
+        },
+        {
+          "rows": 16,
+          "columns": 3,
+          "nonempty_rows": 16,
+          "header_preview": [
+            "level",
+            "multiplier",
+            "spinNeed"
+          ],
+          "name": "FreeBonusMultiplier"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/卡包数值调整.xlsx",
+      "filename": "卡包数值调整.xlsx",
+      "size_bytes": 136252,
+      "modified_at": "2026-08-13T10:44:13.666272+00:00",
+      "sha256": "04c5462a87748810d88713bb82cfb246182b16dd69da360a9ce0952aeec98587",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 81,
+          "columns": 42,
+          "nonempty_rows": 77,
+          "header_preview": [
+            "5",
+            "1000000",
+            "4",
+            "5",
+            "3400000",
+            "3.4",
+            "2",
+            "0.1",
+            "50000",
+            "3500000",
+            "350000",
+            "0.35"
+          ],
+          "name": "膨胀后"
+        },
+        {
+          "rows": 81,
+          "columns": 42,
+          "nonempty_rows": 77,
+          "header_preview": [
+            "5",
+            "1000000",
+            "4",
+            "5",
+            "1000000",
+            "4",
+            "2",
+            "0.1",
+            "50000",
+            "5000000",
+            "500000",
+            "2"
+          ],
+          "name": "旧版"
+        },
+        {
+          "rows": 81,
+          "columns": 36,
+          "nonempty_rows": 77,
+          "header_preview": [
+            "5",
+            "3400000",
+            "3.4",
+            "2",
+            "0.1",
+            "50000",
+            "3500000",
+            "350000",
+            "0.35",
+            "2",
+            "525",
+            "0.6825"
+          ],
+          "name": "膨胀后新版"
+        },
+        {
+          "rows": 75,
+          "columns": 94,
+          "nonempty_rows": 74,
+          "header_preview": [
+            "5",
+            "1000000",
+            "1",
+            "5",
+            "2000000",
+            "2",
+            "2",
+            "0.1",
+            "50000",
+            "2500000",
+            "350000",
+            "0.35"
+          ],
+          "name": "10.24调整"
+        },
+        {
+          "rows": 95,
+          "columns": 16384,
+          "nonempty_rows": 91,
+          "header_preview": [
+            "4",
+            "500000",
+            "3.2",
+            "2",
+            "抽水",
+            "50000",
+            "2500",
+            "0.0025",
+            "2",
+            "182",
+            "0.0182",
+            "3"
+          ],
+          "name": "老虎机掉卡包旧版"
+        },
+        {
+          "rows": 95,
+          "columns": 16384,
+          "nonempty_rows": 91,
+          "header_preview": [
+            "4",
+            "1000000",
+            "3.2",
+            "2",
+            "抽水",
+            "50000",
+            "2500",
+            "0.0025",
+            "2",
+            "182",
+            "0.0182",
+            "3"
+          ],
+          "name": "老虎机掉卡包新版"
+        },
+        {
+          "rows": 18,
+          "columns": 17,
+          "nonempty_rows": 17,
+          "header_preview": [
+            "200000",
+            "25.6410256410256",
+            "70000",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "50"
+          ],
+          "name": "Sheet1"
+        },
+        {
+          "rows": 22,
+          "columns": 14,
+          "nonempty_rows": 21,
+          "header_preview": [
+            "0.357142857142857",
+            "0.105714285714286",
+            "0.100857142857143",
+            "0.0917142857142857",
+            "0.101214285714286",
+            "0.0607285714285714",
+            "0.0607285714285714"
+          ],
+          "name": "Sheet2"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/宝藏矿工.xlsx",
+      "filename": "宝藏矿工.xlsx",
+      "size_bytes": 942161,
+      "modified_at": "2026-08-13T10:44:13.667270+00:00",
+      "sha256": "b954106fb2677826e936aa5deaf7d6737018f65c85d9d320286f669910fc1abb",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 42,
+          "columns": 19,
+          "nonempty_rows": 42,
+          "header_preview": [
+            "questType",
+            "Id",
+            "level",
+            "vip_16_0",
+            "vip_16_1",
+            "vip_16_2",
+            "vip_16_3",
+            "vip_16_4",
+            "vip_16_5",
+            "vip_16_6",
+            "vip_16_7",
+            "vip_16_8"
+          ],
+          "name": "QuestPointsCheatSheet"
+        },
+        {
+          "rows": 5,
+          "columns": 4,
+          "nonempty_rows": 5,
+          "header_preview": [
+            "Id",
+            "questType",
+            "LevelUpPoints",
+            "num"
+          ],
+          "name": "QuestGetLevel"
+        },
+        {
+          "rows": 42,
+          "columns": 7,
+          "nonempty_rows": 42,
+          "header_preview": [
+            "Id",
+            "questType",
+            "bet",
+            "Type",
+            "BetId",
+            "Probability",
+            "Points"
+          ],
+          "name": "QuestPickGet"
+        },
+        {
+          "rows": 544,
+          "columns": 10,
+          "nonempty_rows": 544,
+          "header_preview": [
+            "id",
+            "BoxNum",
+            "_descc",
+            "EmptyProb",
+            "BombProb",
+            "CashNum",
+            "ChipProb",
+            "chipNum",
+            "CardPageProb",
+            "CardPageItemId"
+          ],
+          "name": "QuestMinerDropItem"
+        },
+        {
+          "rows": 22,
+          "columns": 17,
+          "nonempty_rows": 22,
+          "header_preview": [
+            "关卡id",
+            "关卡描述",
+            "障碍物描述 1普通砖块 2特殊砖块 9红钻石 10绿钻石 11蓝钻石",
+            "第几行",
+            "第一列 障碍物id",
+            "第二列 障碍物id",
+            "第三列 障碍物id",
+            "第四列 障碍物id",
+            "第五列 障碍物id",
+            "第六列 障碍物id",
+            "第七列 障碍物id",
+            "第八列 障碍物id"
+          ],
+          "name": "QuestMinerMap"
+        },
+        {
+          "rows": 13,
+          "columns": 12,
+          "nonempty_rows": 13,
+          "header_preview": [
+            "id",
+            "round",
+            "_descc",
+            "RewardItemType_3_0",
+            "RewardItemIds_3_0",
+            "RewardItemCount_3_0",
+            "RewardItemType_3_1",
+            "RewardItemIds_3_1",
+            "RewardItemCount_3_1",
+            "RewardItemType_3_2",
+            "RewardItemIds_3_2",
+            "RewardItemCount_3_2"
+          ],
+          "name": "QuestMinerStageReward"
+        },
+        {
+          "rows": 15,
+          "columns": 11,
+          "nonempty_rows": 15,
+          "header_preview": [
+            "Id",
+            "Type",
+            "Name",
+            "NeedCount",
+            "Weight_3_0",
+            "Weight_3_1",
+            "Weight_3_2",
+            "ReduceLuck",
+            "RewardType",
+            "RewardId",
+            "RewardNum"
+          ],
+          "name": "QuestJackpotCfg"
+        },
+        {
+          "rows": 42,
+          "columns": 10,
+          "nonempty_rows": 42,
+          "header_preview": [
+            "ID",
+            "//房间bet",
+            "类型 1打牌 2老虎机",
+            "RoomId/BetIndex",
+            "掉落概率，千分比",
+            "基础积分点数，仅用于验证",
+            "单次消耗金币",
+            "单次消耗美金",
+            "rtp",
+            "单位金币"
+          ],
+          "name": "bet配置"
+        },
+        {
+          "rows": 5,
+          "columns": 13,
+          "nonempty_rows": 5,
+          "header_preview": [
+            "关卡",
+            "消耗道具",
+            "消耗积分",
+            "消耗美金",
+            "累计消耗美金",
+            "累计奖励美金",
+            "消耗返还",
+            "道具单价",
+            "通关",
+            "金币",
+            "jackpot1",
+            "jackpot2"
+          ],
+          "name": "数值体验表"
+        },
+        {
+          "rows": 18,
+          "columns": 20,
+          "nonempty_rows": 18,
+          "header_preview": [
+            "美金",
+            "能量/金币",
+            "单价",
+            "轮次",
+            "消耗道具",
+            "金币",
+            "能量",
+            "通关金币",
+            "通关能量",
+            "jackpot1",
+            "jackpot2",
+            "jackpot3"
+          ],
+          "name": "tycoon"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/幸运7数值.xlsx",
+      "filename": "幸运7数值.xlsx",
+      "size_bytes": 1746181,
+      "modified_at": "2026-08-13T10:44:13.671260+00:00",
+      "sha256": "8814f22a9a5c4b000c854ba149bb916017bb9060ad494aa4fa5b7176361409ef",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 7,
+          "columns": 15,
+          "nonempty_rows": 7,
+          "header_preview": [
+            "round",
+            "costItemId_3_0",
+            "costCount_3_0",
+            "costItemId_3_1",
+            "costCount_3_1",
+            "costItemId_3_2",
+            "costCount_3_2",
+            "cherryCollect",
+            "cherryItemType",
+            "cherryItemId",
+            "cherryItemCount",
+            "sevenCollect"
+          ],
+          "name": "StrikeLuckyRound"
+        },
+        {
+          "rows": 40,
+          "columns": 11,
+          "nonempty_rows": 40,
+          "header_preview": [
+            "格子id",
+            "第几轮",
+            "1外圈  2中圈  3内圈",
+            "命中的权重",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9礼包美金 17美金金币 999Jackpot收集物",
+            "奖励物品ID 1金币 2钻石 3物品id 骰子215006；樱桃13；7符号12",
+            "奖励数量",
+            "999对应的id参考QuestJackpotCfg.xlsx"
+          ],
+          "name": "StrikeLucky"
+        },
+        {
+          "rows": 42,
+          "columns": 7,
+          "nonempty_rows": 42,
+          "header_preview": [
+            "Id",
+            "questType",
+            "bet",
+            "Type",
+            "BetId",
+            "Probability",
+            "Points"
+          ],
+          "name": "QuestPickGet"
+        },
+        {
+          "rows": 5,
+          "columns": 4,
+          "nonempty_rows": 5,
+          "header_preview": [
+            "Id",
+            "questType",
+            "LevelUpPoints",
+            "num"
+          ],
+          "name": "QuestGetLevel"
+        },
+        {
+          "rows": 42,
+          "columns": 19,
+          "nonempty_rows": 42,
+          "header_preview": [
+            "questType",
+            "Id",
+            "level",
+            "vip_16_0",
+            "vip_16_1",
+            "vip_16_2",
+            "vip_16_3",
+            "vip_16_4",
+            "vip_16_5",
+            "vip_16_6",
+            "vip_16_7",
+            "vip_16_8"
+          ],
+          "name": "QuestPointsCheatSheet"
+        },
+        {
+          "rows": 42,
+          "columns": 10,
+          "nonempty_rows": 42,
+          "header_preview": [
+            "ID",
+            "//房间bet",
+            "类型 1打牌 2老虎机",
+            "RoomId/BetIndex",
+            "掉落概率，千分比",
+            "基础积分点数，仅用于验证",
+            "单次消耗金币",
+            "单次消耗美金",
+            "rtp",
+            "单位金币"
+          ],
+          "name": "bet配置"
+        },
+        {
+          "rows": 4,
+          "columns": 4,
+          "nonempty_rows": 4,
+          "header_preview": [
+            "轮数",
+            "美金",
+            "卡包",
+            "jackpot"
+          ],
+          "name": "奖励配置"
+        },
+        {
+          "rows": 39,
+          "columns": 11,
+          "nonempty_rows": 39,
+          "header_preview": [
+            "轮数",
+            "消耗道具",
+            "消耗积分",
+            "消耗美金",
+            "奖励美金",
+            "消耗返还",
+            "道具单价",
+            "档位",
+            "bet",
+            "需要spin"
+          ],
+          "name": "数值体验表"
+        },
+        {
+          "rows": 31,
+          "columns": 13,
+          "nonempty_rows": 31,
+          "header_preview": [
+            "美金",
+            "能量/金币",
+            "单价",
+            "奖励",
+            "美金",
+            "单次消耗能量",
+            "概率",
+            "奖励道具",
+            "通关消耗道具",
+            "消耗美金",
+            "消耗返还"
+          ],
+          "name": "tycoon"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/建造数值.xlsx",
+      "filename": "建造数值.xlsx",
+      "size_bytes": 1314545,
+      "modified_at": "2026-08-13T10:44:13.673254+00:00",
+      "sha256": "60d7eb0c765c6801275cd34a403d575c9c5e10f3cfa0ab1802a2593add01eb3d",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 29,
+          "columns": 9,
+          "nonempty_rows": 29,
+          "header_preview": [
+            "等级",
+            "升级消耗建设币",
+            "游客数",
+            "游客生成速率 (每秒)",
+            "开启闸机口数量 1/2/3/4",
+            "排队上限",
+            "游客产金币速率（每秒）",
+            "初始建设币"
+          ],
+          "name": "闸门"
+        },
+        {
+          "rows": 4,
+          "columns": 3,
+          "nonempty_rows": 4,
+          "header_preview": [
+            "等级",
+            "升级消耗建设币",
+            "排队上限"
+          ],
+          "name": "新手宫殿"
+        },
+        {
+          "rows": 13,
+          "columns": 4,
+          "nonempty_rows": 13,
+          "header_preview": [
+            "建筑物",
+            "每轮产金币",
+            "产金币速率（秒）",
+            "上限"
+          ],
+          "name": "建筑物"
+        },
+        {
+          "rows": 122,
+          "columns": 21,
+          "nonempty_rows": 122,
+          "header_preview": [
+            "章节",
+            "地块",
+            "消耗建设币",
+            "奖励金币",
+            "奖励钞票",
+            "消耗能量（spin）",
+            "累计消耗（spin）",
+            "花费美金",
+            "累计花费美金",
+            "奖励金币",
+            "奖励能量",
+            "其他"
+          ],
+          "name": "翻地块"
+        },
+        {
+          "rows": 654,
+          "columns": 21,
+          "nonempty_rows": 654,
+          "header_preview": [
+            "章节",
+            "地块",
+            "消耗建设币",
+            "奖励金币",
+            "奖励钞票",
+            "消耗能量（spin）",
+            "累计消耗（spin）",
+            "花费美金",
+            "累计花费美金",
+            "奖励金币",
+            "奖励能量",
+            "其他"
+          ],
+          "name": "翻地块备份"
+        },
+        {
+          "rows": 0,
+          "columns": 0,
+          "nonempty_rows": 0,
+          "header_preview": [],
+          "name": "tycoon截图"
+        },
+        {
+          "rows": 18,
+          "columns": 5,
+          "nonempty_rows": 18,
+          "header_preview": [
+            "类型",
+            "奖励类型",
+            "奖励数量",
+            "概率",
+            "期望"
+          ],
+          "name": "tycoonSlots"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/建造数值体验表.xlsx",
+      "filename": "建造数值体验表.xlsx",
+      "size_bytes": 39520,
+      "modified_at": "2026-08-13T10:44:13.674253+00:00",
+      "sha256": "3865043f7c50b3a1eed7188f220d5224657a893050edbc48f2ddaf720925f021",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 15,
+          "columns": 8,
+          "nonempty_rows": 14,
+          "header_preview": [
+            "指标",
+            "结果",
+            "说明",
+            "建筑",
+            "地块数",
+            "阶段耗时(天)",
+            "即时返还率"
+          ],
+          "name": "概览"
+        },
+        {
+          "rows": 12,
+          "columns": 44,
+          "nonempty_rows": 12,
+          "header_preview": [
+            "序号",
+            "时间段",
+            "阶段目标",
+            "建筑",
+            "地块数",
+            "阶段耗时(天)",
+            "里程碑日",
+            "本段Spin",
+            "掉落概率",
+            "需产出建设币",
+            "每次掉落建设币",
+            "期望建设币/Spin"
+          ],
+          "name": "数值体验表"
+        },
+        {
+          "rows": 15,
+          "columns": 44,
+          "nonempty_rows": 14,
+          "header_preview": [
+            "阶段",
+            "目标完成日",
+            "阶段耗时(天)",
+            "地块数",
+            "需产出建设币",
+            "每日Spin",
+            "掉落概率",
+            "期望掉落次数",
+            "每次掉落建设币(固定值)",
+            "期望建设币/Spin",
+            "掉落档建议",
+            "备注"
+          ],
+          "name": "掉落配置"
+        },
+        {
+          "rows": 43,
+          "columns": 44,
+          "nonempty_rows": 42,
+          "header_preview": [
+            "序号",
+            "Bet",
+            "适用建筑",
+            "适用阶段",
+            "阶段推荐Bet",
+            "Bet阶段",
+            "阶段耗时(天)",
+            "固定值/Bet",
+            "建筑币固定值",
+            "每Spin期望建筑币",
+            "相对阶段推荐Bet",
+            "掉落概率"
+          ],
+          "name": "全量Bet建筑币配置"
+        },
+        {
+          "rows": 15,
+          "columns": 44,
+          "nonempty_rows": 14,
+          "header_preview": [
+            "建筑",
+            "地块数",
+            "翻地消耗建设币",
+            "前置消耗(仅建筑1)",
+            "阶段总消耗建设币",
+            "推荐Bet",
+            "建筑币固定值",
+            "阶段耗时(天)",
+            "金币奖励(竞品)",
+            "金币奖励USD",
+            "奖励能量(spin)",
+            "建筑日金币"
+          ],
+          "name": "源数据汇总"
+        },
+        {
+          "rows": 15,
+          "columns": 44,
+          "nonempty_rows": 14,
+          "header_preview": [
+            "建筑",
+            "地块数",
+            "固定箱金币USD",
+            "固定箱钻石",
+            "固定箱返建筑币",
+            "55%-75%随机期望次数",
+            "每地块15%期望次数",
+            "BuildBox金币USD期望",
+            "BuildBox钻石期望",
+            "BuildBox返建筑币期望",
+            "路边/飞艇金币USD/日(展示)",
+            "是否计入主线"
+          ],
+          "name": "BuildBox体验配置"
+        },
+        {
+          "rows": 15,
+          "columns": 44,
+          "nonempty_rows": 14,
+          "header_preview": [
+            "建筑",
+            "地块数",
+            "BuildLevelCfg行数",
+            "needCash合计",
+            "首块needCash",
+            "末块needCash",
+            "honorVal合计",
+            "备注"
+          ],
+          "name": "BuildLevelCfg汇总"
+        },
+        {
+          "rows": 9,
+          "columns": 44,
+          "nonempty_rows": 8,
+          "header_preview": [
+            "顺序",
+            "模块",
+            "升级范围",
+            "消耗建设币",
+            "累计消耗",
+            "初始币抵扣",
+            "说明"
+          ],
+          "name": "前置升级路径"
+        },
+        {
+          "rows": 11,
+          "columns": 44,
+          "nonempty_rows": 11,
+          "header_preview": [
+            "参数",
+            "值",
+            "说明",
+            "备注"
+          ],
+          "name": "参数说明"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/弹球quest数值 (2).xlsx",
+      "filename": "弹球quest数值 (2).xlsx",
+      "size_bytes": 379637,
+      "modified_at": "2026-08-13T10:44:13.675251+00:00",
+      "sha256": "fed4e57a0e75470e8433710dab204f44d0352c05f3dfc7c4a5fc5f704169e88f",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 23,
+          "columns": 8,
+          "nonempty_rows": 22,
+          "header_preview": [
+            "9",
+            "5234",
+            "209.36",
+            "209.36",
+            "628",
+            "942",
+            "47.1"
+          ],
+          "name": "用户分布"
+        },
+        {
+          "rows": 11,
+          "columns": 233,
+          "nonempty_rows": 11,
+          "header_preview": [
+            "1",
+            "6",
+            "2500",
+            "58.968",
+            "130",
+            "6.552",
+            "5.44",
+            "80",
+            "20",
+            "4",
+            "338",
+            "74"
+          ],
+          "name": "竞品体验"
+        },
+        {
+          "rows": 79,
+          "columns": 42,
+          "nonempty_rows": 78,
+          "header_preview": [
+            "1",
+            "9",
+            "1",
+            "70",
+            "5",
+            "3",
+            "21.7647058823529",
+            "3",
+            "0.05",
+            "0.05",
+            "3000",
+            "3000"
+          ],
+          "name": "数值体验表 "
+        },
+        {
+          "rows": 26,
+          "columns": 21,
+          "nonempty_rows": 25,
+          "header_preview": [
+            "level",
+            "frameIds_13_0",
+            "frameIds_13_1",
+            "frameIds_13_2",
+            "frameIds_13_3",
+            "frameIds_13_4",
+            "frameIds_13_5",
+            "frameIds_13_6",
+            "frameIds_13_7",
+            "frameIds_13_8",
+            "frameIds_13_9",
+            "frameIds_13_10"
+          ],
+          "name": "QuestPlinkoWeight"
+        },
+        {
+          "rows": 22,
+          "columns": 19,
+          "nonempty_rows": 22,
+          "header_preview": [
+            "0",
+            "4.41176470588235",
+            "0.294117647058824",
+            "2.35294117647059",
+            "0.117647058823529",
+            "3.52941176470588",
+            "0.176470588235294",
+            "0",
+            "0.176470588235294",
+            "3.52941176470588",
+            "0.117647058823529",
+            "2.35294117647059"
+          ],
+          "name": "WeightCalculate"
+        },
+        {
+          "rows": 31,
+          "columns": 16,
+          "nonempty_rows": 31,
+          "header_preview": [
+            "StageId",
+            "LevelId",
+            "desc",
+            "PassPoints",
+            "AdjustFrameId",
+            "AdjustCondition",
+            "MaxAdjustTimes",
+            "RewardItemType_3_0",
+            "RewardItemIds_3_0",
+            "RewardItemCount_3_0",
+            "RewardItemType_3_1",
+            "RewardItemIds_3_1"
+          ],
+          "name": "Stagereward"
+        },
+        {
+          "rows": 82,
+          "columns": 4,
+          "nonempty_rows": 82,
+          "header_preview": [
+            "name",
+            "_comm",
+            "itemID",
+            "价值"
+          ],
+          "name": "道具id表"
+        },
+        {
+          "rows": 39,
+          "columns": 15,
+          "nonempty_rows": 39,
+          "header_preview": [
+            "Roomid",
+            "类型",
+            "bet",
+            "单局消耗金币",
+            "单局消耗美金",
+            "单局获得积分",
+            "第1阶段单局获得弹球数",
+            "第2阶段单局获得弹球数",
+            "第3阶段单局获得弹球数",
+            "单局获得美金",
+            "单局消耗兑换比",
+            "类型"
+          ],
+          "name": "bet对应表"
+        },
+        {
+          "rows": 42,
+          "columns": 11,
+          "nonempty_rows": 42,
+          "header_preview": [
+            "ID",
+            "类型 1敲砖;2挖宝;3大富翁;4薯片活动;5幸运7;6弹球;7药水;8拳击;9宝藏矿工;二合",
+            "//房间bet",
+            "类型 1打牌 2老虎机",
+            "RoomId/BetIndex",
+            "掉落概率",
+            "积分点数",
+            "期望积分",
+            "参考期望"
+          ],
+          "name": "QuestPickGet"
+        },
+        {
+          "rows": 274,
+          "columns": 10,
+          "nonempty_rows": 274,
+          "header_preview": [
+            "Id",
+            "LevelPoints",
+            "PickaxeNum",
+            "ConversionRatio"
+          ],
+          "name": "QuestGetLevel"
+        },
+        {
+          "rows": 31,
+          "columns": 16,
+          "nonempty_rows": 31,
+          "header_preview": [
+            "StageId",
+            "LevelId",
+            "desc",
+            "PassPoints",
+            "AdjustFrameId",
+            "AdjustCondition",
+            "MaxAdjustTimes",
+            "RewardItemType_3_0",
+            "RewardItemIds_3_0",
+            "RewardItemCount_3_0",
+            "RewardItemType_3_1",
+            "RewardItemIds_3_1"
+          ],
+          "name": "QuestPlinkoStageReward"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/无尽礼包.xlsx",
+      "filename": "无尽礼包.xlsx",
+      "size_bytes": 366917,
+      "modified_at": "2026-08-13T10:44:13.676247+00:00",
+      "sha256": "0a35a3b2e41f0041b1afdf780bd9578ccf12f79c04e9876aa3211e6c142ea723",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 4,
+          "columns": 16,
+          "nonempty_rows": 4,
+          "header_preview": [
+            "档位",
+            "价格",
+            "金币",
+            "等价物",
+            "进度金币",
+            "进度等价物",
+            "付费美金",
+            "进度美金",
+            "合计",
+            "总折扣",
+            "进度折扣",
+            "价格"
+          ],
+          "name": "frenzy进度"
+        },
+        {
+          "rows": 477,
+          "columns": 20,
+          "nonempty_rows": 477,
+          "header_preview": [
+            "Id",
+            "Group",
+            "Type",
+            "ItemIDgp",
+            "ItemIDiap",
+            "Money",
+            "Sort",
+            "exp",
+            "RewardType1",
+            "RewardItem1",
+            "RewardCount1",
+            "RewardType2"
+          ],
+          "name": "TreasureHuntReward"
+        },
+        {
+          "rows": 37,
+          "columns": 9,
+          "nonempty_rows": 37,
+          "header_preview": [
+            "Group",
+            "stage",
+            "score",
+            "RewardType1",
+            "RewardItem1",
+            "RewardCount1"
+          ],
+          "name": "TreasureHuntLevel"
+        },
+        {
+          "rows": 320,
+          "columns": 3,
+          "nonempty_rows": 318,
+          "header_preview": [
+            "name",
+            "_comm",
+            "itemID"
+          ],
+          "name": "道具"
+        },
+        {
+          "rows": 474,
+          "columns": 21,
+          "nonempty_rows": 474,
+          "header_preview": [
+            "序列",
+            "0",
+            "档位膨胀",
+            "基础金币",
+            "合计金币",
+            "合计美金",
+            "优惠比例",
+            "奖励类型",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9美金(查表) 17美金金币",
+            "数量",
+            "档位金币",
+            "档位美金"
+          ],
+          "name": "转换"
+        },
+        {
+          "rows": 44,
+          "columns": 23,
+          "nonempty_rows": 44,
+          "header_preview": [
+            "序列",
+            "0",
+            "档位膨胀",
+            "基础金币",
+            "合计金币",
+            "合计美金",
+            "优惠比例",
+            "奖励类型",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9美金(查表) 17美金金币",
+            "数量",
+            "档位金币",
+            "档位美金"
+          ],
+          "name": "体验表-备份"
+        },
+        {
+          "rows": 474,
+          "columns": 41,
+          "nonempty_rows": 474,
+          "header_preview": [
+            "1",
+            "8",
+            "3.99",
+            "114",
+            "4560000",
+            "7830000",
+            "6.98",
+            "0.12",
+            "金币",
+            "9",
+            "4560000",
+            "4739790"
+          ],
+          "name": "体验表-带进度条"
+        },
+        {
+          "rows": 474,
+          "columns": 24,
+          "nonempty_rows": 474,
+          "header_preview": [
+            "分组",
+            "序列",
+            "档位膨胀",
+            "基础金币",
+            "合计金币",
+            "合计美金",
+            "优惠比例",
+            "奖励类型",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9美金(查表) 17美金金币",
+            "数量",
+            "档位金币",
+            "档位美金"
+          ],
+          "name": "体验表-12.11"
+        },
+        {
+          "rows": 44,
+          "columns": 23,
+          "nonempty_rows": 44,
+          "header_preview": [
+            "序列",
+            "档位膨胀",
+            "基础金币",
+            "合计金币",
+            "合计美金",
+            "优惠比例",
+            "奖励类型",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9美金(查表) 17美金金币",
+            "数量",
+            "档位金币",
+            "档位美金",
+            "合计金币"
+          ],
+          "name": "体验表-原始"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/疯狂探险.xlsx",
+      "filename": "疯狂探险.xlsx",
+      "size_bytes": 22277,
+      "modified_at": "2026-08-13T10:44:13.676247+00:00",
+      "sha256": "5bb1a110c13081d4547b082edf32cb5a7195147691bf039af9af1930c31bbb17",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 28,
+          "columns": 11,
+          "nonempty_rows": 28,
+          "header_preview": [
+            "id",
+            "type",
+            "bet",
+            "单次消耗美金",
+            "类型",
+            "type",
+            "抽成",
+            "倍率",
+            "胜率",
+            "bigwin间隔"
+          ],
+          "name": "bet对应表"
+        },
+        {
+          "rows": 40,
+          "columns": 16,
+          "nonempty_rows": 40,
+          "header_preview": [
+            "章节",
+            "关卡",
+            "任务id (关卡中任务并行)",
+            "任务类型 1=Spin次数(Base界面期间的spin总数) 2=大赢次数(Base界面单次赢钱触发bigwin的次数) 3=赢钱次数(Base界面赢钱次数) 4=累计押注值(在本关消耗的金币总额) 5=累计赢钱值(在本关获得的总赢钱金额)",
+            "机台id (也算是任务条件之一)",
+            "关卡任务参数类型 1金币 17美金金币，百分比",
+            "任务条件参数",
+            "模块索引 （参考ModuleName.xlsx)",
+            "关卡完成奖励类型 1金币 2钻石 3道具 4卡包 17美金金币",
+            "关卡完成奖励id",
+            "关卡完成奖励数量",
+            "语言表id"
+          ],
+          "name": "QuestFrenzyMission"
+        },
+        {
+          "rows": 23,
+          "columns": 2,
+          "nonempty_rows": 23,
+          "header_preview": [
+            "机器id",
+            "机器名"
+          ],
+          "name": "机器列表"
+        },
+        {
+          "rows": 19,
+          "columns": 8,
+          "nonempty_rows": 19,
+          "header_preview": [
+            "章节",
+            "关卡",
+            "机台",
+            "推荐bet",
+            "需要spin",
+            "消耗美金",
+            "奖励美金",
+            "消耗返还"
+          ],
+          "name": "数值体验表"
+        }
+      ]
+    },
+    {
+      "source_key": "designer_workbooks",
+      "relative_path": "数值策划/数据源/策划源表/薯片数值.xlsx",
+      "filename": "薯片数值.xlsx",
+      "size_bytes": 175171,
+      "modified_at": "2026-08-13T10:44:13.677243+00:00",
+      "sha256": "7366ecef05ec3467aa8162aebb3112bfbb0eb65a63d74be696ea0b3a2479864f",
+      "status": "ok",
+      "sheets": [
+        {
+          "rows": 30,
+          "columns": 70,
+          "nonempty_rows": 29,
+          "header_preview": [
+            "薯片开盒次数",
+            "奖励美金",
+            "消耗美金",
+            "消耗积分",
+            "道具单价",
+            "消耗返还",
+            "老虎机spin",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "name": "数值体验表"
+        },
+        {
+          "rows": 42,
+          "columns": 12,
+          "nonempty_rows": 42,
+          "header_preview": [
+            "ID",
+            "类型 1 敲砖 2 挖宝 3 大富翁 4 薯片活动 5幸运7",
+            "//房间bet",
+            "类型 1打牌 2老虎机",
+            "RoomId/BetIndex",
+            "掉落概率，千分比",
+            "基础积分点数，仅用于验证",
+            "单次消耗金币",
+            "单次消耗美金",
+            "rtp",
+            "单位金币"
+          ],
+          "name": "bet对应表"
+        },
+        {
+          "rows": 22,
+          "columns": 21,
+          "nonempty_rows": 22,
+          "header_preview": [
+            "等级",
+            "基础金币",
+            "基础加成",
+            "vip",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "name": "难度系数"
+        },
+        {
+          "rows": 99,
+          "columns": 6,
+          "nonempty_rows": 98,
+          "header_preview": [
+            "name",
+            "_comm",
+            "itemID",
+            "价值"
+          ],
+          "name": "道具id表"
+        },
+        {
+          "rows": 30,
+          "columns": 2,
+          "nonempty_rows": 30,
+          "header_preview": [
+            "99",
+            "1"
+          ],
+          "name": "档位膨胀"
+        },
+        {
+          "rows": 80,
+          "columns": 7,
+          "nonempty_rows": 80,
+          "header_preview": [
+            "Id",
+            "questType",
+            "bet",
+            "Type",
+            "BetId",
+            "Probability",
+            "Points"
+          ],
+          "name": "QuestPickGet"
+        },
+        {
+          "rows": 5,
+          "columns": 4,
+          "nonempty_rows": 5,
+          "header_preview": [
+            "Id",
+            "questType",
+            "LevelUpPoints",
+            "num"
+          ],
+          "name": "QuestGetLevel"
+        },
+        {
+          "rows": 802,
+          "columns": 19,
+          "nonempty_rows": 802,
+          "header_preview": [
+            "questType",
+            "Id",
+            "level",
+            "vip_16_0",
+            "vip_16_1",
+            "vip_16_2",
+            "vip_16_3",
+            "vip_16_4",
+            "vip_16_5",
+            "vip_16_6",
+            "vip_16_7",
+            "vip_16_8"
+          ],
+          "name": "QuestPointsCheatSheet"
+        },
+        {
+          "rows": 44,
+          "columns": 20,
+          "nonempty_rows": 44,
+          "header_preview": [
+            "boxNum",
+            "luck",
+            "moduleNameId",
+            "resetItemProb",
+            "passItemProb",
+            "passNum",
+            "chipItemProb",
+            "chipNum",
+            "jackpot1Prob_3_0",
+            "jackpot1Prob_3_1",
+            "jackpot1Prob_3_2",
+            "jackpot2Prob_3_0"
+          ],
+          "name": "SnackDropItemCfg"
+        },
+        {
+          "rows": 8,
+          "columns": 8,
+          "nonempty_rows": 8,
+          "header_preview": [
+            "id",
+            "name",
+            "maxItemNum",
+            "reduceLuck",
+            "moduleNameId",
+            "rewardType_1_0",
+            "rewardId_1_0",
+            "rewardNum_1_0"
+          ],
+          "name": "SnackJackpotCfg"
+        },
+        {
+          "rows": 34,
+          "columns": 13,
+          "nonempty_rows": 34,
+          "header_preview": [
+            "唯一索引",
+            "分组 0免费 1黄金",
+            "关卡ID",
+            "通关所需pass奖券数(不累积)",
+            "模块索引 （参考ModuleName.xlsx)",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9礼包金币 17美金金币",
+            "奖励物品ID 1金币 2钻石 3物品id",
+            "奖励数量",
+            "奖励类型 1金币 2钻石 3道具 4卡包 9美金(查表) 17美金金币",
+            "奖励物品ID 1金币 2钻石 3物品id",
+            "奖励数量",
+            "奖励美金"
+          ],
+          "name": "SnackPassReward"
+        },
+        {
+          "rows": 9,
+          "columns": 4,
+          "nonempty_rows": 9,
+          "header_preview": [
+            "id",
+            "usedItemCountMin",
+            "usedItemCountMax",
+            "addLuck"
+          ],
+          "name": "SnackAddLuck"
+        },
+        {
+          "rows": 7,
+          "columns": 31,
+          "nonempty_rows": 7,
+          "header_preview": [
+            "id",
+            "type",
+            "group",
+            "earlyEnding",
+            "itemId_gp",
+            "itemId_iap",
+            "_money",
+            "displayDiscount",
+            "addLuckLimit",
+            "rewardType_2_0",
+            "rewardId_2_0",
+            "rewardNum_2_0"
+          ],
+          "name": "SnackItemPack"
+        },
+        {
+          "rows": 85,
+          "columns": 6,
+          "nonempty_rows": 78,
+          "header_preview": [
+            "指标",
+            "数值"
+          ],
+          "name": "outPut"
+        }
+      ]
+    }
+  ]
+}
