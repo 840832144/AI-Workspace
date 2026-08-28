@@ -1,16 +1,16 @@
-# CANDIDATE-20260828-TOP-TYCOON-F4-FEASIBILITY — Top Tycoon Android F4 Collection Feasibility Audit
+# TASK-0025 — Top Tycoon Android F4 Collection Feasibility Audit
 
-- Kind: candidate
-- Status: Migrated
+- Status: Ready
 - Project key: TOP-TYCOON
 - Human alias: TT-FEASIBILITY-001
-- Suggested priority: P1 / same-day feasibility audit
-- User decision: Approved
-- Source: User explicit approval in Game Planner AI Workspace chat on 2026-08-28; `docs/roadmaps/PRODUCT_ROADMAP.md` / Current / Top Tycoon
-- Created: 2026-08-28
+- Owner: User / ChatGPT
+- Executor: Codex
+- Priority: P1 / same-day feasibility audit
+- Date: 2026-08-28
 - Updated: 2026-08-28
-- Migrated to: TASK-0025 (`tasks/TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md`)
-- Migrated at: 2026-08-28T03:54:15Z
+- Candidate provenance: `tasks/candidates/CANDIDATE-20260828-TOP-TYCOON-F4-FEASIBILITY.md`
+- Allocation relationship: new
+- Related tasks: TASK-0022, TASK-0024
 
 ## Goal
 
@@ -155,29 +155,6 @@ reviews/top-tycoon/NEXT_TASK_PROPOSAL.md
 
 验收结果只能是：当前 F0/F1/F2/F3/F4、对应证据、F4 缺口和 Adopt / Wrap / Build / Stop 建议。
 
-## Handoff Required
+## Handoff
 
 执行完成后更新 canonical Task、`CHANGELOG.md` 与 `handoff/CODEX.md`，提交并 push；返回 AI-Workspace commit、实际模拟器 identity、package/version/ABI/engine、结构化字段类别、两个 Session 与样本统计、F0–F4 判断、未通过 Gate、清理结果、下一 Task 建议及 `Subagents: none`（除非另行批准），然后等待 ChatGPT Review，不得自行扩大为完整 Collector。
-
-## Dependencies
-
-- User 新建的 `topTycoon` 模拟器可用，游戏已安装并可由 User 完成登录/教程；
-- AI-Workspace 最新 main、Task Registry、Product Roadmap 与 Handoff 可读取；
-- TASK-0022、TASK-0024 仅作为只读方法与证据合同参考；
-- 正式执行前必须经官方 allocator 晋升为唯一 canonical Task。
-
-## Risks
-
-- 公开包名或版本与实装包可能不一致，必须现场复核；
-- 引擎、native bridge、anti-debug、加密或协议边界可能与 Cash Frenzy 完全不同；
-- 教程、等级、活动开放和资源余额可能限制当日样本；
-- 20 个样本与双 Session 仍不足以证明全部模块或长期稳定性，只用于本次 F4 路径 Gate；
-- 当日可能只能达到 F0–F3，必须保留真实结论，不以时间投入替代证据。
-
-## Promotion Gate
-
-- Candidate 不是可执行入口，也不占用 `TASK-XXXX`；
-- User decision 已明确为 `Approved`，具备 allocator 晋升资格；
-- 晋升前必须从最新 `origin/main` 完整 scan / validate，检查 active Task 重叠和 remote reservation；
-- 必须通过 `task_cli.py promote ... --relationship new` 原子分配正式 Task ID，不得手工使用“最大编号 + 1”；
-- canonical Task 合入 main 后再 finalize reservation；Codex 只能读取正式 Task 执行。
