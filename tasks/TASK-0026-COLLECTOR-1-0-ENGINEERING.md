@@ -2,7 +2,7 @@
 
 - Status: Ready
 - Project key: CASH-FRENZY
-- Human alias: 
+- Human alias:
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1
