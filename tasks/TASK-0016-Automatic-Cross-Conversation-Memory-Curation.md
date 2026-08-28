@@ -393,3 +393,17 @@ Codex 完成后必须返回：
 - 回归：34/34 tests passed。Round 2 Pilot captured 3（approved private Git 1）、promoted 1、review 1、local-only/Outbox 4、OFF suppressed 1、failed 0；未测量 false captures / missed captures。
 - Final mode：`ASSISTED`。未激活 Hook/AUTO，未访问真实私有项目仓库，未影响 TASK-0017。
 - Review record：`reviews/TASK-0016-CHATGPT-REVIEW-1.md`；下一动作是 ChatGPT Round 2 Review。
+
+### Review Round 2 与跨会话闭环结果
+
+- Review Round 2 正式记录为 `reviews/TASK-0016-CHATGPT-REVIEW-2.md`，结果 Needs changes；本轮只修复其中两个安全问题并执行已批准 support `tasks/support/TASK-0016/WORKSPACE-MEMORY-CROSS-SESSION-CLOSURE.md`，没有新增 Task 或第二套 Memory 系统。
+- provenance gate 改为“必须包含有效字母或数字 + placeholder denylist”；空值、ASCII `-`、`unknown`、`n/a`、`na`、`none`、`null`、`not applicable`、`tbd`、`unspecified` 和纯标点均确定性进入 Outbox。CLI、Event file、Generic Agent 的 ASCII `-` 回归均确认 public/private Inbox 为 0。
+- `sensitivity=secret` 与 `scope=local-only` 在 Registry 读取前 hard deny。恶意/误配 Registry 即使显式允许 `secret` 或 `local-only` 也不能写任何 Git Inbox；声明 Secret 的正文、来源与目标提示在 Outbox 整体抑制，不保留测试 literal。Registry 只能收紧 Global Safety Contract。
+- 建立唯一 `memory/context/WORKSPACE.md`，复用 `Memory Event → Candidate → Validator → Curator`。ASSISTED 下只有通过 `--approve-workspace` 显式批准，且 public-safe、高分、高置信、有 evidence、无冲突的 Candidate 才能晋升；同 key 冲突进入 Review，显式 supersede 保留旧来源和时间。
+- 三个 public-safe Seed 已通过同一 Curator 晋升并归档：Git Memory / 云文档长期边界、TASK-0024 Accepted 的 Cash Frenzy F3 strengthened / F4 未证明与停止路线、TASK-0023 Accepted 的 Product Roadmap / Idea Governance / Planner Writing Style 生效状态。Read view 为 3 个唯一 key、3 个独立 source reference、0 duplicate。
+- ChatGPT Bootstrap、Project Instructions、Core/System Context、Generic Agent、Capability、Governance 与工具说明统一为 Git-live-first：Core/System/Writing Style → 最新 Git `main` Workspace Memory → 相关 Task/Review/Status/Handoff/业务证据；Git unavailable 时才使用并标记 stale 的 Project Source Pack。
+- Context refresh 将 Workspace Memory 纳入 Manifest / Source Pack，并输出 path、SHA-256、读取时 Git HEAD；未读取私有仓库，Project Sources 继续 `manual upload required`。
+- 新会话测试确认不会将 F3 写成 F4，不会建议重复 TASK-0024 已停止路线；冲突或未 Accepted Candidate 不进入 canonical read view。
+- 最终回归：Memory 44/44、Task 23/23、Context 13/13；Registry 12 canonical / 0 collision / status valid，Workspace Doctor 通过，Context refresh 68 sources / 0 secret issue / 0 broken link。
+- 最终 production mode 保持 `ASSISTED`；AUTO 未启用，Hook 未安装/启用，Workspace Sync 保持 `ON_DEMAND` 且 WATCH disabled；未新增外部服务。Subagents: none。
+- 当前状态：实现完成，等待 ChatGPT Review Round 3。

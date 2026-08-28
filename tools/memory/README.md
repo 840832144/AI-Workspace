@@ -37,6 +37,8 @@
 
 所有 Git Candidate 必须提供真实且稳定的 `SourceHost`、`SourceProject`、`SourceActorAlias`、`SourceReference`。`unknown`、`n/a`、`none`、`-` 等占位值会进入 Outbox，不会被“非空”检查误放行。
 
+`sensitivity=secret` 与 `scope=local-only` 在读取任何私有 Registry 前 hard deny 到本机 Outbox。Registry 只能收紧权限，不能把这两类内容放进 Git；声明为 Secret 的正文不会原样保存在 Outbox。
+
 ## Approved private Git routing
 
 Project-private 示例：
@@ -81,6 +83,14 @@ Cross-project hub 使用 `classification=cross-project-private-hub` 与 `allowed
 - 已存在目标、冲突、规则、ADR、Capability 和跨项目策略始终 Review。
 - AUTO promotion 把 target、Candidate、Archive、index 作为一个 transaction；任一失败恢复四者执行前状态且 `promoted=0`。回滚失败会生成 Host-local recovery record，并阻断后续 AUTO 直到人工解决。
 
+跨会话长期记录先正常 Capture/Validate，再由已授权 Curator 在 `ASSISTED` 下显式执行：
+
+```powershell
+.\tools\memory\Curate-MemoryCandidates.ps1 --approve-workspace .\memory\inbox\MEM-....md
+```
+
+只有目标为 `memory/context/WORKSPACE.md`、public-safe、高分、高置信、有 evidence 且无冲突的 Candidate 能进入唯一读视图。普通 ASSISTED curate 不会自动晋升；同 key 冲突进入 Review，supersede 保留历史来源和时间。
+
 ## Refresh Project context
 
 ```powershell
@@ -93,6 +103,7 @@ Cross-project hub 使用 `classification=cross-project-private-hub` 与 `allowed
 - `bootstrap/chatgpt/02_CURRENT_STATE.md` managed block
 - `bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md`
 - `bootstrap/chatgpt/generated/PROJECT_SOURCE_REPLACEMENT_LIST.md`
+- `memory/context/WORKSPACE.md` 的路径、SHA-256 与读取时 Git HEAD（同时进入 Manifest 与 Source Pack）
 
 成功输出固定包含 `manual_upload_required=true`。请按替换清单手动更新 ChatGPT Project Sources；不要用浏览器脚本模拟可靠 API。
 

@@ -45,8 +45,10 @@ ALLOWED_DESTINATION_ROOTS = {
 }
 PROVENANCE_FIELDS = ("source_host", "source_project", "source_actor_alias", "source_reference")
 PROVENANCE_PLACEHOLDERS = {
-    "", "unknown", "n a", "na", "none", "null", "not applicable", "tbd", "unspecified",
+    "", "-", "unknown", "n a", "na", "none", "null", "not applicable", "tbd", "unspecified",
 }
+WORKSPACE_MEMORY_DESTINATION = "memory/context/WORKSPACE.md"
+WORKSPACE_MEMORY_STATUSES = {"Active", "Accepted", "Complete", "Stopped", "Superseded"}
 PRIVATE_CLASSIFICATION_BY_SCOPE = {
     "project-private": "project-private",
     "cross-project-private": "cross-project-private-hub",
@@ -181,7 +183,8 @@ def render_candidate(meta: dict[str, Any], summary: str) -> str:
     ordered = [
         "schema_version", "memory_id", "title", "type", "scope", "sensitivity",
         "status", "source_host", "source_project", "source_actor_alias",
-        "source_reference", "related_task", "related_commit", "created_at", "repository_alias",
+        "source_reference", "related_task", "related_review", "related_commit", "created_at", "repository_alias",
+        "memory_key", "workspace_status", "effective_date",
         "durability_score", "reuse_score", "evidence_score", "confidence",
         "normalized_key", "content_fingerprint", "canonical_destination",
         "evidence", "constraints", "supersedes", "curated_at", "review_reason",
@@ -241,7 +244,7 @@ def provenance_errors(meta: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     for key in PROVENANCE_FIELDS:
         value = str(meta.get(key, "")).strip()
-        if normalize_text(value) in PROVENANCE_PLACEHOLDERS:
+        if normalize_text(value) in PROVENANCE_PLACEHOLDERS or not re.search(r"[^\W_]", value, re.UNICODE):
             errors.append(f"{key} must be stable provenance, not a placeholder")
     return errors
 
@@ -311,7 +314,14 @@ def outbox_path(state_dir: Path, kind: str, event_id: str) -> Path:
     return state_dir / "outbox" / kind / f"{event_id}.json"
 
 
-def write_outbox(state_dir: Path, kind: str, data: dict[str, Any], reason: str, secret_categories: list[str] | None = None) -> Path:
+def write_outbox(
+    state_dir: Path,
+    kind: str,
+    data: dict[str, Any],
+    reason: str,
+    secret_categories: list[str] | None = None,
+    suppress_content: bool = False,
+) -> Path:
     event_id = str(data.get("memory_id") or f"OUT-{dt.datetime.now():%Y%m%d}-{os.urandom(6).hex().upper()}")
     safe = {
         "schema_version": SCHEMA_VERSION,
@@ -319,17 +329,17 @@ def write_outbox(state_dir: Path, kind: str, data: dict[str, Any], reason: str, 
         "status": kind,
         "reason": reason,
         "created_at": utc_now(),
-        "title": redact_secrets(str(data.get("title", ""))),
+        "title": "[REDACTED:declared-secret]" if suppress_content else redact_secrets(str(data.get("title", ""))),
         "type": data.get("type", "unknown"),
         "scope": data.get("scope", "unknown"),
         "sensitivity": data.get("sensitivity", "unknown"),
-        "source_host": data.get("source_host", "unknown"),
-        "source_project": data.get("source_project", "unknown"),
-        "source_actor_alias": data.get("source_actor_alias", "unknown"),
-        "source_reference": redact_secrets(str(data.get("source_reference", "")))[:500],
-        "summary": redact_secrets(str(data.get("summary", "")))[:4000],
+        "source_host": "[REDACTED:declared-secret]" if suppress_content else redact_secrets(str(data.get("source_host", "unknown"))),
+        "source_project": "[REDACTED:declared-secret]" if suppress_content else redact_secrets(str(data.get("source_project", "unknown"))),
+        "source_actor_alias": "[REDACTED:declared-secret]" if suppress_content else redact_secrets(str(data.get("source_actor_alias", "unknown"))),
+        "source_reference": "[REDACTED:declared-secret]" if suppress_content else redact_secrets(str(data.get("source_reference", "")))[:500],
+        "summary": "[REDACTED:declared-secret]" if suppress_content else redact_secrets(str(data.get("summary", "")))[:4000],
         "secret_categories": secret_categories or [],
-        "target_hint": data.get("canonical_destination", ""),
+        "target_hint": "" if suppress_content else redact_secrets(str(data.get("canonical_destination", ""))),
     }
     path = outbox_path(state_dir, kind, event_id)
     atomic_write_text(path, json.dumps(safe, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
@@ -671,7 +681,8 @@ def build_event(args: argparse.Namespace) -> dict[str, Any]:
         data.update(parse_flat_yaml(Path(args.event).read_text(encoding="utf-8")))
     for key in (
         "title", "type", "scope", "sensitivity", "source_host", "source_project",
-        "source_actor_alias", "source_reference", "related_task", "related_commit",
+        "source_actor_alias", "source_reference", "related_task", "related_review", "related_commit",
+        "memory_key", "workspace_status", "effective_date",
         "summary", "canonical_destination", "repository_alias",
     ):
         value = getattr(args, key, None)
@@ -696,7 +707,11 @@ def build_event(args: argparse.Namespace) -> dict[str, Any]:
         "source_actor_alias": "unknown",
         "source_reference": "unknown",
         "related_task": "",
+        "related_review": "",
         "related_commit": "",
+        "memory_key": "",
+        "workspace_status": "",
+        "effective_date": "",
         "durability_score": 0,
         "reuse_score": 0,
         "evidence_score": 0,
@@ -716,7 +731,7 @@ def capture_command(args: argparse.Namespace) -> int:
         emit("rejected", reason="memory mode OFF", mode=mode, mode_source=mode_source, captured=0)
         return 0
     data = build_event(args)
-    required_event = ["title", "summary", "source_reference"]
+    required_event = ["title", "summary"]
     missing = [key for key in required_event if not str(data.get(key, "")).strip()]
     if missing:
         emit("failed", reason="missing event fields", fields=missing)
@@ -732,8 +747,29 @@ def capture_command(args: argparse.Namespace) -> int:
     _, candidate_body = split_candidate(candidate_text)
     secret_categories = scan_secrets(record_text(meta, candidate_body))
     if secret_categories:
-        outbox = write_outbox(state_dir, "local-only", {**meta, "summary": summary}, "secret scan failed", secret_categories)
+        outbox = write_outbox(
+            state_dir, "local-only", {**meta, "summary": summary}, "secret scan failed",
+            secret_categories, suppress_content=True,
+        )
         emit("local-only", reason="secret scan failed", secret_categories=secret_categories, outbox=str(outbox), captured=0)
+        return 0
+    if meta.get("sensitivity") == "secret":
+        reason = "Global Safety Contract: sensitivity=secret is always local-only"
+        outbox = write_outbox(
+            state_dir, "local-only", {**meta, "summary": summary}, reason,
+            secret_categories=["declared-secret"], suppress_content=True,
+        )
+        emit("local-only", reason=reason, outbox=str(outbox), captured=0)
+        return 0
+    if meta.get("scope") == "local-only":
+        reason = "Global Safety Contract: scope=local-only cannot be promoted to Git"
+        outbox = write_outbox(state_dir, "local-only", {**meta, "summary": summary}, reason)
+        emit("local-only", reason=reason, outbox=str(outbox), captured=0)
+        return 0
+    provenance = provenance_errors(meta)
+    if provenance:
+        outbox = write_outbox(state_dir, "provenance-required", {**meta, "summary": summary}, "; ".join(provenance))
+        emit("local-only", reason="Git provenance required", errors=provenance, outbox=str(outbox), captured=0)
         return 0
     validation_errors = validate_meta(meta, candidate_body, require_git_provenance=False)
     if validation_errors:
@@ -773,11 +809,6 @@ def capture_command(args: argparse.Namespace) -> int:
                 repository_alias=meta.get("repository_alias", ""), outbox=str(outbox), captured=0,
             )
             return 0
-    provenance = provenance_errors(meta)
-    if provenance:
-        outbox = write_outbox(state_dir, "provenance-required", {**meta, "summary": summary}, "; ".join(provenance))
-        emit("local-only", reason="Git provenance required", errors=provenance, outbox=str(outbox), captured=0)
-        return 0
     candidate = destination_root / "memory" / "inbox" / f"{memory_id}-{slugify(str(meta['title']))}.md"
     try:
         with FileLock(destination_root, state_dir):
@@ -864,6 +895,101 @@ def solution_document(meta: dict[str, Any], summary: str) -> str:
     )
 
 
+def workspace_eligible(meta: dict[str, Any]) -> tuple[bool, str]:
+    if meta.get("canonical_destination") != WORKSPACE_MEMORY_DESTINATION:
+        return False, "destination is not the Workspace Memory read view"
+    if meta.get("scope") != "public" or meta.get("sensitivity") != "public":
+        return False, "Workspace Memory accepts Public-safe records only"
+    if min(int(meta.get(key, 0)) for key in ("durability_score", "reuse_score", "evidence_score")) < 4:
+        return False, "scores below Workspace Memory threshold"
+    if float(meta.get("confidence", 0)) < 0.9 or not meta.get("evidence"):
+        return False, "high confidence and evidence are required"
+    if not re.fullmatch(r"[a-z0-9][a-z0-9.-]{2,127}", str(meta.get("memory_key", ""))):
+        return False, "memory_key must be a stable lowercase key"
+    if meta.get("workspace_status") not in WORKSPACE_MEMORY_STATUSES - {"Superseded"}:
+        return False, "workspace_status is invalid"
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(meta.get("effective_date", ""))):
+        return False, "effective_date must use YYYY-MM-DD"
+    return True, "eligible"
+
+
+def render_workspace_memory(index: dict[str, Any]) -> str:
+    entries = [entry for entry in index["entries"] if entry.get("canonical_destination") == WORKSPACE_MEMORY_DESTINATION]
+    current = sorted((entry for entry in entries if entry.get("workspace_status") != "Superseded"), key=lambda item: item["memory_key"])
+    history = sorted((entry for entry in entries if entry.get("workspace_status") == "Superseded"), key=lambda item: (item["memory_key"], item["effective_date"]))
+    lines = [
+        "# AI Workspace｜跨会话长期记忆", "",
+        "> 本文件是新 AI 会话读取长期稳定结论的唯一 public-safe Git 入口。Git `main` 是真相源；本页不替代 Task、Review、Handoff 或业务仓库证据。", "",
+        "## 读取规则", "",
+        "- 新会话先读取最新 Git `main` 中的本文件，再按来源链接核对相关 Task、Review、Handoff 和业务证据。",
+        "- 只使用当前记录；历史记录仅用于审计。冲突或未 Accepted 的 Candidate 不进入当前记录。",
+        "- Project Source Pack 是离线快照；与 Git 不一致时以 Git 为准并标记快照过期。", "",
+        "## 当前记录", "",
+    ]
+    for entry in current:
+        lines.extend([
+            f"### `{entry['memory_key']}`", "", f"- 状态：`{entry['workspace_status']}`",
+            f"- 范围：`{entry['scope']}`", f"- 来源：`{entry['source_reference']}`",
+            f"- 关联 Task：`{entry.get('related_task') or 'N/A'}`",
+            f"- 关联 Review：`{entry.get('related_review') or 'N/A'}`",
+            f"- 关联 Commit：`{entry.get('related_commit') or 'N/A'}`",
+            f"- 生效日期：`{entry['effective_date']}`",
+            f"- 取代：`{', '.join(entry.get('supersedes', [])) or 'N/A'}`", "", entry["summary"], "",
+        ])
+    lines.extend(["## 历史记录", ""])
+    if not history:
+        lines.extend(["暂无。", ""])
+    for entry in history:
+        lines.append(
+            f"- `{entry['memory_key']}` / `{entry['memory_id']}` / `{entry['effective_date']}` / "
+            f"来源 `{entry['source_reference']}`：{entry['summary']}"
+        )
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def promote_workspace_transaction(
+    root: Path, candidate_path: Path, meta: dict[str, Any], summary: str, index: dict[str, Any]
+) -> Path:
+    target = root / WORKSPACE_MEMORY_DESTINATION
+    archive = root / "memory" / "archive" / candidate_path.name
+    index_path = root / "memory" / "index" / "memory-index.json"
+    snapshots = {path: path_snapshot(path) for path in (candidate_path, target, archive, index_path)}
+    index_before = copy.deepcopy(index)
+    try:
+        active = [
+            entry for entry in index["entries"]
+            if entry.get("canonical_destination") == WORKSPACE_MEMORY_DESTINATION
+            and entry.get("memory_key") == meta["memory_key"]
+            and entry.get("workspace_status") != "Superseded"
+        ]
+        if active:
+            current = active[-1]
+            allowed = set(str(item) for item in meta.get("supersedes", []))
+            if current.get("memory_id") not in allowed and meta["memory_key"] not in allowed:
+                raise ValueError("workspace memory key conflict requires Review or explicit supersedes")
+            current["workspace_status"] = "Superseded"
+            current["superseded_at"] = utc_now()
+        index["entries"].append({
+            "memory_id": meta["memory_id"], "normalized_key": meta["normalized_key"],
+            "content_fingerprint": meta["content_fingerprint"], "canonical_destination": WORKSPACE_MEMORY_DESTINATION,
+            "promoted_at": utc_now(), "memory_key": meta["memory_key"], "workspace_status": meta["workspace_status"],
+            "summary": summary, "scope": meta["scope"], "source_reference": meta["source_reference"],
+            "related_task": meta.get("related_task", ""), "related_review": meta.get("related_review", ""),
+            "related_commit": meta.get("related_commit", ""), "effective_date": meta["effective_date"],
+            "supersedes": meta.get("supersedes", []),
+        })
+        atomic_write_text(target, render_workspace_memory(index))
+        archive_candidate(root, candidate_path, dict(meta), summary, "promoted", "ASSISTED explicit Workspace Memory approval")
+        save_index(root, index)
+        return target
+    except Exception:
+        for path, content in snapshots.items():
+            restore_path_snapshot(path, content)
+        index.clear()
+        index.update(index_before)
+        raise
+
+
 def auto_eligible(meta: dict[str, Any], root: Path) -> tuple[bool, str]:
     if meta.get("type") != "solution":
         return False, "type not in auto-promotion allowlist"
@@ -891,6 +1017,7 @@ def curate_command(args: argparse.Namespace) -> int:
         return 0
     counts = {"promoted": 0, "review": 0, "rejected": 0, "local-only": 0, "failed": 0}
     details: list[dict[str, Any]] = []
+    approvals = {str(Path(value).resolve()) for value in (args.approve_workspace or [])}
     try:
         git_context = validate_auto_git_context(root) if mode == "AUTO" else {}
         with FileLock(root, state_dir):
@@ -927,7 +1054,28 @@ def curate_command(args: argparse.Namespace) -> int:
                         and entry.get("content_fingerprint") != meta["content_fingerprint"]
                     ]
                     destination = str(meta.get("canonical_destination", ""))
-                    if destination and (root / destination).exists() and not any(entry.get("content_fingerprint") == meta["content_fingerprint"] for entry in index["entries"]):
+                    workspace_approved = str(path.resolve()) in approvals
+                    if workspace_approved:
+                        eligible, reason = workspace_eligible(meta)
+                        allowed_supersedes = set(meta.get("supersedes", []))
+                        workspace_conflicts = [
+                            str(entry.get("memory_id")) for entry in index["entries"]
+                            if entry.get("canonical_destination") == WORKSPACE_MEMORY_DESTINATION
+                            and entry.get("memory_key") == meta.get("memory_key")
+                            and entry.get("workspace_status") != "Superseded"
+                            and entry.get("memory_id") not in allowed_supersedes
+                            and meta.get("memory_key") not in allowed_supersedes
+                        ]
+                        if not eligible or workspace_conflicts:
+                            write_review(root, path, meta, summary, "workspace-memory-policy" if not eligible else "conflict", workspace_conflicts)
+                            counts["review"] += 1
+                            details.append({"memory_id": meta["memory_id"], "result": "review", "reason": reason if not eligible else "conflict"})
+                            continue
+                        target = promote_workspace_transaction(root, path, meta, summary, index)
+                        counts["promoted"] += 1
+                        details.append({"memory_id": meta["memory_id"], "result": "promoted", "target": str(target)})
+                        continue
+                    if destination and destination != WORKSPACE_MEMORY_DESTINATION and (root / destination).exists() and not any(entry.get("content_fingerprint") == meta["content_fingerprint"] for entry in index["entries"]):
                         conflicts.append(destination)
                     if conflicts:
                         write_review(root, path, meta, summary, "conflict", sorted(set(conflicts)))
@@ -1097,7 +1245,7 @@ def refresh_command(args: argparse.Namespace) -> int:
     root, state_dir = Path(args.root).resolve(), Path(args.state_dir).resolve()
     mode, mode_source = get_mode(root, state_dir)
     generated_at = utc_now()
-    include_roots = ["capabilities", "standards", "docs/adr", "docs/incidents", "skills", "workflows", "solutions", "tasks", "handoff", "bootstrap/chatgpt"]
+    include_roots = ["capabilities", "standards", "docs/adr", "docs/incidents", "skills", "workflows", "solutions", "tasks", "handoff", "bootstrap/chatgpt", "memory/context"]
     try:
         repo_state = repository_state(root, args.sync)
         registered_states, private_status = registered_repository_states(
@@ -1140,11 +1288,16 @@ def refresh_command(args: argparse.Namespace) -> int:
             manifest_text = "\n".join(manifest_lines)
             manifest_path = root / "CONTEXT_MANIFEST.yaml"
             atomic_write_text(manifest_path, manifest_text)
+            workspace_memory = root / WORKSPACE_MEMORY_DESTINATION
             source_files = [
-                root / "bootstrap" / "chatgpt" / name for name in
-                ("PROJECT_INSTRUCTIONS.md", "00_CORE_RULES.md", "01_SYSTEM_CONTEXT.md", "02_CURRENT_STATE.md", "03_NEW_CHAT_BOOTSTRAP.md")
+                root / "bootstrap" / "chatgpt" / "00_CORE_RULES.md",
+                root / "bootstrap" / "chatgpt" / "01_SYSTEM_CONTEXT.md",
+                root / "standards" / "PLANNER_WRITING_STYLE.md",
+                workspace_memory,
+                root / "bootstrap" / "chatgpt" / "PROJECT_INSTRUCTIONS.md",
+                root / "bootstrap" / "chatgpt" / "02_CURRENT_STATE.md",
+                root / "bootstrap" / "chatgpt" / "03_NEW_CHAT_BOOTSTRAP.md",
             ]
-            source_files.append(root / "standards" / "PLANNER_WRITING_STYLE.md")
             pack_lines = ["# ChatGPT Project Source Pack", "", f"Generated: {generated_at}", "", "本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。", ""]
             for path in source_files:
                 pack_lines.extend([f"<!-- SOURCE: {path.name} -->", path.read_text(encoding="utf-8").rstrip(), ""])
@@ -1167,6 +1320,7 @@ def refresh_command(args: argparse.Namespace) -> int:
         emit(
             "refreshed", mode=mode, mode_source=mode_source, manifest=str(manifest_path),
             source_pack=str(pack_path), replacement_list=str(replacement_path),
+            workspace_memory={"path": WORKSPACE_MEMORY_DESTINATION, "sha256": file_sha256(workspace_memory), "git_head": repo_state["head"]},
             manual_upload_required=True, sources=len(files), secret_issues=secret_issues,
             broken_links=link_issues, repository=repo_state,
             private_repositories=private_status, registered_repositories=registered_states,
@@ -1200,7 +1354,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     capture = sub.add_parser("capture")
     capture.add_argument("--event")
-    for name in ("title", "type", "scope", "sensitivity", "source-host", "source-project", "source-actor-alias", "source-reference", "related-task", "related-commit", "summary", "canonical-destination", "repository-alias"):
+    for name in ("title", "type", "scope", "sensitivity", "source-host", "source-project", "source-actor-alias", "source-reference", "related-task", "related-review", "related-commit", "memory-key", "workspace-status", "effective-date", "summary", "canonical-destination", "repository-alias"):
         capture.add_argument(f"--{name}", dest=name.replace("-", "_"))
     for name in ("durability-score", "reuse-score", "evidence-score"):
         capture.add_argument(f"--{name}", dest=name.replace("-", "_"), type=int)
@@ -1218,6 +1372,7 @@ def build_parser() -> argparse.ArgumentParser:
     validate.set_defaults(func=validate_command)
 
     curate = sub.add_parser("curate")
+    curate.add_argument("--approve-workspace", action="append", help="explicitly approve one validated Inbox Candidate for the Workspace Memory read view")
     curate.set_defaults(func=curate_command)
 
     refresh = sub.add_parser("refresh")

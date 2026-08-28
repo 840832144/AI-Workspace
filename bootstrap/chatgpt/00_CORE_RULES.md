@@ -177,4 +177,7 @@ Product Roadmap 是长期产品规划唯一入口，不与 Task、Documentation 
 - Candidate 只保留摘要、来源、evidence、scope 和 sensitivity，不保存完整 transcript。
 - Public / Project Private / Cross-project Private / Local-only 分流；不明确时禁止写公共 Git。
 - Project Memory 与 Host local memory 是 recall layer，Git 和业务仓库仍是 canonical source。
+- `memory/context/WORKSPACE.md` 是跨 ChatGPT、Codex 与 Generic Agent 会话的唯一 public-safe 长期记忆读入口。新会话必须 Git-live-first 读取最新 `main` 中的该文件，再核对相关 Task、Review、Handoff 与业务证据。
+- 只有通过现有 `Memory Event → Candidate → Validator → Curator`、高置信、证据充分、public-safe、无冲突且经 ASSISTED 显式批准的记录才能进入该读视图；冲突或未 Accepted 结论不得写入。
+- Project Source Pack / Project Sources 只是离线快照。Git 可用时禁止用旧快照覆盖 Workspace Memory；Git 不可用时必须标记快照可能过期。
 - OFF / ASSISTED / AUTO 是独立 kill switch；生产默认 ASSISTED，AUTO 不能绕过高影响 Review gate。

@@ -2,6 +2,28 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.8] - 2026-08-28
+
+### Fixed
+
+- 修复 TASK-0016 Review Round 2 的两个安全问题：provenance 现在必须包含有效字母或数字，并拒绝全部 documented placeholders（含 ASCII `-`）；`sensitivity=secret` 与 `scope=local-only` 在 Registry 前 hard deny。
+- Host-local Registry 只能收紧 Global Safety Contract。误配 Registry 不能把 Secret/Local-only Candidate 写入 public 或 private Git Inbox；声明 Secret 的正文在 Outbox 整体抑制。
+
+### Added
+
+- 建立唯一 `memory/context/WORKSPACE.md`，作为跨 ChatGPT、Codex 与 Generic Agent 会话的 public-safe Git Memory 稳定读入口；继续复用 Candidate / Validator / Curator，不建立旁路。
+- 在 `ASSISTED` 中增加显式 Workspace Memory 批准路径；高置信、有证据、public-safe、无冲突 Candidate 才能晋升，相同 key 去重、冲突进入 Review、supersede 保留历史。
+- 通过三个独立正式来源初始化 Seed：Git Memory 长期真相源决定、TASK-0024 Accepted 研究边界、TASK-0023 Accepted 治理状态。
+
+### Changed
+
+- ChatGPT Bootstrap、Project Instructions、Core/System Context、Generic Agent、Memory Capability/Governance 和工具说明统一使用 Git-live-first 读取顺序。
+- Context Refresh 将 Workspace Memory 纳入 Manifest 与 Source Pack，并输出 path、SHA-256 和读取时 Git HEAD；Project Sources 继续作为 `manual upload required` 离线快照。
+
+### Boundaries
+
+- 最终模式保持 `ASSISTED`；production AUTO、Hook、WATCH 与外部服务均未启用。未修改 TASK-0022、Cash Frenzy/Huuuge/Top Tycoon 研究、Collector、Document Assistant、飞书或 SVN；`Subagents: none`。
+
 ## [0.16.7] - 2026-08-28
 
 ### Added

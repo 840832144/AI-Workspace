@@ -22,16 +22,19 @@
 
 回答正确后再开始正式工作。
 
+新会话的稳定读取顺序为：Core Rules / System Context / Writing Style → 最新 Git `main` 的 `memory/context/WORKSPACE.md` → 相关 Task / Review / Status / Handoff / 业务证据。Git unavailable 时才使用 Project Source Pack，并标记可能过期。
+
 ## 更新规则
 
 - `00_CORE_RULES.md`：稳定治理规则，只有长期规则改变时更新。
 - `01_SYSTEM_CONTEXT.md`：系统架构和仓库关系，能力边界变化时更新。
 - `02_CURRENT_STATE.md`：离线回退；动态状态优先由 Workspace Sync 从 Git 生成，不再把人工重新上传当作唯一 freshness 机制。
+- `memory/context/WORKSPACE.md`：跨会话 public-safe 长期记忆的唯一稳定读入口；刷新清单必须显示路径、SHA-256 与读取时 Git HEAD。
 - `03_NEW_CHAT_BOOTSTRAP.md`：新对话启动协议，通常保持稳定。
 - `standards/PLANNER_WRITING_STYLE.md`：面向策划的中文行文与技术术语唯一规范；默认表达和必须保留精确术语的例外同时生效。
 - `docs/roadmaps/PRODUCT_ROADMAP.md`：唯一长期产品规划；主动产生的新产品 Idea 在 Task 收尾时分类并交接，不自动创建 Task。
 - Git 中的 AI-Workspace、对应业务仓库、Task、Status 和 Handoff 始终是最新真相源；Project Sources 是便于检索的快照，不代替 Git。
-- 新对话涉及 Task、Review 或状态时先读取 `LIVE_CONTEXT_MANIFEST.json` 并运行 Workspace Sync；无法同步时明确显示 stale/unavailable。
+- 新对话先同步 Git 并读取 Workspace Memory，再读取 `LIVE_CONTEXT_MANIFEST.json` 和相关事实来源；无法同步时才回退 Project Sources 并明确显示 stale/unavailable。
 
 ## 边界
 

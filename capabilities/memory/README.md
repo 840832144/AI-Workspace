@@ -20,7 +20,7 @@ Memory Capability 将不同对话、Agent 和团队成员产生的长期有效�
 | --- | --- | --- | --- | --- |
 | `CAP-MEM-CAPTURE` | 生成结构化 Candidate 或安全 Outbox event | WRITE | 摘要、来源、scope、sensitivity、evidence | Candidate/Outbox ID、目标路径和路由结果 |
 | `CAP-MEM-VALIDATE` | 验证 schema、安全、scope、去重与目标路径 | READ | Candidate | validation report；失败原因不泄露 Secret |
-| `CAP-MEM-CURATE` | 晋升、Review、Archive 或 Reject Candidate | WRITE | 已验证 Candidate、mode、policy | 目标文件、index 与原 Candidate 状态一致；无静默覆盖 |
+| `CAP-MEM-CURATE` | 晋升、Review、Archive 或 Reject Candidate | WRITE | 已验证 Candidate、mode、policy | 目标文件、index 与原 Candidate 状态一致；无静默覆盖；显式批准的长期记录可进入唯一 Workspace Memory 读视图 |
 | `CAP-MEM-REFRESH` | 刷新 Manifest、Current State 与 Source Pack | WRITE | Workspace Git state | manifest、hash、替换清单和检查报告 |
 | `CAP-MEM-STATUS` | 查看有效 mode、队列和上次结果 | READ | repository/state directory | OFF/ASSISTED/AUTO、计数和本机 Outbox 位置 |
 | `CAP-MEM-SET-MODE` | 切换 Host-local kill switch | WRITE | `Off` / `Assisted` / `Auto` | 回读 mode 一致；OFF 不产生 Candidate |
@@ -36,11 +36,11 @@ Candidate 至少包含 schema version、`memory_id`、type、scope、sensitivity
 1. Public repository 只接受 `scope=public` 且 `sensitivity=public` 的 Candidate。
 2. Project Private 只有在 Host-local Registry 将 alias 分类为 `project-private`，并批准 writer、scope、sensitivity、source project 与外部 Git root 时写对应私有业务仓库；否则进入本机 Outbox。
 3. Cross-project Private 只写 Registry 分类为 `cross-project-private-hub` 的 User 批准私有 Context Hub；不存在或不匹配时进入本机 Outbox。
-4. Local-only、Secret、Raw Capture、账号数据、逐笔余额、完整响应和敏感日志不得上传。
+4. `sensitivity=secret` 与 `scope=local-only` 是 Registry 无法放宽的 Global Safety Contract hard deny；Secret、Raw Capture、账号数据、逐笔余额、完整响应和敏感日志不得上传。Host-local Registry 只能进一步收紧，不能授权例外。
 5. scope 或 sensitivity 不明确时 fail closed，不写公共仓库。
 6. 单个 Agent 不静默覆盖 canonical file；冲突进入 Review，历史通过 `supersedes` 保留。
 7. Core Rule、ADR、Capability、权限、费用和跨项目策略在 AUTO 中仍必须 Review。
-8. 所有 Git Candidate 的 source host/project/actor/reference 禁止空值和占位值；缺失时进入 Outbox。
+8. 所有 Git Candidate 的 source host/project/actor/reference 必须包含有效字母或数字，且禁止空值和 `unknown`、`n/a`、`none`、`null`、`-`、`tbd` 等占位值；缺失时进入 Outbox。
 9. AUTO canonical promotion 要求非 main/master linked worktree，并对 target、Candidate、Archive、index 做原子语义事务；任一失败 `promoted=0`。
 
 ## Current Implementation Binding
@@ -53,6 +53,8 @@ Candidate 至少包含 schema version、`memory_id`、type、scope、sensitivity
 | Generic IDE Agent | project rule + local CLI | `bootstrap/generic-agent/` |
 
 当前实现不包含常驻服务、外部 SaaS、向量数据库、图数据库、浏览器抓取或高权限 GitHub App。实际 Host 没有 Python/Git writer 时报告 `Implementation unavailable` 或写标准 Outbox，不声称已提交。
+
+跨会话读入口固定为 `memory/context/WORKSPACE.md`。它只接收高置信、有证据、public-safe、无冲突并经 ASSISTED 显式批准的 Candidate；不替代 Task、Review、Handoff 或业务仓库真相源。
 
 ## Failure Semantics
 

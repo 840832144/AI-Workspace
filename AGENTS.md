@@ -32,8 +32,10 @@ Rules:
 
 After a substantive Task, Review, decision, reusable fix, workflow change or Handoff, silently check whether durable information was created. Follow `standards/MEMORY_GOVERNANCE.md`:
 
+- at the start of a new session, sync latest Git `main`, read `memory/context/WORKSPACE.md`, then verify relevant Task, Review, Handoff and business evidence; use Project Source Pack only as a stale-marked fallback when Git is unavailable;
 - never store a full transcript, Secret, Raw Capture, account data, full response or sensitive log;
 - route Public-safe content to a Candidate, project-private content to its private repository, and unavailable/unclear routes to the local Outbox;
 - run deterministic validation before Git write and never silently overwrite canonical memory;
 - respect the Host-local OFF / ASSISTED / AUTO mode;
 - update canonical Task, Status and Handoff directly when the current task already requires those changes; do not create a duplicate Candidate for the same edit.
+- treat `sensitivity=secret` and `scope=local-only` as hard deny before any Registry routing; Registry may tighten but never loosen the Global Safety Contract.

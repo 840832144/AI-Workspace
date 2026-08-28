@@ -98,7 +98,7 @@ entries:
     priority: "P1"
     created_date: "2026-08-27"
     updated_date: "2026-08-27"
-    related_tasks: ["TASK-0015", "TASK-0017"]
+    related_tasks: ["TASK-0015", "TASK-0017", "TASK-0023", "TASK-0024"]
     kind: "canonical"
   - id: "TASK-0017"
     canonical_file: "tasks/TASK-0017-Codex-Desktop-Proxy-WebSocket-Reconnect.md"

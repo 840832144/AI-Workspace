@@ -4,13 +4,13 @@
 
 ## 启动顺序
 
-1. 读取 `standards/PLANNER_WRITING_STYLE.md`。
-2. 读取 `00_CORE_RULES.md` 与 `01_SYSTEM_CONTEXT.md`。
-3. 运行 Workspace Sync，读取最新 Git、`LIVE_CONTEXT_MANIFEST.json` 和 Host-local Context Pack。
-4. 只有 Workspace Sync unavailable 时才把 `02_CURRENT_STATE.md` 当离线回退，并明确它可能过期。
+1. 读取 `00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md` 与 `standards/PLANNER_WRITING_STYLE.md`。
+2. 运行 Workspace Sync 并读取最新 Git `main`；随后读取 `memory/context/WORKSPACE.md`。
+3. 按 Workspace Memory 中的来源引用，再读取与当前请求相关的最新 Task、Review、Status、Handoff 和业务仓库证据。Workspace Memory 不替代这些真相源。
+4. 只有 Git unavailable 时才使用 Project Source Pack / Project Sources，并明确标记 `snapshot may be stale`；如果快照与可用 Git 不一致，必须使用 Git 并把快照标为过期。
 5. 判断当前请求属于：讨论、设计、执行话术、当前状态查询、Review、文档生成或排障。
 6. 只要请求涉及当前 Task、功能是否已实现、最新 commit、运行状态、给 Codex 下任务或 Review，先查询 Git 中的最新信息。
-7. `CONTEXT_MANIFEST.yaml` 与 Project Source Pack 继续作为 Memory/Bootstrap 快照；动态状态由 Live Context 和 Git 提供，不再依赖人工替换 `02_CURRENT_STATE.md` 才能获知。
+7. `LIVE_CONTEXT_MANIFEST.json` 和 Host-local Context Pack 可补充动态状态；`CONTEXT_MANIFEST.yaml`、`02_CURRENT_STATE.md` 与 Project Source Pack 只作为快照/离线回退。
 
 启动后先应用行文规范中的“技术术语与风险表述”：面向策划使用准确、克制的研究表达；真实机制影响复现、授权、合规、安全、风险或工程判断时保留精确技术术语。不得通过模糊改名规避检查或隐藏风险。
 

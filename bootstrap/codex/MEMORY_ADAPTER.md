@@ -1,5 +1,7 @@
 # Codex Memory Adapter
 
+新 Codex 会话先同步最新 Git `main` 并读取 `memory/context/WORKSPACE.md`，再按来源核对相关 Task、Review、Handoff 与业务证据；Project Source Pack 只在 Git unavailable 时作为 stale-marked snapshot 回退。
+
 本适配器把 Codex 的实质 Task/Review/Handoff 结果接入 `CAP-MEM`。它不依赖 Subagent；TASK-0016 Pilot 最终 Subagent 仍为 `OFF`。
 
 ## During a substantive turn
@@ -16,6 +18,7 @@
 - 自动 Candidate commit 必须在 clean、非 `main` branch 上显式使用 `--git-commit`；push 需要再显式使用 `--git-push`。
 - Private Candidate 还需要 Host-local Registry 的批准 alias；classification、scope、sensitivity、source project、writer 或外部 Git root 任一不匹配都保持 Outbox，禁止回写 public AI-Workspace。
 - AUTO canonical promotion 只在非 main/master linked worktree 运行；target、Candidate、Archive、index 任一步失败都恢复执行前状态。
+- `sensitivity=secret` 与 `scope=local-only` 在 Registry 前 hard deny；Registry 只能收紧 Global Safety Contract。Workspace Memory 只能由现有 Curator 在 ASSISTED 下显式批准写入，不能绕过 Candidate/Validator。
 - writer/permission 失败时由 CLI 写本机 Outbox；输出不得说“已上传”。
 
 ## Hooks
