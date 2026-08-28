@@ -14,6 +14,17 @@
 - User 将当前产品优先级从尚未执行的 TASK-0025 切换到 TASK-0026；Top Tycoon 保留 `Ready` 并进入 Backlog，不在 Collector 1.0 期间并行执行。
 - 正式实现仓库由 `CashFrenzy_collect` 改名为 `CF_collect`；面向用户的介绍改用“【游戏】”，运行所需 package、command 与技术标识不做破坏性替换。
 
+### Implemented
+
+- `CF_collect@7c32877` 建立 `batch_spin / keepalive / registry` Adapter architecture、统一四段 Event、固定 Session artifacts、deterministic re-extract 与 JSON/Markdown value-free summary。
+- `batch_spin` 严格冻结六字段；未迁移 DS Sidecar schema expansion、same-object discovery、`.local/`、真实 Session、fixture/artifact 或 Git 历史。
+- 修复一键入口的项目根、Frida server `.xz` 路径和 helper venv binding；Android 9 probe/bootstrap JavaScript 与 main 基线逐字一致。
+
+### Validation
+
+- 正式仓库 focused tests 12/12、Python compileall、PowerShell 5.1 parser、deterministic/legacy read-only、Event envelope、value-free summary、secret/local-data scan 与 diff check 通过。
+- AI-Workspace Registry 重建后为 13 canonical / 0 collision；本 Task 未启动模拟器、未执行新 Spin、未产生真实 Session。Subagents: none。
+
 ### Boundaries
 
 - 不继续恢复字段，不扩大 `batch_spin` 六字段 schema，不做 20-Spin/F4，不改 Android 9 Hook/serializer/部署路线。

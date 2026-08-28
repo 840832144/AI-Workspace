@@ -1,6 +1,6 @@
 # TASK-0026 — 【游戏】 Collector 1.0 Engineering
 
-- Status: Ready
+- Status: Review
 - Project key: CASH-FRENZY
 - Human alias:
 - Owner: User / ChatGPT
@@ -120,6 +120,30 @@ data/sessions/<session_id>/
 - 新 output contract 必须通过兼容层接入现有一键流程，不以改写 Android 9 Hook 换取工程便利；
 - 所有 GitHub rename/push 仅作用于 User 明确指定的正式仓库；不复制 DS Sidecar 历史或其他仓库内容。
 
+## Implementation Evidence
+
+### Confirmed
+
+- GitHub 正式仓库已从 `840832144/CashFrenzy_collect` 改名为 `840832144/CF_collect`；default branch 仍为 `main`，公开 Description 使用“【游戏】”。
+- 实现分支为 `codex/collector-1-engineering`，Review commit 为 `7c32877a26f48e0705a7cfd79059dc8214303e36`。
+- 新增正式 `adapters/batch_spin.py`、`adapters/keepalive.py`、`adapters/registry.py` 与公共 event helpers；Registry 只路由 exact `kind=lua-pcall-args / messageType=3 / command`，未知命令返回 `None`。
+- `batch_spin` allowlist 严格固定六字段；合成 extra `feature/result` 与任意额外字段不会进入 Event、warning schema 或 Spin Records。
+- 新 Session 预创建 `source_events.jsonl / events.jsonl / spin_records.jsonl`，finalize 写 `session_manifest.json`，一键流程再生成 `summary.json / summary.md`；manifest 只含相对 artifact path。
+- 旧 raw `events.jsonl` 通过只读 compatibility path 重建到 `normalized_events.jsonl`，原文件 hash 保持不变。
+- DS Sidecar 仅作为 exact shape、fail-closed/type/truncation、合成测试与输入只读的设计来源；正式 commit 不含 Sidecar 文件、fixture、artifact、`.local/`、真实 Session 或 schema expansion。
+- `run_collector.ps1` 保持既有 preflight → server → gadget → forward → bootstrap → scoped probe → User phase → stop → re-extract/summary → cleanup 顺序；同时修复项目根、Frida server `.xz` 下载路径与 helper 使用项目 venv 三个一键入口问题。
+
+### Derived / not dynamically rerun
+
+- 本 Task 为离线工程化，没有启动模拟器、Frida、Gadget 或新 Session，也没有要求 User 再次 Spin；因此只证明 host pipeline 与静态部署 contract，未新增动态稳定性、字段命中率、20-Spin 或 F4 证据。
+- Probe `build_javascript` 与 bootstrap JavaScript 经换行归一化后和正式 main 基线逐字一致；Android 9 运行路线据此判定未改，但不把静态相同比作一次新的 runtime 验证。
+
+### Failed attempts / resolved
+
+- Candidate CLI 首次使用 `YYYY-MM-DD` 日期格式被拒绝，未创建文件或占用 ID；第二次 slug 重复项目 key，产生的未提交错误 Candidate 已删除并由 Registry writer 恢复，再使用规范 slug 成功分配 TASK-0026。
+- `CF_collect` 首次 commit 因新 clone 没有作者身份而失败；远端仅创建了指向基线的分支，未发布未提交内容。随后只在该仓库复用 AI-Workspace 现有 noreply identity，commit/push 成功，未修改 global Git config。
+- AI-Workspace Task 回归的 23 个 disposable tests 全部通过，但套件尾部一次真实仓库二次 validate 因瞬时 `cannot fetch origin/main` 失败；立即独立 `git fetch origin` + `task_cli validate` 复验为 13 canonical / 0 collision / valid，HEAD 与 origin/main 为 0/0。
+
 ## Validation
 
 进入 ChatGPT Review 前至少通过：
@@ -134,6 +158,8 @@ data/sessions/<session_id>/
 8. 未改 Android 9 JavaScript Hook/serializer 路线，未执行新的动态 Spin；
 9. `CF_collect` 与 AI-Workspace 的适用测试、Task Registry、链接与工作树检查通过；
 10. Handoff 明确 `Subagents: none`，等待 ChatGPT Review。
+
+实际结果：focused `unittest` 12/12、Python compileall、PowerShell 5.1 三脚本解析、Event 四顶层键、deterministic re-extract、legacy input read-only、value-free summary、公开介绍 anonymization、secret/local-data diff scan 与 `git diff --check` 均通过；AI-Workspace Task Registry 为 13 canonical / 0 collision。未执行动态 Spin。Subagents: none。
 
 ## Stop conditions
 
