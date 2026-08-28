@@ -10,13 +10,19 @@
 
 ## 🔥 Current
 
-### Top Tycoon
+### 【游戏】 Collector 1.0
 
-- 当前状态：User 已于 2026-08-28 明确批准启动 Top Tycoon F4 可行性审计；Approved Candidate 已由官方 allocator 以 `relationship=new` 晋升为唯一 canonical `TASK-0025`，等待合入 `main` 并 finalize reservation 后执行。
-- 产品目标：在 User 新建的 `topTycoon` 模拟器中，评估核心 Spin 数值链、跨 Session 复现、确定性采集生命周期与次级模块扩展潜力，严格按 F0–F4 Evidence Gate 给出结论。
-- 进入动作：先将 canonical `TASK-0025` 合入 `main` 并 finalize reservation，再由 Codex 严格按 Task 执行；不得复用 TASK-0024 或跳过 Feasibility Audit 直接建设完整 Collector。
+- 当前状态：User 已于 2026-08-28 明确把当前目标切换为 Collector 1.0 工程化；Approved Candidate 已由官方 allocator 以 `relationship=new` 晋升为唯一 canonical `TASK-0026`，等待合入 `main` 并 finalize reservation 后执行。
+- 产品目标：在不恢复新字段、不扩大 `batch_spin` 六字段 schema、不改变 Android 9 已验证采集路线的前提下，建立 Adapter Registry、统一 Event contract 与固定 Session artifacts。
+- 进入动作：先完成 TASK-0026 issuance/finalize，再在正式 `CF_collect` 仓库选择性迁移 DS Sidecar 的 exact-target adapter 与合成测试；保持一键部署和清理路径。
 
 ## 📋 Backlog
+
+### Top Tycoon
+
+- 当前状态：canonical `TASK-0025` 已是 `Ready`，但尚未开始执行；User 后续明确把当前优先级切换到 TASK-0026，因此本方向暂留 Backlog，不与 Collector 1.0 并行执行。
+- 已批准目标：在 `topTycoon` 研究实例中按 F0–F4 Gate 审计核心 Spin 链、跨 Session 复现、确定性 lifecycle 与次级模块边界。
+- 恢复条件：User 再次明确切回本方向；届时从最新 main 和 TASK-0025 重新核对 identity、授权与执行前置，不复用本 Task 的业务 schema 或本地数据。
 
 ### Documentation Portal
 
@@ -43,7 +49,7 @@
 
 ## ✅ Done
 
-### Cash Frenzy Inbound Structured Capture Spike
+### 【游戏】 Inbound Structured Capture Spike
 
 - 已交付：Android 9 inbound-scoped Lua 边界、5/5 `batch_spin` direct Result/Win/Balance 字段路径、受限 serializer、脱敏聚合与 clean finalize。
 - 完成依据：TASK-0024 ChatGPT Review Round 1 Accepted；等级为 F3 strengthened，F4 未证明。
