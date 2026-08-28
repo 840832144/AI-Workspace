@@ -216,7 +216,7 @@ entries:
     canonical_file: "tasks/TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md"
     file: "tasks/TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md"
     title: "Top Tycoon Android F4 Collection Feasibility Audit"
-    status: "Ready"
+    status: "Review"
     project_key: "TOP-TYCOON"
     human_alias: "TT-FEASIBILITY-001"
     owner: "User / ChatGPT"

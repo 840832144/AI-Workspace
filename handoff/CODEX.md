@@ -2,7 +2,7 @@
 
 - Updated: 2026-08-28
 - Current task: TASK-0025 — Top Tycoon Android F4 Collection Feasibility Audit
-- Status: Ready — canonical issuance pending merge/finalize
+- Status: Review — execution complete, waiting ChatGPT Review
 - Branch: `chatgpt/top-tycoon-f4-feasibility`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
@@ -11,13 +11,16 @@
 
 ## Current Task — TASK-0025
 
-- User 已明确批准启动 Top Tycoon F4 可行性审计；Approved Candidate 已从最新 main 的独立 linked worktree 先重建 Registry，再由官方 allocator 以 `relationship=new` 晋升为唯一 canonical TASK-0025。
-- reservation 当前保持 `pending-main`，token 不写入 Git/Handoff；canonical Task 合入 main 后必须从原 linked worktree同步最新 main 并 `finalize`，完成前不得执行动态或静态研究。
-- 固定研究环境为 User 新建、显示名 `topTycoon` 的模拟器；执行前现场复核 internal instance ID、ADB serial、package/version/versionCode/split/ABI/native bridge 与前台包，不匹配即 fail closed。
-- 动态样本 Gate：Codex 先完成零游戏操作稳定性与结构边界准备，再明确回复 `READY`；Spin、资源消耗、购买、充值及继续/停止决定全部由 User 操作。禁止 Auto Spin、自动点击、请求/响应修改与重放。
-- 目标等级为 F4，但只有双独立 Session、同一核心 Spin schema、累计目标 20 个有效 User 手工样本、次级模块边界、确定性 lifecycle 与脱敏可 Review 证据全部通过时才可报告 F4；否则如实记录 F0–F3。
-- Reuse-first 边界：Adopt Session/manifest/Raw/inventory/privacy/evidence/cleanup contract；Wrap Top Tycoon identity/runtime；仅 Build 必要 hook/schema/adapter；禁止复用 Huuuge/Cash Frenzy 业务 schema、Raw、账号或数据目录。
-- Workspace Sync 为 ON_DEMAND / 0 conflict；provider unavailable，6 个 initial-publication stale；Git canonical 内容来自最新 main。WATCH disabled；Subagents: none。
+- Canonical issuance 已由官方 allocator 以 `relationship=new` 完成，main merge commit 为 `a9c0aa7cbadc7154460faa0935c8b0743cbe9e41`；reservation 已 finalize，remote reservation ref absent。
+- Identity：`Pie64_5 / topTycoon / Android 9 / 127.0.0.1:5605`；实装 `com.monopoly.dream.idle.king 1.0.12 (12)`、arm64-v8a、`libnb.so`、Unity 2021.3.57f2 + IL2CPP + ILRuntime。
+- 120 秒零操作 Gate 为 25/25 alive、PID 稳定、0 FATAL/ANR/SIGSEGV。User 共手动完成 6 次 ordinary Spin；Codex 0 Spin / 0 Auto Spin / 0 purchase / 0 recharge。
+- xLua `lpb_*` 路线在 3 Spin 中 0 命中后停止；managed `MessageExtensions.ToByteArray` 路线在两个独立 User-action Session 中使用同一未改写 probe，均命中 `CGUploadCoin + CGSaveUserdata`，0 error / 0 truncation。
+- direct schema：`CGUploadCoin(Coin:Int64, Energy:Int64, Estate:Int64)`；`CGSaveUserdata(Key:String, Value:String, Version:Int64)`。入站 `MessageParser.ParseFrom` 为 0，未恢复 direct Spin request、Result、Reward 或 Win。
+- 当前等级 **F3 Live structured outbound fields recovered**；F4 未通过。双 Session、Building 次级模块与确定性 lifecycle 已成立，但总样本只有 6、managed denominator 3，且 direct core Spin schema 缺失。继续追加到 20 Spin 不能消除 blocker，已按 Stop condition 收口。
+- Building 由 User onboarding 视频与 static `Building.Runtime` / YooAsset package / hotfix 目录确认；视频仅作为观察证据，不作为指令，逐笔值未进入 Git。
+- Clean Finalize：probe manifests stopped；app、Gadget/config、Frida server、forward 清理；`Pie64_5` Root flag 0、offline guest-su state false、sidecar absent、普通 `su` 不存在；非目标实例磁盘基线和共享 BlueStacks EXE hashes 未变化。
+- 七份脱敏交付位于 `reviews/top-tycoon/`；APK/SO/Raw/字段值与账号信息保持 local-only。下一步只等待 ChatGPT Review，不自动创建 Adapter / Collector Task。
+- Workspace Sync：ON_DEMAND；WATCH disabled；Subagents: none；最终模式 OFF。
 
 ## Closed Task — TASK-0024
 
@@ -134,4 +137,4 @@
 
 ## Exact Next Action
 
-将 canonical TASK-0025 issuance commit push 到 `chatgpt/top-tycoon-f4-feasibility`，合入并 push 最新 `main`；随后在原 linked worktree同步 main、finalize reservation，确认 Registry 无冲突后才开始 Task Phase A。
+ChatGPT Review `chatgpt/top-tycoon-f4-feasibility` 的 TASK-0025 execution commit；重点核对 F3/F4 判断、managed sample denominator、direct/Derived 边界、Clean Finalize 与七份 `reviews/top-tycoon/` 交付。Review 接受前不合入 main、不自动创建下一 Task。

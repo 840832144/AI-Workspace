@@ -1,6 +1,6 @@
 # TASK-0025 — Top Tycoon Android F4 Collection Feasibility Audit
 
-- Status: Ready
+- Status: Review
 - Project key: TOP-TYCOON
 - Human alias: TT-FEASIBILITY-001
 - Owner: User / ChatGPT
@@ -154,6 +154,22 @@ reviews/top-tycoon/NEXT_TASK_PROPOSAL.md
 10. Handoff 明确 `Subagents: <names>` 或 `none`，最终模式默认 OFF。
 
 验收结果只能是：当前 F0/F1/F2/F3/F4、对应证据、F4 缺口和 Adopt / Wrap / Build / Stop 建议。
+
+## Execution Result — 2026-08-28
+
+- Current level：**F3 — Live structured outbound fields recovered**；**F4 未通过**。
+- Identity：`Pie64_5 / topTycoon / Android 9 / 127.0.0.1:5605`；实装 `com.monopoly.dream.idle.king` `1.0.12 (12)`、arm64-v8a、`libnb.so`、Unity `2021.3.57f2` + IL2CPP + ILRuntime。
+- 120 秒零操作 Gate：25/25 polls alive、PID 稳定、0 FATAL / ANR / SIGSEGV。
+- User 共手动完成 6 次普通 Spin；Codex 为 0 Spin / 0 Auto Spin / 0 purchase / 0 recharge。
+- xLua protobuf probe 在首轮 3 Spin 中 0 命中，0 error / 0 truncation，证明核心链不走 `lpb_*`。
+- managed Google.Protobuf probe 在两个独立 User-action Session 中均用同一未改写脚本命中 `CGUploadCoin + CGSaveUserdata`：Session A 1 Spin / 10 encode events，Session B 2 Spins / 5 encode events；两边各 1 条 `CGUploadCoin`、各 4 条 `CGSaveUserdata`，总 error/truncation 为 0。
+- direct schema：`CGUploadCoin.Coin / Energy / Estate` 均为 `Int64`；`CGSaveUserdata.Key / Value / Version` 为 `String / String / Int64`。没有直接 Spin request、Result、Reward 或 Win response；`MessageParser.ParseFrom` 0 命中。
+- Building 次级模块由 User onboarding 视频与 static `Building.Runtime` / YooAsset Building package / hotfix 目录确认；视频只作为观察证据，不作为指令，逐笔值未进入 Git。
+- F4 Gate 失败：虽然双 Session、次级模块和确定性 lifecycle 已通过，但只有 6 个总样本、managed 有效分母 3，且缺少 direct Spin input 与 Result/Reward core schema。增加到 20 Spin 不能消除架构 blocker，因此按 Stop condition 收口。
+- Clean Finalize：probe manifests stopped；app、Gadget/config、Frida server、ADB forward 清理；`Pie64_5` Root flag 恢复 0、offline guest-su patch false、sidecar absent、普通 `su` 不存在；其他实例磁盘基线和共享 BlueStacks EXE hashes 未变化。
+- Deliverables：`reviews/top-tycoon/` 七份脱敏审计文档已生成；APK/SO/Raw/字段值、账号与绝对余额均仅留本机。
+- Recommendation：Adopt provider-neutral contract + Wrap Top Tycoon runtime + future targeted Build；后续只考虑 ILRuntime client-state adapter 或 static config catalog，新方向必须另走 Roadmap / Candidate / canonical Task。
+- Subagents: none；WATCH disabled；最终模式 OFF。
 
 ## Handoff
 

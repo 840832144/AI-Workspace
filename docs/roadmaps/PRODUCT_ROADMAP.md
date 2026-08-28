@@ -10,11 +10,11 @@
 
 ## 🔥 Current
 
-### Top Tycoon
+### Top Tycoon F4 Feasibility Audit
 
-- 当前状态：User 已于 2026-08-28 明确批准启动 Top Tycoon F4 可行性审计；Approved Candidate 已由官方 allocator 以 `relationship=new` 晋升为唯一 canonical `TASK-0025`，等待合入 `main` 并 finalize reservation 后执行。
-- 产品目标：在 User 新建的 `topTycoon` 模拟器中，评估核心 Spin 数值链、跨 Session 复现、确定性采集生命周期与次级模块扩展潜力，严格按 F0–F4 Evidence Gate 给出结论。
-- 进入动作：先将 canonical `TASK-0025` 合入 `main` 并 finalize reservation，再由 Codex 严格按 Task 执行；不得复用 TASK-0024 或跳过 Feasibility Audit 直接建设完整 Collector。
+- 当前状态：TASK-0025 已执行完成并提交脱敏证据，等待 ChatGPT Review；在正式 Review Accepted 前不移入 Done。
+- 当前结论：F3 live structured outbound fields recovered；F4 因缺少 direct Spin input / Result / Reward core schema 与 20 个有效样本而未证明。
+- Review 边界：核对两个 managed Session、sample denominator、direct/Derived 术语、Clean Finalize 与七份 `reviews/top-tycoon/` 交付；不自动扩大为 Collector。
 
 ## 📋 Backlog
 
@@ -34,6 +34,12 @@
 - 进入 Current 的条件：确定最小数据模型、Evidence 要求和首个验证项目。
 
 ## 💡 Ideas
+
+### Top Tycoon Client-State Adapter
+
+- 设想：用指定 ILRuntime method adapter 或 `CGSaveUserdata.Value` 写入前的受限结构边界，恢复 value-free Spin Result/Reward schema。
+- 当前依据：TASK-0025 已证明 `CGUploadCoin + CGSaveUserdata` 的 F3 live boundary，但 direct Spin/Result/Reward 缺失。
+- 主要 Gate：必须由 User 批准新 Candidate / canonical Task；禁止全局 ILRuntime trace，先做 0-operation baseline，最多 3–5 个 User manual Spin，失败即 Stop。
 
 ### One Research Environment → Multiple Games → Independent Evidence
 

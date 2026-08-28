@@ -2,6 +2,26 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.8] - 2026-08-28
+
+### Confirmed
+
+- TASK-0025 完成 Top Tycoon identity、静态结构、零操作稳定性、两条 bounded dynamic route 与 Clean Finalize；进入 ChatGPT Review。
+- 实装为 `Pie64_5 / topTycoon / com.monopoly.dream.idle.king 1.0.12 (12)`、arm64-v8a、Unity 2021.3.57f2、IL2CPP + ILRuntime + managed Google.Protobuf。
+- User 共手动完成 6 次普通 Spin；xLua `lpb_*` 首轮 3 Spin 为 0 命中。managed probe 在两个独立 User-action Session 中均恢复 `CGUploadCoin + CGSaveUserdata`，0 error / 0 truncation。
+- direct schema 为 `CGUploadCoin(Coin:Int64, Energy:Int64, Estate:Int64)` 与 `CGSaveUserdata(Key:String, Value:String, Version:Int64)`；没有 direct Spin input、Result、Reward 或 Win response。
+
+### Decision
+
+- 当前等级为 **F3 Live structured outbound fields recovered**；F4 未通过。双 Session 和 lifecycle 可重复，但只有 6 个总样本，且缺少 direct core Spin schema；不以追加到 20 Spin 强行提高等级。
+- 新增 `reviews/top-tycoon/` 七份脱敏交付；建议保留 targeted ILRuntime client-state adapter 或 static config catalog 为未来新 Task，不自动建设完整 Collector。
+
+### Safety / Cleanup
+
+- Codex 0 Spin / 0 Auto Spin / 0 purchase / 0 recharge / 0 request modification / 0 replay；Building 与所有资源消耗均由 User 操作。
+- probe、app、Gadget/config、Frida server、ADB forward 与 `Pie64_5` Root/guest-su patch 均完成确定性清理；普通 `su` 不存在，非目标实例和共享 BlueStacks EXE 基线未变化。
+- APK/SO/Raw/字段值、账号、token、绝对余额和逐笔值均未进入 Git。WATCH disabled；Subagents: none。
+
 ## [0.16.7] - 2026-08-28
 
 ### Added
