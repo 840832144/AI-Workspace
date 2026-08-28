@@ -1,6 +1,6 @@
 # AI Workspace｜产品路线图（Product Roadmap）
 
-> 更新时间：2026-08-27
+> 更新时间：2026-08-28
 > Git 真相源：`docs/roadmaps/PRODUCT_ROADMAP.md`
 > 适用范围：Game Planner AI Workspace 的长期产品方向
 
@@ -12,9 +12,9 @@
 
 ### Top Tycoon
 
-- 当前状态：Cash Frenzy Review 已完成；等待 User 决定是否建立 Top Tycoon Candidate / Task，当前未开始研究。
-- 产品目标：未来按 Feasibility Audit 路线评估其被动采集、结构化证据和策划研究价值。
-- 进入动作：只有 User 明确批准后才创建 Candidate / Task；TASK-0024 收口不自动授权本方向。
+- 当前状态：User 已于 2026-08-28 明确批准启动 Top Tycoon F4 可行性审计；Approved Candidate 已由官方 allocator 以 `relationship=new` 晋升为唯一 canonical `TASK-0025`，等待合入 `main` 并 finalize reservation 后执行。
+- 产品目标：在 User 新建的 `topTycoon` 模拟器中，评估核心 Spin 数值链、跨 Session 复现、确定性采集生命周期与次级模块扩展潜力，严格按 F0–F4 Evidence Gate 给出结论。
+- 进入动作：先将 canonical `TASK-0025` 合入 `main` 并 finalize reservation，再由 Codex 严格按 Task 执行；不得复用 TASK-0024 或跳过 Feasibility Audit 直接建设完整 Collector。
 
 ## 📋 Backlog
 

@@ -2,6 +2,23 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.16.7] - 2026-08-28
+
+### Added
+
+- 通过 User 已批准 Candidate 与 remote-CAS allocator 创建唯一 canonical `TASK-0025 — Top Tycoon Android F4 Collection Feasibility Audit`；Allocation relationship 为 `new`，没有手工猜测 Task 编号。
+- Task 固定使用 User 新建、显示名为 `topTycoon` 的模拟器，按 Identity → Reuse → Static → Bounded Dynamic → F4 Gate 执行，并要求双 Session、确定性生命周期与次级模块证据。
+
+### Boundaries
+
+- Spin、Auto Spin、资源消耗、购买与充值均不由 Codex 操作；动态样本前必须明确回复 `READY`，真实普通 Spin 仅由 User 手工完成。
+- 不复用 Huuuge/Cash Frenzy 业务 schema、Raw、账号或数据目录，不在本 Task 建设完整 Collector，不修改、伪造或重放请求/响应/余额/奖励。
+
+### Validation
+
+- 从最新 `origin/main@a670fca` 建立独立 linked worktree，先重建 Registry，再通过官方 `task_cli.py promote ... --relationship new` 晋升；晋升前为 11 canonical / 0 collision / `status=valid`。
+- Workspace Sync 保持 `ON_DEMAND` / 0 conflict；provider unavailable，6 个 Git-authoritative 发布项为 initial-publication stale，不影响 Git canonical Task 真相源；WATCH disabled，`Subagents: none`。
+
 ## [0.16.6] - 2026-08-27
 
 ### Accepted

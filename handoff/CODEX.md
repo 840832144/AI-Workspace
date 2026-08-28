@@ -1,15 +1,25 @@
 # Codex Handoff
 
-- Updated: 2026-08-27
-- Current task: TASK-0024 — Cash Frenzy Inbound Structured Capture Spike
-- Status: Complete — ChatGPT Review Round 1 Accepted and branch merged
-- Branch: `main`
+- Updated: 2026-08-28
+- Current task: TASK-0025 — Top Tycoon Android F4 Collection Feasibility Audit
+- Status: Ready — canonical issuance pending merge/finalize
+- Branch: `chatgpt/top-tycoon-f4-feasibility`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
 
-## Current Task — TASK-0024
+## Current Task — TASK-0025
+
+- User 已明确批准启动 Top Tycoon F4 可行性审计；Approved Candidate 已从最新 main 的独立 linked worktree 先重建 Registry，再由官方 allocator 以 `relationship=new` 晋升为唯一 canonical TASK-0025。
+- reservation 当前保持 `pending-main`，token 不写入 Git/Handoff；canonical Task 合入 main 后必须从原 linked worktree同步最新 main 并 `finalize`，完成前不得执行动态或静态研究。
+- 固定研究环境为 User 新建、显示名 `topTycoon` 的模拟器；执行前现场复核 internal instance ID、ADB serial、package/version/versionCode/split/ABI/native bridge 与前台包，不匹配即 fail closed。
+- 动态样本 Gate：Codex 先完成零游戏操作稳定性与结构边界准备，再明确回复 `READY`；Spin、资源消耗、购买、充值及继续/停止决定全部由 User 操作。禁止 Auto Spin、自动点击、请求/响应修改与重放。
+- 目标等级为 F4，但只有双独立 Session、同一核心 Spin schema、累计目标 20 个有效 User 手工样本、次级模块边界、确定性 lifecycle 与脱敏可 Review 证据全部通过时才可报告 F4；否则如实记录 F0–F3。
+- Reuse-first 边界：Adopt Session/manifest/Raw/inventory/privacy/evidence/cleanup contract；Wrap Top Tycoon identity/runtime；仅 Build 必要 hook/schema/adapter；禁止复用 Huuuge/Cash Frenzy 业务 schema、Raw、账号或数据目录。
+- Workspace Sync 为 ON_DEMAND / 0 conflict；provider unavailable，6 个 initial-publication stale；Git canonical 内容来自最新 main。WATCH disabled；Subagents: none。
+
+## Closed Task — TASK-0024
 
 - ChatGPT Review Round 1 已 Accepted；正式 Review 为 `reviews/TASK-0024-CHATGPT-REVIEW-1.md`，reviewed commit `1f666e79995537febce7a0bf2b98e7ba96100ea9`，Review main commit `17f776553c9d6450c25d145404c46ebaa59a3c3c`。
 - Review 分支已合入 main，canonical TASK-0024 状态为 `Complete`；不在本 Task 内继续完整 Collector、20-Spin、adapter 或其他模块研究。
@@ -124,4 +134,4 @@
 
 ## Exact Next Action
 
-TASK-0024 无后续执行动作。未来若 User 决定产品化或研究其他模块，先检查 Product Roadmap，再通过 Candidate / allocator 创建独立新 Task；不得复用 TASK-0024 扩大范围。
+将 canonical TASK-0025 issuance commit push 到 `chatgpt/top-tycoon-f4-feasibility`，合入并 push 最新 `main`；随后在原 linked worktree同步 main、finalize reservation，确认 Registry 无冲突后才开始 Task Phase A。
