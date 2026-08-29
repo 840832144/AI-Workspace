@@ -464,3 +464,17 @@ entries:
     updated_date: "2026-08-29"
     related_tasks: []
     kind: "review"
+  - id: "TASK-0026"
+    canonical_file: "tasks/TASK-0026-COLLECTOR-1-0-ENGINEERING.md"
+    file: "reviews/TASK-0026-CHATGPT-REVIEW-2.md"
+    title: "TASK-0026 ChatGPT Review — Round 2"
+    status: "Needs changes"
+    project_key: "CASH-FRENZY"
+    human_alias: ""
+    owner: "ChatGPT"
+    executor: "none"
+    priority: ""
+    created_date: "2026-08-29"
+    updated_date: "2026-08-29"
+    related_tasks: []
+    kind: "review"

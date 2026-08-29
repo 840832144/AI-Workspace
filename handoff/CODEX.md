@@ -2,9 +2,9 @@
 
 - Updated: 2026-08-29
 - Current task: TASK-0026 — 【游戏】 Collector 1.0 Engineering
-- Status: Review — Round 1 cleanup-only fix pushed; waiting for ChatGPT Review Round 2
+- Status: Review — Round 2 cleanup collection-shape fix pushed; waiting for ChatGPT Review Round 3
 - Branch: AI-Workspace `codex/cash-frenzy-collector-1-engineering`; CF_collect `codex/collector-1-engineering`
-- Workspace Sync: `ON_DEMAND`
+- Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
@@ -18,7 +18,9 @@
 - 只选择性采用 DS Sidecar 的 exact-target gate、fail-closed/type/truncation handling 与合成测试思想；禁止迁移 `.local/`、真实 Session、fixture/artifact、Git 历史、schema expansion、`same_object_fields` 或实验文件。
 - ChatGPT Review Round 1 正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-1.md`：`Needs changes`；READY 与 Root 已通过，只修 cleanup 未停止本轮 `cf_rt_mon -D` 后台进程。
 - cleanup-only 修订已推送为 `CF_collect@4e6f0625e2e39dfeb6ebb4dfb2fd6a29d5c1999c`：helper 返回 `pid / remote_path / started_by_run`；严格 PID+path ownership；LIFO/idempotent stop+verify；运行、停止、验证和残留错误聚合。
-- finally 后验证 Probe、server、forward、Gadget/config 与 `/data/local/tmp/cf_*` 无残留。baseline 15/15；修订后 focused 16/16、cleanup injection 7/7、compileall、PowerShell parser、六字段与 privacy Gate 通过。
+- ChatGPT Review Round 2 正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-2.md`：`Needs changes`；Round 1 cleanup 主体通过，只修 run/helper 列表函数 `return ,$array` 与调用方 `@()` 形成嵌套数组。
+- Round 2 修订已推送为 `CF_collect@4df10ec20e79bb737912c8d1b847fae3659031ae`：列表返回统一去掉一元逗号，调用方继续用 `@()` 接收扁平 0/1/N 项；空 PID 不触发 ownership residual，空 residual 不产生空 verify error。
+- finally 后继续验证 Probe、server、forward、Gadget/config 与 `/data/local/tmp/cf_*` 无残留。focused 16/16、cleanup injection 7/7、实际生产函数 shape 10/10、compileall、PowerShell parser 5/5、六字段与 privacy Gate 通过。
 - `cf_probe.py`、`adapters/batch_spin.py`、`docs/ROOT_TOGGLE.md` hash 不变；Android 9 Hook/serializer、READY、Root 和六字段边界未改。本轮没有启动模拟器、Root、Frida、Collector 或新 Session，没有 Spin。Workspace Sync `ON_DEMAND`，WATCH disabled；Subagents: none。
 - 已解决的失败：Candidate 日期/slug 两次 fail-closed 且未误占 ID；新 clone 首次 commit 因缺作者身份失败后仅写 repo-local noreply identity；Task 23/23 后套件尾部一次真实 validate fetch 瞬时失败，独立 fetch/validate 随即通过 13 canonical / 0 collision / 0/0。
 
@@ -162,4 +164,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-ChatGPT Review Round 2 复审 `CF_collect` 分支 `codex/collector-1-engineering@4e6f0625e2e39dfeb6ebb4dfb2fd6a29d5c1999c` 的 server ownership、精确停止、LIFO/idempotency、residual verification 与错误聚合，返回 `Accepted` 或 cleanup-only 明确修改；复审前不启动模拟器、不执行 Spin、不改 READY/Root/Hook/serializer/六字段。TASK-0025 暂不执行。
+ChatGPT Review Round 3 复审 `CF_collect` 分支 `codex/collector-1-engineering@4df10ec20e79bb737912c8d1b847fae3659031ae` 的 cleanup 集合返回语义，确认 run/helper 的 0/1/N shape、空 PID ownership residual suppression 与空 verify suppression，返回 `Accepted` 或 cleanup-only 明确修改；复审前不启动模拟器、不执行 Spin，不改 LIFO、精确 PID+path、READY、Root、Hook/serializer 或六字段。TASK-0025 暂不执行。

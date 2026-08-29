@@ -2,6 +2,25 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.17.3] - 2026-08-29
+
+### Review
+
+- 正式记录 `reviews/TASK-0026-CHATGPT-REVIEW-2.md`：Decision `Needs changes`；Round 1 cleanup 主体通过，唯一 required fix 为 run/helper 的 `return ,$array` 与调用方 `@()` 形成嵌套集合。
+
+### Fixed
+
+- `CF_collect@4df10ec` 统一移除 cleanup 列表函数 `return` 前的一元逗号，调用方继续用 `@()` 接收扁平 0/1/N 项；空 PID 不再触发 ownership residual，空 residual 不再生成空 verify error。
+
+### Validation
+
+- 实际生产函数 shape tests 10/10，覆盖 0/1/2 PID、ADB 行、路径、residual error 与两个空集合边界；focused 16/16、cleanup injection 7/7、PowerShell parser 5/5、compileall、六字段、privacy scan 与 diff check 通过。
+- LIFO、精确 PID+path、READY、Root、Hook/serializer 与六字段不变；未启动模拟器、Frida、Collector，未执行 Spin。Subagents: none。
+
+### Next
+
+- TASK-0026 保持 `Review`，等待 ChatGPT Review Round 3；不自动合并 main。
+
 ## [0.17.2] - 2026-08-29
 
 ### Review
