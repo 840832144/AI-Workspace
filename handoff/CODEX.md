@@ -2,7 +2,7 @@
 
 - Updated: 2026-08-29
 - Current task: TASK-0019 — AI Workspace 项目全景说明与独立进度文档
-- Status: Review — Round 1 指定修订完成，等待 ChatGPT Review Round 2
+- Status: Review — Round 2 READY 事实口径修订完成，等待 ChatGPT Review Round 3
 - Branch: AI-Workspace `codex/task-0019-overview-progress-refresh` from `main@c74c85a9524d1524ea3696835509de2a55e9f524`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -16,15 +16,16 @@
 - 业务真相源已现场核验：Huuuge `main@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`、CF_collect `main@4df10ec20e79bb737912c8d1b847fae3659031ae`、Document Assistant `main@b0292c3159db16542906948511b6b1ec58c360fd` 均与远端一致且工作树干净。
 - TASK-0026 已按 Review Round 3 `Accepted` 纳入；Collector 1.0 的 cleanup、固定六字段与验证边界不变，本 Task 未修改任何业务实现。
 - 当前 Windows 工作站 Host readiness 为 `Ready`：Global + Project AGENTS 已加载，Global hash 与批准值一致，Git 可用，Subagents `OFF`，Document Assistant 可发现且 healthcheck token/API/Drive 全部 `ok`。
-- Huuuge First Run 已从“暂定通过”更正为 `Blocked`，并区分两类事实：正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈已脱敏记为 `Failed/Invalid`，流程曾到达 `READY`，但没有形成独立测试者、完整计时和逐项成功证据。`READY` 后的游戏操作与执行授权仍由 User 控制；工作站 Ready 不替代游戏业务 First Run。
-- Bet/RTP 风险已显式记录：没有 Bet 分层受控运行证据或稳定 RTP/EV 统计，不从字段、单次样本、bundle ratio 或描述性比率推导 Bet 与 RTP 关系。
+- Huuuge First Run 保持 `Blocked`：正式 RC4 记录仍为 `Pending`，User 实跑仍为 `Failed/Invalid`。正式 Collector READY 未被可复核证明；只确认临时 SSL 捕获后进入 User 操作阶段，游戏由 User 亲自操作，不能据此认定 Collector 达到 READY。
+- Bet/RTP `Unsupported`：没有 Bet 分层受控运行证据或稳定 RTP/EV 统计，不从字段、单次样本、bundle ratio 或描述性比率推导 Bet 与 RTP 关系。
 - Workspace Sync 与 feishu-docs 分别验收：Sync 为 `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；Document Assistant 为 `Available`，两者不得合并成一个 Provider 状态。
-- 两份既有飞书文档在 Round 1 修订后再次通过 `replace_document` 原位更新；conversion warning 0。回读确认 document ID/链接不变，进度正文包含正式 RC4 `Pending`、User 实跑 `Failed/Invalid`、`READY`/执行边界、历史 TASK-0018 文件冲突、ChatGPT 直写飞书地区限制和 Bet/RTP 风险；权限均为 `tenant_editable` / verified。
-- 两份文档重新自动登记后，最终 Hub readback 为 17 个登记项、`unique_links=true`，项目全景与项目进度标题各出现一次。
-- Validation：Round 1 定向断言 10/10、Task 23/23、Memory 44/44、Context 13/13、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue、Workspace Doctor、`git diff --check` 与独立 rollback copy 恢复基线均通过。
+- Round 2 只对既有飞书进度文档执行 `replace_document`；禁止创建副本，项目全景飞书文档保持未写。回读确认 document ID/链接不变，并包含 Collector READY 未证明、临时 SSL 捕获/User 亲自操作边界和 Bet/RTP `Unsupported`。
+- 进度文档权限保持 `tenant_editable` / verified；重新登记后 Hub readback 保持 17 个登记项、`unique_links=true`，进度标题出现一次。
+- Validation：Round 2 定向断言 12/12、Task 23/23、Registry 13 canonical / 0 collision / valid、changed-document scan 7 files / 1 Markdown link / 0 broken link / 0 secret assignment、项目全景 SHA-256 `BBC2393DCE276678D13363D65099FA3185D23BEB3AA6127CCBBA45387D350E61` 不变、0 新 Task 与 `git diff --check` 通过。
 - 本轮未启动模拟器、Root、Frida、Collector，未执行 Spin；Workspace Sync 保持 ON_DEMAND，WATCH disabled；Subagents: none / OFF。
-- ChatGPT Review Round 1 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-1.md`：Decision `Needs changes`，reviewed commit `9403a09a445fd37548c78b3fc21709e91f5406d9`。已只修 First Run 双轨事实、进度第 7 节的历史 TASK-0018 文件冲突与 ChatGPT 直写飞书地区限制，以及全景说明六个核心 Git 入口。
-- 唯一下一步：ChatGPT Review Round 2 复审本分支与两份原位飞书文档，返回 `Accepted` 或精确修改项；不得自行合并 `main`。
+- ChatGPT Review Round 2 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-2.md`：Decision `Needs changes`，reviewed commit `e05d781e8aa54a6d10f1d0e44a1f84310fdf847e`；`e05d` 是已审基线，不是本轮新提交。
+- 下一业务决策候选为 P0 Reliability Hardening Decision proposal；未获 User 批准不创建 Task、不进入实现或运行。
+- 唯一执行下一步：ChatGPT Review Round 3 复审本轮新提交与原位飞书进度文档，返回 `Accepted` 或精确修改项；不得自行合并 `main`。
 
 ## Current Task — TASK-0026
 
@@ -189,4 +190,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-ChatGPT Review Round 2 复审 TASK-0019 分支 `codex/task-0019-overview-progress-refresh`：核对正式 RC4 `Pending` 与 User 实跑 `Failed/Invalid` 的区分、`READY` 和执行边界、无证据 Bet/RTP 风险、历史 TASK-0018 文件冲突、ChatGPT 直写飞书地区限制、`c74c85a...` 核心 Git 入口，以及两份飞书原位更新/权限/Hub 唯一性回读。返回 `Accepted` 或精确修改项；Review 前不合并 main、不执行业务任务。
+ChatGPT Review Round 3 复审 TASK-0019 本轮新提交：确认正式 Collector READY 未被可复核证明，事实仅为临时 SSL 捕获后进入 User 操作阶段且游戏由 User 亲自操作；保留 RC4 `Pending`、实跑 `Failed/Invalid` 与 Bet/RTP `Unsupported`；确认 P0 Reliability Hardening Decision proposal 未获批准前没有创建 Task；只回读原位飞书进度文档，项目全景未改。返回 `Accepted` 或精确修改项；Review 前不合并 main、不执行业务任务。
