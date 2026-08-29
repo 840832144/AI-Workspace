@@ -2,6 +2,27 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.17.4] - 2026-08-29
+
+### Accepted
+
+- TASK-0026 ChatGPT Review Round 3 `Accepted`；正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-3.md`，reviewed implementation commit 为 `4df10ec20e79bb737912c8d1b847fae3659031ae`。
+- TASK-0026 canonical 状态由 `Review` 更新为 `Accepted`。
+
+### Merged
+
+- `CF_collect` 分支 `codex/collector-1-engineering` 已 fast-forward 合入并推送 `main@4df10ec20e79bb737912c8d1b847fae3659031ae`。
+- AI-Workspace 治理分支完成 Task、三轮 Review、Registry、CHANGELOG 与 Handoff 收口后合入 `main`。
+
+### Validation
+
+- 最终复验 focused 16/16、cleanup injection 7/7、production shape 10/10；Task Registry 为 13 canonical / 0 collision / valid。
+- LIFO、精确 PID+path、READY、Root、Hook/serializer 与六字段不变；未启动模拟器、Root、Frida、Collector，未执行 Spin。Subagents: none。
+
+### Closure
+
+- TASK-0026 结束，不在本 Task 内继续字段恢复、20-Spin/F4 或其他模块研究。
+
 ## [0.17.3] - 2026-08-29
 
 ### Review

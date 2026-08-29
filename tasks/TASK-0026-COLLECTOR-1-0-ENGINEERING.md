@@ -1,6 +1,6 @@
 # TASK-0026 — 【游戏】 Collector 1.0 Engineering
 
-- Status: Review
+- Status: Accepted
 - Project key: CASH-FRENZY
 - Human alias:
 - Owner: User / ChatGPT
@@ -129,6 +129,8 @@ data/sessions/<session_id>/
 - 实现分支为 `codex/collector-1-engineering`，Round 1 cleanup 修订 commit 为 `4e6f0625e2e39dfeb6ebb4dfb2fd6a29d5c1999c`。
 - ChatGPT Review Round 2 正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-2.md`：Decision `Needs changes`；LIFO、精确 PID+path、READY、Root、Hook/serializer 与六字段通过，唯一 required fix 为 cleanup 列表函数的 `return ,$array` 与调用方 `@()` 形成嵌套数组。
 - Round 2 集合返回语义修订 commit 为 `4df10ec20e79bb737912c8d1b847fae3659031ae`：run/helper 列表函数移除一元逗号，调用方继续用 `@()` 接收扁平 0/1/N 项；空 PID 不触发 ownership residual，空 residual 不生成空 verify error。
+- ChatGPT Review Round 3 正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-3.md`：Decision `Accepted`；reviewed commit 为 `4df10ec20e79bb737912c8d1b847fae3659031ae`，Cleanup 集合返回语义及全部既有边界通过。
+- `CF_collect` 实现分支已 fast-forward 合入并推送 `main@4df10ec20e79bb737912c8d1b847fae3659031ae`。
 - 新增正式 `adapters/batch_spin.py`、`adapters/keepalive.py`、`adapters/registry.py` 与公共 event helpers；Registry 只路由 exact `kind=lua-pcall-args / messageType=3 / command`，未知命令返回 `None`。
 - `batch_spin` allowlist 严格固定六字段；合成 extra `feature/result` 与任意额外字段不会进入 Event、warning schema 或 Spin Records。
 - 新 Session 预创建 `source_events.jsonl / events.jsonl / spin_records.jsonl`，finalize 写 `session_manifest.json`，一键流程再生成 `summary.json / summary.md`；manifest 只含相对 artifact path。
@@ -166,7 +168,7 @@ data/sessions/<session_id>/
 9. `CF_collect` 与 AI-Workspace 的适用测试、Task Registry、链接与工作树检查通过；
 10. Handoff 明确 `Subagents: none`，等待 ChatGPT Review。
 
-实际结果：Round 1 cleanup 修订 baseline `unittest` 15/15；Round 1 后 focused `unittest` 16/16、可注入 cleanup tests 7/7。Round 2 集合语义修订继续通过 focused `unittest` 16/16、原 cleanup injection 7/7，并新增实际生产函数 shape tests 10/10，覆盖 run/helper 的 0/1/2 PID、ADB 行、路径、residual error、空 PID 与空 verify suppression。Python compileall、PowerShell 5.1 parser 5/5、六字段冻结、secret/local-data diff scan 与 `git diff --check` 均通过。`cf_cleanup.ps1`、`cf_probe.py`、`adapters/batch_spin.py` 与 `docs/ROOT_TOGGLE.md` SHA-256 保持不变，READY 函数与 reviewed baseline 相同；AI-Workspace Task tests 23/23，Registry 为 13 canonical / 0 collision。Workspace Sync 为 `ON_DEMAND`、0 conflict，provider unavailable、6 stale。未启动模拟器、Root、Frida、Collector，未执行 Spin。Subagents: none。
+实际结果：Round 1 cleanup 修订 baseline `unittest` 15/15；Round 1 后 focused `unittest` 16/16、可注入 cleanup tests 7/7。Round 2 集合语义修订继续通过 focused `unittest` 16/16、原 cleanup injection 7/7，并新增实际生产函数 shape tests 10/10，覆盖 run/helper 的 0/1/2 PID、ADB 行、路径、residual error、空 PID 与空 verify suppression。Round 3 复验 focused 16/16、cleanup 7/7、production shape 10/10，并正式 `Accepted`。Python compileall、PowerShell 5.1 parser 5/5、六字段冻结、secret/local-data diff scan 与 `git diff --check` 均通过。`cf_cleanup.ps1`、`cf_probe.py`、`adapters/batch_spin.py` 与 `docs/ROOT_TOGGLE.md` SHA-256 保持不变，READY 函数与 reviewed baseline 相同；AI-Workspace Task tests 23/23，Registry 为 13 canonical / 0 collision。Workspace Sync 为 `ON_DEMAND`、0 conflict，provider unavailable、6 stale。未启动模拟器、Root、Frida、Collector，未执行 Spin。Subagents: none。
 
 ## Stop conditions
 
@@ -179,4 +181,4 @@ data/sessions/<session_id>/
 
 ## Handoff
 
-执行完成后将 Task 状态更新为 `Review`，更新 `CHANGELOG.md` 与 `handoff/CODEX.md`，记录正式仓库 branch/commit、测试聚合、部署兼容性、未修改 Android 9 路线的 diff 证据、Sidecar 迁移 allowlist、local-data 扫描及 `Subagents: none`；push 后等待 ChatGPT Review，不扩大为字段恢复、20-Spin/F4 或其他模块研究。
+TASK-0026 已经 ChatGPT Review Round 3 `Accepted`。正式实现为 `CF_collect main@4df10ec20e79bb737912c8d1b847fae3659031ae`；AI-Workspace 保存 Task、三轮 Review、Registry、CHANGELOG 与 Handoff。任务结束后不扩大为字段恢复、20-Spin/F4 或其他模块研究；Subagents: none。
