@@ -1,23 +1,30 @@
 # Codex Handoff
 
-- Updated: 2026-08-28
+- Updated: 2026-08-29
 - Current task: TASK-0026 — 【游戏】 Collector 1.0 Engineering
-- Status: Ready — canonical issuance pending merge/finalize
-- Branch: `codex/cash-frenzy-collector-1-engineering`
-- Workspace Sync: `ON_DEMAND`
+- Status: Accepted — Review Round 3 passed; implementation and governance merged to main
+- Branch: AI-Workspace `main`; CF_collect `main`
+- Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
 
 ## Current Task — TASK-0026
 
-- User 已明确把当前目标切换为 Collector 1.0 工程化；Approved Candidate 已从最新 main 的独立 linked worktree经官方 allocator 以 `relationship=new` 晋升为唯一 canonical TASK-0026，不续写 TASK-0024。
+- User 已明确把当前目标切换为 Collector 1.0 工程化；Approved Candidate 经 allocator 以 `relationship=new` 晋升为唯一 TASK-0026，canonical 已合入 AI-Workspace main 并 finalize，不续写 TASK-0024。
 - 正式 GitHub 仓库已按 User 指令从 `CashFrenzy_collect` 改名为 `CF_collect`；面向用户的介绍使用“【游戏】”，运行所需 package、command 与代码技术标识保持不变。
 - 固定交付为 `adapters/batch_spin`、`adapters/keepalive`、`adapters/registry`、统一 `event + adapter + source + payload` Event contract，以及 `session_manifest.json / source_events.jsonl / events.jsonl / spin_records.jsonl / summary.*` Session layout。
 - `batch_spin` 只允许 TASK-0024 已确认的 `base_win / bonus_base_win / total_win / coins / win_lines / win_pos_list` 六字段；额外键必须被忽略，不允许字段发现或 schema 扩展。
 - 只选择性采用 DS Sidecar 的 exact-target gate、fail-closed/type/truncation handling 与合成测试思想；禁止迁移 `.local/`、真实 Session、fixture/artifact、Git 历史、schema expansion、`same_object_fields` 或实验文件。
-- Android 9 inbound Hook、受限 serializer、Gadget/Frida lifecycle、部署顺序、人工操作与清理路线不修改；不执行新 Spin、20-Spin/F4 或其他协议/模块研究。
-- issuance reservation 当前保持 `pending-main`，token 不写入 Git/Handoff；canonical 合入 main 后必须 finalize 才进入正式仓库实施。Workspace Sync `ON_DEMAND`，WATCH disabled；Subagents: none。
+- ChatGPT Review Round 1 正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-1.md`：`Needs changes`；READY 与 Root 已通过，只修 cleanup 未停止本轮 `cf_rt_mon -D` 后台进程。
+- cleanup-only 修订已推送为 `CF_collect@4e6f0625e2e39dfeb6ebb4dfb2fd6a29d5c1999c`：helper 返回 `pid / remote_path / started_by_run`；严格 PID+path ownership；LIFO/idempotent stop+verify；运行、停止、验证和残留错误聚合。
+- ChatGPT Review Round 2 正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-2.md`：`Needs changes`；Round 1 cleanup 主体通过，只修 run/helper 列表函数 `return ,$array` 与调用方 `@()` 形成嵌套数组。
+- Round 2 修订已推送为 `CF_collect@4df10ec20e79bb737912c8d1b847fae3659031ae`：列表返回统一去掉一元逗号，调用方继续用 `@()` 接收扁平 0/1/N 项；空 PID 不触发 ownership residual，空 residual 不产生空 verify error。
+- finally 后继续验证 Probe、server、forward、Gadget/config 与 `/data/local/tmp/cf_*` 无残留。focused 16/16、cleanup injection 7/7、实际生产函数 shape 10/10、compileall、PowerShell parser 5/5、六字段与 privacy Gate 通过。
+- ChatGPT Review Round 3 正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-3.md`：`Accepted`；reviewed commit `4df10ec20e79bb737912c8d1b847fae3659031ae`。
+- `CF_collect` 实现分支已 fast-forward 合入并推送 `main@4df10ec20e79bb737912c8d1b847fae3659031ae`；AI-Workspace 治理分支完成 Accepted 收口后合入 main。
+- `cf_probe.py`、`adapters/batch_spin.py`、`docs/ROOT_TOGGLE.md` hash 不变；Android 9 Hook/serializer、READY、Root 和六字段边界未改。本轮没有启动模拟器、Root、Frida、Collector 或新 Session，没有 Spin。Workspace Sync `ON_DEMAND`，WATCH disabled；Subagents: none。
+- 已解决的失败：Candidate 日期/slug 两次 fail-closed 且未误占 ID；新 clone 首次 commit 因缺作者身份失败后仅写 repo-local noreply identity；Task 23/23 后套件尾部一次真实 validate fetch 瞬时失败，独立 fetch/validate 随即通过 13 canonical / 0 collision / 0/0。
 
 ## Governance Task — TASK-0016 Review Round 3
 
@@ -159,4 +166,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-将 canonical TASK-0026 issuance commit push 到 `codex/cash-frenzy-collector-1-engineering`，合入并 push 最新 `main`；随后在原 allocator worktree同步 main、finalize reservation，确认 Registry 无冲突后才在 `CF_collect` 新分支实施 Collector 1.0。TASK-0025 暂不执行。
+TASK-0026 已 `Accepted` 并完成两个 main 收口，不再扩大本 Task。等待 User 指定下一 Task；TASK-0025 暂不执行。

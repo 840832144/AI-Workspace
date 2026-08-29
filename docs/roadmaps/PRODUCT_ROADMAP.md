@@ -12,9 +12,9 @@
 
 ### 【游戏】 Collector 1.0
 
-- 当前状态：User 已于 2026-08-28 明确把当前目标切换为 Collector 1.0 工程化；Approved Candidate 已由官方 allocator 以 `relationship=new` 晋升为唯一 canonical `TASK-0026`，等待合入 `main` 并 finalize reservation 后执行。
+- 当前状态：TASK-0026 已完成 allocator finalize；Collector 1.0 实现已 push 到 `CF_collect@7c32877` 并进入 ChatGPT Review，未执行新的动态 Spin。
 - 产品目标：在不恢复新字段、不扩大 `batch_spin` 六字段 schema、不改变 Android 9 已验证采集路线的前提下，建立 Adapter Registry、统一 Event contract 与固定 Session artifacts。
-- 进入动作：先完成 TASK-0026 issuance/finalize，再在正式 `CF_collect` 仓库选择性迁移 DS Sidecar 的 exact-target adapter 与合成测试；保持一键部署和清理路径。
+- 下一动作：ChatGPT Review `codex/collector-1-engineering@7c32877` 的 Adapter contract、固定 artifacts、Sidecar allowlist 与部署兼容性；Review 前不合入正式仓库 main，不扩大字段或模块。
 
 ## 📋 Backlog
 

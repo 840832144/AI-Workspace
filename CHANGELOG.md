@@ -2,6 +2,83 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.17.4] - 2026-08-29
+
+### Accepted
+
+- TASK-0026 ChatGPT Review Round 3 `Accepted`；正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-3.md`，reviewed implementation commit 为 `4df10ec20e79bb737912c8d1b847fae3659031ae`。
+- TASK-0026 canonical 状态由 `Review` 更新为 `Accepted`。
+
+### Merged
+
+- `CF_collect` 分支 `codex/collector-1-engineering` 已 fast-forward 合入并推送 `main@4df10ec20e79bb737912c8d1b847fae3659031ae`。
+- AI-Workspace 治理分支完成 Task、三轮 Review、Registry、CHANGELOG 与 Handoff 收口后合入 `main`。
+
+### Validation
+
+- 最终复验 focused 16/16、cleanup injection 7/7、production shape 10/10；Task Registry 为 13 canonical / 0 collision / valid。
+- LIFO、精确 PID+path、READY、Root、Hook/serializer 与六字段不变；未启动模拟器、Root、Frida、Collector，未执行 Spin。Subagents: none。
+
+### Closure
+
+- TASK-0026 结束，不在本 Task 内继续字段恢复、20-Spin/F4 或其他模块研究。
+
+## [0.17.3] - 2026-08-29
+
+### Review
+
+- 正式记录 `reviews/TASK-0026-CHATGPT-REVIEW-2.md`：Decision `Needs changes`；Round 1 cleanup 主体通过，唯一 required fix 为 run/helper 的 `return ,$array` 与调用方 `@()` 形成嵌套集合。
+
+### Fixed
+
+- `CF_collect@4df10ec` 统一移除 cleanup 列表函数 `return` 前的一元逗号，调用方继续用 `@()` 接收扁平 0/1/N 项；空 PID 不再触发 ownership residual，空 residual 不再生成空 verify error。
+
+### Validation
+
+- 实际生产函数 shape tests 10/10，覆盖 0/1/2 PID、ADB 行、路径、residual error 与两个空集合边界；focused 16/16、cleanup injection 7/7、PowerShell parser 5/5、compileall、六字段、privacy scan 与 diff check 通过。
+- LIFO、精确 PID+path、READY、Root、Hook/serializer 与六字段不变；未启动模拟器、Frida、Collector，未执行 Spin。Subagents: none。
+
+### Next
+
+- TASK-0026 保持 `Review`，等待 ChatGPT Review Round 3；不自动合并 main。
+
+## [0.17.2] - 2026-08-29
+
+### Review
+
+- 正式记录 `reviews/TASK-0026-CHATGPT-REVIEW-1.md`：Decision `Needs changes`；READY 与 Root 已通过，唯一 required fix 为 cleanup 只删除 `cf_rt_mon` 文件、未停止本轮 `cf_rt_mon -D` 后台进程。
+
+### Fixed
+
+- `CF_collect@4e6f062` 让 Frida helper 返回 `pid / remote_path / started_by_run`；cleanup 只停止本轮拥有且 PID、路径精确匹配的 server，不使用宽泛进程终止。
+- cleanup engine 增加严格 LIFO、幂等 stop/verify、ownership gate 与错误聚合；finally 后验证 Probe/server/forward/Gadget/config/cf_* 无残留。
+
+### Validation
+
+- baseline 15/15；修订后 focused tests 16/16、可注入 cleanup tests 7/7、compileall、PowerShell 5.1 parser、六字段冻结、secret/local-data scan 与 diff check 通过。
+- READY、Root、Hook/serializer 与六字段边界文件 hash 不变；未启动模拟器、Root、Frida、Collector，未执行 Spin。Subagents: none。
+
+### Next
+
+- TASK-0026 保持 `Review`，等待 ChatGPT Review Round 2；不自动合并 main。
+
+## [0.17.1] - 2026-08-29
+
+### Fixed
+
+- 完成 TASK-0026 ChatGPT Review 指定修订：`CF_collect@261af96` 将运行时 cleanup 放入 `finally` 并显式报告失败，异常和 READY 失败也进入同一清理路径。
+- READY 仅接受已验证的 Lua `hook-status`，要求 `onUIThreadReceiveMessage` 与 `lua_pcall` 同时安装；进程启动、`script.load()`、任意消息、错误或 detach 不再误报 READY。
+- Root 文档统一为“Collector 只检测、不改变 Root”；自动 cleanup 只处理 Gadget/server/forward/进程/临时文件，Root 由 User 手动关闭、重启并验证失效。
+
+### Validation
+
+- 正式仓库 baseline 12/12、修订后 focused tests 15/15、Python compileall、PowerShell 5.1 parser、六字段冻结、secret/local-data scan 与 diff check 通过。
+- 未启动模拟器、Root、Frida 或 Collector，未执行 Spin，未扩大 `batch_spin` 六字段 schema；Subagents: none。
+
+### Review
+
+- TASK-0026 维持 `Review`，等待 ChatGPT 复审 `codex/collector-1-engineering@261af96acd93bb4be785ea9c1cb82c91fa31e434`。
+
 ## [0.17.0] - 2026-08-28
 
 ### Added
@@ -13,6 +90,17 @@
 
 - User 将当前产品优先级从尚未执行的 TASK-0025 切换到 TASK-0026；Top Tycoon 保留 `Ready` 并进入 Backlog，不在 Collector 1.0 期间并行执行。
 - 正式实现仓库由 `CashFrenzy_collect` 改名为 `CF_collect`；面向用户的介绍改用“【游戏】”，运行所需 package、command 与技术标识不做破坏性替换。
+
+### Implemented
+
+- `CF_collect@7c32877` 建立 `batch_spin / keepalive / registry` Adapter architecture、统一四段 Event、固定 Session artifacts、deterministic re-extract 与 JSON/Markdown value-free summary。
+- `batch_spin` 严格冻结六字段；未迁移 DS Sidecar schema expansion、same-object discovery、`.local/`、真实 Session、fixture/artifact 或 Git 历史。
+- 修复一键入口的项目根、Frida server `.xz` 路径和 helper venv binding；Android 9 probe/bootstrap JavaScript 与 main 基线逐字一致。
+
+### Validation
+
+- 正式仓库 focused tests 12/12、Python compileall、PowerShell 5.1 parser、deterministic/legacy read-only、Event envelope、value-free summary、secret/local-data scan 与 diff check 通过。
+- AI-Workspace Registry 重建后为 13 canonical / 0 collision；本 Task 未启动模拟器、未执行新 Spin、未产生真实 Session。Subagents: none。
 
 ### Boundaries
 
