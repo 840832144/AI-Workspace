@@ -9,6 +9,7 @@
 - Execution repository: `840832144/AI-Workspace`
 - Online provider: AI Document Assistant / `feishu-docs`
 - Updated: 2026-08-29
+- Review state: Round 1 修订完成；等待 Round 2
 
 ## Goal
 
@@ -458,21 +459,24 @@ worktree: C:\AI-Workspace-task-0019
 
 ### Corrected current-state semantics
 
-- `bootstrap/chatgpt/02_CURRENT_STATE.md` 将 Huuuge First Run 从“暂定通过”更正为 `Blocked`：独立策划盲测记录为空，尚无测试者、计时、成功证据或端到端结果。
+- `bootstrap/chatgpt/02_CURRENT_STATE.md` 将 Huuuge First Run 从“暂定通过”更正为 `Blocked`，并在 Round 1 修订中明确双轨事实：正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈已脱敏记为 `Failed/Invalid`，流程曾到达 `READY`，但没有形成独立测试者、完整计时和逐项成功证据。
 - “新工作站 Ready”只证明当前 Host 的 Workspace 与 Document Assistant 接入，不替代 Huuuge First Run。
+- `READY` 只表示采集前置条件满足；其后的游戏操作与执行授权仍由 User 控制。该反馈不改写正式 RC4 记录。
 - 明确记录 Bet/RTP 证据风险：没有 Bet 分层受控运行证据或稳定 RTP/EV 统计，不得从字段、单次样本、bundle ratio 或描述性比率推导 Bet 与 RTP 关系。
+- 进度文档第 7 节新增历史 TASK-0018 文件冲突与 ChatGPT 直写飞书地区限制；全景说明六个核心 Git 入口由旧 `070744...` 统一更新到 `c74c85a...` 基线。
 
 ### Git and Feishu deliverables
 
 - Git 源稿：`docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md` 与 `docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md`；稳定说明与动态状态职责分离。
-- 两份既有飞书文档均通过 `replace_document` 原位更新，document identity 未变；没有创建重复文档，conversion warning 为 0。
-- 两份文档分别回读标题、核验基线与关键正文；进度文档回读包含 TASK-0026 Accepted、新工作站 Ready、First Run Blocked、Workspace Sync unavailable、Document Assistant Available 与 Bet/RTP 风险。
+- 两份既有飞书文档在 Round 1 修订后再次通过 `replace_document` 原位更新，document identity 未变；没有创建重复文档，conversion warning 为 0。
+- 两份文档分别回读标题、稳定链接、核验基线与关键正文；进度文档回读确认 As of、正式 RC4 `Pending`、User 实跑 `Failed/Invalid`、`READY`/执行边界、历史 TASK-0018 文件冲突、ChatGPT 直写飞书地区限制与 Bet/RTP 风险。
 - 两份文档权限均回读为 `tenant_editable` / verified。
-- 新工作站 Registry 缺少历史导航 metadata 时，使用 Document Assistant 对既有正式文档逐项 `get_document` + `register_document` 恢复；最终导航中心回读通过，17 个登记项、链接唯一，项目全景、项目进度、Product Roadmap、First Run 与 Capability 索引各出现一次。
-- 回归：Task 23/23、Memory 44/44、Context 13/13、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue、`git diff --check` 与独立 rollback copy 恢复基线均通过。
+- 两份文档重新执行 `register_document` 后，导航中心回读通过：17 个登记项、`unique_links=true`，项目全景和项目进度标题各出现一次。
+- 回归：Round 1 定向断言 10/10、Task 23/23、Memory 44/44、Context 13/13、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue、Workspace Doctor 与 `git diff --check` 通过；独立 rollback copy 恢复基线通过。
 
 ### Scope and handoff
 
 - 未修改 Huuuge、CF_collect 或 Document Assistant 业务代码；未启动模拟器、Root、Frida、Collector，未执行 Spin。
 - Subagents: none / `OFF`；Workspace Sync 保持 `ON_DEMAND`，WATCH disabled。
-- Task 进入 `Review`；等待 ChatGPT Review，不自行合并 `main`。
+- ChatGPT Review Round 1 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-1.md`，Decision `Needs changes`，reviewed commit `9403a09a445fd37548c78b3fc21709e91f5406d9`。
+- Task 保持 `Review`；Round 1 指定修订完成，等待 ChatGPT Review Round 2，不自行合并 `main`。

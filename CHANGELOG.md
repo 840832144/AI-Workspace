@@ -12,23 +12,27 @@
 ### Changed
 
 - 纳入 TASK-0026 Review Round 3 `Accepted`、`CF_collect/main@4df10ec`、新工作站 `Ready` 与 Document Assistant `Available`。
-- `bootstrap/chatgpt/02_CURRENT_STATE.md` 将 Huuuge First Run 从“暂定通过”更正为 `Blocked`；独立盲测为空，且没有可支持 Bet→RTP 或稳定 RTP/EV 的证据。
+- TASK-0019 ChatGPT Review Round 1 为 `Needs changes`；正式记录 reviewed commit `9403a09a445fd37548c78b3fc21709e91f5406d9`，只修文档事实与验收缺口。
+- `bootstrap/chatgpt/02_CURRENT_STATE.md` 将 Huuuge First Run 从“暂定通过”更正为 `Blocked`，并区分正式 RC4 `Pending` 与 User 实跑反馈 `Failed/Invalid`；只脱敏记录到达 `READY`、User 控制的执行边界和无证据 Bet/RTP 风险。
+- 进度文档第 7 节补充历史 TASK-0018 文件冲突与 ChatGPT 直写飞书地区限制；全景说明六个核心 Git 入口从旧 `070744...` 统一更新到 `c74c85a...` 核验基线。
 - Workspace Sync 与 Document Assistant 分开验收：前者 `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；后者 healthcheck token/API/Drive 全部 `ok`。
 
 ### Published
 
 - 两份既有飞书文档通过 Document Assistant 原位替换，conversion warning 0；正文、交叉链接、基线和关键状态回读通过。
 - 两份文档均验证为企业内可编辑；导航中心自动登记与回读通过，17 个登记项、链接唯一，未创建重复文档。
+- Round 1 修订后再次原位更新同一 document ID；回读确认指定正文与稳定链接，权限 `tenant_editable` / verified；Hub 为 17 个登记项、`unique_links=true`，两份标题各出现一次。
 
 ### Validation
 
 - AI-Workspace、Huuuge、CF_collect 与 Document Assistant 的权威 `main` 已分别核验；业务仓库工作树均干净。
 - 文档职责、八个进度板块、关键状态、secret scan、`git diff --check`、Task Registry、Context/Memory 回归与 rollback copy 通过。
+- Round 1 定向断言 10/10；Task 23/23、Memory 44/44、Context 13/13、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue 与 Workspace Doctor 通过。
 - 未启动模拟器、Root、Frida、Collector，未执行 Spin；Workspace Sync 保持 ON_DEMAND，WATCH disabled，Subagents: none / OFF。
 
 ### Review
 
-- TASK-0019 更新为 `Review`；等待 ChatGPT Review，不自行合并 `main`。
+- TASK-0019 保持 `Review`；Round 1 修订完成，等待 ChatGPT Review Round 2，不自行合并 `main`。
 
 ## [0.17.4] - 2026-08-29
 

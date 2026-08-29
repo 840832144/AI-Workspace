@@ -154,7 +154,7 @@ entries:
     priority: "P1 / project visibility and long-term governance"
     created_date: "2026-08-27"
     updated_date: "2026-08-29"
-    related_tasks: ["TASK-0026"]
+    related_tasks: ["TASK-0018", "TASK-0026"]
     kind: "canonical"
   - id: "TASK-0020"
     canonical_file: "tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md"
@@ -337,6 +337,20 @@ entries:
     created_date: "2026-08-27"
     updated_date: "2026-08-27"
     related_tasks: ["TASK-0016"]
+    kind: "review"
+  - id: "TASK-0019"
+    canonical_file: "tasks/TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md"
+    file: "reviews/TASK-0019-CHATGPT-REVIEW-1.md"
+    title: "TASK-0019 ChatGPT Review — Round 1"
+    status: "Needs changes"
+    project_key: "WORKSPACE"
+    human_alias: ""
+    owner: "ChatGPT"
+    executor: "none"
+    priority: ""
+    created_date: "2026-08-29"
+    updated_date: "2026-08-29"
+    related_tasks: ["TASK-0018", "TASK-0026"]
     kind: "review"
   - id: "TASK-0020"
     canonical_file: "tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md"

@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-08-29T06:41:50Z"
+generated_at: "2026-08-29T07:36:52Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "c74c85a9524d1524ea3696835509de2a55e9f524"
+repository_head: "9403a09a445fd37548c78b3fc21709e91f5406d9"
 repository_branch: "codex/task-0019-overview-progress-refresh"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -15,8 +15,8 @@ sources:
     sha256: "494835e09f987a1450f512e291169ab0124a0d126fbf7dc6ed10142cd12509c9"
     bytes: 6521
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "17a17875c613b6e87138f2f9394f8992a2d7ed997008fdf24504edbdb04beae5"
-    bytes: 9915
+    sha256: "d20d140924fb9ad17ebd96c76325fed235f63e2958477c676d0102b2220539f9"
+    bytes: 10103
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "3e96011392001cbb0d27db49149868beedc50a0c49d17837bc53066ebbbd122e"
     bytes: 6295
@@ -66,11 +66,11 @@ sources:
     sha256: "4825d43d3e66d834a2e514ac9291d081a1948046fd191cf3745908249aba76d5"
     bytes: 4387
   - path: "handoff/CHATGPT.md"
-    sha256: "2cce59e9ae88d8f0b275b868ab8ecd467323d0827d51a44714d408259cbaea64"
-    bytes: 10413
+    sha256: "0bd22749c238713e58535103ff714cd47e373a9a6003ab52b8858540d50c0157"
+    bytes: 11155
   - path: "handoff/CODEX.md"
-    sha256: "7b79e0b085e0484b13be66833a73b288cd9d431950bc42846817d349ea2b5c63"
-    bytes: 21839
+    sha256: "1ef7d8c46e35e1fe04c294e1e92f83173ee24e3f3fdf5eea168677b780c1d92d"
+    bytes: 22344
   - path: "memory/context/WORKSPACE.md"
     sha256: "848053ec408acda6b9b8dc958c473a72a39d44134d8ee604e748e91ff75dbe66"
     bytes: 2550
@@ -156,8 +156,8 @@ sources:
     sha256: "5c08a3717863059678b2b29a563464b8deeccd3b0efd68c6c76e09833493a823"
     bytes: 18820
   - path: "tasks/TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md"
-    sha256: "8c3838318870dba4cb1951da872e9d2f00071eb627f9af12c3cd108eda5dfc46"
-    bytes: 21256
+    sha256: "57dd8f399494c96200ce7d929a924ec52399c8cbec6cf8aba0c4bed8ffb921ec"
+    bytes: 21966
   - path: "tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md"
     sha256: "8edd5dd05cf60699fad2aadcbeaf22c572db513cded9d69c76a55a1a01a7df6e"
     bytes: 17010
@@ -180,8 +180,8 @@ sources:
     sha256: "254f5755d254b7c32a4d3a21bff09516ac9ef6464d1ca0d6349d4c6069a948b2"
     bytes: 13528
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "4a3c9497c1aa4590516505c85ebed6b67e79e543b78b24b920ee0159e0d272e4"
-    bytes: 17310
+    sha256: "0221b0af035328ea43782fef6e48dc0fd5e1099be795de9b3a35d681b7bb6106"
+    bytes: 17801
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
     sha256: "f9d184f63ac18cee0c95d57406521e46aa939bebe5e379b941f0ede217f1ff4b"
     bytes: 13809

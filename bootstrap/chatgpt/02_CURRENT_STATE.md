@@ -18,7 +18,7 @@ _Last reviewed: 2026-08-29_
 - Task Registry / allocator、Workspace Sync contract、文档导航中心、Idea Governance 与 Product Roadmap 已分别通过 TASK-0020、TASK-0021、TASK-0023 Review。
 - Collector 1.0 已通过 TASK-0026 Review Round 3 并 `Accepted`；实现位于 `CF_collect/main@4df10ec20e79bb737912c8d1b847fae3659031ae`，范围继续固定为已审阅 contract 与六字段。
 - 当前 Windows 工作站的 Workspace 与 Document Assistant 接入已完成现场验收，可标记为 `Ready`；这只证明本机治理与文档能力可用，不等于 Huuuge First Run 已通过。
-- Huuuge First Run 状态为 `Blocked`：独立策划盲测记录仍为空，尚无未参与开发的策划在新电脑上独立完成安装、采集、Finalize、报告与文档回读的证据。没有直接 Bet 分层运行证据或稳定 RTP/EV 统计证据，不得从字段、单次样本或描述性比率推导 Bet 与 RTP 关系。
+- Huuuge First Run 状态为 `Blocked`：正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈已脱敏记为 `Failed/Invalid`，流程曾到达 `READY`，但没有形成独立测试者、完整计时和逐项成功证据。`READY` 只表示采集前置条件满足；其后的游戏操作与执行授权仍由 User 控制，该反馈不改写正式 RC4 记录。没有直接 Bet 分层运行证据或稳定 RTP/EV 统计证据，不得从字段、单次样本或描述性比率推导 Bet 与 RTP 关系。
 
 ## 当前执行入口
 
@@ -28,7 +28,7 @@ _Last reviewed: 2026-08-29_
 AI-Workspace/tasks/TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md
 ```
 
-状态：`Review`；独立分支已从 `main@c74c85a9524d1524ea3696835509de2a55e9f524` 建立，两份 Git 源稿与原位飞书文档已按当前权威状态刷新，等待 ChatGPT Review。执行前仍需从最新 `main` 和 Handoff 确认边界，不得依据本离线摘要直接启动业务任务。
+状态：`Review`；ChatGPT Review Round 1 为 `Needs changes`，指定的文档事实与验收缺口已修订，等待 Round 2。独立分支从 `main@c74c85a9524d1524ea3696835509de2a55e9f524` 建立。执行前仍需从最新 `main` 和 Handoff 确认边界，不得依据本离线摘要直接启动业务任务。
 
 背景：TASK-0026 已 Accepted 并合入 `CF_collect/main@4df10ec20e79bb737912c8d1b847fae3659031ae`；当前任务只维护 Workspace 项目说明与状态入口，不启动模拟器、Root、Frida、Collector 或 Spin。
 
@@ -122,7 +122,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-29T06:41:50Z
+- Generated: 2026-08-29T07:36:52Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`

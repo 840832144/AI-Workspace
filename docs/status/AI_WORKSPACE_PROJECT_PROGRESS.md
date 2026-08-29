@@ -1,6 +1,6 @@
 # Game Planner AI Workspace｜项目进度与能力状态
 
-> **As of**：2026-08-29 14:20 +08:00
+> **As of**：2026-08-29 15:30 +08:00
 >
 > **AI-Workspace 核验基线**：`main@c74c85a9524d1524ea3696835509de2a55e9f524`
 >
@@ -28,7 +28,7 @@
 | 真相源 | 核验版本 / 现场结果 | 确认结论 | 局限 |
 | --- | --- | --- | --- |
 | AI-Workspace | `main@c74c85a9524d1524ea3696835509de2a55e9f524`；本 Task 从该提交新建独立分支 | 已读取 Task Registry、Task/Review headers、Project Status、Capability Catalog、Roadmap 与 Handoff；TASK-0026 为 Accepted | 本文是 Review 分支稿，未获 ChatGPT Accepted 前不代表 `main` 已更新 |
-| Huuuge 业务仓库 | `main@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`；本地只读 clone 与 `origin/main` 一致、工作树干净 | Lottery 运行证据和 1.0.1 策划发布基线存在；外部报告仍等待 Review Round 2 | 没有独立 First Run 盲测结果；没有可支持 Bet→RTP 关系或稳定 RTP/EV 的证据 |
+| Huuuge 业务仓库 | `main@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`；本地只读 clone 与 `origin/main` 一致、工作树干净 | Lottery 运行证据和 1.0.1 策划发布基线存在；正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈已脱敏记为 `Failed/Invalid`，流程曾到达 `READY` | `READY` 只表示采集前置条件满足，不代表 RC4 通过；没有可支持 Bet→RTP 关系或稳定 RTP/EV 的证据 |
 | `CF_collect` | `main@4df10ec20e79bb737912c8d1b847fae3659031ae`；与 `origin/main` 一致、工作树干净 | TASK-0026 Review Round 3 Accepted；Collector 1.0 cleanup、固定六字段与测试已进入 `main` | Accepted 范围不包含新的字段、模块、Spin 或动态运行 |
 | Document Assistant 实现 | `main@b0292c3159db16542906948511b6b1ec58c360fd`；与 `origin/main` 一致、工作树干净 | 当前 Host 可发现 `feishu-docs`；token、API connectivity、Drive permission healthcheck 均为 `ok` | Git 真相源与云文档仍需显式发布、回读、登记和权限验收 |
 | Workspace Sync | `ON_DEMAND`；provider `unavailable`；stale 6；conflicts 0 | 本地 Context Pack 与 publish plan 可生成，冲突为 0 | 当前 Host 没有可用发布 Provider；6 个发布项仍 stale，不得写成已同步 |
@@ -49,7 +49,7 @@
 | Codex Desktop 网络诊断 | 诊断和回滚代理/WebSocket 连接问题 | Shared operations | Available | transport matrix、Repair/Restore 与回归已合入 | `bootstrap/codex/network/` | TASK-0017 Complete | Codex 或代理升级后需重验 | 仅在网络症状复现时运行 status/matrix，不叠加未验证配置 | 2026-08-29 |
 | Huuuge Collector / Planner release | 在专用环境被动采集、解码、Finalize 并生成结构清单 | Huuuge | Available | 1.0.1 发布、READY gate、广泛 RPC、manifest、inventory/catalog 与 clean Finalize 已有权威证据 | 公司 SVN 1.0.1；Huuuge 业务仓库 | `huuuge@4a5dddf`；Workspace Project Status | 新机首次环境仍需独立验证与一次性授权；本 Task 未启动任何运行环境 | 保持现有发布不变；先完成 TASK-0018 Review 与 First Run 独立盲测 | 2026-08-29 |
 | Huuuge Knowledge / Analysis | 以证据等级查看 Slots、Systems、Events、Others | Huuuge | Partial | Slots 与 Lottery 有 L3 样本；37 个 dossier 形成结构索引 | Huuuge Knowledge Index / reports | `huuuge@4a5dddf`；TASK-0015 Complete | 0 个 L4；多模块仍 L1/L2；无稳定 RTP/EV 和 Bet 因果证据 | 未获独立 Task 与 User 操作授权前不新增 Capture；现有结论保持样本边界 | 2026-08-29 |
-| Huuuge Planner First Run | 让未参与开发的策划在新电脑独立完成端到端流程 | Huuuge UX | Blocked | RC4 指南、飞书版和空白验证模板存在 | First Run Guide / `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md` | Workspace Project Status；空白盲测记录 | 没有测试者、计时、成功证据或独立结果；当前工作站 Ready 不是该验收 | User 指定未参与开发的策划，只提供公共 Git + 飞书指南，完整填写一次真实盲测 | 2026-08-29 |
+| Huuuge Planner First Run | 让未参与开发的策划在新电脑独立完成端到端流程 | Huuuge UX | Blocked | RC4 指南、飞书版和空白验证模板存在；User 提供的实跑反馈曾到达 `READY` | First Run Guide / `REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md` | 正式 RC4 记录 `Pending`；User 实跑反馈 `Failed/Invalid` | 该反馈没有形成独立测试者、完整计时和逐项成功证据；`READY` 后的游戏操作与执行授权仍由 User 控制；工作站 Ready 不是该验收 | User 指定未参与开发的策划，只提供公共 Git + 飞书指南，完整填写一次真实盲测 | 2026-08-29 |
 | Collector 1.0 | 以固定 Adapter/Event/Session contract 复用 Cash 采集实现 | Game research | Available | Registry、统一 Event contract、固定 artifacts、精确 cleanup 和 0/1/N shape 已合入 `CF_collect/main` | `CF_collect` | TASK-0026 Review Round 3 Accepted；`main@4df10ec`；focused 16/16、cleanup 7/7、shape 10/10 | 六字段固定；没有新增模块、Spin 或运行验收 | 维持 Accepted 范围；任何新游戏/字段走新 Task 和独立证据 Gate | 2026-08-29 |
 | ChatGPT Project Source Pack | 为新会话提供脱敏 Workspace 快照 | Shared context | Partial | 可生成 manifest 与单文件 Source Pack | Memory Context refresh | TASK-0016 Accepted；现有 generated pack | 快照会落后于 Git；本 Task 改动后需刷新/重新上传 | 本分支刷新 generated pack；合入后由 Project Sources 使用者替换旧快照 | 2026-08-29 |
 | AI Report Engine | 从已审阅 Knowledge + Template 生成可维护报告 | Game Design | Planned | 只有分层架构、报告样例和 Candidate | 尚无批准实现 | Architecture / Roadmap | 没有稳定输入 schema、模板 contract、回归与 provider | 由 User 批准独立 Candidate 后再定义最小 Report Capability | 2026-08-29 |
@@ -66,7 +66,7 @@
 | TASK-0016 Memory Curation | 主线：治理 | P1 | Accepted | User / ChatGPT / Codex | Round 3 已接受，ASSISTED 生效 | 无当前 blocker | 按规则使用，不扩展为通用服务 | Review 3 / Task | 2026-08-29 |
 | TASK-0017 Codex Network Recovery | 支线：运行可靠性 | P0 | Complete | User / Codex | 诊断、修复、Restore 与回归合入 | 升级后需重验 | 症状复现时运行 matrix | Task / Handoff | 2026-08-29 |
 | TASK-0018 Huuuge Lottery Report | 主线：业务分析 | P0 | Review | User / ChatGPT / Codex | 报告与飞书原文档已更新，Round 1 修订完成 | 等待 ChatGPT Review Round 2 | ChatGPT 返回 Accepted 或精确修改项 | Workspace Project Status / Huuuge `4a5dddf` | 2026-08-29 |
-| TASK-0019 Workspace Overview + Progress | 当前：项目可见性 | P1 | Review | User / ChatGPT / Codex | 从最新 main 新建分支；两份 Git 源稿按当前事实刷新；飞书原位更新 | 等待 ChatGPT Review | ChatGPT 审阅职责分离、状态证据、First Run 与 Provider 口径 | 本 Task / 本分支 | 2026-08-29 |
+| TASK-0019 Workspace Overview + Progress | 当前：项目可见性 | P1 | Review | User / ChatGPT / Codex | Review Round 1 为 Needs changes；文档事实与验收缺口已按指定范围修订 | 等待 ChatGPT Review Round 2 | ChatGPT 复审 First Run 双轨记录、历史冲突、地区限制与核心 Git 入口 | 本 Task / Review Round 1 / 本分支 | 2026-08-29 |
 | TASK-0020 Task Governance | 主线：治理 | P0 | Accepted | User / ChatGPT / Codex | Registry、allocator、CAS 与 collision gate 生效 | 无当前 blocker | 所有新 Task 继续走 Candidate/allocator | Review / Task CLI | 2026-08-29 |
 | TASK-0021 Workspace Live Context Hub | 主线：协作基础设施 | P0 | Accepted | User / ChatGPT / Codex | Documentation Hub 与 ON_DEMAND Sync contract 已交付 | 当前 Host Sync Provider unavailable，6 stale | 修复 Provider 后重跑 ON_DEMAND | Review / sync output | 2026-08-29 |
 | TASK-0022 Cash Frenzy Feasibility | 主线：新游戏研究 | P1 | Complete | User / ChatGPT / Codex | F3 outbound 边界与停止路线已完成 | F4 未证明 | 不在已完成 Task 内续做 | Review 1 Accepted / Task | 2026-08-29 |
@@ -88,8 +88,8 @@
 
 | 项目 | 缺少什么 / 为什么未完成 | 当前阻塞 | 解除条件 | 唯一下一步 | 是否影响主线 |
 | --- | --- | --- | --- | --- | --- |
-| TASK-0019 | 两份刷新稿尚未获 ChatGPT Review | Review gate | ChatGPT 返回 Accepted | 审阅本分支和两份原位飞书文档 | 是：项目状态入口尚未进入 main |
-| Huuuge First Run | 没有独立测试者、计时、成功证据与完整结果 | 无未参与开发策划的真实盲测 | 完整填写一次 RC4 盲测记录 | User 指定测试者，仅给公共 Git + 飞书指南 | 是：不能宣称新人端到端通过 |
+| TASK-0019 | Round 1 Needs changes 的指定事实与验收缺口已修订，尚未获 Round 2 结论 | Review gate | ChatGPT Round 2 返回 Accepted | 复审本分支和两份原位飞书文档 | 是：项目状态入口尚未进入 main |
+| Huuuge First Run | 正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈为 `Failed/Invalid`，虽到达 `READY`，但缺少独立测试者、完整计时和逐项成功证据 | 无符合 RC4 的未参与开发策划真实盲测 | 完整填写一次 RC4 盲测记录；游戏操作与执行授权继续由 User 控制 | User 指定测试者，仅给公共 Git + 飞书指南 | 是：不能宣称新人端到端通过 |
 | Huuuge Bet / RTP | 没有 Bet 分层的受控运行样本、长期统计或可证明 RTP/EV 的证据；描述性 bundle ratio 与单次 Win 不是 RTP | 证据不足且本 Task 禁止动态采集 | 另立 Task，明确样本设计、User 手工操作、统计门槛和 Review | 当前保持 `Unknown/Blocked`，不推导 Bet→RTP | 否：不影响现有结构/Collector，但影响数值结论 |
 | TASK-0018 | Lottery 报告 Round 2 未完成 | ChatGPT Review | Accepted 或完成指定修订 | ChatGPT 审阅 `huuuge@4a5dddf` 与原飞书文档 | 是：Huuuge 报告线 |
 | Workspace Sync Provider | provider unavailable，6 个 stale | Host 实现绑定缺失/不可用 | Provider 恢复且 ON_DEMAND 后 stale=0、conflict=0 | 管理员/维护者恢复 Provider 后重跑脚本 | 否：Git 与 Document Assistant 可独立工作 |
@@ -129,8 +129,10 @@
 | 风险 / 依赖 | 当前事实 | 可能后果 | 控制措施 |
 | --- | --- | --- | --- |
 | Workspace Sync 与 feishu-docs 混淆 | 前者 provider unavailable/stale 6；后者 healthcheck 全部 ok | 把文档可写误报成 Workspace 已同步，或反之 | 分别运行、分别记录、分别验收；一个结果不得替代另一个 |
-| Huuuge First Run 误报 | `02_CURRENT_STATE.md` 曾写“暂定通过”，但盲测表为空 | 新人可用性被无证据升格 | 已改为 Blocked；只有真实独立盲测才能解除 |
+| Huuuge First Run 误报 | 正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈虽到达 `READY`，但只可记为 `Failed/Invalid`，不能替代独立盲测 | 把前置 READY、工作站 Ready 或非独立实跑误报成 RC4 通过 | 保持 Blocked；分别记录两类结果；游戏操作与执行授权由 User 控制；只有完整独立 RC4 盲测才能解除 |
 | Bet / RTP 无证据外推 | 当前样本没有稳定 RTP/EV 或 Bet 因果证据 | 把单次 Win、字段或描述性比率误作概率结论 | 明确 `Unknown/Blocked`；另立统计 Task 前不下结论 |
+| 历史 TASK-0018 文件冲突 | canonical 为 `tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md`；历史 `tasks/TASK-0018-Cash-Frenzy-Android-Collector-Feasibility-Audit.md` 是已取消 companion | 只写编号会把 Huuuge 报告与 Cash Frenzy 历史审计混为同一执行入口 | 始终使用完整文件名并核对 Registry kind/status；不得从历史 companion 启动执行 |
+| ChatGPT 直写飞书地区限制 | ChatGPT Control Plane 的 Secure MCP Tunnel 仍受地区限制；当前 Codex Host 的本地 Document Assistant 独立可用 | 把 ChatGPT 直连受阻误写为 Document Capability 不可用，或建立未批准 tunnel | 两条实现路径分别验收；继续使用当前批准 Codex Host，不绕过地区或组织策略 |
 | 飞书与 Git 漂移 | 云文档可被手工修改，Git 分支仍在 Review | 在线状态过时或先于权威分支 | 顶部固定 As of/commit/source；只原位 replace；写后 get + permission + register + Hub readback |
 | Project Source Pack 滞后 | 生成包与上传 Sources 是快照 | 新会话读取旧 Task/优先级 | Git-live-first；本分支刷新生成包，合入后人工替换 Sources |
 | 私有业务仓库访问 | 新人不应依赖私有实现仓库 | Onboarding 在权限阶段卡住 | 新人只需公共 AI-Workspace、公司 SVN 与管理员预配 Provider；维护者才核验私有 commit |
@@ -163,6 +165,7 @@
 - CF_collect `main@4df10ec20e79bb737912c8d1b847fae3659031ae`
 - Document Assistant `main@b0292c3159db16542906948511b6b1ec58c360fd`
 - TASK-0026 ChatGPT Review Round 3 — Accepted
+- TASK-0019 ChatGPT Review Round 1 — Needs changes；reviewed commit `9403a09a445fd37548c78b3fc21709e91f5406d9`
 - `projects/huuuge-android-research/STATUS.md`
 - `projects/huuuge-android-research/REPORTS/TASK-0011-FIRST-RUN-VALIDATION.md`
 - `capabilities/README.md`

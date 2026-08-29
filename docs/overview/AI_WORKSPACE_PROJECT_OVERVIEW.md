@@ -276,10 +276,10 @@ Slots → Systems → Events → Others
 
 核心 Git 入口：
 
-- [AI-Workspace README](https://github.com/840832144/AI-Workspace/blob/070744944d02b8d493c737db74bdc3d404963158/README.md)
-- [Architecture](https://github.com/840832144/AI-Workspace/blob/070744944d02b8d493c737db74bdc3d404963158/ARCHITECTURE.md)
-- [Workspace Kernel](https://github.com/840832144/AI-Workspace/blob/070744944d02b8d493c737db74bdc3d404963158/docs/architecture/WorkspaceKernel.md)
-- [Capability Model](https://github.com/840832144/AI-Workspace/blob/070744944d02b8d493c737db74bdc3d404963158/docs/CapabilityModel.md)
-- [Capability Catalog](https://github.com/840832144/AI-Workspace/blob/070744944d02b8d493c737db74bdc3d404963158/capabilities/README.md)
-- [AI Team](https://github.com/840832144/AI-Workspace/blob/070744944d02b8d493c737db74bdc3d404963158/AI_TEAM.md)
+- [AI-Workspace README](https://github.com/840832144/AI-Workspace/blob/c74c85a9524d1524ea3696835509de2a55e9f524/README.md)
+- [Architecture](https://github.com/840832144/AI-Workspace/blob/c74c85a9524d1524ea3696835509de2a55e9f524/ARCHITECTURE.md)
+- [Workspace Kernel](https://github.com/840832144/AI-Workspace/blob/c74c85a9524d1524ea3696835509de2a55e9f524/docs/architecture/WorkspaceKernel.md)
+- [Capability Model](https://github.com/840832144/AI-Workspace/blob/c74c85a9524d1524ea3696835509de2a55e9f524/docs/CapabilityModel.md)
+- [Capability Catalog](https://github.com/840832144/AI-Workspace/blob/c74c85a9524d1524ea3696835509de2a55e9f524/capabilities/README.md)
+- [AI Team](https://github.com/840832144/AI-Workspace/blob/c74c85a9524d1524ea3696835509de2a55e9f524/AI_TEAM.md)
 - 《项目进度与能力状态》（正式飞书链接由文档导航中心提供）
