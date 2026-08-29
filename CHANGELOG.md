@@ -2,6 +2,23 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.17.1] - 2026-08-29
+
+### Fixed
+
+- 完成 TASK-0026 ChatGPT Review 指定修订：`CF_collect@261af96` 将运行时 cleanup 放入 `finally` 并显式报告失败，异常和 READY 失败也进入同一清理路径。
+- READY 仅接受已验证的 Lua `hook-status`，要求 `onUIThreadReceiveMessage` 与 `lua_pcall` 同时安装；进程启动、`script.load()`、任意消息、错误或 detach 不再误报 READY。
+- Root 文档统一为“Collector 只检测、不改变 Root”；自动 cleanup 只处理 Gadget/server/forward/进程/临时文件，Root 由 User 手动关闭、重启并验证失效。
+
+### Validation
+
+- 正式仓库 baseline 12/12、修订后 focused tests 15/15、Python compileall、PowerShell 5.1 parser、六字段冻结、secret/local-data scan 与 diff check 通过。
+- 未启动模拟器、Root、Frida 或 Collector，未执行 Spin，未扩大 `batch_spin` 六字段 schema；Subagents: none。
+
+### Review
+
+- TASK-0026 维持 `Review`，等待 ChatGPT 复审 `codex/collector-1-engineering@261af96acd93bb4be785ea9c1cb82c91fa31e434`。
+
 ## [0.17.0] - 2026-08-28
 
 ### Added

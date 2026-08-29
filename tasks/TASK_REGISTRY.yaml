@@ -251,7 +251,7 @@ entries:
     executor: "Codex"
     priority: "P1"
     created_date: "2026-08-28"
-    updated_date: "2026-08-28"
+    updated_date: "2026-08-29"
     related_tasks: ["TASK-0024"]
     kind: "canonical"
   - id: "TASK-0016"

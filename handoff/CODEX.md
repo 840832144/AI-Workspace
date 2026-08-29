@@ -1,8 +1,8 @@
 # Codex Handoff
 
-- Updated: 2026-08-28
+- Updated: 2026-08-29
 - Current task: TASK-0026 — 【游戏】 Collector 1.0 Engineering
-- Status: Review — Collector 1.0 implementation pushed
+- Status: Review — cleanup / READY / Root wording revision pushed; waiting for re-review
 - Branch: AI-Workspace `codex/cash-frenzy-collector-1-engineering`; CF_collect `codex/collector-1-engineering`
 - Workspace Sync: `ON_DEMAND`
 - WATCH: disabled
@@ -16,9 +16,9 @@
 - 固定交付为 `adapters/batch_spin`、`adapters/keepalive`、`adapters/registry`、统一 `event + adapter + source + payload` Event contract，以及 `session_manifest.json / source_events.jsonl / events.jsonl / spin_records.jsonl / summary.*` Session layout。
 - `batch_spin` 只允许 TASK-0024 已确认的 `base_win / bonus_base_win / total_win / coins / win_lines / win_pos_list` 六字段；额外键必须被忽略，不允许字段发现或 schema 扩展。
 - 只选择性采用 DS Sidecar 的 exact-target gate、fail-closed/type/truncation handling 与合成测试思想；禁止迁移 `.local/`、真实 Session、fixture/artifact、Git 历史、schema expansion、`same_object_fields` 或实验文件。
-- Android 9 inbound Hook、受限 serializer、Gadget/Frida lifecycle、部署顺序、人工操作与清理路线不修改；不执行新 Spin、20-Spin/F4 或其他协议/模块研究。
-- GitHub 仓库改名、公开 Description 和实现已完成；正式 Review commit 为 `CF_collect@7c32877a26f48e0705a7cfd79059dc8214303e36`。focused 12/12、compileall、PowerShell 5.1 parser、Event/Session/deterministic/legacy/privacy Gate 通过。
-- Probe 与 bootstrap JavaScript 和正式 main 基线逐字一致；本 Task 没有启动模拟器、Frida 或新 Session，没有新 Spin、20-Spin/F4 或字段恢复证据。Workspace Sync `ON_DEMAND`，WATCH disabled；Subagents: none。
+- Android 9 inbound Hook、受限 serializer、Gadget/Frida runtime 路线、部署顺序和人工操作边界不变；本轮只修 Review 提出的 cleanup、READY 语义和 Root 文档口径。
+- Review 修订已推送为 `CF_collect@261af96acd93bb4be785ea9c1cb82c91fa31e434`：cleanup 进入 `finally` 并使用结构化 LIFO 项；失败不再静默；READY 只接受同时安装 `onUIThreadReceiveMessage + lua_pcall` 的 verified `hook-status`；Collector 明确只检测、不改变 Root。
+- 修订前 baseline 12/12；修订后 focused 15/15、compileall、PowerShell 5.1 parser、六字段冻结、secret/local-data scan 与 diff check 通过。本轮没有启动模拟器、Root、Frida、Collector 或新 Session，没有 Spin、20-Spin/F4 或字段恢复证据。Workspace Sync `ON_DEMAND`，WATCH disabled；Subagents: none。
 - 已解决的失败：Candidate 日期/slug 两次 fail-closed 且未误占 ID；新 clone 首次 commit 因缺作者身份失败后仅写 repo-local noreply identity；Task 23/23 后套件尾部一次真实 validate fetch 瞬时失败，独立 fetch/validate 随即通过 13 canonical / 0 collision / 0/0。
 
 ## Governance Task — TASK-0016 Review Round 3
@@ -161,4 +161,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-ChatGPT Review `CF_collect` 分支 `codex/collector-1-engineering@7c32877a26f48e0705a7cfd79059dc8214303e36`，重点核对六字段冻结、Event 四段式、Session artifact contract、legacy read-only、Sidecar 迁移 allowlist 与一键部署兼容性；Review 前不扩大字段/模块、不执行新 Spin。TASK-0025 暂不执行。
+ChatGPT 复审 `CF_collect` 分支 `codex/collector-1-engineering@261af96acd93bb4be785ea9c1cb82c91fa31e434` 的 cleanup `finally`、verified READY gate 与 Root 手动口径，返回 `Accepted` 或仅针对这三项的明确修改；复审前不启动模拟器、不执行 Spin、不扩大六字段 schema。TASK-0025 暂不执行。
