@@ -125,13 +125,16 @@ data/sessions/<session_id>/
 ### Confirmed
 
 - GitHub 正式仓库已从 `840832144/CashFrenzy_collect` 改名为 `840832144/CF_collect`；default branch 仍为 `main`，公开 Description 使用“【游戏】”。
-- 实现分支为 `codex/collector-1-engineering`，Review 修订 commit 为 `261af96acd93bb4be785ea9c1cb82c91fa31e434`。
+- ChatGPT Review Round 1 正式记录为 `reviews/TASK-0026-CHATGPT-REVIEW-1.md`：Decision `Needs changes`；READY 与 Root 已通过，唯一 required fix 为 cleanup 未停止本轮 `cf_rt_mon -D` 后台进程。
+- 实现分支为 `codex/collector-1-engineering`，Round 1 cleanup 修订 commit 为 `4e6f0625e2e39dfeb6ebb4dfb2fd6a29d5c1999c`。
 - 新增正式 `adapters/batch_spin.py`、`adapters/keepalive.py`、`adapters/registry.py` 与公共 event helpers；Registry 只路由 exact `kind=lua-pcall-args / messageType=3 / command`，未知命令返回 `None`。
 - `batch_spin` allowlist 严格固定六字段；合成 extra `feature/result` 与任意额外字段不会进入 Event、warning schema 或 Spin Records。
 - 新 Session 预创建 `source_events.jsonl / events.jsonl / spin_records.jsonl`，finalize 写 `session_manifest.json`，一键流程再生成 `summary.json / summary.md`；manifest 只含相对 artifact path。
 - 旧 raw `events.jsonl` 通过只读 compatibility path 重建到 `normalized_events.jsonl`，原文件 hash 保持不变。
 - DS Sidecar 仅作为 exact shape、fail-closed/type/truncation、合成测试与输入只读的设计来源；正式 commit 不含 Sidecar 文件、fixture、artifact、`.local/`、真实 Session 或 schema expansion。
-- `run_collector.ps1` 保持既有 preflight → server → gadget → forward → bootstrap → scoped probe → User phase → stop → re-extract/summary → cleanup 顺序；cleanup 现位于 `finally`，每个运行时资源在可能发生部分写入前登记结构化 LIFO 清理项，失败项不再静默吞掉。
+- `run_collector.ps1` 保持既有 preflight → server → gadget → forward → bootstrap → scoped probe → User phase → stop → re-extract/summary → cleanup 顺序；cleanup engine 使用可注入 action、严格 LIFO、幂等 stop/verify 与错误聚合。
+- Frida helper 返回 `pid / remote_path / started_by_run`；finally 只停止本轮拥有、PID 与 remote path 精确匹配的 server，再删除本轮文件。外部/先前 Session 资源通过 ownership gate 保留并使运行 fail closed。
+- cleanup 后回读验证 Probe、server、forward、Gadget/config 与 `/data/local/tmp/cf_*` 均无残留；运行错误、停止失败、验证失败和残留统一聚合，不再静默或互相覆盖。
 - READY 现只由已验证的 `hook-status` 建立；`onUIThreadReceiveMessage` 与 `lua_pcall` 必须同时报告已安装。`script.load()`、任意 Frida 消息、错误或 detach 均不能误报 READY。
 - Root 口径已统一：Collector 只检测、不改变 BlueStacks Root；自动 cleanup 不包含 Root，Session 后由 User 手动关闭 Root、重启实例并验证 `su -c id` 不再返回 `uid=0`。
 
@@ -161,7 +164,7 @@ data/sessions/<session_id>/
 9. `CF_collect` 与 AI-Workspace 的适用测试、Task Registry、链接与工作树检查通过；
 10. Handoff 明确 `Subagents: none`，等待 ChatGPT Review。
 
-实际结果：修订前 baseline `unittest` 12/12；修订后 focused `unittest` 15/15、Python compileall、PowerShell 5.1 全部脚本解析、READY 双 Hook gate、`finally` cleanup、Root 文档口径、六字段冻结、secret/local-data diff scan 与 `git diff --check` 均通过；AI-Workspace Task Registry 为 13 canonical / 0 collision。未启动模拟器、Root、Frida、Collector，未执行 Spin。Subagents: none。
+实际结果：Round 1 cleanup 修订 baseline `unittest` 15/15；修订后 focused `unittest` 16/16、可注入 cleanup tests 7/7、Python compileall、PowerShell 5.1 全部脚本解析、六字段冻结、secret/local-data diff scan 与 `git diff --check` 均通过。`cf_probe.py`、`adapters/batch_spin.py` 与 `docs/ROOT_TOGGLE.md` SHA-256 保持不变；AI-Workspace Task Registry 为 13 canonical / 0 collision。未启动模拟器、Root、Frida、Collector，未执行 Spin。Subagents: none。
 
 ## Stop conditions
 

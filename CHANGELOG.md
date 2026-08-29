@@ -2,6 +2,26 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.17.2] - 2026-08-29
+
+### Review
+
+- 正式记录 `reviews/TASK-0026-CHATGPT-REVIEW-1.md`：Decision `Needs changes`；READY 与 Root 已通过，唯一 required fix 为 cleanup 只删除 `cf_rt_mon` 文件、未停止本轮 `cf_rt_mon -D` 后台进程。
+
+### Fixed
+
+- `CF_collect@4e6f062` 让 Frida helper 返回 `pid / remote_path / started_by_run`；cleanup 只停止本轮拥有且 PID、路径精确匹配的 server，不使用宽泛进程终止。
+- cleanup engine 增加严格 LIFO、幂等 stop/verify、ownership gate 与错误聚合；finally 后验证 Probe/server/forward/Gadget/config/cf_* 无残留。
+
+### Validation
+
+- baseline 15/15；修订后 focused tests 16/16、可注入 cleanup tests 7/7、compileall、PowerShell 5.1 parser、六字段冻结、secret/local-data scan 与 diff check 通过。
+- READY、Root、Hook/serializer 与六字段边界文件 hash 不变；未启动模拟器、Root、Frida、Collector，未执行 Spin。Subagents: none。
+
+### Next
+
+- TASK-0026 保持 `Review`，等待 ChatGPT Review Round 2；不自动合并 main。
+
 ## [0.17.1] - 2026-08-29
 
 ### Fixed
