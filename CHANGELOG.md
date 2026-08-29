@@ -2,6 +2,26 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.18.1] - 2026-08-29
+
+### Accepted
+
+- TASK-0019 ChatGPT Review Round 3 `Accepted`；正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-3.md`，reviewed commit 为 `ccc1610a69808f7516e4d215d2177454021d108a`。
+- canonical TASK-0019 状态由 `Review` 更新为 `Accepted`。
+
+### Finalized
+
+- First Run 最终口径保持：正式 RC4 `Pending`、User 实跑 `Failed/Invalid`、正式 Collector READY 未被可复核证明、临时 SSL 捕获后进入 User 操作阶段且游戏由 User 亲自操作、Bet/RTP `Unsupported`。
+- P0 Reliability Hardening 只保留 Decision proposal；未经 User 批准不创建 Task、不进入实现或运行。
+- 项目全景说明保持不变；只原位更新既有飞书进度文档，不创建副本。
+
+### Context and Validation
+
+- Context Manifest、Project Source Pack 和 replacement list 已刷新为 70 sources / 0 broken link / 0 secret issue；旧 READY 事实口径为 0。
+- Round 3 定向断言 12/12、Task 23/23、Context 13/13、Memory 44/44、Registry 13 canonical / 0 collision / valid、changed-document scan 11 files / 0 broken link / 0 secret assignment / 0 stale READY / 0 new Task、项目全景 SHA-256 不变与 `git diff --check` 均通过。
+- 既有飞书进度文档完成原位替换、正文与 `tenant_editable` 权限回读；Hub 保持 17 个登记项、`unique_links=true`，进度标题唯一。项目全景飞书文档未写入。
+- 未启动模拟器、Root、Frida、Collector，未执行 Spin；Subagents: none / OFF。
+
 ## [0.18.0] - 2026-08-29
 
 ### Added
@@ -13,7 +33,7 @@
 
 - 纳入 TASK-0026 Review Round 3 `Accepted`、`CF_collect/main@4df10ec`、新工作站 `Ready` 与 Document Assistant `Available`。
 - TASK-0019 ChatGPT Review Round 1 为 `Needs changes`；正式记录 reviewed commit `9403a09a445fd37548c78b3fc21709e91f5406d9`，只修文档事实与验收缺口。
-- `bootstrap/chatgpt/02_CURRENT_STATE.md` 将 Huuuge First Run 从“暂定通过”更正为 `Blocked`，并区分正式 RC4 `Pending` 与 User 实跑反馈 `Failed/Invalid`；只脱敏记录到达 `READY`、User 控制的执行边界和无证据 Bet/RTP 风险。
+- `bootstrap/chatgpt/02_CURRENT_STATE.md` 将 Huuuge First Run 从“暂定通过”更正为 `Blocked`，并区分正式 RC4 `Pending` 与 User 实跑反馈 `Failed/Invalid`；只脱敏记录临时 SSL 捕获后进入 User 操作阶段、User 控制的执行边界和无证据 Bet/RTP 风险，正式 Collector READY 未被可复核证明。
 - 进度文档第 7 节补充历史 TASK-0018 文件冲突与 ChatGPT 直写飞书地区限制；全景说明六个核心 Git 入口从旧 `070744...` 统一更新到 `c74c85a...` 核验基线。
 - Workspace Sync 与 Document Assistant 分开验收：前者 `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；后者 healthcheck token/API/Drive 全部 `ok`。
 

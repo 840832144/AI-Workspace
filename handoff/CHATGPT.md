@@ -4,25 +4,26 @@
 
 - Updated: 2026-08-29
 - Current Review request: TASK-0019 — 项目全景说明与独立进度文档
-- TASK-0019 status: `Review`
+- TASK-0019 status: `Accepted`
 - Project key: `WORKSPACE`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
 
-## TASK-0019 — Current Review Request（Round 3）
+## TASK-0019 — Accepted Closure
 
 - Review branch：`codex/task-0019-overview-progress-refresh`，基于 `main@c74c85a9524d1524ea3696835509de2a55e9f524`；未 merge 旧 `task-0019-overview-progress`。
 - TASK-0019 Review Round 1 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-1.md`：Decision `Needs changes`，reviewed commit `9403a09a445fd37548c78b3fc21709e91f5406d9`；本次只修指定的文档事实与验收缺口。
 - TASK-0019 Review Round 2 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-2.md`：Decision `Needs changes`，reviewed commit `e05d781e8aa54a6d10f1d0e44a1f84310fdf847e`；`e05d` 是已审基线，不是本轮新提交。
+- TASK-0019 Review Round 3 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-3.md`：Decision `Accepted`，reviewed commit `ccc1610a69808f7516e4d215d2177454021d108a`；canonical Task 已更新为 `Accepted`。
 - Git deliverables：`docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md`（稳定说明）与 `docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md`（动态状态），不得合并职责。
 - 核验 main：Huuuge `4a5dddf`、CF_collect `4df10ec`、Document Assistant `b0292c3`；均与远端一致且工作树干净。
 - 必查口径：Huuuge First Run 保持 `Blocked`；正式 RC4 记录仍为 `Pending`；User 实跑仍为 `Failed/Invalid`。正式 Collector READY 未被可复核证明；只确认临时 SSL 捕获后进入 User 操作阶段，游戏由 User 亲自操作。Bet/RTP `Unsupported`。
 - 必查历史与入口：进度文档第 7 节已补历史 TASK-0018 文件冲突和 ChatGPT 直写飞书地区限制；全景说明六个核心 Git 入口已统一到 `c74c85a...` 核验基线。
 - 必查 Provider 分离：Workspace Sync 为 `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；Document Assistant 为 `Available`，healthcheck token/API/Drive 全部 `ok`。
-- 飞书验收：Round 2 只原位 replace 既有进度文档，禁止创建副本，项目全景飞书文档未写；进度文档正文、document ID/链接和 `tenant_editable` 权限回读通过，Hub 保持 17 个登记项与 `unique_links=true`。
+- 飞书验收：Round 3 只原位 replace 既有进度文档，没有创建副本，项目全景飞书文档未写；进度文档正文、document ID/链接和 `tenant_editable` 权限回读通过，Hub 保持 17 个登记项、`unique_links=true`，进度标题唯一。
 - Scope：未修改业务仓库；未启动模拟器、Root、Frida、Collector，未执行 Spin；Subagents: none / OFF。
-- Validation：Round 2 定向断言 12/12、Task 23/23、Registry 13 canonical / 0 collision / valid、changed-document scan 0 broken link / 0 secret assignment、项目全景 hash 不变、0 新 Task 与 `git diff --check` 通过。
-- 决策边界：下一业务决策候选是 P0 Reliability Hardening Decision proposal；未获 User 批准不创建 Task、不进入实现或运行。
-- Review 输出：TASK-0019 Review Round 3 的 `Accepted` 或精确修改项；未 Accepted 前不得合并 `main`。
+- Validation：Round 3 定向断言 12/12、Task 23/23、Context 13/13、Memory 44/44、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue、changed-document scan 11 files / 0 broken link / 0 secret assignment / 0 stale READY / 0 new Task、项目全景 hash 不变与 `git diff --check` 通过。
+- 决策边界：P0 Reliability Hardening 只保留 Decision proposal；未获 User 批准不创建 Task、不进入实现或运行。
+- Closure：治理分支 fast-forward 合入 AI-Workspace `main` 后结束 TASK-0019；后续唯一动作是等待 User 审议 P0 Reliability Hardening Decision proposal。
 
 ## TASK-0023 — Idea Governance & Product Roadmap
 
@@ -118,4 +119,4 @@
 
 ## Exact Next Action
 
-ChatGPT Review Round 3 复审 TASK-0019 本轮新提交与原位飞书进度文档：确认正式 Collector READY 未被可复核证明，事实仅为临时 SSL 捕获后进入 User 操作阶段且游戏由 User 亲自操作；保留 RC4 `Pending`、实跑 `Failed/Invalid` 与 Bet/RTP `Unsupported`；确认 P0 Reliability Hardening Decision proposal 未批准且没有创建 Task。返回 `Accepted` 或精确修改项；Review 前不合并 main。
+TASK-0019 已 Accepted。User 审议 P0 Reliability Hardening Decision proposal；未经明确批准不创建 Task、不进入实现或运行。在新的 User 决定前不启动业务环境。

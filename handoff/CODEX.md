@@ -2,7 +2,7 @@
 
 - Updated: 2026-08-29
 - Current task: TASK-0019 — AI Workspace 项目全景说明与独立进度文档
-- Status: Review — Round 2 READY 事实口径修订完成，等待 ChatGPT Review Round 3
+- Status: Accepted — ChatGPT Review Round 3 已通过，执行 Context / 飞书 / main 收口
 - Branch: AI-Workspace `codex/task-0019-overview-progress-refresh` from `main@c74c85a9524d1524ea3696835509de2a55e9f524`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -19,13 +19,13 @@
 - Huuuge First Run 保持 `Blocked`：正式 RC4 记录仍为 `Pending`，User 实跑仍为 `Failed/Invalid`。正式 Collector READY 未被可复核证明；只确认临时 SSL 捕获后进入 User 操作阶段，游戏由 User 亲自操作，不能据此认定 Collector 达到 READY。
 - Bet/RTP `Unsupported`：没有 Bet 分层受控运行证据或稳定 RTP/EV 统计，不从字段、单次样本、bundle ratio 或描述性比率推导 Bet 与 RTP 关系。
 - Workspace Sync 与 feishu-docs 分别验收：Sync 为 `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；Document Assistant 为 `Available`，两者不得合并成一个 Provider 状态。
-- Round 2 只对既有飞书进度文档执行 `replace_document`；禁止创建副本，项目全景飞书文档保持未写。回读确认 document ID/链接不变，并包含 Collector READY 未证明、临时 SSL 捕获/User 亲自操作边界和 Bet/RTP `Unsupported`。
+- Round 3 只对既有飞书进度文档执行 `replace_document`；没有创建副本，项目全景飞书文档保持未写。回读确认 document ID/链接不变，并包含 TASK-0019 `Accepted`、Collector READY 未证明、临时 SSL 捕获/User 亲自操作边界和 Bet/RTP `Unsupported`。
 - 进度文档权限保持 `tenant_editable` / verified；重新登记后 Hub readback 保持 17 个登记项、`unique_links=true`，进度标题出现一次。
-- Validation：Round 2 定向断言 12/12、Task 23/23、Registry 13 canonical / 0 collision / valid、changed-document scan 7 files / 1 Markdown link / 0 broken link / 0 secret assignment、项目全景 SHA-256 `BBC2393DCE276678D13363D65099FA3185D23BEB3AA6127CCBBA45387D350E61` 不变、0 新 Task 与 `git diff --check` 通过。
+- Validation：Round 3 定向断言 12/12、Task 23/23、Context 13/13、Memory 44/44、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue、changed-document scan 11 files / 0 broken link / 0 secret assignment / 0 stale READY / 0 new Task、项目全景 SHA-256 `BBC2393DCE276678D13363D65099FA3185D23BEB3AA6127CCBBA45387D350E61` 不变与 `git diff --check` 通过。
 - 本轮未启动模拟器、Root、Frida、Collector，未执行 Spin；Workspace Sync 保持 ON_DEMAND，WATCH disabled；Subagents: none / OFF。
-- ChatGPT Review Round 2 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-2.md`：Decision `Needs changes`，reviewed commit `e05d781e8aa54a6d10f1d0e44a1f84310fdf847e`；`e05d` 是已审基线，不是本轮新提交。
-- 下一业务决策候选为 P0 Reliability Hardening Decision proposal；未获 User 批准不创建 Task、不进入实现或运行。
-- 唯一执行下一步：ChatGPT Review Round 3 复审本轮新提交与原位飞书进度文档，返回 `Accepted` 或精确修改项；不得自行合并 `main`。
+- ChatGPT Review Round 3 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-3.md`：Decision `Accepted`，reviewed commit `ccc1610a69808f7516e4d215d2177454021d108a`；canonical TASK-0019 已更新为 `Accepted`。
+- P0 Reliability Hardening 只保留 Decision proposal；未获 User 批准不创建 Task、不进入实现或运行。
+- 唯一下一步：本治理分支 fast-forward 合入 AI-Workspace `main` 后结束 TASK-0019；后续只等待 User 审议 P0 Reliability Hardening Decision proposal，未经批准不创建 Task。
 
 ## Current Task — TASK-0026
 
@@ -179,10 +179,12 @@
 
 
 
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-29T07:36:52Z
+- Generated: 2026-08-29T09:33:41Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
@@ -190,4 +192,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-ChatGPT Review Round 3 复审 TASK-0019 本轮新提交：确认正式 Collector READY 未被可复核证明，事实仅为临时 SSL 捕获后进入 User 操作阶段且游戏由 User 亲自操作；保留 RC4 `Pending`、实跑 `Failed/Invalid` 与 Bet/RTP `Unsupported`；确认 P0 Reliability Hardening Decision proposal 未获批准前没有创建 Task；只回读原位飞书进度文档，项目全景未改。返回 `Accepted` 或精确修改项；Review 前不合并 main、不执行业务任务。
+TASK-0019 已 Accepted。User 审议 P0 Reliability Hardening Decision proposal；未经明确批准不创建 Task、不进入实现或运行。在新的 User 决定前只维护已接受的项目进度入口，不启动业务环境。

@@ -17,6 +17,7 @@ _Last reviewed: 2026-08-29_
 - Git-backed Automatic Memory 已通过 TASK-0016 Review Round 3 并 `Accepted`；production 默认 `ASSISTED`，Global hook 与 production AUTO 未激活。
 - Task Registry / allocator、Workspace Sync contract、文档导航中心、Idea Governance 与 Product Roadmap 已分别通过 TASK-0020、TASK-0021、TASK-0023 Review。
 - Collector 1.0 已通过 TASK-0026 Review Round 3 并 `Accepted`；实现位于 `CF_collect/main@4df10ec20e79bb737912c8d1b847fae3659031ae`，范围继续固定为已审阅 contract 与六字段。
+- TASK-0019 已通过 ChatGPT Review Round 3 并 `Accepted`；项目全景说明保持稳定，项目进度与能力状态成为唯一动态源稿，正式飞书进度文档继续原位维护。
 - 当前 Windows 工作站的 Workspace 与 Document Assistant 接入已完成现场验收，可标记为 `Ready`；这只证明本机治理与文档能力可用，不等于 Huuuge First Run 已通过。
 - Huuuge First Run 状态为 `Blocked`：正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈仍为 `Failed/Invalid`。正式 Collector READY 未被可复核证明；当前只可确认临时 SSL 捕获后进入 User 操作阶段，游戏操作由 User 亲自操作，不能据此认定 Collector 达到 READY，也不改写正式 RC4 记录。Bet/RTP `Unsupported`：没有 Bet 分层运行证据或稳定 RTP/EV 统计证据，不得从字段、单次样本或描述性比率推导 Bet 与 RTP 关系。
 
@@ -28,7 +29,7 @@ _Last reviewed: 2026-08-29_
 AI-Workspace/tasks/TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md
 ```
 
-状态：`Review`；ChatGPT Review Round 2 已审阅 `e05d781e8aa54a6d10f1d0e44a1f84310fdf847e` 并判定 `Needs changes`，本轮只修 First Run READY 事实口径，等待 Round 3。独立分支从 `main@c74c85a9524d1524ea3696835509de2a55e9f524` 建立。执行前仍需从最新 `main` 和 Handoff 确认边界，不得依据本离线摘要直接启动业务任务。
+状态：`Accepted`；ChatGPT Review Round 3 已审阅 `ccc1610a69808f7516e4d215d2177454021d108a` 并接受 TASK-0019。P0 Reliability Hardening 只保留 Decision proposal，未经 User 批准不得创建 Task、进入实现或启动运行。执行前仍需从最新 `main` 和 Handoff 确认边界，不得依据本离线摘要直接启动业务任务。
 
 背景：TASK-0026 已 Accepted 并合入 `CF_collect/main@4df10ec20e79bb737912c8d1b847fae3659031ae`；当前任务只维护 Workspace 项目说明与状态入口，不启动模拟器、Root、Frida、Collector 或 Spin。
 
@@ -56,7 +57,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 ## 当前并行 Workspace 任务
 
-- `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md`：`Review`，当前唯一执行入口。
+- `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md`：`Accepted`，文档与状态入口已完成；不再作为执行入口。
 - `TASK-0021-Workspace-Live-Context-Hub.md`：`Accepted`；Live Context、Workspace Sync 和文档导航治理已完成。
 - `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md`：`Accepted`；唯一 Product Roadmap、Idea Governance、技术术语规则与两个正式文档入口已完成并正式生效。
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md`：`Ready`，等待 User 明确切回，不与当前任务并行执行。
@@ -122,7 +123,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-29T07:36:52Z
+- Generated: 2026-08-29T09:33:41Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -131,6 +132,5 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 ### Active public control-plane tasks
 
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
-- `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Review
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md` — Ready
 <!-- MEMORY-CONTEXT:END -->

@@ -1,6 +1,6 @@
 # TASK-0019 — AI Workspace 项目全景说明与独立进度文档
 
-- Status: Review
+- Status: Accepted
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1 / project visibility and long-term governance
@@ -9,7 +9,7 @@
 - Execution repository: `840832144/AI-Workspace`
 - Online provider: AI Document Assistant / `feishu-docs`
 - Updated: 2026-08-29
-- Review state: Round 2 修订完成；等待 Round 3
+- Review state: Round 3 Accepted
 
 ## Goal
 
@@ -470,11 +470,9 @@ worktree: C:\AI-Workspace-task-0019
 
 - Git 源稿：`docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md` 与 `docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md`；稳定说明与动态状态职责分离。
 - 两份既有飞书文档在 Round 1 修订后再次通过 `replace_document` 原位更新，document identity 未变；没有创建重复文档，conversion warning 为 0。
-- Round 2 只原位更新飞书进度文档；`replace_document` conversion warning 0。回读确认 As of、正式 RC4 `Pending`、User 实跑 `Failed/Invalid`、正式 Collector READY 未证明、临时 SSL 捕获/User 亲自操作边界、Bet/RTP `Unsupported` 与未批准不创建 Task。项目全景飞书文档未写入。
-- 两份文档权限均回读为 `tenant_editable` / verified。
-- 两份文档重新执行 `register_document` 后，导航中心回读通过：17 个登记项、`unique_links=true`，项目全景和项目进度标题各出现一次。
-- Round 2 进度文档权限回读为 `tenant_editable` / verified；重新登记后 Hub 为 17 个登记项、`unique_links=true`、readback verified，进度标题出现一次。
-- 回归：Round 2 定向断言 12/12、Task 23/23、Registry 13 canonical / 0 collision / valid、changed-document scan 7 files / 1 Markdown link / 0 broken link / 0 secret assignment、项目全景 hash 不变、0 新 Task 与 `git diff --check` 通过。
+- Round 3 只原位更新既有飞书进度文档；`replace_document` conversion warning 0。回读确认 As of、TASK-0019 `Accepted`、正式 RC4 `Pending`、User 实跑 `Failed/Invalid`、正式 Collector READY 未证明、临时 SSL 捕获/User 亲自操作边界、Bet/RTP `Unsupported` 与未批准不创建 Task；项目全景飞书文档未写入。
+- 进度文档权限回读为 `tenant_editable` / verified；重新登记后 Hub 为 17 个登记项、`unique_links=true`、readback verified，进度标题出现一次。
+- 回归：Round 3 定向断言 12/12、Task 23/23、Context 13/13、Memory 44/44、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue、changed-document scan 11 files / 0 broken link / 0 secret assignment / 0 stale READY / 0 new Task、项目全景 SHA-256 不变与 `git diff --check` 通过。
 
 ### Scope and handoff
 
@@ -482,4 +480,6 @@ worktree: C:\AI-Workspace-task-0019
 - Subagents: none / `OFF`；Workspace Sync 保持 `ON_DEMAND`，WATCH disabled。
 - ChatGPT Review Round 1 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-1.md`，Decision `Needs changes`，reviewed commit `9403a09a445fd37548c78b3fc21709e91f5406d9`。
 - ChatGPT Review Round 2 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-2.md`，Decision `Needs changes`，reviewed commit `e05d781e8aa54a6d10f1d0e44a1f84310fdf847e`；该提交是已审基线，不是本轮新提交。
-- Task 保持 `Review`；Round 2 指定修订完成，等待 ChatGPT Review Round 3，不自行合并 `main`。
+- ChatGPT Review Round 3 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-3.md`，Decision `Accepted`，reviewed commit `ccc1610a69808f7516e4d215d2177454021d108a`。
+- canonical TASK-0019 更新为 `Accepted`；P0 Reliability Hardening 只保留 Decision proposal，未经 User 批准不得创建 Task、进入实现或启动运行。
+- 完成 Context、飞书进度文档与全量回归收口后，将本治理分支 fast-forward 合入 AI-Workspace `main` 并结束 TASK-0019。
