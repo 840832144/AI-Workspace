@@ -1,6 +1,6 @@
 # TASK-0019 — AI Workspace 项目全景说明与独立进度文档
 
-- Status: Ready
+- Status: Review
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1 / project visibility and long-term governance
@@ -8,6 +8,7 @@
 - User authorization: User 已确认继续执行，并明确要求最终交付为两个独立文档，项目进度不得混入项目全景说明
 - Execution repository: `840832144/AI-Workspace`
 - Online provider: AI Document Assistant / `feishu-docs`
+- Updated: 2026-08-29
 
 ## Goal
 
@@ -437,3 +438,41 @@ worktree: C:\AI-Workspace-task-0019
 4. 记录独立 branch、commit、核验仓库与 commit、两份飞书链接、权限状态、验证结果、冲突和已知限制；
 5. push 独立 branch，等待 ChatGPT Review；
 6. 不自行合并 `main`。
+
+## Implementation Evidence — 2026-08-29
+
+### Branch and reuse boundary
+
+- 从 AI-Workspace `main@c74c85a9524d1524ea3696835509de2a55e9f524` 新建独立分支 `codex/task-0019-overview-progress-refresh` 与 worktree `D:\AI-Workspace-TASK-0019`。
+- 未 merge 旧 `origin/task-0019-overview-progress`；`merge-base --is-ancestor` 对旧分支与新分支返回 false。旧分支只通过 `git show` 提取两份文档供选择性复用。
+- 项目全景说明保留当前 `main` 已吸收的稳定结构、Documentation Hub、Product Roadmap 和原生流程图；进度文档根据本轮权威核验重写。
+
+### Verified truth sources
+
+- AI-Workspace：`main@c74c85a9524d1524ea3696835509de2a55e9f524`。
+- Huuuge：`main@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`，与 `origin/main` 一致、工作树干净。
+- CF_collect：`main@4df10ec20e79bb737912c8d1b847fae3659031ae`，与 `origin/main` 一致、工作树干净；TASK-0026 Review Round 3 `Accepted`。
+- Document Assistant：`main@b0292c3159db16542906948511b6b1ec58c360fd`，与 `origin/main` 一致、工作树干净；本机 healthcheck 的 token、API connectivity、Drive permission 均为 `ok`。
+- Workspace Sync：`ON_DEMAND`，provider unavailable，stale 6，conflicts 0。该结果与 Document Assistant Available 分开记录。
+- 新工作站：Global AGENTS hash 与批准值一致，Project AGENTS 已加载，Subagents `OFF`，Host readiness `Ready`。
+
+### Corrected current-state semantics
+
+- `bootstrap/chatgpt/02_CURRENT_STATE.md` 将 Huuuge First Run 从“暂定通过”更正为 `Blocked`：独立策划盲测记录为空，尚无测试者、计时、成功证据或端到端结果。
+- “新工作站 Ready”只证明当前 Host 的 Workspace 与 Document Assistant 接入，不替代 Huuuge First Run。
+- 明确记录 Bet/RTP 证据风险：没有 Bet 分层受控运行证据或稳定 RTP/EV 统计，不得从字段、单次样本、bundle ratio 或描述性比率推导 Bet 与 RTP 关系。
+
+### Git and Feishu deliverables
+
+- Git 源稿：`docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md` 与 `docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md`；稳定说明与动态状态职责分离。
+- 两份既有飞书文档均通过 `replace_document` 原位更新，document identity 未变；没有创建重复文档，conversion warning 为 0。
+- 两份文档分别回读标题、核验基线与关键正文；进度文档回读包含 TASK-0026 Accepted、新工作站 Ready、First Run Blocked、Workspace Sync unavailable、Document Assistant Available 与 Bet/RTP 风险。
+- 两份文档权限均回读为 `tenant_editable` / verified。
+- 新工作站 Registry 缺少历史导航 metadata 时，使用 Document Assistant 对既有正式文档逐项 `get_document` + `register_document` 恢复；最终导航中心回读通过，17 个登记项、链接唯一，项目全景、项目进度、Product Roadmap、First Run 与 Capability 索引各出现一次。
+- 回归：Task 23/23、Memory 44/44、Context 13/13、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue、`git diff --check` 与独立 rollback copy 恢复基线均通过。
+
+### Scope and handoff
+
+- 未修改 Huuuge、CF_collect 或 Document Assistant 业务代码；未启动模拟器、Root、Frida、Collector，未执行 Spin。
+- Subagents: none / `OFF`；Workspace Sync 保持 `ON_DEMAND`，WATCH disabled。
+- Task 进入 `Review`；等待 ChatGPT Review，不自行合并 `main`。

@@ -1,7 +1,8 @@
 # Game Planner AI Workspace｜项目全景说明
 
 > Git 源稿：`docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md`
-> 更新时间：2026-08-27
+> 核验基线：`AI-Workspace main@c74c85a9524d1524ea3696835509de2a55e9f524`
+> 更新时间：2026-08-29
 > 维护说明：本文只维护长期定位、架构与边界；任务、能力成熟度和阻塞统一在《项目进度与能力状态》更新。正式飞书链接由 Document Assistant 在发布时绑定，不写入公共 Git 源稿。
 
 ## 一页式项目说明

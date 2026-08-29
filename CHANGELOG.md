@@ -2,6 +2,34 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.18.0] - 2026-08-29
+
+### Added
+
+- 执行 TASK-0019，从 `main@c74c85a9524d1524ea3696835509de2a55e9f524` 新建 `codex/task-0019-overview-progress-refresh`，未 merge 旧任务分支；选择性复用旧文档结构并按当前真相源刷新两份独立 Git 源稿。
+- 新增唯一动态状态源稿 `docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md`；项目全景说明继续只维护稳定定位、架构、能力链路与边界。
+
+### Changed
+
+- 纳入 TASK-0026 Review Round 3 `Accepted`、`CF_collect/main@4df10ec`、新工作站 `Ready` 与 Document Assistant `Available`。
+- `bootstrap/chatgpt/02_CURRENT_STATE.md` 将 Huuuge First Run 从“暂定通过”更正为 `Blocked`；独立盲测为空，且没有可支持 Bet→RTP 或稳定 RTP/EV 的证据。
+- Workspace Sync 与 Document Assistant 分开验收：前者 `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；后者 healthcheck token/API/Drive 全部 `ok`。
+
+### Published
+
+- 两份既有飞书文档通过 Document Assistant 原位替换，conversion warning 0；正文、交叉链接、基线和关键状态回读通过。
+- 两份文档均验证为企业内可编辑；导航中心自动登记与回读通过，17 个登记项、链接唯一，未创建重复文档。
+
+### Validation
+
+- AI-Workspace、Huuuge、CF_collect 与 Document Assistant 的权威 `main` 已分别核验；业务仓库工作树均干净。
+- 文档职责、八个进度板块、关键状态、secret scan、`git diff --check`、Task Registry、Context/Memory 回归与 rollback copy 通过。
+- 未启动模拟器、Root、Frida、Collector，未执行 Spin；Workspace Sync 保持 ON_DEMAND，WATCH disabled，Subagents: none / OFF。
+
+### Review
+
+- TASK-0019 更新为 `Review`；等待 ChatGPT Review，不自行合并 `main`。
+
 ## [0.17.4] - 2026-08-29
 
 ### Accepted

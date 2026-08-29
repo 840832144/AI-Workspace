@@ -1,6 +1,6 @@
 # 02 — Current State
 
-_Last reviewed: 2026-08-27_
+_Last reviewed: 2026-08-29_
 
 本文件是便于 ChatGPT Project 新对话快速进入状态的动态摘要。执行任务前仍需读取 Git 中的最新 Task、Status、Handoff 和业务仓库。
 
@@ -14,20 +14,23 @@ _Last reviewed: 2026-08-27_
 - AI Document Assistant 已接入 Codex，可读写飞书云文档并自动设置企业内可编辑权限。
 - Codex 跨项目 Global AGENTS 已采用 Capability-first / Reuse-first 规则。
 - Codex 1+4 Subagent Pilot 已通过 Review；默认 `OFF`，可在受限权限和适合的复杂任务中手动启用。
-- Git-backed Automatic Memory 当前处于 `Review`；production 默认 `ASSISTED`，Global hook 与 production AUTO 未激活。
-- “策划在新电脑上按文档和 AI 引导完成采集与文档流程”的首轮验收暂定通过，后续通过真实使用继续优化。
+- Git-backed Automatic Memory 已通过 TASK-0016 Review Round 3 并 `Accepted`；production 默认 `ASSISTED`，Global hook 与 production AUTO 未激活。
+- Task Registry / allocator、Workspace Sync contract、文档导航中心、Idea Governance 与 Product Roadmap 已分别通过 TASK-0020、TASK-0021、TASK-0023 Review。
+- Collector 1.0 已通过 TASK-0026 Review Round 3 并 `Accepted`；实现位于 `CF_collect/main@4df10ec20e79bb737912c8d1b847fae3659031ae`，范围继续固定为已审阅 contract 与六字段。
+- 当前 Windows 工作站的 Workspace 与 Document Assistant 接入已完成现场验收，可标记为 `Ready`；这只证明本机治理与文档能力可用，不等于 Huuuge First Run 已通过。
+- Huuuge First Run 状态为 `Blocked`：独立策划盲测记录仍为空，尚无未参与开发的策划在新电脑上独立完成安装、采集、Finalize、报告与文档回读的证据。没有直接 Bet 分层运行证据或稳定 RTP/EV 统计证据，不得从字段、单次样本或描述性比率推导 Bet 与 RTP 关系。
 
 ## 当前执行入口
 
 当前 User 已授权：
 
 ```text
-AI-Workspace/tasks/TASK-0022-CASH-FRENZY-ANDROID-COLLECTOR-FEASIBILITY-AUDIT.md
+AI-Workspace/tasks/TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md
 ```
 
-状态：`Ready`；执行前仍需从最新 `main` 和 Handoff 确认当前边界，不得依据本离线摘要直接启动。
+状态：`Review`；独立分支已从 `main@c74c85a9524d1524ea3696835509de2a55e9f524` 建立，两份 Git 源稿与原位飞书文档已按当前权威状态刷新，等待 ChatGPT Review。执行前仍需从最新 `main` 和 Handoff 确认边界，不得依据本离线摘要直接启动业务任务。
 
-背景：TASK-0020 已 Accepted 并建立正式 Task Registry / allocator；经 User 批准的 Cash Frenzy Candidate 已晋升为唯一 canonical TASK-0022。历史误建文件继续保留为 `Cancelled` companion，不作为执行入口。
+背景：TASK-0026 已 Accepted 并合入 `CF_collect/main@4df10ec20e79bb737912c8d1b847fae3659031ae`；当前任务只维护 Workspace 项目说明与状态入口，不启动模拟器、Root、Frida、Collector 或 Spin。
 
 TASK-0020 已确认结果：
 
@@ -35,10 +38,10 @@ TASK-0020 已确认结果：
 - 已实现 `scan / validate / next / release / candidate / promote`；
 - duplicate、格式/Registry 漂移、并发分配、lock 和非最新 Git fail closed；
 - ADR-0006 提议采用全局 `TASK-XXXX` + `project_key` + 可选 alias；
-- 14/14 disposable tests 与 PowerShell 5.1 回归通过；真实仓库当前 8 canonical、0 collision；
+- Task 23/23 与 PowerShell 5.1 回归通过；真实仓库当前 13 canonical、0 collision；
 - TASK-0021 已 Accepted，文档导航中心与 Workspace Sync 规则进入最终状态；
-- TASK-0023 已完成 ChatGPT Review Round 2 并 Accepted；唯一 Product Roadmap、Idea Governance 与 Planner Writing Style 正式生效，且不改变 TASK-0022 的状态或执行顺序；
-- 不执行 Cash Frenzy，不修改任何业务仓库。
+- TASK-0023 已完成 ChatGPT Review Round 2 并 Accepted；唯一 Product Roadmap、Idea Governance 与 Planner Writing Style 正式生效；
+- 本轮不修改 Cash Frenzy、Huuuge 或 Document Assistant 业务实现仓库。
 
 ## 当前 Huuuge 任务
 
@@ -53,11 +56,13 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 ## 当前并行 Workspace 任务
 
-- `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md`：`Ready`。
+- `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md`：`Review`，当前唯一执行入口。
 - `TASK-0021-Workspace-Live-Context-Hub.md`：`Accepted`；Live Context、Workspace Sync 和文档导航治理已完成。
 - `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md`：`Accepted`；唯一 Product Roadmap、Idea Governance、技术术语规则与两个正式文档入口已完成并正式生效。
+- `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md`：`Ready`，等待 User 明确切回，不与当前任务并行执行。
+- `TASK-0026-COLLECTOR-1-0-ENGINEERING.md`：`Accepted`，不在当前任务内扩大字段、模块或动态运行范围。
 
-并行任务必须使用独立 branch / linked worktree。TASK-0020 的 Registry 只登记 TASK-0021，不执行、改写或提前实现其飞书 / Context Hub 范围。
+并行任务必须使用独立 branch / linked worktree。当前 TASK-0019 不合并旧 `task-0019-overview-progress`，只选择性复用其文档内容并以最新真相源重写。
 
 ## 当前重要决策
 
@@ -105,19 +110,19 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - 任何当前功能、任务、编号、状态或 commit 的判断必须查询对应 Git 仓库，不能仅依据本文件。
 - Task Registry / allocator 已通过 TASK-0020 Review 并进入 main；任何新 Task 仍必须通过 latest-main、独立 worktree 和 remote-CAS 流程。
 
-## 近期候选方向
+## 当前排队与候选方向
 
-- Cash Frenzy Collector Feasibility Audit：已由批准 Candidate 晋升为 TASK-0022；按最新 Task 与 Handoff 执行，不由 RFC-0004 回溯修改当前环境决定。
-- Top Tycoon Feasibility Audit：Cash Frenzy Review 后再建立，不并行。
-- 绯闻港口 Feasibility Audit：Top Tycoon Review 后再建立，不并行。
-- AI Report Engine：Knowledge → Template → AI → Markdown。
-- Planner-facing UX & Deployment Standard 的持续落地。
-- 多实例独立数据库与跨账号脱敏聚合模型。
+- Top Tycoon F4 Feasibility Audit 已是 canonical TASK-0025 / `Ready`，但 User 尚未切回该方向；不得与当前 TASK-0019 并行执行。
+- Huuuge First Run 独立盲测是已存在的验证 Gate，不是已通过能力；由 User 指定未参与开发的策划后执行。
+- AI Report Engine：Knowledge → Template → AI → Markdown；仍为 `Planned`，需要独立 Candidate、contract 与回归。
+- Planner Toolkit：只从 Accepted、证据完整的方法中抽取可执行 Skill，不把分类模型写成 Available。
+- 多实例独立数据库与跨账号脱敏聚合模型：保持 Planned，Raw 不跨账号直接混合。
+- 新游戏 Adapter、Documentation Portal、Recent Updates 等方向仍需 User 批准，不因 Product Roadmap 或本文出现而自动创建 Task。
 
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-28T06:54:26Z
+- Generated: 2026-08-29T06:41:50Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -126,6 +131,6 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 ### Active public control-plane tasks
 
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
-- `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Ready
+- `TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md` — Review
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md` — Ready
 <!-- MEMORY-CONTEXT:END -->

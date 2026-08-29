@@ -2,11 +2,22 @@
 
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
-- Updated: 2026-08-27
-- Current Review request: none — TASK-0023 Review Round 2 Accepted
-- TASK-0023 status: `Accepted`
+- Updated: 2026-08-29
+- Current Review request: TASK-0019 — 项目全景说明与独立进度文档
+- TASK-0019 status: `Review`
 - Project key: `WORKSPACE`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
+
+## TASK-0019 — Current Review Request
+
+- Review branch：`codex/task-0019-overview-progress-refresh`，基于 `main@c74c85a9524d1524ea3696835509de2a55e9f524`；未 merge 旧 `task-0019-overview-progress`。
+- Git deliverables：`docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md`（稳定说明）与 `docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md`（动态状态），不得合并职责。
+- 核验 main：Huuuge `4a5dddf`、CF_collect `4df10ec`、Document Assistant `b0292c3`；均与远端一致且工作树干净。
+- 必查口径：TASK-0026 `Accepted`；新工作站 Host `Ready`；Huuuge First Run `Blocked`；没有 Bet→RTP 或稳定 RTP/EV 的直接证据。
+- 必查 Provider 分离：Workspace Sync 为 `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；Document Assistant 为 `Available`，healthcheck token/API/Drive 全部 `ok`。
+- 飞书验收：两份原文档均原位 replace、正文回读、企业内可编辑；Hub 自动登记/readback 通过，17 个登记项、链接唯一，无重复文档。
+- Scope：未修改业务仓库；未启动模拟器、Root、Frida、Collector，未执行 Spin；Subagents: none / OFF。
+- Review 输出：`Accepted` 或精确修改项；未 Accepted 前不得合并 `main`。
 
 ## TASK-0023 — Idea Governance & Product Roadmap
 

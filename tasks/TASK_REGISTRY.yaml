@@ -146,15 +146,15 @@ entries:
     canonical_file: "tasks/TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md"
     file: "tasks/TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md"
     title: "AI Workspace 项目全景说明与独立进度文档"
-    status: "Ready"
+    status: "Review"
     project_key: "WORKSPACE"
     human_alias: ""
     owner: "User / ChatGPT"
     executor: "Codex"
     priority: "P1 / project visibility and long-term governance"
     created_date: "2026-08-27"
-    updated_date: "2026-08-27"
-    related_tasks: []
+    updated_date: "2026-08-29"
+    related_tasks: ["TASK-0026"]
     kind: "canonical"
   - id: "TASK-0020"
     canonical_file: "tasks/TASK-0020-Task-Allocation-and-Namespace-Governance.md"
