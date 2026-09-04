@@ -2,6 +2,29 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.18.2] - 2026-09-04
+
+### Added
+
+- User 批准 P0 Reliability Hardening 后，使用 remote-CAS allocator 正式建立 canonical `TASK-0027 — Huuuge Laptop Demo Reliability Hardening`，没有手工选号；reservation 保持 `pending-main`。
+- 新增 `tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md`，按“笔记本汇报实机演示”的最小范围记录已具备项、缺失项、推荐动作、成功标准和回退方案。
+
+### Confirmed
+
+- 本机 Windows hypervisor/VMP、31.7 GB RAM、Git、Python、SVN CLI/TortoiseSVN、`D:\AI-Workspace` 和 Document Assistant 可用。
+- 已安装的 BlueStacks 5 runtime、BlueStacks ADB、专用 `HuuugeResearch`、Huuuge 实装 identity 与正式 Collector 本机包缺失；最终复核发现下载目录与 Temp 中 2 个 Installer 进程，但无产品目录/服务/卸载项，Codex 未操作它们。MuMu 已安装并运行，NoxPlayer 已安装，当前无 ADB/5037 listener。
+- 当前 Workspace 路径是 `D:\AI-Workspace`；没有把旧电脑 `C:\AI-Workspace`、`Pie64_1`、ADB port、VHD、Root 或 `.local` 当作本机事实。
+
+### Gate
+
+- TASK-0027 停在 Environment Change Approval Gate。User 需先决定关闭/取消现有 Installer 或明确批准继续；BlueStacks 安装/路径、其他模拟器共存处理、管理员/重启、新实例、ADB、游戏/SVN 登录和正式包目录均等待 User 审批。
+- 未安装或启停任何软件/模拟器/服务，未创建实例，未 Root，未启动 Frida/Collector，未执行 Spin；未修改业务仓库或飞书文档。Subagents: none / OFF。
+
+### Validation
+
+- Task 23/23、Context 13/13、Memory 44/44、TASK-0027 定向断言 12/12；Registry 14 canonical / 0 collision / valid。
+- Context refresh 72 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 unexpected path / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过。
+
 ## [0.18.1] - 2026-08-29
 
 ### Accepted

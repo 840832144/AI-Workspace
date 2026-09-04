@@ -1,6 +1,6 @@
 # AI Workspace｜产品路线图（Product Roadmap）
 
-> 更新时间：2026-08-28
+> 更新时间：2026-09-04
 > Git 真相源：`docs/roadmaps/PRODUCT_ROADMAP.md`
 > 适用范围：Game Planner AI Workspace 的长期产品方向
 
@@ -10,11 +10,11 @@
 
 ## 🔥 Current
 
-### 【游戏】 Collector 1.0
+### Huuuge Laptop Demo Reliability Hardening
 
-- 当前状态：TASK-0026 已完成 allocator finalize；Collector 1.0 实现已 push 到 `CF_collect@7c32877` 并进入 ChatGPT Review，未执行新的动态 Spin。
-- 产品目标：在不恢复新字段、不扩大 `batch_spin` 六字段 schema、不改变 Android 9 已验证采集路线的前提下，建立 Adapter Registry、统一 Event contract 与固定 Session artifacts。
-- 下一动作：ChatGPT Review `codex/collector-1-engineering@7c32877` 的 Adapter contract、固定 artifacts、Sidecar allowlist 与部署兼容性；Review 前不合入正式仓库 main，不扩大字段或模块。
+- 当前状态：User 已批准 P0 方向；remote-CAS allocator 建立 canonical `TASK-0027`。Phase A Laptop Readiness Audit 已完成，环境尚未 Ready。
+- 产品目标：用笔记本完成最小汇报实机演示，并让 preflight、Collector READY、User 操作边界、finalize、cleanup 和回退都可复核。
+- 当前 Gate：等待 User 审批 BlueStacks 安装/路径、其他模拟器共存处理、专用 `HuuugeResearch`、ADB 和正式 SVN 包目录；批准前不安装、不启动 Collector、不 Spin。
 
 ## 📋 Backlog
 
@@ -48,6 +48,12 @@
 - 主要 Gate：单活动 Capture、前台包名校验、游戏级数据隔离和对现有独立环境决策的兼容性 Review。
 
 ## ✅ Done
+
+### 【游戏】 Collector 1.0
+
+- 已交付：Adapter Registry、统一 Event contract、固定 Session artifacts、精确 cleanup ownership 与扁平 0/1/N 集合语义。
+- 完成依据：TASK-0026 ChatGPT Review Round 3 Accepted；`CF_collect/main@4df10ec20e79bb737912c8d1b847fae3659031ae`。
+- 后续边界：固定六字段、READY、Root、Hook/serializer 均不扩大；新游戏、字段或动态范围另立 Task。
 
 ### 【游戏】 Inbound Structured Capture Spike
 

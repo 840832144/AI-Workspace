@@ -2,11 +2,23 @@
 
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
-- Updated: 2026-08-29
-- Current Review request: TASK-0019 — 项目全景说明与独立进度文档
-- TASK-0019 status: `Accepted`
-- Project key: `WORKSPACE`
+- Updated: 2026-09-04
+- Current Review request: TASK-0027 — Huuuge Laptop Demo Reliability Hardening
+- TASK-0027 status: `In Progress / Environment Change Approval Gate`
+- Project key: `HUUUGE`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
+
+## TASK-0027 — Laptop Readiness Audit
+
+- User 已批准 P0 方向；allocator 通过 remote-CAS 建立唯一 canonical `TASK-0027`，没有手工选号，reservation 为 `pending-main`。
+- 当前只完成笔记本只读 Audit：Windows hypervisor/VMP、31.7 GB RAM、Git、Python、SVN 和 Document Assistant 可用；已安装的 BlueStacks runtime、BlueStacks ADB、`HuuugeResearch`、Huuuge 实装 identity 与正式 Collector 本机包缺失。复核时发现 2 个 Installer 进程，但未见产品目录/服务/卸载项；Codex 未操作它们。
+- MuMu 已安装且后台运行，NoxPlayer 已安装；当前无 ADB/5037 listener。本轮没有停止、安装、Root、启动 Collector 或执行 Spin。
+- 当前 Workspace 为 `D:\AI-Workspace`；不得复用旧电脑 `C:\AI-Workspace`、`Pie64_1`、ADB port、VHD、Root、账号或 `.local`。
+- 推荐动作与成功/回退标准已写入 `tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md`；所有动作都需 User 逐项批准。
+- 唯一下一步先由 User 决定关闭/取消当前 Installer，或明确批准继续安装；未决前保持 Environment Change Approval Gate。
+- Environment Ready 只允许进入 Reliability Hardening，不等于 Collector READY、RC4 通过或实机演示成功。
+- Validation：Task 23/23、Context 13/13、Memory 44/44、TASK-0027 定向 12/12、Registry 14 canonical / 0 collision / valid、Context 72 sources / 0 broken link / 0 secret issue、changed-document scan 与 Workspace Doctor、`git diff --check` 通过。
+- Subagents: none / OFF。未修改业务仓库、模拟器、Collector、飞书文档或 Codex 配置。
 
 ## TASK-0019 — Accepted Closure
 
@@ -22,8 +34,8 @@
 - 飞书验收：Round 3 只原位 replace 既有进度文档，没有创建副本，项目全景飞书文档未写；进度文档正文、document ID/链接和 `tenant_editable` 权限回读通过，Hub 保持 17 个登记项、`unique_links=true`，进度标题唯一。
 - Scope：未修改业务仓库；未启动模拟器、Root、Frida、Collector，未执行 Spin；Subagents: none / OFF。
 - Validation：Round 3 定向断言 12/12、Task 23/23、Context 13/13、Memory 44/44、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue、changed-document scan 11 files / 0 broken link / 0 secret assignment / 0 stale READY / 0 new Task、项目全景 hash 不变与 `git diff --check` 通过。
-- 决策边界：P0 Reliability Hardening 只保留 Decision proposal；未获 User 批准不创建 Task、不进入实现或运行。
-- Closure：治理分支 fast-forward 合入 AI-Workspace `main` 后结束 TASK-0019；后续唯一动作是等待 User 审议 P0 Reliability Hardening Decision proposal。
+- 历史决策边界：TASK-0019 收口时 P0 Reliability Hardening 只保留 Decision proposal；该 Gate 已由 2026-09-04 User 批准和 TASK-0027 supersede。
+- Closure：TASK-0019 已结束；后续执行只从 TASK-0027 进入。
 
 ## TASK-0023 — Idea Governance & Product Roadmap
 
@@ -119,4 +131,4 @@
 
 ## Exact Next Action
 
-TASK-0019 已 Accepted。User 审议 P0 Reliability Hardening Decision proposal；未经明确批准不创建 Task、不进入实现或运行。在新的 User 决定前不启动业务环境。
+User 审批 TASK-0027 Audit 的环境动作；未批准前不安装 BlueStacks、不创建 `HuuugeResearch`、不启用 ADB、不启动 Collector/Root/Frida、不执行 Spin。

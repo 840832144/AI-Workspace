@@ -1,13 +1,27 @@
 # Codex Handoff
 
-- Updated: 2026-08-29
-- Current task: TASK-0019 — AI Workspace 项目全景说明与独立进度文档
-- Status: Accepted — ChatGPT Review Round 3 已通过，执行 Context / 飞书 / main 收口
-- Branch: AI-Workspace `codex/task-0019-overview-progress-refresh` from `main@c74c85a9524d1524ea3696835509de2a55e9f524`
+- Updated: 2026-09-04
+- Current task: TASK-0027 — Huuuge Laptop Demo Reliability Hardening
+- Status: In Progress — Phase A Laptop Readiness Audit complete；waiting at Environment Change Approval Gate
+- Branch: AI-Workspace `codex/huuuge-laptop-reliability-readiness-audit` from `main@1dd6de3e244858c44b716cacd72961ea9419f564`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
+
+## Current Task — TASK-0027
+
+- User 已批准 P0 Reliability Hardening，范围固定为“笔记本汇报实机演示”。allocator 通过 remote-CAS 正式分配 `TASK-0027`，reservation 保持 `pending-main`；没有手工选号，token 未写入 Git/Handoff。
+- Phase A 只读 Readiness Audit 已完成，详见 `tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md`。
+- 已具备：Windows 11 x64、运行中的 Windows hypervisor/VMP、31.7 GB RAM、Git 2.55、Python 3.11/3.12、SVN CLI/TortoiseSVN、`D:\AI-Workspace` latest main 和 Document Assistant token/API/Drive healthcheck `ok`。
+- 缺失：已安装的 BlueStacks 5 runtime、BlueStacks `HD-Adb.exe`、`HuuugeResearch`、Huuuge package/version/ABI/foreground identity、正式本机 `HuuugeCollector` 包。复核时发现下载目录与 Temp 中 2 个 BlueStacks Installer 进程；未见 runtime 产品目录/服务/卸载项，Codex 未启动、点击或停止安装器。
+- 共存风险：MuMu 5.27.6 已安装且相关进程/服务运行；NoxPlayer 7.0.6.2 已安装。当前无 ADB 进程/5037 listener；本轮未停止或修改任何模拟器。
+- 当前路径事实是 `D:\AI-Workspace`；旧电脑/旧指南的 `C:\AI-Workspace`、`Pie64_1`、ADB port、VHD、Root 和 `.local` 均不得当作本机事实或复制输入。
+- 建议顺序：User 先批准路径和共存处理 → 官方/组织入口安装当前 Hyper-V-compatible BlueStacks 5 → fresh Pie 64-bit `HuuugeResearch` → 仅该实例启用 ADB → User 完成游戏/SVN 登录 → 正式包只做 hash/依赖/static preflight → 再申请进入 Reliability Hardening。
+- Environment Ready 需要实际 BlueStacks 版本/路径、全新 internal ID、唯一 ADB serial/port、Huuuge 实装 identity、正式包 revision/hash和回退边界全部回读；不等于 Collector READY 或 First Run 成功。
+- Validation：Task 23/23、Context 13/13、Memory 44/44、TASK-0027 定向 12/12；Registry 14 canonical / 0 collision / valid；Context refresh 72 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 unexpected / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过。
+- Scope：未安装软件，未启停 BlueStacks/MuMu/Nox/ADB，未创建实例，未修改 Windows feature/PATH/服务，未启动模拟器、Root、Frida、Collector，未执行 Spin；未修改业务仓库或飞书文档。Subagents: none / OFF。
+- 唯一下一步：User 先决定关闭/取消现有 Installer 或明确批准继续，再审批 Audit 中其余环境动作；批准前停止在 Environment Change Approval Gate。
 
 ## Current Task — TASK-0019
 
@@ -24,8 +38,8 @@
 - Validation：Round 3 定向断言 12/12、Task 23/23、Context 13/13、Memory 44/44、Registry 13 canonical / 0 collision / valid、Context refresh 70 sources / 0 broken link / 0 secret issue、changed-document scan 11 files / 0 broken link / 0 secret assignment / 0 stale READY / 0 new Task、项目全景 SHA-256 `BBC2393DCE276678D13363D65099FA3185D23BEB3AA6127CCBBA45387D350E61` 不变与 `git diff --check` 通过。
 - 本轮未启动模拟器、Root、Frida、Collector，未执行 Spin；Workspace Sync 保持 ON_DEMAND，WATCH disabled；Subagents: none / OFF。
 - ChatGPT Review Round 3 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-3.md`：Decision `Accepted`，reviewed commit `ccc1610a69808f7516e4d215d2177454021d108a`；canonical TASK-0019 已更新为 `Accepted`。
-- P0 Reliability Hardening 只保留 Decision proposal；未获 User 批准不创建 Task、不进入实现或运行。
-- 唯一下一步：本治理分支 fast-forward 合入 AI-Workspace `main` 后结束 TASK-0019；后续只等待 User 审议 P0 Reliability Hardening Decision proposal，未经批准不创建 Task。
+- TASK-0019 收口时 P0 Reliability Hardening 仍只是 Decision proposal；该历史 Gate 已由 2026-09-04 User 批准和 TASK-0027 supersede。
+- TASK-0019 已结束；其后续执行入口统一为 TASK-0027，不在已接受 Task 内追加实现。
 
 ## Current Task — TASK-0026
 
@@ -181,10 +195,14 @@
 
 
 
+
+
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-29T09:33:41Z
+- Generated: 2026-09-04T03:37:58Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
@@ -192,4 +210,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-TASK-0019 已 Accepted。User 审议 P0 Reliability Hardening Decision proposal；未经明确批准不创建 Task、不进入实现或运行。在新的 User 决定前只维护已接受的项目进度入口，不启动业务环境。
+TASK-0027 Phase A 已完成。User 审批 `tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md` 中的安装来源/路径、共存处理、管理员/重启、专用实例、ADB 和正式包目录；未获批准不进入环境变更或 Reliability Hardening。

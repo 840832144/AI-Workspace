@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-29T09:33:41Z
+Generated: 2026-09-04T03:37:58Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -529,7 +529,7 @@ TASK-0016 已 Accepted；Git Memory 是 AI 跨会话长期真相源，云文档�
 <!-- SOURCE: 02_CURRENT_STATE.md -->
 # 02 — Current State
 
-_Last reviewed: 2026-08-29_
+_Last reviewed: 2026-09-04_
 
 本文件是便于 ChatGPT Project 新对话快速进入状态的动态摘要。执行任务前仍需读取 Git 中的最新 Task、Status、Handoff 和业务仓库。
 
@@ -549,18 +549,19 @@ _Last reviewed: 2026-08-29_
 - TASK-0019 已通过 ChatGPT Review Round 3 并 `Accepted`；项目全景说明保持稳定，项目进度与能力状态成为唯一动态源稿，正式飞书进度文档继续原位维护。
 - 当前 Windows 工作站的 Workspace 与 Document Assistant 接入已完成现场验收，可标记为 `Ready`；这只证明本机治理与文档能力可用，不等于 Huuuge First Run 已通过。
 - Huuuge First Run 状态为 `Blocked`：正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈仍为 `Failed/Invalid`。正式 Collector READY 未被可复核证明；当前只可确认临时 SSL 捕获后进入 User 操作阶段，游戏操作由 User 亲自操作，不能据此认定 Collector 达到 READY，也不改写正式 RC4 记录。Bet/RTP `Unsupported`：没有 Bet 分层运行证据或稳定 RTP/EV 统计证据，不得从字段、单次样本或描述性比率推导 Bet 与 RTP 关系。
+- User 已批准 P0 Reliability Hardening；allocator 已建立 canonical TASK-0027。Phase A 只读笔记本 Readiness Audit 已完成，当前等待 User 审批环境变更。复核时检测到两个 BlueStacks Installer 进程，但没有产品目录、服务、卸载项或实例；Codex 未操作安装器，尚未创建实例、启动 Collector 或执行 Spin。
 
 ## 当前执行入口
 
 当前 User 已授权：
 
 ```text
-AI-Workspace/tasks/TASK-0019-AI-Workspace-Overview-and-Separate-Progress-Documents.md
+AI-Workspace/tasks/TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md
 ```
 
-状态：`Accepted`；ChatGPT Review Round 3 已审阅 `ccc1610a69808f7516e4d215d2177454021d108a` 并接受 TASK-0019。P0 Reliability Hardening 只保留 Decision proposal，未经 User 批准不得创建 Task、进入实现或启动运行。执行前仍需从最新 `main` 和 Handoff 确认边界，不得依据本离线摘要直接启动业务任务。
+状态：`In Progress / Environment Change Approval Gate`。TASK-0027 仅完成当前笔记本的 BlueStacks/虚拟化/ADB/实例/依赖/Workspace 只读审计；所有安装、配置、登录、专用实例和 Reliability Hardening 动作等待 User 逐项批准。
 
-背景：TASK-0026 已 Accepted 并合入 `CF_collect/main@4df10ec20e79bb737912c8d1b847fae3659031ae`；当前任务只维护 Workspace 项目说明与状态入口，不启动模拟器、Root、Frida、Collector 或 Spin。
+背景：TASK-0019、TASK-0026 已 Accepted。当前笔记本缺已安装的 BlueStacks runtime、BlueStacks ADB、`HuuugeResearch` 与正式 Collector 本机包；User 需先处理当前 Installer Gate。本轮不启动模拟器、Root、Frida、Collector 或 Spin。
 
 TASK-0020 已确认结果：
 
@@ -568,7 +569,7 @@ TASK-0020 已确认结果：
 - 已实现 `scan / validate / next / release / candidate / promote`；
 - duplicate、格式/Registry 漂移、并发分配、lock 和非最新 Git fail closed；
 - ADR-0006 提议采用全局 `TASK-XXXX` + `project_key` + 可选 alias；
-- Task 23/23 与 PowerShell 5.1 回归通过；真实仓库当前 13 canonical、0 collision；
+- Task 23/23 与 PowerShell 5.1 回归通过；TASK-0027 Registry 重建后为 14 canonical、0 collision；
 - TASK-0021 已 Accepted，文档导航中心与 Workspace Sync 规则进入最终状态；
 - TASK-0023 已完成 ChatGPT Review Round 2 并 Accepted；唯一 Product Roadmap、Idea Governance 与 Planner Writing Style 正式生效；
 - 本轮不修改 Cash Frenzy、Huuuge 或 Document Assistant 业务实现仓库。
@@ -591,8 +592,9 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md`：`Accepted`；唯一 Product Roadmap、Idea Governance、技术术语规则与两个正式文档入口已完成并正式生效。
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md`：`Ready`，等待 User 明确切回，不与当前任务并行执行。
 - `TASK-0026-COLLECTOR-1-0-ENGINEERING.md`：`Accepted`，不在当前任务内扩大字段、模块或动态运行范围。
+- `TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md`：`In Progress`，Phase A 完成，等待 User 审批环境变更。
 
-并行任务必须使用独立 branch / linked worktree。当前 TASK-0019 不合并旧 `task-0019-overview-progress`，只选择性复用其文档内容并以最新真相源重写。
+并行任务必须使用独立 branch / linked worktree。TASK-0027 不复用旧电脑的路径、实例 ID、VHD、ADB port、Root、账号或 `.local`。
 
 ## 当前重要决策
 
@@ -642,7 +644,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 ## 当前排队与候选方向
 
-- Top Tycoon F4 Feasibility Audit 已是 canonical TASK-0025 / `Ready`，但 User 尚未切回该方向；不得与当前 TASK-0019 并行执行。
+- Top Tycoon F4 Feasibility Audit 已是 canonical TASK-0025 / `Ready`，但 User 尚未切回该方向；不得与当前 TASK-0027 并行执行。
 - Huuuge First Run 独立盲测是已存在的验证 Gate，不是已通过能力；由 User 指定未参与开发的策划后执行。
 - AI Report Engine：Knowledge → Template → AI → Markdown；仍为 `Planned`，需要独立 Candidate、contract 与回归。
 - Planner Toolkit：只从 Accepted、证据完整的方法中抽取可执行 Skill，不把分类模型写成 Available。
@@ -652,7 +654,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-29T09:33:41Z
+- Generated: 2026-09-04T03:37:58Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -662,6 +664,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md` — Ready
+- `TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md` — In Progress
 <!-- MEMORY-CONTEXT:END -->
 
 <!-- SOURCE: 03_NEW_CHAT_BOOTSTRAP.md -->

@@ -1,9 +1,9 @@
 # Huuuge Android Research — Project Status
 
-- Updated: 2026-08-27
-- Phase: Lottery numerical report Review Round 2；First Run validation remains parallel
+- Updated: 2026-09-04
+- Phase: TASK-0027 P0 Laptop Demo Reliability Hardening；Environment Change Approval Gate
 - Owner: User
-- Current milestone: TASK-0018 Review Round 1 fixes complete, waiting for ChatGPT Review Round 2
+- Current milestone: TASK-0027 Phase A Laptop Readiness Audit complete；waiting for User approval before environment changes
 - External baseline: [`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)
 
 ## Confirmed Current Facts
@@ -29,11 +29,15 @@
 - User pre-validation feedback found that RC1 explained the AI/technical process but did not provide a sufficiently direct novice action sequence. RC2 now opens with a 12-step “新人照着做” path、zero-to-start prompt、pass conditions、recovery phrases and five common replies; this is not counted as independent planner validation.
 - User pre-validation feedback corrected the initial workspace from a disposable First Run folder to persistent `C:\AI-Workspace`. RC3 also defines empty-directory Clone、existing-repository update and non-empty conflict behavior.
 - User confirmed that only AI-Workspace is public while the implementation repositories remain private. RC4 therefore makes public AI-Workspace the only required Git repository, moves private implementation repositories to maintainer-only context, and requires a three-minute fail-fast check for company SVN and the administrator-provisioned Document Assistant.
+- User approved P0 Reliability Hardening on 2026-09-04 for the minimum “笔记本汇报实机演示” scope；remote-CAS allocator established canonical `TASK-0027` without manually selecting an ID.
+- TASK-0027 Phase A found Windows/hypervisor、31.7 GB RAM、Git、Python、SVN CLI/TortoiseSVN、AI-Workspace and Document Assistant available. The installed BlueStacks runtime、BlueStacks ADB、`HuuugeResearch`、Huuuge app identity and the formal local Collector package are absent. Two Installer processes appeared during final readback, but no product directory/service/uninstall entry exists；Codex did not operate them.
+- Current laptop Workspace is `D:\AI-Workspace`; the old `C:\AI-Workspace` guide path and historical `Pie64_1` identity are not assumed reusable. MuMu is installed and running; NoxPlayer is installed. Neither was stopped or modified.
 
 ## In Progress
 
 - ChatGPT Review Round 2 of TASK-0018 planner structure, purchase table and limits, ordinary-bet terminology, Extractor tests and original Feishu replacement.
 - Independent First Run by one planner who did not participate in development remains a separate validation track.
+- TASK-0027 is active but stopped at the Environment Change Approval Gate. No software, instance, ADB, Root, Collector or Spin operation starts before User approves the exact changes and rollback.
 
 ## Risks
 
@@ -57,12 +61,15 @@
   - Mitigation: Trae may generate the sanitized Markdown; an approved Codex/MCP host performs publication without sharing credentials.
 - Private GitHub links require an authenticated collaborator session and are unavailable to the novice test participant.
   - Mitigation: the 30-minute First Run uses only public AI-Workspace, the official SVN package and an administrator-provisioned Document Assistant; private links remain maintainer evidence references, not novice steps.
+- This laptop has no BlueStacks installation or dedicated research instance, while MuMu background components are running and NoxPlayer is installed.
+  - Mitigation: after explicit approval, install the current Hyper-V-compatible BlueStacks from an approved source, create a fresh Pie 64-bit `HuuugeResearch`, and validate ADB/5037 coexistence without reusing another emulator or desktop identity.
 
 ## Blockers
 
 - TASK-0018 has no implementation blocker; Review Round 1 fixes are complete and it is waiting for ChatGPT Review Round 2.
 - TASK-0011 still has a separate validation gate: no uninvolved planner has yet been designated or observed for the required blind test.
+- TASK-0027 environment preparation is blocked on User approval of installation source/path、temporary MuMu stop、administrator/restart changes、new `HuuugeResearch` and the formal Collector package path.
 
 ## Exact Next Action
 
-ChatGPT performs Review Round 2 on `huuuge-android-research@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b` and the original Feishu document, returning `Accepted` or specific changes. Do not start another Capture or modify Collector/CR before Review. TASK-0011 blind validation remains independently pending.
+User reviews `tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md` and approves or changes the exact environment actions. Before that decision, keep the laptop unchanged and do not install BlueStacks、create an instance、enable ADB、start Collector、Root or Spin.
