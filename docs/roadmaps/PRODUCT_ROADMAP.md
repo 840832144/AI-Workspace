@@ -10,11 +10,11 @@
 
 ## 🔥 Current
 
-### Huuuge Laptop Demo Reliability Hardening
+### Huuuge Research Laptop Reliability Hardening
 
-- 当前状态：User 已批准 P0 方向；remote-CAS allocator 建立 canonical `TASK-0027`。Phase A/B 已完成；Phase C 正式包/static preflight 已完成，动态 lifecycle 在启动前阻断。
-- 产品目标：用笔记本完成最小汇报实机演示，并让 preflight、Collector READY、User 操作边界、finalize、cleanup 和回退都可复核。
-- 当前 Gate：SVN 1.0.1 正式包固定 `Pie64_1 / 127.0.0.1:5565 / uid=0(root)`，与本机批准的 `Pie64 / 127.0.0.1:5585 / Root OFF` 冲突。Demo Ready=`No`；等待 User 决定是否另行授权 Collector 工程适配。
+- 当前状态：canonical `TASK-0027` 的 Phase D 工程部署已完成并进入 Review；`Huuuge Research Laptop Ready = Yes`。
+- 产品目标：建立长期可维护的笔记本研究环境，让正式 Collector 1.0.1 的 preflight、READY、短 Session、Stop、Finalize、cleanup 和回退可复现。
+- 当前 Gate：`Pie64_1 / 127.0.0.1:5565 / uid=0(root)` contract 已在专用研究 clone 上通过，不修改 Collector；原 `Pie64 / 5585 / Root OFF` 保留。等待 Review，未 Accepted 前不移入 Done。
 
 ## 📋 Backlog
 

@@ -1,9 +1,9 @@
 # Huuuge Android Research — Project Status
 
 - Updated: 2026-09-04
-- Phase: TASK-0027 P0 Laptop Demo Reliability Hardening；Phase C static preflight complete / dynamic blocked
+- Phase: TASK-0027 P0 Huuuge Research Laptop Reliability Hardening；Phase D complete / Review
 - Owner: User
-- Current milestone: TASK-0027 formal package/static preflight verified；dynamic lifecycle blocked before start
+- Current milestone: Huuuge Research Laptop Ready；formal Collector 1.0.1 lifecycle verified
 - External baseline: [`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)
 
 ## Confirmed Current Facts
@@ -31,18 +31,21 @@
 - User confirmed that only AI-Workspace is public while the implementation repositories remain private. RC4 therefore makes public AI-Workspace the only required Git repository, moves private implementation repositories to maintainer-only context, and requires a three-minute fail-fast check for company SVN and the administrator-provisioned Document Assistant.
 - User approved P0 Reliability Hardening on 2026-09-04 for the minimum “笔记本汇报实机演示” scope；remote-CAS allocator established canonical `TASK-0027` without manually selecting an ID.
 - TASK-0027 Phase B verified BlueStacks 5 `5.22.262.1001` / Services `3.0.9` under the current Hypervisor/VMP, program path `C:\Program Files\BlueStacks_nxt\`, data path `D:\BS\BlueStacks_nxt\Engine\`, and normal start/exit/restart reproduction.
-- The sole local fresh Pie 64-bit internal ID is `Pie64`, displayed as `HuuugeResearch`; it uses 4 CPU / 4096 MB, ADB `127.0.0.1:5585`, remote ADB OFF and Root OFF. Default 5555 conflicted with Windows excluded ports and was changed only after User approval.
+- The original local `Pie64` remains available as `HuuugeResearch-PhaseB / 127.0.0.1:5585 / Root OFF`. Under Phase D authorization, the current Huuuge installation was cloned into the dedicated long-term research instance `Pie64_1 / HuuugeResearch / 127.0.0.1:5565 / Root ON`; the original instance was not deleted or Rooted.
 - User completed Huuuge installation/login. Read-only ADB evidence confirms package `com.huuuge.casino.slots`, versionName `12.08.27100`, versionCode `1786533240` and primary ABI `arm64-v8a`; Codex did not install, log in, click the game, run Collector or execute Spin.
 - BlueStacks bundled `HD-Adb.exe` can wait indefinitely while scanning excluded default emulator ports; both run-owned attempts were cleaned by exact PID, with no 5037 or client residue. The endpoint itself passed a read-only direct ADB transport probe. This CLI behavior is explicit Phase C Reliability Hardening input, not hidden success.
-- Current laptop Workspace is `D:\AI-Workspace`; the old `C:\AI-Workspace` guide path and historical `Pie64_1` identity were not reused. MuMu remained running and Nox remained unchanged; neither occupied 5585/5037 or was modified.
+- Current laptop Workspace is `D:\AI-Workspace`; no desktop VHD、port、Root config or black-box instance was copied. MuMu/Nox remained unchanged.
 - TASK-0027 Phase C obtained the official SVN 1.0.1 package at `C:\HuuugeCollector@r6701`; installer/tree last changed at r6624, clean source revision is `77e0339fa73da2ab02fcbb6cff125604a9a8abd5`, ZIP SHA-256 is `ACAC144B3CB58E861345D33F6CEEB95ACA0E1CE3CF8B49211C6E7AFB260A958A`, and manifest/static parse checks passed.
-- The formal controller hard-codes `Pie64_1 / 127.0.0.1:5565` and requires real `uid=0(root)`. This conflicts with the approved laptop identity `Pie64 / 127.0.0.1:5585 / Root OFF`; dynamic Start/READY/Session/Stop/Finalize was therefore not run and Demo Ready is `No`.
+- User approved Scheme C and Phase D engineering deployment to match the formal contract without changing Collector. Windows 5565 exclusion was repaired after explicit approval; Google platform-tools `37.0.1`、Frida server/Gadget `17.17.0` and isolated Python dependencies are present.
+- Formal Collector 1.0.1 Session `20260904_135724` completed `Start → READY → 15-second idle Session → Stop → Finalize`: RPC `61` / decoded `61`、manifest `stopped`、controller `finalized`. No Spin or game interaction occurred.
+- Final cleanup stopped the Collector/bootstrap processes、root Frida server、Huuuge process and ADB forward; persistent Gadget/config remains for long-term use. `Pie64` stays Root OFF and `Pie64_1` stays Root ON. `Huuuge Research Laptop Ready = Yes`.
+- This lifecycle proof does not change formal RC4 `Pending`, historical User run `Failed/Invalid`, or Bet/RTP `Unsupported`; an uninvolved planner First Run remains a separate validation track.
 
 ## In Progress
 
 - ChatGPT Review Round 2 of TASK-0018 planner structure, purchase table and limits, ordinary-bet terminology, Extractor tests and original Feishu replacement.
 - Independent First Run by one planner who did not participate in development remains a separate validation track.
-- TASK-0027 is active. Phase C package/static preflight is complete; dynamic lifecycle is stopped before start pending a new scope decision.
+- TASK-0027 Phase D implementation is complete and waiting Review. The long-term research laptop is ready; a future formal capture still needs its own explicit Session scope.
 
 ## Risks
 
@@ -66,15 +69,15 @@
   - Mitigation: Trae may generate the sanitized Markdown; an approved Codex/MCP host performs publication without sharing credentials.
 - Private GitHub links require an authenticated collaborator session and are unavailable to the novice test participant.
   - Mitigation: the 30-minute First Run uses only public AI-Workspace, the official SVN package and an administrator-provisioned Document Assistant; private links remain maintainer evidence references, not novice steps.
-- The approved BlueStacks endpoint works on 5585, but bundled `HD-Adb.exe` server startup scans excluded default emulator ports and can hang before opening 5037.
-  - Mitigation: Phase C must pin a deterministic ADB implementation or direct endpoint strategy with timeout、exact cleanup and explicit serial; Collector remains stopped until that preflight is approved and passes.
+- A Huuuge app update may replace the app directory and remove the staged Gadget/config.
+  - Mitigation: run formal bootstrap before every Session; if Gadget/config is missing, restage the pinned 17.17.0 files before Start.
 
 ## Blockers
 
 - TASK-0018 has no implementation blocker; Review Round 1 fixes are complete and it is waiting for ChatGPT Review Round 2.
 - TASK-0011 still has a separate validation gate: no uninvolved planner has yet been designated or observed for the required blind test.
-- TASK-0027 Phase C dynamic lifecycle is blocked by the formal package's Root/Pie64_1/5565 contract mismatch and missing fixed ADB/Frida dependencies. Continuing requires Collector engineering changes or changing the approved Root/instance boundary.
+- TASK-0027 has no implementation blocker. RC4 still requires an independent planner First Run and is not closed by the engineering lifecycle proof.
 
 ## Exact Next Action
 
-User decides whether to authorize a separately scoped Collector engineering adaptation for `Pie64 / 5585 / Root OFF`. Until then keep BlueStacks、Root、Frida、Collector and Spin stopped.
+User confirms TASK-0027 Phase D completion. Any future formal capture begins only from a separately stated Session scope; this Task does not authorize Spin or Bet/RTP work.

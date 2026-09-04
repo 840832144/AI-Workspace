@@ -3,29 +3,25 @@
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
 - Updated: 2026-09-04
-- Current Review request: TASK-0027 — Huuuge Laptop Demo Reliability Hardening
-- TASK-0027 status: `In Progress / Phase C static preflight complete / dynamic lifecycle blocked before start`
+- Current Review request: TASK-0027 — Huuuge Research Laptop Reliability Hardening
+- TASK-0027 status: `Review / Phase D complete / Huuuge Research Laptop Ready`
 - Project key: `HUUUGE`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
 
-## TASK-0027 — Laptop Environment-ready
+## TASK-0027 — Huuuge Research Laptop Ready
 
-- User 已批准 P0 方向；allocator 通过 remote-CAS 建立唯一 canonical `TASK-0027`，没有手工选号，reservation 为 `pending-main`。
-- Phase A Audit 与 Phase B BlueStacks Environment-ready 已完成；正式验收见 `tasks/support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md`。
-- BlueStacks 5 `5.22.262.1001` / Services `3.0.9` 在当前 Hypervisor/VMP 下完成正常启动、退出、重启；program `C:\Program Files\BlueStacks_nxt\`，data `D:\BS\BlueStacks_nxt\Engine\`。
-- 本机安装生成的唯一 fresh Pie 64-bit internal ID 为 `Pie64`，显示名 `HuuugeResearch`，4 CPU / 4096 MB；没有复用台式机实例、VHD、路径、ADB port 或 Root 配置。
-- 默认 ADB 5555 被 Windows excluded range `5485–5584` 覆盖。User 单独批准改为 5585 后，唯一 `127.0.0.1:5585` listener、5037=0、direct ADB transport 与 Root OFF 均通过。
-- User 完成 Huuuge 安装/登录和游戏启动；只读回读 package `com.huuuge.casino.slots`、versionName `12.08.27100`、versionCode `1786533240`、primary ABI `arm64-v8a`。Codex 未安装、登录、点击游戏或 Spin。
-- BlueStacks bundled `HD-Adb.exe` 会在 excluded default emulator ports 上长等待；两次尝试均按 run-owned exact PID 清理，最终 HD-Adb/5037 无残留。该行为是 Phase C 的明确 Reliability Hardening 输入，不能静默视为成功。
-- MuMu 保持原运行状态，Nox 保持原状；二者未占用 5585/5037，未停止或修改。最终 BlueStacks Player、Multi-instance Manager、ADB client 和 5037/5585 均停止。
-- 回退在另一份 config copy 上恢复 Baseline 5/5；live config 保持批准的 `HuuugeResearch / ADB enabled / 5585 / Root OFF`。
-- Environment-ready 只允许申请下一 Gate，不等于 Collector READY、正式 RC4 通过、Reliability Hardening 或实机演示成功。
-- Phase C 已取得 `C:\HuuugeCollector@r6701`；版本 `1.0.1`、source revision `77e0339fa73da2ab02fcbb6cff125604a9a8abd5`、ZIP SHA-256 `ACAC144B3CB58E861345D33F6CEEB95ACA0E1CE3CF8B49211C6E7AFB260A958A`、manifest `3/3`、PowerShell `9/9`、Python AST `5/5` 通过。
-- 启动前发现正式 controller 固定 `Pie64_1 / 5565 / uid=0(root)`，而本机边界是 `Pie64 / 5585 / Root OFF`；ADB/Frida 固定依赖也缺失。按 scope stop，未启动 BlueStacks/Collector/Frida，未产生 READY、Session、Stop 或 Finalize；Demo Ready=`No`。
-- Validation：Task 23/23、Context 13/13、Memory 44/44、Phase C focused 20/20；Registry 14 canonical / 0 collision / valid；Context refresh 74 sources / 0 broken link / 0 secret issue；changed-document allowlist 12/12；Workspace Doctor、PowerShell Context entry 与 `git diff --check` 通过。
-- 回归失败记录：默认 Windows TEMP 首轮只在临时目录 tearDown 出现 handle race；使用隔离 ASCII TEMP + UTF-8 重跑后 Context 13/13、Memory 44/44 通过，未改测试或产品代码。
-- Subagents: none / OFF。未安装/卸载软件，未修改 Windows、MuMu/Nox、业务仓库、Collector、飞书文档或 Codex 配置；未启动 Root、Frida、Collector 或 Spin。
-- 唯一下一步：User 决定是否另行授权 Collector 工程适配，使正式入口支持本机 `Pie64 / 5585 / Root OFF`；未授权不启动动态流程。
+- User 已批准 P0、Scheme C 与 Phase D 工程部署；目标是长期 Huuuge Research Laptop，不是临时汇报方案。remote-CAS canonical `TASK-0027` reservation 保持 `pending-main`。
+- BlueStacks `5.22.262.1001`：原 `Pie64 / HuuugeResearch-PhaseB / 5585 / Root OFF` 保留；研究 clone 为 `Pie64_1 / HuuugeResearch / 5565 / Root ON`。没有复制台式机 VHD、path、port 或 Root 配置。
+- Windows 动态 excluded range 曾覆盖 5565；经 User 单独批准建立 5565 administered exclusion，最终 5565 listener count 1。MuMu/Nox 未停止或修改。
+- 固定依赖已准备：Google platform-tools `37.0.1`、Frida host/server/Gadget `17.17.0`、正式 SVN Collector `C:\HuuugeCollector@r6701` / `1.0.1`。SVN 版本化文件 clean；Collector、Hook/serializer 与六字段未改。
+- 正式 bootstrap 无 action item；`-ValidationOnly` Session `20260904_135724` 达到 strict READY，15 秒无操作为 RPC/decoded `61/61`；Stop 后 manifest=`stopped`，Finalize=`finalized`，active state absent。
+- Final cleanup：host capture process `0`、guest temporary residual `0`；本轮 root Frida server、Huuuge process 与 ADB forward 已停止；Gadget/config 作为长期依赖保留。
+- 缺陷处理：空白 `Pie64_1` 经 User 批准删除后 clone 当前本机实例；自动分配的 `Pie64_2` 在关闭状态下对齐为 `Pie64_1`；首次 live Root 因 Python import 绑定失败后自动回滚，修正进程级环境绑定后成功。
+- 回退：pre-root-live host binaries、config 与 research VHD 已备份；rollback fixture 在独立 copy 上恢复一致，live environment 保持 MODIFIED。默认回退保留原 `Pie64` 与批准的 5565 allocation。
+- 边界：0 Spin、0 Win/Reward、0 RTP/Bet 分析、0 字段扩展；业务仓库、飞书与 Codex 配置未改。正式 RC4 仍为 `Pending`，历史 User 实跑仍为 `Failed/Invalid`，Bet/RTP 仍为 `Unsupported`。
+- Workspace Sync `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；WATCH disabled；Subagents: none / OFF。
+- Validation：Task 23/23、Context 13/13、Memory 44/44；Registry 14 canonical / 0 collision / valid；Context refresh 75 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过。Context 首轮只有 Windows TEMP teardown handle race，独立 D: ASCII TEMP 重跑 13/13 通过。
+- Review 结论目标：确认 `Huuuge Research Laptop Ready = Yes`，并保持 RC4 与 Bet/RTP 证据边界。
 
 ## TASK-0019 — Accepted Closure
 
@@ -35,7 +31,7 @@
 - TASK-0019 Review Round 3 正式记录为 `reviews/TASK-0019-CHATGPT-REVIEW-3.md`：Decision `Accepted`，reviewed commit `ccc1610a69808f7516e4d215d2177454021d108a`；canonical Task 已更新为 `Accepted`。
 - Git deliverables：`docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md`（稳定说明）与 `docs/status/AI_WORKSPACE_PROJECT_PROGRESS.md`（动态状态），不得合并职责。
 - 核验 main：Huuuge `4a5dddf`、CF_collect `4df10ec`、Document Assistant `b0292c3`；均与远端一致且工作树干净。
-- 必查口径：Huuuge First Run 保持 `Blocked`；正式 RC4 记录仍为 `Pending`；User 实跑仍为 `Failed/Invalid`。正式 Collector READY 未被可复核证明；只确认临时 SSL 捕获后进入 User 操作阶段，游戏由 User 亲自操作。Bet/RTP `Unsupported`。
+- TASK-0019 收口口径：Huuuge First Run 为 `Blocked`，正式 RC4 为 `Pending`，User 实跑为 `Failed/Invalid`，当时正式 Collector READY 未被可复核证明。当前工程 READY 已由 TASK-0027 Phase D 补证，但独立 RC4 与 Bet/RTP `Unsupported` 边界不变。
 - 必查历史与入口：进度文档第 7 节已补历史 TASK-0018 文件冲突和 ChatGPT 直写飞书地区限制；全景说明六个核心 Git 入口已统一到 `c74c85a...` 核验基线。
 - 必查 Provider 分离：Workspace Sync 为 `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；Document Assistant 为 `Available`，healthcheck token/API/Drive 全部 `ok`。
 - 飞书验收：Round 3 只原位 replace 既有进度文档，没有创建副本，项目全景飞书文档未写；进度文档正文、document ID/链接和 `tenant_editable` 权限回读通过，Hub 保持 17 个登记项、`unique_links=true`，进度标题唯一。
@@ -138,4 +134,4 @@
 
 ## Exact Next Action
 
-User 决定是否另行授权 TASK-0027 Collector 工程适配，使正式入口支持本机 `Pie64 / 5585 / Root OFF`；未授权前保持 BlueStacks、Root、Frida、Collector 与 Spin 停止。
+Review TASK-0027 Phase D 的长期研究环境与正式 lifecycle 证据；未给出新的 Session 范围前不运行 Collector 或 Spin。

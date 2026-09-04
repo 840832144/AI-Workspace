@@ -2,6 +2,19 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.18.5] - 2026-09-04
+
+### Huuuge Research Laptop Ready
+
+- User 批准 Scheme C 与 TASK-0027 Phase D 工程部署。原 `Pie64 / 5585 / Root OFF` 保留；当前本机 Huuuge 实例被克隆为长期研究环境 `Pie64_1 / HuuugeResearch / 5565 / Root ON`，没有复制台式机 VHD、port、Root 或黑盒配置。
+- Windows 动态 excluded range 覆盖 5565 后，按 User 单独批准建立单端口 administered exclusion；最终 `127.0.0.1:5565` listener count 1。MuMu/Nox 未停止或修改。
+- Google platform-tools `37.0.1`、Frida host/server/Gadget `17.17.0` 与正式 SVN Collector `1.0.1@r6701` 已对齐；正式 bootstrap 无 action item。Collector 业务逻辑、Hook/serializer 与六字段未改。
+- 正式 `-ValidationOnly` Session `20260904_135724` 完成 Start、strict READY、15 秒无操作 Session、clean Stop 与 Finalize：RPC/decoded `61/61`、manifest `stopped`、controller `finalized`。未执行 Spin、Win/Reward 或 RTP/Bet 分析。
+- Final cleanup 后 host capture process 与 guest temporary residual 均为 0；本轮 root Frida server、Huuuge process 与 ADB forward 已停止，长期 Gadget/config 保留。Root/Gadget rollback 已在独立 copy 验证，live 环境保持长期研究状态。
+- 新增 `tasks/support/TASK-0027/PHASE_D_LAPTOP_SETUP.md`；TASK-0027 进入 `Review`，`Huuuge Research Laptop Ready = Yes`。正式 RC4 继续 `Pending`，历史 User 实跑继续 `Failed/Invalid`，Bet/RTP 继续 `Unsupported`。
+- Workspace Sync 保持 `ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；WATCH disabled；Subagents: none / OFF。业务仓库、飞书与 Codex 配置未修改。
+- 验证通过：Task 23/23、Context 13/13、Memory 44/44、Registry 14 canonical / 0 collision / valid、Context refresh 75 sources / 0 broken link / 0 secret issue、changed-document scan 13 files / 0 broken link / 0 secret assignment、Workspace Doctor 与 `git diff --check`。Context 首轮仅在 Windows TEMP teardown 出现 handle race，改用独立 D: ASCII TEMP 后 13/13 通过。
+
 ## [0.18.4] - 2026-09-04
 
 ### Phase C preflight

@@ -1,23 +1,23 @@
-# TASK-0027 — Huuuge Laptop Demo Reliability Hardening
+# TASK-0027 — Huuuge Research Laptop Reliability Hardening
 
-- Status: In Progress
+- Status: Review
 - Project key: HUUUGE
-- Human alias: HUUUGE-LAPTOP-DEMO-RELIABILITY
+- Human alias: HUUUGE-RESEARCH-LAPTOP-RELIABILITY
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P0
 - Date: 2026-09-04
 - Updated: 2026-09-04
-- User authorization: User approved P0 Reliability Hardening for the minimum “笔记本汇报实机演示” scope
+- User authorization: User approved P0 Reliability Hardening, then approved Scheme C and Phase D engineering deployment for a long-term Huuuge Research Laptop
 - Allocation method: `task_cli.py next` / remote-CAS reservation
 - Allocation relationship: new
 - Related tasks: TASK-0019
 
 ## Goal
 
-把 Huuuge First Run 从“正式 RC4 `Pending`、User 实跑 `Failed/Invalid`、正式 Collector READY 未被可复核证明”的状态，收敛为适合笔记本现场汇报的最小、可复查、可回退演示路径。
+建立长期可用、可维护、可回退的 Huuuge Research Laptop，使本机 BlueStacks 研究实例满足正式 Collector 1.0.1 的 `Pie64_1 / 127.0.0.1:5565 / uid=0(root)` 运行契约，并用最小生命周期证明 `Start → READY → short Session → Stop → Finalize`。
 
-本 Task 已获 User 批准，但执行分阶段授权：Phase A 只读 Readiness Audit 与 Phase B BlueStacks Environment-ready 已完成。Phase C 已获批并完成正式 Collector 包取得与启动前静态 preflight；静态检查确认当前正式包与本机 Root-OFF 环境不兼容，因此在启动 Collector 前停止，动态 lifecycle 未执行。
+本 Task 按分阶段授权执行：Phase A 只读 Readiness Audit、Phase B BlueStacks Environment-ready、Phase C 正式包/static preflight 与 Phase D 长期环境部署均已完成。Phase D 不以临时演示为目标，没有修改 Collector 业务逻辑或六字段 schema。
 
 ## Decision and current gate
 
@@ -25,7 +25,8 @@
 - Phase A - Laptop Readiness Audit：已完成，只读检查结果见 [`tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md`](support/TASK-0027/LAPTOP_READINESS_AUDIT.md)。
 - Phase B - BlueStacks Environment-ready：User 批准保留当前安装、验证启动/退出/重启、创建本机 Fresh Pie 64-bit `HuuugeResearch`、启用 ADB，并在确认 5555 冲突后单独批准改用 5585；本阶段已完成，验收见 [`ENVIRONMENT_READY_ACCEPTANCE.md`](support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md)。
 - Phase C - Collector package/static preflight：User 已批准。正式包已从公司 SVN 取得到 `C:\HuuugeCollector`，版本、SVN revision、source revision、ZIP/manifest hash 和依赖已核验；结论见 [`PHASE_C_PREFLIGHT_ACCEPTANCE.md`](support/TASK-0027/PHASE_C_PREFLIGHT_ACCEPTANCE.md)。
-- Current Gate：Phase C 动态验收在启动前停止。正式 controller 固定 `Pie64_1 / 127.0.0.1:5565`、要求 `uid=0(root)`、固定 ADB/Frida 路径；本机批准边界是 `Pie64 / 127.0.0.1:5585 / Root OFF`。继续会要求修改 Collector 实现或改变 Root/实例边界，均超出本轮授权。
+- Phase D - Huuuge Research Laptop Setup：User 选择 Scheme C 并批准工程部署，使笔记本匹配正式 contract。研究 clone、5565、Root、Frida/Gadget 与正式生命周期已完成，见 [`PHASE_D_LAPTOP_SETUP.md`](support/TASK-0027/PHASE_D_LAPTOP_SETUP.md)。
+- Current Gate：`Huuuge Research Laptop Ready = Yes`。Phase D 实施完成并进入 Review；未来正式采集仍需按具体 Session 范围单独执行，不由本 Task 自动开始。
 
 ## Scope
 
@@ -65,32 +66,33 @@ User 已批准本 Gate，实际完成：
 
 因此未启动 BlueStacks、Collector、Frida 或 Session，没有伪造 `READY`、Stop/Finalize 结果。继续动态验收需要扩大为 Collector 实现适配或改变 Root/实例边界，必须由 User 重新决策。
 
-### Phase D - Laptop live-demo acceptance（未来 Gate）
+### Phase D - Huuuge Research Laptop Setup（已完成）
 
-- User 负责登录和游戏内正常操作；
-- Codex 只执行已批准的一键入口、读取脱敏状态并停止/清理；
-- 演示不得包含 Auto Spin、购买、充值、请求/返回修改或后台挂机；
-- 只有完整 preflight、READY、User 操作边界、finalize、cleanup 和残留检查均有本轮证据时，才可将演示标记为成功。
+- 保留原 `Pie64`，删除经 User 批准的空白 `Pie64_1`，再克隆当前已安装 Huuuge 的本机实例；不复制台式机黑盒配置；
+- 将研究 clone 对齐为 `Pie64_1 / HuuugeResearch / 127.0.0.1:5565`，Root 只在研究实例生效；
+- 安装固定 ADB 与 Frida 依赖，部署 ARM64 Gadget/config，不改 Collector 实现；
+- 以 `-ValidationOnly` 验证 Start、strict READY、15 秒无操作 Session、clean Stop 与 Finalize；
+- 不执行 Spin、Win/Reward、RTP/Bet 分析，不新增字段，不触碰 MuMu/Nox。
 
 ## Current environment result
 
-- Environment-ready：BlueStacks 5 `5.22.262.1001` / Services `3.0.9`；program `C:\Program Files\BlueStacks_nxt\`；data `D:\BS\BlueStacks_nxt\Engine\`；唯一本机 `Pie64 / HuuugeResearch`；ADB `127.0.0.1:5585`；Root OFF；启动、退出、重启和最终关闭均已复现。
+- Environment-ready：BlueStacks 5 `5.22.262.1001` / Services `3.0.9`；program `C:\Program Files\BlueStacks_nxt\`；data `D:\BS\BlueStacks_nxt\Engine\`。原 `Pie64 / HuuugeResearch-PhaseB / 5585 / Root OFF` 保留；长期研究实例为 `Pie64_1 / HuuugeResearch / 5565 / Root ON`。
 - Huuuge identity：User 完成安装/登录；package `com.huuuge.casino.slots`、versionName `12.08.27100`、versionCode `1786533240`、primary ABI `arm64-v8a` 已只读回读。Codex 未安装、登录或执行游戏操作。
-- ADB 冲突已显式处理：Windows TCP excluded range `5485–5584` 覆盖默认 5555；User 批准改用 5585。唯一 Player listener 和 direct ADB transport probe 通过；5037 无争用。BlueStacks 随附 `HD-Adb.exe` 在 excluded-port 扫描上发生长等待，精确清理后无残留，作为 Phase C Reliability Hardening 输入保留。
-- 共存结果：MuMu 继续运行、Nox 保持原状；未确认二者与 5585/5037 冲突，因此没有停止或修改。
+- ADB 冲突已显式处理：Phase B 的 5585 保留；Phase D 发现 Windows 动态 excluded range 覆盖正式 5565，经 User 单独批准后建立 5565 administered exclusion。最终 `127.0.0.1:5565` listener count 1，正式 controller 使用精确 TCP serial。
+- 共存结果：MuMu/Nox 保持原状；没有停止、Root 或重配。
 - 路径事实：当前权威 Workspace 是 `D:\AI-Workspace`；正式 Installer 声明的本机 Collector 默认路径为 `C:\HuuugeCollector`，本轮已按批准 Gate 取得 clean SVN working copy。
-- Phase C package/static preflight：正式 SVN 包 `1.0.1` 已取得并通过来源/hash/manifest/parser 检查；启动前发现正式 controller 的 `Pie64_1 / 5565 / uid=0(root)` contract 与本机批准的 `Pie64 / 5585 / Root OFF` 冲突。
-- 当前结论：Phase B Environment-ready 仍通过；Phase C 动态 lifecycle 为 `Blocked before start`；Collector READY、短 Session、Stop、Finalize 与 Demo Ready 均未证明。
+- Phase C package/static preflight：正式 SVN 包 `1.0.1` 已取得并通过来源/hash/manifest/parser 检查；当时发现的 contract mismatch 已由 User 批准的 Scheme C 环境迁移解决，没有修改 Collector。
+- Phase D lifecycle：Session `20260904_135724` 达到 strict `READY`；15 秒短 Session 为 RPC `61` / decoded `61`；manifest `stopped`、controller `finalized`。随后本轮 Collector、root Frida process、Huuuge process 与 ADB forward 均停止；长期 Gadget/config 保留。
+- 当前结论：`Huuuge Research Laptop Ready = Yes`。该结论不把正式 RC4 `Pending` 或历史 User 实跑 `Failed/Invalid` 改写为独立策划 First Run 通过；Bet/RTP 保持 `Unsupported`。
 
 ## Non-goals
 
-- 不安装、更新或卸载系统软件；只取得公司 SVN 正式 Collector 工作副本，不运行 Bootstrap 依赖安装；
-- 只启停已批准的 BlueStacks `HuuugeResearch` 并验证 ADB；不停止或修改 MuMu/Nox；
-- 不 clone/删除模拟器实例，不改 Windows 可选功能、启动项、服务、驱动、PATH 或防火墙；
-- 不 Root、不注入、不执行 Spin；游戏安装、登录和正常启动只由 User 完成；Codex 不访问账号数据；
+- 不修改 Windows Hypervisor/VMP、启动项、驱动、防火墙、MuMu 或 Nox；
+- 不删除原 `Pie64` 或 User 数据；研究 clone 与 Root 只用于 Huuuge；
+- 不执行 Spin、购买、充值、请求/返回修改、Win/Reward、RTP/Bet 分析或后台挂机；
 - 不复制台式机配置、VHD、实例、采集 Session、Raw、Secret 或 `.local`；
 - 不修改 Huuuge 业务仓库、SVN 工作副本、Collector 实现、schema、Hook、serializer 或飞书文档；
-- 不把“Hypervisor 已运行”误写成“BlueStacks 已兼容/实例已可用”。
+- 不把生命周期 Ready 误写成 RC4 独立 First Run 已通过。
 
 ## Deliverables
 
@@ -98,9 +100,11 @@ User 已批准本 Gate，实际完成：
 - 第一阶段审计：[`LAPTOP_READINESS_AUDIT.md`](support/TASK-0027/LAPTOP_READINESS_AUDIT.md)；
 - 第二阶段验收：[`ENVIRONMENT_READY_ACCEPTANCE.md`](support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md)；
 - 第三阶段静态验收：[`PHASE_C_PREFLIGHT_ACCEPTANCE.md`](support/TASK-0027/PHASE_C_PREFLIGHT_ACCEPTANCE.md)；
+- 第四阶段长期环境部署：[`PHASE_D_LAPTOP_SETUP.md`](support/TASK-0027/PHASE_D_LAPTOP_SETUP.md)；
 - 更新 Huuuge Project Status、Product Roadmap、Workspace Progress、CHANGELOG 和两个 Handoff；
 - Task Registry 由正式扫描重建并通过 validator；
 - Phase C 正式包路径、static preflight、缺陷和动态 Stop Gate 已写入本 Task 与第三阶段验收。
+- Phase D 配置、问题、恢复方式和生命周期结果已写入第四阶段记录。
 
 ## Acceptance
 
@@ -130,6 +134,15 @@ User 已批准本 Gate，实际完成：
 4. 静态 preflight 明确阻断 `Pie64_1 / 5565 / uid=0(root)` 与 `Pie64 / 5585 / Root OFF` 的 contract mismatch；
 5. 因继续需要扩大范围，未执行启动、READY、短 Session、Stop 或 Finalize；Demo Ready=`No`。
 
+### Phase D acceptance（通过）
+
+1. 原 `Pie64 / 5585 / Root OFF` 保留；独立研究 clone 对齐为 `Pie64_1 / 5565 / Root ON`，MuMu/Nox 未改变；
+2. 正式 Collector 1.0.1 的 ADB、Root、Frida server 与 ARM64 Gadget/config preflight 全部通过；
+3. `Start → READY → 15 秒无操作 Session → Stop → Finalize` 全链通过，RPC/decoded 为 `61/61`；
+4. Stop 后 manifest=`stopped`、controller=`finalized`、active state absent；run-owned process、Frida server、forward 与临时 residual 均为 0；
+5. 没有 Spin、Win/Reward、RTP/Bet 分析、字段扩展或 Collector 业务修改；
+6. 必要变更均有“修改内容 / 修改原因 / 如何恢复”；Root/Gadget 回退已在另一份 copy 验证，live 环境保持长期研究状态。
+
 ## Safety
 
 - User 决定所有安装、管理员确认、Windows/BlueStacks 配置、游戏/SVN 登录与业务运行；
@@ -151,8 +164,12 @@ User 已批准本 Gate，实际完成：
 - Registry 已重建并验证为 14 canonical / 0 collision / valid；
 - Task 23/23、Context 13/13、Memory 44/44 回归通过；Context refresh 为 73 sources / 0 broken link / 0 secret issue；
 - Phase C 定向断言 20/20、changed-document allowlist 12/12、Task 23/23、Context 13/13、Memory 44/44、Registry 14 canonical / 0 collision / valid 通过；Context refresh 74 sources / 0 broken link / 0 secret issue，Workspace Doctor 与 `git diff --check` 通过；
+- Phase D formal bootstrap 无 action item；正式 Start exit `0`、READY RPC/decoded `61/61`，Stop exit `0`，manifest stopped、last finalized、active absent、finalized evidence present；
+- final cleanup：host capture process `0`、guest temporary residual `0`、Frida server stopped、Huuuge stopped、ADB forward empty；5565 listener count `1`，`Pie64` Root flag `0`、`Pie64_1` Root flag `1`；
+- 本机 rollback fixture 从 MODIFIED 恢复为 pre-root-live BASELINE，SHA-256 完全一致；live MODIFIED state 保持不变；
+- Phase D 仓库回归：Task 23/23、Context 13/13、Memory 44/44；Registry 14 canonical / 0 collision / valid；Context refresh 75 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过；
 - Handoff 必须记录 `Subagents: none / OFF`。
 
 ## Handoff
 
-提交并 push 本分支后停止。唯一下一步是 User 决定是否另行授权 Collector 工程适配，使正式入口支持本机 `Pie64 / 5585 / Root OFF`；在该决策前保持 BlueStacks、Root、Frida、Collector 与 Spin 停止。
+提交并 push 本分支后停止。唯一下一步是 User 确认 TASK-0027 Phase D 完成；未来正式 Session 另行给出范围，不由本 Task 自动运行。

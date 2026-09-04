@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-09-04T05:01:05Z"
+generated_at: "2026-09-04T06:13:04Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "964940626c5ee5812f72ce4e97a6b9631296c037"
+repository_head: "74da417ed0202b6988efe03f33bb71c2c1b82f80"
 repository_branch: "codex/huuuge-laptop-reliability-readiness-audit"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -15,8 +15,8 @@ sources:
     sha256: "494835e09f987a1450f512e291169ab0124a0d126fbf7dc6ed10142cd12509c9"
     bytes: 6521
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "ad1baeadcb73d93aa63a73e3189808449abc5029eea7d4330c8990ee1e9d41e3"
-    bytes: 10931
+    sha256: "67aceb14196c6c9add929586a0bbb6acf33966f94e0acd31248f27154b263e06"
+    bytes: 10794
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "3e96011392001cbb0d27db49149868beedc50a0c49d17837bc53066ebbbd122e"
     bytes: 6295
@@ -66,11 +66,11 @@ sources:
     sha256: "4825d43d3e66d834a2e514ac9291d081a1948046fd191cf3745908249aba76d5"
     bytes: 4387
   - path: "handoff/CHATGPT.md"
-    sha256: "3b68a30b751162dad0d1aa5b69265c5e0d52a20d7a90a511a075bdc793d311c1"
-    bytes: 15422
+    sha256: "479b9bc8810fc4d72dbce4e54561f1eb5ab3dd89df333dfc490e88aac4eb4c98"
+    bytes: 14628
   - path: "handoff/CODEX.md"
-    sha256: "3a01aaf1905066501bb2f1b71872ab894db5cb22af11553229ee25072ac40979"
-    bytes: 25836
+    sha256: "8302d855405120200acce5e4513d133739d90ed0a1c65b0a2c7e2574c78fa2e3"
+    bytes: 24708
   - path: "memory/context/WORKSPACE.md"
     sha256: "848053ec408acda6b9b8dc958c473a72a39d44134d8ee604e748e91ff75dbe66"
     bytes: 2550
@@ -180,11 +180,11 @@ sources:
     sha256: "254f5755d254b7c32a4d3a21bff09516ac9ef6464d1ca0d6349d4c6069a948b2"
     bytes: 13528
   - path: "tasks/TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md"
-    sha256: "bb802ed59b993d69e8910b00512b62563f5e78c9a3c536a2b53b636edb7765bf"
-    bytes: 13155
+    sha256: "eb96a46619e296566439d37fa1055b5992aed3f3a19190fc8c5a12060f726aa5"
+    bytes: 15186
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "f7f4e6ea62e2f2e17034b7e9de7deb791f33f158b65c44bc794109edfb83b295"
-    bytes: 19233
+    sha256: "51f2e66742337e9730763c063fee9a4a59b55740d681d6cb3bae5f6046934f5d"
+    bytes: 19236
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
     sha256: "f9d184f63ac18cee0c95d57406521e46aa939bebe5e379b941f0ede217f1ff4b"
     bytes: 13809
@@ -215,6 +215,9 @@ sources:
   - path: "tasks/support/TASK-0027/PHASE_C_PREFLIGHT_ACCEPTANCE.md"
     sha256: "a3e53d37686c66f8d1f2d80bec8d687b23593b317113715365bf92f8b69f5e01"
     bytes: 4462
+  - path: "tasks/support/TASK-0027/PHASE_D_LAPTOP_SETUP.md"
+    sha256: "7278e6b21d4bb2e42ff7d5be2642e20c8289a56d8d7ee0e3964e675d007a7c3d"
+    bytes: 5796
   - path: "workflows/README.md"
     sha256: "cfb2c94d5ef58bc3d45a321129b9b87c097ce7fc984c3350fcb51ac676a9717d"
     bytes: 970
