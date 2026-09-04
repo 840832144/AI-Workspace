@@ -4,22 +4,26 @@
 
 - Updated: 2026-09-04
 - Current Review request: TASK-0027 — Huuuge Laptop Demo Reliability Hardening
-- TASK-0027 status: `In Progress / Environment Change Approval Gate`
+- TASK-0027 status: `In Progress / Phase B Environment-ready complete / Phase C approval Gate`
 - Project key: `HUUUGE`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
 
-## TASK-0027 — Laptop Readiness Audit
+## TASK-0027 — Laptop Environment-ready
 
 - User 已批准 P0 方向；allocator 通过 remote-CAS 建立唯一 canonical `TASK-0027`，没有手工选号，reservation 为 `pending-main`。
-- 当前只完成笔记本只读 Audit：Windows hypervisor/VMP、31.7 GB RAM、Git、Python、SVN 和 Document Assistant 可用。最终回查时并发 Installer 已退出，BlueStacks 5 `5.22.262.1001`、BlueStacks Services `3.0.9`、产品目录与 `HD-Adb.exe` 已出现；Codex 未发起或操作安装，也未启动 BlueStacks。
-- 仍缺 BlueStacks data/config、`HuuugeResearch`、可验证 ADB 目标、Huuuge 实装 identity 与正式 Collector 本机包。
-- MuMu 已安装且后台运行，NoxPlayer 已安装；当前无 ADB/5037 listener。本轮没有停止、安装、Root、启动 Collector 或执行 Spin。
-- 当前 Workspace 为 `D:\AI-Workspace`；不得复用旧电脑 `C:\AI-Workspace`、`Pie64_1`、ADB port、VHD、Root、账号或 `.local`。
-- 推荐动作与成功/回退标准已写入 `tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md`；所有动作都需 User 逐项批准。
-- 唯一下一步由 User 决定保留并批准核验当前 BlueStacks 安装，或批准卸载 BlueStacks/BlueStacks Services；未决前保持 Environment Change Approval Gate。
-- Environment Ready 只允许进入 Reliability Hardening，不等于 Collector READY、RC4 通过或实机演示成功。
-- Validation：Task 23/23、Context 13/13、Memory 44/44、TASK-0027 定向 12/12、Registry 14 canonical / 0 collision / valid、Context 72 sources / 0 broken link / 0 secret issue、changed-document scan 与 Workspace Doctor、`git diff --check` 通过。
-- Subagents: none / OFF。未修改业务仓库、模拟器、Collector、飞书文档或 Codex 配置。
+- Phase A Audit 与 Phase B BlueStacks Environment-ready 已完成；正式验收见 `tasks/support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md`。
+- BlueStacks 5 `5.22.262.1001` / Services `3.0.9` 在当前 Hypervisor/VMP 下完成正常启动、退出、重启；program `C:\Program Files\BlueStacks_nxt\`，data `D:\BS\BlueStacks_nxt\Engine\`。
+- 本机安装生成的唯一 fresh Pie 64-bit internal ID 为 `Pie64`，显示名 `HuuugeResearch`，4 CPU / 4096 MB；没有复用台式机实例、VHD、路径、ADB port 或 Root 配置。
+- 默认 ADB 5555 被 Windows excluded range `5485–5584` 覆盖。User 单独批准改为 5585 后，唯一 `127.0.0.1:5585` listener、5037=0、direct ADB transport 与 Root OFF 均通过。
+- User 完成 Huuuge 安装/登录和游戏启动；只读回读 package `com.huuuge.casino.slots`、versionName `12.08.27100`、versionCode `1786533240`、primary ABI `arm64-v8a`。Codex 未安装、登录、点击游戏或 Spin。
+- BlueStacks bundled `HD-Adb.exe` 会在 excluded default emulator ports 上长等待；两次尝试均按 run-owned exact PID 清理，最终 HD-Adb/5037 无残留。该行为是 Phase C 的明确 Reliability Hardening 输入，不能静默视为成功。
+- MuMu 保持原运行状态，Nox 保持原状；二者未占用 5585/5037，未停止或修改。最终 BlueStacks Player、Multi-instance Manager、ADB client 和 5037/5585 均停止。
+- 回退在另一份 config copy 上恢复 Baseline 5/5；live config 保持批准的 `HuuugeResearch / ADB enabled / 5585 / Root OFF`。
+- Environment-ready 只允许申请下一 Gate，不等于 Collector READY、正式 RC4 通过、Reliability Hardening 或实机演示成功。
+- Validation：Task 23/23、Context 13/13、Memory 44/44、TASK-0027 定向 18/18；Registry 14 canonical / 0 collision / valid；Context refresh 73 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 unexpected / 0 broken link / 0 secret assignment / 0 stale；Workspace Doctor 与 `git diff --check` 通过。
+- 回归失败记录：默认 Windows TEMP 首轮只在临时目录 tearDown 出现 handle race；使用隔离 ASCII TEMP + UTF-8 重跑后 Context 13/13、Memory 44/44 通过，未改测试或产品代码。
+- Subagents: none / OFF。未安装/卸载软件，未修改 Windows、MuMu/Nox、业务仓库、Collector、飞书文档或 Codex 配置；未启动 Root、Frida、Collector 或 Spin。
+- 唯一下一步：User 审批 Phase C 的正式 Collector 包路径/取得方式、static preflight 与最小 Reliability Hardening；未批不启动环境或业务流程。
 
 ## TASK-0019 — Accepted Closure
 
@@ -132,4 +136,4 @@
 
 ## Exact Next Action
 
-User 审批 TASK-0027 Audit 的环境动作；未批准前不安装 BlueStacks、不创建 `HuuugeResearch`、不启用 ADB、不启动 Collector/Root/Frida、不执行 Spin。
+User 审批 TASK-0027 Phase C 的正式 Collector 包路径/取得方式、static preflight 与最小 Reliability Hardening；未批准前不启动 BlueStacks、Root、Frida、Collector 或 Spin。

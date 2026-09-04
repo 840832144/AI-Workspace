@@ -20,7 +20,7 @@ _Last reviewed: 2026-09-04_
 - TASK-0019 已通过 ChatGPT Review Round 3 并 `Accepted`；项目全景说明保持稳定，项目进度与能力状态成为唯一动态源稿，正式飞书进度文档继续原位维护。
 - 当前 Windows 工作站的 Workspace 与 Document Assistant 接入已完成现场验收，可标记为 `Ready`；这只证明本机治理与文档能力可用，不等于 Huuuge First Run 已通过。
 - Huuuge First Run 状态为 `Blocked`：正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈仍为 `Failed/Invalid`。正式 Collector READY 未被可复核证明；当前只可确认临时 SSL 捕获后进入 User 操作阶段，游戏操作由 User 亲自操作，不能据此认定 Collector 达到 READY，也不改写正式 RC4 记录。Bet/RTP `Unsupported`：没有 Bet 分层运行证据或稳定 RTP/EV 统计证据，不得从字段、单次样本或描述性比率推导 Bet 与 RTP 关系。
-- User 已批准 P0 Reliability Hardening；allocator 已建立 canonical TASK-0027。Phase A 只读笔记本 Readiness Audit 已完成，当前等待 User 审批环境变更。最终回查时并发 Installer 已退出，BlueStacks 5 `5.22.262.1001`、BlueStacks Services `3.0.9`、产品目录与 `HD-Adb.exe` 已出现；Codex 未发起或操作安装，也未启动 BlueStacks。data/config、专用实例与可验证 ADB 目标仍缺失。
+- User 已批准 P0 Reliability Hardening；allocator 已建立 canonical TASK-0027。Phase A Audit 与 Phase B BlueStacks Environment-ready 已完成：当前 Hypervisor/VMP 下 BlueStacks 5 `5.22.262.1001` 可启动/退出/重启，fresh internal ID `Pie64` 显示为 `HuuugeResearch`，ADB 固定为 `127.0.0.1:5585`，Root OFF。正式 Collector 包、static preflight 与 Reliability Hardening 等待下一 Gate。
 
 ## 当前执行入口
 
@@ -30,9 +30,9 @@ _Last reviewed: 2026-09-04_
 AI-Workspace/tasks/TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md
 ```
 
-状态：`In Progress / Environment Change Approval Gate`。TASK-0027 仅完成当前笔记本的 BlueStacks/虚拟化/ADB/实例/依赖/Workspace 只读审计；所有安装、配置、登录、专用实例和 Reliability Hardening 动作等待 User 逐项批准。
+状态：`In Progress / Phase B Environment-ready complete / Phase C approval Gate`。TASK-0027 已完成当前笔记本 Audit、BlueStacks 启停复现、本机 `HuuugeResearch`、ADB 5585、Root OFF 与 Huuuge package/version/ABI identity 回读。
 
-背景：TASK-0019、TASK-0026 已 Accepted。当前笔记本已有未启动、未验收的 BlueStacks 静态安装，但缺 data/config、`HuuugeResearch`、可验证 ADB 目标与正式 Collector 本机包；User 需先决定保留核验或批准卸载。本轮不启动模拟器、Root、Frida、Collector 或 Spin。
+背景：TASK-0019、TASK-0026 已 Accepted。默认 ADB 5555 与 Windows excluded ports 冲突，User 单独批准改为 5585；endpoint 与唯一 listener 已通过，BlueStacks 随附 `HD-Adb.exe` 的 excluded-port 扫描长等待被显式保留为 Phase C Reliability Hardening 输入。当前等待 User 批准正式 Collector 包路径/取得方式、static preflight 与最小 Reliability Hardening；未批不启动 BlueStacks、Root、Frida、Collector 或 Spin。
 
 TASK-0020 已确认结果：
 
@@ -63,7 +63,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md`：`Accepted`；唯一 Product Roadmap、Idea Governance、技术术语规则与两个正式文档入口已完成并正式生效。
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md`：`Ready`，等待 User 明确切回，不与当前任务并行执行。
 - `TASK-0026-COLLECTOR-1-0-ENGINEERING.md`：`Accepted`，不在当前任务内扩大字段、模块或动态运行范围。
-- `TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md`：`In Progress`，Phase A 完成，等待 User 审批环境变更。
+- `TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md`：`In Progress`，Phase B BlueStacks Environment-ready 完成，等待 Phase C 审批。
 
 并行任务必须使用独立 branch / linked worktree。TASK-0027 不复用旧电脑的路径、实例 ID、VHD、ADB port、Root、账号或 `.local`。
 
@@ -125,7 +125,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-09-04T03:44:21Z
+- Generated: 2026-09-04T04:41:45Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`

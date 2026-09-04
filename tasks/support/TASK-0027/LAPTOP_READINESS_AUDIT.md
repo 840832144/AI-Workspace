@@ -7,6 +7,8 @@
 - Audit markers: `BlueStacks 5 runtime: Present-unverified` / `HuuugeResearch: Missing` / `Document Assistant: Available`
 - Path rule: `Do not reuse desktop path`
 
+> **Follow-up（2026-09-04）**：本文件保留 Phase A 当时的只读事实，不再代表当前 Gate。User 随后批准保留 BlueStacks 并完成 Phase B；当前验收见 [`ENVIRONMENT_READY_ACCEPTANCE.md`](ENVIRONMENT_READY_ACCEPTANCE.md)。
+
 ## 结论
 
 当前笔记本具备 Windows/硬件、Git、Python、SVN 与 Document Assistant 基础。审计过程中先检测到两个 BlueStacks Installer 进程；最终只读回查时安装器已退出，BlueStacks 5 `5.22.262.1001` runtime 与 `HD-Adb.exe` 已出现在 `C:\Program Files\BlueStacks_nxt`，并出现 BlueStacks 与 BlueStacks Services 卸载项。下载器、`HD-Player.exe`、Multi-instance Manager 和 BlueStacks Services 的 Authenticode 均为 `Valid / Now.gg, INC`。Codex 未启动、点击、停止或安装这些组件，也未启动 BlueStacks。当前仍缺 **data/config、专用 `HuuugeResearch`、可验证 ADB 目标、Huuuge 实装 identity 和正式 Collector 本机包**，因此环境状态仍是 **Not Ready / awaiting approved environment changes**。

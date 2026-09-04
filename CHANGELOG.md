@@ -2,6 +2,32 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.18.3] - 2026-09-04
+
+### Environment-ready
+
+- User 批准保留现有 BlueStacks，并在确认默认 5555 端口冲突后单独批准改为 5585。BlueStacks 5 `5.22.262.1001` / Services `3.0.9` 在当前 Hypervisor/VMP 下完成启动、正常退出和重启复现。
+- 本机安装生成的唯一 fresh Pie 64-bit internal ID `Pie64` 已显示为 `HuuugeResearch`；program `C:\Program Files\BlueStacks_nxt\`、data `D:\BS\BlueStacks_nxt\Engine\`、4 CPU / 4096 MB、ADB `127.0.0.1:5585`、remote ADB OFF、Root OFF 均已回读。
+- User 完成 Huuuge 安装/登录与游戏启动；只读 ADB 证据确认 package `com.huuuge.casino.slots`、versionName `12.08.27100`、versionCode `1786533240`、primary ABI `arm64-v8a`。Codex 未执行安装、登录、游戏点击或 Spin。
+- 新增 `tasks/support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md`；TASK、Project Status、Product Roadmap、Current State、Workspace Progress 与两个 Handoff 已切到 Phase C User Gate。
+
+### Reliability finding
+
+- Windows TCP excluded range `5485–5584` 覆盖 BlueStacks 默认 5555；Player 日志记录 5555 port-forward failure。User 批准 5585 后，唯一 Player listener 与 direct ADB transport probe 通过，5037 无争用。
+- BlueStacks bundled `HD-Adb.exe` 在 excluded default emulator ports 上长时间扫描；两次 run-owned 尝试均按精确 PID 清理，最终 HD-Adb/5037 无残留。该行为保留为 Phase C Reliability Hardening 输入，不静默记为 CLI 成功。
+- MuMu 保持原运行状态，Nox 保持原状；没有停止或修改。验收结束后 BlueStacks Player、Multi-instance Manager、ADB client 和 5037/5585 均停止。
+
+### Validation
+
+- BlueStacks config Baseline 5/5、Modified 7/7；另一份 copy 上 rollback 恢复 Baseline 5/5，live config 保持批准的 5585。
+- Task 23/23、Context 13/13、Memory 44/44、TASK-0027 定向 18/18；Registry 14 canonical / 0 collision / valid；Context refresh 73 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 unexpected / 0 broken link / 0 secret assignment / 0 stale；Workspace Doctor 与 `git diff --check` 通过。
+- 默认 Windows TEMP 的首次组合回归只在临时目录 tearDown 出现 handle race；切换到隔离 ASCII TEMP + UTF-8 后 Context/Memory 全量通过，未修改测试或产品代码。
+- 未安装/卸载软件，未修改 Windows feature、MuMu/Nox、业务仓库、Collector、飞书文档或 Codex 配置；未启动 Root、Frida、Collector 或 Spin。Subagents: none / OFF。
+
+### Gate
+
+- 唯一下一步是 User 审批 Phase C 的正式 Collector 包路径/取得方式、version/hash/依赖/static preflight 与最小 Reliability Hardening；Environment-ready 不等于 Collector READY、正式 RC4 通过或现场演示成功。
+
 ## [0.18.2] - 2026-09-04
 
 ### Added

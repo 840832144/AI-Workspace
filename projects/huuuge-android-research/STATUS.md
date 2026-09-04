@@ -1,9 +1,9 @@
 # Huuuge Android Research — Project Status
 
 - Updated: 2026-09-04
-- Phase: TASK-0027 P0 Laptop Demo Reliability Hardening；Environment Change Approval Gate
+- Phase: TASK-0027 P0 Laptop Demo Reliability Hardening；BlueStacks Environment-ready complete
 - Owner: User
-- Current milestone: TASK-0027 Phase A Laptop Readiness Audit complete；waiting for User approval before environment changes
+- Current milestone: TASK-0027 Phase B BlueStacks / HuuugeResearch / ADB identity ready；waiting for Phase C approval
 - External baseline: [`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)
 
 ## Confirmed Current Facts
@@ -30,14 +30,17 @@
 - User pre-validation feedback corrected the initial workspace from a disposable First Run folder to persistent `C:\AI-Workspace`. RC3 also defines empty-directory Clone、existing-repository update and non-empty conflict behavior.
 - User confirmed that only AI-Workspace is public while the implementation repositories remain private. RC4 therefore makes public AI-Workspace the only required Git repository, moves private implementation repositories to maintainer-only context, and requires a three-minute fail-fast check for company SVN and the administrator-provisioned Document Assistant.
 - User approved P0 Reliability Hardening on 2026-09-04 for the minimum “笔记本汇报实机演示” scope；remote-CAS allocator established canonical `TASK-0027` without manually selecting an ID.
-- TASK-0027 Phase A found Windows/hypervisor、31.7 GB RAM、Git、Python、SVN CLI/TortoiseSVN、AI-Workspace and Document Assistant available. During final readback the concurrent Installers had exited and BlueStacks 5 `5.22.262.1001`、BlueStacks Services `3.0.9`、the product directory and `HD-Adb.exe` had appeared；Codex did not start or operate them. BlueStacks data/config、`HuuugeResearch`、a verifiable ADB target、Huuuge app identity and the formal local Collector package remain absent.
-- Current laptop Workspace is `D:\AI-Workspace`; the old `C:\AI-Workspace` guide path and historical `Pie64_1` identity are not assumed reusable. MuMu is installed and running; NoxPlayer is installed. Neither was stopped or modified.
+- TASK-0027 Phase B verified BlueStacks 5 `5.22.262.1001` / Services `3.0.9` under the current Hypervisor/VMP, program path `C:\Program Files\BlueStacks_nxt\`, data path `D:\BS\BlueStacks_nxt\Engine\`, and normal start/exit/restart reproduction.
+- The sole local fresh Pie 64-bit internal ID is `Pie64`, displayed as `HuuugeResearch`; it uses 4 CPU / 4096 MB, ADB `127.0.0.1:5585`, remote ADB OFF and Root OFF. Default 5555 conflicted with Windows excluded ports and was changed only after User approval.
+- User completed Huuuge installation/login. Read-only ADB evidence confirms package `com.huuuge.casino.slots`, versionName `12.08.27100`, versionCode `1786533240` and primary ABI `arm64-v8a`; Codex did not install, log in, click the game, run Collector or execute Spin.
+- BlueStacks bundled `HD-Adb.exe` can wait indefinitely while scanning excluded default emulator ports; both run-owned attempts were cleaned by exact PID, with no 5037 or client residue. The endpoint itself passed a read-only direct ADB transport probe. This CLI behavior is explicit Phase C Reliability Hardening input, not hidden success.
+- Current laptop Workspace is `D:\AI-Workspace`; the old `C:\AI-Workspace` guide path and historical `Pie64_1` identity were not reused. MuMu remained running and Nox remained unchanged; neither occupied 5585/5037 or was modified.
 
 ## In Progress
 
 - ChatGPT Review Round 2 of TASK-0018 planner structure, purchase table and limits, ordinary-bet terminology, Extractor tests and original Feishu replacement.
 - Independent First Run by one planner who did not participate in development remains a separate validation track.
-- TASK-0027 is active but stopped at the Environment Change Approval Gate. No software, instance, ADB, Root, Collector or Spin operation starts before User approves the exact changes and rollback.
+- TASK-0027 is active. Phase B BlueStacks Environment-ready is complete; formal Collector package/static preflight and Reliability Hardening remain stopped at the Phase C User Gate.
 
 ## Risks
 
@@ -61,15 +64,15 @@
   - Mitigation: Trae may generate the sanitized Markdown; an approved Codex/MCP host performs publication without sharing credentials.
 - Private GitHub links require an authenticated collaborator session and are unavailable to the novice test participant.
   - Mitigation: the 30-minute First Run uses only public AI-Workspace, the official SVN package and an administrator-provisioned Document Assistant; private links remain maintainer evidence references, not novice steps.
-- This laptop has no BlueStacks installation or dedicated research instance, while MuMu background components are running and NoxPlayer is installed.
-  - Mitigation: after explicit approval, install the current Hyper-V-compatible BlueStacks from an approved source, create a fresh Pie 64-bit `HuuugeResearch`, and validate ADB/5037 coexistence without reusing another emulator or desktop identity.
+- The approved BlueStacks endpoint works on 5585, but bundled `HD-Adb.exe` server startup scans excluded default emulator ports and can hang before opening 5037.
+  - Mitigation: Phase C must pin a deterministic ADB implementation or direct endpoint strategy with timeout、exact cleanup and explicit serial; Collector remains stopped until that preflight is approved and passes.
 
 ## Blockers
 
 - TASK-0018 has no implementation blocker; Review Round 1 fixes are complete and it is waiting for ChatGPT Review Round 2.
 - TASK-0011 still has a separate validation gate: no uninvolved planner has yet been designated or observed for the required blind test.
-- TASK-0027 environment preparation is blocked on User approval of installation source/path、temporary MuMu stop、administrator/restart changes、new `HuuugeResearch` and the formal Collector package path.
+- TASK-0027 Phase B has no remaining environment blocker. Phase C is blocked only on User approval of the formal Collector package path/取得方式、static preflight and Reliability Hardening implementation scope.
 
 ## Exact Next Action
 
-User reviews `tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md` and approves or changes the exact environment actions. Before that decision, keep the laptop unchanged and do not install BlueStacks、create an instance、enable ADB、start Collector、Root or Spin.
+User reviews `tasks/support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md` and approves or changes the Phase C package/static-preflight/Reliability-Hardening Gate. Until then keep BlueStacks、Root、Frida、Collector and Spin stopped.
