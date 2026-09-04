@@ -44,7 +44,7 @@
 
 User 批准具体变更后，才允许：
 
-1. 从组织/官方批准入口安装当前 BlueStacks 5 Hyper-V 兼容版本；
+1. User 决定保留或回退审计期间在本机完成的 BlueStacks 5 安装；若保留，先核验来源、签名、版本、安装/data 路径和现有 hypervisor 兼容性，不重复安装；
 2. 新建本机专属的 Pie 64-bit 实例，显示名固定为 `HuuugeResearch`，记录本机新生成的 internal instance ID；
 3. 只在专用实例启用 ADB，验证唯一目标 serial/port；
 4. 由 User 完成 Huuuge Casino 与公司 SVN 的登录/认证；
@@ -74,15 +74,15 @@ User 批准具体变更后，才允许：
 
 ## Current audit result
 
-- 已具备：Windows 11 x64、Hypervisor 运行、31.7 GB RAM、Git、Python、SVN CLI/TortoiseSVN、AI-Workspace latest main、Document Assistant healthcheck。
-- 缺失：已安装的 BlueStacks 5 runtime、BlueStacks ADB、`HuuugeResearch`、Huuuge 实装 identity、正式 `HuuugeCollector` 本机包。复核时检测到下载目录与 Temp 中各一个 BlueStacks Installer 进程，但未发现产品目录、服务、卸载项或实例；Codex 未启动、点击或停止这些安装器。
+- 已具备：Windows 11 x64、Hypervisor 运行、31.7 GB RAM、Git、Python、SVN CLI/TortoiseSVN、AI-Workspace latest main、Document Assistant healthcheck；最终复核还发现 BlueStacks 5 `5.22.262.1001` runtime 与 `HD-Adb.exe` 已落在 `C:\Program Files\BlueStacks_nxt`，下载器与关键已安装 EXE 的 Authenticode 均为 `Valid / Now.gg, INC`，但本轮未启动 runtime。
+- 缺失：BlueStacks data/config 与专用 `HuuugeResearch`、可验证的目标 ADB serial/port、Huuuge 实装 identity、正式 `HuuugeCollector` 本机包。审计期间先出现两个 Installer 进程，随后进程退出并出现 BlueStacks/BlueStacks Services 卸载项；Codex 未启动、点击、停止或安装这些组件。
 - 冲突风险：MuMu 已安装且相关进程/服务正在运行；NoxPlayer 已安装。它们本轮未被停止或修改。
 - 路径事实：当前权威 Workspace 是 `D:\AI-Workspace`；旧指南的 `C:\AI-Workspace` 不能自动套用。本机正式包目标路径也尚未获批。
 - 当前结论：Phase A 完成；环境未达到演示 Ready，不能启动 Reliability Hardening 或业务运行。
 
 ## Non-goals
 
-- 本阶段不安装、更新或卸载任何软件；
+- 本阶段 Codex 不安装、更新或卸载任何软件；审计期间出现的并发外部安装只记录事实，不继续操作；
 - 不启停 BlueStacks、MuMu、Nox、ADB daemon、Collector、Frida server 或游戏；
 - 不创建/克隆/删除模拟器实例，不改 Windows 可选功能、启动项、服务、驱动、PATH 或防火墙；
 - 不 Root、不注入、不执行 Spin、不登录游戏、不访问账号数据；
@@ -138,4 +138,4 @@ User 批准具体变更后，才允许：
 
 ## Handoff
 
-提交并 push 本分支后停止。唯一下一步是 User 先决定关闭/取消当前安装器以维持环境不变，或连同 [`LAPTOP_READINESS_AUDIT.md`](support/TASK-0027/LAPTOP_READINESS_AUDIT.md) 中的环境变更清单一并批准；未获批准不进入安装或 Reliability Hardening。
+提交并 push 本分支后停止。唯一下一步是 User 决定保留并批准核验当前 BlueStacks 安装，或批准按回退清单卸载本轮新出现的 BlueStacks/BlueStacks Services；随后再审批 [`LAPTOP_READINESS_AUDIT.md`](support/TASK-0027/LAPTOP_READINESS_AUDIT.md) 中的其余环境变更。未获批准不启动 BlueStacks，也不进入 Reliability Hardening。

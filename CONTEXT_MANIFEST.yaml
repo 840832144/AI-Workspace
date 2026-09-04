@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-09-04T03:37:58Z"
+generated_at: "2026-09-04T03:44:21Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "1dd6de3e244858c44b716cacd72961ea9419f564"
+repository_head: "9119ba8106c7c51bf03289b1f70e2c4894068ce7"
 repository_branch: "codex/huuuge-laptop-reliability-readiness-audit"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -15,8 +15,8 @@ sources:
     sha256: "494835e09f987a1450f512e291169ab0124a0d126fbf7dc6ed10142cd12509c9"
     bytes: 6521
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "101f858e67d9e50145fd1202df52969e32938a3b60fd63a442960333afb5b188"
-    bytes: 10788
+    sha256: "157bb93d521f0715ad824f5dd34acfe786ee122c226db209de7258f73c8d163b"
+    bytes: 10915
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "3e96011392001cbb0d27db49149868beedc50a0c49d17837bc53066ebbbd122e"
     bytes: 6295
@@ -66,11 +66,11 @@ sources:
     sha256: "4825d43d3e66d834a2e514ac9291d081a1948046fd191cf3745908249aba76d5"
     bytes: 4387
   - path: "handoff/CHATGPT.md"
-    sha256: "16e86e23b05dc86df3f78bdb0d95b7718fd9be1128fc67532e0f19fda0325cb6"
-    bytes: 13695
+    sha256: "870ccb82463839fe3e4f01f8d43f81bca17a69cbe0a2395bae9649b9b4375ba5"
+    bytes: 13827
   - path: "handoff/CODEX.md"
-    sha256: "2c1535d8ee341bb75490ec43a55c9394e49a544bc11a79777b1794e46ffcd55f"
-    bytes: 24708
+    sha256: "35277a28f2f83c41fa8f802c05491c4e53ee27dccc747b2589e0ccc9928bc171"
+    bytes: 24912
   - path: "memory/context/WORKSPACE.md"
     sha256: "848053ec408acda6b9b8dc958c473a72a39d44134d8ee604e748e91ff75dbe66"
     bytes: 2550
@@ -180,8 +180,8 @@ sources:
     sha256: "254f5755d254b7c32a4d3a21bff09516ac9ef6464d1ca0d6349d4c6069a948b2"
     bytes: 13528
   - path: "tasks/TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md"
-    sha256: "276075bc6b98a4620851e884105956ce04c465636760ba9738ddd1a16447f082"
-    bytes: 8783
+    sha256: "d0682917f0c78dbe3958e5baf29ac59308f009a98347d91cfac13b671f7900b0"
+    bytes: 9303
   - path: "tasks/TASK_REGISTRY.yaml"
     sha256: "f7f4e6ea62e2f2e17034b7e9de7deb791f33f158b65c44bc794109edfb83b295"
     bytes: 19233
@@ -207,8 +207,8 @@ sources:
     sha256: "4b33eba07ed9cd59171539ee233f8cf50b5dc2a9e567ebabe986a293838b80a3"
     bytes: 6771
   - path: "tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md"
-    sha256: "1a1b5331ca3bf511fb069522235061710c6db2a21af5a2a73e15a6ce70857b4f"
-    bytes: 11559
+    sha256: "a403a6cb5751e81e4566e8058cbbd32cdad0d643795061aca7e9427753a30487"
+    bytes: 12747
   - path: "workflows/README.md"
     sha256: "cfb2c94d5ef58bc3d45a321129b9b87c097ce7fc984c3350fcb51ac676a9717d"
     bytes: 970

@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-09-04T03:37:58Z
+Generated: 2026-09-04T03:44:21Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -549,7 +549,7 @@ _Last reviewed: 2026-09-04_
 - TASK-0019 已通过 ChatGPT Review Round 3 并 `Accepted`；项目全景说明保持稳定，项目进度与能力状态成为唯一动态源稿，正式飞书进度文档继续原位维护。
 - 当前 Windows 工作站的 Workspace 与 Document Assistant 接入已完成现场验收，可标记为 `Ready`；这只证明本机治理与文档能力可用，不等于 Huuuge First Run 已通过。
 - Huuuge First Run 状态为 `Blocked`：正式 RC4 记录仍为 `Pending`；User 提供的实跑反馈仍为 `Failed/Invalid`。正式 Collector READY 未被可复核证明；当前只可确认临时 SSL 捕获后进入 User 操作阶段，游戏操作由 User 亲自操作，不能据此认定 Collector 达到 READY，也不改写正式 RC4 记录。Bet/RTP `Unsupported`：没有 Bet 分层运行证据或稳定 RTP/EV 统计证据，不得从字段、单次样本或描述性比率推导 Bet 与 RTP 关系。
-- User 已批准 P0 Reliability Hardening；allocator 已建立 canonical TASK-0027。Phase A 只读笔记本 Readiness Audit 已完成，当前等待 User 审批环境变更。复核时检测到两个 BlueStacks Installer 进程，但没有产品目录、服务、卸载项或实例；Codex 未操作安装器，尚未创建实例、启动 Collector 或执行 Spin。
+- User 已批准 P0 Reliability Hardening；allocator 已建立 canonical TASK-0027。Phase A 只读笔记本 Readiness Audit 已完成，当前等待 User 审批环境变更。最终回查时并发 Installer 已退出，BlueStacks 5 `5.22.262.1001`、BlueStacks Services `3.0.9`、产品目录与 `HD-Adb.exe` 已出现；Codex 未发起或操作安装，也未启动 BlueStacks。data/config、专用实例与可验证 ADB 目标仍缺失。
 
 ## 当前执行入口
 
@@ -561,7 +561,7 @@ AI-Workspace/tasks/TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md
 
 状态：`In Progress / Environment Change Approval Gate`。TASK-0027 仅完成当前笔记本的 BlueStacks/虚拟化/ADB/实例/依赖/Workspace 只读审计；所有安装、配置、登录、专用实例和 Reliability Hardening 动作等待 User 逐项批准。
 
-背景：TASK-0019、TASK-0026 已 Accepted。当前笔记本缺已安装的 BlueStacks runtime、BlueStacks ADB、`HuuugeResearch` 与正式 Collector 本机包；User 需先处理当前 Installer Gate。本轮不启动模拟器、Root、Frida、Collector 或 Spin。
+背景：TASK-0019、TASK-0026 已 Accepted。当前笔记本已有未启动、未验收的 BlueStacks 静态安装，但缺 data/config、`HuuugeResearch`、可验证 ADB 目标与正式 Collector 本机包；User 需先决定保留核验或批准卸载。本轮不启动模拟器、Root、Frida、Collector 或 Spin。
 
 TASK-0020 已确认结果：
 
@@ -654,7 +654,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-09-04T03:37:58Z
+- Generated: 2026-09-04T03:44:21Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`

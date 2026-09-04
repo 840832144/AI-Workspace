@@ -14,14 +14,15 @@
 - User 已批准 P0 Reliability Hardening，范围固定为“笔记本汇报实机演示”。allocator 通过 remote-CAS 正式分配 `TASK-0027`，reservation 保持 `pending-main`；没有手工选号，token 未写入 Git/Handoff。
 - Phase A 只读 Readiness Audit 已完成，详见 `tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md`。
 - 已具备：Windows 11 x64、运行中的 Windows hypervisor/VMP、31.7 GB RAM、Git 2.55、Python 3.11/3.12、SVN CLI/TortoiseSVN、`D:\AI-Workspace` latest main 和 Document Assistant token/API/Drive healthcheck `ok`。
-- 缺失：已安装的 BlueStacks 5 runtime、BlueStacks `HD-Adb.exe`、`HuuugeResearch`、Huuuge package/version/ABI/foreground identity、正式本机 `HuuugeCollector` 包。复核时发现下载目录与 Temp 中 2 个 BlueStacks Installer 进程；未见 runtime 产品目录/服务/卸载项，Codex 未启动、点击或停止安装器。
+- 新增只读事实：最终回查时 Installer 已退出，BlueStacks 5 `5.22.262.1001`、BlueStacks Services `3.0.9`、`C:\Program Files\BlueStacks_nxt` 与 `HD-Adb.exe` 已出现；下载器和关键 EXE Authenticode 为 `Valid / Now.gg, INC`。并发安装不是 Codex 发起或操作，BlueStacks 从未由本轮启动。
+- 仍缺失：BlueStacks data/config、`HuuugeResearch`、可验证的 ADB serial/port、Huuuge package/version/ABI/foreground identity、正式本机 `HuuugeCollector` 包。
 - 共存风险：MuMu 5.27.6 已安装且相关进程/服务运行；NoxPlayer 7.0.6.2 已安装。当前无 ADB 进程/5037 listener；本轮未停止或修改任何模拟器。
 - 当前路径事实是 `D:\AI-Workspace`；旧电脑/旧指南的 `C:\AI-Workspace`、`Pie64_1`、ADB port、VHD、Root 和 `.local` 均不得当作本机事实或复制输入。
 - 建议顺序：User 先批准路径和共存处理 → 官方/组织入口安装当前 Hyper-V-compatible BlueStacks 5 → fresh Pie 64-bit `HuuugeResearch` → 仅该实例启用 ADB → User 完成游戏/SVN 登录 → 正式包只做 hash/依赖/static preflight → 再申请进入 Reliability Hardening。
 - Environment Ready 需要实际 BlueStacks 版本/路径、全新 internal ID、唯一 ADB serial/port、Huuuge 实装 identity、正式包 revision/hash和回退边界全部回读；不等于 Collector READY 或 First Run 成功。
 - Validation：Task 23/23、Context 13/13、Memory 44/44、TASK-0027 定向 12/12；Registry 14 canonical / 0 collision / valid；Context refresh 72 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 unexpected / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过。
 - Scope：未安装软件，未启停 BlueStacks/MuMu/Nox/ADB，未创建实例，未修改 Windows feature/PATH/服务，未启动模拟器、Root、Frida、Collector，未执行 Spin；未修改业务仓库或飞书文档。Subagents: none / OFF。
-- 唯一下一步：User 先决定关闭/取消现有 Installer 或明确批准继续，再审批 Audit 中其余环境动作；批准前停止在 Environment Change Approval Gate。
+- 唯一下一步：User 决定保留并批准核验当前 BlueStacks 安装，或批准卸载 BlueStacks/BlueStacks Services；随后再审批 Audit 中其余环境动作。批准前停止在 Environment Change Approval Gate。
 
 ## Current Task — TASK-0019
 
@@ -199,10 +200,11 @@
 
 
 
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-04T03:37:58Z
+- Generated: 2026-09-04T03:44:21Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
