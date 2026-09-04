@@ -1,6 +1,6 @@
 # TASK-0027 — Huuuge Research Laptop Reliability Hardening
 
-- Status: Review
+- Status: Accepted
 - Project key: HUUUGE
 - Human alias: HUUUGE-RESEARCH-LAPTOP-RELIABILITY
 - Owner: User / ChatGPT
@@ -8,7 +8,7 @@
 - Priority: P0
 - Date: 2026-09-04
 - Updated: 2026-09-04
-- User authorization: User approved P0 Reliability Hardening, then approved Scheme C and Phase D engineering deployment for a long-term Huuuge Research Laptop
+- User authorization: User approved P0 Reliability Hardening, Scheme C, Phase D engineering deployment, the presentation rehearsal, and final rehearsal acceptance
 - Allocation method: `task_cli.py next` / remote-CAS reservation
 - Allocation relationship: new
 - Related tasks: TASK-0019
@@ -17,7 +17,7 @@
 
 建立长期可用、可维护、可回退的 Huuuge Research Laptop，使本机 BlueStacks 研究实例满足正式 Collector 1.0.1 的 `Pie64_1 / 127.0.0.1:5565 / uid=0(root)` 运行契约，并用最小生命周期证明 `Start → READY → short Session → Stop → Finalize`。
 
-本 Task 按分阶段授权执行：Phase A 只读 Readiness Audit、Phase B BlueStacks Environment-ready、Phase C 正式包/static preflight 与 Phase D 长期环境部署均已完成。Phase D 不以临时演示为目标，没有修改 Collector 业务逻辑或六字段 schema。
+本 Task 按分阶段授权执行：Phase A 只读 Readiness Audit、Phase B BlueStacks Environment-ready、Phase C 正式包/static preflight、Phase D 长期环境部署与汇报彩排均已完成并由 User 接受。没有修改 Collector 业务逻辑或六字段 schema。
 
 ## Decision and current gate
 
@@ -26,7 +26,8 @@
 - Phase B - BlueStacks Environment-ready：User 批准保留当前安装、验证启动/退出/重启、创建本机 Fresh Pie 64-bit `HuuugeResearch`、启用 ADB，并在确认 5555 冲突后单独批准改用 5585；本阶段已完成，验收见 [`ENVIRONMENT_READY_ACCEPTANCE.md`](support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md)。
 - Phase C - Collector package/static preflight：User 已批准。正式包已从公司 SVN 取得到 `C:\HuuugeCollector`，版本、SVN revision、source revision、ZIP/manifest hash 和依赖已核验；结论见 [`PHASE_C_PREFLIGHT_ACCEPTANCE.md`](support/TASK-0027/PHASE_C_PREFLIGHT_ACCEPTANCE.md)。
 - Phase D - Huuuge Research Laptop Setup：User 选择 Scheme C 并批准工程部署，使笔记本匹配正式 contract。研究 clone、5565、Root、Frida/Gadget 与正式生命周期已完成，见 [`PHASE_D_LAPTOP_SETUP.md`](support/TASK-0027/PHASE_D_LAPTOP_SETUP.md)。
-- Current Gate：`Huuuge Research Laptop Ready = Yes`。Phase D 实施完成并进入 Review；未来正式采集仍需按具体 Session 范围单独执行，不由本 Task 自动开始。
+- Presentation rehearsal：User 批准后，正式入口创建 Session `20260904_142442`；READY 时 RPC/decoded `63/63`，User 按最小彩排脚本完成操作后为 `123/123`。Stop/Finalize 与最终 cleanup 通过，User 随后明确给出 `彩排 Accepted`。
+- Current Gate：TASK-0027=`Accepted`，`Huuuge Research Laptop Ready = Yes`，汇报彩排已通过。正式汇报仍是单独 Session Gate，不由本 Task 自动启动。
 
 ## Scope
 
@@ -83,13 +84,14 @@ User 已批准本 Gate，实际完成：
 - 路径事实：当前权威 Workspace 是 `D:\AI-Workspace`；正式 Installer 声明的本机 Collector 默认路径为 `C:\HuuugeCollector`，本轮已按批准 Gate 取得 clean SVN working copy。
 - Phase C package/static preflight：正式 SVN 包 `1.0.1` 已取得并通过来源/hash/manifest/parser 检查；当时发现的 contract mismatch 已由 User 批准的 Scheme C 环境迁移解决，没有修改 Collector。
 - Phase D lifecycle：Session `20260904_135724` 达到 strict `READY`；15 秒短 Session 为 RPC `61` / decoded `61`；manifest `stopped`、controller `finalized`。随后本轮 Collector、root Frida process、Huuuge process 与 ADB forward 均停止；长期 Gadget/config 保留。
+- Presentation rehearsal：Session `20260904_142442` 从 READY RPC/decoded `63/63` 增至 User 操作完成后的 `123/123`；Stop exit `0`，manifest=`stopped`、controller=`finalized`、active state absent。Frida/game PID、ADB forward、host capture process 与临时 residual 最终均为 0，Gadget/config 保留。
 - 当前结论：`Huuuge Research Laptop Ready = Yes`。该结论不把正式 RC4 `Pending` 或历史 User 实跑 `Failed/Invalid` 改写为独立策划 First Run 通过；Bet/RTP 保持 `Unsupported`。
 
 ## Non-goals
 
 - 不修改 Windows Hypervisor/VMP、启动项、驱动、防火墙、MuMu 或 Nox；
 - 不删除原 `Pie64` 或 User 数据；研究 clone 与 Root 只用于 Huuuge；
-- 不执行 Spin、购买、充值、请求/返回修改、Win/Reward、RTP/Bet 分析或后台挂机；
+- 除 User 在获批彩排中手动完成 3 次单次 Spin 外，Codex 不执行游戏操作；不使用 Auto Spin，不购买、充值、修改请求/返回、执行 Win/Reward、RTP/Bet 分析或后台挂机；
 - 不复制台式机配置、VHD、实例、采集 Session、Raw、Secret 或 `.local`；
 - 不修改 Huuuge 业务仓库、SVN 工作副本、Collector 实现、schema、Hook、serializer 或飞书文档；
 - 不把生命周期 Ready 误写成 RC4 独立 First Run 已通过。
@@ -143,6 +145,15 @@ User 已批准本 Gate，实际完成：
 5. 没有 Spin、Win/Reward、RTP/Bet 分析、字段扩展或 Collector 业务修改；
 6. 必要变更均有“修改内容 / 修改原因 / 如何恢复”；Root/Gadget 回退已在另一份 copy 验证，live 环境保持长期研究状态。
 
+### Presentation rehearsal acceptance（通过）
+
+1. User 明确批准进入汇报彩排，并在 Huuuge 大厅就位后由 Codex 启动正式 Collector；
+2. Session `20260904_142442` 达到 strict READY，READY 时 RPC/decoded 为 `63/63`；
+3. User 按最小彩排脚本完成游戏内操作后，RPC/decoded 为 `123/123`；本 Task 不对 Spin、Win/Reward、Bet 或 RTP 作业务分析；
+4. Stop/Finalize 成功，manifest=`stopped`、controller=`finalized`、active state absent；
+5. 精确 cleanup 后 Frida/game PID 为空，ADB forward、host capture process 与临时 residual 均为 0；长期 Gadget/config 保留；
+6. User 明确给出 `彩排 Accepted`，TASK-0027 收口为 `Accepted`。
+
 ## Safety
 
 - User 决定所有安装、管理员确认、Windows/BlueStacks 配置、游戏/SVN 登录与业务运行；
@@ -168,8 +179,10 @@ User 已批准本 Gate，实际完成：
 - final cleanup：host capture process `0`、guest temporary residual `0`、Frida server stopped、Huuuge stopped、ADB forward empty；5565 listener count `1`，`Pie64` Root flag `0`、`Pie64_1` Root flag `1`；
 - 本机 rollback fixture 从 MODIFIED 恢复为 pre-root-live BASELINE，SHA-256 完全一致；live MODIFIED state 保持不变；
 - Phase D 仓库回归：Task 23/23、Context 13/13、Memory 44/44；Registry 14 canonical / 0 collision / valid；Context refresh 75 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过；
+- 汇报彩排：Session `20260904_142442` READY `63/63`，User 操作后 `123/123`，Stop/Finalize exit `0`；最终 active absent、Frida/game PID 空、ADB forward `0`、host capture process `0`、临时 residual `0`、Gadget/config `2`；User `彩排 Accepted`；
+- Accepted closeout：Task 23/23、Context 13/13、Memory 44/44、Registry 14 canonical / 0 collision / valid；Context refresh 75 sources / 0 broken link / 0 secret issue；changed-document scan 12 files / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过；
 - Handoff 必须记录 `Subagents: none / OFF`。
 
 ## Handoff
 
-提交并 push 本分支后停止。唯一下一步是 User 确认 TASK-0027 Phase D 完成；未来正式 Session 另行给出范围，不由本 Task 自动运行。
+提交并 push 本分支后停止。TASK-0027 已 Accepted；唯一下一步是正式汇报前由 User 明确开启当次 Session Gate，不由本 Task 自动运行 Collector。

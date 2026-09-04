@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-09-04T06:13:04Z"
+generated_at: "2026-09-04T06:43:36Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "74da417ed0202b6988efe03f33bb71c2c1b82f80"
+repository_head: "e0ef0b2bc81c7c27ad3964cc943b1e58f111d9c3"
 repository_branch: "codex/huuuge-laptop-reliability-readiness-audit"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -15,8 +15,8 @@ sources:
     sha256: "494835e09f987a1450f512e291169ab0124a0d126fbf7dc6ed10142cd12509c9"
     bytes: 6521
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "67aceb14196c6c9add929586a0bbb6acf33966f94e0acd31248f27154b263e06"
-    bytes: 10794
+    sha256: "69db3ebcdf531eb0b3cf304f7d84e984a5b07b1f77963a0b44afcb7c96b64890"
+    bytes: 10620
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "3e96011392001cbb0d27db49149868beedc50a0c49d17837bc53066ebbbd122e"
     bytes: 6295
@@ -66,11 +66,11 @@ sources:
     sha256: "4825d43d3e66d834a2e514ac9291d081a1948046fd191cf3745908249aba76d5"
     bytes: 4387
   - path: "handoff/CHATGPT.md"
-    sha256: "479b9bc8810fc4d72dbce4e54561f1eb5ab3dd89df333dfc490e88aac4eb4c98"
-    bytes: 14628
+    sha256: "3f669f003d8f4155f67a8391f7c0d259e4cc67ad0521817e5fb0818c04cab88e"
+    bytes: 15417
   - path: "handoff/CODEX.md"
-    sha256: "8302d855405120200acce5e4513d133739d90ed0a1c65b0a2c7e2574c78fa2e3"
-    bytes: 24708
+    sha256: "4be9cebaa5f57028f10246404cc5f66eb14ef676bbf54c00f2de0b7959d4f6c0"
+    bytes: 25502
   - path: "memory/context/WORKSPACE.md"
     sha256: "848053ec408acda6b9b8dc958c473a72a39d44134d8ee604e748e91ff75dbe66"
     bytes: 2550
@@ -180,11 +180,11 @@ sources:
     sha256: "254f5755d254b7c32a4d3a21bff09516ac9ef6464d1ca0d6349d4c6069a948b2"
     bytes: 13528
   - path: "tasks/TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md"
-    sha256: "eb96a46619e296566439d37fa1055b5992aed3f3a19190fc8c5a12060f726aa5"
-    bytes: 15186
+    sha256: "470cf8fe08ac5057c4e40055591aed8403df793363efdf6eb5f87420253f5d5c"
+    bytes: 17149
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "51f2e66742337e9730763c063fee9a4a59b55740d681d6cb3bae5f6046934f5d"
-    bytes: 19236
+    sha256: "ac213ef279a57b4ecf3ac65e843c493fd2d06b34207e2e3ecc0c0c3521c4f7a1"
+    bytes: 19238
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
     sha256: "f9d184f63ac18cee0c95d57406521e46aa939bebe5e379b941f0ede217f1ff4b"
     bytes: 13809

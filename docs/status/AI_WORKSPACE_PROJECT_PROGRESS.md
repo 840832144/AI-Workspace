@@ -20,14 +20,14 @@
 | Capability `Partial` | 4 | 主体存在，但当前 Provider、证据覆盖、人工步骤或同步闭环不完整 |
 | Capability `Planned` | 3 | 只有稳定方向、模型或 Roadmap，尚无可验收实现 |
 | Capability `Blocked` | 2 | 目标明确，但缺少外部验证或当前平台实现 |
-| Canonical Work Items | 14 | Accepted 7、Complete 4、Review 2、Ready 1、In Progress 0 |
+| Canonical Work Items | 14 | Accepted 8、Complete 4、Review 1、Ready 1、In Progress 0 |
 | Host readiness | Ready | Global + Project AGENTS 已加载，Subagents `OFF`，Git 可读写，Document Assistant healthcheck 成功 |
 
 ## 核验范围与真相源
 
 | 真相源 | 核验版本 / 现场结果 | 确认结论 | 局限 |
 | --- | --- | --- | --- |
-| AI-Workspace | `main@1dd6de3e244858c44b716cacd72961ea9419f564`；TASK-0027 从该提交新建独立 linked worktree | allocator 以 remote-CAS 建立 TASK-0027；Phase A-D 已完成，当前分支进入 Review | 本分支尚未进入 main；reservation 保持 pending-main |
+| AI-Workspace | `main@1dd6de3e244858c44b716cacd72961ea9419f564`；TASK-0027 从该提交新建独立 linked worktree | allocator 以 remote-CAS 建立 TASK-0027；Phase A-D 与汇报彩排已完成并由 User Accepted | 本分支尚未进入 main；reservation 保持 pending-main |
 | Huuuge 业务仓库 | `main@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b`；本地只读 clone 与 `origin/main` 一致、工作树干净 | Lottery 运行证据和 1.0.1 策划发布基线存在；本机正式 Collector 1.0.1 lifecycle 已达到 READY/Stop/Finalize；正式 RC4 记录仍为 `Pending`，User 提供的历史实跑仍为 `Failed/Invalid` | 本轮没有修改业务仓库；工程 lifecycle 不替代独立策划 First Run；Bet/RTP `Unsupported` |
 | `CF_collect` | `main@4df10ec20e79bb737912c8d1b847fae3659031ae`；与 `origin/main` 一致、工作树干净 | TASK-0026 Review Round 3 Accepted；Collector 1.0 cleanup、固定六字段与测试已进入 `main` | Accepted 范围不包含新的字段、模块、Spin 或动态运行 |
 | Document Assistant 实现 | `main@b0292c3159db16542906948511b6b1ec58c360fd`；与 `origin/main` 一致、工作树干净 | 当前 Host 可发现 `feishu-docs`；token、API connectivity、Drive permission healthcheck 均为 `ok` | Git 真相源与云文档仍需显式发布、回读、登记和权限验收 |
@@ -47,7 +47,7 @@
 | Git-backed Memory | 将长期信息变成可验证、可路由、可回滚的 Candidate | Shared governance | Available | ASSISTED、hard-deny、Curator、Context refresh 与 Git-live-first 已通过 Review | CAP-MEM / `tools/memory/` | TASK-0016 Review Round 3 Accepted | Project Sources 仍需人工更新；Memory 不替代 Git 实时状态 | 只在实质 Task 后按 ASSISTED 流程维护；当前 Task 的 canonical update 不再制造重复 Candidate | 2026-08-29 |
 | Codex Subagent Pilot | 在受限父会话中保守并行只读工作 | Shared operations | Available | OFF/MANUAL、单写入者和回滚脚本已 Accepted；当前 Host 状态可检测 | `bootstrap/codex/` | TASK-0014 Accepted；现场 `Current mode: OFF` | 当前会话为宽松权限，必须保持 OFF；Installed agents none | 本 Task 保持单 Agent；只有受限新会话和独立只读流才由 User 手动启用 | 2026-08-29 |
 | Codex Desktop 网络诊断 | 诊断和回滚代理/WebSocket 连接问题 | Shared operations | Available | transport matrix、Repair/Restore 与回归已合入 | `bootstrap/codex/network/` | TASK-0017 Complete | Codex 或代理升级后需重验 | 仅在网络症状复现时运行 status/matrix，不叠加未验证配置 | 2026-08-29 |
-| Huuuge Collector / Planner release | 在专用环境被动采集、解码、Finalize 并生成结构清单 | Huuuge | Available / laptop ready | SVN 1.0.1 来源、revision/hash/依赖、static preflight 与正式 lifecycle 已在笔记本核验 | 公司 SVN 1.0.1；Huuuge 业务仓库 | `C:\HuuugeCollector@r6701`；TASK-0027 Phase D | `Pie64_1 / 5565 / uid=0(root)` 已通过；app 更新后需重验 Gadget/config；本轮只做生命周期 | TASK-0027 Review；未来采集必须另给 Session scope | 2026-09-04 |
+| Huuuge Collector / Planner release | 在专用环境被动采集、解码、Finalize 并生成结构清单 | Huuuge | Available / laptop ready | SVN 1.0.1 来源、revision/hash/依赖、static preflight、正式 lifecycle 与汇报彩排已在笔记本核验 | 公司 SVN 1.0.1；Huuuge 业务仓库 | `C:\HuuugeCollector@r6701`；TASK-0027 Accepted | `Pie64_1 / 5565 / uid=0(root)` 已通过；app 更新后需重验 Gadget/config | 正式汇报前单独开启当次 Session Gate | 2026-09-04 |
 | Huuuge Knowledge / Analysis | 以证据等级查看 Slots、Systems、Events、Others | Huuuge | Partial | Slots 与 Lottery 有 L3 样本；37 个 dossier 形成结构索引 | Huuuge Knowledge Index / reports | `huuuge@4a5dddf`；TASK-0015 Complete | 0 个 L4；多模块仍 L1/L2；无稳定 RTP/EV 和 Bet 因果证据 | 未获独立 Task 与 User 操作授权前不新增 Capture；现有结论保持样本边界 | 2026-08-29 |
 | Huuuge Planner First Run | 让未参与开发的策划在新电脑独立完成端到端流程 | Huuuge UX | Blocked | RC4 指南、飞书版与长期 Huuuge Research Laptop 已完成；正式 Collector lifecycle 已证明 READY/Stop/Finalize | First Run Guide / TASK-0027 Phase D | 正式 RC4 `Pending`；User 历史实跑 `Failed/Invalid`；Bet/RTP `Unsupported` | 尚无未参与开发策划的独立端到端记录；工程生命周期不能替代该证据 | User 指定独立策划后另行执行 RC4 First Run | 2026-09-04 |
 | Collector 1.0 | 以固定 Adapter/Event/Session contract 复用 Cash 采集实现 | Game research | Available | Registry、统一 Event contract、固定 artifacts、精确 cleanup 和 0/1/N shape 已合入 `CF_collect/main` | `CF_collect` | TASK-0026 Review Round 3 Accepted；`main@4df10ec`；focused 16/16、cleanup 7/7、shape 10/10 | 六字段固定；没有新增模块、Spin 或运行验收 | 维持 Accepted 范围；任何新游戏/字段走新 Task 和独立证据 Gate | 2026-08-29 |
@@ -70,11 +70,11 @@
 | TASK-0020 Task Governance | 主线：治理 | P0 | Accepted | User / ChatGPT / Codex | Registry、allocator、CAS 与 collision gate 生效 | 无当前 blocker | 所有新 Task 继续走 Candidate/allocator | Review / Task CLI | 2026-08-29 |
 | TASK-0021 Workspace Live Context Hub | 主线：协作基础设施 | P0 | Accepted | User / ChatGPT / Codex | Documentation Hub 与 ON_DEMAND Sync contract 已交付 | 当前 Host Sync Provider unavailable，6 stale | 修复 Provider 后重跑 ON_DEMAND | Review / sync output | 2026-08-29 |
 | TASK-0022 Cash Frenzy Feasibility | 主线：新游戏研究 | P1 | Complete | User / ChatGPT / Codex | F3 outbound 边界与停止路线已完成 | F4 未证明 | 不在已完成 Task 内续做 | Review 1 Accepted / Task | 2026-08-29 |
-| TASK-0023 Idea Governance | 主线：产品治理 | P1 | Accepted | User / ChatGPT / Codex | Product Roadmap、Idea Governance 与写作规范生效；Collector 1.0 已归入 Done，TASK-0027 进入 Current | 无当前 drift | 按 Task 状态继续维护 | Review 2 / Roadmap | 2026-09-04 |
+| TASK-0023 Idea Governance | 主线：产品治理 | P1 | Accepted | User / ChatGPT / Codex | Product Roadmap、Idea Governance 与写作规范生效；Collector 1.0 与 TASK-0027 已归入 Done | 无当前 drift | 按 Task 状态继续维护 | Review 2 / Roadmap | 2026-09-04 |
 | TASK-0024 Inbound Structured Capture Spike | 主线：Cash evidence | P1 | Complete | User / ChatGPT / Codex | F3 strengthened，5/5 六字段，F4 未证明 | 已达到 Stop Gate | 不在该 Task 内做完整 Collector | Review 1 Accepted / Task | 2026-08-29 |
 | TASK-0025 Top Tycoon F4 Audit | 支线：新游戏 | P1 | Ready | User / ChatGPT / Codex | Canonical Task 已就绪但未开始 | User 尚未切回该方向 | User 明确恢复后再做现场 identity Gate | Task / Handoff | 2026-08-29 |
 | TASK-0026 Collector 1.0 Engineering | 主线：Collector | P1 | Accepted | User / ChatGPT / Codex | 两个 `main` 已对齐；cleanup、shape 与固定六字段 Review 通过 | 无当前 blocker | 保持边界，任何扩展另立 Task | Review 3；CF `4df10ec` | 2026-08-29 |
-| TASK-0027 Huuuge Research Laptop Reliability | 主线：Huuuge First Run | P0 | Review | User / ChatGPT / Codex | 长期 `Pie64_1 / 5565 / Root ON` 研究环境与正式 1.0.1 lifecycle 已通过 | 无实施 blocker；尚待 Review | 审阅 Phase D 结果；不自动开始新 Session | canonical Task / Phase D setup | 2026-09-04 |
+| TASK-0027 Huuuge Research Laptop Reliability | 已完成：Huuuge Reliability | P0 | Accepted | User / ChatGPT / Codex | 长期研究环境、正式 1.0.1 lifecycle 与汇报彩排均通过 | 无实施 blocker | 正式汇报前单独开启 Session Gate | canonical Task / User acceptance | 2026-09-04 |
 
 ## 3. 已完成里程碑
 
@@ -84,7 +84,7 @@
 4. **Cash Frenzy 到 Collector 1.0**：TASK-0022 Complete、TASK-0024 Complete、TASK-0026 Accepted；`CF_collect/main@4df10ec` 为当前实现真相源。
 5. **Huuuge 证据基线**：TASK-0015 Complete；Huuuge 1.0.1 与 Lottery 运行样本有权威 commit/release 依据。TASK-0018 报告仍在 Review，不计作 Accepted 里程碑。
 6. **当前新工作站接入**：Global + Project AGENTS、Git、Subagents OFF 与 Document Assistant 已现场验收，Host readiness 为 `Ready`。
-7. **TASK-0027 Huuuge Research Laptop**：原 `Pie64 / 5585 / Root OFF` 保留；独立研究 clone 已对齐 `Pie64_1 / 5565 / Root ON`。正式 Collector 1.0.1 完成 READY、15 秒无操作 Session、Stop 与 Finalize，RPC/decoded `61/61`；最终 run-owned process、Frida server、forward 与临时 residual 均已清理。
+7. **TASK-0027 Huuuge Research Laptop**：原 `Pie64 / 5585 / Root OFF` 保留；独立研究 clone 已对齐 `Pie64_1 / 5565 / Root ON`。正式 Collector 1.0.1 生命周期 `61/61` 与汇报彩排 Session `20260904_142442`（READY `63/63`、User 操作后 `123/123`）均完成 Stop/Finalize/cleanup，并由 User Accepted。
 
 ## 4. 未完成与阻塞项
 
@@ -136,7 +136,7 @@
 | 飞书与 Git 漂移 | 云文档可被手工修改，Git 分支仍在 Review | 在线状态过时或先于权威分支 | 顶部固定 As of/commit/source；只原位 replace；写后 get + permission + register + Hub readback |
 | Project Source Pack 滞后 | 生成包与上传 Sources 是快照 | 新会话读取旧 Task/优先级 | Git-live-first；本分支刷新生成包，合入后人工替换 Sources |
 | 私有业务仓库访问 | 新人不应依赖私有实现仓库 | Onboarding 在权限阶段卡住 | 新人只需公共 AI-Workspace、公司 SVN 与管理员预配 Provider；维护者才核验私有 commit |
-| Roadmap 与 Task 状态漂移 | Product Roadmap 已将 TASK-0026 对齐到 Done，并把已批准 TASK-0027 放入 Current | 后续状态变化仍可能使页面过时 | 每次 Task 阶段变化同步 Roadmap；Task/Review/main 继续是执行真相源 |
+| Roadmap 与 Task 状态漂移 | Product Roadmap 已将 TASK-0026 与已接受的 TASK-0027 对齐到 Done | 后续状态变化仍可能使页面过时 | 每次 Task 阶段变化同步 Roadmap；Task/Review/main 继续是执行真相源 |
 | 多工作区并发 | 多个 worktree/branch 同时存在 | 覆盖、误提交或发布瞬间过时 | 每 Task 独立 worktree；主 Agent 单写入；提交前 fetch/validate；不合并旧 TASK-0019 分支 |
 | Huuuge Raw / 多账号隔离 | Raw 可能含账号、Session、逐笔余额 | 泄露、样本混污、假规律 | 每实例/账号独立库；先单账号再脱敏聚合；Raw 不进 Git/飞书/聊天 |
 | 能力名称与成熟度混淆 | Architecture/Roadmap/Tool 可见不等于 Available | 把计划或接口误写成已交付 | 每个 Available/Complete 至少附 Accepted Review、main、test、release 或 healthcheck |

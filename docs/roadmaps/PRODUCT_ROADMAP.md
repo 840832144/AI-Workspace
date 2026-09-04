@@ -10,11 +10,7 @@
 
 ## 🔥 Current
 
-### Huuuge Research Laptop Reliability Hardening
-
-- 当前状态：canonical `TASK-0027` 的 Phase D 工程部署已完成并进入 Review；`Huuuge Research Laptop Ready = Yes`。
-- 产品目标：建立长期可维护的笔记本研究环境，让正式 Collector 1.0.1 的 preflight、READY、短 Session、Stop、Finalize、cleanup 和回退可复现。
-- 当前 Gate：`Pie64_1 / 127.0.0.1:5565 / uid=0(root)` contract 已在专用研究 clone 上通过，不修改 Collector；原 `Pie64 / 5585 / Root OFF` 保留。等待 Review，未 Accepted 前不移入 Done。
+暂无正在执行的已批准方向。
 
 ## 📋 Backlog
 
@@ -48,6 +44,12 @@
 - 主要 Gate：单活动 Capture、前台包名校验、游戏级数据隔离和对现有独立环境决策的兼容性 Review。
 
 ## ✅ Done
+
+### Huuuge Research Laptop Reliability Hardening
+
+- 已交付：长期 `Pie64_1 / 127.0.0.1:5565 / Root ON` 研究环境、正式 Collector 1.0.1 preflight、READY、Stop、Finalize、cleanup、回退与汇报彩排；原 `Pie64 / 5585 / Root OFF` 保留。
+- 完成依据：TASK-0027 Phase D 与汇报彩排均由 User `Accepted`；彩排 Session `20260904_142442` 从 READY `63/63` 到 User 操作后的 `123/123`，最终无运行残留。
+- 后续边界：正式汇报或采集仍需单独 Session Gate；独立 RC4 First Run 与 Bet/RTP 不由本 Task 证明。
 
 ### 【游戏】 Collector 1.0
 

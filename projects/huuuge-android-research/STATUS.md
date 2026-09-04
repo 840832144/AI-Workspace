@@ -1,9 +1,9 @@
 # Huuuge Android Research — Project Status
 
 - Updated: 2026-09-04
-- Phase: TASK-0027 P0 Huuuge Research Laptop Reliability Hardening；Phase D complete / Review
+- Phase: TASK-0027 P0 Huuuge Research Laptop Reliability Hardening；Accepted
 - Owner: User
-- Current milestone: Huuuge Research Laptop Ready；formal Collector 1.0.1 lifecycle verified
+- Current milestone: Huuuge Research Laptop Ready；formal lifecycle and presentation rehearsal accepted
 - External baseline: [`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)
 
 ## Confirmed Current Facts
@@ -39,13 +39,15 @@
 - User approved Scheme C and Phase D engineering deployment to match the formal contract without changing Collector. Windows 5565 exclusion was repaired after explicit approval; Google platform-tools `37.0.1`、Frida server/Gadget `17.17.0` and isolated Python dependencies are present.
 - Formal Collector 1.0.1 Session `20260904_135724` completed `Start → READY → 15-second idle Session → Stop → Finalize`: RPC `61` / decoded `61`、manifest `stopped`、controller `finalized`. No Spin or game interaction occurred.
 - Final cleanup stopped the Collector/bootstrap processes、root Frida server、Huuuge process and ADB forward; persistent Gadget/config remains for long-term use. `Pie64` stays Root OFF and `Pie64_1` stays Root ON. `Huuuge Research Laptop Ready = Yes`.
+- User then approved the presentation rehearsal. Session `20260904_142442` reached READY at RPC/decoded `63/63`, reached `123/123` after User-completed rehearsal operations, and completed Stop/Finalize/cleanup with no active state, Frida/game process, ADB forward, host capture process or temporary residual. User explicitly marked the rehearsal `Accepted`.
+- TASK-0027 is `Accepted`. The rehearsal was not used for Win/Reward、Bet or RTP analysis, and it does not replace the independent RC4 First Run.
 - This lifecycle proof does not change formal RC4 `Pending`, historical User run `Failed/Invalid`, or Bet/RTP `Unsupported`; an uninvolved planner First Run remains a separate validation track.
 
 ## In Progress
 
 - ChatGPT Review Round 2 of TASK-0018 planner structure, purchase table and limits, ordinary-bet terminology, Extractor tests and original Feishu replacement.
 - Independent First Run by one planner who did not participate in development remains a separate validation track.
-- TASK-0027 Phase D implementation is complete and waiting Review. The long-term research laptop is ready; a future formal capture still needs its own explicit Session scope.
+- TASK-0027 is Accepted. The long-term research laptop and presentation rehearsal are ready; a formal presentation still needs its own explicit Session Gate.
 
 ## Risks
 
@@ -76,8 +78,8 @@
 
 - TASK-0018 has no implementation blocker; Review Round 1 fixes are complete and it is waiting for ChatGPT Review Round 2.
 - TASK-0011 still has a separate validation gate: no uninvolved planner has yet been designated or observed for the required blind test.
-- TASK-0027 has no implementation blocker. RC4 still requires an independent planner First Run and is not closed by the engineering lifecycle proof.
+- TASK-0027 has no implementation blocker and is Accepted. RC4 still requires an independent planner First Run and is not closed by the engineering lifecycle or presentation rehearsal.
 
 ## Exact Next Action
 
-User confirms TASK-0027 Phase D completion. Any future formal capture begins only from a separately stated Session scope; this Task does not authorize Spin or Bet/RTP work.
+Before the formal presentation, User explicitly opens that Session Gate. TASK-0027 does not automatically start Collector or authorize Bet/RTP work.

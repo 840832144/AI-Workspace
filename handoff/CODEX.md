@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-04
 - Current task: TASK-0027 — Huuuge Research Laptop Reliability Hardening
-- Status: Review — Phase D complete；Huuuge Research Laptop Ready
+- Status: Accepted — presentation rehearsal passed；Huuuge Research Laptop Ready
 - Branch: AI-Workspace `codex/huuuge-laptop-reliability-readiness-audit` from `main@1dd6de3e244858c44b716cacd72961ea9419f564`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -16,13 +16,15 @@
 - Windows 动态排除范围曾覆盖 5565；经 User 单独批准建立 5565 administered exclusion，最终 `127.0.0.1:5565` listener count 1。MuMu/Nox 未停止或修改。
 - 依赖：Google platform-tools `37.0.1`；Frida host/server/Gadget `17.17.0`；正式 SVN Collector `C:\HuuugeCollector@r6701` / `1.0.1`。SVN 版本化文件 clean；Collector 业务逻辑、Hook/serializer 与六字段未改。
 - 正式 bootstrap 无 action item。Controller 以 `-ValidationOnly` 创建 Session `20260904_135724`，达到 strict READY；15 秒无操作 Session 为 RPC/decoded `61/61`；Stop 后 manifest=`stopped`，Finalize=`finalized`，active state absent。
+- User 接受 Phase D 后批准汇报彩排。Session `20260904_142442` 在 READY 时为 RPC/decoded `63/63`，User 操作完成后为 `123/123`；Stop/Finalize exit `0`，最终 active absent、Frida/game PID 空、ADB forward/host capture process/临时 residual 均为 `0`，Gadget/config 保留。User 随后明确 `彩排 Accepted`。
 - Final cleanup：Collector/bootstrap host process `0`、guest temporary residual `0`；run-owned root Frida server、Huuuge process 与 ADB forward 已停止。ARM64 Gadget/config 作为长期依赖保留。
 - 问题与修复：空白 `Pie64_1` 经 User 批准删除后 clone 当前本机实例；自动分配的 `Pie64_2` 在关闭状态下对齐为 `Pie64_1`；首次 live Root 因 Python import 绑定失败后自动回滚，修正进程级环境绑定再成功；没有修改 Collector。
 - 回退：pre-root-live host binaries、config 与 `Pie64_1` VHD 已备份；Root/Gadget rollback 在独立 copy 上恢复一致。回退入口默认 dry-run，实际恢复要求关闭 Player/Manager。原 `Pie64` 与批准的 5565 port allocation 默认保留。
-- 边界：未执行 Spin、Win/Reward、RTP/Bet 分析或字段扩展；未修改业务仓库、飞书或 Codex 配置。正式 RC4 仍为 `Pending`，历史 User 实跑仍为 `Failed/Invalid`，Bet/RTP 仍为 `Unsupported`。
+- 边界：Phase D 未执行 Spin；彩排中的 3 次单次 Spin 仅由 User 手动完成，未使用 Auto Spin、购买或充值。未执行 Win/Reward、RTP/Bet 分析或字段扩展；未修改业务仓库、飞书或 Codex 配置。正式 RC4 仍为 `Pending`，历史 User 实跑仍为 `Failed/Invalid`，Bet/RTP 仍为 `Unsupported`。
 - Workspace Sync：`ON_DEMAND / provider unavailable / stale 6 / conflicts 0`；WATCH disabled。Subagents: none / OFF。
 - Validation：Task 23/23、Context 13/13、Memory 44/44；Registry 14 canonical / 0 collision / valid；Context refresh 75 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过。Context 首轮只在 Windows 临时目录 tearDown 出现 handle race，改用独立 D: ASCII TEMP 重跑 13/13 通过。
-- `Huuuge Research Laptop Ready = Yes`。唯一下一步：Review TASK-0027 Phase D；未来正式 Session 必须另行给出范围。
+- Accepted closeout 回归：Task 23/23、Context 13/13、Memory 44/44；Registry 14 canonical / 0 collision / valid；Context refresh 75 sources / 0 broken link / 0 secret issue；changed-document scan 12 files / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过。
+- TASK-0027=`Accepted`，`Huuuge Research Laptop Ready = Yes`。唯一下一步：正式汇报前由 User 明确开启当次 Session Gate；不会自动运行 Collector。
 
 ## Current Task — TASK-0019
 
@@ -208,10 +210,14 @@
 
 
 
+
+
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-04T06:13:04Z
+- Generated: 2026-09-04T06:43:36Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
@@ -219,4 +225,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-Review TASK-0027 Phase D 的长期研究环境与正式 lifecycle 证据；未收到新的 Session 范围前不运行 Collector 或 Spin。
+TASK-0027 已 Accepted。正式汇报前等待 User 明确开启当次 Session Gate；在此之前不运行 Collector。

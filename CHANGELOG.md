@@ -2,6 +2,17 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.18.6] - 2026-09-04
+
+### TASK-0027 Accepted and presentation rehearsal passed
+
+- User 明确接受 Phase D，并批准进入汇报彩排；Huuuge Research Laptop 保持 `Pie64_1 / 5565 / Root ON`，原 `Pie64 / 5585 / Root OFF` 保留。
+- 彩排 Session `20260904_142442` 在 READY 时为 RPC/decoded `63/63`，User 按最小脚本完成操作后为 `123/123`；Stop/Finalize exit `0`。
+- 最终 active state absent，Frida/game PID 为空，ADB forward、host capture process 与临时 residual 均为 `0`；长期 Gadget/config 保留。
+- User 明确给出 `彩排 Accepted`；canonical TASK-0027 更新为 `Accepted`，Product Roadmap 移入 Done。正式汇报仍需单独开启 Session Gate。
+- 本轮不修改 Collector、Hook/serializer、六字段、Huuuge 业务仓库、飞书或 Codex 配置；不执行 Win/Reward、Bet/RTP 分析。RC4 继续保留独立策划 First Run 边界。
+- Accepted closeout 回归：Task 23/23、Context 13/13、Memory 44/44；Registry 14 canonical / 0 collision / valid；Context refresh 75 sources / 0 broken link / 0 secret issue；changed-document scan 12 files / 0 broken link / 0 secret assignment；Workspace Doctor 与 `git diff --check` 通过。
+
 ## [0.18.5] - 2026-09-04
 
 ### Huuuge Research Laptop Ready

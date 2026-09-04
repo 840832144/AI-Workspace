@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-09-04T06:13:04Z
+Generated: 2026-09-04T06:43:36Z
 
 本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
 
@@ -549,7 +549,7 @@ _Last reviewed: 2026-09-04_
 - TASK-0019 已通过 ChatGPT Review Round 3 并 `Accepted`；项目全景说明保持稳定，项目进度与能力状态成为唯一动态源稿，正式飞书进度文档继续原位维护。
 - 当前 Windows 工作站的 Workspace 与 Document Assistant 接入已完成现场验收，可标记为 `Ready`；这只证明本机治理与文档能力可用，不等于 Huuuge First Run 已通过。
 - Huuuge First Run 状态仍为 `Blocked`：正式 RC4 记录为 `Pending`，User 提供的历史实跑反馈为 `Failed/Invalid`。TASK-0027 已证明本机正式 Collector READY/Stop/Finalize，但工程生命周期不替代未参与开发策划的独立端到端记录。Bet/RTP `Unsupported`：没有 Bet 分层运行证据或稳定 RTP/EV 统计证据，不得从字段、单次样本或描述性比率推导 Bet 与 RTP 关系。
-- User 已批准 P0 Reliability Hardening、Scheme C 与 Phase D 工程部署；allocator 已建立 canonical TASK-0027。原 `Pie64 / 5585 / Root OFF` 保留，长期研究 clone 已对齐为 `Pie64_1 / 5565 / Root ON`；正式 Collector 1.0.1 完成 `Start → READY → 15 秒无操作 Session → Stop → Finalize`，RPC/decoded `61/61`，最终 run-owned process、Frida server、forward 与临时 residual 均已清理。`Huuuge Research Laptop Ready = Yes`。
+- TASK-0027 已完成 Phase A-D 与汇报彩排并由 User `Accepted`。原 `Pie64 / 5585 / Root OFF` 保留，长期研究 clone 为 `Pie64_1 / 5565 / Root ON`；Phase D lifecycle 为 `61/61`，彩排 Session `20260904_142442` 从 READY `63/63` 到 User 操作后的 `123/123`，随后 Stop/Finalize/cleanup 全部通过。`Huuuge Research Laptop Ready = Yes`。
 
 ## 当前执行入口
 
@@ -559,9 +559,9 @@ _Last reviewed: 2026-09-04_
 AI-Workspace/tasks/TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md
 ```
 
-状态：`Review / Phase D complete / Huuuge Research Laptop Ready`。TASK-0027 已完成正式包核验、长期研究实例、5565、Root、Frida/Gadget 与生命周期证明。
+状态：`Accepted / rehearsal passed / Huuuge Research Laptop Ready`。TASK-0027 已完成正式包核验、长期研究实例、5565、Root、Frida/Gadget、生命周期与汇报彩排证明。
 
-背景：TASK-0019、TASK-0026 已 Accepted。SVN package `1.0.1` 位于 `C:\HuuugeCollector@r6701`，版本化文件 clean；本轮没有修改 Collector、业务仓库、Hook/serializer 或六字段，没有执行 Spin、Win/Reward、RTP/Bet 分析。Phase D 已完成，等待 Review；任何未来正式 Session 仍需另行给出范围。
+背景：TASK-0019、TASK-0026、TASK-0027 已 Accepted。SVN package `1.0.1` 位于 `C:\HuuugeCollector@r6701`，版本化文件 clean；彩排没有修改 Collector、业务仓库、Hook/serializer 或六字段，也没有执行 Win/Reward、RTP/Bet 分析。任何正式汇报 Session 仍需另行开启 Gate。
 
 TASK-0020 已确认结果：
 
@@ -592,7 +592,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 - `TASK-0023-IDEA-GOVERNANCE-PRODUCT-ROADMAP.md`：`Accepted`；唯一 Product Roadmap、Idea Governance、技术术语规则与两个正式文档入口已完成并正式生效。
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md`：`Ready`，等待 User 明确切回，不与当前任务并行执行。
 - `TASK-0026-COLLECTOR-1-0-ENGINEERING.md`：`Accepted`，不在当前任务内扩大字段、模块或动态运行范围。
-- `TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md`：`Review`，Phase D 长期研究环境与正式 lifecycle 已完成。
+- `TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md`：`Accepted`，长期研究环境、正式 lifecycle 与汇报彩排均已通过。
 
 并行任务必须使用独立 branch / linked worktree。TASK-0027 不复用旧电脑的路径、实例 ID、VHD、ADB port、Root、账号或 `.local`。
 
@@ -654,7 +654,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-09-04T06:13:04Z
+- Generated: 2026-09-04T06:43:36Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -664,7 +664,6 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md` — Ready
-- `TASK-0027-Huuuge-Laptop-Demo-Reliability-Hardening.md` — Review
 <!-- MEMORY-CONTEXT:END -->
 
 <!-- SOURCE: 03_NEW_CHAT_BOOTSTRAP.md -->
