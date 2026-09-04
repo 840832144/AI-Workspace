@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-04
 - Current task: TASK-0027 — Huuuge Laptop Demo Reliability Hardening
-- Status: In Progress — Phase B BlueStacks Environment-ready complete；waiting at Phase C User Gate
+- Status: In Progress — Phase C static preflight complete；dynamic lifecycle blocked before start
 - Branch: AI-Workspace `codex/huuuge-laptop-reliability-readiness-audit` from `main@1dd6de3e244858c44b716cacd72961ea9419f564`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -21,9 +21,11 @@
 - 共存：MuMu 保持原运行状态，Nox 保持原状；二者未占用 5585/5037，未停止或修改。D: 仍有约 201.5 GB 可用，当前 data path 适合汇报环境，不触发重装 Gate。
 - 最终状态：BlueStacks Player、Multi-instance Manager、ADB client 均退出；port 5037/5585 均无 listener。没有 Root、Frida、Collector 或 Spin；没有修改业务仓库、飞书文档或 Codex 配置。Subagents: none / OFF。
 - 回退：config Baseline 5/5、Modified 7/7；另一份 copy 上 rollback 恢复 Baseline 5/5。live config 保持 User 批准的 `HuuugeResearch / ADB enabled / 5585 / Root OFF`。
-- Validation：Task 23/23、Context 13/13、Memory 44/44、TASK-0027 定向 18/18；Registry 14 canonical / 0 collision / valid；Context refresh 73 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 unexpected / 0 broken link / 0 secret assignment / 0 stale；Workspace Doctor 与 `git diff --check` 通过。
+- Phase C 正式包：公司 SVN working copy `C:\HuuugeCollector@r6701` clean；version `1.0.1`；source revision `77e0339fa73da2ab02fcbb6cff125604a9a8abd5`；ZIP SHA-256 `ACAC144B3CB58E861345D33F6CEEB95ACA0E1CE3CF8B49211C6E7AFB260A958A`；manifest `3/3`、PowerShell `9/9`、Python AST `5/5` 通过。
+- Phase C blocker：正式 controller 固定 `Pie64_1 / 127.0.0.1:5565 / uid=0(root)`，本机批准边界为 `Pie64 / 127.0.0.1:5585 / Root OFF`；固定 ADB/Frida 路径也缺失。按 scope 在启动前停止，未运行 READY/短 Session/Stop/Finalize；Demo Ready=`No`。
+- Validation：Task 23/23、Context 13/13、Memory 44/44、Phase C focused 20/20；Registry 14 canonical / 0 collision / valid；Context refresh 74 sources / 0 broken link / 0 secret issue；changed-document allowlist 12/12；Workspace Doctor、PowerShell Context entry 与 `git diff --check` 通过。
 - 回归失败记录：第一次组合运行在默认 Windows TEMP 遇到测试子进程退出后的临时目录 handle race，Context 5 项、Memory 4 项仅在 tearDown 报 WinError 32；改用隔离 ASCII TEMP 并固定 UTF-8 后，Context 13/13 与 Memory 44/44 全量通过，没有修改测试或产品代码。
-- 唯一下一步：User 审批 Phase C 的正式 Collector 包路径/取得方式、版本/hash/依赖/static preflight 与最小 Reliability Hardening。未获批准不启动 BlueStacks、Root、Frida、Collector 或 Spin。
+- 唯一下一步：User 决定是否另行授权 Collector 工程适配，使正式入口支持本机 `Pie64 / 5585 / Root OFF`。未获授权不启动 BlueStacks、Root、Frida、Collector 或 Spin。
 
 ## Current Task — TASK-0019
 
@@ -204,10 +206,12 @@
 
 
 
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-04T04:41:45Z
+- Generated: 2026-09-04T05:01:05Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
@@ -215,4 +219,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-TASK-0027 Phase B BlueStacks Environment-ready 已完成。User 审批 `tasks/support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md` 对应的 Phase C 正式 Collector 包路径/取得方式、static preflight 与最小 Reliability Hardening；未获批准不启动 BlueStacks、Root、Frida、Collector 或 Spin。
+TASK-0027 Phase C static preflight 已完成，动态 lifecycle 因正式 package contract 与本机 Root-OFF identity 冲突而在启动前阻断。User 决定是否另行授权 Collector 工程适配；未获授权不启动 BlueStacks、Root、Frida、Collector 或 Spin。

@@ -17,14 +17,15 @@
 
 把 Huuuge First Run 从“正式 RC4 `Pending`、User 实跑 `Failed/Invalid`、正式 Collector READY 未被可复核证明”的状态，收敛为适合笔记本现场汇报的最小、可复查、可回退演示路径。
 
-本 Task 已获 User 批准，但执行分阶段授权：Phase A 只读 Readiness Audit 与 Phase B BlueStacks Environment-ready 已完成；正式 Collector 包、静态 preflight、Reliability Hardening、Collector 启动和现场演示分别受后续 Gate 约束。
+本 Task 已获 User 批准，但执行分阶段授权：Phase A 只读 Readiness Audit 与 Phase B BlueStacks Environment-ready 已完成。Phase C 已获批并完成正式 Collector 包取得与启动前静态 preflight；静态检查确认当前正式包与本机 Root-OFF 环境不兼容，因此在启动 Collector 前停止，动态 lifecycle 未执行。
 
 ## Decision and current gate
 
 - P0 Reliability Hardening 已由 Decision proposal 转为正式 canonical Task。
 - Phase A - Laptop Readiness Audit：已完成，只读检查结果见 [`tasks/support/TASK-0027/LAPTOP_READINESS_AUDIT.md`](support/TASK-0027/LAPTOP_READINESS_AUDIT.md)。
 - Phase B - BlueStacks Environment-ready：User 批准保留当前安装、验证启动/退出/重启、创建本机 Fresh Pie 64-bit `HuuugeResearch`、启用 ADB，并在确认 5555 冲突后单独批准改用 5585；本阶段已完成，验收见 [`ENVIRONMENT_READY_ACCEPTANCE.md`](support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md)。
-- Current Gate：等待 User 审批 Phase C 的正式 Collector 包路径/取得方式、静态 preflight 与最小 Reliability Hardening；获批前不启动 Collector、Root、Frida 或 Spin。
+- Phase C - Collector package/static preflight：User 已批准。正式包已从公司 SVN 取得到 `C:\HuuugeCollector`，版本、SVN revision、source revision、ZIP/manifest hash 和依赖已核验；结论见 [`PHASE_C_PREFLIGHT_ACCEPTANCE.md`](support/TASK-0027/PHASE_C_PREFLIGHT_ACCEPTANCE.md)。
+- Current Gate：Phase C 动态验收在启动前停止。正式 controller 固定 `Pie64_1 / 127.0.0.1:5565`、要求 `uid=0(root)`、固定 ADB/Frida 路径；本机批准边界是 `Pie64 / 127.0.0.1:5585 / Root OFF`。继续会要求修改 Collector 实现或改变 Root/实例边界，均超出本轮授权。
 
 ## Scope
 
@@ -52,18 +53,17 @@ User 已批准并完成以下本机环境动作：
 
 不得复制台式机的 BlueStacks 数据目录、VHD、实例 ID、ADB port、Root 状态、Collector `.local`、账号或绝对路径。`Pie64_1` 只属于历史证据，不预设为本机 identity。
 
-### Phase C - Collector package preflight and Reliability Hardening（等待 User Gate）
+### Phase C - Collector package preflight and Reliability Hardening（静态完成，动态阻断）
 
-最小目标仅围绕“笔记本汇报实机演示”建立：
+User 已批准本 Gate，实际完成：
 
-- 从公司 SVN 取得 User 批准版本到 User 批准的本机路径，记录 revision/version/hash/依赖，只运行不会启动 Collector 的静态 preflight；
-- 可复核的 preflight 与目标实例/package/foreground gate；
-- Collector READY 证据，而不是仅凭进入 User 操作阶段推断 READY；
-- 启动失败、临时 SSL 捕获、ADB/forward、进程和 cleanup 的显式错误；
-- 单一短入口、停止/回退路径和最少现场操作；
-- 不改变 Huuuge schema、报告范围、游戏请求、返回、余额或奖励。
+- Installer URL：`trunk/HuuugeCollector/release/HuuugeCollector_Installer.zip`；文件 last-changed revision `6624`，SVN repository/working-copy revision `6701`；
+- 安装器版本 `1.0.1`，manifest 声明 clean source revision `77e0339fa73da2ab02fcbb6cff125604a9a8abd5`；ZIP SHA-256 `ACAC144B3CB58E861345D33F6CEEB95ACA0E1CE3CF8B49211C6E7AFB260A958A`，下载件与工作副本 release 文件一致，manifest allowlist `3/3`；
+- 正式工作副本路径 `C:\HuuugeCollector`，SVN status clean；PowerShell parser `9/9`、Python AST `5/5`；
+- 依赖声明为 Python、SVN、`frida`、`frida-tools`、`protobuf`、`lz4`、`grpcio-tools`，并要求固定 ADB、root Frida server、Gadget/config 与专用实例；
+- 启动前 fail-closed：本机没有 `C:\platform-tools\adb.exe`、没有固定 Frida server、没有 `Pie64_1`；正式 controller 固定 `127.0.0.1:5565` 且启动路径调用 `Assert-ResearchRoot` 验证 `uid=0(root)`。本机仅有 `Pie64 / HuuugeResearch / 127.0.0.1:5585 / Root OFF`。
 
-具体实现文件、仓库和测试矩阵必须在 User 批准本 Gate 后写入本 Task，再进入修改。
+因此未启动 BlueStacks、Collector、Frida 或 Session，没有伪造 `READY`、Stop/Finalize 结果。继续动态验收需要扩大为 Collector 实现适配或改变 Root/实例边界，必须由 User 重新决策。
 
 ### Phase D - Laptop live-demo acceptance（未来 Gate）
 
@@ -78,17 +78,18 @@ User 已批准并完成以下本机环境动作：
 - Huuuge identity：User 完成安装/登录；package `com.huuuge.casino.slots`、versionName `12.08.27100`、versionCode `1786533240`、primary ABI `arm64-v8a` 已只读回读。Codex 未安装、登录或执行游戏操作。
 - ADB 冲突已显式处理：Windows TCP excluded range `5485–5584` 覆盖默认 5555；User 批准改用 5585。唯一 Player listener 和 direct ADB transport probe 通过；5037 无争用。BlueStacks 随附 `HD-Adb.exe` 在 excluded-port 扫描上发生长等待，精确清理后无残留，作为 Phase C Reliability Hardening 输入保留。
 - 共存结果：MuMu 继续运行、Nox 保持原状；未确认二者与 5585/5037 冲突，因此没有停止或修改。
-- 路径事实：当前权威 Workspace 是 `D:\AI-Workspace`；旧指南的 `C:\AI-Workspace` 不能自动套用。本机正式包目标路径也尚未获批。
-- 当前结论：Phase B BlueStacks Environment-ready 通过；正式 Collector package/static preflight 与 Reliability Hardening 尚未获批，不能启动 Collector 或现场演示。
+- 路径事实：当前权威 Workspace 是 `D:\AI-Workspace`；正式 Installer 声明的本机 Collector 默认路径为 `C:\HuuugeCollector`，本轮已按批准 Gate 取得 clean SVN working copy。
+- Phase C package/static preflight：正式 SVN 包 `1.0.1` 已取得并通过来源/hash/manifest/parser 检查；启动前发现正式 controller 的 `Pie64_1 / 5565 / uid=0(root)` contract 与本机批准的 `Pie64 / 5585 / Root OFF` 冲突。
+- 当前结论：Phase B Environment-ready 仍通过；Phase C 动态 lifecycle 为 `Blocked before start`；Collector READY、短 Session、Stop、Finalize 与 Demo Ready 均未证明。
 
 ## Non-goals
 
-- 不安装、更新或卸载任何软件；
+- 不安装、更新或卸载系统软件；只取得公司 SVN 正式 Collector 工作副本，不运行 Bootstrap 依赖安装；
 - 只启停已批准的 BlueStacks `HuuugeResearch` 并验证 ADB；不停止或修改 MuMu/Nox；
 - 不 clone/删除模拟器实例，不改 Windows 可选功能、启动项、服务、驱动、PATH 或防火墙；
 - 不 Root、不注入、不执行 Spin；游戏安装、登录和正常启动只由 User 完成；Codex 不访问账号数据；
 - 不复制台式机配置、VHD、实例、采集 Session、Raw、Secret 或 `.local`；
-- 不修改 Huuuge 业务仓库、Collector 实现、schema、Hook、serializer 或飞书文档；
+- 不修改 Huuuge 业务仓库、SVN 工作副本、Collector 实现、schema、Hook、serializer 或飞书文档；
 - 不把“Hypervisor 已运行”误写成“BlueStacks 已兼容/实例已可用”。
 
 ## Deliverables
@@ -96,9 +97,10 @@ User 已批准并完成以下本机环境动作：
 - canonical Task：本文件；
 - 第一阶段审计：[`LAPTOP_READINESS_AUDIT.md`](support/TASK-0027/LAPTOP_READINESS_AUDIT.md)；
 - 第二阶段验收：[`ENVIRONMENT_READY_ACCEPTANCE.md`](support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md)；
+- 第三阶段静态验收：[`PHASE_C_PREFLIGHT_ACCEPTANCE.md`](support/TASK-0027/PHASE_C_PREFLIGHT_ACCEPTANCE.md)；
 - 更新 Huuuge Project Status、Product Roadmap、Workspace Progress、CHANGELOG 和两个 Handoff；
 - Task Registry 由正式扫描重建并通过 validator；
-- User 批准 Phase C 后，在本 Task 中补充正式包路径、static preflight、实现文件和测试矩阵。
+- Phase C 正式包路径、static preflight、缺陷和动态 Stop Gate 已写入本 Task 与第三阶段验收。
 
 ## Acceptance
 
@@ -118,7 +120,15 @@ User 已批准并完成以下本机环境动作：
 4. Huuuge package/version/ABI/foreground 曾由 User 启动后的实机只读回读；
 5. MuMu/Nox、Workspace 和 User 文件未改变，最终 BlueStacks/ADB client 已退出；
 6. 回退在另一份 copy 上恢复 Baseline 5/5；live config 保持批准的 5585；
-7. 正式 SVN 包和 static preflight 转入下一 Gate，Collector 仍未启动。
+7. Phase B 验收时正式 SVN 包和 static preflight 转入下一 Gate，Collector 当时仍未启动；Phase C 结果另见第三阶段验收。
+
+### Phase C acceptance（静态通过，动态阻断）
+
+1. 正式包 URL、SVN revision、version、source revision、ZIP SHA-256、manifest allowlist 与依赖已核验；
+2. `C:\HuuugeCollector` 为 clean SVN working copy；PowerShell/Python 静态解析通过；
+3. Root 保持 OFF，未修改 Collector 业务逻辑、Hook/serializer 或字段；
+4. 静态 preflight 明确阻断 `Pie64_1 / 5565 / uid=0(root)` 与 `Pie64 / 5585 / Root OFF` 的 contract mismatch；
+5. 因继续需要扩大范围，未执行启动、READY、短 Session、Stop 或 Finalize；Demo Ready=`No`。
 
 ## Safety
 
@@ -133,15 +143,16 @@ User 已批准并完成以下本机环境动作：
 - Task allocator：remote-CAS reservation `TASK-0027`，state `pending-main`；token 只留本机受控状态，不写 Git/Handoff；
 - Phase A 使用系统、注册表、文件、进程、服务和命令版本的只读检查；
 - Phase B 使用 BlueStacks UI、注册表/config、Player/Core 日志、listener ownership 与只读 direct ADB transport probe；不保存账号或完整日志；
+- Phase C 只使用 SVN info/checkout/status、ZIP/manifest hash、PowerShell parser、Python AST 和配置/路径静态检查；没有运行 Bootstrap、controller 或 Collector；
 - BlueStacks 启动/退出/重启复现通过；`127.0.0.1:5585` listener count 1、5037 count 0；ADB probe 回读 Android 9、shell uid 2000、Huuuge package/version/ABI；
 - 默认 5555 冲突与两次 `HD-Adb.exe` 长等待均显式记录，run-owned PID 精确清理后 `HD-Adb=0`、5037=0；
 - config Baseline 5/5、Modified 7/7、rollback copy Baseline 5/5；live config 与 `MODIFIED_FILE` SHA-256 一致并保持批准状态；
 - `feishu_healthcheck` 仅记录 token/API/Drive 三项安全状态，不记录凭据值；
 - Registry 已重建并验证为 14 canonical / 0 collision / valid；
 - Task 23/23、Context 13/13、Memory 44/44 回归通过；Context refresh 为 73 sources / 0 broken link / 0 secret issue；
-- TASK-0027 定向断言 18/18、changed-document scan 13 files / 0 unexpected path / 0 broken link / 0 secret assignment / 0 stale current state 通过；Workspace Doctor 与 `git diff --check` 通过；
+- Phase C 定向断言 20/20、changed-document allowlist 12/12、Task 23/23、Context 13/13、Memory 44/44、Registry 14 canonical / 0 collision / valid 通过；Context refresh 74 sources / 0 broken link / 0 secret issue，Workspace Doctor 与 `git diff --check` 通过；
 - Handoff 必须记录 `Subagents: none / OFF`。
 
 ## Handoff
 
-提交并 push 本分支后停止。唯一下一步是 User 审批 Phase C：正式 Collector 包的本机路径/取得方式、版本/hash/依赖/static preflight，以及最小 Reliability Hardening 实施。未获批准不启动 BlueStacks、Root、Frida、Collector 或 Spin。
+提交并 push 本分支后停止。唯一下一步是 User 决定是否另行授权 Collector 工程适配，使正式入口支持本机 `Pie64 / 5585 / Root OFF`；在该决策前保持 BlueStacks、Root、Frida、Collector 与 Spin 停止。

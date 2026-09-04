@@ -4,7 +4,7 @@
 
 - Updated: 2026-09-04
 - Current Review request: TASK-0027 — Huuuge Laptop Demo Reliability Hardening
-- TASK-0027 status: `In Progress / Phase B Environment-ready complete / Phase C approval Gate`
+- TASK-0027 status: `In Progress / Phase C static preflight complete / dynamic lifecycle blocked before start`
 - Project key: `HUUUGE`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
 
@@ -20,10 +20,12 @@
 - MuMu 保持原运行状态，Nox 保持原状；二者未占用 5585/5037，未停止或修改。最终 BlueStacks Player、Multi-instance Manager、ADB client 和 5037/5585 均停止。
 - 回退在另一份 config copy 上恢复 Baseline 5/5；live config 保持批准的 `HuuugeResearch / ADB enabled / 5585 / Root OFF`。
 - Environment-ready 只允许申请下一 Gate，不等于 Collector READY、正式 RC4 通过、Reliability Hardening 或实机演示成功。
-- Validation：Task 23/23、Context 13/13、Memory 44/44、TASK-0027 定向 18/18；Registry 14 canonical / 0 collision / valid；Context refresh 73 sources / 0 broken link / 0 secret issue；changed-document scan 13 files / 0 unexpected / 0 broken link / 0 secret assignment / 0 stale；Workspace Doctor 与 `git diff --check` 通过。
+- Phase C 已取得 `C:\HuuugeCollector@r6701`；版本 `1.0.1`、source revision `77e0339fa73da2ab02fcbb6cff125604a9a8abd5`、ZIP SHA-256 `ACAC144B3CB58E861345D33F6CEEB95ACA0E1CE3CF8B49211C6E7AFB260A958A`、manifest `3/3`、PowerShell `9/9`、Python AST `5/5` 通过。
+- 启动前发现正式 controller 固定 `Pie64_1 / 5565 / uid=0(root)`，而本机边界是 `Pie64 / 5585 / Root OFF`；ADB/Frida 固定依赖也缺失。按 scope stop，未启动 BlueStacks/Collector/Frida，未产生 READY、Session、Stop 或 Finalize；Demo Ready=`No`。
+- Validation：Task 23/23、Context 13/13、Memory 44/44、Phase C focused 20/20；Registry 14 canonical / 0 collision / valid；Context refresh 74 sources / 0 broken link / 0 secret issue；changed-document allowlist 12/12；Workspace Doctor、PowerShell Context entry 与 `git diff --check` 通过。
 - 回归失败记录：默认 Windows TEMP 首轮只在临时目录 tearDown 出现 handle race；使用隔离 ASCII TEMP + UTF-8 重跑后 Context 13/13、Memory 44/44 通过，未改测试或产品代码。
 - Subagents: none / OFF。未安装/卸载软件，未修改 Windows、MuMu/Nox、业务仓库、Collector、飞书文档或 Codex 配置；未启动 Root、Frida、Collector 或 Spin。
-- 唯一下一步：User 审批 Phase C 的正式 Collector 包路径/取得方式、static preflight 与最小 Reliability Hardening；未批不启动环境或业务流程。
+- 唯一下一步：User 决定是否另行授权 Collector 工程适配，使正式入口支持本机 `Pie64 / 5585 / Root OFF`；未授权不启动动态流程。
 
 ## TASK-0019 — Accepted Closure
 
@@ -136,4 +138,4 @@
 
 ## Exact Next Action
 
-User 审批 TASK-0027 Phase C 的正式 Collector 包路径/取得方式、static preflight 与最小 Reliability Hardening；未批准前不启动 BlueStacks、Root、Frida、Collector 或 Spin。
+User 决定是否另行授权 TASK-0027 Collector 工程适配，使正式入口支持本机 `Pie64 / 5585 / Root OFF`；未授权前保持 BlueStacks、Root、Frida、Collector 与 Spin 停止。

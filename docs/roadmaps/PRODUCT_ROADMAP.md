@@ -12,9 +12,9 @@
 
 ### Huuuge Laptop Demo Reliability Hardening
 
-- 当前状态：User 已批准 P0 方向；remote-CAS allocator 建立 canonical `TASK-0027`。Phase A Audit 与 Phase B BlueStacks Environment-ready 已完成。
+- 当前状态：User 已批准 P0 方向；remote-CAS allocator 建立 canonical `TASK-0027`。Phase A/B 已完成；Phase C 正式包/static preflight 已完成，动态 lifecycle 在启动前阻断。
 - 产品目标：用笔记本完成最小汇报实机演示，并让 preflight、Collector READY、User 操作边界、finalize、cleanup 和回退都可复核。
-- 当前 Gate：`HuuugeResearch / Pie64 / 127.0.0.1:5585 / Root OFF` 已固定；等待 User 审批 Phase C 的正式 Collector 包路径/取得方式、static preflight 与 Reliability Hardening。批准前不启动 BlueStacks、Root、Frida、Collector 或 Spin。
+- 当前 Gate：SVN 1.0.1 正式包固定 `Pie64_1 / 127.0.0.1:5565 / uid=0(root)`，与本机批准的 `Pie64 / 127.0.0.1:5585 / Root OFF` 冲突。Demo Ready=`No`；等待 User 决定是否另行授权 Collector 工程适配。
 
 ## 📋 Backlog
 

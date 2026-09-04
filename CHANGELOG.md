@@ -2,6 +2,20 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [0.18.4] - 2026-09-04
+
+### Phase C preflight
+
+- User 批准 TASK-0027 Phase C。公司 SVN 1.0.1 正式包已 checkout 到 `C:\HuuugeCollector@r6701`；installer/tree last-changed revision 为 `6624`，manifest source revision 为 `77e0339fa73da2ab02fcbb6cff125604a9a8abd5`，ZIP SHA-256 为 `ACAC144B3CB58E861345D33F6CEEB95ACA0E1CE3CF8B49211C6E7AFB260A958A`。
+- 单文件 export 与 working-copy release ZIP hash 一致；manifest allowlist `3/3`、PowerShell parser `9/9`、Python AST `5/5`，SVN status clean。
+- 启动前 static preflight 确认正式 controller 固定 `Pie64_1 / 127.0.0.1:5565 / uid=0(root)`，而本机批准边界为 `Pie64 / 127.0.0.1:5585 / Root OFF`；固定 `C:\platform-tools\adb.exe` 与 Frida server 依赖也缺失。
+
+### Stop gate
+
+- 继续动态验收需要修改 Collector 实现或改变 Root/实例边界，超出当前授权。按 User 指令在启动前停止；未运行 BlueStacks、Frida、Collector、READY、短 Session、Stop、Finalize 或 Spin，未执行 Win/RTP/Bet 分析，未新增字段。
+- 新增 `tasks/support/TASK-0027/PHASE_C_PREFLIGHT_ACCEPTANCE.md`；Demo Ready=`No`。唯一下一步是 User 决定是否另行授权 Collector 工程适配。
+- 验证通过：Phase C focused 20/20、changed-document allowlist 12/12、Task 23/23、Context 13/13、Memory 44/44、Registry 14 canonical / 0 collision / valid、Context refresh 74 sources / 0 broken link / 0 secret issue、Workspace Doctor、PowerShell Context entry 与 `git diff --check`。PowerShell wrapper 首次默认 TEMP teardown 遇到 WinError 32，设置 ASCII `TEMP/TMP/TMPDIR` 后全量通过。
+
 ## [0.18.3] - 2026-09-04
 
 ### Environment-ready

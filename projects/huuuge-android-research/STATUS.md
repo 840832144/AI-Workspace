@@ -1,9 +1,9 @@
 # Huuuge Android Research — Project Status
 
 - Updated: 2026-09-04
-- Phase: TASK-0027 P0 Laptop Demo Reliability Hardening；BlueStacks Environment-ready complete
+- Phase: TASK-0027 P0 Laptop Demo Reliability Hardening；Phase C static preflight complete / dynamic blocked
 - Owner: User
-- Current milestone: TASK-0027 Phase B BlueStacks / HuuugeResearch / ADB identity ready；waiting for Phase C approval
+- Current milestone: TASK-0027 formal package/static preflight verified；dynamic lifecycle blocked before start
 - External baseline: [`4a5dddf`](https://github.com/840832144/huuuge-android-research/commit/4a5dddf7782307c6a8f368c9f1dc6390eec6f65b)
 
 ## Confirmed Current Facts
@@ -35,12 +35,14 @@
 - User completed Huuuge installation/login. Read-only ADB evidence confirms package `com.huuuge.casino.slots`, versionName `12.08.27100`, versionCode `1786533240` and primary ABI `arm64-v8a`; Codex did not install, log in, click the game, run Collector or execute Spin.
 - BlueStacks bundled `HD-Adb.exe` can wait indefinitely while scanning excluded default emulator ports; both run-owned attempts were cleaned by exact PID, with no 5037 or client residue. The endpoint itself passed a read-only direct ADB transport probe. This CLI behavior is explicit Phase C Reliability Hardening input, not hidden success.
 - Current laptop Workspace is `D:\AI-Workspace`; the old `C:\AI-Workspace` guide path and historical `Pie64_1` identity were not reused. MuMu remained running and Nox remained unchanged; neither occupied 5585/5037 or was modified.
+- TASK-0027 Phase C obtained the official SVN 1.0.1 package at `C:\HuuugeCollector@r6701`; installer/tree last changed at r6624, clean source revision is `77e0339fa73da2ab02fcbb6cff125604a9a8abd5`, ZIP SHA-256 is `ACAC144B3CB58E861345D33F6CEEB95ACA0E1CE3CF8B49211C6E7AFB260A958A`, and manifest/static parse checks passed.
+- The formal controller hard-codes `Pie64_1 / 127.0.0.1:5565` and requires real `uid=0(root)`. This conflicts with the approved laptop identity `Pie64 / 127.0.0.1:5585 / Root OFF`; dynamic Start/READY/Session/Stop/Finalize was therefore not run and Demo Ready is `No`.
 
 ## In Progress
 
 - ChatGPT Review Round 2 of TASK-0018 planner structure, purchase table and limits, ordinary-bet terminology, Extractor tests and original Feishu replacement.
 - Independent First Run by one planner who did not participate in development remains a separate validation track.
-- TASK-0027 is active. Phase B BlueStacks Environment-ready is complete; formal Collector package/static preflight and Reliability Hardening remain stopped at the Phase C User Gate.
+- TASK-0027 is active. Phase C package/static preflight is complete; dynamic lifecycle is stopped before start pending a new scope decision.
 
 ## Risks
 
@@ -71,8 +73,8 @@
 
 - TASK-0018 has no implementation blocker; Review Round 1 fixes are complete and it is waiting for ChatGPT Review Round 2.
 - TASK-0011 still has a separate validation gate: no uninvolved planner has yet been designated or observed for the required blind test.
-- TASK-0027 Phase B has no remaining environment blocker. Phase C is blocked only on User approval of the formal Collector package path/取得方式、static preflight and Reliability Hardening implementation scope.
+- TASK-0027 Phase C dynamic lifecycle is blocked by the formal package's Root/Pie64_1/5565 contract mismatch and missing fixed ADB/Frida dependencies. Continuing requires Collector engineering changes or changing the approved Root/instance boundary.
 
 ## Exact Next Action
 
-User reviews `tasks/support/TASK-0027/ENVIRONMENT_READY_ACCEPTANCE.md` and approves or changes the Phase C package/static-preflight/Reliability-Hardening Gate. Until then keep BlueStacks、Root、Frida、Collector and Spin stopped.
+User decides whether to authorize a separately scoped Collector engineering adaptation for `Pie64 / 5585 / Root OFF`. Until then keep BlueStacks、Root、Frida、Collector and Spin stopped.
