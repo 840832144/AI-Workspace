@@ -1,6 +1,6 @@
 # TASK-0028 — EarlyMeeting 本机回调与本人行同卡填写
 
-- Status: In Progress
+- Status: Review
 - Project key: EARLYMEETING
 - Human alias: 
 - Owner: User / ChatGPT
@@ -37,6 +37,8 @@
 EarlyMeeting 独立实现分支中的最小修复、必要测试、中文一键启动/检查/停止/回滚说明、目标本机脱敏实测摘要、STATUS 与 Handoff；提交 commit 并推送等待 ChatGPT Review。所有业务交付保留在 EarlyMeeting。
 
 ## User 追加批准的实施范围（2026-09-07）
+
+本次交付：EarlyMeeting@81ba062 / PR #4 已实现本人行删除、24px 加粗标题、多群独立的工作日北京时间 10:00 每群每天一张；桌面运行目录已升级，只启用测试群，正式群等 User 指定。真实连接和同卡布局更新通过，保留两行；当天已有消息未重复发送。操作说明与脱敏证据在 EarlyMeeting，未新增自动测试或模拟操作；未来 10:00 与删除回调未冒称实测。Task 进入 Review，不标记 Done。下方为需求演变历史，最新授权优先。
 
 本次准备：两仓库与各自远端一致；检索全部 origin 分支，仅发现 TASK-0028 同目标条目。Registry 复验 14 canonical / 0 collision / valid，reservation pending-main。项目 Capability 延续 EarlyMeeting 的本人行与同卡契约，追加本人删除、按配置群与北京时间日期发送；实现仍在 EarlyMeeting，使用官方 SDK，不引入 Document Assistant 业务代码。Subagents: none。
 
