@@ -1,6 +1,6 @@
 # TASK-0028 — EarlyMeeting 本机回调与本人行同卡填写
 
-- Status: In Progress
+- Status: Review
 - Project key: EARLYMEETING
 - Human alias: 
 - Owner: User / ChatGPT
@@ -43,6 +43,10 @@
 EarlyMeeting 独立实现分支中的最小修复、必要测试、中文一键启动/检查/停止/回滚说明、目标本机脱敏实测摘要、STATUS 与 Handoff；提交 commit 并推送等待 ChatGPT Review。所有业务交付保留在 EarlyMeeting。
 
 ## User 追加批准的实施范围（2026-09-07）
+
+当前交付 EarlyMeeting@344d482 / PR #4（核心实现 590ed0d）：v11 已热更新原卡片为策划、程序、今日交付三个同级区域，保留两条个人记录。今日交付为全群共用文本框，所有群成员可提交或清空；个人行仍仅本人操作。工作日北京时间 09:45 每群每天一张，10:15 提醒暂停。现场 CONNECTED / SCHEDULE_CONFIGURED time=09:45 / LAYOUT_UPDATED / MEETING_READY；未模拟交付提交或清空，新增区域不冒称已经用户验收。代码、说明与脱敏证据保留在 EarlyMeeting。Subagents: none。
+
+正式群接入准备：User 开始提供正式群1的 ID；已在受控本机 groups.json 添加关闭的正式群1与正式群2填写项，最外层“编辑群配置.cmd”可直接打开；群2只预留，保留测试群。等待 User 本机填好并确认现有机器人入群后启用，默认下一工作日 2026-09-08 09:45 开始，不擅自向正式群补发今天的卡片。真实群标识不进入 Git。以下为历史迭代记录，以本段与最新 User 决定为准。
 
 最新交付 EarlyMeeting@f5aff47 / PR #4：v10 在新行首次成功提交前显示红色“未提交”，点击仍提交本人内容；成功后变为蓝色“提交”。最近原消息已更新，两行保留，没有补发或模拟操作。Task 继续 Review；本轮最终代码、说明、脱敏证据与按钮可见性限制均在 EarlyMeeting。
 
