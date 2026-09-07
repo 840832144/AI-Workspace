@@ -272,7 +272,7 @@ entries:
     canonical_file: "tasks/TASK-0028-EARLYMEETING.md"
     file: "tasks/TASK-0028-EARLYMEETING.md"
     title: "EarlyMeeting 本机长连接与真实卡片表单回调修复"
-    status: "Ready"
+    status: "In Progress"
     project_key: "EARLYMEETING"
     human_alias: ""
     owner: "User / ChatGPT"

@@ -11,13 +11,14 @@
 
 ## TASK-0028 — EarlyMeeting 本机回调接管
 
-- Updated: 2026-09-07；Status: Ready；Project key: EARLYMEETING。
-- 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；新规格为 EarlyMeeting PR #3 / docs/codex-callback-takeover@b18e393。旧 PR #1/#2 已关闭作废。
+- Updated: 2026-09-07；Status: In Progress；Project key: EARLYMEETING。
+- 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；新规格为 EarlyMeeting PR #3@b18e393。旧 PR #1/#2 已关闭作废。
 - 完整 Registry、全部远端目标防重及 remote-CAS allocator Gate 通过；独立 worktree 分支 codex/earlymeeting-callback-task；reservation pending-main，Review 后再合并/finalize。
-- 业务分支 codex/task-0028-local-callback；代码、测试、部署说明与脱敏现场证据均留在 EarlyMeeting。
-- User 已确认本机实际目录；仅修长连接并验证现有测试卡片表单，不保存、不更新公共卡片、不启用 10:00 定时、不改全局网络安全配置。
-- 下一动作：完成准备推送后在目标本机安全输入凭据，复现失败阶段并最小修复；离线通过不能替代现场验收。Subagents: none。
-
+- 业务实现：EarlyMeeting@2442153，codex/task-0028-local-callback；Draft [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)。代码、测试、运行说明与脱敏现场证据均留在 EarlyMeeting；Document Assistant 实现未修改。
+- User 已确认本机实际目录并授权受 ACL 限制的本机 JSON，已实际运行；HTTP 101 / CONNECTED 与 STOP_VERIFIED 已取得。重启中出现过入口成功后的握手失败，当前专属传输观察器用于定位间歇原因。
+- User 界面确认应用尚未配置卡片回调；下一动作是完成后台配置后在现有测试卡片提交虚构输入，核对真实数据。当前没有实际字段通过证据，不标记 Done。
+- 唯一 Product Roadmap 原位更新、正文/权限/登记/Hub 回读通过；Hub 31 项且链接唯一。Context 72 sources / 0 broken link / 0 secret issue，Doctor ok，Sync 仍 ON_DEMAND。
+- 不保存工作内容、不更新公共卡片、不启用 10:00 定时、不改全局网络安全配置。Subagents: none。
 
 ## Current Task — TASK-0019
 
@@ -191,10 +192,12 @@
 
 
 
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-29T09:33:41Z
+- Generated: 2026-09-07T07:24:52Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`

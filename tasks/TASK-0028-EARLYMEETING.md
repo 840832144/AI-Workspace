@@ -1,6 +1,6 @@
 # TASK-0028 — EarlyMeeting 本机长连接与真实卡片表单回调修复
 
-- Status: Ready
+- Status: In Progress
 - Project key: EARLYMEETING
 - Human alias: 
 - Owner: User / ChatGPT
@@ -22,7 +22,7 @@
 
 项目声明的结果契约为目标 Windows 本机运行检查、脱敏长连接诊断、现有卡片交互接收及表单传值核对；采用 EarlyMeeting 专属实现与飞书官方 SDK。AI-Workspace 仅存 Task、治理引用和状态，不复制业务实现；不向 Document Assistant 加入本业务。
 
-检查实际目录与依赖，审查后选择复用旧测试代码，复现入口请求/凭据校验/WebSocket 握手失败阶段，按证据作最小修复。只处理指定测试群卡片，持续保持一份接收进程。凭据由 User 在本机安全输入。回调测试提示必须明确未保存、未更新。
+检查实际目录与依赖，审查后选择复用旧测试代码，复现入口请求/凭据校验/WebSocket 握手失败阶段，按证据作最小修复。只处理指定测试群卡片，持续保持一份接收进程。凭据由 User 在本机安全输入；User 本轮追加授权改为仅本机 JSON，按当前用户/SYSTEM ACL 限制、Git 忽略，禁止回显或上传。回调测试提示必须明确未保存、未更新。
 
 ## Non-goals
 
@@ -55,3 +55,13 @@ Workspace Sync：ON_DEMAND、conflicts=0、provider_available=false、stale=6；
 ## Handoff
 
 准备 Gate：范围已获 User 批准，合法任务已 Ready；本 Task / Registry / Handoff 推送并复验后进入实施。实施完成或现场确有阻塞时，更新本 Task 和 EarlyMeeting STATUS / handoff/CODEX.md，返回业务 branch/commit、根因证据、离线/现场结果、剩余阻塞与唯一下一步，等待 Review；不自行合并 main。Subagents: none。
+
+## 实施进展（2026-09-07）
+
+- 正式准备 commit a68b663 已推送；Registry 14 canonical / 0 collision / valid，remote reservation pending-main。
+- 唯一 Product Roadmap 已按 EarlyMeeting PR #3 Idea Handoff 原位更新：正文回读通过，企业内可编辑 verified，自动登记/导航中心回读通过；Hub 31 项、unique_links=true。未修改 Document Assistant 实现。
+- Context refresh：72 sources / 0 broken link / 0 secret issue；Doctor ok；保持 ON_DEMAND。
+- EarlyMeeting 已在 User 实际 Windows 电脑使用受控本机 JSON 启动，入口与真实长连接成功。后续重启已复现入口成功后的握手失败；SDK 丢弃底层错误对象已确认，增加传输观察器后再次连接，底层间歇原因尚未确认。
+- 下一动作：核对现有测试卡片真实表单，然后验证停止并交 Review；具体业务证据仅留在 EarlyMeeting。
+
+- 业务实现已提交 EarlyMeeting@2442153，Draft [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)；43 组检查与 6 项新增测试通过，真实 HTTP 101 / CONNECTED、STOP_VERIFIED 已取得。User 界面确认应用缺少卡片回调配置，等待补配后验证输入；未把 Task 标记 Done。
