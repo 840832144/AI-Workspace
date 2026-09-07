@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-07
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 本机回调与独立输入已验证；整组三列表单和间歇网络根因保留未验收
+- Status: In Progress — User 批准本人行同卡填写，续接 TASK-0028；预计 10～20 人
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -11,6 +11,7 @@
 
 ## TASK-0028 — EarlyMeeting 本机回调接管
 
+- 当前增量：User 已确认空卡片点击加号新增本人行、自动带入人员、职位与内容共同保存并更新同一条测试群卡片。Registry 14 canonical / 0 collision / valid，远端防重只有 TASK-0028；原模板保留，动态布局由 EarlyMeeting 实现，定时关闭。下列 Review 描述保留为前一诊断阶段证据。
 - Updated: 2026-09-07；Status: Review；Project key: EARLYMEETING。
 - 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；新规格为 EarlyMeeting PR #3@b18e393。旧 PR #1/#2 已关闭作废。
 - 完整 Registry、全部远端目标防重及 remote-CAS allocator Gate 通过；独立 worktree 分支 codex/earlymeeting-callback-task；reservation pending-main，Review 后再合并/finalize。

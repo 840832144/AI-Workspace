@@ -10,11 +10,11 @@
 
 ## 🔥 Current
 
-### EarlyMeeting｜现有飞书晨会卡片的本机回调接入
+### EarlyMeeting｜本人行填写与同卡汇总
 
-- 当前状态：[TASK-0028](../../tasks/TASK-0028-EARLYMEETING.md) 已正式登记并进入 Review；本机真实连接、独立文本回调和一键操作已验证，整组表单及间歇网络原因保留未验收。
-- 产品价值：保留已成功发送的应用与模板，接通现有卡片提交；业务规格和实现均以 [EarlyMeeting PR #3](https://github.com/840832144/EarlyMeeting/pull/3) 为入口。
-- 验收边界：本轮不保存、不更新公共卡片、不启用工作日 10:00 调度，不改变其他项目优先级；真实连接与表单分别验收，Review 前不进入 Done。
+- 当前状态：[TASK-0028](../../tasks/TASK-0028-EARLYMEETING.md) 续接为 In Progress。User 已批准空卡片按需新增本人行、自动带入人员、职位与内容共同保存和同一消息更新；预计 10～20 人逐行排列。
+- 产品价值：保留现有应用、原模板与发送入口，通过已验证的长连接实现多人本人填写；业务规格与实现见 [EarlyMeeting 当前方向](https://github.com/840832144/EarlyMeeting/blob/codex/task-0028-local-callback/docs/CURRENT_DIRECTION.md#后续产品目标澄清)。此前 Backlog 的多人汇总范围合并到本条，不另建产品或 Future Task。
+- 验收边界：范围限指定测试群与受控本机保存；重复点击防重、本人归属、整组表单、重启继续原卡片及双人并发分别验收。工作日 10:00 调度关闭；间歇网络原因仍未确认，正式 Review 前不进入 Done。
 
 ### 【游戏】 Collector 1.0
 
@@ -23,12 +23,6 @@
 - 下一动作：ChatGPT Review `codex/collector-1-engineering@7c32877` 的 Adapter contract、固定 artifacts、Sidecar allowlist 与部署兼容性；Review 前不合入正式仓库 main，不扩大字段或模块。
 
 ## 📋 Backlog
-
-### EarlyMeeting｜下一阶段多人汇总与原卡片更新
-
-- 来源：2026-09-07 User 在 TASK-0028 联调中澄清同卡多人填写目标；属于现有 EarlyMeeting 产品的后续范围，不重复建立产品条目或 Future Task。
-- 业务范围与最小方案：[EarlyMeeting 后续产品目标澄清](https://github.com/840832144/EarlyMeeting/blob/codex/task-0028-local-callback/docs/CURRENT_DIRECTION.md#后续产品目标澄清)；具体布局、数据保存及更新实现留在业务仓库。
-- 进入 Current 的条件：完成本轮 Review，确认下一阶段执行范围并通过 Candidate / 正式 allocator 或既有 Task 续接 Gate；当前不启用保存、公共卡片更新或 10:00 定时。
 
 ### Top Tycoon
 

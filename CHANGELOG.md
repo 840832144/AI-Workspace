@@ -4,6 +4,7 @@
 
 ## [Unreleased] - 2026-09-07
 
+- User 批准空卡片新增本人行及同卡保存，续接 TASK-0028 为 In Progress；范围限已配置测试群与受控本机数据，10:00 调度保持关闭。Registry 防重通过，未另行占号。
 - 正式 allocator 登记 TASK-0028 / EARLYMEETING，本机长连接及真实卡片表单回调接管；旧 PR #1/#2 已作废，新范围引用 PR #3。
 - 仅维护治理与索引；实现、测试、运行说明和脱敏证据留在 EarlyMeeting。保留现有应用/模板/发送流程，不保存工作内容、不更新公共卡片、不启用定时、不修改全局网络安全配置。
 - Registry 首检 13 canonical / 0 collision / valid；新 Task 的 reservation 保持 pending-main，提交等待 Review。
