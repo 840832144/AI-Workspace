@@ -1,6 +1,6 @@
 # AI Workspace｜产品路线图（Product Roadmap）
 
-> 更新时间：2026-08-28
+> 更新时间：2026-09-07
 > Git 真相源：`docs/roadmaps/PRODUCT_ROADMAP.md`
 > 适用范围：Game Planner AI Workspace 的长期产品方向
 
@@ -9,6 +9,12 @@
 条目必须归入以下四个固定分区之一。分类变化需要保留可复查依据；Roadmap 条目本身不等于执行授权，也不会自动创建 Task。
 
 ## 🔥 Current
+
+### EarlyMeeting｜现有飞书晨会卡片的本机回调接入
+
+- 当前状态：User 2026-09-07 已批准接管；[TASK-0028](../../tasks/TASK-0028-EARLYMEETING.md) 已经正式 allocator 登记，待本机连接与表单回调实测。
+- 产品价值：保留已成功发送的应用与模板，接通现有卡片提交；业务规格和实现均以 [EarlyMeeting PR #3](https://github.com/840832144/EarlyMeeting/pull/3) 为入口。
+- 验收边界：本轮不保存、不更新公共卡片、不启用工作日 10:00 调度，不改变其他项目优先级；真实连接与表单分别验收，Review 前不进入 Done。
 
 ### 【游戏】 Collector 1.0
 

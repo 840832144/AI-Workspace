@@ -2,6 +2,12 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [Unreleased] - 2026-09-07
+
+- 正式 allocator 登记 TASK-0028 / EARLYMEETING，本机长连接及真实卡片表单回调接管；旧 PR #1/#2 已作废，新范围引用 PR #3。
+- 仅维护治理与索引；实现、测试、运行说明和脱敏证据留在 EarlyMeeting。保留现有应用/模板/发送流程，不保存工作内容、不更新公共卡片、不启用定时、不修改全局网络安全配置。
+- Registry 首检 13 canonical / 0 collision / valid；新 Task 的 reservation 保持 pending-main，提交等待 Review。
+
 ## [0.18.1] - 2026-08-29
 
 ### Accepted

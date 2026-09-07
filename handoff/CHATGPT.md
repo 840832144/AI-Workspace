@@ -8,6 +8,16 @@
 - Project key: `WORKSPACE`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
 
+## TASK-0028 — EarlyMeeting 本机回调接管
+
+- Updated: 2026-09-07；Status: Ready；Project key: EARLYMEETING。
+- 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；新规格为 EarlyMeeting PR #3 / docs/codex-callback-takeover@b18e393。旧 PR #1/#2 已关闭作废。
+- 完整 Registry、全部远端目标防重及 remote-CAS allocator Gate 通过；独立 worktree 分支 codex/earlymeeting-callback-task；reservation pending-main，Review 后再合并/finalize。
+- 业务分支 codex/task-0028-local-callback；代码、测试、部署说明与脱敏现场证据均留在 EarlyMeeting。
+- User 已确认本机实际目录；仅修长连接并验证现有测试卡片表单，不保存、不更新公共卡片、不启用 10:00 定时、不改全局网络安全配置。
+- 下一动作：完成准备推送后在目标本机安全输入凭据，复现失败阶段并最小修复；离线通过不能替代现场验收。Subagents: none。
+
+
 ## TASK-0019 — Accepted Closure
 
 - Review branch：`codex/task-0019-overview-progress-refresh`，基于 `main@c74c85a9524d1524ea3696835509de2a55e9f524`；未 merge 旧 `task-0019-overview-progress`。
