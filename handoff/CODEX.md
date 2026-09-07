@@ -11,6 +11,8 @@
 
 ## TASK-0028 — EarlyMeeting 本人行与同卡填写
 
+- 最新提交 EarlyMeeting@f5aff47 / PR #4：v10 新行红色“未提交”，首次提交成功后蓝色“提交”；保留 v9 列宽和自动换行。真实同卡 LAYOUT_UPDATED / MEETING_READY，保留两行，不重发、不模拟操作；仅本人可提交/删除，按查看者隐藏按钮仍未实现。Task Review，等待 User 查看。Subagents: none。
+
 - 最终反馈：EarlyMeeting@329d0c3 / PR #4，v9 内容加宽至 340px、操作区 92px，按钮为提交/删除，达列宽自动换行增高；已热更新最近原消息并保留两行。按查看者隐藏他人按钮受当前共享模式限制，未实现；本人操作校验保留。Task Review，等待 User 实际查看，未重新发送或运行自动测试。Subagents: none。
 
 - 当前最新：EarlyMeeting@056c216 / PR #4，v6 紧凑行已热更新最近原卡片、保留两行；右侧并排重新保存/删除，内容默认一行，行距 4px。User 取消补发，未发新消息。User 真实删除、重新添加与保存成功；新 UI 直接等待反馈，Task Review，不追加自动测试，不提前记验收通过。Subagents: none。
@@ -208,10 +210,11 @@
 
 
 
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-07T09:40:11Z
+- Generated: 2026-09-07T09:42:32Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
