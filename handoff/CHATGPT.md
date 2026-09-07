@@ -4,21 +4,21 @@
 
 - Updated: 2026-09-07
 - Current Review request: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- TASK-0028 status: `In Progress`（追加批准本人行同卡填写）；历史 TASK-0019 仍 Accepted
+- TASK-0028 status: `Review`（两区域核心实现已提交）；历史 TASK-0019 仍 Accepted
 - Project key: `EARLYMEETING`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
 
-## TASK-0028 — EarlyMeeting 本机回调接管
+## TASK-0028 — EarlyMeeting 本人行与同卡填写
 
-- 当前增量：User 已确认空卡片点击加号新增本人行、自动带入人员、职位与内容共同保存并更新同一条测试群卡片。Registry 14 canonical / 0 collision / valid，远端防重只有 TASK-0028；原模板保留，动态布局由 EarlyMeeting 实现，定时关闭。下列 Review 描述保留为前一诊断阶段证据。
-- Updated: 2026-09-07；Status: Review；Project key: EARLYMEETING。
-- 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；新规格为 EarlyMeeting PR #3@b18e393。旧 PR #1/#2 已关闭作废。
-- 完整 Registry、全部远端目标防重及 remote-CAS allocator Gate 通过；独立 worktree 分支 codex/earlymeeting-callback-task；reservation pending-main，Review 后再合并/finalize。
-- 业务实现：EarlyMeeting@878f42a，codex/task-0028-local-callback；[PR #4](https://github.com/840832144/EarlyMeeting/pull/4) 等待 Review。代码、测试、运行说明与脱敏现场证据均留在 EarlyMeeting；Document Assistant 实现未修改。
-- User 已确认本机实际目录并授权受 ACL 限制的本机 JSON，已实际运行；HTTP 101 / CONNECTED 与 STOP_VERIFIED 已取得。重启中出现过入口成功后的握手失败，当前专属传输观察器用于定位间歇原因。
-- User 确认漏加回调，补配后两次真实 CALLBACK_OK / INPUT_CHECK verified=true；停止及 NOT_RUNNING 已验证。整组三列表单和间歇网络根因仍未验收，不标记 Done。手动一键发卡实测及防重通过。下一动作：ChatGPT Review 本修复与业务仓库的多人汇总范围说明。
-- 唯一 Product Roadmap 的 Current 已记录本轮 Review，后续多人汇总进入 Backlog；飞书正文与 Git 一致、导航中心登记回读通过，不创建 Future Task。企业可编辑权限沿用已验证配置。Context 72 sources / 0 broken link / 0 secret issue，Doctor ok，Sync 仍 ON_DEMAND。
-- 不保存工作内容、不更新公共卡片、不启用 10:00 定时、不改全局网络安全配置。Subagents: none。
+- 当前状态：Review；按 User 最终要求仅交付核心功能，直接使用、有问题再改，不增加复杂或多余的测试/验收。
+- 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；Registry 14 canonical / 0 collision / valid，同目标仅本 Task，reservation pending-main。
+- 业务实现：[EarlyMeeting PR #4](https://github.com/840832144/EarlyMeeting/pull/4)，分支 codex/task-0028-local-callback，最新提交 **6ffbe79**（核心代码 08b22f1）。代码、操作说明、状态和脱敏现场证据均在 EarlyMeeting；Document Assistant 实现未修改。
+- User 最终决定：策划 / 程序两个区域，各有人员与晨会内容两列及加号；姓名自动带入，内容本人填写并更新同一卡片。部门列及通讯录读取已取消，不再申请部门字段权限。
+- 真实空卡片已发送，User 已新增一行并保存；最终两区布局已更新到原消息，重启保留已有记录。User 与同事直接使用；不以额外多人、手机或压力测试作为交付前置。
+- User 要求“不测试，直接验收、边验边改”后未追加自动测试或模拟操作；旧离线结果不代表最新 UI 或最终提交已全量验证。
+- 本次捕获握手前 IPv4 TCP ETIMEDOUT，随后自动重连 HTTP 101；具体网络原因仍未确认，不改全局代理、防火墙或 TLS。
+- 限指定测试群及受控本机数据；应用、原模板和发送入口保留；10:00 定时、自启和其他群写入关闭。
+- 唯一 Product Roadmap 仅有一个 EarlyMeeting Current 条目，既有多人汇总 Backlog 已合并；不新建产品或 Future Task。Subagents: none。
 
 ## TASK-0019 — Accepted Closure
 
@@ -131,4 +131,4 @@
 
 ## Exact Next Action
 
-本轮下一动作：ChatGPT Review TASK-0028 与 EarlyMeeting@878f42a，明确独立输入通过、整组表单及间歇网络原因未验收；多人汇总方案仅进入 Backlog，待确认范围后执行。历史 TASK-0019 仍 Accepted，P0 Reliability proposal 未获新授权，不启动其他业务环境。
+本轮下一动作：Review TASK-0028 / EarlyMeeting@6ffbe79 的策划、程序两区核心实现；User 与同事直接使用，有实际问题再改。不追加复杂测试/验收，不读取部门，不启用 10:00 定时；历史 TASK-0019 仍 Accepted。
