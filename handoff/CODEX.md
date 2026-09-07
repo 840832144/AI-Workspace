@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-07
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 两区域核心实现已提交，按 User 要求不增加复杂测试和验收
+- Status: In Progress — 续接本人行删除、醒目标题与多群工作日 10:00 调度；只接入测试群
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,8 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 本人行与同卡填写
+
+- 最新追加授权：User 已认可两区域效果，要求删除本人误建行、分区标题放大加粗、多群工作日北京时间 10:00 每群每天一张。正式群稍后指定，目前只在测试群继续；不做额外模拟操作或复杂测试。Registry 与远端防重复验通过，续接本 Task 为 In Progress。下方是上一轮交付快照。
 
 - 当前状态：Review；按 User 最终要求仅交付核心功能，直接使用、有问题再改，不增加复杂或多余的测试/验收。
 - 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；Registry 14 canonical / 0 collision / valid，同目标仅本 Task，reservation pending-main。
