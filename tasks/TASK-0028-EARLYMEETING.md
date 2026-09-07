@@ -1,6 +1,6 @@
 # TASK-0028 — EarlyMeeting 本机长连接与真实卡片表单回调修复
 
-- Status: In Progress
+- Status: Review
 - Project key: EARLYMEETING
 - Human alias: 
 - Owner: User / ChatGPT
@@ -42,7 +42,7 @@ EarlyMeeting 独立实现分支中的最小修复、必要测试、中文一键�
 
 ## Safety
 
-仅允许本机受控输入/受控环境中的凭据；不回显、不写入 Git、不导入旧 .env。输出采用有限字段白名单，禁止原始 SDK 日志及回调。仅授权现有测试卡片的接收和说明未保存的反馈；不发新群消息。系统策略、应用权限或版本发布需要 User 明确决定。Subagents: none / OFF。
+仅允许本机受控输入/受控环境中的凭据；不回显、不写入 Git、不导入旧 .env。输出采用有限字段白名单，禁止原始 SDK 日志及回调。User 在本轮追加要求“一键发送”：允许使用现有应用、现有模板和本机配置的指定测试群，手动补发本轮一张测试卡片；不自动重发成功请求，结果不明确时保留同一请求防重。接收反馈说明未保存、未更新，不扩展到其他群、公共卡片更新或定时。系统策略、应用权限或版本发布需要 User 明确决定。Subagents: none / OFF。
 
 ## Validation
 
@@ -62,6 +62,8 @@ Workspace Sync：ON_DEMAND、conflicts=0、provider_available=false、stale=6；
 - 唯一 Product Roadmap 已按 EarlyMeeting PR #3 Idea Handoff 原位更新：正文回读通过，企业内可编辑 verified，自动登记/导航中心回读通过；Hub 31 项、unique_links=true。未修改 Document Assistant 实现。
 - Context refresh：72 sources / 0 broken link / 0 secret issue；Doctor ok；保持 ON_DEMAND。
 - EarlyMeeting 已在 User 实际 Windows 电脑使用受控本机 JSON 启动，入口与真实长连接成功。后续重启已复现入口成功后的握手失败；SDK 丢弃底层错误对象已确认，增加传输观察器后再次连接，底层间歇原因尚未确认。
-- 下一动作：核对现有测试卡片真实表单，然后验证停止并交 Review；具体业务证据仅留在 EarlyMeeting。
+- 下一动作：ChatGPT Review 已提交的最小修复、独立文本回调与停止证据，保留三列整组表单及间歇网络根因未验收；具体业务证据仅留在 EarlyMeeting。
 
-- 业务实现已提交 EarlyMeeting@2442153，Draft [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)；43 组检查与 6 项新增测试通过，真实 HTTP 101 / CONNECTED、STOP_VERIFIED 已取得。User 界面确认应用缺少卡片回调配置，等待补配后验证输入；未把 Task 标记 Done。
+- 业务实现最终提交 EarlyMeeting@878f42a，[PR #4](https://github.com/840832144/EarlyMeeting/pull/4) 等待 Review；43 组检查与 8 项新增测试通过，真实 HTTP 101 / CONNECTED、手动发卡及成功防重、两次独立文本回调和 STOP_VERIFIED / NOT_RUNNING 已取得。
+- User 最终确认漏加 card.action.trigger；补配后真实输入回传通过。现有模板只有单行独立输入，form_value 字段数 0，Acceptance 3 中整组表单仍未验收；间歇握手的底层网络原因也未确认。不得将 Review 写成 Done 或完整业务验收。
+- User 澄清多人同卡汇总目标，业务范围与最小方案见 [EarlyMeeting 后续产品目标](https://github.com/840832144/EarlyMeeting/blob/codex/task-0028-local-callback/docs/CURRENT_DIRECTION.md#后续产品目标澄清)。不自动扩大本 Task 到保存、模板布局改动、公共卡片更新或 10:00 定时，不新建 Future Task。Subagents: none。

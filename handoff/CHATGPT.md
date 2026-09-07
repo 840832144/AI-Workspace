@@ -2,21 +2,21 @@
 
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
-- Updated: 2026-08-29
-- Current Review request: TASK-0019 — 项目全景说明与独立进度文档
-- TASK-0019 status: `Accepted`
-- Project key: `WORKSPACE`
+- Updated: 2026-09-07
+- Current Review request: TASK-0028 — EarlyMeeting 本机卡片回调接管
+- TASK-0028 status: `Review`（保留未验收项）；历史 TASK-0019 仍 Accepted
+- Project key: `EARLYMEETING`
 - Execution rule: 并行任务使用独立 branch / linked worktree；不得覆盖其他任务或未提交修改
 
 ## TASK-0028 — EarlyMeeting 本机回调接管
 
-- Updated: 2026-09-07；Status: In Progress；Project key: EARLYMEETING。
+- Updated: 2026-09-07；Status: Review；Project key: EARLYMEETING。
 - 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；新规格为 EarlyMeeting PR #3@b18e393。旧 PR #1/#2 已关闭作废。
 - 完整 Registry、全部远端目标防重及 remote-CAS allocator Gate 通过；独立 worktree 分支 codex/earlymeeting-callback-task；reservation pending-main，Review 后再合并/finalize。
-- 业务实现：EarlyMeeting@2442153，codex/task-0028-local-callback；Draft [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)。代码、测试、运行说明与脱敏现场证据均留在 EarlyMeeting；Document Assistant 实现未修改。
+- 业务实现：EarlyMeeting@878f42a，codex/task-0028-local-callback；[PR #4](https://github.com/840832144/EarlyMeeting/pull/4) 等待 Review。代码、测试、运行说明与脱敏现场证据均留在 EarlyMeeting；Document Assistant 实现未修改。
 - User 已确认本机实际目录并授权受 ACL 限制的本机 JSON，已实际运行；HTTP 101 / CONNECTED 与 STOP_VERIFIED 已取得。重启中出现过入口成功后的握手失败，当前专属传输观察器用于定位间歇原因。
-- User 界面确认应用尚未配置卡片回调；下一动作是完成后台配置后在现有测试卡片提交虚构输入，核对真实数据。当前没有实际字段通过证据，不标记 Done。
-- 唯一 Product Roadmap 原位更新、正文/权限/登记/Hub 回读通过；Hub 31 项且链接唯一。Context 72 sources / 0 broken link / 0 secret issue，Doctor ok，Sync 仍 ON_DEMAND。
+- User 确认漏加回调，补配后两次真实 CALLBACK_OK / INPUT_CHECK verified=true；停止及 NOT_RUNNING 已验证。整组三列表单和间歇网络根因仍未验收，不标记 Done。手动一键发卡实测及防重通过。下一动作：ChatGPT Review 本修复与业务仓库的多人汇总范围说明。
+- 唯一 Product Roadmap 的 Current 已记录本轮 Review，后续多人汇总进入 Backlog；飞书正文与 Git 一致、导航中心登记回读通过，不创建 Future Task。企业可编辑权限沿用已验证配置。Context 72 sources / 0 broken link / 0 secret issue，Doctor ok，Sync 仍 ON_DEMAND。
 - 不保存工作内容、不更新公共卡片、不启用 10:00 定时、不改全局网络安全配置。Subagents: none。
 
 ## TASK-0019 — Accepted Closure
@@ -130,4 +130,4 @@
 
 ## Exact Next Action
 
-TASK-0019 已 Accepted。User 审议 P0 Reliability Hardening Decision proposal；未经明确批准不创建 Task、不进入实现或运行。在新的 User 决定前不启动业务环境。
+本轮下一动作：ChatGPT Review TASK-0028 与 EarlyMeeting@878f42a，明确独立输入通过、整组表单及间歇网络原因未验收；多人汇总方案仅进入 Backlog，待确认范围后执行。历史 TASK-0019 仍 Accepted，P0 Reliability proposal 未获新授权，不启动其他业务环境。
