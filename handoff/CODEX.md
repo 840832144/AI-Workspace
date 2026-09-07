@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-07
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 三区域同卡填写与工作日 09:45 已交付；两个正式群已启用，从 2026-09-08 开始
+- Status: In Progress — 续接正式群2预填名单与提交权限增量；既有三区域及两个正式群调度保留
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,8 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 新增范围：正式群2按 User 策划/程序名单预建当天空行，默认开关关闭，名单仅在本机；不改已发送卡片，不跨群复制。提交放宽范围与删除权限待 User 回复，答复前不启用；正式名单待提供。Registry 14 canonical / 0 collision / valid，继续 TASK-0028，Subagents: none。下方为上一轮交付快照。
 
 - 当前状态：Review；实现 EarlyMeeting@5634d83 / PR #4（核心实现 590ed0d）。策划、程序、今日交付三个同级区域，前两区本人行；今日交付为全群共用文本框，群成员可提交或清空。业务代码、说明与脱敏证据均在 EarlyMeeting，Document Assistant 未加入业务实现。
 - 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；Registry 14 canonical / 0 collision / valid，同目标仅本 Task，reservation pending-main，正式 Review 前不合并或 finalize。
