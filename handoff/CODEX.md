@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-07
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 三区域同卡填写与工作日 09:45 已交付；正式群1已启用，从 2026-09-08 开始
+- Status: Review — 三区域同卡填写与工作日 09:45 已交付；两个正式群已启用，从 2026-09-08 开始
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -11,11 +11,11 @@
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
 
-- 当前状态：Review；实现 EarlyMeeting@a59abfe / PR #4（核心实现 590ed0d）。策划、程序、今日交付三个同级区域，前两区本人行；今日交付为全群共用文本框，群成员可提交或清空。业务代码、说明与脱敏证据均在 EarlyMeeting，Document Assistant 未加入业务实现。
+- 当前状态：Review；实现 EarlyMeeting@5634d83 / PR #4（核心实现 590ed0d）。策划、程序、今日交付三个同级区域，前两区本人行；今日交付为全群共用文本框，群成员可提交或清空。业务代码、说明与脱敏证据均在 EarlyMeeting，Document Assistant 未加入业务实现。
 - 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；Registry 14 canonical / 0 collision / valid，同目标仅本 Task，reservation pending-main，正式 Review 前不合并或 finalize。
 - 现场 HTTP 101 / CONNECTED、time=09:45、MEETING_RESUMED rows=2 / LAYOUT_UPDATED / MEETING_READY；保留最近原消息和两条个人记录，没有重新发送或模拟交付操作。
 - 个人行 UI 已获 User 明确验收，新增共享交付尚无真实提交或清空证据；直接使用中反馈，不增加复杂测试或验收。按查看者隐藏他人按钮仍未实现，个人行服务端归属校验保留。
-- 工作日北京时间 09:45 每群每天一张；User 已填正式群1 ID 并确认机器人入群，正式群1现已启用，从 2026-09-08 开始，测试群保留，正式群2关闭。重启后 CONNECTED / SCHEDULE_CONFIGURED groups=2 scheduled=2 time=09:45，测试群两行恢复，今天未向正式群补发；正式群发送及准点触发尚未到时实测。
+- 工作日北京时间 09:45 每群每天一张；两个正式群均已完成本机接入并启用，从 2026-09-08 开始，测试群保留。User 修改的群名保留，按实际配置 ID 识别；群名及 ID 不进入 Git。重启后 CONNECTED / SCHEDULE_CONFIGURED groups=3 scheduled=3 time=09:45，测试群两行恢复，今天未向正式群补发；未来发卡与准点触发尚未实测。
 - 10:15 指定名单未提交提醒已由 User 暂停，记录到 Roadmap Ideas，不实施、不启用、不收集名单或读取群成员，不另建 Future Task。
 - Windows 程序需持续运行，未来准点发送与正式多群发送未到时实测；间歇 TCP 超时具体原因未确认，不改全局网络安全配置或设置自启。Subagents: none。
 
@@ -203,10 +203,11 @@
 
 
 
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-07T10:10:01Z
+- Generated: 2026-09-07T10:32:27Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
@@ -214,4 +215,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-本轮下一动作：Review TASK-0028 / EarlyMeeting@a59abfe 的三区域同卡填写与工作日 09:45 调度；正式群1已启用，从 2026-09-08 09:45 开始；测试群保留，正式群2关闭。10:15 提醒暂停，不追加复杂测试/验收；历史 TASK-0019 仍 Accepted。
+本轮下一动作：Review TASK-0028 / EarlyMeeting@5634d83 的三区域同卡填写与工作日 09:45 调度；两个正式群已启用，从 2026-09-08 09:45 开始；测试群保留。10:15 提醒暂停，不追加复杂测试/验收；历史 TASK-0019 仍 Accepted。
