@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-08
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 正式群2已启用DeepSeek自动交付，其他群保持原功能
+- Status: Review — 正式群2验收后补充预计今日识别，测试群已关闭
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,8 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 最新增量 EarlyMeeting@325c544 / PR #4：User已验收正式群2原功能，解散的测试群已停用。本轮要求“预计今日”等有今天交付意图的工作也纳入，并保留预计语气；已修复提示词及证据校验，正式群2仅重识别受影响的1条并更新原卡，ready且预计原话保留、失败及待处理0。两个正式群09:45及权限保留，AI仅群2，原11/10行恢复；无新消息或整卡刷新。四脚本语法通过，无新增测试或模拟操作。Registry14 canonical / valid，reservation pending-main；实现、操作和证据全部在EarlyMeeting，增量交Review，直接使用反馈。Subagents: none。当前事实续接本Task，不新建Idea/Future Task。
 
 - 最新交付：EarlyMeeting@e5f0cbd / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)，AI核心10be33d。User已填好本机API Key并限定先只对正式群2开放。按群开关默认false，只有正式群2切换v13，原10行保留，8份已提交记录识别ready、共6项交付、失败和待处理0；测试群及正式群1保持v12手填交付、无AI调用。八脚本语法核对通过，三群原卡恢复且队列为空，无重发或模拟操作。真实后续重提/删除未观测，直接使用反馈；实现、操作与脱敏证据全部在EarlyMeeting。TASK-0028返回Review，reservation pending-main；唯一下一步正式Review。Subagents: none。
 
@@ -222,10 +224,11 @@
 
 
 
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-08T03:55:11Z
+- Generated: 2026-09-08T04:04:48Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
