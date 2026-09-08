@@ -18,6 +18,8 @@
 
 ## Scope
 
+2026-09-08 最新交付 EarlyMeeting@b7827cf / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)：User要求今日交付不显示待更新项，只处理已提交记录。现仅显示实际交付，未提交草稿和没有结果的人员不占位，不显示待更新文案；后台状态及上次已提交的实际结果仍保留。正式群2原卡已移除1处占位、保留3人交付，真实CONNECTED / DELIVERY_SUMMARY_REFRESHED same_message=true；无新消息、整卡刷新或额外模型调用。三脚本语法通过，无新增测试或模拟操作；准备阶段暂停worker，汇总刷新意图持久化以避免序号冲突。两个正式群09:45保留、AI仅群2，测试群关闭。实现及证据全部在EarlyMeeting，继续本Task / Review，Subagents: none。
+
 2026-09-08 最新交付 EarlyMeeting@325c544 / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)：User已确认正式群2原AI交付验收通过，并关闭解散的测试群；本轮追加纳入“预计今日”“争取今天”等有今天交付意图的工作，保留原预计表述，排除明天/其他日期及普通工作。提示词和原文校验同步调整，仅对正式群2受影响的旧记录补识别；真实1条完成且预计原话保留，失败及待处理0，原卡更新，无重发或整卡刷新。四脚本语法核对通过，无新增测试或模拟操作；两仓库同步、Registry14 canonical / valid，继续本Task，不另占号。代码与脱敏证据均在EarlyMeeting，增量交Review，不增加额外验收流程。Subagents: none。以下为历史交付快照。
 
 最新交付 EarlyMeeting@e5f0cbd / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)（AI核心10be33d）：User 填好本机API Key并限定只对正式群2开放，已热更新该群原卡，8份已提交记录识别ready、提取6项交付、失败及待处理0。测试群和正式群1保持v12手填交付，不调用AI或改变原布局；三群原记录、权限及09:45保留。八脚本语法核对通过，无新增自动测试或模拟操作。原卡恢复、模型及汇总实际结果在EarlyMeeting；升级后真实重提/删除尚未观测，直接使用反馈。Task返回Review，reservation保持pending-main，不标记Done。Subagents: none。
