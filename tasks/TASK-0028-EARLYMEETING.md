@@ -1,6 +1,6 @@
 # TASK-0028 — EarlyMeeting 本机回调与本人行同卡填写
 
-- Status: Review
+- Status: In Progress
 - Project key: EARLYMEETING
 - Human alias: 
 - Owner: User / ChatGPT
@@ -17,6 +17,8 @@
 在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”共享文本框同卡填写；维护本人删除、醒目分区与新行未提交提醒，以及多群独立的工作日北京时间 09:45 每群每天一张卡片。当前接入测试群及两个正式群，两个正式群均从 2026-09-08 开始。
 
 ## Scope
+
+2026-09-08 当前修复：User 要求两个正式群均修复多人并发提交被拒绝的问题。区分正常 API 更新中的 pending 与异常结果待确认；同群不同个人行的有效请求排队串行处理，已接收请求最小字段保存在受控本机队列，未知结果保留而不丢弃。保持本人权限、群/消息/行版本校验、同卡数据及9:45调度，不恢复预填或成员查询，不新发卡或模拟群操作。Registry14 canonical / 0 collision / valid，继续TASK-0028。Subagents: none。
 
 2026-09-08 最新决定（EarlyMeeting@839b481）：User 要求正式群2恢复群1规则，并要求在原卡片生效。已将群2设为 prefill=false、submit=owner、delete=owner；当前三个群均仅本人操作个人行，今日交付仍全群共用，群ID、记录和工作日09:45定时保留。短暂重启后 CONNECTED / 三群 owner/owner / MEETING_RESUMED rows=1/8/6，未重新发卡或模拟操作。预填名单匹配及 im:chat:readonly 开通流程已暂停，不再等待权限；可选实现保留但不启用。Registry14 canonical / 0 collision / valid，Task 回到 Review，等待正式代码 Review，不标记 Done。Subagents: none。下方预填授权与权限等待文字为9月7日历史记录。
 

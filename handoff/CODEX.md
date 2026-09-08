@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-08
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 正式群2已恢复群1规则，原卡片与定时保留，名单权限流程暂停
+- Status: In Progress — 修复两个正式群共用的并发提交队列，原卡片与本人权限保留
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,8 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 当前修复：User 已要求两个正式群修复并发提交拒绝；识别正常更新与未知结果，串行处理并保留已接收请求。本机仅保存既有允许的提交字段，不存原始回调。本人权限、按群/日期隔离、预填关闭及提醒暂停不变。Registry14 canonical / 0 collision / valid，继续TASK-0028。Subagents: none。
 
 - 2026-09-08 当前增量：EarlyMeeting@839b481 已推送；正式群2已恢复为与群1一致的 owner/owner，prefill=false；三个群均本人行操作，今日交付仍本群共用。短暂重启后 CONNECTED / MEETING_RESUMED rows=1/8/6，无新发卡，原记录及工作日09:45定时保留。预填名单与只读权限申请已暂停，不再运行 resolver 或等待权限。仅恢复本机配置，未新增自动测试或改全局网络配置。Task Review，Registry14 canonical / 0 collision / valid。Subagents: none。下方为历史快照。
 
