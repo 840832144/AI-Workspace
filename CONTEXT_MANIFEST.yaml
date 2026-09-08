@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-09-08T03:17:49Z"
+generated_at: "2026-09-08T03:55:11Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-control-plane"
-repository_head: "56b39652430cd9c220c2f1ed716a21639f52b79c"
+repository_head: "2406be8097e4f6ff0df52cad7b1669962ca74582"
 repository_branch: "codex/earlymeeting-callback-task"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -15,7 +15,7 @@ sources:
     sha256: "494835e09f987a1450f512e291169ab0124a0d126fbf7dc6ed10142cd12509c9"
     bytes: 6521
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "8132d7522c75d0c1814a14c5661a0143bcfd6acc93b82d56a6f25d0f181b542c"
+    sha256: "a9066c418900c0378f999c10ea050e17c5f5cc269f61c3f22a653aff4ffa9b17"
     bytes: 10331
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "3e96011392001cbb0d27db49149868beedc50a0c49d17837bc53066ebbbd122e"
@@ -69,8 +69,8 @@ sources:
     sha256: "9543aeffb0f6ef584f8930ce50fbf334ee3b7fd2e9dd3558de880922c01b0ba2"
     bytes: 13860
   - path: "handoff/CODEX.md"
-    sha256: "6d755fa81b721fecdb754c63faa032966fa82c17d18bc86d74b90b4e8bdb8129"
-    bytes: 26079
+    sha256: "a5320c7a4a4a8b73731b9a8ba5d2c181faa2a32fc9ab8f3ae43e9b1bc58da820"
+    bytes: 27279
   - path: "memory/context/WORKSPACE.md"
     sha256: "848053ec408acda6b9b8dc958c473a72a39d44134d8ee604e748e91ff75dbe66"
     bytes: 2550
@@ -180,8 +180,8 @@ sources:
     sha256: "254f5755d254b7c32a4d3a21bff09516ac9ef6464d1ca0d6349d4c6069a948b2"
     bytes: 13528
   - path: "tasks/TASK-0028-EARLYMEETING.md"
-    sha256: "48c4cc17d8147fdfd240c2d9c9ebcf1d5add1ebd5ff8f5eb5f0fd580f284179f"
-    bytes: 19904
+    sha256: "4bc966d7aa480b14413fe83d61f46e508548e0b8a71e14a6cc9f0fd9ea4d4985"
+    bytes: 21303
   - path: "tasks/TASK_REGISTRY.yaml"
     sha256: "6916eba21afe306431ab85ffc30bcd56be047c3960d2a6021818d7ca50894f50"
     bytes: 19651

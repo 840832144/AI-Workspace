@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-08
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 提交后文字展示与编辑模式已热更，两个正式群并发队列保留
+- Status: Review — 正式群2已启用DeepSeek自动交付，其他群保持原功能
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,10 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 最新交付：EarlyMeeting@e5f0cbd / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)，AI核心10be33d。User已填好本机API Key并限定先只对正式群2开放。按群开关默认false，只有正式群2切换v13，原10行保留，8份已提交记录识别ready、共6项交付、失败和待处理0；测试群及正式群1保持v12手填交付、无AI调用。八脚本语法核对通过，三群原卡恢复且队列为空，无重发或模拟操作。真实后续重提/删除未观测，直接使用反馈；实现、操作与脱敏证据全部在EarlyMeeting。TASK-0028返回Review，reservation pending-main；唯一下一步正式Review。Subagents: none。
+
+- 当前范围：仅正式群2每次提交及编辑后重提异步提取明确今日交付，替换或移除本人汇总，删除同步移除；旧返回不能覆盖新提交，失败不影响晨会保存。只发送当前个人提交文本，API Key仅本机JSON。其他群保留原功能，09:45、本人权限及群隔离不变。Registry14 canonical / valid，不另建Task或扩大Document Assistant；当前事实在Task续接，不新增产品方向或Future Task。Subagents: none。下方为历史交付快照。
 
 - 最新交付：EarlyMeeting@01714fc / PR #4，未提交显示“提交”，成功后普通文字与“编辑”，点编辑带回原文；今日交付采用相同方式，个人行本人权限及共享区规则保留。编辑切换也进入持久队列并更新版本。三脚本语法检查通过；无待确认/排队意图时升级，三群原卡真实 LAYOUT_UPDATED / MEETING_READY，rows=1/11/10，未新发卡或模拟操作。新交互直接使用中反馈，TASK-0028 Review，详细业务证据仅在 EarlyMeeting。此为已有卡片交互细化，不新增产品方向、Candidate或Future Task。Subagents: none。
 
@@ -216,10 +220,12 @@
 
 
 
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-08T03:17:49Z
+- Generated: 2026-09-08T03:55:11Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
