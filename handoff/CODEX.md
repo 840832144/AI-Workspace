@@ -1,8 +1,8 @@
 # Codex Handoff
 
-- Updated: 2026-09-07
+- Updated: 2026-09-08
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: In Progress — 续接正式群2预填名单与提交权限增量；既有三区域及两个正式群调度保留
+- Status: Review — 正式群2已恢复群1规则，原卡片与定时保留，名单权限流程暂停
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -11,7 +11,7 @@
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
 
-- 当前增量：EarlyMeeting@12c4086 已部署并推送，正式群2可配置预建新卡片空行，且全员可提交和删除；其他群 owner。真实 CONNECTED / GROUP_3 all/all，原测试群两行恢复。名单3+6人已仅在本机，匹配 API 返回 99991672，需 User 开通 im:chat:readonly；目前 prefill=false，Task In Progress。下一步权限生效后运行本机 resolve-prefill.cjs，唯一匹配后配置群2、开启预填并重启；不猜 ID、不新发今天的卡片、不追加自动测试。Registry 14 canonical / 0 collision / valid。Subagents: none。下方为上一轮交付快照。
+- 2026-09-08 当前增量：EarlyMeeting@839b481 已推送；正式群2已恢复为与群1一致的 owner/owner，prefill=false；三个群均本人行操作，今日交付仍本群共用。短暂重启后 CONNECTED / MEETING_RESUMED rows=1/8/6，无新发卡，原记录及工作日09:45定时保留。预填名单与只读权限申请已暂停，不再运行 resolver 或等待权限。仅恢复本机配置，未新增自动测试或改全局网络配置。Task Review，Registry14 canonical / 0 collision / valid。Subagents: none。下方为历史快照。
 
 - 当前状态：Review；实现 EarlyMeeting@5634d83 / PR #4（核心实现 590ed0d）。策划、程序、今日交付三个同级区域，前两区本人行；今日交付为全群共用文本框，群成员可提交或清空。业务代码、说明与脱敏证据均在 EarlyMeeting，Document Assistant 未加入业务实现。
 - 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；Registry 14 canonical / 0 collision / valid，同目标仅本 Task，reservation pending-main，正式 Review 前不合并或 finalize。
@@ -207,10 +207,11 @@
 
 
 
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-07T11:04:14Z
+- Generated: 2026-09-08T02:03:15Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`

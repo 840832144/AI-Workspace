@@ -1,13 +1,13 @@
 # TASK-0028 — EarlyMeeting 本机回调与本人行同卡填写
 
-- Status: In Progress
+- Status: Review
 - Project key: EARLYMEETING
 - Human alias: 
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1
 - Date: 2026-09-07
-- Updated: 2026-09-07
+- Updated: 2026-09-08
 - Candidate provenance: `tasks/candidates/CANDIDATE-20260907-EARLYMEETING-LOCAL-CALLBACK.md`
 - Allocation relationship: new
 - Related tasks: none
@@ -17,6 +17,8 @@
 在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”共享文本框同卡填写；维护本人删除、醒目分区与新行未提交提醒，以及多群独立的工作日北京时间 09:45 每群每天一张卡片。当前接入测试群及两个正式群，两个正式群均从 2026-09-08 开始。
 
 ## Scope
+
+2026-09-08 最新决定（EarlyMeeting@839b481）：User 要求正式群2恢复群1规则，并要求在原卡片生效。已将群2设为 prefill=false、submit=owner、delete=owner；当前三个群均仅本人操作个人行，今日交付仍全群共用，群ID、记录和工作日09:45定时保留。短暂重启后 CONNECTED / 三群 owner/owner / MEETING_RESUMED rows=1/8/6，未重新发卡或模拟操作。预填名单匹配及 im:chat:readonly 开通流程已暂停，不再等待权限；可选实现保留但不启用。Registry14 canonical / 0 collision / valid，Task 回到 Review，等待正式代码 Review，不标记 Done。Subagents: none。下方预填授权与权限等待文字为9月7日历史记录。
 
 User 已确认：仅正式群2开放任意行提交与删除；正式名单为策划3人、程序6人（真实姓名及 ID 仅留受控本机）。本次为把已提供姓名对应到现有应用的实际 @ 标识，可通过 EarlyMeeting 官方 SDK 只读核对该群成员；同名、缺失或权限不足时不猜身份，不扩大通讯录权限。此只读核对仅用于名单配置，不恢复已暂停的 10:15 提醒。其他群仍仅本人行可提交/删除。
 
