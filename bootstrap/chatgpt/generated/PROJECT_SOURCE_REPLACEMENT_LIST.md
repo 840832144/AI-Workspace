@@ -1,6 +1,6 @@
 # Project Source Replacement List
 
-Generated: 2026-09-08T02:22:46Z
+Generated: 2026-09-08T03:17:49Z
 
 Status: **manual upload required**
 
@@ -11,9 +11,9 @@ Status: **manual upload required**
 - `standards/PLANNER_WRITING_STYLE.md` — `31964dddee347d2b4fc027d55ca2fcd122b9a1c23ce89532e1a9c321066b2bce`
 - `memory/context/WORKSPACE.md` — `848053ec408acda6b9b8dc958c473a72a39d44134d8ee604e748e91ff75dbe66`
 - `bootstrap/chatgpt/PROJECT_INSTRUCTIONS.md` — `64d8061e4bad223642d47028a11d63a720b01a963636a5b3ab4b0d3e0015b91f`
-- `bootstrap/chatgpt/02_CURRENT_STATE.md` — `ccee0e5c1a3b343c8a60562a97d35142fa7279e65c4299a5f73a22d3382bc7db`
+- `bootstrap/chatgpt/02_CURRENT_STATE.md` — `8132d7522c75d0c1814a14c5661a0143bcfd6acc93b82d56a6f25d0f181b542c`
 - `bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md` — `3e96011392001cbb0d27db49149868beedc50a0c49d17837bc53066ebbbd122e`
 
-可选单文件包：`bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md` — `d9c557efb6b685aa3d7974569c58e316de380ac425bff7a23e6ec8a841311004`
+可选单文件包：`bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md` — `a71ac9d4e2274b9a0ad02a21d4910e49d9bf905ab31500834854bd9a1c9d575c`
 
 不要同时上传单文件包和 7 个拆分来源，以免重复。

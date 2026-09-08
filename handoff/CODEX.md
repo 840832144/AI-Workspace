@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-08
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 两个正式群并发提交修复已部署，原卡片与本人权限保留
+- Status: Review — 提交后文字展示与编辑模式已热更，两个正式群并发队列保留
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,8 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 最新交付：EarlyMeeting@01714fc / PR #4，未提交显示“提交”，成功后普通文字与“编辑”，点编辑带回原文；今日交付采用相同方式，个人行本人权限及共享区规则保留。编辑切换也进入持久队列并更新版本。三脚本语法检查通过；无待确认/排队意图时升级，三群原卡真实 LAYOUT_UPDATED / MEETING_READY，rows=1/11/10，未新发卡或模拟操作。新交互直接使用中反馈，TASK-0028 Review，详细业务证据仅在 EarlyMeeting。此为已有卡片交互细化，不新增产品方向、Candidate或Future Task。Subagents: none。
 
 - 当前交付：EarlyMeeting@f9b14ed / PR #4 已推送并部署，两个正式群正常并发提交进入各自持久队列，保存完成保留期间新到的请求，未知结果暂停并保留队列。本人权限、按群/日期隔离、预填关闭及提醒暂停保留。两个脚本语法检查通过；STOP_VERIFIED 后 CONNECTED，三群原消息恢复1/10/9行，没有重新发卡或模拟提交。真实同时提交尚未观测，证据边界与操作说明在 EarlyMeeting。TASK-0028 返回 Review，reservation pending-main，不合并、不另占号。Subagents: none。
 
@@ -213,10 +215,11 @@
 
 
 
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-08T02:22:46Z
+- Generated: 2026-09-08T03:17:49Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
