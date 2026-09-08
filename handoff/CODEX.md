@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-08
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: In Progress — 修复两个正式群共用的并发提交队列，原卡片与本人权限保留
+- Status: Review — 两个正式群并发提交修复已部署，原卡片与本人权限保留
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -11,7 +11,9 @@
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
 
-- 当前修复：User 已要求两个正式群修复并发提交拒绝；识别正常更新与未知结果，串行处理并保留已接收请求。本机仅保存既有允许的提交字段，不存原始回调。本人权限、按群/日期隔离、预填关闭及提醒暂停不变。Registry14 canonical / 0 collision / valid，继续TASK-0028。Subagents: none。
+- 当前交付：EarlyMeeting@f9b14ed / PR #4 已推送并部署，两个正式群正常并发提交进入各自持久队列，保存完成保留期间新到的请求，未知结果暂停并保留队列。本人权限、按群/日期隔离、预填关闭及提醒暂停保留。两个脚本语法检查通过；STOP_VERIFIED 后 CONNECTED，三群原消息恢复1/10/9行，没有重新发卡或模拟提交。真实同时提交尚未观测，证据边界与操作说明在 EarlyMeeting。TASK-0028 返回 Review，reservation pending-main，不合并、不另占号。Subagents: none。
+
+- User 长期要求已写入本机全局 `~/.codex/AGENTS.md`：优先预防真实并发/重复操作/失败恢复问题，做针对风险的最小验证，减少无关测试和哈希比对。当前小修复直接更新 Task/Handoff，不新增 Roadmap 方向或重复 Candidate；不扩展 Document Assistant。唯一下一步：正式 Review。
 
 - 2026-09-08 当前增量：EarlyMeeting@839b481 已推送；正式群2已恢复为与群1一致的 owner/owner，prefill=false；三个群均本人行操作，今日交付仍本群共用。短暂重启后 CONNECTED / MEETING_RESUMED rows=1/8/6，无新发卡，原记录及工作日09:45定时保留。预填名单与只读权限申请已暂停，不再运行 resolver 或等待权限。仅恢复本机配置，未新增自动测试或改全局网络配置。Task Review，Registry14 canonical / 0 collision / valid。Subagents: none。下方为历史快照。
 
@@ -210,10 +212,11 @@
 
 
 
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-09-08T02:03:15Z
+- Generated: 2026-09-08T02:22:46Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`

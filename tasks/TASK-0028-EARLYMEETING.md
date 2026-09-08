@@ -1,6 +1,6 @@
 # TASK-0028 — EarlyMeeting 本机回调与本人行同卡填写
 
-- Status: In Progress
+- Status: Review
 - Project key: EARLYMEETING
 - Human alias: 
 - Owner: User / ChatGPT
@@ -18,7 +18,9 @@
 
 ## Scope
 
-2026-09-08 当前修复：User 要求两个正式群均修复多人并发提交被拒绝的问题。区分正常 API 更新中的 pending 与异常结果待确认；同群不同个人行的有效请求排队串行处理，已接收请求最小字段保存在受控本机队列，未知结果保留而不丢弃。保持本人权限、群/消息/行版本校验、同卡数据及9:45调度，不恢复预填或成员查询，不新发卡或模拟群操作。Registry14 canonical / 0 collision / valid，继续TASK-0028。Subagents: none。
+2026-09-08 当前交付：EarlyMeeting@f9b14ed / PR #4 已修复两个正式群共用的并发提交逻辑。正常处理中接收其他行的有效请求并按本群队列处理；完成保存时保留期间新排入的请求，未知结果保留等待恢复。最小字段仅存本机；本人权限、群/消息/行版本、同卡数据及09:45调度保留，预填关闭。已部署并真实 CONNECTED，三群原消息恢复1/10/9行，无重新发卡。完成两个脚本的语法检查与相关代码路径审查，没有自动测试、哈希比对或模拟群操作；修复后真实同时提交尚未观测，不冒称验收通过。实现、操作和脱敏证据均在 EarlyMeeting；本 Task 返回 Review，reservation pending-main。Subagents: none。
+
+User 新增跨会话开发要求：提前考虑多人并发、重复点击、处理中到达的新请求及失败/重启恢复；验证只围绕具体风险，减少无关测试、重复核对与哈希比对。已按明确授权更新本机全局 `~/.codex/AGENTS.md`，未将本项目事实加入全局。Memory Check：当前事实直接更新 Task/Handoff，不重复创建 Candidate。Idea Check：本次为当前 Task 内的小修复，不新增 Roadmap 条目或 Future Task，也不为此重发产品文档。
 
 2026-09-08 最新决定（EarlyMeeting@839b481）：User 要求正式群2恢复群1规则，并要求在原卡片生效。已将群2设为 prefill=false、submit=owner、delete=owner；当前三个群均仅本人操作个人行，今日交付仍全群共用，群ID、记录和工作日09:45定时保留。短暂重启后 CONNECTED / 三群 owner/owner / MEETING_RESUMED rows=1/8/6，未重新发卡或模拟操作。预填名单匹配及 im:chat:readonly 开通流程已暂停，不再等待权限；可选实现保留但不启用。Registry14 canonical / 0 collision / valid，Task 回到 Review，等待正式代码 Review，不标记 Done。Subagents: none。下方预填授权与权限等待文字为9月7日历史记录。
 
