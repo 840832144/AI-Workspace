@@ -13,7 +13,8 @@
 - 实施说明和当前证据：document-assistant `docs/LARK_CLI_PILOT.md`，commit `cf8b9414a9feac547c2f7c94a14f80bff847107a`；secret scan 通过。
 - 用户登录续跑已验证为 user / ready / token valid。实际 90 项权限由 User 明确说明为自己一键开启全部免审项；不自行撤销，实际操作范围仍为文档样例。
 - 标题查重实际返回 missing_scope，尚未创建文档。User 随后选择一次补齐文档/云空间全部权限，含需审核项，不选择 CLI 全业务域；官方目录 docs / drive 共 40 个唯一 scope，加认证 offline_access。相对现有权限仅缺 search:docs:read 和 space:document:retrieve。
-- 唯一下一步：新建该固定权限集合的 OAuth 链接与二维码交 User 确认/审批；原单项搜索授权流程不再使用。完成后核验、查重并继续同一文档。虚构 XML 草稿已通过本机 parse。
+- User 在后台手动添加权限，回读 app userScopes=172、列表权限已开启、v2 search:docs:read 仍缺，旧搜索 drive:drive.search:readonly 已有；用户 token 仍 90 项。因此改用已开启权限集合的 OAuth，并以 drive.files.list 精确标题匹配完成本次查重/查找；不扩大后台范围，不把 v2 快捷搜索报告为通过。
+- 唯一下一步：点击新的用户授权链接完成 OAuth（不必扫码），Codex 完成登录并核验列表权限后继续同一文档。旧补授权流程均不再使用，虚构 XML 草稿已通过本机 parse。
 - Idea 防重：唯一 Roadmap 暂无同义条目。沿用本交接末尾同一 Idea，最小试用可归 Current；本轮 User 禁止修改正式文档/Hub，因此正式 Roadmap 发布保持待处理，不宣称已完成登记，不扩大授权。
 - Subagents: none。
 

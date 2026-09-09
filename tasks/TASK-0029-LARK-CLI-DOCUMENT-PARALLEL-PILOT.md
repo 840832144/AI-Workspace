@@ -69,4 +69,8 @@ User 已在浏览器创建新应用，官方 CLI 初始化完成；独立 LARKSU
 
 User 后续明确选择「补齐文档与云空间全部权限，含需审核项」，未选择 CLI 全业务域。按官方当前 docs / drive 权限目录去重共 40 项，加 offline_access 认证项形成固定申请集合；相对当前已授予集合仅缺 search:docs:read 与 space:document:retrieve。保留 User 已开启的免审权限，不新增邮箱、群聊、审批业务授权。原单项搜索补授权流程被本次选择取代，不再恢复其 device-code。
 
-唯一下一步：展示文档与云空间完整权限集合的新 OAuth 链接及二维码，由 User 完成确认/必要审批；Codex 完成新流程并核验两项缺口后，查重并继续唯一文档验证。临时 XML 草稿本机 parse 已 passed，尚未创建云文档。
+User 后续说明未扫描二维码，而是在后台手动添加权限。实际回读 app userScopes=172；space:document:retrieve 已开启，search:docs:read 仍未开启，已有 drive:drive.search:readonly。当前有效用户 token 仍为原 90 项，应用权限变更不等于 OAuth grant 更新。
+
+本次按已开启权限继续：固定文档/云空间集合中的 search:docs:read 改为已有的 drive:drive.search:readonly，其余保持；标题查重与创建后查找使用 user 身份 drive.files.list，在目标位置按精确标题匹配。CLI v2 +search 保留为未通过项，不反复索要同名不同 scope，不扩大后台权限。
+
+唯一下一步：User 点击新的已开启权限集合授权链接（无需扫码），Codex 完成新 device-code 流程并核验后，列表查重并继续唯一文档验证。虚构 XML 本机 parse 已 passed，尚未创建云文档。
