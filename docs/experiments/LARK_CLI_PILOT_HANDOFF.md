@@ -12,7 +12,8 @@
 - 实际 userScopes 查询仅 offline_access；CLI 不以此证明 bot scopes 或可用范围。页面读取 timeout / Debugger unattached；仅本人可用和建议名称尚需后台确认。
 - 实施说明和当前证据：document-assistant `docs/LARK_CLI_PILOT.md`，commit `cf8b9414a9feac547c2f7c94a14f80bff847107a`；secret scan 通过。
 - 用户登录续跑已验证为 user / ready / token valid。实际 90 项权限由 User 明确说明为自己一键开启全部免审项；不自行撤销，实际操作范围仍为文档样例。
-- 标题查重实际返回 missing_scope，仅缺 search:docs:read；尚未创建文档。唯一下一步是单项补授权，然后完成 device-code、重做查重并继续原任务。
+- 标题查重实际返回 missing_scope，尚未创建文档。User 随后选择一次补齐文档/云空间全部权限，含需审核项，不选择 CLI 全业务域；官方目录 docs / drive 共 40 个唯一 scope，加认证 offline_access。相对现有权限仅缺 search:docs:read 和 space:document:retrieve。
+- 唯一下一步：新建该固定权限集合的 OAuth 链接与二维码交 User 确认/审批；原单项搜索授权流程不再使用。完成后核验、查重并继续同一文档。虚构 XML 草稿已通过本机 parse。
 - Idea 防重：唯一 Roadmap 暂无同义条目。沿用本交接末尾同一 Idea，最小试用可归 Current；本轮 User 禁止修改正式文档/Hub，因此正式 Roadmap 发布保持待处理，不宣称已完成登记，不扩大授权。
 - Subagents: none。
 
