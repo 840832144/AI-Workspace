@@ -5,7 +5,11 @@
 - 正式入口：[TASK-0029](../../tasks/TASK-0029-LARK-CLI-DOCUMENT-PARALLEL-PILOT.md)，由 remote-CAS allocator 分配；状态 In Progress，非猜号，reservation 保持 pending-main。
 - Task 登记前 Registry 13 canonical / 0 collision / valid；已核对全部远端 heads，未见同目标任务。
 - 两仓库均使用独立 `codex/lark-cli-document-pilot` 分支；document-assistant 原 checkout 的未提交图片改动保持原状。
-- 旧 feishu-docs healthcheck 的认证、API、Drive 检查通过；当前还没有 CLI 安装或租户实测结果。
+- CLI 安装已完成：1.0.94；三个 Skills 同 tag / commit，Codex skills/list 三项 repo / enabled / 0 error，本轮会话已自动加载。真实文档试用尚未开始。
+- User 暂停讨论后已明确恢复 TASK-0029：新建当前企业的独立企业自建应用，建议名称「AI Workspace CLI（试用）」，初期可用范围仅 User 本人；不改旧文档助手或晨会应用。
+- 先核对向导默认权限，仅文档与必要认证 scopes；使用独立 CLI 配置和凭据存储，官方链接与二维码交 User 浏览器确认；遇额外权限/管理员审批先说明，不自动扩大。
+- 旧 feishu-docs healthcheck 的认证、API、Drive 检查已通过；未改其配置或环境变量。尚未创建新应用、完成登录或写入临时文档。
+- 唯一下一步：检查官方向导并交付创建入口，等待 User 的浏览器确认。
 - Idea 防重：唯一 Roadmap 暂无同义条目。沿用本交接末尾同一 Idea，最小试用可归 Current；本轮 User 禁止修改正式文档/Hub，因此正式 Roadmap 发布保持待处理，不宣称已完成登记，不扩大授权。
 - Subagents: none。
 

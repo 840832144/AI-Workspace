@@ -19,6 +19,8 @@
 ## 授权与来源
 
 - User 于 2026-09-09 明确要求开始有限并行试用；应用选择、授权链接仍交 User 确认，Secret 不进入聊天。
+- User 暂停讨论后明确恢复本 Task，选择在当前企业新建独立企业自建应用，建议名称「AI Workspace CLI（试用）」；初期可用范围仅 User 本人。此决定不新建任务、不修改旧文档助手或晨会应用。
+- 创建向导默认权限必须先核对；只申请文档试用及必要认证权限，不接受全量推荐。官方链接和二维码交 User 完成浏览器确认，额外权限或管理员审批单独说明，不自行扩大或切回旧应用。
 - [AI-Workspace PR #3](https://github.com/840832144/AI-Workspace/pull/3)，已读研究、评论与交接，来源 head `49e843b91744e1c86935391d09fb26927e9e534b`。
 - 完整执行边界与验收：[LARK_CLI_PILOT_HANDOFF.md](../docs/experiments/LARK_CLI_PILOT_HANDOFF.md)。
 - Capability：CAP-DOC-DISCOVER / READ / CREATE / UPDATE；共享仅按文档试用需要及 User 批准处理。
@@ -55,6 +57,10 @@
 
 ## 当前结果与唯一下一步
 
-Task Gate 已分配合法编号；旧 feishu-docs 当前认证、API、Drive healthcheck 通过。实施原 checkout 有图片功能未提交改动，本轮使用独立 worktree。
+正式登记 commit `efacc34a4677c6d1ffe080c635c035ce400fab82` 已推送；本次恢复执行前 Registry 为 14 canonical / 0 collision / valid。reservation 保持 pending-main。
 
-唯一下一步：提交并验证正式登记后，进行固定版本的隔离安装，准备应用与最小授权方案交 User 确认。
+CLI 已安装并真实回验为 1.0.94，Windows 发布包与官方 checksums 一致；三个 Skills 同取 v1.0.94 / `f065bf5b645af381f9b7475ce721451e6ca36a23`。当前 Codex 0.153.4 的 skills/list 已返回三项 repo scope / enabled / 0 error，本轮会话也已自动加载。
+
+配置采用独立的 LARKSUITE_CLI_CONFIG_DIR；尚未创建应用、完成用户登录或写入临时文档。旧 feishu-docs 前次认证、API、Drive healthcheck 通过；实施原 checkout 的图片未提交改动保持原状。
+
+唯一下一步：核对官方创建向导默认权限，并展示真实创建链接及二维码，让 User 在当前企业确认独立应用和仅本人可用范围。

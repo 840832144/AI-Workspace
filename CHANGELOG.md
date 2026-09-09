@@ -4,6 +4,7 @@
 
 ## 2026-09-09 — TASK-0029 正式登记
 
+- User 恢复 TASK-0029，明确新建独立企业自建应用「AI Workspace CLI（试用）」、仅本人可用、文档最小权限和隔离凭据；应用创建及 OAuth 均由 User 浏览器确认。
 - remote-CAS allocator 正式分配官方飞书 CLI 文档并行试用任务；登记后才安装，应用和 OAuth 由 User 确认。
 - 仅一份虚构临时文档，保留 feishu-docs；正式文档、Hub、EarlyMeeting 与其他未提交工作保持原边界。
 - 试用使用独立分支，当前尚未通过真实文档验收；详见 Task 与实验 Handoff。
