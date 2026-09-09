@@ -4,6 +4,8 @@
 
 ## 2026-09-09 — TASK-0029 有限文档试用 Accepted
 
+- 验收记录已合入两仓库共享 main，canonical 进入 main 后 allocator 返回 TASK-0029 finalized；本轮结项。
+
 - remote-CAS 分配并正式登记后才安装；恢复原 TASK-0029，不重复分配，reservation 保持 pending-main。
 - CLI 1.0.94 与同 tag 文档 Skills 已被当前 Codex 发现；独立应用与用户授权有效，后台仅本人可用范围已回读。
 - 唯一虚构样例完成创建、目录内精确查找、局部读取、单句修改及回读，原链接与非目标内容保留；企业内可编辑权限及旧 feishu-docs 健康通过。

@@ -23,3 +23,5 @@ User 在上述交付后明确回复：「可以，验收通过了」。本文件
 将 canonical Task、Handoff 和实施试用记录更新为 Accepted，重建并校验 Task Registry，在独立分支提交后按仓库规则合入共享 main。canonical 进入 main 后，由正式 allocator 完成 TASK-0029 reservation 的 finalize；不分配新 Task，不提前 release。
 
 本轮不再新增文档测试或改变应用配置，临时样例保留为验收证据。
+
+实际收尾：验收记录已进入 AI-Workspace main（`b971c93`）及 document-assistant main（`2088a68`），正式 allocator 随后返回 `TASK-0029 / finalized`。User Accepted 与编号生命周期均已完成。
