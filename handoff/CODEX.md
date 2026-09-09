@@ -1,8 +1,8 @@
 # Codex Handoff
 
-- Updated: 2026-09-08
+- Updated: 2026-09-09
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 正式群2仅显示已提交记录的实际交付，移除待更新占位
+- Status: Review — 两个正式群已部署稳定组件标识及红框提交补丁，客户端草稿保留待实际反馈
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,10 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 2026-09-09 追加交付：EarlyMeeting@ecbedbc。从2026-09-10起两个正式群工作日北京时间09:40每群每天一张；配置与调度已加载，今天原卡未重发。未来准点发送未到时实测；与草稿标识补丁一并保留Review状态，证据见EarlyMeeting。Subagents: none。
+
+- 2026-09-09 最新增量：EarlyMeeting@a5cc8d9 / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)。针对多人输入草稿被刷新，补齐稳定组件标识；提交红框、编辑蓝框。User确认可以刷新后已更新两个正式群原消息，客户端草稿保留未取得真实证据，不宣称已最终修复；下一步据真实使用反馈继续本Task。代码、部署与证据见EarlyMeeting的STATUS、MEETING_ACCEPTANCE和Handoff。Registry14 canonical / valid，原reservation保留；不扩大Document Assistant或另建Task。Subagents: none。
 
 - 最新交付EarlyMeeting@b7827cf / PR #4：仅显示已提交记录的实际交付，不再列出待更新占位人员。正式群2原卡已移除1处占位、保留3人交付；三脚本语法通过，真实CONNECTED / DELIVERY_SUMMARY_REFRESHED same_message=true，无新消息、整卡刷新或额外模型调用。后台识别/失败状态和上次实际结果保留，草稿不入汇总。使用持久汇总刷新意图，启动准备期间暂停worker防止更新序号冲突。两个正式群原11/10行、09:45及权限保留，AI仅群2，测试群关闭。Registry14 canonical / valid，续接TASK-0028交Review；业务说明与脱敏证据仅在EarlyMeeting。Subagents: none。
 

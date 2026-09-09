@@ -7,16 +7,20 @@
 - Executor: Codex
 - Priority: P1
 - Date: 2026-09-07
-- Updated: 2026-09-08
+- Updated: 2026-09-09
 - Candidate provenance: `tasks/candidates/CANDIDATE-20260907-EARLYMEETING-LOCAL-CALLBACK.md`
 - Allocation relationship: new
 - Related tasks: none
 
 ## Goal
 
-在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日北京时间09:45每群每天一张。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭并保留本机历史。
+在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日发卡。从2026-09-10起北京时间09:40每群每天一张，替代09:45。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭并保留本机历史。
 
 ## Scope
+
+2026-09-09 追加 EarlyMeeting@ecbedbc：User要求从明天即9月10日起改为09:40。两个正式群的本机配置与真实调度代码已更新加载，今天原卡恢复且未重发；未来准点送达尚未到时实测。实现、检查及部署证据继续只在EarlyMeeting，本Task保持Review。Subagents: none。
+
+2026-09-09 增量 EarlyMeeting@a5cc8d9 / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)：User授权处理多人输入草稿被刷新，并追加提交红框、编辑蓝框；稳定组件标识补丁已更新两个正式群原卡片。客户端草稿保留仍待实际使用反馈，不把接口成功当作缺陷已解决，继续Review。未代提交客户端草稿；刷新得到User明确确认。Registry复验14 canonical / 0 collision / valid，继续本Task、不新建编号。实现、最小检查、部署和脱敏证据仅在[EarlyMeeting验收记录](https://github.com/840832144/EarlyMeeting/blob/codex/task-0028-local-callback/docs/MEETING_ACCEPTANCE.md)。Subagents: none。
 
 2026-09-08 最新交付 EarlyMeeting@b7827cf / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)：User要求今日交付不显示待更新项，只处理已提交记录。现仅显示实际交付，未提交草稿和没有结果的人员不占位，不显示待更新文案；后台状态及上次已提交的实际结果仍保留。正式群2原卡已移除1处占位、保留3人交付，真实CONNECTED / DELIVERY_SUMMARY_REFRESHED same_message=true；无新消息、整卡刷新或额外模型调用。三脚本语法通过，无新增测试或模拟操作；准备阶段暂停worker，汇总刷新意图持久化以避免序号冲突。两个正式群09:45保留、AI仅群2，测试群关闭。实现及证据全部在EarlyMeeting，继续本Task / Review，Subagents: none。
 
