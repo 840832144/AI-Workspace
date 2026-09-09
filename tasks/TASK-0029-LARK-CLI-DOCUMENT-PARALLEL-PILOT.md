@@ -65,4 +65,6 @@ User 已在浏览器创建新应用，官方 CLI 初始化完成；独立 LARKSU
 
 创建向导在内置浏览器/Chrome 读取失败（timeout / Debugger unattached）；只核实模板源码，未伪称页面权限已全部核清。实施记录为 document-assistant `docs/LARK_CLI_PILOT.md`，commit `cf8b9414a9feac547c2f7c94a14f80bff847107a`，secret scan 通过。旧 feishu-docs 配置及原 checkout 图片改动保持原状。
 
-唯一下一步：交付精确文档 OAuth 链接及二维码，由 User 确认授权并补齐后台可用范围/默认应用身份权限核验；然后显式 user 身份继续唯一虚构临时文档试用。
+续跑结果：User 完成浏览器授权，Codex 完成 device-code 登录；verify 确认 identity=user / ready / token valid。实际返回 90 项 scope，相对请求多 84 项、缺 search:docs:read。User 明确这些权限由自己一键开启全部免审项，保留该决定，操作仍只限本次文档试用。真实标题查重返回 missing_scope，尚未创建或修改临时文档。
+
+唯一下一步：只补 search:docs:read 的官方 OAuth；User 确认/审批后完成同一登录流程，重新查重并继续唯一文档验证。不自动扩大到其他操作，不改用旧应用。
