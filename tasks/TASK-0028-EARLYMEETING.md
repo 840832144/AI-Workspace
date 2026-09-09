@@ -18,6 +18,8 @@
 
 ## Scope
 
+2026-09-09 最新自查 EarlyMeeting@34d2ddb：User要求复核多人使用可靠性。只审查，未修改线上代码或卡片；自查Needs changes，已复现队列结束边界漏唤醒、明确更新拒绝后全群停滞，并记录草稿保留未闭环、人数容量及失败反馈问题。实现位置和脱敏复核只在[EarlyMeeting多人使用审查](https://github.com/840832144/EarlyMeeting/blob/codex/task-0028-local-callback/docs/CONCURRENCY_REVIEW_20260909.md)。续接本Task，Review状态保留，未将新增缺陷标记已修复。Subagents: none。
+
 2026-09-09 追加 EarlyMeeting@ecbedbc：User要求从明天即9月10日起改为09:40。两个正式群的本机配置与真实调度代码已更新加载，今天原卡恢复且未重发；未来准点送达尚未到时实测。实现、检查及部署证据继续只在EarlyMeeting，本Task保持Review。Subagents: none。
 
 2026-09-09 增量 EarlyMeeting@a5cc8d9 / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)：User授权处理多人输入草稿被刷新，并追加提交红框、编辑蓝框；稳定组件标识补丁已更新两个正式群原卡片。客户端草稿保留仍待实际使用反馈，不把接口成功当作缺陷已解决，继续Review。未代提交客户端草稿；刷新得到User明确确认。Registry复验14 canonical / 0 collision / valid，继续本Task、不新建编号。实现、最小检查、部署和脱敏证据仅在[EarlyMeeting验收记录](https://github.com/840832144/EarlyMeeting/blob/codex/task-0028-local-callback/docs/MEETING_ACCEPTANCE.md)。Subagents: none。
