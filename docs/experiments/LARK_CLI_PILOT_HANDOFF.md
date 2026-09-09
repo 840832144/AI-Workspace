@@ -2,7 +2,7 @@
 
 ## 2026-09-09 Codex 交付记录（当前状态）
 
-- 正式入口：[TASK-0029](../../tasks/TASK-0029-LARK-CLI-DOCUMENT-PARALLEL-PILOT.md)，状态 Review；remote-CAS 正式分配，登记提交 `efacc34a4677c6d1ffe080c635c035ce400fab82` 在安装前已推送。reservation 保持 pending-main，未另建任务。
+- 正式入口：[TASK-0029](../../tasks/TASK-0029-LARK-CLI-DOCUMENT-PARALLEL-PILOT.md)，状态 Accepted；User 已明确验收通过，[验收记录](../../reviews/TASK-0029-USER-ACCEPTANCE.md)关联两仓库交付 commits。remote-CAS 正式分配，登记提交 `efacc34a4677c6d1ffe080c635c035ce400fab82` 在安装前已推送；canonical 合入 main 后 finalize，未另建任务。
 - 两仓库使用独立 `codex/lark-cli-document-pilot` 分支。治理已合入最新 main `5db0beb`；实施 main `e80fd8a`。原 document-assistant checkout 的图片改动未触碰。
 - CLI 真实版本 1.0.94，匹配的 lark-shared / lark-doc / lark-drive 同 tag / commit `f065bf5b645af381f9b7475ce721451e6ca36a23`；Codex 0.153.4 实际发现三项 repo / enabled / 0 error，当前会话已读取。
 - User 选定当前企业的新独立自建应用并完成创建与授权。后台最终回读已发布 1.0.1 / 审核通过 / 可用成员仅 User 本人，禁止外部群和外部用户单聊。建议名称未应用，保留向导生成名称；未自行发布后台待发布修改。
@@ -14,8 +14,8 @@
 - 限制：v2 `drive +search` 缺 `search:docs:read`，未通过；本次用已授权的目标位置 `drive.files.list` 精确匹配完成发现，不代表全云空间搜索通过。创建前向导页面读取曾失败，无法追溯证明初始默认权限完整审计。
 - 实施说明：document-assistant `docs/LARK_CLI_PILOT.md`，交付 commit `7332be4f6308374cd955d029d0f1d0a4cde142ca` 已推送，记录固定版本、本机证据索引、实际步骤和回退。真实应用/文档标识、身份、授权材料及完整响应不进入公共 Git。
 - 收尾检查：Registry 14 canonical / 0 collision / valid；两仓库变更文档相对链接、凭据/真实标识检查和 diff check 通过；实施仓库 pnpm secret:scan 通过。无代码变更，不重复运行与本次无关的测试。
-- Idea 沿用原交接同一条「CAP-DOC 官方 CLI 复用与薄发布层」，不建同义任务；有限试用待 Review。正式 Roadmap 发布因本轮禁止写正式文档/Hub而保持未执行，不宣称已登记或全面采用。
-- 唯一下一步：Review 两仓库的 TASK-0029 交付记录及临时文档证据，决定是否接受有限并行试用。
+- Idea 沿用原交接同一条「CAP-DOC 官方 CLI 复用与薄发布层」，不建同义任务；有限试用已由 User 接受，薄发布层与全面采用尚未批准。正式 Roadmap 发布因本轮禁止写正式文档/Hub而保持未执行，不宣称已登记或全面采用。
+- 唯一下一步：完成验收记录的 main 合入与 reservation finalize 后归档本轮；不扩展文档操作或应用权限。
 - Subagents: none。
 
 以下保留 ChatGPT 原始授权交接作为范围依据。

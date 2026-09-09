@@ -1,13 +1,13 @@
 # TASK-0029 — 官方飞书 CLI 文档能力并行试用
 
-- Status: Review
+- Status: Accepted
 - Project key: WORKSPACE
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1 / bounded pilot
 - Date: 2026-09-09
 - Updated: 2026-09-09
-- User decision: Approved
+- User decision: Accepted
 - Allocation relationship: new
 - Related tasks: TASK-0020, TASK-0021
 - Subagents: none
@@ -30,7 +30,7 @@
 - 安装前同步 AI-Workspace `main@1dd6de3e244858c44b716cacd72961ea9419f564` 与 document-assistant `main@e80fd8a7cb24edde876b492b9b575e2c092d06ab`，枚举全部远端 heads 并核对 Task / 唯一 Roadmap。
 - 分配前 Registry：13 canonical / 0 collision / valid，无同目标 active Task。TASK-0027 / TASK-0028 的其他 reservation 保持不动。
 - 独立非 main linked worktree 的 remote-CAS allocator 正式返回 TASK-0029。正式 Task 与自动 Registry 的提交 `efacc34a4677c6d1ffe080c635c035ce400fab82` 已 push 后才安装。
-- reservation 保持 pending-main，canonical Task 合入 main 后才能 finalize；本轮不分配新任务、不自行标记 Accepted。
+- User 已明确验收通过；[正式验收记录](../reviews/TASK-0029-USER-ACCEPTANCE.md)关联本轮交付 commits。reservation 在 canonical Task 合入 main 后由 allocator finalize，不另分配或提前 release。
 - 收尾再次 fetch 两仓库；治理分支合入最新 `main@5db0beb1976f5a0ae50e85a98e1756b55eaf871b`，实施 main 未变化。Registry 重建并校验 14 canonical / 0 collision / valid。
 - Workspace Sync 保持 ON_DEMAND；准备时 provider unavailable、6 stale、0 conflict，以最新 Git 为依据，不把旧 Context 当现场事实。
 
@@ -62,4 +62,4 @@
 
 实施真相源为 document-assistant `docs/LARK_CLI_PILOT.md`，交付 commit `7332be4f6308374cd955d029d0f1d0a4cde142ca` 已推送，包含固定版本、操作步骤、本机证据索引、历史权限缺口及回退方式。Registry、变更文档链接/敏感标识检查、diff check 与实施 secret scan 均通过。治理与实施记录在各自独立分支交付；本轮是可复查的有限试用结果，不是正式发布能力完整验收或默认 Provider 切换。
 
-唯一下一步：Review 两仓库的 TASK-0029 交付记录及临时文档证据，决定是否接受有限并行试用。后续生产采用、全量迁移或新业务范围仍需单独批准。
+User 于 2026-09-09 明确回复「可以，验收通过了」，有限并行试用状态为 Accepted。唯一下一步：完成两仓库 main 合入及 reservation finalize 后归档本轮；后续生产采用、全量迁移或新业务范围仍需单独批准。
