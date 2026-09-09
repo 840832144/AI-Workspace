@@ -16,7 +16,13 @@
 
 使用已有 Pop 研究、User 提供的视频和文档，交付面向系统策划的中文图文拆解报告、证据索引和私有 CR 对照讨论表，供 User 与负责策划讨论 CR 可借鉴内容；不开发 CR。
 
-## 授权与正式启动 Gate
+## 云文档阶段（2026-09-09，当前授权）
+
+离线首版已由 ChatGPT 审阅 Accepted，详见启动交接的正式审阅记录。本轮 User 批准在 TASK-0030 内继续：按[策划阅读版完整规格](support/pop-slots-lobby-report/PLANNER_CLOUD_SPEC.md)改写两份源稿，修正图5，并通过 Document Assistant 发布两份互链、公司内可编辑且登记导航的文档。云版单独等待审阅，不沿用离线 Accepted。
+
+策划版改写与内部发布现已完成，状态 Review；下文原授权及离线交付记录属于历史阶段。禁止新采集和 CR 实现的边界仍有效；旧阶段“不发布飞书”已被本次明确发布授权更新。已同步指定治理分支与业务报告分支，不重新分配编号或扩大检查。Subagents: none。
+
+## 原离线阶段：授权与正式启动 Gate
 
 - User 明确批准本次独立报告，文件入口已提供；未批准新采集、游戏操作、CR 实现或飞书发布。
 - 完整范围与验收以 [执行规格](support/pop-slots-lobby-report/EXECUTION_SPEC.md)为准；[启动交接](../handoff/POP-SLOTS-LOBBY-REPORT-KICKOFF.md)不另作 canonical。
@@ -55,7 +61,7 @@
 - 白名单限定报告及相关 Task/Status/Handoff/日志，git diff --check 和必要仓库校验通过；未运行测试不写通过。
 - 完成后更新 canonical 为 Review、重建 Registry 并 validate，业务和治理独立分支提交推送；不自动 Accepted 或实现 CR。
 
-## 当前状态与唯一下一步
+## 原离线首版交付（历史记录）
 
 首版已完成，状态 Review。正式 Ready 登记提交 `e64ed8c` 在研究前完成；本次报告交付提交如下，均已推送独立分支，未合并 main：
 
@@ -68,4 +74,19 @@
 - User最后确认先交付离线图文版，验收通过后再做飞书云文档。本轮未发布云文档，未改CR原需求/客户端/配置/SVN，未新采集或联系策划。
 - reservation仍pending-main；未提前finalize，未Accepted。Subagents: none。
 
-**唯一下一步：等待ChatGPT Review本报告与私有对照稿。** 验收通过后再按User要求制作云文档；不自动进入CR开发。
+当时的下一步是离线 Review；此条件已由 ChatGPT Accepted 满足。当前阶段以下文为准，不自动进入 CR 开发。
+
+
+## 当前状态与唯一下一步：策划云版 Review
+
+- 离线首版 Accepted 已同步，以[原审阅记录](../handoff/POP-SLOTS-LOBBY-REPORT-KICKOFF.md)为依据；本轮仅继续 TASK-0030，未重新分配编号。
+- 源稿交付：研究 `ba69d45d6f3e4e0df7d1bd290cc1bd4fd0d39566`，私有 CR `dc6c844aeedbd4c173abb0c65336ca724c9a207c`；仍在 `codex/pop-slots-lobby-report`，未合并 main。
+- [Pop 策划阅读版源稿](https://github.com/840832144/huuuge-android-research/blob/ba69d45d6f3e4e0df7d1bd290cc1bd4fd0d39566/reports/pop-slots/lobby/POP_SLOTS_LOBBY_PLANNER.md)围绕画面、感受、借鉴与未知问题，保留六图；技术大附录、原19条证据继续留在原资料中。
+- 私有源稿 `reviews/pop-slots-lobby/CR_LOBBY_PLANNER_DISCUSSION.md` 用六张四列小表保留原案、已确认空位原则与待讨论事项，不替负责策划做决定。内部云链接只在同目录 `PLANNER_CLOUD_PUBLICATION.md`。
+- 图5下缘及同图边缘可见残留标记已遮盖，原 PNG 与 HTML 内嵌图片同步；六张策划图已回看。
+- Document Assistant 搜索无同题登记后各创建一次正式文档。两份正文回读与源稿全部匹配；Pop6个原生图片块均有已上传内容；互链各1处，导航各1处；权限均 `tenant_editable / verified=true`，无转换警告。
+- 工具简化回读不返回图片内容字段与链接目标，补用同一已安装 Provider 的既有只读方法核对；未修改 Provider、复制凭据或新建接口。本机浏览器预览超时，未宣称完成浏览器逐屏验收。
+- 同步 main 与指定分支，Task 状态通过既有扫描命令重建 Registry；仅做本次差异与产物检查，不追加哈希、全库门禁、程序测试或共享 Skill 工作。
+- 未补采、操作游戏、开发 CR、改原需求/配置/SVN、联系负责人或合并 main。reservation仍pending-main，未finalize。Subagents: none。
+
+**唯一下一步：User / ChatGPT 审阅《Pop! Slots 大厅氛围拆解｜策划阅读版》和《CR 大厅氛围｜借鉴讨论稿》。** 云版尚未 Accepted。

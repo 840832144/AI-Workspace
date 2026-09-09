@@ -2,6 +2,13 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-09 — TASK-0030 策划阅读版内部发布
+
+- 同步离线 ChatGPT Accepted；继续同一 TASK 改写 Pop 图文与 CR 六组讨论简表，云版状态为 Review。
+- 研究 `ba69d45`、私有 CR `dc6c844`；图5及 HTML 同步修正，原研究/证据/原案保留。内部云链接仅存私有发布记录。
+- Document Assistant 搜索防重、真实上传六图并正式发布两份互链文档；正文、图片内容、链接、公司内可编辑权限与导航登记回读通过。
+- 只更新本次 Task/Status/Handoff 和必要 Registry，不增加新任务或外围工作。唯一下一步为 User / ChatGPT 审阅云版。
+
 ## 2026-09-09 — TASK-0030 Pop! Slots 大厅报告 Review
 
 - 先完成正式分配/Ready登记，再核读已有材料；六主题中文图文报告、离线HTML、19条证据与私有CR对照已完成并推送。

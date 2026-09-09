@@ -1,12 +1,13 @@
 # Huuuge Android Research — Project Status
 
-## 2026-09-09 · TASK-0030 Pop! Slots 大厅报告 Review
+## 2026-09-09 · TASK-0030 策划云版 Review
 
-- [正式Task](../../tasks/TASK-0030-POP-SLOTS-LOBBY-REPORT.md)首版交付：研究`06f1d1e`、私有CR对照`43779f5`，均在独立分支推送。
-- [报告入口](https://github.com/840832144/huuuge-android-research/blob/06f1d1e/reports/pop-slots/lobby/POP_SLOTS_LOBBY_REPORT.md)；同目录有离线HTML、6张图、19条证据及Review交接。私有对照不复制到本仓库。
-- DSH原研究判断、本轮直接观察和待验证分开；排队/让位、完整周期、跨界面连续及全场/跨日参数尚未证实。
-- 本轮无CR开发/配置/SVN/新采集/飞书发布。User最终决定先验收离线版，通过后再做云文档。
-- 唯一下一步：ChatGPT Review。Subagents: none。以下旧研究状态保留为历史基线，不在本轮刷新。
+- [正式 Task](../../tasks/TASK-0030-POP-SLOTS-LOBBY-REPORT.md)继续原编号：离线首版 ChatGPT Accepted，策划改写及内部发布完成，云版待审阅。
+- 研究提交 `ba69d45`：[策划阅读版](https://github.com/840832144/huuuge-android-research/blob/ba69d45/reports/pop-slots/lobby/POP_SLOTS_LOBBY_PLANNER.md)与六张策划配图；图5原 PNG / HTML 残留标记修正。原研究与19条证据保留。
+- 私有 CR 提交 `dc6c844`：六组简表、原案和空位原则保留；云链接及发布回读只在获准私有记录，不复制到本仓库。
+- 两份正式云文档正文、6个有上传内容的图片块、双向链接、公司内可编辑与导航各一处登记均已真实回读，无转换警告。
+- 未补采、改 Provider、开发 CR、改原需求/配置/SVN或合并 main。Subagents: none。
+- 唯一下一步：User / ChatGPT 审阅两份策划云文档。以下旧研究状态保留为历史基线，不在本轮刷新。
 
 ## 既有项目状态记录
 
