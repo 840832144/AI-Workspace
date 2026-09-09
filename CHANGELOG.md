@@ -2,6 +2,12 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-09 — TASK-0030 Pop! Slots 大厅报告 Review
+
+- 先完成正式分配/Ready登记，再核读已有材料；六主题中文图文报告、离线HTML、19条证据与私有CR对照已完成并推送。
+- 研究06f1d1e、私有对照43779f5；canonical/项目Status/Handoff同步Review。未修改其他任务、CR原案或原研究，未新采集、写SVN或发布飞书。
+- User最终决定离线版验收通过后再做云文档；唯一下一步为ChatGPT Review。
+
 ## 2026-09-09 — TASK-0029 有限文档试用 Accepted
 
 - 验收记录已合入两仓库共享 main，canonical 进入 main 后 allocator 返回 TASK-0029 finalized；本轮结项。

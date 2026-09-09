@@ -4,7 +4,7 @@
 - Updated: 2026-09-09
 - User decision: Approved
 - Scope: Pop 策划版拆解报告 + 私有 CR 对照讨论表；不做 CR 开发。
-- Status: Ready；remote-CAS 正式分配 TASK-0030，登记后执行。
+- Status: Review；TASK-0030首版完成，研究06f1d1e、私有对照43779f5均已推送，等待ChatGPT Review。
 - Canonical Task: [TASK-0030](../tasks/TASK-0030-POP-SLOTS-LOBBY-REPORT.md)
 
 ## 唯一启动规格
@@ -29,8 +29,14 @@ CR 私有对照要求位于 `840832144/cr_design/reviews/briefs/2026-09-09_POP_S
 
 完成后按完整规格更新 Task/Status/Handoff，返回实际 commit 与报告入口，状态为 Review，等待 ChatGPT 审阅及 User 与负责策划对齐。
 
-## 已核对基线与未执行事项
+## 启动交接历史记录（首次分配前）
 
 写入前 AI-Workspace main 为 `1dd6de3e244858c44b716cacd72961ea9419f564`；已读取 Task Registry、Task 规则、allocator 说明、Codex Handoff 和项目进度源稿；研究仓库已读取 Task/Status/Handoff；CR 已读取审阅镜像边界与历史提案。没有从这些读取推定业务已实现或本机环境仍可用。
 
 本轮只新增启动规格、独立交接和 CR 私有对照说明；未分配 TASK ID，未修改 Registry、既有 Task、原研究报告、CR 原需求、配置或 SVN，未启动 Codex 进程或采集。
+
+## 本次执行完成与交接
+
+正式分配、Ready提交e64ed8c和校验先于研究完成；随后完成六主题报告、离线完整HTML、6张脱敏图、19条证据索引及私有12项CR对照。研究仓库06f1d1e，CR私有仓库43779f5；入口与未证实项见canonical Task。原研究和CR原案均保留，未新采集、未写SVN或云文档。
+
+User最终要求：先验收离线图文版，通过后再做飞书云文档；聚焦核心产物，不追加哈希或外围门禁。当前状态Review，不自动Accepted或合并main；reservation待canonical进入main后按原流程处理。唯一下一步：ChatGPT Review。Subagents: none。

@@ -272,7 +272,7 @@ entries:
     canonical_file: "tasks/TASK-0030-POP-SLOTS-LOBBY-REPORT.md"
     file: "tasks/TASK-0030-POP-SLOTS-LOBBY-REPORT.md"
     title: "Pop! Slots 大厅氛围系统拆解报告"
-    status: "Ready"
+    status: "Review"
     project_key: "POP-SLOTS"
     human_alias: ""
     owner: "User / ChatGPT"

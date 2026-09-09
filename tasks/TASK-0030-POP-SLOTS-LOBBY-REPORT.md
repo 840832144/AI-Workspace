@@ -1,6 +1,6 @@
 # TASK-0030 — Pop! Slots 大厅氛围系统拆解报告
 
-- Status: Ready
+- Status: Review
 - Project key: POP-SLOTS
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -57,4 +57,15 @@
 
 ## 当前状态与唯一下一步
 
-Ready 登记完成后进入 In Progress，核对私有说明和附件，基于现有证据完成首版。任何缺失原件仅询问缺失路径，不重复询问已获批目标。
+首版已完成，状态 Review。正式 Ready 登记提交 `e64ed8c` 在研究前完成；本次报告交付提交如下，均已推送独立分支，未合并 main：
+
+- 研究报告：`06f1d1e`，含[中文图文报告](https://github.com/840832144/huuuge-android-research/blob/06f1d1e/reports/pop-slots/lobby/POP_SLOTS_LOBBY_REPORT.md)、同目录离线HTML、6张脱敏图、19条证据CSV及业务Task/Status/Handoff/日志。
+- 私有对照：`43779f5`，含[CR对照讨论稿](https://github.com/840832144/cr_design/blob/43779f5/reviews/pop-slots-lobby/CR_COMPARISON.md)与私有Handoff，12个讨论项保留原案及决策空栏。
+- 两份Word正文/表格/16张内嵌图、12页渲染、约72秒视频、两张补发概念图及DSH原研究均已核读。详细私有版本差异与裁切缺口只在私有稿记录。
+- DSH机器人高概率判断保留为原研究；当前可见行为与后台推断分开。未证实项：点击占座反馈/让位、完整机器人周期、机台内外座位连续、全场分布、跨日身份、真实Spin及中奖概率；原始Hook样本和29/28口径待补现有证据。
+- 核心输出检查：报告与CSV编号对应、相对链接可解析、6张图逐图查看并脱敏；离线HTML浏览器6/6图加载、页面无横向溢出；业务提交差异检查通过。没有程序改动，不伪报程序测试。
+- User后续要求聚焦核心交付，不追加哈希/外围门禁；不跑无关全库检查，不修改共享Skill或构建目录。Task Registry仅同步本次状态，不扩展任务治理。
+- User最后确认先交付离线图文版，验收通过后再做飞书云文档。本轮未发布云文档，未改CR原需求/客户端/配置/SVN，未新采集或联系策划。
+- reservation仍pending-main；未提前finalize，未Accepted。Subagents: none。
+
+**唯一下一步：等待ChatGPT Review本报告与私有对照稿。** 验收通过后再按User要求制作云文档；不自动进入CR开发。

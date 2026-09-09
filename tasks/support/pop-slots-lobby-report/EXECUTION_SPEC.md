@@ -7,8 +7,8 @@
 - Executor: Codex
 - Priority: P1 / User-selected report
 - User decision: Approved
-- Allocation status: Pending canonical allocation on Codex host
-- Canonical Task: 尚未分配；本文件不是 canonical Task，也不是可绕过治理 Gate 的 Ready 状态。
+- Allocation status: Allocated TASK-0030 on Codex host; reservation pending-main
+- Canonical Task: [TASK-0030](../../TASK-0030-POP-SLOTS-LOBBY-REPORT.md)。下文第0节保留首次交接时的分配流程记录；当前执行状态见canonical。
 - Handoff: [启动交接](../../../handoff/POP-SLOTS-LOBBY-REPORT-KICKOFF.md)
 
 ## Goal
