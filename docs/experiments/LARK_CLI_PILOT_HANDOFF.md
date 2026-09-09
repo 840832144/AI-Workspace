@@ -1,5 +1,16 @@
 # 飞书官方 CLI｜文档能力并行接入交接
 
+## 2026-09-09 Codex 接管记录
+
+- 正式入口：[TASK-0029](../../tasks/TASK-0029-LARK-CLI-DOCUMENT-PARALLEL-PILOT.md)，由 remote-CAS allocator 分配；状态 In Progress，非猜号，reservation 保持 pending-main。
+- Task 登记前 Registry 13 canonical / 0 collision / valid；已核对全部远端 heads，未见同目标任务。
+- 两仓库均使用独立 `codex/lark-cli-document-pilot` 分支；document-assistant 原 checkout 的未提交图片改动保持原状。
+- 旧 feishu-docs healthcheck 的认证、API、Drive 检查通过；当前还没有 CLI 安装或租户实测结果。
+- Idea 防重：唯一 Roadmap 暂无同义条目。沿用本交接末尾同一 Idea，最小试用可归 Current；本轮 User 禁止修改正式文档/Hub，因此正式 Roadmap 发布保持待处理，不宣称已完成登记，不扩大授权。
+- Subagents: none。
+
+以下保留 ChatGPT 原始授权交接作为范围依据。
+
 - 日期：2026-09-09。
 - User decision：Approved；User 已同意并行试用，并要求说明 Codex 如何开始接入。
 - 类型：实施准备交接；不是已分配编号的 canonical Task，不代表已经安装或切换 Provider。

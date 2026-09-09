@@ -2,6 +2,12 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-09 — TASK-0029 正式登记
+
+- remote-CAS allocator 正式分配官方飞书 CLI 文档并行试用任务；登记后才安装，应用和 OAuth 由 User 确认。
+- 仅一份虚构临时文档，保留 feishu-docs；正式文档、Hub、EarlyMeeting 与其他未提交工作保持原边界。
+- 试用使用独立分支，当前尚未通过真实文档验收；详见 Task 与实验 Handoff。
+
 ## [0.18.1] - 2026-08-29
 
 ### Accepted
