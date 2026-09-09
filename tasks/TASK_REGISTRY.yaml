@@ -258,7 +258,7 @@ entries:
     canonical_file: "tasks/TASK-0029-LARK-CLI-DOCUMENT-PARALLEL-PILOT.md"
     file: "tasks/TASK-0029-LARK-CLI-DOCUMENT-PARALLEL-PILOT.md"
     title: "官方飞书 CLI 文档能力并行试用"
-    status: "In Progress"
+    status: "Review"
     project_key: "WORKSPACE"
     human_alias: ""
     owner: "User / ChatGPT"

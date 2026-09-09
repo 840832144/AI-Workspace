@@ -1,21 +1,21 @@
 # 飞书官方 CLI｜文档能力并行接入交接
 
-## 2026-09-09 Codex 接管记录
+## 2026-09-09 Codex 交付记录（当前状态）
 
-- 正式入口：[TASK-0029](../../tasks/TASK-0029-LARK-CLI-DOCUMENT-PARALLEL-PILOT.md)，由 remote-CAS allocator 分配；状态 In Progress，非猜号，reservation 保持 pending-main。
-- Task 登记前 Registry 13 canonical / 0 collision / valid；已核对全部远端 heads，未见同目标任务。
-- 两仓库均使用独立 `codex/lark-cli-document-pilot` 分支；document-assistant 原 checkout 的未提交图片改动保持原状。
-- CLI 安装已完成：1.0.94；三个 Skills 同 tag / commit，Codex skills/list 三项 repo / enabled / 0 error，本轮会话已自动加载。真实文档试用尚未开始。
-- User 暂停讨论后已明确恢复 TASK-0029：新建当前企业的独立企业自建应用，建议名称「AI Workspace CLI（试用）」，初期可用范围仅 User 本人；不改旧文档助手或晨会应用。
-- 先核对向导默认权限，仅文档与必要认证 scopes；使用独立 CLI 配置和凭据存储，官方链接与二维码交 User 浏览器确认；遇额外权限/管理员审批先说明，不自动扩大。
-- User 已浏览器确认创建新应用，CLI 初始化完成，隔离凭据为 keychain 引用；未完成用户登录或写入临时文档。旧 feishu-docs 配置和环境变量未改。
-- 实际 userScopes 查询仅 offline_access；CLI 不以此证明 bot scopes 或可用范围。页面读取 timeout / Debugger unattached；仅本人可用和建议名称尚需后台确认。
-- 实施说明和当前证据：document-assistant `docs/LARK_CLI_PILOT.md`，commit `cf8b9414a9feac547c2f7c94a14f80bff847107a`；secret scan 通过。
-- 用户登录续跑已验证为 user / ready / token valid。实际 90 项权限由 User 明确说明为自己一键开启全部免审项；不自行撤销，实际操作范围仍为文档样例。
-- 标题查重实际返回 missing_scope，尚未创建文档。User 随后选择一次补齐文档/云空间全部权限，含需审核项，不选择 CLI 全业务域；官方目录 docs / drive 共 40 个唯一 scope，加认证 offline_access。相对现有权限仅缺 search:docs:read 和 space:document:retrieve。
-- User 在后台手动添加权限，回读 app userScopes=172、列表权限已开启、v2 search:docs:read 仍缺，旧搜索 drive:drive.search:readonly 已有；用户 token 仍 90 项。因此改用已开启权限集合的 OAuth，并以 drive.files.list 精确标题匹配完成本次查重/查找；不扩大后台范围，不把 v2 快捷搜索报告为通过。
-- 唯一下一步：点击新的用户授权链接完成 OAuth（不必扫码），Codex 完成登录并核验列表权限后继续同一文档。旧补授权流程均不再使用，虚构 XML 草稿已通过本机 parse。
-- Idea 防重：唯一 Roadmap 暂无同义条目。沿用本交接末尾同一 Idea，最小试用可归 Current；本轮 User 禁止修改正式文档/Hub，因此正式 Roadmap 发布保持待处理，不宣称已完成登记，不扩大授权。
+- 正式入口：[TASK-0029](../../tasks/TASK-0029-LARK-CLI-DOCUMENT-PARALLEL-PILOT.md)，状态 Review；remote-CAS 正式分配，登记提交 `efacc34a4677c6d1ffe080c635c035ce400fab82` 在安装前已推送。reservation 保持 pending-main，未另建任务。
+- 两仓库使用独立 `codex/lark-cli-document-pilot` 分支。治理已合入最新 main `5db0beb`；实施 main `e80fd8a`。原 document-assistant checkout 的图片改动未触碰。
+- CLI 真实版本 1.0.94，匹配的 lark-shared / lark-doc / lark-drive 同 tag / commit `f065bf5b645af381f9b7475ce721451e6ca36a23`；Codex 0.153.4 实际发现三项 repo / enabled / 0 error，当前会话已读取。
+- User 选定当前企业的新独立自建应用并完成创建与授权。后台最终回读已发布 1.0.1 / 审核通过 / 可用成员仅 User 本人，禁止外部群和外部用户单聊。建议名称未应用，保留向导生成名称；未自行发布后台待发布修改。
+- 使用独立 CLI 配置及 keychain 凭据引用，未修改旧 feishu-docs 配置或环境变量。最终 device-code 完成后为 user / ready / valid / verified，实际 token 92 项、固定申请 41 项缺项为 0。
+- 权限决定：最初精确文档申请后，User 明确保留自己一键开启的全部免审项，并批准补齐文档/云空间全权限（含需审项）。后台手动开通后，通过新 OAuth 增补旧搜索和列表读取两项。历史单项/过期流程均不再使用，不扩大实际业务操作。
+- 已完成唯一虚构样例：创建位置精确标题匹配 0 → 创建一次 → 匹配 1，原 ID/URL 一致；局部 keyword 读取只返回目标段；按 revision 3 将数值 100 改为 120，返回 revision 4 / success / 无 warnings。
+- 改后 9 块对照：仅目标 1 块变化，其余 8 块和参考超链接保持一致。按 User 新增云文档默认规则，仅该样例设置企业内可编辑并 GET 回读 tenant_editable。
+- 旧 feishu-docs 实时 healthcheck 的环境、token、API、Drive 均通过。正式文档、导航中心、EarlyMeeting 与旧应用未修改；样例保留供 Review，不登记 Hub、不删除。
+- 限制：v2 `drive +search` 缺 `search:docs:read`，未通过；本次用已授权的目标位置 `drive.files.list` 精确匹配完成发现，不代表全云空间搜索通过。创建前向导页面读取曾失败，无法追溯证明初始默认权限完整审计。
+- 实施说明：document-assistant `docs/LARK_CLI_PILOT.md`，交付 commit `7332be4f6308374cd955d029d0f1d0a4cde142ca` 已推送，记录固定版本、本机证据索引、实际步骤和回退。真实应用/文档标识、身份、授权材料及完整响应不进入公共 Git。
+- 收尾检查：Registry 14 canonical / 0 collision / valid；两仓库变更文档相对链接、凭据/真实标识检查和 diff check 通过；实施仓库 pnpm secret:scan 通过。无代码变更，不重复运行与本次无关的测试。
+- Idea 沿用原交接同一条「CAP-DOC 官方 CLI 复用与薄发布层」，不建同义任务；有限试用待 Review。正式 Roadmap 发布因本轮禁止写正式文档/Hub而保持未执行，不宣称已登记或全面采用。
+- 唯一下一步：Review 两仓库的 TASK-0029 交付记录及临时文档证据，决定是否接受有限并行试用。
 - Subagents: none。
 
 以下保留 ChatGPT 原始授权交接作为范围依据。

@@ -2,12 +2,12 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
-## 2026-09-09 — TASK-0029 正式登记
+## 2026-09-09 — TASK-0029 有限文档试用交付，待 Review
 
-- User 恢复 TASK-0029，明确新建独立企业自建应用「AI Workspace CLI（试用）」、仅本人可用、文档最小权限和隔离凭据；应用创建及 OAuth 均由 User 浏览器确认。
-- remote-CAS allocator 正式分配官方飞书 CLI 文档并行试用任务；登记后才安装，应用和 OAuth 由 User 确认。
-- 仅一份虚构临时文档，保留 feishu-docs；正式文档、Hub、EarlyMeeting 与其他未提交工作保持原边界。
-- 试用使用独立分支，当前尚未通过真实文档验收；详见 Task 与实验 Handoff。
+- remote-CAS 分配并正式登记后才安装；恢复原 TASK-0029，不重复分配，reservation 保持 pending-main。
+- CLI 1.0.94 与同 tag 文档 Skills 已被当前 Codex 发现；独立应用与用户授权有效，后台仅本人可用范围已回读。
+- 唯一虚构样例完成创建、目录内精确查找、局部读取、单句修改及回读，原链接与非目标内容保留；企业内可编辑权限及旧 feishu-docs 健康通过。
+- Task 状态进入 Review，Handoff 和私有实施试用记录同步更新。v2 搜索及初始默认权限完整审计的限制明确保留；正式文档、Hub、EarlyMeeting 和生产 Provider 未修改。
 
 ## [0.18.1] - 2026-08-29
 
