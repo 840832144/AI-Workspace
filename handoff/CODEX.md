@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-09
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 两个正式群已部署稳定组件标识及红框提交补丁，客户端草稿保留待实际反馈
+- Status: Review — 两个正式群已部署审查1/2的队列与恢复修复；第3项客户端草稿保留待核实
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,8 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 2026-09-09 最新交付：EarlyMeeting@6706eeb / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)。按User批准修复多人审查1/2，已部署两正式群，真实CONNECTED/原卡恢复，10项针对性离线检查通过；第3项本机UI无法操作，User目前不方便核实，仍未闭环，Codex待真实客户端结果继续。未新发或刷新布局，09:40、群隔离与权限保留；4/5未扩展。正式Task继续Review、reservation pending-main，不另建Task。业务及证据见EarlyMeeting的STATUS、MEETING_ACCEPTANCE和Handoff。Subagents: none。
 
 - 2026-09-09 最新自查：EarlyMeeting@34d2ddb，结论Needs changes。两个新的并发/恢复问题已本地复现，草稿仍未闭环；其他容量和反馈问题见EarlyMeeting的CONCURRENCY_REVIEW_20260909.md。只修改审查与交接文档，没有动线上卡片或业务代码。下一步先处理共用队列及失败恢复，继续TASK-0028，不把先前热更视为全面通过。Subagents: none。
 

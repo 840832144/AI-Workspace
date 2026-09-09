@@ -2,6 +2,10 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## [Unreleased] - 2026-09-09
+
+- TASK-0028续接多人可靠性审查1/2修复，EarlyMeeting@6706eeb已部署两正式群，交Review；第3项草稿保留待真实客户端核实。控制面仅更新Task与Handoff引用，具体实现、验证及运行证据留在EarlyMeeting，不另行占号。
+
 ## [Unreleased] - 2026-09-07
 
 - User 最终将 TASK-0028 卡片改为策划 / 程序两个添加区域，各两列；已取消部门读取和对应权限依赖，业务实现仍只在 EarlyMeeting，同一张卡片直接交 User 验收。

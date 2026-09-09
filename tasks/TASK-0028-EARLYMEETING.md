@@ -18,6 +18,8 @@
 
 ## Scope
 
+2026-09-09 本轮修复交付：[EarlyMeeting@6706eeb](https://github.com/840832144/EarlyMeeting/commit/6706eeb) / PR #4。User批准先修多人审查1/2、尝试核实3；两项队列/恢复修复已部署至两个正式群，10项具体风险检查通过，真实CONNECTED、两群原卡恢复，无新发或布局刷新。第3项因本机UI操作不可用且User目前不方便核实，保持待核实、不宣称解决；后续Codex依据真实草稿反馈继续。4/5本次未扩展。实现、运行说明和脱敏证据只在EarlyMeeting。续接本Task，Registry防重，不另占号；状态Review，reservation pending-main，未Done。Subagents: none。
+
 2026-09-09 最新自查 EarlyMeeting@34d2ddb：User要求复核多人使用可靠性。只审查，未修改线上代码或卡片；自查Needs changes，已复现队列结束边界漏唤醒、明确更新拒绝后全群停滞，并记录草稿保留未闭环、人数容量及失败反馈问题。实现位置和脱敏复核只在[EarlyMeeting多人使用审查](https://github.com/840832144/EarlyMeeting/blob/codex/task-0028-local-callback/docs/CONCURRENCY_REVIEW_20260909.md)。续接本Task，Review状态保留，未将新增缺陷标记已修复。Subagents: none。
 
 2026-09-09 追加 EarlyMeeting@ecbedbc：User要求从明天即9月10日起改为09:40。两个正式群的本机配置与真实调度代码已更新加载，今天原卡恢复且未重发；未来准点送达尚未到时实测。实现、检查及部署证据继续只在EarlyMeeting，本Task保持Review。Subagents: none。
