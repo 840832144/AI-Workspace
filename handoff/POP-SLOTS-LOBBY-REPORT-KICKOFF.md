@@ -4,7 +4,8 @@
 - Updated: 2026-09-09
 - User decision: Approved
 - Scope: Pop 策划版拆解报告 + 私有 CR 对照讨论表；不做 CR 开发。
-- Status: 启动规格已保存；正式编号待 Codex 本机 allocator 分配；尚未进入 In Progress。
+- Status: Ready；remote-CAS 正式分配 TASK-0030，登记后执行。
+- Canonical Task: [TASK-0030](../tasks/TASK-0030-POP-SLOTS-LOBBY-REPORT.md)
 
 ## 唯一启动规格
 
