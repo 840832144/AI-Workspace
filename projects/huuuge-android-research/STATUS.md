@@ -1,6 +1,13 @@
 # Huuuge Android Research — Project Status
 
-## 2026-09-09 · TASK-0030 策划云版 Review
+## 2026-09-09 · TASK-0030 机器人与策划配置补充 Review
+
+- 按 User 反馈，研究 `7b88544` 补充 DSH 人物资料规律及判断边界；私有 `9e4f9e4` 补充策划配置字段、原案值、待定项与预期表现。
+- 两份既有云文档原位追加并回读，旧正文块、六图、互链与导航保留。内部链接与具体CR内容仍只在获准私有位置。
+- 未新建任务、采集、开发CR、生成配置文件或改原需求/配置/SVN。Subagents: none。
+- 唯一下一步：User / ChatGPT 审阅补充内容，配置拆分及未定值不自动生效。
+
+## 2026-09-09 · TASK-0030 策划云版首次发布 Review
 
 - [正式 Task](../../tasks/TASK-0030-POP-SLOTS-LOBBY-REPORT.md)继续原编号：离线首版 ChatGPT Accepted，策划改写及内部发布完成，云版待审阅。
 - 研究提交 `ba69d45`：[策划阅读版](https://github.com/840832144/huuuge-android-research/blob/ba69d45/reports/pop-slots/lobby/POP_SLOTS_LOBBY_PLANNER.md)与六张策划配图；图5原 PNG / HTML 残留标记修正。原研究与19条证据保留。
