@@ -61,6 +61,8 @@
 
 CLI 已安装并真实回验为 1.0.94，Windows 发布包与官方 checksums 一致；三个 Skills 同取 v1.0.94 / `f065bf5b645af381f9b7475ce721451e6ca36a23`。当前 Codex 0.153.4 的 skills/list 已返回三项 repo scope / enabled / 0 error，本轮会话也已自动加载。
 
-配置采用独立的 LARKSUITE_CLI_CONFIG_DIR；尚未创建应用、完成用户登录或写入临时文档。旧 feishu-docs 前次认证、API、Drive healthcheck 通过；实施原 checkout 的图片未提交改动保持原状。
+User 已在浏览器创建新应用，官方 CLI 初始化完成；独立 LARKSUITE_CLI_CONFIG_DIR 的凭据为系统 keychain 引用。auth scopes 的 userScopes 当前仅 offline_access；用户登录仍 missing。此查询不覆盖应用身份权限、企业或可用范围，后台仅本人可用和建议名称仍待回读确认。尚未创建临时文档。
 
-唯一下一步：核对官方创建向导默认权限，并展示真实创建链接及二维码，让 User 在当前企业确认独立应用和仅本人可用范围。
+创建向导在内置浏览器/Chrome 读取失败（timeout / Debugger unattached）；只核实模板源码，未伪称页面权限已全部核清。实施记录为 document-assistant `docs/LARK_CLI_PILOT.md`，commit `cf8b9414a9feac547c2f7c94a14f80bff847107a`，secret scan 通过。旧 feishu-docs 配置及原 checkout 图片改动保持原状。
+
+唯一下一步：交付精确文档 OAuth 链接及二维码，由 User 确认授权并补齐后台可用范围/默认应用身份权限核验；然后显式 user 身份继续唯一虚构临时文档试用。

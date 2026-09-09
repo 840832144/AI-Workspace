@@ -8,8 +8,10 @@
 - CLI 安装已完成：1.0.94；三个 Skills 同 tag / commit，Codex skills/list 三项 repo / enabled / 0 error，本轮会话已自动加载。真实文档试用尚未开始。
 - User 暂停讨论后已明确恢复 TASK-0029：新建当前企业的独立企业自建应用，建议名称「AI Workspace CLI（试用）」，初期可用范围仅 User 本人；不改旧文档助手或晨会应用。
 - 先核对向导默认权限，仅文档与必要认证 scopes；使用独立 CLI 配置和凭据存储，官方链接与二维码交 User 浏览器确认；遇额外权限/管理员审批先说明，不自动扩大。
-- 旧 feishu-docs healthcheck 的认证、API、Drive 检查已通过；未改其配置或环境变量。尚未创建新应用、完成登录或写入临时文档。
-- 唯一下一步：检查官方向导并交付创建入口，等待 User 的浏览器确认。
+- User 已浏览器确认创建新应用，CLI 初始化完成，隔离凭据为 keychain 引用；未完成用户登录或写入临时文档。旧 feishu-docs 配置和环境变量未改。
+- 实际 userScopes 查询仅 offline_access；CLI 不以此证明 bot scopes 或可用范围。页面读取 timeout / Debugger unattached；仅本人可用和建议名称尚需后台确认。
+- 实施说明和当前证据：document-assistant `docs/LARK_CLI_PILOT.md`，commit `cf8b9414a9feac547c2f7c94a14f80bff847107a`；secret scan 通过。
+- 唯一下一步：交付精确文档 OAuth 链接及二维码，由 User 确认并补齐后台范围检查；随后才进行 user 身份临时文档试用。
 - Idea 防重：唯一 Roadmap 暂无同义条目。沿用本交接末尾同一 Idea，最小试用可归 Current；本轮 User 禁止修改正式文档/Hub，因此正式 Roadmap 发布保持待处理，不宣称已完成登记，不扩大授权。
 - Subagents: none。
 
