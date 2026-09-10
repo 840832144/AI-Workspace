@@ -1,6 +1,6 @@
 # AI Workspace｜产品路线图（Product Roadmap）
 
-> 更新时间：2026-08-28
+> 更新时间：2026-09-08
 > Git 真相源：`docs/roadmaps/PRODUCT_ROADMAP.md`
 > 适用范围：Game Planner AI Workspace 的长期产品方向
 
@@ -9,6 +9,12 @@
 条目必须归入以下四个固定分区之一。分类变化需要保留可复查依据；Roadmap 条目本身不等于执行授权，也不会自动创建 Task。
 
 ## 🔥 Current
+
+### EarlyMeeting｜本人行填写与同卡汇总
+
+- 当前状态：[TASK-0028](../../tasks/TASK-0028-EARLYMEETING.md) 已返回 Review。2026-09-08 User 撤回正式群2预填及全员行操作，现已恢复为与群1一致：预填关闭，个人行仅本人提交/删除，今日交付仍本群共用。三个群原消息与记录保留，继续工作日09:45每群每天一张。名单匹配及新增只读权限流程暂停，不再等待权限；可选代码保留但不启用，不新增 Future Task。
+- 产品价值：保留现有应用、原模板与发送入口，通过已验证的长连接实现多人本人填写；业务规格与实现见 [EarlyMeeting 当前方向](https://github.com/840832144/EarlyMeeting/blob/codex/task-0028-local-callback/docs/CURRENT_DIRECTION.md#后续产品目标澄清)。此前 Backlog 的多人汇总范围合并到本条，不另建产品或 Future Task。
+- 交付边界：个人行 UI 曾获 User 验收；本次恢复后已真实 CONNECTED，三群原消息分别恢复1/8/6行，无重新发卡或模拟操作。两个正式群已于2026-09-08开始日常使用，三个群数据独立。Windows 程序需持续运行，没有系统自启；正式 Review 前不进入 Done。共享模式下逐查看者隐藏他人按钮仍未实现，个人行归属校验保留。
 
 ### 【游戏】 Collector 1.0
 
@@ -40,6 +46,12 @@
 - 进入 Current 的条件：确定最小数据模型、Evidence 要求和首个验证项目。
 
 ## 💡 Ideas
+
+### EarlyMeeting｜10:15 指定名单未提交提醒（暂停）
+
+- 设想：按每群指定的应参加晨会名单，在北京时间 10:15 提醒尚未提交者。
+- 当前依据：User 提出后明确暂停，后续根据需求决定；本轮未实施、未启用，不收集名单或读取群成员。
+- 恢复条件：User 重新明确批准后再核对范围与正式任务准备；本条不自动产生 Future Task。
 
 ### One Research Environment → Multiple Games → Independent Evidence
 

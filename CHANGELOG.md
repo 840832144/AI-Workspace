@@ -2,6 +2,10 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-10 — TASK-0028 调整发卡时间
+
+- User要求两个正式群后续工作日09:30发卡，EarlyMeeting@aa061d2已加载本机配置；当前卡片继续使用，Task与Handoff同步引用，Review状态保留。同步最新main并重建15项canonical Registry，未新增Task，业务证据仍在EarlyMeeting。
+
 ## 2026-09-09 — TASK-0029 有限文档试用 Accepted
 
 - 验收记录已合入两仓库共享 main，canonical 进入 main 后 allocator 返回 TASK-0029 finalized；本轮结项。
@@ -10,6 +14,19 @@
 - CLI 1.0.94 与同 tag 文档 Skills 已被当前 Codex 发现；独立应用与用户授权有效，后台仅本人可用范围已回读。
 - 唯一虚构样例完成创建、目录内精确查找、局部读取、单句修改及回读，原链接与非目标内容保留；企业内可编辑权限及旧 feishu-docs 健康通过。
 - User 明确验收通过，正式 User 验收记录关联治理 `19bfb25` 与实施 `7332be4`；Task 状态进入 Accepted，Handoff 和实施记录同步更新。v2 搜索及初始默认权限完整审计的限制保留；正式文档、Hub、EarlyMeeting 和生产 Provider 未修改。
+
+## [Unreleased] - 2026-09-09
+
+- TASK-0028续接多人可靠性审查1/2修复，EarlyMeeting@6706eeb已部署两正式群，交Review；第3项草稿保留待真实客户端核实。控制面仅更新Task与Handoff引用，具体实现、验证及运行证据留在EarlyMeeting，不另行占号。
+
+## [Unreleased] - 2026-09-07
+
+- User 最终将 TASK-0028 卡片改为策划 / 程序两个添加区域，各两列；已取消部门读取和对应权限依赖，业务实现仍只在 EarlyMeeting，同一张卡片直接交 User 验收。
+- TASK-0028 新版本人行已在指定测试群实发，User 已新增及保存；按 User 反馈修正三列 UI、改为自动部门。用户所属部门字段权限仍待配置；改为 User 直接验收，不把旧离线结果当新布局已验收，未进入 Done。
+- User 批准空卡片新增本人行及同卡保存，续接 TASK-0028 为 In Progress；范围限已配置测试群与受控本机数据，10:00 调度保持关闭。Registry 防重通过，未另行占号。
+- 正式 allocator 登记 TASK-0028 / EARLYMEETING，本机长连接及真实卡片表单回调接管；旧 PR #1/#2 已作废，新范围引用 PR #3。
+- 仅维护治理与索引；实现、测试、运行说明和脱敏证据留在 EarlyMeeting。保留现有应用/模板/发送流程，不保存工作内容、不更新公共卡片、不启用定时、不修改全局网络安全配置。
+- Registry 首检 13 canonical / 0 collision / valid；新 Task 的 reservation 保持 pending-main，提交等待 Review。
 
 ## [0.18.1] - 2026-08-29
 

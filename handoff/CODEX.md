@@ -1,13 +1,49 @@
 # Codex Handoff
 
-- Updated: 2026-08-29
-- Current task: TASK-0019 — AI Workspace 项目全景说明与独立进度文档
-- Status: Accepted — ChatGPT Review Round 3 已通过，执行 Context / 飞书 / main 收口
-- Branch: AI-Workspace `codex/task-0019-overview-progress-refresh` from `main@c74c85a9524d1524ea3696835509de2a55e9f524`
+- Updated: 2026-09-10
+- Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
+- Status: Review — 两个正式群已部署审查1/2的队列与恢复修复；第3项客户端草稿保留待核实
+- Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
 - Memory mode: `ASSISTED`
 - Subagents: none
+
+## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 2026-09-10 最新时间决定：EarlyMeeting@aa061d2，两个正式群下一次于2026-09-11工作日北京时间09:30各发一张；本机配置已加载、真实CONNECTED / 两群MEETING_READY，今天原卡继续使用，无新发或布局刷新。说明和证据留在EarlyMeeting。AI-Workspace同步origin/main@25290ea，合并时保留双方记录并重建Registry，最终15 canonical / 0 collision / valid。Task继续Review，不新分配编号；草稿仍待真实核实。Subagents: none。
+
+- 2026-09-09 最新交付：EarlyMeeting@6706eeb / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)。按User批准修复多人审查1/2，已部署两正式群，真实CONNECTED/原卡恢复，10项针对性离线检查通过；第3项本机UI无法操作，User目前不方便核实，仍未闭环，Codex待真实客户端结果继续。未新发或刷新布局，09:40、群隔离与权限保留；4/5未扩展。正式Task继续Review、reservation pending-main，不另建Task。业务及证据见EarlyMeeting的STATUS、MEETING_ACCEPTANCE和Handoff。Subagents: none。
+
+- 2026-09-09 最新自查：EarlyMeeting@34d2ddb，结论Needs changes。两个新的并发/恢复问题已本地复现，草稿仍未闭环；其他容量和反馈问题见EarlyMeeting的CONCURRENCY_REVIEW_20260909.md。只修改审查与交接文档，没有动线上卡片或业务代码。下一步先处理共用队列及失败恢复，继续TASK-0028，不把先前热更视为全面通过。Subagents: none。
+
+- 2026-09-09 追加交付：EarlyMeeting@ecbedbc。从2026-09-10起两个正式群工作日北京时间09:40每群每天一张；配置与调度已加载，今天原卡未重发。未来准点发送未到时实测；与草稿标识补丁一并保留Review状态，证据见EarlyMeeting。Subagents: none。
+
+- 2026-09-09 最新增量：EarlyMeeting@a5cc8d9 / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)。针对多人输入草稿被刷新，补齐稳定组件标识；提交红框、编辑蓝框。User确认可以刷新后已更新两个正式群原消息，客户端草稿保留未取得真实证据，不宣称已最终修复；下一步据真实使用反馈继续本Task。代码、部署与证据见EarlyMeeting的STATUS、MEETING_ACCEPTANCE和Handoff。Registry14 canonical / valid，原reservation保留；不扩大Document Assistant或另建Task。Subagents: none。
+
+- 最新交付EarlyMeeting@b7827cf / PR #4：仅显示已提交记录的实际交付，不再列出待更新占位人员。正式群2原卡已移除1处占位、保留3人交付；三脚本语法通过，真实CONNECTED / DELIVERY_SUMMARY_REFRESHED same_message=true，无新消息、整卡刷新或额外模型调用。后台识别/失败状态和上次实际结果保留，草稿不入汇总。使用持久汇总刷新意图，启动准备期间暂停worker防止更新序号冲突。两个正式群原11/10行、09:45及权限保留，AI仅群2，测试群关闭。Registry14 canonical / valid，续接TASK-0028交Review；业务说明与脱敏证据仅在EarlyMeeting。Subagents: none。
+
+- 最新增量 EarlyMeeting@325c544 / PR #4：User已验收正式群2原功能，解散的测试群已停用。本轮要求“预计今日”等有今天交付意图的工作也纳入，并保留预计语气；已修复提示词及证据校验，正式群2仅重识别受影响的1条并更新原卡，ready且预计原话保留、失败及待处理0。两个正式群09:45及权限保留，AI仅群2，原11/10行恢复；无新消息或整卡刷新。四脚本语法通过，无新增测试或模拟操作。Registry14 canonical / valid，reservation pending-main；实现、操作和证据全部在EarlyMeeting，增量交Review，直接使用反馈。Subagents: none。当前事实续接本Task，不新建Idea/Future Task。
+
+- 最新交付：EarlyMeeting@e5f0cbd / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)，AI核心10be33d。User已填好本机API Key并限定先只对正式群2开放。按群开关默认false，只有正式群2切换v13，原10行保留，8份已提交记录识别ready、共6项交付、失败和待处理0；测试群及正式群1保持v12手填交付、无AI调用。八脚本语法核对通过，三群原卡恢复且队列为空，无重发或模拟操作。真实后续重提/删除未观测，直接使用反馈；实现、操作与脱敏证据全部在EarlyMeeting。TASK-0028返回Review，reservation pending-main；唯一下一步正式Review。Subagents: none。
+
+- 当前范围：仅正式群2每次提交及编辑后重提异步提取明确今日交付，替换或移除本人汇总，删除同步移除；旧返回不能覆盖新提交，失败不影响晨会保存。只发送当前个人提交文本，API Key仅本机JSON。其他群保留原功能，09:45、本人权限及群隔离不变。Registry14 canonical / valid，不另建Task或扩大Document Assistant；当前事实在Task续接，不新增产品方向或Future Task。Subagents: none。下方为历史交付快照。
+
+- 最新交付：EarlyMeeting@01714fc / PR #4，未提交显示“提交”，成功后普通文字与“编辑”，点编辑带回原文；今日交付采用相同方式，个人行本人权限及共享区规则保留。编辑切换也进入持久队列并更新版本。三脚本语法检查通过；无待确认/排队意图时升级，三群原卡真实 LAYOUT_UPDATED / MEETING_READY，rows=1/11/10，未新发卡或模拟操作。新交互直接使用中反馈，TASK-0028 Review，详细业务证据仅在 EarlyMeeting。此为已有卡片交互细化，不新增产品方向、Candidate或Future Task。Subagents: none。
+
+- 当前交付：EarlyMeeting@f9b14ed / PR #4 已推送并部署，两个正式群正常并发提交进入各自持久队列，保存完成保留期间新到的请求，未知结果暂停并保留队列。本人权限、按群/日期隔离、预填关闭及提醒暂停保留。两个脚本语法检查通过；STOP_VERIFIED 后 CONNECTED，三群原消息恢复1/10/9行，没有重新发卡或模拟提交。真实同时提交尚未观测，证据边界与操作说明在 EarlyMeeting。TASK-0028 返回 Review，reservation pending-main，不合并、不另占号。Subagents: none。
+
+- User 长期要求已写入本机全局 `~/.codex/AGENTS.md`：优先预防真实并发/重复操作/失败恢复问题，做针对风险的最小验证，减少无关测试和哈希比对。当前小修复直接更新 Task/Handoff，不新增 Roadmap 方向或重复 Candidate；不扩展 Document Assistant。唯一下一步：正式 Review。
+
+- 2026-09-08 当前增量：EarlyMeeting@839b481 已推送；正式群2已恢复为与群1一致的 owner/owner，prefill=false；三个群均本人行操作，今日交付仍本群共用。短暂重启后 CONNECTED / MEETING_RESUMED rows=1/8/6，无新发卡，原记录及工作日09:45定时保留。预填名单与只读权限申请已暂停，不再运行 resolver 或等待权限。仅恢复本机配置，未新增自动测试或改全局网络配置。Task Review，Registry14 canonical / 0 collision / valid。Subagents: none。下方为历史快照。
+
+- 当前状态：Review；实现 EarlyMeeting@5634d83 / PR #4（核心实现 590ed0d）。策划、程序、今日交付三个同级区域，前两区本人行；今日交付为全群共用文本框，群成员可提交或清空。业务代码、说明与脱敏证据均在 EarlyMeeting，Document Assistant 未加入业务实现。
+- 正式入口：[TASK-0028](../tasks/TASK-0028-EARLYMEETING.md)；Registry 14 canonical / 0 collision / valid，同目标仅本 Task，reservation pending-main，正式 Review 前不合并或 finalize。
+- 现场 HTTP 101 / CONNECTED、time=09:45、MEETING_RESUMED rows=2 / LAYOUT_UPDATED / MEETING_READY；保留最近原消息和两条个人记录，没有重新发送或模拟交付操作。
+- 个人行 UI 已获 User 明确验收，新增共享交付尚无真实提交或清空证据；直接使用中反馈，不增加复杂测试或验收。按查看者隐藏他人按钮仍未实现，个人行服务端归属校验保留。
+- 工作日北京时间 09:45 每群每天一张；两个正式群均已完成本机接入并启用，从 2026-09-08 开始，测试群保留。User 修改的群名保留，按实际配置 ID 识别；群名及 ID 不进入 Git。重启后 CONNECTED / SCHEDULE_CONFIGURED groups=3 scheduled=3 time=09:45，测试群两行恢复，今天未向正式群补发；未来发卡与准点触发尚未实测。
+- 10:15 指定名单未提交提醒已由 User 暂停，记录到 Roadmap Ideas，不实施、不启用、不收集名单或读取群成员，不另建 Future Task。
+- Windows 程序需持续运行，未来准点发送与正式多群发送未到时实测；间歇 TCP 超时具体原因未确认，不改全局网络安全配置或设置自启。Subagents: none。
 
 ## Current Task — TASK-0019
 
@@ -181,10 +217,31 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- MEMORY-REFRESH:START -->
 ## Memory Context Refresh
 
-- Generated: 2026-08-29T09:33:41Z
+- Generated: 2026-09-08T04:10:56Z
 - Effective mode: `ASSISTED`
 - Manifest: `CONTEXT_MANIFEST.yaml`
 - ChatGPT Project Sources: `manual upload required`
@@ -192,4 +249,4 @@
 <!-- MEMORY-REFRESH:END -->
 ## Exact Next Action
 
-TASK-0019 已 Accepted。User 审议 P0 Reliability Hardening Decision proposal；未经明确批准不创建 Task、不进入实现或运行。在新的 User 决定前只维护已接受的项目进度入口，不启动业务环境。
+本轮下一动作：Review TASK-0028 / EarlyMeeting@5634d83 的三区域同卡填写与工作日 09:45 调度；两个正式群已启用，从 2026-09-08 09:45 开始；测试群保留。10:15 提醒暂停，不追加复杂测试/验收；历史 TASK-0019 仍 Accepted。
