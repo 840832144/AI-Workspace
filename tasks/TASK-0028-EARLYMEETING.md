@@ -7,16 +7,18 @@
 - Executor: Codex
 - Priority: P1
 - Date: 2026-09-07
-- Updated: 2026-09-09
+- Updated: 2026-09-10
 - Candidate provenance: `tasks/candidates/CANDIDATE-20260907-EARLYMEETING-LOCAL-CALLBACK.md`
 - Allocation relationship: new
 - Related tasks: none
 
 ## Goal
 
-在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日发卡。从2026-09-10起北京时间09:40每群每天一张，替代09:45。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭并保留本机历史。
+在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日发卡。从2026-09-11起北京时间09:30每群每天一张，替代09:40。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭并保留本机历史。
 
 ## Scope
+
+2026-09-10 时间调整：[EarlyMeeting@aa061d2](https://github.com/840832144/EarlyMeeting/commit/aa061d2)。User要求以后09:30发，已修改本机配置并重新加载，两群真实CONNECTED / time=09:30 / MEETING_READY；今天原卡继续使用，无重复发卡。下一次为2026-09-11工作日北京时间09:30，未来准点发送未到时实测。已同步origin/main@25290ea、保留其他Task并重建Registry，15 canonical / 0 collision / valid；续接本Task，不新占号。运行证据只在EarlyMeeting，Task仍Review，草稿核实状态不变。Subagents: none。
 
 2026-09-09 本轮修复交付：[EarlyMeeting@6706eeb](https://github.com/840832144/EarlyMeeting/commit/6706eeb) / PR #4。User批准先修多人审查1/2、尝试核实3；两项队列/恢复修复已部署至两个正式群，10项具体风险检查通过，真实CONNECTED、两群原卡恢复，无新发或布局刷新。第3项因本机UI操作不可用且User目前不方便核实，保持待核实、不宣称解决；后续Codex依据真实草稿反馈继续。4/5本次未扩展。实现、运行说明和脱敏证据只在EarlyMeeting。续接本Task，Registry防重，不另占号；状态Review，reservation pending-main，未Done。Subagents: none。
 

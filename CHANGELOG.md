@@ -2,6 +2,10 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-10 — TASK-0028 调整发卡时间
+
+- User要求两个正式群后续工作日09:30发卡，EarlyMeeting@aa061d2已加载本机配置；当前卡片继续使用，Task与Handoff同步引用，Review状态保留。同步最新main并重建15项canonical Registry，未新增Task，业务证据仍在EarlyMeeting。
+
 ## 2026-09-09 — TASK-0029 有限文档试用 Accepted
 
 - 验收记录已合入两仓库共享 main，canonical 进入 main 后 allocator 返回 TASK-0029 finalized；本轮结项。

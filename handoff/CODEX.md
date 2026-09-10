@@ -1,6 +1,6 @@
 # Codex Handoff
 
-- Updated: 2026-09-09
+- Updated: 2026-09-10
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
 - Status: Review — 两个正式群已部署审查1/2的队列与恢复修复；第3项客户端草稿保留待核实
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
@@ -10,6 +10,8 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 2026-09-10 最新时间决定：EarlyMeeting@aa061d2，两个正式群下一次于2026-09-11工作日北京时间09:30各发一张；本机配置已加载、真实CONNECTED / 两群MEETING_READY，今天原卡继续使用，无新发或布局刷新。说明和证据留在EarlyMeeting。AI-Workspace同步origin/main@25290ea，合并时保留双方记录并重建Registry，最终15 canonical / 0 collision / valid。Task继续Review，不新分配编号；草稿仍待真实核实。Subagents: none。
 
 - 2026-09-09 最新交付：EarlyMeeting@6706eeb / [PR #4](https://github.com/840832144/EarlyMeeting/pull/4)。按User批准修复多人审查1/2，已部署两正式群，真实CONNECTED/原卡恢复，10项针对性离线检查通过；第3项本机UI无法操作，User目前不方便核实，仍未闭环，Codex待真实客户端结果继续。未新发或刷新布局，09:40、群隔离与权限保留；4/5未扩展。正式Task继续Review、reservation pending-main，不另建Task。业务及证据见EarlyMeeting的STATUS、MEETING_ACCEPTANCE和Handoff。Subagents: none。
 
