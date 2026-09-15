@@ -2,6 +2,10 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-15 — TASK-0028 当天数据保留及现场恢复
+
+- 续接TASK-0028，引用EarlyMeeting@c15d02e：自动清理本机旧日晨会数据，今日数据及配置保留；群2原超时请求人工恢复，两群原卡可用。业务证据只留EarlyMeeting，Task继续Review，Registry防重，不新建Task或产品方向。
+
 ## 2026-09-10 — TASK-0028 调整发卡时间
 
 - User要求两个正式群后续工作日09:30发卡，EarlyMeeting@aa061d2已加载本机配置；当前卡片继续使用，Task与Handoff同步引用，Review状态保留。同步最新main并重建15项canonical Registry，未新增Task，业务证据仍在EarlyMeeting。

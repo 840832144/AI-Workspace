@@ -1,8 +1,8 @@
 # Codex Handoff
 
-- Updated: 2026-09-10
+- Updated: 2026-09-15
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 两个正式群已部署审查1/2的队列与恢复修复；第3项客户端草稿保留待核实
+- Status: Review — 仅保留当天的本机清理已部署；群2原超时意图人工恢复，两群原卡可填写；草稿保留仍待核实
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,10 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 2026-09-15 当前交付：[EarlyMeeting@c15d02e](https://github.com/840832144/EarlyMeeting/commit/c15d02ebc5fa3c0e5929ce1ee51e79dda36c419d) / PR #4，清理实现469d55e。User确认以后本机只留当天晨会记录；已部署自动清理、保留当天待处理数据与配置，14项针对性检查通过。晨会期间User要求加快，群2今天原超时新增行已使用同一请求标识人工补试并获明确成功，两群原卡恢复可用；没有新发卡或整卡刷新。详细实现、现场证据和网络结论边界仅在EarlyMeeting的STATUS、MEETING_ACCEPTANCE与Handoff。本Task继续Review、reservation pending-main；Registry15 canonical / 0 collision / valid，同目标仅本Task，不另占号；09:30与既有权限及AI范围保留。当前Task实施细化，不新增Roadmap方向或Future Task。Subagents: none。
+
+- 唯一下一步：Review清理增量和恢复记录，保持现有接收进程，不再打断晨会；正常使用中继续观察。未知结果不自动重放，人工补试不等于通用自动恢复已完成。
 
 - 2026-09-10 最新时间决定：EarlyMeeting@aa061d2，两个正式群下一次于2026-09-11工作日北京时间09:30各发一张；本机配置已加载、真实CONNECTED / 两群MEETING_READY，今天原卡继续使用，无新发或布局刷新。说明和证据留在EarlyMeeting。AI-Workspace同步origin/main@25290ea，合并时保留双方记录并重建Registry，最终15 canonical / 0 collision / valid。Task继续Review，不新分配编号；草稿仍待真实核实。Subagents: none。
 
