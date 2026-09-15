@@ -14,9 +14,13 @@
 
 ## Goal
 
-在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日发卡。从2026-09-11起北京时间09:30每群每天一张，替代09:40。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭；本机晨会记录仅保留北京时间当天，启动及跨天自动清理旧日数据。飞书群历史消息保留。
+在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日发卡。从2026-09-11起北京时间09:30每群每天一张，替代09:40。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭；本机晨会记录仅保留北京时间当天，启动及跨天自动清理旧日数据。飞书群历史消息保留。另已交付Linux常驻版本和技术交接，实际公司部署及Windows→Linux切换由技术按文档执行。
 
 ## Scope
+
+2026-09-15 Linux交接完成：[EarlyMeeting@7887c1b](https://github.com/840832144/EarlyMeeting/commit/7887c1b4f0284e4d5796babbbed2e6865cf09b75) / [技术接手入口](https://github.com/840832144/EarlyMeeting/blob/7887c1b4f0284e4d5796babbbed2e6865cf09b75/docs/LINUX_HANDOFF.md)。沿用原TASK-0028与PR #4；最终运行代码0d4a70b在Ubuntu24.04/Linux CI 34922786869通过17项针对性检查及两轮禁网Compose启停/重建，镜像与交接产物已交付。公司服务器部署、生产切换及真实回调未执行，交技术按文档确认；本轮未停止或更新User本机、未向正式群测试发卡。现行两群/09:30/群2AI/当天状态规则保留，实现和证据仅在EarlyMeeting。Task返回Review，reservation pending-main，未Done；Registry15 canonical / 0 collision / valid，未另建任务。Subagents: none。
+
+2026-09-15 Linux适配批准入口：[PR #4指定任务留言](https://github.com/840832144/EarlyMeeting/pull/4#issuecomment-5673785774)，标记earlymeeting:linux-handoff:20260915:v1。续接当前c15d02e完整实现，交付Docker Compose、受控配置/状态挂载、维护及Windows→Linux切换说明；不采购、不做采集器、不停止User本机、不在正式群测试发卡。本轮交代码与交接，实际公司云端部署和生产切换由技术执行；保留09:30、两群、群2AI和仅当天状态规则，未验证项明确标注。实现及证据只留EarlyMeeting。Registry15 canonical / 0 collision / valid，无同目标重复Task。Subagents: none。
 
 2026-09-15 当前交付：[EarlyMeeting@c15d02e](https://github.com/840832144/EarlyMeeting/commit/c15d02ebc5fa3c0e5929ce1ee51e79dda36c419d) / PR #4，清理实现469d55e。User确认以后本机只留当天晨会记录；已部署自动清理、保留当天待处理数据与配置，14项针对性检查通过。晨会期间User要求加快，群2今天原超时新增行已使用同一请求标识人工补试并获明确成功，两群原卡恢复可用；没有新发卡或整卡刷新。详细实现、现场证据和网络结论边界仅在EarlyMeeting的STATUS、MEETING_ACCEPTANCE与Handoff。本Task继续Review、reservation pending-main；Registry15 canonical / 0 collision / valid，同目标仅本Task，不另占号；09:30与既有权限及AI范围保留。当前Task实施细化，不新增Roadmap方向或Future Task。Subagents: none。
 

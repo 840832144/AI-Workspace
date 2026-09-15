@@ -2,6 +2,10 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-15 — TASK-0028 Linux技术交接
+
+- 续接现有Task与PR #4指定留言，引用EarlyMeeting@7887c1b的Linux代码、Compose及技术切换说明；最终代码Linux CI通过。公司部署与生产回调尚未验证，Task继续Review。Windows实例及正式群本轮未操作，具体业务与证据保留在EarlyMeeting。
+
 ## 2026-09-15 — TASK-0028 当天数据保留及现场恢复
 
 - 续接TASK-0028，引用EarlyMeeting@c15d02e：自动清理本机旧日晨会数据，今日数据及配置保留；群2原超时请求人工恢复，两群原卡可用。业务证据只留EarlyMeeting，Task继续Review，Registry防重，不新建Task或产品方向。

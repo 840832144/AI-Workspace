@@ -2,7 +2,7 @@
 
 - Updated: 2026-09-15
 - Current task: TASK-0028 — EarlyMeeting 本机卡片回调接管
-- Status: Review — 仅保留当天的本机清理已部署；群2原超时意图人工恢复，两群原卡可填写；草稿保留仍待核实
+- Status: Review — Linux代码与技术交接完成；公司部署/生产切换待技术执行，User本机保持运行；草稿等旧边界保留
 - Branch: AI-Workspace `codex/earlymeeting-callback-task`；EarlyMeeting `codex/task-0028-local-callback`
 - Workspace Sync: `ON_DEMAND` — provider unavailable; stale 6; conflicts 0
 - WATCH: disabled
@@ -10,6 +10,10 @@
 - Subagents: none
 
 ## TASK-0028 — EarlyMeeting 三区域与同卡填写
+
+- 2026-09-15 Linux交接完成：[EarlyMeeting@7887c1b](https://github.com/840832144/EarlyMeeting/commit/7887c1b4f0284e4d5796babbbed2e6865cf09b75) / [技术接手入口](https://github.com/840832144/EarlyMeeting/blob/7887c1b4f0284e4d5796babbbed2e6865cf09b75/docs/LINUX_HANDOFF.md)。沿用原TASK-0028与PR #4；最终运行代码0d4a70b在Ubuntu24.04/Linux CI 34922786869通过17项针对性检查及两轮禁网Compose启停/重建，镜像与交接产物已交付。公司服务器部署、生产切换及真实回调未执行，交技术按文档确认；本轮未停止或更新User本机、未向正式群测试发卡。现行两群/09:30/群2AI/当天状态规则保留，实现和证据仅在EarlyMeeting。Task返回Review，reservation pending-main，未Done；Registry15 canonical / 0 collision / valid，未另建任务。Subagents: none。
+
+- 当前唯一下一步：Review已提交代码，公司技术按Linux交接文档准备受控配置、约定维护窗口再切换；不是要求Codex立即停旧端或进行正式群测试。部署实现仍属当前Task，无新Roadmap方向或Future Task。以下为历史交付。
 
 - 2026-09-15 当前交付：[EarlyMeeting@c15d02e](https://github.com/840832144/EarlyMeeting/commit/c15d02ebc5fa3c0e5929ce1ee51e79dda36c419d) / PR #4，清理实现469d55e。User确认以后本机只留当天晨会记录；已部署自动清理、保留当天待处理数据与配置，14项针对性检查通过。晨会期间User要求加快，群2今天原超时新增行已使用同一请求标识人工补试并获明确成功，两群原卡恢复可用；没有新发卡或整卡刷新。详细实现、现场证据和网络结论边界仅在EarlyMeeting的STATUS、MEETING_ACCEPTANCE与Handoff。本Task继续Review、reservation pending-main；Registry15 canonical / 0 collision / valid，同目标仅本Task，不另占号；09:30与既有权限及AI范围保留。当前Task实施细化，不新增Roadmap方向或Future Task。Subagents: none。
 
