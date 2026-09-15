@@ -1,0 +1,2 @@
+_excel_row,dailyTradeMaxCount,requestExpireSec,requestFriendsMaxCount,tradeMailExpireSec,sendMailExpireSec,requestMailExpireSec,tradeMailTitle,tradeMailContent,sendMailContent,requestMailContent
+5,5,57600,4,57600,57600,57600,#PMail187,#PMail188,#PMail189,#PMail190

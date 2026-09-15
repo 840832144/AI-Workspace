@@ -1,0 +1,8004 @@
+{
+  "name": "膨胀后新版",
+  "rows": [
+    {
+      "row": 1,
+      "cells": {
+        "A1": {
+          "value": "章节"
+        },
+        "B1": {
+          "value": "金币"
+        },
+        "C1": {
+          "value": "美金"
+        },
+        "D1": {
+          "value": "最大星级"
+        },
+        "F1": {
+          "value": "基础金币/美金"
+        },
+        "H1": {
+          "value": "底注"
+        },
+        "I1": {
+          "value": "//筹码下限"
+        },
+        "J1": {
+          "value": "一局消耗"
+        },
+        "K1": {
+          "value": "消耗美金"
+        },
+        "L1": {
+          "value": "//卡包id1"
+        },
+        "M1": {
+          "value": "//概率"
+        },
+        "N1": {
+          "value": "产出卡包"
+        },
+        "O1": {
+          "value": "//卡包id2"
+        },
+        "P1": {
+          "value": "//概率"
+        },
+        "R1": {
+          "value": "//卡包id3"
+        },
+        "S1": {
+          "value": "//概率"
+        },
+        "U1": {
+          "value": "单局上限"
+        },
+        "V1": {
+          "value": "平均小轮数"
+        },
+        "Y1": {
+          "value": "set/star"
+        },
+        "Z1": {
+          "value": 1
+        },
+        "AA1": {
+          "value": 2
+        },
+        "AB1": {
+          "value": 3
+        },
+        "AC1": {
+          "value": 4
+        },
+        "AD1": {
+          "value": 5
+        },
+        "AE1": {
+          "value": 6
+        },
+        "AF1": {
+          "value": "gold4"
+        },
+        "AG1": {
+          "value": "gold5"
+        },
+        "AH1": {
+          "value": "gold6"
+        },
+        "AI1": {
+          "value": "合计"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A2": {
+          "value": 1
+        },
+        "B2": {
+          "value": 2500000,
+          "formula": "=C2*$F$2",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "B2:B21",
+            "si": "0"
+          }
+        },
+        "C2": {
+          "value": 2.5
+        },
+        "D2": {
+          "value": 1
+        },
+        "F2": {
+          "value": 1000000
+        },
+        "H2": {
+          "value": 1000
+        },
+        "I2": {
+          "value": 5000
+        },
+        "J2": {
+          "value": 7000,
+          "formula": "=H2*$F$4*$F$6",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J2:J10",
+            "si": "1"
+          }
+        },
+        "K2": {
+          "value": 0.007,
+          "formula": "=J2/$F$2",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K2:K10",
+            "si": "2"
+          }
+        },
+        "L2": {
+          "value": ""
+        },
+        "M2": {
+          "value": ""
+        },
+        "O2": {
+          "value": ""
+        },
+        "P2": {
+          "value": ""
+        },
+        "R2": {
+          "value": ""
+        },
+        "S2": {
+          "value": ""
+        },
+        "U2": {
+          "value": 1
+        },
+        "V2": {
+          "value": 13
+        },
+        "Y2": {
+          "value": 1
+        },
+        "Z2": {
+          "value": 8
+        },
+        "AA2": {
+          "value": 0
+        },
+        "AB2": {
+          "value": 0
+        },
+        "AC2": {
+          "value": 0
+        },
+        "AD2": {
+          "value": 0
+        },
+        "AE2": {
+          "value": 0
+        },
+        "AF2": {
+          "value": 0
+        },
+        "AG2": {
+          "value": 0
+        },
+        "AH2": {
+          "value": 0
+        },
+        "AI2": {
+          "value": 8
+        },
+        "AJ2": {
+          "value": 8,
+          "formula": "=SUM($AI$2:AI2)"
+        }
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A3": {
+          "value": 2
+        },
+        "B3": {
+          "value": 2700000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C3": {
+          "value": 2.7
+        },
+        "D3": {
+          "value": 2
+        },
+        "F3": {
+          "value": "平均倍率"
+        },
+        "H3": {
+          "value": 3000
+        },
+        "I3": {
+          "value": 210000
+        },
+        "J3": {
+          "value": 21000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "K3": {
+          "value": 0.021,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "U3": {
+          "value": 1
+        },
+        "V3": {
+          "value": 13
+        },
+        "Y3": {
+          "value": 2
+        },
+        "Z3": {
+          "value": 7
+        },
+        "AA3": {
+          "value": 1
+        },
+        "AB3": {
+          "value": 0
+        },
+        "AC3": {
+          "value": 0
+        },
+        "AD3": {
+          "value": 0
+        },
+        "AE3": {
+          "value": 0
+        },
+        "AF3": {
+          "value": 0
+        },
+        "AG3": {
+          "value": 0
+        },
+        "AH3": {
+          "value": 0
+        },
+        "AI3": {
+          "value": 8
+        },
+        "AJ3": {
+          "value": 16,
+          "formula": "=SUM($AI$2:AI3)"
+        }
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A4": {
+          "value": 3
+        },
+        "B4": {
+          "value": 3000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C4": {
+          "value": 3
+        },
+        "D4": {
+          "value": 2
+        },
+        "F4": {
+          "value": 70
+        },
+        "H4": {
+          "value": 10000
+        },
+        "I4": {
+          "value": 700000
+        },
+        "J4": {
+          "value": 70000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "K4": {
+          "value": 0.07,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "L4": {
+          "value": 1
+        },
+        "M4": {
+          "value": 750
+        },
+        "N4": {
+          "value": 0.975,
+          "formula": "=M4*$V4/10000",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "N4:N10",
+            "si": "3"
+          }
+        },
+        "U4": {
+          "value": 1
+        },
+        "V4": {
+          "value": 13
+        },
+        "Y4": {
+          "value": 3
+        },
+        "Z4": {
+          "value": 6
+        },
+        "AA4": {
+          "value": 2
+        },
+        "AB4": {
+          "value": 0
+        },
+        "AC4": {
+          "value": 0
+        },
+        "AD4": {
+          "value": 0
+        },
+        "AE4": {
+          "value": 0
+        },
+        "AF4": {
+          "value": 0
+        },
+        "AG4": {
+          "value": 0
+        },
+        "AH4": {
+          "value": 0
+        },
+        "AI4": {
+          "value": 8
+        },
+        "AJ4": {
+          "value": 24,
+          "formula": "=SUM($AI$2:AI4)"
+        }
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A5": {
+          "value": 4
+        },
+        "B5": {
+          "value": 3200000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C5": {
+          "value": 3.2
+        },
+        "D5": {
+          "value": 2
+        },
+        "F5": {
+          "value": "抽水"
+        },
+        "H5": {
+          "value": 20000
+        },
+        "I5": {
+          "value": 1400000
+        },
+        "J5": {
+          "value": 140000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "K5": {
+          "value": 0.14,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "L5": {
+          "value": 1
+        },
+        "M5": {
+          "value": 600,
+          "formula": "=膨胀后!AD5-P5"
+        },
+        "N5": {
+          "value": 0.78,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "O5": {
+          "value": 2
+        },
+        "P5": {
+          "value": 100
+        },
+        "Q5": {
+          "value": 0.13,
+          "formula": "=P5*$V5/10000",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "Q5:Q10",
+            "si": "4"
+          }
+        },
+        "U5": {
+          "value": 1
+        },
+        "V5": {
+          "value": 13
+        },
+        "Y5": {
+          "value": 4
+        },
+        "Z5": {
+          "value": 4
+        },
+        "AA5": {
+          "value": 4
+        },
+        "AB5": {
+          "value": 0
+        },
+        "AC5": {
+          "value": 0
+        },
+        "AD5": {
+          "value": 0
+        },
+        "AE5": {
+          "value": 0
+        },
+        "AF5": {
+          "value": 0
+        },
+        "AG5": {
+          "value": 0
+        },
+        "AH5": {
+          "value": 0
+        },
+        "AI5": {
+          "value": 8
+        },
+        "AJ5": {
+          "value": 32,
+          "formula": "=SUM($AI$2:AI5)"
+        }
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A6": {
+          "value": 5
+        },
+        "B6": {
+          "value": 3400000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C6": {
+          "value": 3.4
+        },
+        "D6": {
+          "value": 2
+        },
+        "F6": {
+          "value": 0.1
+        },
+        "H6": {
+          "value": 50000
+        },
+        "I6": {
+          "value": 3500000
+        },
+        "J6": {
+          "value": 350000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "K6": {
+          "value": 0.35,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "L6": {
+          "value": 2
+        },
+        "M6": {
+          "value": 525,
+          "formula": "=(膨胀后!AD6-S6-膨胀后!W6-膨胀后!T6)/2+膨胀后!T6"
+        },
+        "N6": {
+          "value": 0.6825,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "O6": {
+          "value": 3
+        },
+        "P6": {
+          "value": 525,
+          "formula": "=(膨胀后!AD6-S6-膨胀后!W6-膨胀后!T6)/2+膨胀后!W6"
+        },
+        "Q6": {
+          "value": 0.6825,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "R6": {
+          "value": 4
+        },
+        "S6": {
+          "value": 50
+        },
+        "T6": {
+          "value": 0.065,
+          "formula": "=S6*$V6/10000",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "T6:T10",
+            "si": "5"
+          }
+        },
+        "U6": {
+          "value": 1
+        },
+        "V6": {
+          "value": 13
+        },
+        "Y6": {
+          "value": 5
+        },
+        "Z6": {
+          "value": 3
+        },
+        "AA6": {
+          "value": 5
+        },
+        "AB6": {
+          "value": 0
+        },
+        "AC6": {
+          "value": 0
+        },
+        "AD6": {
+          "value": 0
+        },
+        "AE6": {
+          "value": 0
+        },
+        "AF6": {
+          "value": 0
+        },
+        "AG6": {
+          "value": 0
+        },
+        "AH6": {
+          "value": 0
+        },
+        "AI6": {
+          "value": 8
+        },
+        "AJ6": {
+          "value": 40,
+          "formula": "=SUM($AI$2:AI6)"
+        }
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "A7": {
+          "value": 6
+        },
+        "B7": {
+          "value": 3500000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C7": {
+          "value": 3.5
+        },
+        "D7": {
+          "value": 3
+        },
+        "H7": {
+          "value": 100000
+        },
+        "I7": {
+          "value": 7000000
+        },
+        "J7": {
+          "value": 700000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "K7": {
+          "value": 0.7,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "L7": {
+          "value": 3
+        },
+        "M7": {
+          "value": 383,
+          "formula": "=(膨胀后!AD7-S7-膨胀后!W7-膨胀后!T7)/2+膨胀后!T7"
+        },
+        "N7": {
+          "value": 0.4979,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "O7": {
+          "value": 4
+        },
+        "P7": {
+          "value": 333,
+          "formula": "=(膨胀后!AD7-S7-膨胀后!W7-膨胀后!T7)/2+膨胀后!W7"
+        },
+        "Q7": {
+          "value": 0.4329,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "R7": {
+          "value": 5
+        },
+        "S7": {
+          "value": 34
+        },
+        "T7": {
+          "value": 0.0442,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "U7": {
+          "value": 1
+        },
+        "V7": {
+          "value": 13
+        },
+        "Y7": {
+          "value": 6
+        },
+        "Z7": {
+          "value": 2
+        },
+        "AA7": {
+          "value": 5
+        },
+        "AB7": {
+          "value": 1
+        },
+        "AC7": {
+          "value": 0
+        },
+        "AD7": {
+          "value": 0
+        },
+        "AE7": {
+          "value": 0
+        },
+        "AF7": {
+          "value": 0
+        },
+        "AG7": {
+          "value": 0
+        },
+        "AH7": {
+          "value": 0
+        },
+        "AI7": {
+          "value": 8
+        },
+        "AJ7": {
+          "value": 48,
+          "formula": "=SUM($AI$2:AI7)"
+        }
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A8": {
+          "value": 7
+        },
+        "B8": {
+          "value": 3600000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C8": {
+          "value": 3.6
+        },
+        "D8": {
+          "value": 3
+        },
+        "H8": {
+          "value": 200000
+        },
+        "I8": {
+          "value": 14000000
+        },
+        "J8": {
+          "value": 1400000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "K8": {
+          "value": 1.4,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "L8": {
+          "value": 4
+        },
+        "M8": {
+          "value": 388,
+          "formula": "=(膨胀后!AD8-S8-膨胀后!W8-膨胀后!T8)/2+膨胀后!T8"
+        },
+        "N8": {
+          "value": 0.5044,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "O8": {
+          "value": 5
+        },
+        "P8": {
+          "value": 338,
+          "formula": "=(膨胀后!AD8-S8-膨胀后!W8-膨胀后!T8)/2+膨胀后!W8"
+        },
+        "Q8": {
+          "value": 0.4394,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "R8": {
+          "value": 6
+        },
+        "S8": {
+          "value": 24
+        },
+        "T8": {
+          "value": 0.0312,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "U8": {
+          "value": 2
+        },
+        "V8": {
+          "value": 13
+        },
+        "Y8": {
+          "value": 7
+        },
+        "Z8": {
+          "value": 1
+        },
+        "AA8": {
+          "value": 4
+        },
+        "AB8": {
+          "value": 3
+        },
+        "AC8": {
+          "value": 0
+        },
+        "AD8": {
+          "value": 0
+        },
+        "AE8": {
+          "value": 0
+        },
+        "AF8": {
+          "value": 0
+        },
+        "AG8": {
+          "value": 0
+        },
+        "AH8": {
+          "value": 0
+        },
+        "AI8": {
+          "value": 8
+        },
+        "AJ8": {
+          "value": 56,
+          "formula": "=SUM($AI$2:AI8)"
+        }
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A9": {
+          "value": 8
+        },
+        "B9": {
+          "value": 3700000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C9": {
+          "value": 3.7
+        },
+        "D9": {
+          "value": 3
+        },
+        "H9": {
+          "value": 500000
+        },
+        "I9": {
+          "value": 35000000
+        },
+        "J9": {
+          "value": 3500000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "K9": {
+          "value": 3.5,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "L9": {
+          "value": 4
+        },
+        "M9": {
+          "value": 450,
+          "formula": "=(膨胀后!AD9-S9-膨胀后!W9-膨胀后!T9)/2+膨胀后!T9"
+        },
+        "N9": {
+          "value": 0.585,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "O9": {
+          "value": 5
+        },
+        "P9": {
+          "value": 400,
+          "formula": "=(膨胀后!AD9-S9-膨胀后!W9-膨胀后!T9)/2+膨胀后!W9"
+        },
+        "Q9": {
+          "value": 0.52,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "R9": {
+          "value": 6
+        },
+        "S9": {
+          "value": 50
+        },
+        "T9": {
+          "value": 0.065,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "U9": {
+          "value": 3
+        },
+        "V9": {
+          "value": 13
+        },
+        "Y9": {
+          "value": 8
+        },
+        "Z9": {
+          "value": 0
+        },
+        "AA9": {
+          "value": 4
+        },
+        "AB9": {
+          "value": 4
+        },
+        "AC9": {
+          "value": 0
+        },
+        "AD9": {
+          "value": 0
+        },
+        "AE9": {
+          "value": 0
+        },
+        "AF9": {
+          "value": 0
+        },
+        "AG9": {
+          "value": 0
+        },
+        "AH9": {
+          "value": 0
+        },
+        "AI9": {
+          "value": 8
+        },
+        "AJ9": {
+          "value": 64,
+          "formula": "=SUM($AI$2:AI9)"
+        }
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A10": {
+          "value": 9
+        },
+        "B10": {
+          "value": 20000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C10": {
+          "value": 20
+        },
+        "D10": {
+          "value": 4
+        },
+        "H10": {
+          "value": 1000000
+        },
+        "I10": {
+          "value": 70000000
+        },
+        "J10": {
+          "value": 7000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "K10": {
+          "value": 7,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "L10": {
+          "value": 4
+        },
+        "M10": {
+          "value": 500,
+          "formula": "=(膨胀后!AD10-S10-膨胀后!W10-膨胀后!T10)/2+膨胀后!T10"
+        },
+        "N10": {
+          "value": 0.65,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "O10": {
+          "value": 5
+        },
+        "P10": {
+          "value": 450,
+          "formula": "=(膨胀后!AD10-S10-膨胀后!W10-膨胀后!T10)/2+膨胀后!W10"
+        },
+        "Q10": {
+          "value": 0.585,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "R10": {
+          "value": 6
+        },
+        "S10": {
+          "value": 100
+        },
+        "T10": {
+          "value": 0.13,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "U10": {
+          "value": 4
+        },
+        "V10": {
+          "value": 13
+        },
+        "Y10": {
+          "value": 9
+        },
+        "Z10": {
+          "value": 0
+        },
+        "AA10": {
+          "value": 3
+        },
+        "AB10": {
+          "value": 4
+        },
+        "AC10": {
+          "value": 1
+        },
+        "AD10": {
+          "value": 0
+        },
+        "AE10": {
+          "value": 0
+        },
+        "AF10": {
+          "value": 0
+        },
+        "AG10": {
+          "value": 0
+        },
+        "AH10": {
+          "value": 0
+        },
+        "AI10": {
+          "value": 8
+        },
+        "AJ10": {
+          "value": 72,
+          "formula": "=SUM($AI$2:AI10)"
+        }
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "A11": {
+          "value": 10
+        },
+        "B11": {
+          "value": 25000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C11": {
+          "value": 25
+        },
+        "D11": {
+          "value": 4
+        },
+        "Y11": {
+          "value": 10
+        },
+        "Z11": {
+          "value": 0
+        },
+        "AA11": {
+          "value": 3
+        },
+        "AB11": {
+          "value": 3
+        },
+        "AC11": {
+          "value": 2
+        },
+        "AD11": {
+          "value": 0
+        },
+        "AE11": {
+          "value": 0
+        },
+        "AF11": {
+          "value": 0
+        },
+        "AG11": {
+          "value": 0
+        },
+        "AH11": {
+          "value": 0
+        },
+        "AI11": {
+          "value": 8
+        },
+        "AJ11": {
+          "value": 80,
+          "formula": "=SUM($AI$2:AI11)"
+        }
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "A12": {
+          "value": 11
+        },
+        "B12": {
+          "value": 27000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C12": {
+          "value": 27
+        },
+        "D12": {
+          "value": 5
+        },
+        "F12": {
+          "value": "单局产出卡包"
+        },
+        "H12": {
+          "value": "卡包数量"
+        },
+        "I12": {
+          "value": 1
+        },
+        "J12": {
+          "value": 2
+        },
+        "K12": {
+          "value": 3
+        },
+        "L12": {
+          "value": 4
+        },
+        "M12": {
+          "value": 5
+        },
+        "N12": {
+          "value": 6
+        },
+        "Y12": {
+          "value": 11
+        },
+        "Z12": {
+          "value": 0
+        },
+        "AA12": {
+          "value": 1
+        },
+        "AB12": {
+          "value": 4
+        },
+        "AC12": {
+          "value": 2
+        },
+        "AD12": {
+          "value": 0
+        },
+        "AE12": {
+          "value": 0
+        },
+        "AF12": {
+          "value": 1
+        },
+        "AG12": {
+          "value": 0
+        },
+        "AH12": {
+          "value": 0
+        },
+        "AI12": {
+          "value": 8
+        },
+        "AJ12": {
+          "value": 88,
+          "formula": "=SUM($AI$2:AI12)"
+        }
+      }
+    },
+    {
+      "row": 13,
+      "cells": {
+        "A13": {
+          "value": 12
+        },
+        "B13": {
+          "value": 29000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C13": {
+          "value": 29
+        },
+        "D13": {
+          "value": 5
+        },
+        "H13": {
+          "value": 1000
+        },
+        "I13": {
+          "value": 0,
+          "formula": "=IF($L2=I$12,$N2,0)+IF($O2=I$12,$Q2,0)+IF($R2=I$12,$T2,0)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I13:N13",
+            "si": "6"
+          }
+        },
+        "J13": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "K13": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "L13": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "M13": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "N13": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "Y13": {
+          "value": 12
+        },
+        "Z13": {
+          "value": 0
+        },
+        "AA13": {
+          "value": 1
+        },
+        "AB13": {
+          "value": 3
+        },
+        "AC13": {
+          "value": 2
+        },
+        "AD13": {
+          "value": 1
+        },
+        "AE13": {
+          "value": 0
+        },
+        "AF13": {
+          "value": 1
+        },
+        "AG13": {
+          "value": 0
+        },
+        "AH13": {
+          "value": 0
+        },
+        "AI13": {
+          "value": 8
+        },
+        "AJ13": {
+          "value": 96,
+          "formula": "=SUM($AI$2:AI13)"
+        }
+      }
+    },
+    {
+      "row": 14,
+      "cells": {
+        "A14": {
+          "value": 13
+        },
+        "B14": {
+          "value": 31000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C14": {
+          "value": 31
+        },
+        "D14": {
+          "value": 5
+        },
+        "H14": {
+          "value": 3000
+        },
+        "I14": {
+          "value": 0,
+          "formula": "=IF($L3=I$12,$N3,0)+IF($O3=I$12,$Q3,0)+IF($R3=I$12,$T3,0)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I14:N14",
+            "si": "7"
+          }
+        },
+        "J14": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "K14": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "L14": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "M14": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "N14": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "Y14": {
+          "value": 13
+        },
+        "Z14": {
+          "value": 0
+        },
+        "AA14": {
+          "value": 1
+        },
+        "AB14": {
+          "value": 2
+        },
+        "AC14": {
+          "value": 2
+        },
+        "AD14": {
+          "value": 1
+        },
+        "AE14": {
+          "value": 0
+        },
+        "AF14": {
+          "value": 1
+        },
+        "AG14": {
+          "value": 1
+        },
+        "AH14": {
+          "value": 0
+        },
+        "AI14": {
+          "value": 8
+        },
+        "AJ14": {
+          "value": 104,
+          "formula": "=SUM($AI$2:AI14)"
+        }
+      }
+    },
+    {
+      "row": 15,
+      "cells": {
+        "A15": {
+          "value": 14
+        },
+        "B15": {
+          "value": 35000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C15": {
+          "value": 35
+        },
+        "D15": {
+          "value": 5
+        },
+        "H15": {
+          "value": 10000
+        },
+        "I15": {
+          "value": 0.975,
+          "formula": "=IF($L4=I$12,$N4,0)+IF($O4=I$12,$Q4,0)+IF($R4=I$12,$T4,0)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I15:N15",
+            "si": "8"
+          }
+        },
+        "J15": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "K15": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "L15": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "M15": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "N15": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "Y15": {
+          "value": 14
+        },
+        "Z15": {
+          "value": 0
+        },
+        "AA15": {
+          "value": 0
+        },
+        "AB15": {
+          "value": 2
+        },
+        "AC15": {
+          "value": 2
+        },
+        "AD15": {
+          "value": 1
+        },
+        "AE15": {
+          "value": 1
+        },
+        "AF15": {
+          "value": 1
+        },
+        "AG15": {
+          "value": 1
+        },
+        "AH15": {
+          "value": 0
+        },
+        "AI15": {
+          "value": 8
+        },
+        "AJ15": {
+          "value": 112,
+          "formula": "=SUM($AI$2:AI15)"
+        }
+      }
+    },
+    {
+      "row": 16,
+      "cells": {
+        "A16": {
+          "value": 15
+        },
+        "B16": {
+          "value": 40000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C16": {
+          "value": 40
+        },
+        "D16": {
+          "value": 6
+        },
+        "H16": {
+          "value": 20000
+        },
+        "I16": {
+          "value": 0.78,
+          "formula": "=IF($L5=I$12,$N5,0)+IF($O5=I$12,$Q5,0)+IF($R5=I$12,$T5,0)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I16:N16",
+            "si": "9"
+          }
+        },
+        "J16": {
+          "value": 0.13,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "K16": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "L16": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "M16": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "N16": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "Y16": {
+          "value": 15
+        },
+        "Z16": {
+          "value": 0
+        },
+        "AA16": {
+          "value": 0
+        },
+        "AB16": {
+          "value": 1
+        },
+        "AC16": {
+          "value": 3
+        },
+        "AD16": {
+          "value": 1
+        },
+        "AE16": {
+          "value": 1
+        },
+        "AF16": {
+          "value": 1
+        },
+        "AG16": {
+          "value": 1
+        },
+        "AH16": {
+          "value": 0
+        },
+        "AI16": {
+          "value": 8
+        },
+        "AJ16": {
+          "value": 120,
+          "formula": "=SUM($AI$2:AI16)"
+        }
+      }
+    },
+    {
+      "row": 17,
+      "cells": {
+        "A17": {
+          "value": 16
+        },
+        "B17": {
+          "value": 42500000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C17": {
+          "value": 42.5
+        },
+        "D17": {
+          "value": 6
+        },
+        "H17": {
+          "value": 50000
+        },
+        "I17": {
+          "value": 0,
+          "formula": "=IF($L6=I$12,$N6,0)+IF($O6=I$12,$Q6,0)+IF($R6=I$12,$T6,0)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I17:N17",
+            "si": "10"
+          }
+        },
+        "J17": {
+          "value": 0.6825,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "K17": {
+          "value": 0.6825,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "L17": {
+          "value": 0.065,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "M17": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "N17": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "Y17": {
+          "value": 16
+        },
+        "Z17": {
+          "value": 0
+        },
+        "AA17": {
+          "value": 0
+        },
+        "AB17": {
+          "value": 1
+        },
+        "AC17": {
+          "value": 2
+        },
+        "AD17": {
+          "value": 1
+        },
+        "AE17": {
+          "value": 1
+        },
+        "AF17": {
+          "value": 2
+        },
+        "AG17": {
+          "value": 1
+        },
+        "AH17": {
+          "value": 0
+        },
+        "AI17": {
+          "value": 8
+        },
+        "AJ17": {
+          "value": 128,
+          "formula": "=SUM($AI$2:AI17)"
+        }
+      }
+    },
+    {
+      "row": 18,
+      "cells": {
+        "A18": {
+          "value": 17
+        },
+        "B18": {
+          "value": 45000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C18": {
+          "value": 45
+        },
+        "D18": {
+          "value": 6
+        },
+        "H18": {
+          "value": 100000
+        },
+        "I18": {
+          "value": 0,
+          "formula": "=IF($L7=I$12,$N7,0)+IF($O7=I$12,$Q7,0)+IF($R7=I$12,$T7,0)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I18:N18",
+            "si": "11"
+          }
+        },
+        "J18": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "K18": {
+          "value": 0.4979,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "L18": {
+          "value": 0.4329,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "M18": {
+          "value": 0.0442,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "N18": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "Y18": {
+          "value": 17
+        },
+        "Z18": {
+          "value": 0
+        },
+        "AA18": {
+          "value": 0
+        },
+        "AB18": {
+          "value": 1
+        },
+        "AC18": {
+          "value": 1
+        },
+        "AD18": {
+          "value": 2
+        },
+        "AE18": {
+          "value": 1
+        },
+        "AF18": {
+          "value": 2
+        },
+        "AG18": {
+          "value": 1
+        },
+        "AH18": {
+          "value": 0
+        },
+        "AI18": {
+          "value": 8
+        },
+        "AJ18": {
+          "value": 136,
+          "formula": "=SUM($AI$2:AI18)"
+        }
+      }
+    },
+    {
+      "row": 19,
+      "cells": {
+        "A19": {
+          "value": 18
+        },
+        "B19": {
+          "value": 50000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C19": {
+          "value": 50
+        },
+        "D19": {
+          "value": 6
+        },
+        "H19": {
+          "value": 200000
+        },
+        "I19": {
+          "value": 0,
+          "formula": "=IF($L8=I$12,$N8,0)+IF($O8=I$12,$Q8,0)+IF($R8=I$12,$T8,0)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I19:N19",
+            "si": "12"
+          }
+        },
+        "J19": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "K19": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "L19": {
+          "value": 0.5044,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "M19": {
+          "value": 0.4394,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "N19": {
+          "value": 0.0312,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "Y19": {
+          "value": 18
+        },
+        "Z19": {
+          "value": 0
+        },
+        "AA19": {
+          "value": 0
+        },
+        "AB19": {
+          "value": 1
+        },
+        "AC19": {
+          "value": 1
+        },
+        "AD19": {
+          "value": 2
+        },
+        "AE19": {
+          "value": 0
+        },
+        "AF19": {
+          "value": 1
+        },
+        "AG19": {
+          "value": 2
+        },
+        "AH19": {
+          "value": 1
+        },
+        "AI19": {
+          "value": 8
+        },
+        "AJ19": {
+          "value": 144,
+          "formula": "=SUM($AI$2:AI19)"
+        }
+      }
+    },
+    {
+      "row": 20,
+      "cells": {
+        "A20": {
+          "value": 19
+        },
+        "B20": {
+          "value": 55000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C20": {
+          "value": 55
+        },
+        "D20": {
+          "value": 6
+        },
+        "H20": {
+          "value": 500000
+        },
+        "I20": {
+          "value": 0,
+          "formula": "=IF($L9=I$12,$N9,0)+IF($O9=I$12,$Q9,0)+IF($R9=I$12,$T9,0)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I20:N20",
+            "si": "13"
+          }
+        },
+        "J20": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "K20": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "L20": {
+          "value": 0.585,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "M20": {
+          "value": 0.52,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "N20": {
+          "value": 0.065,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "Y20": {
+          "value": 19
+        },
+        "Z20": {
+          "value": 0
+        },
+        "AA20": {
+          "value": 0
+        },
+        "AB20": {
+          "value": 0
+        },
+        "AC20": {
+          "value": 1
+        },
+        "AD20": {
+          "value": 2
+        },
+        "AE20": {
+          "value": 0
+        },
+        "AF20": {
+          "value": 2
+        },
+        "AG20": {
+          "value": 2
+        },
+        "AH20": {
+          "value": 1
+        },
+        "AI20": {
+          "value": 8
+        },
+        "AJ20": {
+          "value": 152,
+          "formula": "=SUM($AI$2:AI20)"
+        }
+      }
+    },
+    {
+      "row": 21,
+      "cells": {
+        "A21": {
+          "value": "all"
+        },
+        "B21": {
+          "value": 100000000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "C21": {
+          "value": 100
+        },
+        "H21": {
+          "value": 1000000
+        },
+        "I21": {
+          "value": 0,
+          "formula": "=IF($L10=I$12,$N10,0)+IF($O10=I$12,$Q10,0)+IF($R10=I$12,$T10,0)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I21:N21",
+            "si": "14"
+          }
+        },
+        "J21": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "K21": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "L21": {
+          "value": 0.65,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "M21": {
+          "value": 0.585,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "N21": {
+          "value": 0.13,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "Y21": {
+          "value": "合计"
+        },
+        "Z21": {
+          "value": 31
+        },
+        "AA21": {
+          "value": 34
+        },
+        "AB21": {
+          "value": 30
+        },
+        "AC21": {
+          "value": 19
+        },
+        "AD21": {
+          "value": 11
+        },
+        "AE21": {
+          "value": 4
+        },
+        "AF21": {
+          "value": 12
+        },
+        "AG21": {
+          "value": 9
+        },
+        "AH21": {
+          "value": 2
+        },
+        "AI21": {
+          "value": 152
+        }
+      }
+    },
+    {
+      "row": 22,
+      "cells": {
+        "A22": {
+          "value": "基础"
+        },
+        "B22": {
+          "value": 525100000,
+          "formula": "=SUM(B2:B21)"
+        },
+        "C22": {
+          "value": 525.1,
+          "formula": "=SUM(C2:C21)"
+        }
+      }
+    },
+    {
+      "row": 23,
+      "cells": {
+        "F23": {
+          "value": "需要牌局数"
+        },
+        "H23": {
+          "value": "星级"
+        },
+        "I23": {
+          "value": 1
+        },
+        "J23": {
+          "value": 2
+        },
+        "K23": {
+          "value": 3
+        },
+        "L23": {
+          "value": 4
+        },
+        "M23": {
+          "value": 5
+        },
+        "N23": {
+          "value": 6
+        }
+      }
+    },
+    {
+      "row": 24,
+      "cells": {
+        "H24": {
+          "value": "需要开卡次数"
+        },
+        "I24": {
+          "value": 25
+        },
+        "J24": {
+          "value": 50
+        },
+        "K24": {
+          "value": 50
+        },
+        "L24": {
+          "value": 50
+        },
+        "M24": {
+          "value": 50
+        },
+        "N24": {
+          "value": 40
+        },
+        "O24": {
+          "value": "集满奖励"
+        },
+        "P24": {
+          "value": "集满美金"
+        },
+        "Q24": {
+          "value": "最低牌局数"
+        }
+      }
+    },
+    {
+      "row": 25,
+      "cells": {
+        "A25": {
+          "value": "卡包"
+        },
+        "B25": {
+          "value": "需要开卡次数"
+        },
+        "C25": {
+          "value": "卡包价值"
+        },
+        "H25": {
+          "value": 1000
+        },
+        "I25": {
+          "value": 0,
+          "formula": "=IF(I13=0,0,I$24/I13)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I25:N25",
+            "si": "15"
+          }
+        },
+        "J25": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "K25": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "L25": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "M25": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "N25": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "O25": {
+          "value": 0,
+          "formula": "=IF(N25>0,SUMIF($D$2:$D$21,\"<=\"&$N$23,$B$2:B20),IF(M25>0,SUMIF($D$2:$D$21,\"<=\"&$M$23,$B$2:B20),IF(L25>0,SUMIF($D$2:$D$21,\"<=\"&$L$23,$B$2:B20),IF(K25>0,SUMIF($D$2:$D$21,\"<=\"&$K$23,$B$2:B20),IF(J25>0,SUMIF($D$2:$D$21,\"<=\"&$J$23,$B$2:B20),IF(I25>0,SUMIF($D$2:$D$21,\"<=\"&$I$23,$B$2:B20),0))))))",
+          "formula_attributes": {
+            "ca": "1"
+          }
+        },
+        "P25": {
+          "value": 0,
+          "formula": "=O25/$F$2",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "ref": "P25:P33",
+            "si": "16"
+          }
+        },
+        "Q25": {
+          "value": 0,
+          "formula": "=IF(N25>0,N25,IF(M25>0,M25,IF(L25>0,L25,IF(K25>0,K25,IF(J25>0,J25,I25)))))",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "Q25:Q33",
+            "si": "17"
+          }
+        }
+      }
+    },
+    {
+      "row": 26,
+      "cells": {
+        "A26": {
+          "value": 1
+        },
+        "B26": {
+          "value": 25
+        },
+        "C26": {
+          "value": 0.1,
+          "formula": "=SUMIF($D$2:$D$21,\"<=\"&A26,$B$2:$B$22)/B26/$F$2",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "C26:C30",
+            "si": "18"
+          }
+        },
+        "H26": {
+          "value": 3000
+        },
+        "I26": {
+          "value": 0,
+          "formula": "=IF(I14=0,0,I$24/I14)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I26:N26",
+            "si": "19"
+          }
+        },
+        "J26": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        },
+        "K26": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        },
+        "L26": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        },
+        "M26": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        },
+        "N26": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        },
+        "O26": {
+          "value": 0,
+          "formula": "=IF(N26>0,SUMIF($D$2:$D$21,\"<=\"&$N$23,$B$2:B21),IF(M26>0,SUMIF($D$2:$D$21,\"<=\"&$M$23,$B$2:B21),IF(L26>0,SUMIF($D$2:$D$21,\"<=\"&$L$23,$B$2:B21),IF(K26>0,SUMIF($D$2:$D$21,\"<=\"&$K$23,$B$2:B21),IF(J26>0,SUMIF($D$2:$D$21,\"<=\"&$J$23,$B$2:B21),IF(I26>0,SUMIF($D$2:$D$21,\"<=\"&$I$23,$B$2:B21),0))))))"
+        },
+        "P26": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "Q26": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        }
+      }
+    },
+    {
+      "row": 27,
+      "cells": {
+        "A27": {
+          "value": 2
+        },
+        "B27": {
+          "value": 50
+        },
+        "C27": {
+          "value": 0.296,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "18"
+          }
+        },
+        "H27": {
+          "value": 10000
+        },
+        "I27": {
+          "value": 25.6410256410256,
+          "formula": "=IF(I15=0,0,I$24/I15)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I27:N27",
+            "si": "20"
+          }
+        },
+        "J27": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "20"
+          }
+        },
+        "K27": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "20"
+          }
+        },
+        "L27": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "20"
+          }
+        },
+        "M27": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "20"
+          }
+        },
+        "N27": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "20"
+          }
+        },
+        "O27": {
+          "value": 2500000,
+          "formula": "=IF(N27>0,SUMIF($D$2:$D$21,\"<=\"&$N$23,$B$2:B22),IF(M27>0,SUMIF($D$2:$D$21,\"<=\"&$M$23,$B$2:B22),IF(L27>0,SUMIF($D$2:$D$21,\"<=\"&$L$23,$B$2:B22),IF(K27>0,SUMIF($D$2:$D$21,\"<=\"&$K$23,$B$2:B22),IF(J27>0,SUMIF($D$2:$D$21,\"<=\"&$J$23,$B$2:B22),IF(I27>0,SUMIF($D$2:$D$21,\"<=\"&$I$23,$B$2:B22),0))))))"
+        },
+        "P27": {
+          "value": 2.5,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "Q27": {
+          "value": 25.6410256410256,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        }
+      }
+    },
+    {
+      "row": 28,
+      "cells": {
+        "A28": {
+          "value": 3
+        },
+        "B28": {
+          "value": 50
+        },
+        "C28": {
+          "value": 0.512,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "18"
+          }
+        },
+        "H28": {
+          "value": 20000
+        },
+        "I28": {
+          "value": 32.0512820512821,
+          "formula": "=IF(I16=0,0,I$24/I16)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I28:N28",
+            "si": "21"
+          }
+        },
+        "J28": {
+          "value": 384.615384615385,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "21"
+          }
+        },
+        "K28": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "21"
+          }
+        },
+        "L28": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "21"
+          }
+        },
+        "M28": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "21"
+          }
+        },
+        "N28": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "21"
+          }
+        },
+        "O28": {
+          "value": 14800000,
+          "formula": "=IF(N28>0,SUMIF($D$2:$D$21,\"<=\"&$N$23,$B$2:B23),IF(M28>0,SUMIF($D$2:$D$21,\"<=\"&$M$23,$B$2:B23),IF(L28>0,SUMIF($D$2:$D$21,\"<=\"&$L$23,$B$2:B23),IF(K28>0,SUMIF($D$2:$D$21,\"<=\"&$K$23,$B$2:B23),IF(J28>0,SUMIF($D$2:$D$21,\"<=\"&$J$23,$B$2:B23),IF(I28>0,SUMIF($D$2:$D$21,\"<=\"&$I$23,$B$2:B23),0))))))"
+        },
+        "P28": {
+          "value": 14.8,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "Q28": {
+          "value": 384.615384615385,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        }
+      }
+    },
+    {
+      "row": 29,
+      "cells": {
+        "A29": {
+          "value": 4
+        },
+        "B29": {
+          "value": 50
+        },
+        "C29": {
+          "value": 1.412,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "18"
+          }
+        },
+        "H29": {
+          "value": 50000
+        },
+        "I29": {
+          "value": 0,
+          "formula": "=IF(I17=0,0,I$24/I17)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I29:N29",
+            "si": "22"
+          }
+        },
+        "J29": {
+          "value": 73.2600732600733,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "22"
+          }
+        },
+        "K29": {
+          "value": 73.2600732600733,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "22"
+          }
+        },
+        "L29": {
+          "value": 769.230769230769,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "22"
+          }
+        },
+        "M29": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "22"
+          }
+        },
+        "N29": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "22"
+          }
+        },
+        "O29": {
+          "value": 70600000,
+          "formula": "=IF(N29>0,SUMIF($D$2:$D$21,\"<=\"&$N$23,$B$2:B24),IF(M29>0,SUMIF($D$2:$D$21,\"<=\"&$M$23,$B$2:B24),IF(L29>0,SUMIF($D$2:$D$21,\"<=\"&$L$23,$B$2:B24),IF(K29>0,SUMIF($D$2:$D$21,\"<=\"&$K$23,$B$2:B24),IF(J29>0,SUMIF($D$2:$D$21,\"<=\"&$J$23,$B$2:B24),IF(I29>0,SUMIF($D$2:$D$21,\"<=\"&$I$23,$B$2:B24),0))))))"
+        },
+        "P29": {
+          "value": 70.6,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "Q29": {
+          "value": 769.230769230769,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        }
+      }
+    },
+    {
+      "row": 30,
+      "cells": {
+        "A30": {
+          "value": 5
+        },
+        "B30": {
+          "value": 50
+        },
+        "C30": {
+          "value": 3.852,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "18"
+          }
+        },
+        "H30": {
+          "value": 100000
+        },
+        "I30": {
+          "value": 0,
+          "formula": "=IF(I18=0,0,I$24/I18)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I30:N30",
+            "si": "23"
+          }
+        },
+        "J30": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "23"
+          }
+        },
+        "K30": {
+          "value": 100.421771440048,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "23"
+          }
+        },
+        "L30": {
+          "value": 115.500115500115,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "23"
+          }
+        },
+        "M30": {
+          "value": 1131.22171945701,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "23"
+          }
+        },
+        "N30": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "23"
+          }
+        },
+        "O30": {
+          "value": 192600000,
+          "formula": "=IF(N30>0,SUMIF($D$2:$D$21,\"<=\"&$N$23,$B$2:B25),IF(M30>0,SUMIF($D$2:$D$21,\"<=\"&$M$23,$B$2:B25),IF(L30>0,SUMIF($D$2:$D$21,\"<=\"&$L$23,$B$2:B25),IF(K30>0,SUMIF($D$2:$D$21,\"<=\"&$K$23,$B$2:B25),IF(J30>0,SUMIF($D$2:$D$21,\"<=\"&$J$23,$B$2:B25),IF(I30>0,SUMIF($D$2:$D$21,\"<=\"&$I$23,$B$2:B25),0))))))"
+        },
+        "P30": {
+          "value": 192.6,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "Q30": {
+          "value": 1131.22171945701,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        }
+      }
+    },
+    {
+      "row": 31,
+      "cells": {
+        "A31": {
+          "value": 6
+        },
+        "B31": {
+          "value": 40
+        },
+        "C31": {
+          "value": 5.8125,
+          "formula": "=SUMIF($D$2:$D$21,\"=\"&A31,$B$2:$B$22)/B31/$F$2"
+        },
+        "H31": {
+          "value": 200000
+        },
+        "I31": {
+          "value": 0,
+          "formula": "=IF(I19=0,0,I$24/I19)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I31:N31",
+            "si": "24"
+          }
+        },
+        "J31": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "24"
+          }
+        },
+        "K31": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "24"
+          }
+        },
+        "L31": {
+          "value": 99.1276764472641,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "24"
+          }
+        },
+        "M31": {
+          "value": 113.791533909877,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "24"
+          }
+        },
+        "N31": {
+          "value": 1282.05128205128,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "24"
+          }
+        },
+        "O31": {
+          "value": 425100000,
+          "formula": "=IF(N31>0,SUMIF($D$2:$D$21,\"<=\"&$N$23,$B$2:B26),IF(M31>0,SUMIF($D$2:$D$21,\"<=\"&$M$23,$B$2:B26),IF(L31>0,SUMIF($D$2:$D$21,\"<=\"&$L$23,$B$2:B26),IF(K31>0,SUMIF($D$2:$D$21,\"<=\"&$K$23,$B$2:B26),IF(J31>0,SUMIF($D$2:$D$21,\"<=\"&$J$23,$B$2:B26),IF(I31>0,SUMIF($D$2:$D$21,\"<=\"&$I$23,$B$2:B26),0))))))"
+        },
+        "P31": {
+          "value": 425.1,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "Q31": {
+          "value": 1282.05128205128,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        }
+      }
+    },
+    {
+      "row": 32,
+      "cells": {
+        "H32": {
+          "value": 500000
+        },
+        "I32": {
+          "value": 0,
+          "formula": "=IF(I20=0,0,I$24/I20)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I32:N32",
+            "si": "25"
+          }
+        },
+        "J32": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "25"
+          }
+        },
+        "K32": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "25"
+          }
+        },
+        "L32": {
+          "value": 85.4700854700855,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "25"
+          }
+        },
+        "M32": {
+          "value": 96.1538461538461,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "25"
+          }
+        },
+        "N32": {
+          "value": 615.384615384615,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "25"
+          }
+        },
+        "O32": {
+          "value": 425100000,
+          "formula": "=IF(N32>0,SUMIF($D$2:$D$21,\"<=\"&$N$23,$B$2:B27),IF(M32>0,SUMIF($D$2:$D$21,\"<=\"&$M$23,$B$2:B27),IF(L32>0,SUMIF($D$2:$D$21,\"<=\"&$L$23,$B$2:B27),IF(K32>0,SUMIF($D$2:$D$21,\"<=\"&$K$23,$B$2:B27),IF(J32>0,SUMIF($D$2:$D$21,\"<=\"&$J$23,$B$2:B27),IF(I32>0,SUMIF($D$2:$D$21,\"<=\"&$I$23,$B$2:B27),0))))))"
+        },
+        "P32": {
+          "value": 425.1,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "Q32": {
+          "value": 615.384615384615,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        }
+      }
+    },
+    {
+      "row": 33,
+      "cells": {
+        "H33": {
+          "value": 1000000
+        },
+        "I33": {
+          "value": 0,
+          "formula": "=IF(I21=0,0,I$24/I21)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I33:N33",
+            "si": "26"
+          }
+        },
+        "J33": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "26"
+          }
+        },
+        "K33": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "26"
+          }
+        },
+        "L33": {
+          "value": 76.9230769230769,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "26"
+          }
+        },
+        "M33": {
+          "value": 85.4700854700855,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "26"
+          }
+        },
+        "N33": {
+          "value": 307.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "26"
+          }
+        },
+        "O33": {
+          "value": 425100000,
+          "formula": "=IF(N33>0,SUMIF($D$2:$D$21,\"<=\"&$N$23,$B$2:B28),IF(M33>0,SUMIF($D$2:$D$21,\"<=\"&$M$23,$B$2:B28),IF(L33>0,SUMIF($D$2:$D$21,\"<=\"&$L$23,$B$2:B28),IF(K33>0,SUMIF($D$2:$D$21,\"<=\"&$K$23,$B$2:B28),IF(J33>0,SUMIF($D$2:$D$21,\"<=\"&$J$23,$B$2:B28),IF(I33>0,SUMIF($D$2:$D$21,\"<=\"&$I$23,$B$2:B28),0))))))"
+        },
+        "P33": {
+          "value": 425.1,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "Q33": {
+          "value": 307.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        }
+      }
+    },
+    {
+      "row": 35,
+      "cells": {
+        "F35": {
+          "value": "入场花费美金"
+        },
+        "J35": {
+          "value": 1000000
+        },
+        "K35": {
+          "value": 1250000
+        },
+        "L35": {
+          "value": 1500000
+        },
+        "M35": {
+          "value": 1750000
+        },
+        "N35": {
+          "value": 2000000
+        },
+        "O35": {
+          "value": 2250000
+        },
+        "P35": {
+          "value": 2500000
+        },
+        "Q35": {
+          "value": 2500000
+        },
+        "R35": {
+          "value": 2500000
+        },
+        "S35": {
+          "value": 2500000
+        },
+        "T35": {
+          "value": 2500000
+        },
+        "U35": {
+          "value": 2500000
+        },
+        "V35": {
+          "value": 2500000
+        },
+        "W35": {
+          "value": 2500000
+        },
+        "X35": {
+          "value": 2500000
+        },
+        "Y35": {
+          "value": 2500000
+        }
+      }
+    },
+    {
+      "row": 36,
+      "cells": {
+        "H36": {
+          "value": "底注"
+        },
+        "I36": {
+          "value": "一局金币"
+        },
+        "J36": {
+          "value": 0
+        },
+        "K36": {
+          "value": 1
+        },
+        "L36": {
+          "value": 2
+        },
+        "M36": {
+          "value": 3
+        },
+        "N36": {
+          "value": 4
+        },
+        "O36": {
+          "value": 5
+        },
+        "P36": {
+          "value": 6
+        },
+        "Q36": {
+          "value": 7
+        },
+        "R36": {
+          "value": 8
+        },
+        "S36": {
+          "value": 9
+        },
+        "T36": {
+          "value": 10
+        },
+        "U36": {
+          "value": 11
+        },
+        "V36": {
+          "value": 12
+        },
+        "W36": {
+          "value": 13
+        },
+        "X36": {
+          "value": 14
+        },
+        "Y36": {
+          "value": 15
+        }
+      }
+    },
+    {
+      "row": 37,
+      "cells": {
+        "H37": {
+          "value": 1000
+        },
+        "I37": {
+          "value": 70000
+        },
+        "J37": {
+          "value": 0.07
+        },
+        "K37": {
+          "value": 0.056
+        },
+        "L37": {
+          "value": 0.0466666666666667
+        },
+        "M37": {
+          "value": 0.04
+        },
+        "N37": {
+          "value": 0.035
+        },
+        "O37": {
+          "value": 0.0311111111111111
+        },
+        "P37": {
+          "value": 0.028
+        },
+        "Q37": {
+          "value": 0.028
+        },
+        "R37": {
+          "value": 0.028
+        },
+        "S37": {
+          "value": 0.028
+        },
+        "T37": {
+          "value": 0.028
+        },
+        "U37": {
+          "value": 0.028
+        },
+        "V37": {
+          "value": 0.028
+        },
+        "W37": {
+          "value": 0.028
+        },
+        "X37": {
+          "value": 0.028
+        },
+        "Y37": {
+          "value": 0.028
+        }
+      }
+    },
+    {
+      "row": 38,
+      "cells": {
+        "H38": {
+          "value": 3000
+        },
+        "I38": {
+          "value": 210000
+        },
+        "J38": {
+          "value": 0.21
+        },
+        "K38": {
+          "value": 0.168
+        },
+        "L38": {
+          "value": 0.14
+        },
+        "M38": {
+          "value": 0.12
+        },
+        "N38": {
+          "value": 0.105
+        },
+        "O38": {
+          "value": 0.0933333333333333
+        },
+        "P38": {
+          "value": 0.084
+        },
+        "Q38": {
+          "value": 0.084
+        },
+        "R38": {
+          "value": 0.084
+        },
+        "S38": {
+          "value": 0.084
+        },
+        "T38": {
+          "value": 0.084
+        },
+        "U38": {
+          "value": 0.084
+        },
+        "V38": {
+          "value": 0.084
+        },
+        "W38": {
+          "value": 0.084
+        },
+        "X38": {
+          "value": 0.084
+        },
+        "Y38": {
+          "value": 0.084
+        }
+      }
+    },
+    {
+      "row": 39,
+      "cells": {
+        "H39": {
+          "value": 10000
+        },
+        "I39": {
+          "value": 700000
+        },
+        "J39": {
+          "value": 0.7
+        },
+        "K39": {
+          "value": 0.56
+        },
+        "L39": {
+          "value": 0.466666666666667
+        },
+        "M39": {
+          "value": 0.4
+        },
+        "N39": {
+          "value": 0.35
+        },
+        "O39": {
+          "value": 0.311111111111111
+        },
+        "P39": {
+          "value": 0.28
+        },
+        "Q39": {
+          "value": 0.28
+        },
+        "R39": {
+          "value": 0.28
+        },
+        "S39": {
+          "value": 0.28
+        },
+        "T39": {
+          "value": 0.28
+        },
+        "U39": {
+          "value": 0.28
+        },
+        "V39": {
+          "value": 0.28
+        },
+        "W39": {
+          "value": 0.28
+        },
+        "X39": {
+          "value": 0.28
+        },
+        "Y39": {
+          "value": 0.28
+        }
+      }
+    },
+    {
+      "row": 40,
+      "cells": {
+        "H40": {
+          "value": 20000
+        },
+        "I40": {
+          "value": 1400000
+        },
+        "J40": {
+          "value": 1.4
+        },
+        "K40": {
+          "value": 1.12
+        },
+        "L40": {
+          "value": 0.933333333333333
+        },
+        "M40": {
+          "value": 0.8
+        },
+        "N40": {
+          "value": 0.7
+        },
+        "O40": {
+          "value": 0.622222222222222
+        },
+        "P40": {
+          "value": 0.56
+        },
+        "Q40": {
+          "value": 0.56
+        },
+        "R40": {
+          "value": 0.56
+        },
+        "S40": {
+          "value": 0.56
+        },
+        "T40": {
+          "value": 0.56
+        },
+        "U40": {
+          "value": 0.56
+        },
+        "V40": {
+          "value": 0.56
+        },
+        "W40": {
+          "value": 0.56
+        },
+        "X40": {
+          "value": 0.56
+        },
+        "Y40": {
+          "value": 0.56
+        }
+      }
+    },
+    {
+      "row": 41,
+      "cells": {
+        "H41": {
+          "value": 50000
+        },
+        "I41": {
+          "value": 3500000
+        },
+        "J41": {
+          "value": 3.2741935483871
+        },
+        "K41": {
+          "value": 2.70666666666667
+        },
+        "L41": {
+          "value": 2.25555555555556
+        },
+        "M41": {
+          "value": 1.93333333333333
+        },
+        "N41": {
+          "value": 1.75
+        },
+        "O41": {
+          "value": 1.55555555555556
+        },
+        "P41": {
+          "value": 1.4
+        },
+        "Q41": {
+          "value": 1.4
+        },
+        "R41": {
+          "value": 1.4
+        },
+        "S41": {
+          "value": 1.4
+        },
+        "T41": {
+          "value": 1.4
+        },
+        "U41": {
+          "value": 1.4
+        },
+        "V41": {
+          "value": 1.4
+        },
+        "W41": {
+          "value": 1.4
+        },
+        "X41": {
+          "value": 1.4
+        },
+        "Y41": {
+          "value": 1.4
+        }
+      }
+    },
+    {
+      "row": 42,
+      "cells": {
+        "H42": {
+          "value": 100000
+        },
+        "I42": {
+          "value": 7000000
+        },
+        "J42": {
+          "value": 5.8
+        },
+        "K42": {
+          "value": 4.92121212121212
+        },
+        "L42": {
+          "value": 4.22916666666667
+        },
+        "M42": {
+          "value": 3.625
+        },
+        "N42": {
+          "value": 3.2741935483871
+        },
+        "O42": {
+          "value": 2.91039426523297
+        },
+        "P42": {
+          "value": 2.70666666666667
+        },
+        "Q42": {
+          "value": 2.70666666666667
+        },
+        "R42": {
+          "value": 2.70666666666667
+        },
+        "S42": {
+          "value": 2.70666666666667
+        },
+        "T42": {
+          "value": 2.70666666666667
+        },
+        "U42": {
+          "value": 2.70666666666667
+        },
+        "V42": {
+          "value": 2.70666666666667
+        },
+        "W42": {
+          "value": 2.70666666666667
+        },
+        "X42": {
+          "value": 2.70666666666667
+        },
+        "Y42": {
+          "value": 2.70666666666667
+        }
+      }
+    },
+    {
+      "row": 43,
+      "cells": {
+        "H43": {
+          "value": 200000
+        },
+        "I43": {
+          "value": 14000000
+        },
+        "J43": {
+          "value": 9.66666666666666
+        },
+        "K43": {
+          "value": 8.32820512820512
+        },
+        "L43": {
+          "value": 7.31531531531531
+        },
+        "M43": {
+          "value": 6.44444444444444
+        },
+        "N43": {
+          "value": 5.8
+        },
+        "O43": {
+          "value": 5.30718954248366
+        },
+        "P43": {
+          "value": 4.92121212121212
+        },
+        "Q43": {
+          "value": 4.92121212121212
+        },
+        "R43": {
+          "value": 4.92121212121212
+        },
+        "S43": {
+          "value": 4.92121212121212
+        },
+        "T43": {
+          "value": 4.92121212121212
+        },
+        "U43": {
+          "value": 4.92121212121212
+        },
+        "V43": {
+          "value": 4.92121212121212
+        },
+        "W43": {
+          "value": 4.92121212121212
+        },
+        "X43": {
+          "value": 4.92121212121212
+        },
+        "Y43": {
+          "value": 4.92121212121212
+        }
+      }
+    },
+    {
+      "row": 44,
+      "cells": {
+        "H44": {
+          "value": 500000
+        },
+        "I44": {
+          "value": 35000000
+        },
+        "J44": {
+          "value": 21.1458333333333
+        },
+        "K44": {
+          "value": 17.6521739130435
+        },
+        "L44": {
+          "value": 15.037037037037
+        },
+        "M44": {
+          "value": 12.8888888888889
+        },
+        "N44": {
+          "value": 11.8023255813953
+        },
+        "O44": {
+          "value": 10.4909560723514
+        },
+        "P44": {
+          "value": 9.66666666666666
+        },
+        "Q44": {
+          "value": 9.66666666666666
+        },
+        "R44": {
+          "value": 9.66666666666666
+        },
+        "S44": {
+          "value": 9.66666666666666
+        },
+        "T44": {
+          "value": 9.66666666666666
+        },
+        "U44": {
+          "value": 9.66666666666666
+        },
+        "V44": {
+          "value": 9.66666666666666
+        },
+        "W44": {
+          "value": 9.66666666666666
+        },
+        "X44": {
+          "value": 9.66666666666666
+        },
+        "Y44": {
+          "value": 9.66666666666666
+        }
+      }
+    },
+    {
+      "row": 45,
+      "cells": {
+        "H45": {
+          "value": 1000000
+        },
+        "I45": {
+          "value": 70000000
+        },
+        "J45": {
+          "value": 37.5925925925926
+        },
+        "K45": {
+          "value": 31.2307692307692
+        },
+        "L45": {
+          "value": 27.0666666666666
+        },
+        "M45": {
+          "value": 23.6734693877551
+        },
+        "N45": {
+          "value": 21.1458333333333
+        },
+        "O45": {
+          "value": 19.1962174940898
+        },
+        "P45": {
+          "value": 17.6521739130435
+        },
+        "Q45": {
+          "value": 17.6521739130435
+        },
+        "R45": {
+          "value": 17.6521739130435
+        },
+        "S45": {
+          "value": 17.6521739130435
+        },
+        "T45": {
+          "value": 17.6521739130435
+        },
+        "U45": {
+          "value": 17.6521739130435
+        },
+        "V45": {
+          "value": 17.6521739130435
+        },
+        "W45": {
+          "value": 17.6521739130435
+        },
+        "X45": {
+          "value": 17.6521739130435
+        },
+        "Y45": {
+          "value": 17.6521739130435
+        }
+      }
+    },
+    {
+      "row": 47,
+      "cells": {
+        "F47": {
+          "value": "消费返还"
+        },
+        "J47": {
+          "value": 1000000
+        },
+        "K47": {
+          "value": 1250000
+        },
+        "L47": {
+          "value": 1500000
+        },
+        "M47": {
+          "value": 1750000
+        },
+        "N47": {
+          "value": 2000000
+        },
+        "O47": {
+          "value": 2250000
+        },
+        "P47": {
+          "value": 2500000
+        },
+        "Q47": {
+          "value": 2500000
+        },
+        "R47": {
+          "value": 2500000
+        },
+        "S47": {
+          "value": 2500000
+        },
+        "T47": {
+          "value": 2500000
+        },
+        "U47": {
+          "value": 2500000
+        },
+        "V47": {
+          "value": 2500000
+        },
+        "W47": {
+          "value": 2500000
+        },
+        "X47": {
+          "value": 2500000
+        },
+        "Y47": {
+          "value": 2500000
+        }
+      }
+    },
+    {
+      "row": 48,
+      "cells": {
+        "H48": {
+          "value": "底注"
+        },
+        "I48": {
+          "value": "一局金币"
+        },
+        "J48": {
+          "value": 0
+        },
+        "K48": {
+          "value": 1
+        },
+        "L48": {
+          "value": 2
+        },
+        "M48": {
+          "value": 3
+        },
+        "N48": {
+          "value": 4
+        },
+        "O48": {
+          "value": 5
+        },
+        "P48": {
+          "value": 6
+        },
+        "Q48": {
+          "value": 7
+        },
+        "R48": {
+          "value": 8
+        },
+        "S48": {
+          "value": 9
+        },
+        "T48": {
+          "value": 10
+        },
+        "U48": {
+          "value": 11
+        },
+        "V48": {
+          "value": 12
+        },
+        "W48": {
+          "value": 13
+        },
+        "X48": {
+          "value": 14
+        },
+        "Y48": {
+          "value": 15
+        }
+      }
+    },
+    {
+      "row": 49,
+      "cells": {
+        "H49": {
+          "value": 1000
+        },
+        "I49": {
+          "value": 70000
+        },
+        "J49": {
+          "value": 0,
+          "formula": "=IF($O25=0,0,$O25/$F$2/($Q25*J37))",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "ref": "J49:Y49",
+            "si": "27"
+          }
+        },
+        "K49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "L49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "M49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "N49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "O49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "P49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "Q49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "R49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "S49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "T49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "U49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "V49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "W49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "X49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        },
+        "Y49": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "27"
+          }
+        }
+      }
+    },
+    {
+      "row": 50,
+      "cells": {
+        "H50": {
+          "value": 3000
+        },
+        "I50": {
+          "value": 210000
+        },
+        "J50": {
+          "value": 0,
+          "formula": "=IF($O26=0,0,$O26/$F$2/($Q26*J38))",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J50:Y50",
+            "si": "28"
+          }
+        },
+        "K50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "L50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "M50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "N50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "O50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "P50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "Q50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "R50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "S50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "T50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "U50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "V50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "W50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "X50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        },
+        "Y50": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "28"
+          }
+        }
+      }
+    },
+    {
+      "row": 51,
+      "cells": {
+        "H51": {
+          "value": 10000
+        },
+        "I51": {
+          "value": 700000
+        },
+        "J51": {
+          "value": 0.139285714285715,
+          "formula": "=IF($O27=0,0,$O27/$F$2/($Q27*J39))",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J51:Y51",
+            "si": "29"
+          }
+        },
+        "K51": {
+          "value": 0.174107142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "L51": {
+          "value": 0.208928571428572,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "M51": {
+          "value": 0.24375,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "N51": {
+          "value": 0.278571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "O51": {
+          "value": 0.313392857142858,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "P51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "Q51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "R51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "S51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "T51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "U51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "V51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "W51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "X51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        },
+        "Y51": {
+          "value": 0.348214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "29"
+          }
+        }
+      }
+    },
+    {
+      "row": 52,
+      "cells": {
+        "H52": {
+          "value": 20000
+        },
+        "I52": {
+          "value": 1400000
+        },
+        "J52": {
+          "value": 0.0274857142857143,
+          "formula": "=IF($O28=0,0,$O28/$F$2/($Q28*J40))",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J52:Y52",
+            "si": "30"
+          }
+        },
+        "K52": {
+          "value": 0.0343571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "L52": {
+          "value": 0.0412285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "M52": {
+          "value": 0.0481,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "N52": {
+          "value": 0.0549714285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "O52": {
+          "value": 0.0618428571428572,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "P52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "Q52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "R52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "S52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "T52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "U52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "V52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "W52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "X52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        },
+        "Y52": {
+          "value": 0.0687142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "30"
+          }
+        }
+      }
+    },
+    {
+      "row": 53,
+      "cells": {
+        "H53": {
+          "value": 50000
+        },
+        "I53": {
+          "value": 3500000
+        },
+        "J53": {
+          "value": 0.0280313300492611,
+          "formula": "=IF($O29=0,0,$O29/$F$2/($Q29*J41))",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J53:Y53",
+            "si": "31"
+          }
+        },
+        "K53": {
+          "value": 0.0339088669950739,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "L53": {
+          "value": 0.0406906403940886,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "M53": {
+          "value": 0.0474724137931035,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "N53": {
+          "value": 0.0524457142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "O53": {
+          "value": 0.0590014285714284,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "P53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "Q53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "R53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "S53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "T53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "U53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "V53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "W53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "X53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        },
+        "Y53": {
+          "value": 0.0655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "31"
+          }
+        }
+      }
+    },
+    {
+      "row": 54,
+      "cells": {
+        "H54": {
+          "value": 100000
+        },
+        "I54": {
+          "value": 7000000
+        },
+        "J54": {
+          "value": 0.0293548965517241,
+          "formula": "=IF($O30=0,0,$O30/$F$2/($Q30*J42))",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J54:Y54",
+            "si": "32"
+          }
+        },
+        "K54": {
+          "value": 0.034596842364532,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "L54": {
+          "value": 0.0402581438423645,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "M54": {
+          "value": 0.0469678344827586,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "N54": {
+          "value": 0.0520001024630541,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "O54": {
+          "value": 0.0585001152709361,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "P54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "Q54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "R54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "S54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "T54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "U54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "V54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "W54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "X54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        },
+        "Y54": {
+          "value": 0.0629033497536945,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "32"
+          }
+        }
+      }
+    },
+    {
+      "row": 55,
+      "cells": {
+        "H55": {
+          "value": 200000
+        },
+        "I55": {
+          "value": 14000000
+        },
+        "J55": {
+          "value": 0.0343011724137931,
+          "formula": "=IF($O31=0,0,$O31/$F$2/($Q31*J43))",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J55:Y55",
+            "si": "33"
+          }
+        },
+        "K55": {
+          "value": 0.0398138608374385,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "L55": {
+          "value": 0.0453265492610838,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "M55": {
+          "value": 0.0514517586206897,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "N55": {
+          "value": 0.0571686206896552,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "O55": {
+          "value": 0.0624771354679803,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "P55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "Q55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "R55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "S55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "T55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "U55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "V55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "W55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "X55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        },
+        "Y55": {
+          "value": 0.067377302955665,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "33"
+          }
+        }
+      }
+    },
+    {
+      "row": 56,
+      "cells": {
+        "H56": {
+          "value": 500000
+        },
+        "I56": {
+          "value": 35000000
+        },
+        "J56": {
+          "value": 0.0326677832512316,
+          "formula": "=IF($O32=0,0,$O32/$F$2/($Q32*J44))",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J56:Y56",
+            "si": "34"
+          }
+        },
+        "K56": {
+          "value": 0.0391332820197044,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "L56": {
+          "value": 0.0459390701970444,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "M56": {
+          "value": 0.0535955818965517,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "N56": {
+          "value": 0.0585297783251234,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "O56": {
+          "value": 0.0658460006157637,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "P56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "Q56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "R56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "S56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "T56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "U56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "V56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "W56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "X56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        },
+        "Y56": {
+          "value": 0.071460775862069,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "34"
+          }
+        }
+      }
+    },
+    {
+      "row": 57,
+      "cells": {
+        "H57": {
+          "value": 1000000
+        },
+        "I57": {
+          "value": 70000000
+        },
+        "J57": {
+          "value": 0.0367512561576355,
+          "formula": "=IF($O33=0,0,$O33/$F$2/($Q33*J45))",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J57:Y57",
+            "si": "35"
+          }
+        },
+        "K57": {
+          "value": 0.0442376231527094,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "L57": {
+          "value": 0.0510434113300494,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "M57": {
+          "value": 0.0583596336206897,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "N57": {
+          "value": 0.0653355665024632,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "O57": {
+          "value": 0.0719712099753696,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "P57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "Q57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "R57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "S57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "T57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "U57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "V57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "W57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "X57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        },
+        "Y57": {
+          "value": 0.0782665640394088,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "35"
+          }
+        }
+      }
+    },
+    {
+      "row": 59,
+      "cells": {
+        "F59": {
+          "value": "消耗返还"
+        },
+        "J59": {
+          "value": 1000000
+        },
+        "K59": {
+          "value": 1250000
+        },
+        "L59": {
+          "value": 1500000
+        },
+        "M59": {
+          "value": 1750000
+        },
+        "N59": {
+          "value": 2000000
+        },
+        "O59": {
+          "value": 2250000
+        },
+        "P59": {
+          "value": 2500000
+        },
+        "Q59": {
+          "value": 2500000
+        },
+        "R59": {
+          "value": 2500000
+        },
+        "S59": {
+          "value": 2500000
+        },
+        "T59": {
+          "value": 2500000
+        },
+        "U59": {
+          "value": 2500000
+        },
+        "V59": {
+          "value": 2500000
+        },
+        "W59": {
+          "value": 2500000
+        },
+        "X59": {
+          "value": 2500000
+        },
+        "Y59": {
+          "value": 2500000
+        }
+      }
+    },
+    {
+      "row": 60,
+      "cells": {
+        "H60": {
+          "value": "底注"
+        },
+        "I60": {
+          "value": "一局金币"
+        },
+        "J60": {
+          "value": 0
+        },
+        "K60": {
+          "value": 1
+        },
+        "L60": {
+          "value": 2
+        },
+        "M60": {
+          "value": 3
+        },
+        "N60": {
+          "value": 4
+        },
+        "O60": {
+          "value": 5
+        },
+        "P60": {
+          "value": 6
+        },
+        "Q60": {
+          "value": 7
+        },
+        "R60": {
+          "value": 8
+        },
+        "S60": {
+          "value": 9
+        },
+        "T60": {
+          "value": 10
+        },
+        "U60": {
+          "value": 11
+        },
+        "V60": {
+          "value": 12
+        },
+        "W60": {
+          "value": 13
+        },
+        "X60": {
+          "value": 14
+        },
+        "Y60": {
+          "value": 15
+        }
+      }
+    },
+    {
+      "row": 61,
+      "cells": {
+        "H61": {
+          "value": 1000
+        },
+        "I61": {
+          "value": 70000
+        },
+        "J61": {
+          "value": 0,
+          "formula": "=IF($O25=0,0,$O25/$F$2/($Q25*$K2))*(J$59/$J$59)",
+          "formula_attributes": {
+            "ca": "1"
+          }
+        },
+        "K61": {
+          "value": 0,
+          "formula": "=IF($O25=0,0,$O25/$F$2/($Q25*$K2))*(K$59/$J$59)",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "ref": "K61:Y61",
+            "si": "36"
+          }
+        },
+        "L61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "M61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "N61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "O61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "P61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "Q61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "R61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "S61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "T61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "U61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "V61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "W61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "X61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        },
+        "Y61": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "36"
+          }
+        }
+      }
+    },
+    {
+      "row": 62,
+      "cells": {
+        "H62": {
+          "value": 3000
+        },
+        "I62": {
+          "value": 210000
+        },
+        "J62": {
+          "value": 0,
+          "formula": "=IF($O26=0,0,$O26/$F$2/($Q26*$K3))*(J$59/$J$59)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J62:J69",
+            "si": "37"
+          }
+        },
+        "K62": {
+          "value": 0,
+          "formula": "=IF($O26=0,0,$O26/$F$2/($Q26*$K3))*(K$59/$J$59)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K62:Y62",
+            "si": "38"
+          }
+        },
+        "L62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "M62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "N62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "O62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "P62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "Q62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "R62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "S62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "T62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "U62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "V62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "W62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "X62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        },
+        "Y62": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "38"
+          }
+        }
+      }
+    },
+    {
+      "row": 63,
+      "cells": {
+        "H63": {
+          "value": 10000
+        },
+        "I63": {
+          "value": 700000
+        },
+        "J63": {
+          "value": 1.39285714285715,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "37"
+          }
+        },
+        "K63": {
+          "value": 1.74107142857143,
+          "formula": "=IF($O27=0,0,$O27/$F$2/($Q27*$K4))*(K$59/$J$59)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K63:Y63",
+            "si": "39"
+          }
+        },
+        "L63": {
+          "value": 2.08928571428572,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "M63": {
+          "value": 2.4375,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "N63": {
+          "value": 2.78571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "O63": {
+          "value": 3.13392857142858,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "P63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "Q63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "R63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "S63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "T63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "U63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "V63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "W63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "X63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        },
+        "Y63": {
+          "value": 3.48214285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "39"
+          }
+        }
+      }
+    },
+    {
+      "row": 64,
+      "cells": {
+        "H64": {
+          "value": 20000
+        },
+        "I64": {
+          "value": 1400000
+        },
+        "J64": {
+          "value": 0.274857142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "37"
+          }
+        },
+        "K64": {
+          "value": 0.343571428571428,
+          "formula": "=IF($O28=0,0,$O28/$F$2/($Q28*$K5))*(K$59/$J$59)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K64:Y64",
+            "si": "40"
+          }
+        },
+        "L64": {
+          "value": 0.412285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "M64": {
+          "value": 0.481,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "N64": {
+          "value": 0.549714285714285,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "O64": {
+          "value": 0.618428571428571,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "P64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "Q64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "R64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "S64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "T64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "U64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "V64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "W64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "X64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        },
+        "Y64": {
+          "value": 0.687142857142856,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "40"
+          }
+        }
+      }
+    },
+    {
+      "row": 65,
+      "cells": {
+        "H65": {
+          "value": 50000
+        },
+        "I65": {
+          "value": 3500000
+        },
+        "J65": {
+          "value": 0.262228571428571,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "37"
+          }
+        },
+        "K65": {
+          "value": 0.327785714285714,
+          "formula": "=IF($O29=0,0,$O29/$F$2/($Q29*$K6))*(K$59/$J$59)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K65:Y65",
+            "si": "41"
+          }
+        },
+        "L65": {
+          "value": 0.393342857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "M65": {
+          "value": 0.4589,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "N65": {
+          "value": 0.524457142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "O65": {
+          "value": 0.590014285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "P65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "Q65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "R65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "S65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "T65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "U65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "V65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "W65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "X65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        },
+        "Y65": {
+          "value": 0.655571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "41"
+          }
+        }
+      }
+    },
+    {
+      "row": 66,
+      "cells": {
+        "H66": {
+          "value": 100000
+        },
+        "I66": {
+          "value": 7000000
+        },
+        "J66": {
+          "value": 0.243226285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "37"
+          }
+        },
+        "K66": {
+          "value": 0.304032857142858,
+          "formula": "=IF($O30=0,0,$O30/$F$2/($Q30*$K7))*(K$59/$J$59)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K66:Y66",
+            "si": "42"
+          }
+        },
+        "L66": {
+          "value": 0.36483942857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "M66": {
+          "value": 0.425646000000001,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "N66": {
+          "value": 0.486452571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "O66": {
+          "value": 0.547259142857145,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "P66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "Q66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "R66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "S66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "T66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "U66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "V66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "W66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "X66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        },
+        "Y66": {
+          "value": 0.608065714285716,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "42"
+          }
+        }
+      }
+    },
+    {
+      "row": 67,
+      "cells": {
+        "H67": {
+          "value": 200000
+        },
+        "I67": {
+          "value": 14000000
+        },
+        "J67": {
+          "value": 0.236841428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "37"
+          }
+        },
+        "K67": {
+          "value": 0.296051785714286,
+          "formula": "=IF($O31=0,0,$O31/$F$2/($Q31*$K8))*(K$59/$J$59)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K67:Y67",
+            "si": "43"
+          }
+        },
+        "L67": {
+          "value": 0.355262142857144,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "M67": {
+          "value": 0.414472500000001,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "N67": {
+          "value": 0.473682857142858,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "O67": {
+          "value": 0.532893214285715,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "P67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "Q67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "R67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "S67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "T67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "U67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "V67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "W67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "X67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        },
+        "Y67": {
+          "value": 0.592103571428573,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "43"
+          }
+        }
+      }
+    },
+    {
+      "row": 68,
+      "cells": {
+        "H68": {
+          "value": 500000
+        },
+        "I68": {
+          "value": 35000000
+        },
+        "J68": {
+          "value": 0.197367857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "37"
+          }
+        },
+        "K68": {
+          "value": 0.246709821428572,
+          "formula": "=IF($O32=0,0,$O32/$F$2/($Q32*$K9))*(K$59/$J$59)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K68:Y68",
+            "si": "44"
+          }
+        },
+        "L68": {
+          "value": 0.296051785714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "M68": {
+          "value": 0.34539375,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "N68": {
+          "value": 0.394735714285715,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "O68": {
+          "value": 0.444077678571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "P68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "Q68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "R68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "S68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "T68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "U68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "V68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "W68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "X68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        },
+        "Y68": {
+          "value": 0.493419642857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "44"
+          }
+        }
+      }
+    },
+    {
+      "row": 69,
+      "cells": {
+        "H69": {
+          "value": 1000000
+        },
+        "I69": {
+          "value": 70000000
+        },
+        "J69": {
+          "value": 0.197367857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "37"
+          }
+        },
+        "K69": {
+          "value": 0.246709821428571,
+          "formula": "=IF($O33=0,0,$O33/$F$2/($Q33*$K10))*(K$59/$J$59)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K69:Y69",
+            "si": "45"
+          }
+        },
+        "L69": {
+          "value": 0.296051785714285,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "M69": {
+          "value": 0.34539375,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "N69": {
+          "value": 0.394735714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "O69": {
+          "value": 0.444077678571428,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "P69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "Q69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "R69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "S69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "T69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "U69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "V69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "W69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "X69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        },
+        "Y69": {
+          "value": 0.493419642857142,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "45"
+          }
+        }
+      }
+    },
+    {
+      "row": 71,
+      "cells": {
+        "F71": {
+          "value": "累计花费美金"
+        },
+        "J71": {
+          "value": 1000000
+        },
+        "K71": {
+          "value": 1250000
+        },
+        "L71": {
+          "value": 1500000
+        },
+        "M71": {
+          "value": 1750000
+        },
+        "N71": {
+          "value": 2000000
+        },
+        "O71": {
+          "value": 2250000
+        },
+        "P71": {
+          "value": 2500000
+        },
+        "Q71": {
+          "value": 2500000
+        },
+        "R71": {
+          "value": 2500000
+        },
+        "S71": {
+          "value": 2500000
+        },
+        "T71": {
+          "value": 2500000
+        },
+        "U71": {
+          "value": 2500000
+        },
+        "V71": {
+          "value": 2500000
+        },
+        "W71": {
+          "value": 2500000
+        },
+        "X71": {
+          "value": 2500000
+        },
+        "Y71": {
+          "value": 2500000
+        }
+      }
+    },
+    {
+      "row": 72,
+      "cells": {
+        "H72": {
+          "value": "底注"
+        },
+        "I72": {
+          "value": "一局金币"
+        },
+        "J72": {
+          "value": 0
+        },
+        "K72": {
+          "value": 1
+        },
+        "L72": {
+          "value": 2
+        },
+        "M72": {
+          "value": 3
+        },
+        "N72": {
+          "value": 4
+        },
+        "O72": {
+          "value": 5
+        },
+        "P72": {
+          "value": 6
+        },
+        "Q72": {
+          "value": 7
+        },
+        "R72": {
+          "value": 8
+        },
+        "S72": {
+          "value": 9
+        },
+        "T72": {
+          "value": 10
+        },
+        "U72": {
+          "value": 11
+        },
+        "V72": {
+          "value": 12
+        },
+        "W72": {
+          "value": 13
+        },
+        "X72": {
+          "value": 14
+        },
+        "Y72": {
+          "value": 15
+        }
+      }
+    },
+    {
+      "row": 73,
+      "cells": {
+        "H73": {
+          "value": 1000
+        },
+        "I73": {
+          "value": 70000
+        },
+        "J73": {
+          "value": 0,
+          "formula": "=IF($O25=0,0,$Q25*J37)*$F$6",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "ref": "J73:J81",
+            "si": "46"
+          }
+        },
+        "K73": {
+          "value": 0,
+          "formula": "=IF($O25=0,0,$Q25*K37)*$F$6",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "ref": "K73:Y73",
+            "si": "47"
+          }
+        },
+        "L73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "M73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "N73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "O73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "P73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "Q73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "R73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "S73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "T73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "U73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "V73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "W73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "X73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        },
+        "Y73": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "ca": "1",
+            "t": "shared",
+            "si": "47"
+          }
+        }
+      }
+    },
+    {
+      "row": 74,
+      "cells": {
+        "H74": {
+          "value": 3000
+        },
+        "I74": {
+          "value": 210000
+        },
+        "J74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "46"
+          }
+        },
+        "K74": {
+          "value": 0,
+          "formula": "=IF($O26=0,0,$Q26*K38)*$F$6",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K74:Y74",
+            "si": "48"
+          }
+        },
+        "L74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "M74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "N74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "O74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "P74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "Q74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "R74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "S74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "T74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "U74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "V74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "W74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "X74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        },
+        "Y74": {
+          "value": 0,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "48"
+          }
+        }
+      }
+    },
+    {
+      "row": 75,
+      "cells": {
+        "H75": {
+          "value": 10000
+        },
+        "I75": {
+          "value": 700000
+        },
+        "J75": {
+          "value": 1.79487179487179,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "46"
+          }
+        },
+        "K75": {
+          "value": 1.43589743589743,
+          "formula": "=IF($O27=0,0,$Q27*K39)*$F$6",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K75:Y75",
+            "si": "49"
+          }
+        },
+        "L75": {
+          "value": 1.1965811965812,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "M75": {
+          "value": 1.02564102564102,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "N75": {
+          "value": 0.897435897435896,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "O75": {
+          "value": 0.797720797720796,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "P75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "Q75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "R75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "S75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "T75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "U75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "V75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "W75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "X75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        },
+        "Y75": {
+          "value": 0.717948717948717,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "49"
+          }
+        }
+      }
+    },
+    {
+      "row": 76,
+      "cells": {
+        "H76": {
+          "value": 20000
+        },
+        "I76": {
+          "value": 1400000
+        },
+        "J76": {
+          "value": 53.8461538461539,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "46"
+          }
+        },
+        "K76": {
+          "value": 43.0769230769231,
+          "formula": "=IF($O28=0,0,$Q28*K40)*$F$6",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K76:Y76",
+            "si": "50"
+          }
+        },
+        "L76": {
+          "value": 35.8974358974359,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "M76": {
+          "value": 30.7692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "N76": {
+          "value": 26.9230769230769,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "O76": {
+          "value": 23.9316239316239,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "P76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "Q76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "R76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "S76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "T76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "U76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "V76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "W76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "X76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        },
+        "Y76": {
+          "value": 21.5384615384616,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "50"
+          }
+        }
+      }
+    },
+    {
+      "row": 77,
+      "cells": {
+        "H77": {
+          "value": 50000
+        },
+        "I77": {
+          "value": 3500000
+        },
+        "J77": {
+          "value": 251.861042183623,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "46"
+          }
+        },
+        "K77": {
+          "value": 208.205128205128,
+          "formula": "=IF($O29=0,0,$Q29*K41)*$F$6",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K77:Y77",
+            "si": "51"
+          }
+        },
+        "L77": {
+          "value": 173.504273504274,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "M77": {
+          "value": 148.717948717948,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "N77": {
+          "value": 134.615384615385,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "O77": {
+          "value": 119.65811965812,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "P77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "Q77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "R77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "S77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "T77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "U77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "V77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "W77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "X77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        },
+        "Y77": {
+          "value": 107.692307692308,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "51"
+          }
+        }
+      }
+    },
+    {
+      "row": 78,
+      "cells": {
+        "H78": {
+          "value": 100000
+        },
+        "I78": {
+          "value": 7000000
+        },
+        "J78": {
+          "value": 656.108597285066,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "46"
+          }
+        },
+        "K78": {
+          "value": 556.698203757025,
+          "formula": "=IF($O30=0,0,$Q30*K42)*$F$6",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K78:Y78",
+            "si": "52"
+          }
+        },
+        "L78": {
+          "value": 478.412518853694,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "M78": {
+          "value": 410.067873303166,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "N78": {
+          "value": 370.38388556415,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "O78": {
+          "value": 329.230120501466,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "P78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "Q78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "R78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "S78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "T78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "U78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "V78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "W78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "X78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        },
+        "Y78": {
+          "value": 306.184012066364,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "52"
+          }
+        }
+      }
+    },
+    {
+      "row": 79,
+      "cells": {
+        "H79": {
+          "value": 200000
+        },
+        "I79": {
+          "value": 14000000
+        },
+        "J79": {
+          "value": 1239.31623931624,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "46"
+          }
+        },
+        "K79": {
+          "value": 1067.71860618014,
+          "formula": "=IF($O31=0,0,$Q31*K43)*$F$6",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K79:Y79",
+            "si": "53"
+          }
+        },
+        "L79": {
+          "value": 937.860937860936,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "M79": {
+          "value": 826.210826210824,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "N79": {
+          "value": 743.589743589742,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "O79": {
+          "value": 680.408915703032,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "P79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "Q79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "R79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "S79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "T79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "U79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "V79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "W79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "X79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        },
+        "Y79": {
+          "value": 630.92463092463,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "53"
+          }
+        }
+      }
+    },
+    {
+      "row": 80,
+      "cells": {
+        "H80": {
+          "value": 500000
+        },
+        "I80": {
+          "value": 35000000
+        },
+        "J80": {
+          "value": 1301.28205128205,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "46"
+          }
+        },
+        "K80": {
+          "value": 1086.28762541806,
+          "formula": "=IF($O32=0,0,$Q32*K44)*$F$6",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K80:Y80",
+            "si": "54"
+          }
+        },
+        "L80": {
+          "value": 925.356125356123,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "M80": {
+          "value": 793.162393162393,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "N80": {
+          "value": 726.296958855095,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "O80": {
+          "value": 645.597296760086,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "P80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "Q80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "R80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "S80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "T80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "U80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "V80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "W80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "X80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        },
+        "Y80": {
+          "value": 594.871794871794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "54"
+          }
+        }
+      }
+    },
+    {
+      "row": 81,
+      "cells": {
+        "H81": {
+          "value": 1000000
+        },
+        "I81": {
+          "value": 70000000
+        },
+        "J81": {
+          "value": 1156.69515669516,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "46"
+          }
+        },
+        "K81": {
+          "value": 960.94674556213,
+          "formula": "=IF($O33=0,0,$Q33*K45)*$F$6",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K81:Y81",
+            "si": "55"
+          }
+        },
+        "L81": {
+          "value": 832.820512820512,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "M81": {
+          "value": 728.414442700158,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "N81": {
+          "value": 650.641025641025,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "O81": {
+          "value": 590.652845971995,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "P81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "Q81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "R81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "S81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "T81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "U81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "V81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "W81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "X81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        },
+        "Y81": {
+          "value": 543.143812709031,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "55"
+          }
+        }
+      }
+    }
+  ]
+}

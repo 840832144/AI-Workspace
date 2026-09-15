@@ -1,0 +1,116 @@
+[
+  {
+    "sheet": "Sheet1",
+    "cell": "H5",
+    "value": 250,
+    "formula": "=[1]老虎机掉卡包新版!C2*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H6",
+    "value": 270,
+    "formula": "=[1]老虎机掉卡包新版!C3*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H7",
+    "value": 300,
+    "formula": "=[1]老虎机掉卡包新版!C4*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H8",
+    "value": 320,
+    "formula": "=[1]老虎机掉卡包新版!C5*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H9",
+    "value": 340,
+    "formula": "=[1]老虎机掉卡包新版!C6*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H10",
+    "value": 350,
+    "formula": "=[1]老虎机掉卡包新版!C7*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H11",
+    "value": 360,
+    "formula": "=[1]老虎机掉卡包新版!C8*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H12",
+    "value": 370,
+    "formula": "=[1]老虎机掉卡包新版!C9*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H13",
+    "value": 2000,
+    "formula": "=[1]老虎机掉卡包新版!C10*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H14",
+    "value": 2500,
+    "formula": "=[1]老虎机掉卡包新版!C11*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H15",
+    "value": 2700,
+    "formula": "=[1]老虎机掉卡包新版!C12*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H16",
+    "value": 2900,
+    "formula": "=[1]老虎机掉卡包新版!C13*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H17",
+    "value": 3100,
+    "formula": "=[1]老虎机掉卡包新版!C14*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H18",
+    "value": 3500,
+    "formula": "=[1]老虎机掉卡包新版!C15*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H19",
+    "value": 4000,
+    "formula": "=[1]老虎机掉卡包新版!C16*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H20",
+    "value": 4250,
+    "formula": "=[1]老虎机掉卡包新版!C17*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H21",
+    "value": 4500,
+    "formula": "=[1]老虎机掉卡包新版!C18*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H22",
+    "value": 5000,
+    "formula": "=[1]老虎机掉卡包新版!C19*100"
+  },
+  {
+    "sheet": "Sheet1",
+    "cell": "H23",
+    "value": 5500,
+    "formula": "=[1]老虎机掉卡包新版!C20*100"
+  }
+]

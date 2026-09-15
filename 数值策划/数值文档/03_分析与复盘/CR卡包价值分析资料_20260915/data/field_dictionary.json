@@ -1,0 +1,7454 @@
+{
+  "trunk/CardAlbumCfg": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "startTime"
+      },
+      "C1": {
+        "value": "endTime"
+      },
+      "D1": {
+        "value": "themeId"
+      },
+      "E1": {
+        "value": "passageNum"
+      },
+      "F1": {
+        "value": "cardNum"
+      },
+      "G1": {
+        "value": "isPrestige"
+      },
+      "H1": {
+        "value": "prestigePassageNum"
+      },
+      "I1": {
+        "value": "prestigeCardNum"
+      },
+      "J1": {
+        "value": "countDown"
+      },
+      "K1": {
+        "value": "moduleNameId"
+      },
+      "L1": {
+        "value": "rewardType"
+      },
+      "M1": {
+        "value": "albumCoins"
+      },
+      "N1": {
+        "value": "albumItem"
+      },
+      "O1": {
+        "value": "albumItemCount"
+      },
+      "P1": {
+        "value": "packIdNew"
+      },
+      "Q1": {
+        "value": "goldStarRate"
+      },
+      "R1": {
+        "value": "funStarRate"
+      },
+      "S1": {
+        "value": "startTimeInt"
+      },
+      "T1": {
+        "value": "endTimeInt"
+      },
+      "U1": {
+        "value": "seasonName"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "string"
+      },
+      "C2": {
+        "value": "string"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "long"
+      },
+      "T2": {
+        "value": "long"
+      },
+      "U2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "s"
+      },
+      "L3": {
+        "value": "s"
+      },
+      "M3": {
+        "value": "cs"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "赛季id"
+      },
+      "B4": {
+        "value": "//开始时间"
+      },
+      "C4": {
+        "value": "//结束时间"
+      },
+      "D4": {
+        "value": "卡册主题Id"
+      },
+      "E4": {
+        "value": "章节数"
+      },
+      "F4": {
+        "value": "卡片总数"
+      },
+      "G4": {
+        "value": "是否有进阶卡册"
+      },
+      "H4": {
+        "value": "高阶章节总数"
+      },
+      "I4": {
+        "value": "高阶卡片总数"
+      },
+      "J4": {
+        "value": "#距离结束开始显示倒计时，单位天"
+      },
+      "K4": {
+        "value": "模块名索引ID"
+      },
+      "L4": {
+        "value": "金币类型：\n1金币\n9礼包美金\n17美金金币"
+      },
+      "M4": {
+        "value": "#全部收集完成金币"
+      },
+      "N4": {
+        "value": "#全部收集完成道具"
+      },
+      "O4": {
+        "value": "#全部收集完成道具数量"
+      },
+      "P4": {
+        "value": "新赛季赠送卡包"
+      },
+      "Q4": {
+        "value": "金卡兑换星星加成系数，除以100"
+      },
+      "R4": {
+        "value": "fun卡兑换星星加成系数，除以100"
+      },
+      "S4": {
+        "value": "程序转换时间格式用\n不用填"
+      },
+      "T4": {
+        "value": "程序转换时间格式用\n不用填"
+      },
+      "U4": {
+        "value": "赛季名"
+      }
+    }
+  },
+  "trunk/CardAlbumTheme": {
+    "1": {
+      "A1": {
+        "value": "none"
+      },
+      "B1": {
+        "value": "themeId"
+      },
+      "C1": {
+        "value": "themeType"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "string"
+      },
+      "B2": {
+        "value": "int_key"
+      },
+      "C2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "skip"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "主题说明"
+      },
+      "B4": {
+        "value": "卡册主题Id。\n1-4常规，5+活动赛季"
+      },
+      "C4": {
+        "value": "主题类型：0常规主题 1活动主题"
+      }
+    }
+  },
+  "trunk/CardPack": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "pack"
+      },
+      "C1": {
+        "value": "itemId"
+      },
+      "D1": {
+        "value": "season"
+      },
+      "E1": {
+        "value": "weight"
+      },
+      "F1": {
+        "value": "maxStar"
+      },
+      "G1": {
+        "value": "maxStarCount"
+      },
+      "H1": {
+        "value": "cardNum"
+      },
+      "I1": {
+        "value": "type1"
+      },
+      "J1": {
+        "value": "star1"
+      },
+      "K1": {
+        "value": "group1"
+      },
+      "L1": {
+        "value": "num1"
+      },
+      "M1": {
+        "value": "type2"
+      },
+      "N1": {
+        "value": "star2"
+      },
+      "O1": {
+        "value": "group2"
+      },
+      "P1": {
+        "value": "num2"
+      },
+      "Q1": {
+        "value": "type3"
+      },
+      "R1": {
+        "value": "star3"
+      },
+      "S1": {
+        "value": "group3"
+      },
+      "T1": {
+        "value": "num3"
+      },
+      "U1": {
+        "value": "type4"
+      },
+      "V1": {
+        "value": "star4"
+      },
+      "W1": {
+        "value": "group4"
+      },
+      "X1": {
+        "value": "num4"
+      },
+      "Y1": {
+        "value": "type5"
+      },
+      "Z1": {
+        "value": "star5"
+      },
+      "AA1": {
+        "value": "group5"
+      },
+      "AB1": {
+        "value": "num5"
+      },
+      "AC1": {
+        "value": "cardId1"
+      },
+      "AD1": {
+        "value": "cardId2"
+      },
+      "AE1": {
+        "value": "cardId3"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "int"
+      },
+      "T2": {
+        "value": "int"
+      },
+      "U2": {
+        "value": "int"
+      },
+      "V2": {
+        "value": "int"
+      },
+      "W2": {
+        "value": "int"
+      },
+      "X2": {
+        "value": "int"
+      },
+      "Y2": {
+        "value": "int"
+      },
+      "Z2": {
+        "value": "int"
+      },
+      "AA2": {
+        "value": "int"
+      },
+      "AB2": {
+        "value": "int"
+      },
+      "AC2": {
+        "value": "int"
+      },
+      "AD2": {
+        "value": "int"
+      },
+      "AE2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "cs"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      },
+      "V3": {
+        "value": "cs"
+      },
+      "W3": {
+        "value": "cs"
+      },
+      "X3": {
+        "value": "cs"
+      },
+      "Y3": {
+        "value": "cs"
+      },
+      "Z3": {
+        "value": "cs"
+      },
+      "AA3": {
+        "value": "cs"
+      },
+      "AB3": {
+        "value": "cs"
+      },
+      "AC3": {
+        "value": "cs"
+      },
+      "AD3": {
+        "value": "cs"
+      },
+      "AE3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "id"
+      },
+      "B4": {
+        "value": "卡包Id"
+      },
+      "C4": {
+        "value": "卡包ItemId"
+      },
+      "D4": {
+        "value": "赛季id"
+      },
+      "E4": {
+        "value": "权重总和，按照卡包id随机"
+      },
+      "F4": {
+        "value": "最大星星\n0表示fun卡"
+      },
+      "G4": {
+        "value": "最大星星卡片数"
+      },
+      "H4": {
+        "value": "卡片数量"
+      },
+      "I4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "J4": {
+        "value": "星级"
+      },
+      "K4": {
+        "value": "组别"
+      },
+      "L4": {
+        "value": "数量"
+      },
+      "M4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "N4": {
+        "value": "星级"
+      },
+      "O4": {
+        "value": "组别"
+      },
+      "P4": {
+        "value": "数量"
+      },
+      "Q4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "R4": {
+        "value": "星级"
+      },
+      "S4": {
+        "value": "组别"
+      },
+      "T4": {
+        "value": "数量"
+      },
+      "U4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "V4": {
+        "value": "星级"
+      },
+      "W4": {
+        "value": "组别"
+      },
+      "X4": {
+        "value": "数量"
+      },
+      "Y4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "Z4": {
+        "value": "星级"
+      },
+      "AA4": {
+        "value": "组别"
+      },
+      "AB4": {
+        "value": "数量"
+      },
+      "AC4": {
+        "value": "卡片id"
+      },
+      "AD4": {
+        "value": "卡片id"
+      },
+      "AE4": {
+        "value": "卡片id"
+      }
+    }
+  },
+  "trunk/CardGroup": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "group"
+      },
+      "C1": {
+        "value": "chapterId"
+      },
+      "D1": {
+        "value": "isPrestige"
+      },
+      "E1": {
+        "value": "weight"
+      },
+      "F1": {
+        "value": "seasonDayMin"
+      },
+      "G1": {
+        "value": "seasonDayMax"
+      },
+      "H1": {
+        "value": "progMin"
+      },
+      "I1": {
+        "value": "progMax"
+      },
+      "J1": {
+        "value": "notes"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "c"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "id"
+      },
+      "B4": {
+        "value": "组别id"
+      },
+      "C4": {
+        "value": "章节id"
+      },
+      "D4": {
+        "value": "是否进阶"
+      },
+      "E4": {
+        "value": "权重总和，按照组别id随机"
+      },
+      "F4": {
+        "value": "距离赛季开始天数下限"
+      },
+      "G4": {
+        "value": "距离赛季开始天数上限"
+      },
+      "H4": {
+        "value": "收集进度下限"
+      },
+      "I4": {
+        "value": "收集进度上限"
+      },
+      "J4": {
+        "value": "备注"
+      }
+    }
+  },
+  "trunk/CardChapter": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "isPrestige"
+      },
+      "C1": {
+        "value": "seasonId"
+      },
+      "D1": {
+        "value": "cardNum"
+      },
+      "E1": {
+        "value": "chapterName"
+      },
+      "F1": {
+        "value": "moduleNameId"
+      },
+      "G1": {
+        "value": "rewardType"
+      },
+      "H1": {
+        "value": "chapterCoins"
+      },
+      "I1": {
+        "value": "chapterItem"
+      },
+      "J1": {
+        "value": "chapterItemCount"
+      },
+      "K1": {
+        "value": "cardControl"
+      },
+      "L1": {
+        "value": "cardTotalNum"
+      },
+      "M1": {
+        "value": "needNum"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "string"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "章节id，【赛季*100+章节ID】"
+      },
+      "B4": {
+        "value": "是否进阶"
+      },
+      "C4": {
+        "value": "赛季id"
+      },
+      "D4": {
+        "value": "每章卡片数"
+      },
+      "E4": {
+        "value": "章节名字"
+      },
+      "F4": {
+        "value": "模块名索引ID"
+      },
+      "G4": {
+        "value": "金币类型：\n1金币\n9礼包美金\n17美金金币"
+      },
+      "H4": {
+        "value": "集齐章节金币奖励"
+      },
+      "I4": {
+        "value": "集齐章节道具"
+      },
+      "J4": {
+        "value": "集齐掌机道具数量"
+      },
+      "K4": {
+        "value": "是否控制集齐卡片"
+      },
+      "L4": {
+        "value": "本章节已经拥有的卡片数量（包括重复的）"
+      },
+      "M4": {
+        "value": "集齐章节还缺的卡片数"
+      }
+    }
+  },
+  "trunk/CardList": {
+    "1": {
+      "A1": {
+        "value": "cardId"
+      },
+      "B1": {
+        "value": "cardName"
+      },
+      "C1": {
+        "value": "isPrestige"
+      },
+      "D1": {
+        "value": "seasonId"
+      },
+      "E1": {
+        "value": "cardChapter"
+      },
+      "F1": {
+        "value": "sortNo"
+      },
+      "G1": {
+        "value": "starLevel"
+      },
+      "H1": {
+        "value": "type"
+      },
+      "I1": {
+        "value": "jokerTrade"
+      },
+      "J1": {
+        "value": "jokerCutdown"
+      },
+      "K1": {
+        "value": "ItemId"
+      },
+      "L1": {
+        "value": "isTrade"
+      },
+      "M1": {
+        "value": "weight_10_0"
+      },
+      "N1": {
+        "value": "weight_10_1"
+      },
+      "O1": {
+        "value": "weight_10_2"
+      },
+      "P1": {
+        "value": "weight_10_3"
+      },
+      "Q1": {
+        "value": "weight_10_4"
+      },
+      "R1": {
+        "value": "weight_10_5"
+      },
+      "S1": {
+        "value": "weight_10_6"
+      },
+      "T1": {
+        "value": "weight_10_7"
+      },
+      "U1": {
+        "value": "weight_10_8"
+      },
+      "V1": {
+        "value": "weight_10_9"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "string"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "int"
+      },
+      "T2": {
+        "value": "int"
+      },
+      "U2": {
+        "value": "int"
+      },
+      "V2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "cs"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      },
+      "V3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "#卡片id：\n1）卡片id 1位\n2）赛季id 2位【00-99】\n3）章节 2位   【01-20】\n4）卡片id 2位【01-10】\njoker卡不分赛季"
+      },
+      "B4": {
+        "value": "卡片名字"
+      },
+      "C4": {
+        "value": "是否进阶"
+      },
+      "D4": {
+        "value": "赛季id"
+      },
+      "E4": {
+        "value": "章节id"
+      },
+      "F4": {
+        "value": "章节内顺序"
+      },
+      "G4": {
+        "value": "星星等级"
+      },
+      "H4": {
+        "value": "卡片品质\n1.普通卡\n2.金卡\n3.ace卡\n4.4星joker卡\n5.金Joker卡（1000002不用）\n6.5星Joker卡\n7. Ace Joker卡"
+      },
+      "I4": {
+        "value": "joker卡可兑换的卡片类型\n1.普通卡\n2.金卡（不用）\n3.Ace卡\n0.任意卡"
+      },
+      "J4": {
+        "value": "joker卡过期时间，单位秒"
+      },
+      "K4": {
+        "value": "道具id"
+      },
+      "L4": {
+        "value": "是否可交易，1是0否"
+      },
+      "M4": {
+        "value": "权重总和，\n按章节随机，uid尾号0"
+      },
+      "N4": {
+        "value": "权重总和，\n按章节随机，uid尾号1"
+      },
+      "O4": {
+        "value": "权重总和，\n按章节随机，uid尾号2"
+      },
+      "P4": {
+        "value": "权重总和，\n按章节随机，uid尾号3"
+      },
+      "Q4": {
+        "value": "权重总和，\n按章节随机，uid尾号4"
+      },
+      "R4": {
+        "value": "权重总和，\n按章节随机，uid尾号5"
+      },
+      "S4": {
+        "value": "权重总和，\n按章节随机，uid尾号6"
+      },
+      "T4": {
+        "value": "权重总和，\n按章节随机，uid尾号7"
+      },
+      "U4": {
+        "value": "权重总和，\n按章节随机，uid尾号8"
+      },
+      "V4": {
+        "value": "权重总和，\n按章节随机，uid尾号9"
+      }
+    }
+  },
+  "trunk/CardStarTrade": {
+    "1": {
+      "A1": {
+        "value": "starTrade"
+      },
+      "B1": {
+        "value": "moduleNameId"
+      },
+      "C1": {
+        "value": "rewardType"
+      },
+      "D1": {
+        "value": "rewardCoins"
+      },
+      "E1": {
+        "value": "rewardItem"
+      },
+      "F1": {
+        "value": "rewardItemCount"
+      },
+      "G1": {
+        "value": "tradeStarCountdown"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "消耗的星星数；\n消耗顺序金卡、fun卡、普通卡5星、4星\n"
+      },
+      "B4": {
+        "value": "模块名索引ID"
+      },
+      "C4": {
+        "value": "金币类型：\n1金币\n9礼包美金\n17美金金币"
+      },
+      "D4": {
+        "value": "奖励金币"
+      },
+      "E4": {
+        "value": "奖励道具/卡包id"
+      },
+      "F4": {
+        "value": "奖励道具/卡包数量"
+      },
+      "G4": {
+        "value": "兑换星星冷却时间\n单位秒\n共用"
+      }
+    }
+  },
+  "trunk/CardTradeCfg": {
+    "1": {
+      "A1": {
+        "value": "dailyTradeMaxCount"
+      },
+      "B1": {
+        "value": "requestExpireSec"
+      },
+      "C1": {
+        "value": "requestFriendsMaxCount"
+      },
+      "D1": {
+        "value": "tradeMailExpireSec"
+      },
+      "E1": {
+        "value": "sendMailExpireSec"
+      },
+      "F1": {
+        "value": "requestMailExpireSec"
+      },
+      "G1": {
+        "value": "tradeMailTitle"
+      },
+      "H1": {
+        "value": "tradeMailContent"
+      },
+      "I1": {
+        "value": "sendMailContent"
+      },
+      "J1": {
+        "value": "requestMailContent"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "string"
+      },
+      "H2": {
+        "value": "string"
+      },
+      "I2": {
+        "value": "string"
+      },
+      "J2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "每日交易或赠送次数上限"
+      },
+      "B4": {
+        "value": "请求卡片超时秒数"
+      },
+      "C4": {
+        "value": "请求卡片好友数量上限"
+      },
+      "D4": {
+        "value": "交易邮件超时秒数"
+      },
+      "E4": {
+        "value": "发送卡片邮件超时秒数"
+      },
+      "F4": {
+        "value": "请求邮件超时秒数"
+      },
+      "G4": {
+        "value": "交易邮件标题"
+      },
+      "H4": {
+        "value": "交易卡片邮件内容"
+      },
+      "I4": {
+        "value": "发送卡片邮件内容"
+      },
+      "J4": {
+        "value": "请求卡片邮件内容"
+      }
+    }
+  },
+  "trunk/CardActivityClose": {
+    "1": {
+      "A1": {
+        "value": "Id"
+      },
+      "B1": {
+        "value": "ActivityId"
+      },
+      "C1": {
+        "value": "OriItemType"
+      },
+      "D1": {
+        "value": "OriItemId"
+      },
+      "E1": {
+        "value": "NewItemType"
+      },
+      "F1": {
+        "value": "NewItemCount"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "唯一索引"
+      },
+      "B4": {
+        "value": "活动id"
+      },
+      "C4": {
+        "value": "原奖励类型\n1.卡包\n2.卡片"
+      },
+      "D4": {
+        "value": "原奖励ID"
+      },
+      "E4": {
+        "value": "关闭卡包后\n奖励类型\n1.金币\n2.钻石\n道具id\n(啤酒礼包不支持出现钻石）"
+      },
+      "F4": {
+        "value": "奖励数量\n1、啤酒礼包对应数量*当前配置"
+      }
+    }
+  },
+  "trunk/Cardget": {
+    "1": {
+      "A1": {
+        "value": "Id"
+      },
+      "B1": {
+        "value": "ForbidKey"
+      },
+      "C1": {
+        "value": "Cost"
+      },
+      "D1": {
+        "value": "CardPack1"
+      },
+      "E1": {
+        "value": "Num1"
+      },
+      "F1": {
+        "value": "CardPack2"
+      },
+      "G1": {
+        "value": "Num2"
+      },
+      "H1": {
+        "value": "CardPack3"
+      },
+      "I1": {
+        "value": "Num3"
+      },
+      "J1": {
+        "value": "CardPack4"
+      },
+      "K1": {
+        "value": "Num4"
+      },
+      "L1": {
+        "value": "ForbidKeyNote"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "string"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "唯一索引"
+      },
+      "B4": {
+        "value": "不发卡牌的支付key"
+      },
+      "C4": {
+        "value": "金额*100"
+      },
+      "D4": {
+        "value": "产出卡包1\n（低级）"
+      },
+      "E4": {
+        "value": "个数1"
+      },
+      "F4": {
+        "value": "产出卡包2\n（中级）"
+      },
+      "G4": {
+        "value": "个数2"
+      },
+      "H4": {
+        "value": "产出卡包3\n（高级）"
+      },
+      "I4": {
+        "value": "个数3"
+      },
+      "J4": {
+        "value": "产出卡包4\n(不要配值）"
+      },
+      "K4": {
+        "value": "个数4"
+      },
+      "L4": {
+        "value": "备注"
+      }
+    }
+  },
+  "trunk/SlotsCasinoDropCards": {
+    "1": {
+      "A1": {
+        "value": "betIndex"
+      },
+      "B1": {
+        "value": "level"
+      },
+      "C1": {
+        "value": "dropPro"
+      },
+      "D1": {
+        "value": "needVipMinCard"
+      },
+      "E1": {
+        "value": "needVipMaxCard"
+      },
+      "F1": {
+        "value": "cardId1"
+      },
+      "G1": {
+        "value": "cardWeight1"
+      },
+      "H1": {
+        "value": "cardId2"
+      },
+      "I1": {
+        "value": "cardWeight2"
+      },
+      "J1": {
+        "value": "cardId3"
+      },
+      "K1": {
+        "value": "cardWeight3"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      },
+      "K3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "SlotsCasinoBetList.xlsx 主键"
+      },
+      "B4": {
+        "value": "等级"
+      },
+      "C4": {
+        "value": "掉卡概率（万分之）"
+      },
+      "D4": {
+        "value": "最小的vip等级"
+      },
+      "E4": {
+        "value": "最大的vip等级"
+      },
+      "F4": {
+        "value": "卡包Id1"
+      },
+      "G4": {
+        "value": "卡包1权重"
+      },
+      "H4": {
+        "value": "卡包Id2"
+      },
+      "I4": {
+        "value": "卡包2权重"
+      },
+      "J4": {
+        "value": "卡包Id3"
+      },
+      "K4": {
+        "value": "卡包3权重"
+      }
+    }
+  },
+  "trunk/Item": {
+    "1": {
+      "A1": {
+        "value": "itemID"
+      },
+      "B1": {
+        "value": "name"
+      },
+      "C1": {
+        "value": "name_zh"
+      },
+      "D1": {
+        "value": "itemType"
+      },
+      "E1": {
+        "value": "param1"
+      },
+      "F1": {
+        "value": "maxNum"
+      },
+      "G1": {
+        "value": "ticketMatchID"
+      },
+      "H1": {
+        "value": "desc"
+      },
+      "I1": {
+        "value": "_comm"
+      },
+      "J1": {
+        "value": "icon"
+      },
+      "K1": {
+        "value": "iconNew"
+      },
+      "L1": {
+        "value": "validTimeSecond"
+      },
+      "M1": {
+        "value": "phoneCardMoney"
+      },
+      "N1": {
+        "value": "rewardChip"
+      },
+      "O1": {
+        "value": "rewardDiamond"
+      },
+      "P1": {
+        "value": "rewardItemNum"
+      },
+      "Q1": {
+        "value": "reward_itemid_5_0"
+      },
+      "R1": {
+        "value": "reward_itemcount_5_0"
+      },
+      "S1": {
+        "value": "reward_itemid_5_1"
+      },
+      "T1": {
+        "value": "reward_itemcount_5_1"
+      },
+      "U1": {
+        "value": "reward_itemid_5_2"
+      },
+      "V1": {
+        "value": "reward_itemcount_5_2"
+      },
+      "W1": {
+        "value": "reward_itemid_5_3"
+      },
+      "X1": {
+        "value": "reward_itemcount_5_3"
+      },
+      "Y1": {
+        "value": "reward_itemid_5_4"
+      },
+      "Z1": {
+        "value": "reward_itemcount_5_4"
+      },
+      "AA1": {
+        "value": "scoreAddition"
+      },
+      "AB1": {
+        "value": "itemDuration"
+      },
+      "AC1": {
+        "value": "itemEndTime"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "uint_key"
+      },
+      "B2": {
+        "value": "string_lan"
+      },
+      "C2": {
+        "value": "string"
+      },
+      "D2": {
+        "value": "uint"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "uint"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "string_lan"
+      },
+      "I2": {
+        "value": "string"
+      },
+      "J2": {
+        "value": "string"
+      },
+      "K2": {
+        "value": "string"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "int"
+      },
+      "T2": {
+        "value": "int"
+      },
+      "U2": {
+        "value": "int"
+      },
+      "V2": {
+        "value": "int"
+      },
+      "W2": {
+        "value": "int"
+      },
+      "X2": {
+        "value": "int"
+      },
+      "Y2": {
+        "value": "int"
+      },
+      "Z2": {
+        "value": "int"
+      },
+      "AA2": {
+        "value": "int"
+      },
+      "AB2": {
+        "value": "int"
+      },
+      "AC2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "skip"
+      },
+      "J3": {
+        "value": "c"
+      },
+      "K3": {
+        "value": "c"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "cs"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      },
+      "V3": {
+        "value": "cs"
+      },
+      "W3": {
+        "value": "cs"
+      },
+      "X3": {
+        "value": "cs"
+      },
+      "Y3": {
+        "value": "cs"
+      },
+      "Z3": {
+        "value": "cs"
+      },
+      "AA3": {
+        "value": "cs"
+      },
+      "AB3": {
+        "value": "cs"
+      },
+      "AC3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "//物品的ID"
+      },
+      "B4": {
+        "value": "//名字"
+      },
+      "C4": {
+        "value": "//注释"
+      },
+      "D4": {
+        "value": "//类型\n1礼物\n2门票\n3兑换券\n4礼包\n5头像边框\n6充值折扣券\n7特权表情\n8夺宝券\n9电话卡碎片\n10房卡\n11奖券\n12斋月散牌\n13抽奖宝箱\n14喇叭\n15老虎机券\n16新比赛场门票\n18不显示在背包中的物品\n21气泡\n22牌桌互动礼物\n23只做展示用物品\n25称号\n26宝箱\n44头像\n45头像挂件\n>100为buff类型"
+      },
+      "E4": {
+        "value": "//参数\n对头像边框来说就是边框id\n对兑换券来说是兑换的金币数量  \n对抽奖宝箱而言对应的activitydraw的id"
+      },
+      "F4": {
+        "value": "//最大物品数量"
+      },
+      "G4": {
+        "value": "门票对应比赛id"
+      },
+      "H4": {
+        "value": "//描述"
+      },
+      "I4": {
+        "value": "//注释"
+      },
+      "J4": {
+        "value": "//图标"
+      },
+      "K4": {
+        "value": "//图标"
+      },
+      "L4": {
+        "value": "//有效期，单位秒\n0表示永久时间\n其他时间表示有效期"
+      },
+      "M4": {
+        "value": "//作为电话卡时，金额"
+      },
+      "N4": {
+        "value": "//筹码数量,作为礼包的时候使用，礼包包含物品"
+      },
+      "O4": {
+        "value": "//钻石数量,作为礼包的时候使用，礼包包含物品"
+      },
+      "P4": {
+        "value": "//奖励数量,作为礼包的时候使用，礼包包含物品"
+      },
+      "Q4": {
+        "value": "//奖励0物品id"
+      },
+      "R4": {
+        "value": "//奖励0物品数量"
+      },
+      "S4": {
+        "value": "//奖励1物品id"
+      },
+      "T4": {
+        "value": "//奖励1物品数量"
+      },
+      "U4": {
+        "value": "//奖励2物品id"
+      },
+      "V4": {
+        "value": "//奖励2物品数量"
+      },
+      "W4": {
+        "value": "//奖励3物品id"
+      },
+      "X4": {
+        "value": "//奖励3物品数量"
+      },
+      "Y4": {
+        "value": "//奖励4物品id"
+      },
+      "Z4": {
+        "value": "//奖励4物品数量"
+      },
+      "AA4": {
+        "value": "//联赛积分加成，百分比"
+      },
+      "AB4": {
+        "value": "//buff类道具持续时间"
+      },
+      "AC4": {
+        "value": "//buff类道具生效停止时间"
+      }
+    }
+  },
+  "trunk/PayDiamond": {
+    "1": {
+      "A1": {
+        "value": "payType"
+      },
+      "B1": {
+        "value": "itemID"
+      },
+      "C1": {
+        "value": "CommonPayKey"
+      },
+      "D1": {
+        "value": "moduleNameId"
+      },
+      "E1": {
+        "value": "itemShow"
+      },
+      "F1": {
+        "value": "indexID"
+      },
+      "G1": {
+        "value": "itemName"
+      },
+      "H1": {
+        "value": "itemTypeName"
+      },
+      "I1": {
+        "value": "icon"
+      },
+      "J1": {
+        "value": "money_dollar"
+      },
+      "K1": {
+        "value": "diamond"
+      },
+      "L1": {
+        "value": "currencyType"
+      },
+      "M1": {
+        "value": "priceType"
+      },
+      "N1": {
+        "value": "vipType"
+      },
+      "O1": {
+        "value": "discountRate"
+      },
+      "P1": {
+        "value": "firstPayBenefitId"
+      },
+      "Q1": {
+        "value": "buyCountLimit"
+      },
+      "R1": {
+        "value": "activityLimit"
+      },
+      "S1": {
+        "value": "dailyLimit"
+      },
+      "T1": {
+        "value": "weeklyLimit"
+      },
+      "U1": {
+        "value": "monthlyLimit"
+      },
+      "V1": {
+        "value": "needVipLevel"
+      },
+      "W1": {
+        "value": "needVipLevelMax"
+      },
+      "X1": {
+        "value": "validTimeSecond"
+      },
+      "Y1": {
+        "value": "timeLimitGroupID"
+      },
+      "Z1": {
+        "value": "consumeItemId"
+      },
+      "AA1": {
+        "value": "consumeItemCount"
+      },
+      "AB1": {
+        "value": "discountId"
+      },
+      "AC1": {
+        "value": "chip"
+      },
+      "AD1": {
+        "value": "emoticonSecond"
+      },
+      "AE1": {
+        "value": "emoticonItemId"
+      },
+      "AF1": {
+        "value": "giveItemId"
+      },
+      "AG1": {
+        "value": "giveItemcount"
+      },
+      "AH1": {
+        "value": "give"
+      },
+      "AI1": {
+        "value": "giveItem2Id"
+      },
+      "AJ1": {
+        "value": "giveItem2count"
+      },
+      "AK1": {
+        "value": "giveVipExp"
+      },
+      "AL1": {
+        "value": "prizeRate"
+      },
+      "AM1": {
+        "value": "reductionRate"
+      },
+      "AN1": {
+        "value": "originalPrice"
+      },
+      "AO1": {
+        "value": "buyFail"
+      },
+      "AP1": {
+        "value": "popUp"
+      },
+      "AQ1": {
+        "value": "isVipAdd"
+      },
+      "AR1": {
+        "value": "rewardDay"
+      },
+      "AS1": {
+        "value": "rewardDiamond"
+      },
+      "AT1": {
+        "value": "rewardMailTitle"
+      },
+      "AU1": {
+        "value": "rewardMailContent"
+      },
+      "AV1": {
+        "value": "payPoint"
+      },
+      "AW1": {
+        "value": "displayType"
+      },
+      "AX1": {
+        "value": "isContinuousAdd"
+      },
+      "AY1": {
+        "value": "rewardRate"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "uint"
+      },
+      "B2": {
+        "value": "string_key"
+      },
+      "C2": {
+        "value": "string"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "string"
+      },
+      "H2": {
+        "value": "string"
+      },
+      "I2": {
+        "value": "string"
+      },
+      "J2": {
+        "value": "uint"
+      },
+      "K2": {
+        "value": "uint"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "int"
+      },
+      "T2": {
+        "value": "int"
+      },
+      "U2": {
+        "value": "int"
+      },
+      "V2": {
+        "value": "int"
+      },
+      "W2": {
+        "value": "int"
+      },
+      "X2": {
+        "value": "int"
+      },
+      "Y2": {
+        "value": "int"
+      },
+      "Z2": {
+        "value": "int"
+      },
+      "AA2": {
+        "value": "int"
+      },
+      "AB2": {
+        "value": "int"
+      },
+      "AC2": {
+        "value": "long"
+      },
+      "AD2": {
+        "value": "int"
+      },
+      "AE2": {
+        "value": "int"
+      },
+      "AF2": {
+        "value": "int"
+      },
+      "AG2": {
+        "value": "int"
+      },
+      "AH2": {
+        "value": "long"
+      },
+      "AI2": {
+        "value": "int"
+      },
+      "AJ2": {
+        "value": "int"
+      },
+      "AK2": {
+        "value": "int"
+      },
+      "AL2": {
+        "value": "int"
+      },
+      "AM2": {
+        "value": "int"
+      },
+      "AN2": {
+        "value": "uint"
+      },
+      "AO2": {
+        "value": "int"
+      },
+      "AP2": {
+        "value": "int"
+      },
+      "AQ2": {
+        "value": "int"
+      },
+      "AR2": {
+        "value": "int"
+      },
+      "AS2": {
+        "value": "int"
+      },
+      "AT2": {
+        "value": "string"
+      },
+      "AU2": {
+        "value": "string"
+      },
+      "AV2": {
+        "value": "int"
+      },
+      "AW2": {
+        "value": "int"
+      },
+      "AX2": {
+        "value": "int"
+      },
+      "AY2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "s"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      },
+      "V3": {
+        "value": "cs"
+      },
+      "W3": {
+        "value": "cs"
+      },
+      "X3": {
+        "value": "cs"
+      },
+      "Y3": {
+        "value": "cs"
+      },
+      "Z3": {
+        "value": "cs"
+      },
+      "AA3": {
+        "value": "cs"
+      },
+      "AB3": {
+        "value": "c"
+      },
+      "AC3": {
+        "value": "cs"
+      },
+      "AD3": {
+        "value": "cs"
+      },
+      "AE3": {
+        "value": "cs"
+      },
+      "AF3": {
+        "value": "cs"
+      },
+      "AG3": {
+        "value": "cs"
+      },
+      "AH3": {
+        "value": "cs"
+      },
+      "AI3": {
+        "value": "cs"
+      },
+      "AJ3": {
+        "value": "cs"
+      },
+      "AK3": {
+        "value": "cs"
+      },
+      "AL3": {
+        "value": "cs"
+      },
+      "AM3": {
+        "value": "cs"
+      },
+      "AN3": {
+        "value": "cs"
+      },
+      "AO3": {
+        "value": "cs"
+      },
+      "AP3": {
+        "value": "cs"
+      },
+      "AQ3": {
+        "value": "cs"
+      },
+      "AR3": {
+        "value": "cs"
+      },
+      "AS3": {
+        "value": "cs"
+      },
+      "AT3": {
+        "value": "cs"
+      },
+      "AU3": {
+        "value": "cs"
+      },
+      "AV3": {
+        "value": "cs"
+      },
+      "AW3": {
+        "value": "cs"
+      },
+      "AX3": {
+        "value": "cs"
+      },
+      "AY3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "//支付类型\n1，google\n2, ios\n3, 第三方\n4，facebook支付"
+      },
+      "B4": {
+        "value": "支付主键"
+      },
+      "C4": {
+        "value": "通用支付key"
+      },
+      "D4": {
+        "value": "模块索引\n（参考ModuleName.xlsx)"
+      },
+      "E4": {
+        "value": "展示区域\n1为商城展示"
+      },
+      "F4": {
+        "value": "//唯一索引id,添加后不要修改"
+      },
+      "G4": {
+        "value": "//名字"
+      },
+      "H4": {
+        "value": "//种类名字"
+      },
+      "I4": {
+        "value": "//图标"
+      },
+      "J4": {
+        "value": "//价格，除以100等于实际美元"
+      },
+      "K4": {
+        "value": "//钻石数量"
+      },
+      "L4": {
+        "value": "货币类型，1是金币，2是钻石"
+      },
+      "M4": {
+        "value": "价格类型(用于逐步替换currencyType)，2钻石，9礼包金币，17美金金币"
+      },
+      "N4": {
+        "value": "vip加成类型，1是商店vip加成，2是礼包vip加成"
+      },
+      "O4": {
+        "value": "金币钻石附加优惠，除100使用（1.2倍配置为120）"
+      },
+      "P4": {
+        "value": "//首次购买有优惠组Id\n0表示没优惠\n对正常gp_30这种这个id就是indexID"
+      },
+      "Q4": {
+        "value": "//次数限制"
+      },
+      "R4": {
+        "value": "//活动期间限制的总次数"
+      },
+      "S4": {
+        "value": "//每天次数限制"
+      },
+      "T4": {
+        "value": "//每周次数限制"
+      },
+      "U4": {
+        "value": "//每月次数限制"
+      },
+      "V4": {
+        "value": "//需要vip等级"
+      },
+      "W4": {
+        "value": "//需要vip等级最大值"
+      },
+      "X4": {
+        "value": "//有效时间"
+      },
+      "Y4": {
+        "value": "//刷新时间组ID"
+      },
+      "Z4": {
+        "value": "//消耗道具"
+      },
+      "AA4": {
+        "value": "//消耗道具数量"
+      },
+      "AB4": {
+        "value": "//折扣对应的indexID\n空表示不能使用优惠券"
+      },
+      "AC4": {
+        "value": "//金币"
+      },
+      "AD4": {
+        "value": "//特权表情时间"
+      },
+      "AE4": {
+        "value": "//显示用的表情物品Id"
+      },
+      "AF4": {
+        "value": "//道具id"
+      },
+      "AG4": {
+        "value": "//道具数量"
+      },
+      "AH4": {
+        "value": "//赠送比例"
+      },
+      "AI4": {
+        "value": "//道具id"
+      },
+      "AJ4": {
+        "value": "//道具数量"
+      },
+      "AK4": {
+        "value": "//给vip经验"
+      },
+      "AL4": {
+        "value": "//价格膨胀优惠除100使用（1.2倍配置为120）"
+      },
+      "AM4": {
+        "value": "//优惠比列，除以100显示用"
+      },
+      "AN4": {
+        "value": "//原始价格，除以100显示用，单位里拉"
+      },
+      "AO4": {
+        "value": "//购买失败后，弹出的相应的第三方支付的唯一索引id"
+      },
+      "AP4": {
+        "value": "//是否弹窗，1代表每次登陆弹，0代表不弹窗"
+      },
+      "AQ4": {
+        "value": "//是否VIP加成，逐步废弃"
+      },
+      "AR4": {
+        "value": "//购买对应礼包赠送对应天数的奖励"
+      },
+      "AS4": {
+        "value": "//购买对应礼包赠送对应天数的钻石数量，以邮件形式发放"
+      },
+      "AT4": {
+        "value": "//奖励邮件的标题"
+      },
+      "AU4": {
+        "value": "//奖励邮件的内容"
+      },
+      "AV4": {
+        "value": "//充值增加的充值分"
+      },
+      "AW4": {
+        "value": "//奖励展示形式，0不改变，1展示开箱动画"
+      },
+      "AX4": {
+        "value": "是否参加连充\n1是，0否"
+      },
+      "AY4": {
+        "value": "购买后调控奖池的百分比"
+      }
+    }
+  },
+  "trunk/PriceCheatSheet": {
+    "1": {
+      "A1": {
+        "value": "money"
+      },
+      "B1": {
+        "value": "priceType"
+      },
+      "C1": {
+        "value": "vipType"
+      },
+      "D1": {
+        "value": "level"
+      },
+      "E1": {
+        "value": "vip_16_0"
+      },
+      "F1": {
+        "value": "vip_16_1"
+      },
+      "G1": {
+        "value": "vip_16_2"
+      },
+      "H1": {
+        "value": "vip_16_3"
+      },
+      "I1": {
+        "value": "vip_16_4"
+      },
+      "J1": {
+        "value": "vip_16_5"
+      },
+      "K1": {
+        "value": "vip_16_6"
+      },
+      "L1": {
+        "value": "vip_16_7"
+      },
+      "M1": {
+        "value": "vip_16_8"
+      },
+      "N1": {
+        "value": "vip_16_9"
+      },
+      "O1": {
+        "value": "vip_16_10"
+      },
+      "P1": {
+        "value": "vip_16_11"
+      },
+      "Q1": {
+        "value": "vip_16_12"
+      },
+      "R1": {
+        "value": "vip_16_13"
+      },
+      "S1": {
+        "value": "vip_16_14"
+      },
+      "T1": {
+        "value": "vip_16_15"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "long"
+      },
+      "F2": {
+        "value": "long"
+      },
+      "G2": {
+        "value": "long"
+      },
+      "H2": {
+        "value": "long"
+      },
+      "I2": {
+        "value": "long"
+      },
+      "J2": {
+        "value": "long"
+      },
+      "K2": {
+        "value": "long"
+      },
+      "L2": {
+        "value": "long"
+      },
+      "M2": {
+        "value": "long"
+      },
+      "N2": {
+        "value": "long"
+      },
+      "O2": {
+        "value": "long"
+      },
+      "P2": {
+        "value": "long"
+      },
+      "Q2": {
+        "value": "long"
+      },
+      "R2": {
+        "value": "long"
+      },
+      "S2": {
+        "value": "long"
+      },
+      "T2": {
+        "value": "long"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      },
+      "K3": {
+        "value": "s"
+      },
+      "L3": {
+        "value": "s"
+      },
+      "M3": {
+        "value": "s"
+      },
+      "N3": {
+        "value": "s"
+      },
+      "O3": {
+        "value": "s"
+      },
+      "P3": {
+        "value": "s"
+      },
+      "Q3": {
+        "value": "s"
+      },
+      "R3": {
+        "value": "s"
+      },
+      "S3": {
+        "value": "s"
+      },
+      "T3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "美元*100"
+      },
+      "B4": {
+        "value": "价格类型，2钻石，9礼包金币，17美金金币"
+      },
+      "C4": {
+        "value": "vip加成类型，1是商店vip加成，2是礼包vip加成"
+      },
+      "D4": {
+        "value": "等级"
+      },
+      "E4": {
+        "value": "vip对应金币值"
+      },
+      "F4": {
+        "value": "vip对应金币值"
+      },
+      "G4": {
+        "value": "vip对应金币值"
+      },
+      "H4": {
+        "value": "vip对应金币值"
+      },
+      "I4": {
+        "value": "vip对应金币值"
+      },
+      "J4": {
+        "value": "vip对应金币值"
+      },
+      "K4": {
+        "value": "vip对应金币值"
+      },
+      "L4": {
+        "value": "vip对应金币值"
+      },
+      "M4": {
+        "value": "vip对应金币值"
+      },
+      "N4": {
+        "value": "vip对应金币值"
+      },
+      "O4": {
+        "value": "vip对应金币值"
+      },
+      "P4": {
+        "value": "vip对应金币值"
+      },
+      "Q4": {
+        "value": "vip对应金币值"
+      },
+      "R4": {
+        "value": "vip对应金币值"
+      },
+      "S4": {
+        "value": "vip对应金币值"
+      },
+      "T4": {
+        "value": "vip对应金币值"
+      }
+    }
+  },
+  "trunk/SlotsCasinoBetList": {
+    "1": {
+      "A1": {
+        "value": "levelId"
+      },
+      "B1": {
+        "value": "highroller"
+      },
+      "C1": {
+        "value": "clubPoint"
+      },
+      "D1": {
+        "value": "clubPointPercent"
+      },
+      "E1": {
+        "value": "levelExp"
+      },
+      "F1": {
+        "value": "bet2"
+      },
+      "G1": {
+        "value": "bet3"
+      },
+      "H1": {
+        "value": "bet33"
+      },
+      "I1": {
+        "value": "bet9"
+      },
+      "J1": {
+        "value": "bet35"
+      },
+      "K1": {
+        "value": "dropNumMin"
+      },
+      "L1": {
+        "value": "dropNumMax"
+      },
+      "M1": {
+        "value": "dropRangeMin"
+      },
+      "N1": {
+        "value": "dropRangeMax"
+      },
+      "O1": {
+        "value": "dropMulti"
+      },
+      "P1": {
+        "value": "eventOpen"
+      },
+      "Q1": {
+        "value": "dropProb"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "long"
+      },
+      "D2": {
+        "value": "long"
+      },
+      "E2": {
+        "value": "long"
+      },
+      "F2": {
+        "value": "long"
+      },
+      "G2": {
+        "value": "long"
+      },
+      "H2": {
+        "value": "long"
+      },
+      "I2": {
+        "value": "long"
+      },
+      "J2": {
+        "value": "long"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      },
+      "K3": {
+        "value": "s"
+      },
+      "L3": {
+        "value": "s"
+      },
+      "M3": {
+        "value": "s"
+      },
+      "N3": {
+        "value": "s"
+      },
+      "O3": {
+        "value": "s"
+      },
+      "P3": {
+        "value": "s"
+      },
+      "Q3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "bet等级"
+      },
+      "B4": {
+        "value": "是否HighRoller（1是high roller；0普通非high roller  2 普通和high roller共用）"
+      },
+      "C4": {
+        "value": "赠送俱乐部会员积分"
+      },
+      "D4": {
+        "value": "赠送俱乐部会员进度百分比，除以100"
+      },
+      "E4": {
+        "value": "等级经验"
+      },
+      "F4": {
+        "value": "2倍数制_1"
+      },
+      "G4": {
+        "value": "3倍数制_1.5"
+      },
+      "H4": {
+        "value": "33倍数制_1.65"
+      },
+      "I4": {
+        "value": "9倍数制_0.9"
+      },
+      "J4": {
+        "value": "35倍数制_1.75"
+      },
+      "K4": {
+        "value": "掉落数量最小值"
+      },
+      "L4": {
+        "value": "掉落数量最大值"
+      },
+      "M4": {
+        "value": "单个掉落最小值，作废，查ChampionShipCheatSheet"
+      },
+      "N4": {
+        "value": "单个掉落最大值，作废，查ChampionShipCheatSheet"
+      },
+      "O4": {
+        "value": "掉落倍率，作废，查ChampionShipCheatSheet"
+      },
+      "P4": {
+        "value": "是否解锁活动"
+      },
+      "Q4": {
+        "value": "掉落概率，百分比"
+      }
+    }
+  },
+  "trunk/ItemExchange": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "_comm"
+      },
+      "C1": {
+        "value": "itemId"
+      },
+      "D1": {
+        "value": "itemCount"
+      },
+      "E1": {
+        "value": "rewardType"
+      },
+      "F1": {
+        "value": "rewardId"
+      },
+      "G1": {
+        "value": "rewardCount"
+      },
+      "H1": {
+        "value": "dailyCount"
+      },
+      "I1": {
+        "value": "icon"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "string"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "skip"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "//唯一id"
+      },
+      "B4": {
+        "value": "//注释"
+      },
+      "C4": {
+        "value": "//物品ID"
+      },
+      "D4": {
+        "value": "//物品数量"
+      },
+      "E4": {
+        "value": "//类型\n1.电话卡,实物\n2.金币\n3.钻石\n4.物品"
+      },
+      "G4": {
+        "value": "//奖励，如果是电话卡代表额度，其他则代表数量"
+      },
+      "H4": {
+        "value": "//每天次数"
+      },
+      "I4": {
+        "value": "//图标"
+      }
+    }
+  },
+  "trunk/SysUnlock": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "unlockType_4_0"
+      },
+      "C1": {
+        "value": "param_4_0"
+      },
+      "D1": {
+        "value": "unlockType_4_1"
+      },
+      "E1": {
+        "value": "param_4_1"
+      },
+      "F1": {
+        "value": "unlockType_4_2"
+      },
+      "G1": {
+        "value": "param_4_2"
+      },
+      "H1": {
+        "value": "unlockType_4_3"
+      },
+      "I1": {
+        "value": "param_4_3"
+      },
+      "J1": {
+        "value": "desc"
+      },
+      "K1": {
+        "value": "icon"
+      },
+      "L1": {
+        "value": "isShow"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "string"
+      },
+      "K2": {
+        "value": "string"
+      },
+      "L2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "B4": {
+        "value": "解锁条件类型(或关系)\n0、玩家等级\n1、疯狂探险某章节完成\n2、疯狂探险开启天数\n3、世界地图某建筑解锁"
+      },
+      "C4": {
+        "value": "解锁参数"
+      },
+      "D4": {
+        "value": "解锁条件类型(或关系)\n0、玩家等级\n1、疯狂探险某章节完成\n2、疯狂探险开启天数\n3、世界地图某建筑解锁"
+      },
+      "E4": {
+        "value": "解锁参数"
+      },
+      "F4": {
+        "value": "解锁条件类型(或关系)\n0、玩家等级\n1、疯狂探险某章节完成\n2、疯狂探险开启天数\n3、世界地图某建筑解锁"
+      },
+      "G4": {
+        "value": "解锁参数"
+      },
+      "H4": {
+        "value": "解锁条件类型(或关系)\n0、玩家等级\n1、疯狂探险某章节完成\n2、疯狂探险开启天数\n3、世界地图某建筑解锁"
+      },
+      "I4": {
+        "value": "解锁参数"
+      },
+      "J4": {
+        "value": "//描述（主要方便策划看）"
+      },
+      "K4": {
+        "value": "//图标，没有要求的不要配置"
+      },
+      "L4": {
+        "value": "是否显示\n1显示0不显示"
+      }
+    }
+  },
+  "trunk/CardCollectSimulator": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "simulateTimes"
+      },
+      "C1": {
+        "value": "vipLevel"
+      },
+      "D1": {
+        "value": "level"
+      },
+      "E1": {
+        "value": "roomId"
+      },
+      "F1": {
+        "value": "isPrestige"
+      },
+      "G1": {
+        "value": "startDay"
+      },
+      "H1": {
+        "value": "dailyGameCount"
+      },
+      "I1": {
+        "value": "maxChapter"
+      },
+      "J1": {
+        "value": "maxProcess"
+      },
+      "K1": {
+        "value": "totalGameCount"
+      },
+      "L1": {
+        "value": "roundRate_5_0"
+      },
+      "M1": {
+        "value": "roundRate_5_1"
+      },
+      "N1": {
+        "value": "roundRate_5_2"
+      },
+      "O1": {
+        "value": "roundRate_5_3"
+      },
+      "P1": {
+        "value": "roundRate_5_4"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      },
+      "K3": {
+        "value": "s"
+      },
+      "L3": {
+        "value": "s"
+      },
+      "M3": {
+        "value": "s"
+      },
+      "N3": {
+        "value": "s"
+      },
+      "O3": {
+        "value": "s"
+      },
+      "P3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "模拟配置ID"
+      },
+      "B4": {
+        "value": "模拟次数"
+      },
+      "C4": {
+        "value": "vip"
+      },
+      "D4": {
+        "value": "角色等级"
+      },
+      "E4": {
+        "value": "房间id"
+      },
+      "F4": {
+        "value": "是否模拟进阶"
+      },
+      "G4": {
+        "value": "距离赛季开始天数"
+      },
+      "H4": {
+        "value": "每天牌局数上限"
+      },
+      "I4": {
+        "value": "收集章节上限"
+      },
+      "J4": {
+        "value": "收集进度上限"
+      },
+      "K4": {
+        "value": "单次模拟总牌局数上限"
+      },
+      "L4": {
+        "value": "每大局1小局概率百分比"
+      },
+      "M4": {
+        "value": "每大局2小局概率百分比"
+      },
+      "N4": {
+        "value": "每大局3小局概率百分比"
+      },
+      "O4": {
+        "value": "每大局4小局概率百分比"
+      },
+      "P4": {
+        "value": "每大局5小局概率百分比"
+      }
+    }
+  },
+  "dev/CardAlbumCfg": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "startTime"
+      },
+      "C1": {
+        "value": "endTime"
+      },
+      "D1": {
+        "value": "themeId"
+      },
+      "E1": {
+        "value": "passageNum"
+      },
+      "F1": {
+        "value": "cardNum"
+      },
+      "G1": {
+        "value": "isPrestige"
+      },
+      "H1": {
+        "value": "prestigePassageNum"
+      },
+      "I1": {
+        "value": "prestigeCardNum"
+      },
+      "J1": {
+        "value": "countDown"
+      },
+      "K1": {
+        "value": "moduleNameId"
+      },
+      "L1": {
+        "value": "rewardType"
+      },
+      "M1": {
+        "value": "albumCoins"
+      },
+      "N1": {
+        "value": "albumItem"
+      },
+      "O1": {
+        "value": "albumItemCount"
+      },
+      "P1": {
+        "value": "packIdNew"
+      },
+      "Q1": {
+        "value": "goldStarRate"
+      },
+      "R1": {
+        "value": "funStarRate"
+      },
+      "S1": {
+        "value": "startTimeInt"
+      },
+      "T1": {
+        "value": "endTimeInt"
+      },
+      "U1": {
+        "value": "seasonName"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "string"
+      },
+      "C2": {
+        "value": "string"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "long"
+      },
+      "T2": {
+        "value": "long"
+      },
+      "U2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "s"
+      },
+      "L3": {
+        "value": "s"
+      },
+      "M3": {
+        "value": "cs"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "赛季id"
+      },
+      "B4": {
+        "value": "//开始时间"
+      },
+      "C4": {
+        "value": "//结束时间"
+      },
+      "D4": {
+        "value": "卡册主题Id"
+      },
+      "E4": {
+        "value": "章节数"
+      },
+      "F4": {
+        "value": "卡片总数"
+      },
+      "G4": {
+        "value": "是否有进阶卡册"
+      },
+      "H4": {
+        "value": "高阶章节总数"
+      },
+      "I4": {
+        "value": "高阶卡片总数"
+      },
+      "J4": {
+        "value": "#距离结束开始显示倒计时，单位天"
+      },
+      "K4": {
+        "value": "模块名索引ID"
+      },
+      "L4": {
+        "value": "金币类型：\n1金币\n9礼包美金\n17美金金币"
+      },
+      "M4": {
+        "value": "#全部收集完成金币"
+      },
+      "N4": {
+        "value": "#全部收集完成道具"
+      },
+      "O4": {
+        "value": "#全部收集完成道具数量"
+      },
+      "P4": {
+        "value": "新赛季赠送卡包"
+      },
+      "Q4": {
+        "value": "金卡兑换星星加成系数，除以100"
+      },
+      "R4": {
+        "value": "fun卡兑换星星加成系数，除以100"
+      },
+      "S4": {
+        "value": "程序转换时间格式用\n不用填"
+      },
+      "T4": {
+        "value": "程序转换时间格式用\n不用填"
+      },
+      "U4": {
+        "value": "赛季名"
+      }
+    }
+  },
+  "dev/CardAlbumTheme": {
+    "1": {
+      "A1": {
+        "value": "none"
+      },
+      "B1": {
+        "value": "themeId"
+      },
+      "C1": {
+        "value": "themeType"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "string"
+      },
+      "B2": {
+        "value": "int_key"
+      },
+      "C2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "skip"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "主题说明"
+      },
+      "B4": {
+        "value": "卡册主题Id。\n1-4常规，5+活动赛季"
+      },
+      "C4": {
+        "value": "主题类型：0常规主题 1活动主题"
+      }
+    }
+  },
+  "dev/CardPack": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "pack"
+      },
+      "C1": {
+        "value": "itemId"
+      },
+      "D1": {
+        "value": "season"
+      },
+      "E1": {
+        "value": "weight"
+      },
+      "F1": {
+        "value": "maxStar"
+      },
+      "G1": {
+        "value": "maxStarCount"
+      },
+      "H1": {
+        "value": "cardNum"
+      },
+      "I1": {
+        "value": "type1"
+      },
+      "J1": {
+        "value": "star1"
+      },
+      "K1": {
+        "value": "group1"
+      },
+      "L1": {
+        "value": "num1"
+      },
+      "M1": {
+        "value": "type2"
+      },
+      "N1": {
+        "value": "star2"
+      },
+      "O1": {
+        "value": "group2"
+      },
+      "P1": {
+        "value": "num2"
+      },
+      "Q1": {
+        "value": "type3"
+      },
+      "R1": {
+        "value": "star3"
+      },
+      "S1": {
+        "value": "group3"
+      },
+      "T1": {
+        "value": "num3"
+      },
+      "U1": {
+        "value": "type4"
+      },
+      "V1": {
+        "value": "star4"
+      },
+      "W1": {
+        "value": "group4"
+      },
+      "X1": {
+        "value": "num4"
+      },
+      "Y1": {
+        "value": "type5"
+      },
+      "Z1": {
+        "value": "star5"
+      },
+      "AA1": {
+        "value": "group5"
+      },
+      "AB1": {
+        "value": "num5"
+      },
+      "AC1": {
+        "value": "cardId1"
+      },
+      "AD1": {
+        "value": "cardId2"
+      },
+      "AE1": {
+        "value": "cardId3"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "int"
+      },
+      "T2": {
+        "value": "int"
+      },
+      "U2": {
+        "value": "int"
+      },
+      "V2": {
+        "value": "int"
+      },
+      "W2": {
+        "value": "int"
+      },
+      "X2": {
+        "value": "int"
+      },
+      "Y2": {
+        "value": "int"
+      },
+      "Z2": {
+        "value": "int"
+      },
+      "AA2": {
+        "value": "int"
+      },
+      "AB2": {
+        "value": "int"
+      },
+      "AC2": {
+        "value": "int"
+      },
+      "AD2": {
+        "value": "int"
+      },
+      "AE2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "cs"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      },
+      "V3": {
+        "value": "cs"
+      },
+      "W3": {
+        "value": "cs"
+      },
+      "X3": {
+        "value": "cs"
+      },
+      "Y3": {
+        "value": "cs"
+      },
+      "Z3": {
+        "value": "cs"
+      },
+      "AA3": {
+        "value": "cs"
+      },
+      "AB3": {
+        "value": "cs"
+      },
+      "AC3": {
+        "value": "cs"
+      },
+      "AD3": {
+        "value": "cs"
+      },
+      "AE3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "id"
+      },
+      "B4": {
+        "value": "卡包Id"
+      },
+      "C4": {
+        "value": "卡包ItemId"
+      },
+      "D4": {
+        "value": "赛季id"
+      },
+      "E4": {
+        "value": "权重总和，按照卡包id随机"
+      },
+      "F4": {
+        "value": "最大星星\n0表示fun卡"
+      },
+      "G4": {
+        "value": "最大星星卡片数"
+      },
+      "H4": {
+        "value": "卡片数量"
+      },
+      "I4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "J4": {
+        "value": "星级"
+      },
+      "K4": {
+        "value": "组别"
+      },
+      "L4": {
+        "value": "数量"
+      },
+      "M4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "N4": {
+        "value": "星级"
+      },
+      "O4": {
+        "value": "组别"
+      },
+      "P4": {
+        "value": "数量"
+      },
+      "Q4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "R4": {
+        "value": "星级"
+      },
+      "S4": {
+        "value": "组别"
+      },
+      "T4": {
+        "value": "数量"
+      },
+      "U4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "V4": {
+        "value": "星级"
+      },
+      "W4": {
+        "value": "组别"
+      },
+      "X4": {
+        "value": "数量"
+      },
+      "Y4": {
+        "value": "卡片品质\n0.所有卡\n1.普通卡\n2.金卡\n3.fun卡"
+      },
+      "Z4": {
+        "value": "星级"
+      },
+      "AA4": {
+        "value": "组别"
+      },
+      "AB4": {
+        "value": "数量"
+      },
+      "AC4": {
+        "value": "卡片id"
+      },
+      "AD4": {
+        "value": "卡片id"
+      },
+      "AE4": {
+        "value": "卡片id"
+      }
+    }
+  },
+  "dev/CardGroup": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "group"
+      },
+      "C1": {
+        "value": "chapterId"
+      },
+      "D1": {
+        "value": "isPrestige"
+      },
+      "E1": {
+        "value": "weight"
+      },
+      "F1": {
+        "value": "seasonDayMin"
+      },
+      "G1": {
+        "value": "seasonDayMax"
+      },
+      "H1": {
+        "value": "progMin"
+      },
+      "I1": {
+        "value": "progMax"
+      },
+      "J1": {
+        "value": "notes"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "c"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "id"
+      },
+      "B4": {
+        "value": "组别id"
+      },
+      "C4": {
+        "value": "章节id"
+      },
+      "D4": {
+        "value": "是否进阶"
+      },
+      "E4": {
+        "value": "权重总和，按照组别id随机"
+      },
+      "F4": {
+        "value": "距离赛季开始天数下限"
+      },
+      "G4": {
+        "value": "距离赛季开始天数上限"
+      },
+      "H4": {
+        "value": "收集进度下限"
+      },
+      "I4": {
+        "value": "收集进度上限"
+      },
+      "J4": {
+        "value": "备注"
+      }
+    }
+  },
+  "dev/CardChapter": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "isPrestige"
+      },
+      "C1": {
+        "value": "seasonId"
+      },
+      "D1": {
+        "value": "cardNum"
+      },
+      "E1": {
+        "value": "chapterName"
+      },
+      "F1": {
+        "value": "moduleNameId"
+      },
+      "G1": {
+        "value": "rewardType"
+      },
+      "H1": {
+        "value": "chapterCoins"
+      },
+      "I1": {
+        "value": "chapterItem"
+      },
+      "J1": {
+        "value": "chapterItemCount"
+      },
+      "K1": {
+        "value": "cardControl"
+      },
+      "L1": {
+        "value": "cardTotalNum"
+      },
+      "M1": {
+        "value": "needNum"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "string"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "章节id，【赛季*100+章节ID】"
+      },
+      "B4": {
+        "value": "是否进阶"
+      },
+      "C4": {
+        "value": "赛季id"
+      },
+      "D4": {
+        "value": "每章卡片数"
+      },
+      "E4": {
+        "value": "章节名字"
+      },
+      "F4": {
+        "value": "模块名索引ID"
+      },
+      "G4": {
+        "value": "金币类型：\n1金币\n9礼包美金\n17美金金币"
+      },
+      "H4": {
+        "value": "集齐章节金币奖励"
+      },
+      "I4": {
+        "value": "集齐章节道具"
+      },
+      "J4": {
+        "value": "集齐掌机道具数量"
+      },
+      "K4": {
+        "value": "是否控制集齐卡片"
+      },
+      "L4": {
+        "value": "本章节已经拥有的卡片数量（包括重复的）"
+      },
+      "M4": {
+        "value": "集齐章节还缺的卡片数"
+      }
+    }
+  },
+  "dev/CardList": {
+    "1": {
+      "A1": {
+        "value": "cardId"
+      },
+      "B1": {
+        "value": "cardName"
+      },
+      "C1": {
+        "value": "isPrestige"
+      },
+      "D1": {
+        "value": "seasonId"
+      },
+      "E1": {
+        "value": "cardChapter"
+      },
+      "F1": {
+        "value": "sortNo"
+      },
+      "G1": {
+        "value": "starLevel"
+      },
+      "H1": {
+        "value": "type"
+      },
+      "I1": {
+        "value": "jokerTrade"
+      },
+      "J1": {
+        "value": "jokerCutdown"
+      },
+      "K1": {
+        "value": "ItemId"
+      },
+      "L1": {
+        "value": "isTrade"
+      },
+      "M1": {
+        "value": "weight_10_0"
+      },
+      "N1": {
+        "value": "weight_10_1"
+      },
+      "O1": {
+        "value": "weight_10_2"
+      },
+      "P1": {
+        "value": "weight_10_3"
+      },
+      "Q1": {
+        "value": "weight_10_4"
+      },
+      "R1": {
+        "value": "weight_10_5"
+      },
+      "S1": {
+        "value": "weight_10_6"
+      },
+      "T1": {
+        "value": "weight_10_7"
+      },
+      "U1": {
+        "value": "weight_10_8"
+      },
+      "V1": {
+        "value": "weight_10_9"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "string"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "int"
+      },
+      "T2": {
+        "value": "int"
+      },
+      "U2": {
+        "value": "int"
+      },
+      "V2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "cs"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      },
+      "V3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "#卡片id：\n1）卡片id 1位\n2）赛季id 2位【00-99】\n3）章节 2位   【01-20】\n4）卡片id 2位【01-10】\njoker卡不分赛季"
+      },
+      "B4": {
+        "value": "卡片名字"
+      },
+      "C4": {
+        "value": "是否进阶"
+      },
+      "D4": {
+        "value": "赛季id"
+      },
+      "E4": {
+        "value": "章节id"
+      },
+      "F4": {
+        "value": "章节内顺序"
+      },
+      "G4": {
+        "value": "星星等级"
+      },
+      "H4": {
+        "value": "卡片品质\n1.普通卡\n2.金卡\n3.ace卡\n4.4星joker卡\n5.金Joker卡（1000002不用）\n6.5星Joker卡\n7. Ace Joker卡"
+      },
+      "I4": {
+        "value": "joker卡可兑换的卡片类型\n1.普通卡\n2.金卡（不用）\n3.Ace卡\n0.任意卡"
+      },
+      "J4": {
+        "value": "joker卡过期时间，单位秒"
+      },
+      "K4": {
+        "value": "道具id"
+      },
+      "L4": {
+        "value": "是否可交易，1是0否"
+      },
+      "M4": {
+        "value": "权重总和，\n按章节随机，uid尾号0"
+      },
+      "N4": {
+        "value": "权重总和，\n按章节随机，uid尾号1"
+      },
+      "O4": {
+        "value": "权重总和，\n按章节随机，uid尾号2"
+      },
+      "P4": {
+        "value": "权重总和，\n按章节随机，uid尾号3"
+      },
+      "Q4": {
+        "value": "权重总和，\n按章节随机，uid尾号4"
+      },
+      "R4": {
+        "value": "权重总和，\n按章节随机，uid尾号5"
+      },
+      "S4": {
+        "value": "权重总和，\n按章节随机，uid尾号6"
+      },
+      "T4": {
+        "value": "权重总和，\n按章节随机，uid尾号7"
+      },
+      "U4": {
+        "value": "权重总和，\n按章节随机，uid尾号8"
+      },
+      "V4": {
+        "value": "权重总和，\n按章节随机，uid尾号9"
+      }
+    }
+  },
+  "dev/CardStarTrade": {
+    "1": {
+      "A1": {
+        "value": "starTrade"
+      },
+      "B1": {
+        "value": "moduleNameId"
+      },
+      "C1": {
+        "value": "rewardType"
+      },
+      "D1": {
+        "value": "rewardCoins"
+      },
+      "E1": {
+        "value": "rewardItem"
+      },
+      "F1": {
+        "value": "rewardItemCount"
+      },
+      "G1": {
+        "value": "tradeStarCountdown"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "消耗的星星数；\n消耗顺序金卡、fun卡、普通卡5星、4星\n"
+      },
+      "B4": {
+        "value": "模块名索引ID"
+      },
+      "C4": {
+        "value": "金币类型：\n1金币\n9礼包美金\n17美金金币"
+      },
+      "D4": {
+        "value": "奖励金币"
+      },
+      "E4": {
+        "value": "奖励道具/卡包id"
+      },
+      "F4": {
+        "value": "奖励道具/卡包数量"
+      },
+      "G4": {
+        "value": "兑换星星冷却时间\n单位秒\n共用"
+      }
+    }
+  },
+  "dev/CardTradeCfg": {
+    "1": {
+      "A1": {
+        "value": "dailyTradeMaxCount"
+      },
+      "B1": {
+        "value": "requestExpireSec"
+      },
+      "C1": {
+        "value": "requestFriendsMaxCount"
+      },
+      "D1": {
+        "value": "tradeMailExpireSec"
+      },
+      "E1": {
+        "value": "sendMailExpireSec"
+      },
+      "F1": {
+        "value": "requestMailExpireSec"
+      },
+      "G1": {
+        "value": "tradeMailTitle"
+      },
+      "H1": {
+        "value": "tradeMailContent"
+      },
+      "I1": {
+        "value": "sendMailContent"
+      },
+      "J1": {
+        "value": "requestMailContent"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "string"
+      },
+      "H2": {
+        "value": "string"
+      },
+      "I2": {
+        "value": "string"
+      },
+      "J2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "每日交易或赠送次数上限"
+      },
+      "B4": {
+        "value": "请求卡片超时秒数"
+      },
+      "C4": {
+        "value": "请求卡片好友数量上限"
+      },
+      "D4": {
+        "value": "交易邮件超时秒数"
+      },
+      "E4": {
+        "value": "发送卡片邮件超时秒数"
+      },
+      "F4": {
+        "value": "请求邮件超时秒数"
+      },
+      "G4": {
+        "value": "交易邮件标题"
+      },
+      "H4": {
+        "value": "交易卡片邮件内容"
+      },
+      "I4": {
+        "value": "发送卡片邮件内容"
+      },
+      "J4": {
+        "value": "请求卡片邮件内容"
+      }
+    }
+  },
+  "dev/CardActivityClose": {
+    "1": {
+      "A1": {
+        "value": "Id"
+      },
+      "B1": {
+        "value": "ActivityId"
+      },
+      "C1": {
+        "value": "OriItemType"
+      },
+      "D1": {
+        "value": "OriItemId"
+      },
+      "E1": {
+        "value": "NewItemType"
+      },
+      "F1": {
+        "value": "NewItemCount"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "唯一索引"
+      },
+      "B4": {
+        "value": "活动id"
+      },
+      "C4": {
+        "value": "原奖励类型\n1.卡包\n2.卡片"
+      },
+      "D4": {
+        "value": "原奖励ID"
+      },
+      "E4": {
+        "value": "关闭卡包后\n奖励类型\n1.金币\n2.钻石\n道具id\n(啤酒礼包不支持出现钻石）"
+      },
+      "F4": {
+        "value": "奖励数量\n1、啤酒礼包对应数量*当前配置"
+      }
+    }
+  },
+  "dev/Cardget": {
+    "1": {
+      "A1": {
+        "value": "Id"
+      },
+      "B1": {
+        "value": "ForbidKey"
+      },
+      "C1": {
+        "value": "Cost"
+      },
+      "D1": {
+        "value": "CardPack1"
+      },
+      "E1": {
+        "value": "Num1"
+      },
+      "F1": {
+        "value": "CardPack2"
+      },
+      "G1": {
+        "value": "Num2"
+      },
+      "H1": {
+        "value": "CardPack3"
+      },
+      "I1": {
+        "value": "Num3"
+      },
+      "J1": {
+        "value": "CardPack4"
+      },
+      "K1": {
+        "value": "Num4"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "string"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "唯一索引"
+      },
+      "B4": {
+        "value": "不发卡牌的支付key"
+      },
+      "C4": {
+        "value": "金额*100"
+      },
+      "D4": {
+        "value": "产出卡包1\n（低级）"
+      },
+      "E4": {
+        "value": "个数1"
+      },
+      "F4": {
+        "value": "产出卡包2\n（中级）"
+      },
+      "G4": {
+        "value": "个数2"
+      },
+      "H4": {
+        "value": "产出卡包3\n（高级）"
+      },
+      "I4": {
+        "value": "个数3"
+      },
+      "J4": {
+        "value": "产出卡包4\n(不要配值）"
+      },
+      "K4": {
+        "value": "个数4"
+      }
+    }
+  },
+  "dev/SlotsCasinoDropCards": {
+    "1": {
+      "A1": {
+        "value": "betIndex"
+      },
+      "B1": {
+        "value": "level"
+      },
+      "C1": {
+        "value": "dropPro"
+      },
+      "D1": {
+        "value": "needVipMinCard"
+      },
+      "E1": {
+        "value": "needVipMaxCard"
+      },
+      "F1": {
+        "value": "cardId1"
+      },
+      "G1": {
+        "value": "cardWeight1"
+      },
+      "H1": {
+        "value": "cardId2"
+      },
+      "I1": {
+        "value": "cardWeight2"
+      },
+      "J1": {
+        "value": "cardId3"
+      },
+      "K1": {
+        "value": "cardWeight3"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      },
+      "K3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "SlotsCasinoBetList.xlsx 主键"
+      },
+      "B4": {
+        "value": "等级"
+      },
+      "C4": {
+        "value": "掉卡概率（万分之）"
+      },
+      "D4": {
+        "value": "最小的vip等级"
+      },
+      "E4": {
+        "value": "最大的vip等级"
+      },
+      "F4": {
+        "value": "卡包Id1"
+      },
+      "G4": {
+        "value": "卡包1权重"
+      },
+      "H4": {
+        "value": "卡包Id2"
+      },
+      "I4": {
+        "value": "卡包2权重"
+      },
+      "J4": {
+        "value": "卡包Id3"
+      },
+      "K4": {
+        "value": "卡包3权重"
+      }
+    }
+  },
+  "dev/Item": {
+    "1": {
+      "A1": {
+        "value": "itemID"
+      },
+      "B1": {
+        "value": "name"
+      },
+      "C1": {
+        "value": "name_zh"
+      },
+      "D1": {
+        "value": "itemType"
+      },
+      "E1": {
+        "value": "param1"
+      },
+      "F1": {
+        "value": "maxNum"
+      },
+      "G1": {
+        "value": "desc"
+      },
+      "H1": {
+        "value": "_comm"
+      },
+      "I1": {
+        "value": "icon"
+      },
+      "J1": {
+        "value": "iconNew"
+      },
+      "K1": {
+        "value": "validTimeSecond"
+      },
+      "L1": {
+        "value": "phoneCardMoney"
+      },
+      "M1": {
+        "value": "rewardChip"
+      },
+      "N1": {
+        "value": "rewardDiamond"
+      },
+      "O1": {
+        "value": "rewardItemNum"
+      },
+      "P1": {
+        "value": "reward_itemid_5_0"
+      },
+      "Q1": {
+        "value": "reward_itemcount_5_0"
+      },
+      "R1": {
+        "value": "reward_itemid_5_1"
+      },
+      "S1": {
+        "value": "reward_itemcount_5_1"
+      },
+      "T1": {
+        "value": "reward_itemid_5_2"
+      },
+      "U1": {
+        "value": "reward_itemcount_5_2"
+      },
+      "V1": {
+        "value": "reward_itemid_5_3"
+      },
+      "W1": {
+        "value": "reward_itemcount_5_3"
+      },
+      "X1": {
+        "value": "reward_itemid_5_4"
+      },
+      "Y1": {
+        "value": "reward_itemcount_5_4"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "uint_key"
+      },
+      "B2": {
+        "value": "string_lan"
+      },
+      "C2": {
+        "value": "string"
+      },
+      "D2": {
+        "value": "uint"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "uint"
+      },
+      "G2": {
+        "value": "string_lan"
+      },
+      "H2": {
+        "value": "string"
+      },
+      "I2": {
+        "value": "string"
+      },
+      "J2": {
+        "value": "string"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "int"
+      },
+      "T2": {
+        "value": "int"
+      },
+      "U2": {
+        "value": "int"
+      },
+      "V2": {
+        "value": "int"
+      },
+      "W2": {
+        "value": "int"
+      },
+      "X2": {
+        "value": "int"
+      },
+      "Y2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "skip"
+      },
+      "I3": {
+        "value": "c"
+      },
+      "J3": {
+        "value": "c"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "cs"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      },
+      "V3": {
+        "value": "cs"
+      },
+      "W3": {
+        "value": "cs"
+      },
+      "X3": {
+        "value": "cs"
+      },
+      "Y3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "//物品的ID"
+      },
+      "B4": {
+        "value": "//名字"
+      },
+      "C4": {
+        "value": "//注释"
+      },
+      "D4": {
+        "value": "//类型\n1礼物\n2门票\n3兑换券\n4礼包\n5头像边框\n6充值折扣券\n7特权表情\n8夺宝券\n9电话卡碎片\n10房卡\n11奖券\n12斋月散牌\n13抽奖宝箱\n14喇叭\n15老虎机券\n16新比赛场门票\n18不显示在背包中的物品\n21气泡\n22牌桌互动礼物\n23只做展示用物品\n25称号\n26宝箱\n44头像\n45头像挂件\n>100为buff类型"
+      },
+      "E4": {
+        "value": "//参数\n对头像边框来说就是边框id\n对兑换券来说是兑换的金币数量  \n对抽奖宝箱而言对应的activitydraw的id"
+      },
+      "F4": {
+        "value": "//最大物品数量"
+      },
+      "G4": {
+        "value": "//描述"
+      },
+      "H4": {
+        "value": "//注释"
+      },
+      "I4": {
+        "value": "//图标"
+      },
+      "J4": {
+        "value": "//图标"
+      },
+      "K4": {
+        "value": "//有效期，单位秒\n0表示永久时间\n其他时间表示有效期"
+      },
+      "L4": {
+        "value": "//作为电话卡时，金额"
+      },
+      "M4": {
+        "value": "//筹码数量,作为礼包的时候使用，礼包包含物品"
+      },
+      "N4": {
+        "value": "//钻石数量,作为礼包的时候使用，礼包包含物品"
+      },
+      "O4": {
+        "value": "//奖励数量,作为礼包的时候使用，礼包包含物品"
+      },
+      "P4": {
+        "value": "//奖励0物品id"
+      },
+      "Q4": {
+        "value": "//奖励0物品数量"
+      },
+      "R4": {
+        "value": "//奖励1物品id"
+      },
+      "S4": {
+        "value": "//奖励1物品数量"
+      },
+      "T4": {
+        "value": "//奖励2物品id"
+      },
+      "U4": {
+        "value": "//奖励2物品数量"
+      },
+      "V4": {
+        "value": "//奖励3物品id"
+      },
+      "W4": {
+        "value": "//奖励3物品数量"
+      },
+      "X4": {
+        "value": "//奖励4物品id"
+      },
+      "Y4": {
+        "value": "//奖励4物品数量"
+      }
+    }
+  },
+  "dev/PayDiamond": {
+    "1": {
+      "A1": {
+        "value": "payType"
+      },
+      "B1": {
+        "value": "itemID"
+      },
+      "C1": {
+        "value": "CommonPayKey"
+      },
+      "D1": {
+        "value": "moduleNameId"
+      },
+      "E1": {
+        "value": "itemShow"
+      },
+      "F1": {
+        "value": "indexID"
+      },
+      "G1": {
+        "value": "itemName"
+      },
+      "H1": {
+        "value": "itemTypeName"
+      },
+      "I1": {
+        "value": "icon"
+      },
+      "J1": {
+        "value": "money_dollar"
+      },
+      "K1": {
+        "value": "diamond"
+      },
+      "L1": {
+        "value": "currencyType"
+      },
+      "M1": {
+        "value": "priceType"
+      },
+      "N1": {
+        "value": "vipType"
+      },
+      "O1": {
+        "value": "discountRate"
+      },
+      "P1": {
+        "value": "firstPayBenefitId"
+      },
+      "Q1": {
+        "value": "buyCountLimit"
+      },
+      "R1": {
+        "value": "activityLimit"
+      },
+      "S1": {
+        "value": "dailyLimit"
+      },
+      "T1": {
+        "value": "weeklyLimit"
+      },
+      "U1": {
+        "value": "monthlyLimit"
+      },
+      "V1": {
+        "value": "needVipLevel"
+      },
+      "W1": {
+        "value": "needVipLevelMax"
+      },
+      "X1": {
+        "value": "validTimeSecond"
+      },
+      "Y1": {
+        "value": "timeLimitGroupID"
+      },
+      "Z1": {
+        "value": "consumeItemId"
+      },
+      "AA1": {
+        "value": "consumeItemCount"
+      },
+      "AB1": {
+        "value": "discountId"
+      },
+      "AC1": {
+        "value": "chip"
+      },
+      "AD1": {
+        "value": "emoticonSecond"
+      },
+      "AE1": {
+        "value": "emoticonItemId"
+      },
+      "AF1": {
+        "value": "giveItemId"
+      },
+      "AG1": {
+        "value": "giveItemcount"
+      },
+      "AH1": {
+        "value": "give"
+      },
+      "AI1": {
+        "value": "giveItem2Id"
+      },
+      "AJ1": {
+        "value": "giveItem2count"
+      },
+      "AK1": {
+        "value": "giveVipExp"
+      },
+      "AL1": {
+        "value": "prizeRate"
+      },
+      "AM1": {
+        "value": "reductionRate"
+      },
+      "AN1": {
+        "value": "originalPrice"
+      },
+      "AO1": {
+        "value": "buyFail"
+      },
+      "AP1": {
+        "value": "popUp"
+      },
+      "AQ1": {
+        "value": "isVipAdd"
+      },
+      "AR1": {
+        "value": "rewardDay"
+      },
+      "AS1": {
+        "value": "rewardDiamond"
+      },
+      "AT1": {
+        "value": "rewardMailTitle"
+      },
+      "AU1": {
+        "value": "rewardMailContent"
+      },
+      "AV1": {
+        "value": "payPoint"
+      },
+      "AW1": {
+        "value": "displayType"
+      },
+      "AX1": {
+        "value": "isContinuousAdd"
+      },
+      "AY1": {
+        "value": "rewardRate"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "uint"
+      },
+      "B2": {
+        "value": "string_key"
+      },
+      "C2": {
+        "value": "string"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "string"
+      },
+      "H2": {
+        "value": "string"
+      },
+      "I2": {
+        "value": "string"
+      },
+      "J2": {
+        "value": "uint"
+      },
+      "K2": {
+        "value": "uint"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      },
+      "Q2": {
+        "value": "int"
+      },
+      "R2": {
+        "value": "int"
+      },
+      "S2": {
+        "value": "int"
+      },
+      "T2": {
+        "value": "int"
+      },
+      "U2": {
+        "value": "int"
+      },
+      "V2": {
+        "value": "int"
+      },
+      "W2": {
+        "value": "int"
+      },
+      "X2": {
+        "value": "int"
+      },
+      "Y2": {
+        "value": "int"
+      },
+      "Z2": {
+        "value": "int"
+      },
+      "AA2": {
+        "value": "int"
+      },
+      "AB2": {
+        "value": "int"
+      },
+      "AC2": {
+        "value": "long"
+      },
+      "AD2": {
+        "value": "int"
+      },
+      "AE2": {
+        "value": "int"
+      },
+      "AF2": {
+        "value": "int"
+      },
+      "AG2": {
+        "value": "int"
+      },
+      "AH2": {
+        "value": "long"
+      },
+      "AI2": {
+        "value": "int"
+      },
+      "AJ2": {
+        "value": "int"
+      },
+      "AK2": {
+        "value": "int"
+      },
+      "AL2": {
+        "value": "int"
+      },
+      "AM2": {
+        "value": "int"
+      },
+      "AN2": {
+        "value": "uint"
+      },
+      "AO2": {
+        "value": "int"
+      },
+      "AP2": {
+        "value": "int"
+      },
+      "AQ2": {
+        "value": "int"
+      },
+      "AR2": {
+        "value": "int"
+      },
+      "AS2": {
+        "value": "int"
+      },
+      "AT2": {
+        "value": "string"
+      },
+      "AU2": {
+        "value": "string"
+      },
+      "AV2": {
+        "value": "int"
+      },
+      "AW2": {
+        "value": "int"
+      },
+      "AX2": {
+        "value": "int"
+      },
+      "AY2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      },
+      "M3": {
+        "value": "s"
+      },
+      "N3": {
+        "value": "cs"
+      },
+      "O3": {
+        "value": "cs"
+      },
+      "P3": {
+        "value": "cs"
+      },
+      "Q3": {
+        "value": "cs"
+      },
+      "R3": {
+        "value": "cs"
+      },
+      "S3": {
+        "value": "cs"
+      },
+      "T3": {
+        "value": "cs"
+      },
+      "U3": {
+        "value": "cs"
+      },
+      "V3": {
+        "value": "cs"
+      },
+      "W3": {
+        "value": "cs"
+      },
+      "X3": {
+        "value": "cs"
+      },
+      "Y3": {
+        "value": "cs"
+      },
+      "Z3": {
+        "value": "cs"
+      },
+      "AA3": {
+        "value": "cs"
+      },
+      "AB3": {
+        "value": "c"
+      },
+      "AC3": {
+        "value": "cs"
+      },
+      "AD3": {
+        "value": "cs"
+      },
+      "AE3": {
+        "value": "cs"
+      },
+      "AF3": {
+        "value": "cs"
+      },
+      "AG3": {
+        "value": "cs"
+      },
+      "AH3": {
+        "value": "cs"
+      },
+      "AI3": {
+        "value": "cs"
+      },
+      "AJ3": {
+        "value": "cs"
+      },
+      "AK3": {
+        "value": "cs"
+      },
+      "AL3": {
+        "value": "cs"
+      },
+      "AM3": {
+        "value": "cs"
+      },
+      "AN3": {
+        "value": "cs"
+      },
+      "AO3": {
+        "value": "cs"
+      },
+      "AP3": {
+        "value": "cs"
+      },
+      "AQ3": {
+        "value": "cs"
+      },
+      "AR3": {
+        "value": "cs"
+      },
+      "AS3": {
+        "value": "cs"
+      },
+      "AT3": {
+        "value": "cs"
+      },
+      "AU3": {
+        "value": "cs"
+      },
+      "AV3": {
+        "value": "cs"
+      },
+      "AW3": {
+        "value": "cs"
+      },
+      "AX3": {
+        "value": "cs"
+      },
+      "AY3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "//支付类型\n1，google\n2, ios\n3, 第三方\n4，facebook支付"
+      },
+      "B4": {
+        "value": "支付主键"
+      },
+      "C4": {
+        "value": "通用支付key"
+      },
+      "D4": {
+        "value": "模块索引\n（参考ModuleName.xlsx)"
+      },
+      "E4": {
+        "value": "展示区域\n1为商城展示"
+      },
+      "F4": {
+        "value": "//唯一索引id,添加后不要修改"
+      },
+      "G4": {
+        "value": "//名字"
+      },
+      "H4": {
+        "value": "//种类名字"
+      },
+      "I4": {
+        "value": "//图标"
+      },
+      "J4": {
+        "value": "//价格，除以100等于实际美元"
+      },
+      "K4": {
+        "value": "//钻石数量"
+      },
+      "L4": {
+        "value": "货币类型，1是金币，2是钻石"
+      },
+      "M4": {
+        "value": "价格类型(用于逐步替换currencyType)，2钻石，9礼包金币，17美金金币"
+      },
+      "N4": {
+        "value": "vip加成类型，1是商店vip加成，2是礼包vip加成"
+      },
+      "O4": {
+        "value": "金币钻石附加优惠，除100使用（1.2倍配置为120）"
+      },
+      "P4": {
+        "value": "//首次购买有优惠组Id\n0表示没优惠\n对正常gp_30这种这个id就是indexID"
+      },
+      "Q4": {
+        "value": "//次数限制"
+      },
+      "R4": {
+        "value": "//活动期间限制的总次数"
+      },
+      "S4": {
+        "value": "//每天次数限制"
+      },
+      "T4": {
+        "value": "//每周次数限制"
+      },
+      "U4": {
+        "value": "//每月次数限制"
+      },
+      "V4": {
+        "value": "//需要vip等级"
+      },
+      "W4": {
+        "value": "//需要vip等级最大值"
+      },
+      "X4": {
+        "value": "//有效时间"
+      },
+      "Y4": {
+        "value": "//刷新时间组ID"
+      },
+      "Z4": {
+        "value": "//消耗道具"
+      },
+      "AA4": {
+        "value": "//消耗道具数量"
+      },
+      "AB4": {
+        "value": "//折扣对应的indexID\n空表示不能使用优惠券"
+      },
+      "AC4": {
+        "value": "//金币"
+      },
+      "AD4": {
+        "value": "//特权表情时间"
+      },
+      "AE4": {
+        "value": "//显示用的表情物品Id"
+      },
+      "AF4": {
+        "value": "//道具id"
+      },
+      "AG4": {
+        "value": "//道具数量"
+      },
+      "AH4": {
+        "value": "//赠送比例"
+      },
+      "AI4": {
+        "value": "//道具id"
+      },
+      "AJ4": {
+        "value": "//道具数量"
+      },
+      "AK4": {
+        "value": "//给vip经验"
+      },
+      "AL4": {
+        "value": "//价格膨胀优惠除100使用（1.2倍配置为120）"
+      },
+      "AM4": {
+        "value": "//优惠比列，除以100显示用"
+      },
+      "AN4": {
+        "value": "//原始价格，除以100显示用，单位里拉"
+      },
+      "AO4": {
+        "value": "//购买失败后，弹出的相应的第三方支付的唯一索引id"
+      },
+      "AP4": {
+        "value": "//是否弹窗，1代表每次登陆弹，0代表不弹窗"
+      },
+      "AQ4": {
+        "value": "//是否VIP加成，逐步废弃"
+      },
+      "AR4": {
+        "value": "//购买对应礼包赠送对应天数的奖励"
+      },
+      "AS4": {
+        "value": "//购买对应礼包赠送对应天数的钻石数量，以邮件形式发放"
+      },
+      "AT4": {
+        "value": "//奖励邮件的标题"
+      },
+      "AU4": {
+        "value": "//奖励邮件的内容"
+      },
+      "AV4": {
+        "value": "//充值增加的充值分"
+      },
+      "AW4": {
+        "value": "//奖励展示形式，0不改变，1展示开箱动画"
+      },
+      "AX4": {
+        "value": "是否参加连充\n1是，0否"
+      },
+      "AY4": {
+        "value": "购买后调控奖池的百分比"
+      }
+    }
+  },
+  "dev/PriceCheatSheet": {
+    "1": {
+      "A1": {
+        "value": "money"
+      },
+      "B1": {
+        "value": "priceType"
+      },
+      "C1": {
+        "value": "vipType"
+      },
+      "D1": {
+        "value": "level"
+      },
+      "E1": {
+        "value": "vip_16_0"
+      },
+      "F1": {
+        "value": "vip_16_1"
+      },
+      "G1": {
+        "value": "vip_16_2"
+      },
+      "H1": {
+        "value": "vip_16_3"
+      },
+      "I1": {
+        "value": "vip_16_4"
+      },
+      "J1": {
+        "value": "vip_16_5"
+      },
+      "K1": {
+        "value": "vip_16_6"
+      },
+      "L1": {
+        "value": "vip_16_7"
+      },
+      "M1": {
+        "value": "vip_16_8"
+      },
+      "N1": {
+        "value": "vip_16_9"
+      },
+      "O1": {
+        "value": "vip_16_10"
+      },
+      "P1": {
+        "value": "vip_16_11"
+      },
+      "Q1": {
+        "value": "vip_16_12"
+      },
+      "R1": {
+        "value": "vip_16_13"
+      },
+      "S1": {
+        "value": "vip_16_14"
+      },
+      "T1": {
+        "value": "vip_16_15"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "long"
+      },
+      "F2": {
+        "value": "long"
+      },
+      "G2": {
+        "value": "long"
+      },
+      "H2": {
+        "value": "long"
+      },
+      "I2": {
+        "value": "long"
+      },
+      "J2": {
+        "value": "long"
+      },
+      "K2": {
+        "value": "long"
+      },
+      "L2": {
+        "value": "long"
+      },
+      "M2": {
+        "value": "long"
+      },
+      "N2": {
+        "value": "long"
+      },
+      "O2": {
+        "value": "long"
+      },
+      "P2": {
+        "value": "long"
+      },
+      "Q2": {
+        "value": "long"
+      },
+      "R2": {
+        "value": "long"
+      },
+      "S2": {
+        "value": "long"
+      },
+      "T2": {
+        "value": "long"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      },
+      "K3": {
+        "value": "s"
+      },
+      "L3": {
+        "value": "s"
+      },
+      "M3": {
+        "value": "s"
+      },
+      "N3": {
+        "value": "s"
+      },
+      "O3": {
+        "value": "s"
+      },
+      "P3": {
+        "value": "s"
+      },
+      "Q3": {
+        "value": "s"
+      },
+      "R3": {
+        "value": "s"
+      },
+      "S3": {
+        "value": "s"
+      },
+      "T3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "美元*100"
+      },
+      "B4": {
+        "value": "价格类型，2钻石，9礼包金币，17美金金币"
+      },
+      "C4": {
+        "value": "vip加成类型，1是商店vip加成，2是礼包vip加成"
+      },
+      "D4": {
+        "value": "等级"
+      },
+      "E4": {
+        "value": "vip对应金币值"
+      },
+      "F4": {
+        "value": "vip对应金币值"
+      },
+      "G4": {
+        "value": "vip对应金币值"
+      },
+      "H4": {
+        "value": "vip对应金币值"
+      },
+      "I4": {
+        "value": "vip对应金币值"
+      },
+      "J4": {
+        "value": "vip对应金币值"
+      },
+      "K4": {
+        "value": "vip对应金币值"
+      },
+      "L4": {
+        "value": "vip对应金币值"
+      },
+      "M4": {
+        "value": "vip对应金币值"
+      },
+      "N4": {
+        "value": "vip对应金币值"
+      },
+      "O4": {
+        "value": "vip对应金币值"
+      },
+      "P4": {
+        "value": "vip对应金币值"
+      },
+      "Q4": {
+        "value": "vip对应金币值"
+      },
+      "R4": {
+        "value": "vip对应金币值"
+      },
+      "S4": {
+        "value": "vip对应金币值"
+      },
+      "T4": {
+        "value": "vip对应金币值"
+      }
+    }
+  },
+  "dev/SlotsCasinoBetList": {
+    "1": {
+      "A1": {
+        "value": "levelId"
+      },
+      "B1": {
+        "value": "highroller"
+      },
+      "C1": {
+        "value": "clubPoint"
+      },
+      "D1": {
+        "value": "clubPointPercent"
+      },
+      "E1": {
+        "value": "levelExp"
+      },
+      "F1": {
+        "value": "bet2"
+      },
+      "G1": {
+        "value": "bet3"
+      },
+      "H1": {
+        "value": "bet33"
+      },
+      "I1": {
+        "value": "bet9"
+      },
+      "J1": {
+        "value": "bet35"
+      },
+      "K1": {
+        "value": "dropNumMin"
+      },
+      "L1": {
+        "value": "dropNumMax"
+      },
+      "M1": {
+        "value": "eventOpen"
+      },
+      "N1": {
+        "value": "dropProb"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "long"
+      },
+      "D2": {
+        "value": "long"
+      },
+      "E2": {
+        "value": "long"
+      },
+      "F2": {
+        "value": "long"
+      },
+      "G2": {
+        "value": "long"
+      },
+      "H2": {
+        "value": "long"
+      },
+      "I2": {
+        "value": "long"
+      },
+      "J2": {
+        "value": "long"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      },
+      "K3": {
+        "value": "s"
+      },
+      "L3": {
+        "value": "s"
+      },
+      "M3": {
+        "value": "s"
+      },
+      "N3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "bet等级"
+      },
+      "B4": {
+        "value": "是否HighRoller（1是high roller；0普通非high roller  2 普通和high roller共用）"
+      },
+      "C4": {
+        "value": "赠送俱乐部会员积分"
+      },
+      "D4": {
+        "value": "赠送俱乐部会员进度百分比，除以100"
+      },
+      "E4": {
+        "value": "等级经验"
+      },
+      "F4": {
+        "value": "2倍数制_1"
+      },
+      "G4": {
+        "value": "3倍数制_1.5"
+      },
+      "H4": {
+        "value": "33倍数制_1.65"
+      },
+      "I4": {
+        "value": "9倍数制_0.9"
+      },
+      "J4": {
+        "value": "35倍数制_1.75"
+      },
+      "K4": {
+        "value": "掉落数量最小值"
+      },
+      "L4": {
+        "value": "掉落数量最大值"
+      },
+      "M4": {
+        "value": "是否解锁活动"
+      },
+      "N4": {
+        "value": "掉落概率，百分比"
+      }
+    }
+  },
+  "dev/ItemExchange": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "_comm"
+      },
+      "C1": {
+        "value": "itemId"
+      },
+      "D1": {
+        "value": "itemCount"
+      },
+      "E1": {
+        "value": "rewardType"
+      },
+      "F1": {
+        "value": "rewardId"
+      },
+      "G1": {
+        "value": "rewardCount"
+      },
+      "H1": {
+        "value": "dailyCount"
+      },
+      "I1": {
+        "value": "icon"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "string"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "string"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "skip"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "//唯一id"
+      },
+      "B4": {
+        "value": "//注释"
+      },
+      "C4": {
+        "value": "//物品ID"
+      },
+      "D4": {
+        "value": "//物品数量"
+      },
+      "E4": {
+        "value": "//类型\n1.电话卡,实物\n2.金币\n3.钻石\n4.物品"
+      },
+      "G4": {
+        "value": "//奖励，如果是电话卡代表额度，其他则代表数量"
+      },
+      "H4": {
+        "value": "//每天次数"
+      },
+      "I4": {
+        "value": "//图标"
+      }
+    }
+  },
+  "dev/SysUnlock": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "unlockType_4_0"
+      },
+      "C1": {
+        "value": "param_4_0"
+      },
+      "D1": {
+        "value": "unlockType_4_1"
+      },
+      "E1": {
+        "value": "param_4_1"
+      },
+      "F1": {
+        "value": "unlockType_4_2"
+      },
+      "G1": {
+        "value": "param_4_2"
+      },
+      "H1": {
+        "value": "unlockType_4_3"
+      },
+      "I1": {
+        "value": "param_4_3"
+      },
+      "J1": {
+        "value": "desc"
+      },
+      "K1": {
+        "value": "icon"
+      },
+      "L1": {
+        "value": "isShow"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "string"
+      },
+      "K2": {
+        "value": "string"
+      },
+      "L2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "cs"
+      },
+      "B3": {
+        "value": "cs"
+      },
+      "C3": {
+        "value": "cs"
+      },
+      "D3": {
+        "value": "cs"
+      },
+      "E3": {
+        "value": "cs"
+      },
+      "F3": {
+        "value": "cs"
+      },
+      "G3": {
+        "value": "cs"
+      },
+      "H3": {
+        "value": "cs"
+      },
+      "I3": {
+        "value": "cs"
+      },
+      "J3": {
+        "value": "cs"
+      },
+      "K3": {
+        "value": "cs"
+      },
+      "L3": {
+        "value": "cs"
+      }
+    },
+    "4": {
+      "B4": {
+        "value": "解锁条件类型(或关系)\n0、玩家等级\n1、疯狂探险某章节完成\n2、疯狂探险开启天数\n3、世界地图某建筑解锁"
+      },
+      "C4": {
+        "value": "解锁参数"
+      },
+      "D4": {
+        "value": "解锁条件类型(或关系)\n0、玩家等级\n1、疯狂探险某章节完成\n2、疯狂探险开启天数\n3、世界地图某建筑解锁"
+      },
+      "E4": {
+        "value": "解锁参数"
+      },
+      "F4": {
+        "value": "解锁条件类型(或关系)\n0、玩家等级\n1、疯狂探险某章节完成\n2、疯狂探险开启天数\n3、世界地图某建筑解锁"
+      },
+      "G4": {
+        "value": "解锁参数"
+      },
+      "H4": {
+        "value": "解锁条件类型(或关系)\n0、玩家等级\n1、疯狂探险某章节完成\n2、疯狂探险开启天数\n3、世界地图某建筑解锁"
+      },
+      "I4": {
+        "value": "解锁参数"
+      },
+      "J4": {
+        "value": "//描述（主要方便策划看）"
+      },
+      "K4": {
+        "value": "//图标，不需要显示的不要配置"
+      },
+      "L4": {
+        "value": "是否显示\n1显示0不显示"
+      }
+    }
+  },
+  "dev/CardCollectSimulator": {
+    "1": {
+      "A1": {
+        "value": "id"
+      },
+      "B1": {
+        "value": "simulateTimes"
+      },
+      "C1": {
+        "value": "vipLevel"
+      },
+      "D1": {
+        "value": "level"
+      },
+      "E1": {
+        "value": "roomId"
+      },
+      "F1": {
+        "value": "isPrestige"
+      },
+      "G1": {
+        "value": "startDay"
+      },
+      "H1": {
+        "value": "dailyGameCount"
+      },
+      "I1": {
+        "value": "maxChapter"
+      },
+      "J1": {
+        "value": "maxProcess"
+      },
+      "K1": {
+        "value": "totalGameCount"
+      },
+      "L1": {
+        "value": "roundRate_5_0"
+      },
+      "M1": {
+        "value": "roundRate_5_1"
+      },
+      "N1": {
+        "value": "roundRate_5_2"
+      },
+      "O1": {
+        "value": "roundRate_5_3"
+      },
+      "P1": {
+        "value": "roundRate_5_4"
+      }
+    },
+    "2": {
+      "A2": {
+        "value": "int_key"
+      },
+      "B2": {
+        "value": "int"
+      },
+      "C2": {
+        "value": "int"
+      },
+      "D2": {
+        "value": "int"
+      },
+      "E2": {
+        "value": "int"
+      },
+      "F2": {
+        "value": "int"
+      },
+      "G2": {
+        "value": "int"
+      },
+      "H2": {
+        "value": "int"
+      },
+      "I2": {
+        "value": "int"
+      },
+      "J2": {
+        "value": "int"
+      },
+      "K2": {
+        "value": "int"
+      },
+      "L2": {
+        "value": "int"
+      },
+      "M2": {
+        "value": "int"
+      },
+      "N2": {
+        "value": "int"
+      },
+      "O2": {
+        "value": "int"
+      },
+      "P2": {
+        "value": "int"
+      }
+    },
+    "3": {
+      "A3": {
+        "value": "s"
+      },
+      "B3": {
+        "value": "s"
+      },
+      "C3": {
+        "value": "s"
+      },
+      "D3": {
+        "value": "s"
+      },
+      "E3": {
+        "value": "s"
+      },
+      "F3": {
+        "value": "s"
+      },
+      "G3": {
+        "value": "s"
+      },
+      "H3": {
+        "value": "s"
+      },
+      "I3": {
+        "value": "s"
+      },
+      "J3": {
+        "value": "s"
+      },
+      "K3": {
+        "value": "s"
+      },
+      "L3": {
+        "value": "s"
+      },
+      "M3": {
+        "value": "s"
+      },
+      "N3": {
+        "value": "s"
+      },
+      "O3": {
+        "value": "s"
+      },
+      "P3": {
+        "value": "s"
+      }
+    },
+    "4": {
+      "A4": {
+        "value": "模拟配置ID"
+      },
+      "B4": {
+        "value": "模拟次数"
+      },
+      "C4": {
+        "value": "vip"
+      },
+      "D4": {
+        "value": "角色等级"
+      },
+      "E4": {
+        "value": "房间id"
+      },
+      "F4": {
+        "value": "是否模拟进阶"
+      },
+      "G4": {
+        "value": "距离赛季开始天数"
+      },
+      "H4": {
+        "value": "每天牌局数上限"
+      },
+      "I4": {
+        "value": "收集章节上限"
+      },
+      "J4": {
+        "value": "收集进度上限"
+      },
+      "K4": {
+        "value": "单次模拟总牌局数上限"
+      },
+      "L4": {
+        "value": "每大局1小局概率百分比"
+      },
+      "M4": {
+        "value": "每大局2小局概率百分比"
+      },
+      "N4": {
+        "value": "每大局3小局概率百分比"
+      },
+      "O4": {
+        "value": "每大局4小局概率百分比"
+      },
+      "P4": {
+        "value": "每大局5小局概率百分比"
+      }
+    }
+  }
+}
