@@ -272,7 +272,7 @@ entries:
     canonical_file: "tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md"
     file: "tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md"
     title: "Huuuge 单实例云端游戏与采集闭环"
-    status: "In Progress"
+    status: "Review"
     project_key: "HUUUGE"
     human_alias: ""
     owner: "User / ChatGPT"

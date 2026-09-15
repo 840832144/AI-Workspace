@@ -6,6 +6,7 @@
 
 - 按 Issue #1 v3 与 User 授权，在独立 worktree 完成 scan/validate、防重及 remote-CAS 登记。资源未就绪，先做代码和部署准备；三项真实云端验收均待资源。
 - 业务实现保持在 huuuge-android-research；本仓库仅保存 Task、Status 和 Handoff。未改变晨会服务、本地采集部署或其他任务。
+- 准备代码已交业务 PR #2（`9bb241b`），Linux CI 14/14 合成检查通过。Task 标为准备 Review，真实三步仍待资源；reservation 保持 pending-main。
 
 ## 2026-09-09 — TASK-0029 有限文档试用 Accepted
 

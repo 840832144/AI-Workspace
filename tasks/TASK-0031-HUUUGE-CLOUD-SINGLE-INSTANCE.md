@@ -1,6 +1,6 @@
 # TASK-0031 — Huuuge 单实例云端游戏与采集闭环
 
-- Status: In Progress
+- Status: Review
 - Project key: HUUUGE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -45,4 +45,10 @@
 
 ## 交付与下一步
 
-实施真相源：[huuuge-android-research](https://github.com/840832144/huuuge-android-research)。代码与适用 Status/COLLAB_LOG/TASKS/CHANGELOG 同步提交；治理侧更新本 Task、项目 Status 与 Handoff，提交 ChatGPT Review。User/技术提供资源和受控入口后续接本 Task，不重复分配。
+本状态只表示**准备代码与说明 Review**，真实云端闭环仍待资源，不是 Complete/Accepted。
+
+- 实施 [PR #2](https://github.com/840832144/huuuge-android-research/pull/2)，代码 commit `9bb241b`；中文[部署说明](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-cloud-single-instance/deploy/cloud/README.md)和[验收记录](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-cloud-single-instance/deploy/cloud/ACCEPTANCE.md)已提交。
+- Linux [CI 34957001266](https://github.com/840832144/huuuge-android-research/actions/runs/34957001266) 14/14 合成检查通过：实际 decoder 子进程、损坏 wrapper 保留、断连失败、单运行锁、SIGTERM、supervisor 启停与最终文件回读；没有真实云手机数据。
+- 业务 Status/COLLAB_LOG/TASKS/CHANGELOG/Handoff 均已更新。仅在云端部署所需的 Linux controller、配置模板和现有 decoder 异常处理有代码变更，未运行本机采集或修改晨会。
+- 缺少资源与受控入口，以及云端当前 build/ABI、匹配 descriptor、网页 User 操作证据。技术提供后继续本 Task 的三项验收，不重新分配。
+- reservation 保持 pending-main，待 Review 后 canonical 进入共享 main，再由本独立 worktree 使用本机 reservation 元数据 finalize；不提前释放或伪称已合入 main。
