@@ -272,7 +272,7 @@ entries:
     canonical_file: "tasks/TASK-0028-EARLYMEETING.md"
     file: "tasks/TASK-0028-EARLYMEETING.md"
     title: "EarlyMeeting 本机回调与本人行同卡填写"
-    status: "In Progress"
+    status: "Review"
     project_key: "EARLYMEETING"
     human_alias: ""
     owner: "User / ChatGPT"

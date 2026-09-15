@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-15 — TASK-0028 公司Linux正式切换
+
+- 2026-09-15 公司云端正式切换完成：[EarlyMeeting@b9968b8](https://github.com/840832144/EarlyMeeting/commit/b9968b8dc8d192b09e1cd191160728d1b51fe833) / [公司技术维护入口](https://github.com/840832144/EarlyMeeting/blob/b9968b8dc8d192b09e1cd191160728d1b51fe833/docs/LINUX_SYSTEMD.md)。技术确认SSH指纹、User明确批准切换后，Codex正常停止Windows，迁移两群当天完整状态，再启动公司Linux用户级systemd服务；真实CONNECTED/READY，两群原卡保留、无新发或模拟群操作，本机启动器已加防重复运行保护。工作日09:30、群隔离、本人权限、群2AI及当天状态清理保留；维护日志已生成，归档配置从2026-09-16生效。运行代码de8b267通过Linux CI 34927676289；公司现场已验证服务运行和断开SSH后持续连接，真实员工回调/AI、明日准点发卡/归档、服务器重启及实际回退尚未验证，详细证据仅在EarlyMeeting。TASK-0028返回Review、reservation pending-main，不标记Done；Registry15 canonical / 0 collision / valid，无重复Task。Subagents: none。当前部署收尾直接更新Task/Handoff，不新建Roadmap方向、Candidate或Future Task。
+
 ## 2026-09-15 — TASK-0028 云端维护及每日归档
 
 - 2026-09-15 User追加云端移植与维护：仍沿用TASK-0028；[EarlyMeeting@f2ec13d](https://github.com/840832144/EarlyMeeting/commit/f2ec13dc2fdb9e4be7f1e8d521175f0b1fbdc0fa) / [一键维护与归档入口](https://github.com/840832144/EarlyMeeting/blob/f2ec13dc2fdb9e4be7f1e8d521175f0b1fbdc0fa/docs/LINUX_OPERATIONS.md)。User提供受控SSH配置，改由Codex执行公司Linux移植，并批准起停日志、一键操作与从2026-09-16起保存分群每日已提交记录归档；当日运行状态清理及原两群/09:30/群2AI保留。运行代码06c1305已通过Linux CI 34926919423的20项针对性检查、两轮Compose启停/重建及持久脱敏日志检查。SSH仅握手成功，技术尚未确认首次主机指纹，严格校验在发送密码前停止；没有认证登录、停止Windows实例或在正式群发测试卡。代码交Review；迁移工作仍In Progress，待指纹核验、服务器只读检查和明确维护窗口。凭据、主机信息、记录、日志及业务实现仅留EarlyMeeting受控环境；没有新任务编号、Roadmap方向或Future Task。Registry15 canonical / 0 collision / valid，reservation pending-main。Subagents: none。
