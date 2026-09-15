@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-15 — TASK-0028 云端维护及每日归档
+
+- 2026-09-15 User追加云端移植与维护：仍沿用TASK-0028；[EarlyMeeting@f2ec13d](https://github.com/840832144/EarlyMeeting/commit/f2ec13dc2fdb9e4be7f1e8d521175f0b1fbdc0fa) / [一键维护与归档入口](https://github.com/840832144/EarlyMeeting/blob/f2ec13dc2fdb9e4be7f1e8d521175f0b1fbdc0fa/docs/LINUX_OPERATIONS.md)。User提供受控SSH配置，改由Codex执行公司Linux移植，并批准起停日志、一键操作与从2026-09-16起保存分群每日已提交记录归档；当日运行状态清理及原两群/09:30/群2AI保留。运行代码06c1305已通过Linux CI 34926919423的20项针对性检查、两轮Compose启停/重建及持久脱敏日志检查。SSH仅握手成功，技术尚未确认首次主机指纹，严格校验在发送密码前停止；没有认证登录、停止Windows实例或在正式群发测试卡。代码交Review；迁移工作仍In Progress，待指纹核验、服务器只读检查和明确维护窗口。凭据、主机信息、记录、日志及业务实现仅留EarlyMeeting受控环境；没有新任务编号、Roadmap方向或Future Task。Registry15 canonical / 0 collision / valid，reservation pending-main。Subagents: none。
+
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
 ## 2026-09-15 — TASK-0028 Linux技术交接

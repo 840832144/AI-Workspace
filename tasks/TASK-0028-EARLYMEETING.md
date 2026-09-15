@@ -1,6 +1,6 @@
 # TASK-0028 — EarlyMeeting 本机回调与本人行同卡填写
 
-- Status: Review
+- Status: In Progress
 - Project key: EARLYMEETING
 - Human alias: 
 - Owner: User / ChatGPT
@@ -14,9 +14,11 @@
 
 ## Goal
 
-在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日发卡。从2026-09-11起北京时间09:30每群每天一张，替代09:40。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭；本机晨会记录仅保留北京时间当天，启动及跨天自动清理旧日数据。飞书群历史消息保留。另已交付Linux常驻版本和技术交接，实际公司部署及Windows→Linux切换由技术按文档执行。
+在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日发卡。从2026-09-11起北京时间09:30每群每天一张，替代09:40。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭；本机晨会记录仅保留北京时间当天，启动及跨天自动清理旧日数据。飞书群历史消息保留。另已交付Linux常驻版本和技术交接，User已追加授权由Codex实施公司Linux移植，并从2026-09-16起增加已提交记录归档和维护日志；待主机身份确认及维护窗口，尚未上线。
 
 ## Scope
+
+2026-09-15 User追加云端移植与维护：仍沿用TASK-0028；[EarlyMeeting@f2ec13d](https://github.com/840832144/EarlyMeeting/commit/f2ec13dc2fdb9e4be7f1e8d521175f0b1fbdc0fa) / [一键维护与归档入口](https://github.com/840832144/EarlyMeeting/blob/f2ec13dc2fdb9e4be7f1e8d521175f0b1fbdc0fa/docs/LINUX_OPERATIONS.md)。User提供受控SSH配置，改由Codex执行公司Linux移植，并批准起停日志、一键操作与从2026-09-16起保存分群每日已提交记录归档；当日运行状态清理及原两群/09:30/群2AI保留。运行代码06c1305已通过Linux CI 34926919423的20项针对性检查、两轮Compose启停/重建及持久脱敏日志检查。SSH仅握手成功，技术尚未确认首次主机指纹，严格校验在发送密码前停止；没有认证登录、停止Windows实例或在正式群发测试卡。代码交Review；迁移工作仍In Progress，待指纹核验、服务器只读检查和明确维护窗口。凭据、主机信息、记录、日志及业务实现仅留EarlyMeeting受控环境；没有新任务编号、Roadmap方向或Future Task。Registry15 canonical / 0 collision / valid，reservation pending-main。Subagents: none。
 
 2026-09-15 Linux交接完成：[EarlyMeeting@7887c1b](https://github.com/840832144/EarlyMeeting/commit/7887c1b4f0284e4d5796babbbed2e6865cf09b75) / [技术接手入口](https://github.com/840832144/EarlyMeeting/blob/7887c1b4f0284e4d5796babbbed2e6865cf09b75/docs/LINUX_HANDOFF.md)。沿用原TASK-0028与PR #4；最终运行代码0d4a70b在Ubuntu24.04/Linux CI 34922786869通过17项针对性检查及两轮禁网Compose启停/重建，镜像与交接产物已交付。公司服务器部署、生产切换及真实回调未执行，交技术按文档确认；本轮未停止或更新User本机、未向正式群测试发卡。现行两群/09:30/群2AI/当天状态规则保留，实现和证据仅在EarlyMeeting。Task返回Review，reservation pending-main，未Done；Registry15 canonical / 0 collision / valid，未另建任务。Subagents: none。
 
