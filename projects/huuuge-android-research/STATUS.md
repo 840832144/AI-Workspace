@@ -1,5 +1,12 @@
 # Huuuge Android Research — Project Status
 
+## 2026-09-15 — 单实例云端准备
+
+- [TASK-0031](../../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md)：Review（代码与说明准备），关联业务 Issue #1 v3；User 确认资源尚未就绪。
+- 业务 [PR #2](https://github.com/840832144/huuuge-android-research/pull/2) / 代码 `9bb241b` 已提交，Linux CI 14/14 合成检查通过；不代表云手机或真实数据验收。
+- 最新业务同步基线 `759669b`；云端游戏、真实新增解码、停止保存三项均未执行，不能沿用历史本机结果。
+- [本轮 Handoff](../../handoff/TASK-0031-HUUUGE-CLOUD.md)。已有 Lottery/First Run 记录属于各自历史任务；本轮不恢复其执行范围。
+
 - Updated: 2026-08-27
 - Phase: Lottery numerical report Review Round 2；First Run validation remains parallel
 - Owner: User
