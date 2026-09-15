@@ -2,6 +2,11 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-15 — TASK-0031 单实例云端 Huuuge
+
+- 按 Issue #1 v3 与 User 授权，在独立 worktree 完成 scan/validate、防重及 remote-CAS 登记。资源未就绪，先做代码和部署准备；三项真实云端验收均待资源。
+- 业务实现保持在 huuuge-android-research；本仓库仅保存 Task、Status 和 Handoff。未改变晨会服务、本地采集部署或其他任务。
+
 ## 2026-09-09 — TASK-0029 有限文档试用 Accepted
 
 - 验收记录已合入两仓库共享 main，canonical 进入 main 后 allocator 返回 TASK-0029 finalized；本轮结项。
