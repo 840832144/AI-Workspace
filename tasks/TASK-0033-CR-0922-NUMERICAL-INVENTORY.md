@@ -1,7 +1,7 @@
 # TASK-0033 — CR 9.22 全数值整理
 
-- Status: Review
-- Execution status: 固定 trunk 盘点和可复算部分已交付；22项口径缺口待补充，等待 ChatGPT Review
+- Status: Changes Requested
+- Execution status: ChatGPT Round 1 Needs changes；仅处理 R1/R2，固定 trunk r6961，原 reservation 保持 pending-main
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -45,6 +45,8 @@
 - 按项目规则运行 catalog、validate_repository 及相关最小校验；Task/Status/Handoff 随状态更新，Registry 由工具重建。最终提交/推送候选分支并交 ChatGPT Review，不自行合并或写 Accepted。
 
 ## 当前进展与下一步
+
+2026-09-16 已接收并落库 [ChatGPT Review Round 1](../reviews/TASK-0033-CHATGPT-REVIEW-1.md)，评审基线 `04f7b2953dfbd792523ee89778f2fc1d0fc9562f`，结论 Needs changes。状态从 Review 转 Changes Requested；User 仅授权 R1 特殊 RTP 阅读层和 R2 源错误缓存/最终 XLSX 计数修订，不新建 Task。下方首轮交付记录中的公式数量误报由 R2 纠正，不作为修订后的验收结果。完整数值和受控附录不进入 public Git。
 
 本轮统一读取trunk r6961，锁定时间为2026-09-16 17:58:52（北京时间）；trunk最近内容提交r6918。965个工作簿目录已登记，862个工作簿提取177102行、11850字段、1736156个非空/公式单元格；210份机台/地图JSON中209份可提取，1份语法读取缺口，44份其他文件只列目录。没有使用dev、101或历史资料数值。
 

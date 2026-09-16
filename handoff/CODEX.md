@@ -1,5 +1,11 @@
 # Codex Handoff
 
+## 2026-09-16 — TASK-0033 Round 1 修订进行中
+
+- [完整 Review](../reviews/TASK-0033-CHATGPT-REVIEW-1.md)已落库：Needs changes，基线04f7b29；Task已转Changes Requested。
+- 仅修R1特殊RTP阅读层、R2源缓存错误分类与最终XLSX自动计数；固定trunk r6961，完整数值/受控附录留本机。原reservation不变，不新建Task、不合并、不finalize；Subagents: none。
+- 下方首轮交付为历史候选记录，公式数量误报将在R2统一纠正；不能据此视为Round 2已通过。
+
 ## 2026-09-16 — TASK-0033 CR 9.22 数值整理待Review
 
 - [TASK-0033](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)：Review；独立分支 `codex/cr-0922-numerical-inventory`，基线 `a75630a`，原reservation pending-main，Subagents: none。
