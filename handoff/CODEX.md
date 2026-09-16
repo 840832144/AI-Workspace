@@ -1,5 +1,14 @@
 # Codex Handoff
 
+## 2026-09-16 — TASK-0033 CR 9.22 数值整理待Review
+
+- [TASK-0033](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)：Review；独立分支 `codex/cr-0922-numerical-inventory`，基线 `a75630a`，原reservation pending-main，Subagents: none。
+- trunk r6961已固定读取，时间2026-09-16 17:58:52（北京时间）；不得以新HEAD补部分输入，不混dev/101/历史附件。
+- [报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)说明15页总表、完整CSV/JSON、资源关系、22项缺口及两份只读工具。完整数值在本机受控包，禁止顺手加入public Git。
+- 输出公式与Python比对、源格独立抽核和15页视觉检查已完成；源外链、缺缓存、JSON语法读取缺口及业务状态定义未补齐，不据此修改源表。等待ChatGPT Review和对应策划/配置负责人补充。
+- 本轮不改配置、不冻结/发布，不选活动组合、不设优化目标、不做技术/线上运营审计；附件v0.1不能扩大最新User授权。日常Git仍只写projects/cr，公司SVN正式流程不变。
+- 不合并候选、不提前finalize，不改权限、不归档/删除旧库；保留下方已有交接，不覆盖并发PR #2/#4内容。
+
 ## 2026-09-16 — TASK-0032：已合并并切换单仓入口
 
 PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5) 已按 User 最终授权于 2026-09-16 15:03:31（北京时间）使用 Create a merge commit 合并，merge commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`。当前日常入口为 AI-Workspace `main`，CR 资料与工具只写 `projects/cr/`；原 reservation 已 finalize。旧 cr_design 保留，不归档、不删除，权限不变。

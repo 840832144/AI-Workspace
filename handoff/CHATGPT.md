@@ -1,5 +1,14 @@
 # ChatGPT Handoff
 
+## 2026-09-16 — TASK-0033 CR 9.22 数值整理待Review
+
+- [TASK-0033](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)：Review；固定trunk r6961，读取2026-09-16 17:58:52（北京时间）；Subagents: none。
+- [整理报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)提供范围、版本、完整交付文件名、方法和验证。完整15页总表、资源关系、明细与22项缺口仅保存在本机受控复核包，未上传public Git。
+- 请复核表/字段/行ID追溯、概率分母、阶段清零、枚举隔离、状态期望和毛下注/机器净耗/实付区别。不能把读取完成称为数值全部闭合；不得用历史资料补当前缺口。
+- 新总表5700个公式缓存与Python结果一致、19909个数值一致，16个关键源格独立读取通过；源外链/缺缓存未独立复跑，完整机台/活动整轮EV尚未建立。ChatGPT Review尚未执行。
+- User只授权现值整理/复算；不设优化目标、不选四活动组合或排期、不改配置、不作SVN提交/冻结/发布；排除广告、生命周期、线上运营与技术审计。附件v0.1扩展指令不覆盖本轮User范围。
+- 候选 `codex/cr-0922-numerical-inventory` 待Review；原reservation pending-main，不重新分配、不提前finalize。既有TASK-0032合并/切换事实及下方其他任务交接保持历史。
+
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
 ## 2026-09-16 — TASK-0032：已合并并切换单仓入口

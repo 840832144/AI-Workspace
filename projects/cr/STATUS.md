@@ -1,5 +1,17 @@
 # CR 当前状态
 
+## 2026-09-16 — TASK-0033 CR 9.22 全数值整理
+
+- Task：[TASK-0033](../../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)，Review；Executor: Codex；Subagents: none。
+- 执行状态：trunk r6961固定版本盘点和可复算部分已交付，22项口径缺口保留，等待ChatGPT复核；未授权调参、冻结提交或发布。
+- 读取时间：2026-09-16 17:58:52（北京时间）；唯一来源为公司SVN trunk，同轮不混dev、101或历史数字。
+- 产物：[报告及交付导航](REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)。完整数值总表/资源关系/公式/缺口在本机受控包，public Git仅保留工具和脱敏交接。
+- 机器美金Bet>1沿用85%、<1沿用95%；=1及配置冲突待确认。薯片、777、拳击、挖矿分别整理，组合与排期未定，通常同时两个，不默认四个全开。
+- 2026-09-19为User期望的最晚冻结节点；本Task只提供依据。无源配置写入、SVN提交、数据采集、技术审计、部署或权限变更。
+- Git日常仍只写AI-Workspace/projects/cr/；原reservation pending-main，候选待Review，不合并、不提前finalize。
+
+## 历史完成记录 — TASK-0032 单仓切换
+
 PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5) 已按 User 最终授权于 2026-09-16 15:03:31（北京时间）使用 Create a merge commit 合并，merge commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`。当前日常入口为 AI-Workspace `main`，CR 资料与工具只写 `projects/cr/`；原 reservation 已 finalize。旧 cr_design 保留，不归档、不删除，权限不变。
 
 - 更新时间：2026-09-16
