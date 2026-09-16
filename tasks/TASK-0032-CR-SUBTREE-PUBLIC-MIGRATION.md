@@ -1,7 +1,7 @@
 # TASK-0032 — CR 并入 AI-Workspace 的 public subtree 迁移
 
-- Status: Review
-- Execution status: Blocked before import; waiting for User history-cleaning decision
+- Status: In Progress
+- Execution status: Resumed; original-history import authorized
 - Project key: WORKSPACE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -18,6 +18,8 @@
 将 `840832144/cr_design` 以保留历史的 git subtree 原样导入 AI-Workspace 的 `projects/cr/`，单独适配规则、资料、Skills 与分析工具，实现一次克隆即可使用的 CR 策划入口，交付候选分支和 PR 等待 Review。
 
 ## Contract 与授权
+
+2026-09-16 User 后续明确决定：已报告的 `Top_Tycoon原始事件账.xlsx`、`Top_Tycoon数值模型.xlsx`、`Top_Tycoon数值模型_v0.2.xlsx` 及其中原始 Spin、金币前后值、逐笔资源记录允许入库，不再阻塞迁移。保留原始 Git 历史，不清洗这三份文件。User 同时要求省去多余哈希校验；不新增或重复文件哈希扫描，使用直接 diff、祖先关系及实际工具运行验证。其余凭据、账号、私有 Registry 和未批准敏感内容限制继续适用。
 
 完整方案、公开决定、范围、验收和回滚均见 [RFC-0005](../docs/rfc/RFC-0005-CR-Subtree-Public-Migration.md)。User 明确要求 AI-Workspace 迁移期间及合并后保持 public，之后自行调整；不修改任何仓库可见性/协作者或外部分享权限。最终合并和旧库归档未获授权。
 

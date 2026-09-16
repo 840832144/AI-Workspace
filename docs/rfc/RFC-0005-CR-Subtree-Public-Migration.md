@@ -1,12 +1,14 @@
 # RFC-0005：CR 资料与分析工具并入 AI-Workspace
 
-- Status: Accepted scope / Blocked before import
+- Status: Accepted scope / Implementation resumed
 - Date: 2026-09-16
 - Actors: User, Codex；最终 Review：ChatGPT / User
 - Task: [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)
 - Subagents: none
 
 ## 目标与已批准决定
+
+2026-09-16 补充决定：User 明确允许审查指出的三份 Top Tycoon 工作簿及其原始 Spin / 金币前后值 / 逐笔资源数据公开入库，不再因此阻塞；这些文件及原 Git 历史保持原样。历史清洗提案不采用。User 要求避免额外哈希校验，本次用 Git diff、来源 commit 和祖先关系，加必要功能校验验收；不重复备份哈希或文件摘要扫描。此例外仅适用于明确批准的材料，不允许上传凭据、私有 Registry 或其他未授权敏感内容。
 
 User 明确要求将 `840832144/cr_design` 并入 `840832144/AI-Workspace` 的 `projects/cr/`，使 Agent 只克隆 AI-Workspace 就能读取全局规则、CR 策划资料、Skills 与分析工具。目标仓库在迁移期间及合并后保持 public；后续可见性由 User 自行调整。来源为 private 不构成单独阻塞理由。不得修改任一仓库的可见性、协作者权限或飞书及其他外部分享权限。
 
