@@ -1,12 +1,13 @@
 # CR 迁移清单与验收
 
-PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，分支已推送，等待 Review。必须使用 merge commit 保留 CR 导入历史；最终合并、切换与旧库归档仍待 User 确认。
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，ChatGPT Review Round 1 已 Accepted（基线 `83eadec`）；等待 User 批准最终合并与切换。须使用 merge commit 保留 CR 导入历史；本轮不合并、不切换、不 finalize，旧库归档仍需另行授权。
 
 - 日期：2026-09-16
 - Task：[TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)
 - 方案：[RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md)；决策：[ADR-0008](../adr/ADR-0008-CR-Single-Repository.md)
 - 分支：`codex/cr-subtree-migration`；独立 linked worktree。
-- 状态：全新克隆验收通过，候选等待 PR Review；尚未合并或切换。
+- 状态：ChatGPT Review Round 1 Accepted；等待 User 批准最终合并与切换。
+- 评审：[完整 Round 1](../../reviews/TASK-0032-CHATGPT-REVIEW-1.md)，基线 `83eadec13cb4a03fa5b75de8dcbdd1f83cb61048`；评审未独立复跑测试、工作簿检查或备份恢复，也未重复历史敏感内容审查。以下验收结果保留原执行来源，不能作为本轮独立执行或 GitHub CI 证据。
 - Subagents: none
 
 ## 来源与历史保留
@@ -111,7 +112,7 @@ python ../../tools/memory/memory_cli.py refresh
 
 已从最新 main 完成防重与 remote-CAS 正式分配，TASK-0032 reservation 保持 pending-main，只有 canonical 合入 main 后才能 finalize，不提前 release。开放 PR #2 EarlyMeeting / #4 Huuuge 及 TASK-0030 Pop Slots 具有共享入口潜在冲突；本分支不覆盖它们，合并前再次核对并发与来源增量。
 
-仍待完成：PR Review、User 确认最终合并与切换、canonical 进入 main 后 finalize、旧库是否归档。发布前再次 fetch：两仓 main SHA 与表中基线一致；AI-Workspace PUBLIC、cr_design PRIVATE；开放 PR 仍为 #2 和 #4。Context provider unavailable 不影响离线迁移；未发布云文档、未上传 Project Sources，也未扩大任何外部权限。
+Round 1 已 Accepted。仍待完成：User 批准最终合并与切换、canonical 进入 main 且合并后核验完成才 finalize、旧库是否归档。发布前再次 fetch：两仓 main SHA 与表中基线一致；AI-Workspace PUBLIC、cr_design PRIVATE；开放 PR 仍为 #2 和 #4。Context provider unavailable 不影响离线迁移；未发布云文档、未上传 Project Sources，也未扩大任何外部权限。
 
 ## 回滚步骤
 

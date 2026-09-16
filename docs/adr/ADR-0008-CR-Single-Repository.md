@@ -3,7 +3,7 @@
 - Status: Accepted
 - Date: 2026-09-16
 - Decision owner: User
-- Implementation: TASK-0032，候选等待 Review；本决策不等于已合并。
+- Implementation: TASK-0032，ChatGPT Review Round 1 已 Accepted；等待 User 批准最终合并与切换，本决策不等于已合并。
 - Related RFC: [RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md)
 - Supersedes: 仅替代旧架构对 CR 必须独立 Git 仓库/不得纳入设计工具的限定，其他项目真相源不变。
 

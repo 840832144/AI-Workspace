@@ -1,9 +1,9 @@
 # TASK-0032 — CR 并入 AI-Workspace 的 public subtree 迁移
 
-PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，分支已推送，等待 Review。必须使用 merge commit 保留 CR 导入历史；最终合并、切换与旧库归档仍待 User 确认。
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，ChatGPT Review Round 1 已 Accepted（基线 `83eadec`）；等待 User 批准最终合并与切换。须使用 merge commit 保留 CR 导入历史；本轮不合并、不切换、不 finalize，旧库归档仍需另行授权。
 
-- Status: Review
-- Execution status: Fresh-clone acceptance passed; awaiting PR Review
+- Status: Accepted
+- Execution status: 等待 User 批准最终合并与切换
 - Project key: WORKSPACE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -43,12 +43,17 @@ PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，分�
 | 原样导入 | 已完成 | `fe07557` 非 squash；276 文件直接 diff 为空，来源13提交成为祖先 |
 | 单独适配 | 已完成 | 根/CR规则、四启动文件、三 Agent 入口、路由、上下文及同步路径 |
 | 全新克隆验收 | 已通过 | 仅候选 AI-Workspace、根/CR 两入口、catalog/repository/卡包/相关校验、源表不变 |
-| 推送/PR | 验收通过，提交 Review | commit、PR、merge commit 要求；不自行 squash/rebase/merge |
+| 推送/PR | Round 1 Accepted | 基线 `83eadec`，完整评审见 [Round 1](../reviews/TASK-0032-CHATGPT-REVIEW-1.md)；不自行 squash/rebase/merge |
 
 ## 限制
 
 除上方明确批准的三个工作簿记录外，Secret、账号信息、未批准原始采集数据、完整响应、逐笔余额、私有 Registry 和敏感日志禁止发布；任一发现即暂停发布并报告，不输出值，不静默清洗历史。保持 CR 结构、唯一 Skill 正文与历史来源映射。公司 SVN 仍是正式配置提交权威，不重建退役快照，不将 HuuugeCollector 副本升格，不混用 CR/101。不得执行同步 `--apply`、SVN 提交、真实采集、部署或修改源表。
 
+## ChatGPT Review Round 1
+
+[完整评审](../reviews/TASK-0032-CHATGPT-REVIEW-1.md)已从 PR 已发布正文固化，评审基线为 `83eadec13cb4a03fa5b75de8dcbdd1f83cb61048`，结论 Accepted，无必须修改项。
+证据限制：Review 未独立复跑81项测试、工作簿检查或本机备份恢复，亦未重复完整历史敏感内容审查；这些运行结果来自原迁移报告，不是本轮独立执行或 GitHub CI。此次收口不修改已评审的业务工具、Skill 路由或源资料。
+
 ## 下一步
 
-全新克隆验收结果已回填 [迁移报告](../docs/migrations/CR-MIGRATION-20260916.md)：14源表、36卡包附件、845935单元格、81项测试通过。提交保留历史的 PR 等待 Review。最终合并、切换与旧库归档仍需 User 确认；Task reservation 保持 pending-main，不重新分配或提前 finalize。
+等待 User 批准最终合并与切换。批准后才复查两仓 main 与并发变更，使用 merge commit 合并；合并后核验来源祖先关系和入口，再按既有流程 finalize。当前保持 PR #5 候选分支，reservation pending-main，不重新分配、不提前 finalize，不修改权限、不删除或归档旧库。
