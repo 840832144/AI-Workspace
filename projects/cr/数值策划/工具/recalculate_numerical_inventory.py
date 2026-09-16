@@ -17,6 +17,55 @@ from pathlib import Path
 from typing import Any
 
 QUEST = {4: '薯片', 5: '777', 8: '拳击', 9: '挖矿'}
+EXCEL_ERRORS = frozenset({'#REF!', '#DIV/0!', '#VALUE!', '#NAME?', '#NUM!', '#N/A', '#NULL!',
+                          '#SPILL!', '#CALC!', '#GETTING_DATA', '#FIELD!', '#BLOCKED!',
+                          '#UNKNOWN!', '#CONNECT!', '#BUSY!', '#PYTHON!'})
+
+
+def source_formula_evidence(dataset: dict) -> dict[str, list[dict]]:
+    """独立分类；外链可与缓存状态重叠，说明字段错误不证明发奖/运行故障。"""
+    result: dict[str, list[dict]] = {'missing': [], 'errors': [], 'external': []}
+    for sheet in dataset['sheets']:
+        for row in sheet['records']:
+            formulas = row.get('_formulas', {})
+            for meta in sheet['fields']:
+                field = meta['key']
+                value, formula = row.get(field), formulas.get(field)
+                categories = []
+                if field in formulas and value is None:
+                    categories.append('missing')
+                if isinstance(value, str) and value in EXCEL_ERRORS:
+                    categories.append('errors')
+                if formula and '[' in formula and ']' in formula:
+                    categories.append('external')
+                if not categories:
+                    continue
+                evidence = {'表': Path(dataset['file']).stem, 'Sheet': sheet['name'],
+                            'Excel行': row['_excel_row'], '单元格': meta['column'] + str(row['_excel_row']),
+                            '行ID': row['_row_id'], '字段': field, '字段注释': meta['comment'],
+                            '公式': formula, '缓存现行值': value, 'revision': dataset['revision'],
+                            '判断边界': '源文件载值；不自动补0或修源表，不据说明字段推断派奖或运行故障'}
+                for category in categories:
+                    result[category].append(evidence.copy())
+    return result
+
+
+def special_rtp_reading(source: dict, revision: int) -> list[dict]:
+    """逐行照录，不以 id 去重；枚举解释仅来自这张表的注释。"""
+    metas = {m['key']: m for m in source['fields']}
+    comment = metas['rtpTier']['comment']
+    enum = {m.group(1): m.group(2).strip() for line in comment.splitlines()
+            if (m := re.match(r'^\s*(\d+)\s*[:：]\s*(.+)$', line))}
+    fields = ['id', 'minUnlockLevel', 'maxUnlockLevel'] + [f'activityId_5_{i}' for i in range(5)] + ['rtpTier']
+    return [{**{field: row.get(field) for field in fields},
+             '本行rtpTier注释解释': enum.get(str(row.get('rtpTier')), '本表未说明；待确认'),
+             'rtpTier本表完整注释': comment,
+             '活动条件原注释': metas['activityId_5_0']['comment'],
+             '适用条件与单位': '等级上下界及活动ID均为本表原值；rtpTier是档位枚举，注释百分比不是已确认实际RTP；空值保持空',
+             '优先级与生效缺口': 'G01/G02：与常规User规则的优先级、边界和实际生效未确认；活动注释比例不合并进机器RTP',
+             'Excel行': row['_excel_row'], 'revision': revision,
+             '来源': f'SlotsCasinoNewbieConfig.xlsx/{source["name"]}/行{row["_excel_row"]};{row["_row_id"]};r{revision}'}
+            for row in source['records']]
 
 def num(x: Any) -> bool:
     return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x)
@@ -108,13 +157,15 @@ def main() -> None:
     save('复算_Bet全条件', bet)
     first_context = (min(rates)[0], min(rates)[1])
     save('复算_Bet阅读示例', [r for r in bet if (r['等级档'], r['VIP']) == first_context], 'Bet换算',
-         '仅配置首个等级/VIP档的五种Bet列；全档见复算_Bet全条件.csv。不是机器绑定结论。',
+         '仅配置首个等级/VIP档的五种Bet列；全档见复算_Bet全条件.csv。User常规规则；另见特殊RTP条件页，优先级待G01/G02。',
          formulas={'G': '=IF(F{r}>0,E{r}/F{r},"缺口")', 'H': '=IF(ISNUMBER(G{r}),IF(G{r}>1,0.85,IF(G{r}<1,0.95,"等于1待确认")),"缺口")'})
     switches = rows('SlotsCasinoResultSwitchStrategy')
     diagnostics['rtp_raw_distribution'] = dict(Counter(str(r.get('rtp')) for r in switches))
     diagnostics['usd_reference_exact_one_rows'] = sum(r['参考美金Bet'] == 1 for r in bet)
     save('RTP门槛配置', [{'机台':r['machineId'],'等级档':r['level'],'VIP':r['vip'],'betIndex门槛':r['betIndex'],
          'spinNum':r['spinNum'],'rtp原值':r['rtp'],'说明':r.get('name'),'来源':ref('SlotsCasinoResultSwitchStrategy',r)} for r in switches])
+    save('现行_新手及活动关联RTP', special_rtp_reading(sheet('SlotsCasinoNewbieConfig'), revision),
+         '特殊RTP条件', '同版新手及活动关联配置；保留全部原行/空ID/重复ID。与常规85%/95%分开；本表注释不代表实际生效，优先级待G01/G02。')
 
     # Acquisition matrices factorize level/VIP/Bet and stage to avoid inventing a player distribution.
     picks = {(r['questType'], r['Id']):r for r in rows('QuestPickGet') if r['Type'] == 2 and r['questType'] in QUEST}
@@ -388,21 +439,18 @@ def main() -> None:
                 for pointer,value in leaves(obj):
                     w.writerow([p.relative_to(a.extra).as_posix(),pointer,value,'由模板/字段定义决定；不把展示值当概率',revision]);json_cells+=1
 
-    # Formula cache gaps and external workbook references are preserved, not silently recalculated.
-    cache_gaps=[]; external=[]
+    # Missing caches, error caches and external references are independent evidence categories.
+    cache_gaps=[]; cache_errors=[]; external=[]
     for p in sorted((root/'normalized').glob('*.json')):
-        d=table(p.stem)
-        for s in d['sheets']:
-            for r in s['records']:
-                for field,formula in r.get('_formulas',{}).items():
-                    if r.get(field) is None:
-                        cache_gaps.append({'表':p.stem,'Sheet':s['name'],'Excel行':r['_excel_row'],'字段':field,'公式':formula})
-                    if '[' in formula and ']' in formula:
-                        external.append({'表':p.stem,'Sheet':s['name'],'Excel行':r['_excel_row'],'字段':field,'公式':formula,'缓存现行值':r.get(field)})
+        evidence=source_formula_evidence(table(p.stem))
+        cache_gaps.extend(evidence['missing'])
+        cache_errors.extend(evidence['errors'])
+        external.extend(evidence['external'])
     save('缺失公式缓存',cache_gaps)
+    save('源错误缓存',cache_errors)
     save('外部公式引用清单',external)
     diagnostics.update({'revision':revision,'output_rows':counts,'extra_json_files':json_count,'extra_json_cells':json_cells,'json_read_gaps':json_errors,
-                        'missing_formula_cache':len(cache_gaps),'external_formula_references':len(external),
+                        'missing_formula_cache':len(cache_gaps),'excel_error_cache':len(cache_errors),'external_formula_references':len(external),
                         'subagents':'none','source_writes':False,'source_hash_checks':False})
     (root/'复算结果.json').write_text(json.dumps(diagnostics,ensure_ascii=False,indent=2),encoding='utf-8')
     (root/'workbook-model.json').write_text(json.dumps({'revision':revision,'sheets':sheets},ensure_ascii=False),encoding='utf-8')

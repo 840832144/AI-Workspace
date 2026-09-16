@@ -2,8 +2,9 @@
 
 ## 2026-09-16 — TASK-0033 CR 9.22 全数值整理
 
-- Task：[TASK-0033](../../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)，Changes Requested；Executor: Codex；Subagents: none。
-- 执行状态：[ChatGPT Round 1](../../reviews/TASK-0033-CHATGPT-REVIEW-1.md) Needs changes（基线04f7b29）；仅修R1/R2，固定trunk r6961，22项口径缺口保留；未授权调参、冻结提交或发布。
+- Task：[TASK-0033](../../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)，Review；Executor: Codex；Subagents: none。
+- 执行状态：[ChatGPT Round 1](../../reviews/TASK-0033-CHATGPT-REVIEW-1.md) Needs changes（基线04f7b29）；R1/R2修订已完成，等待Round 2；固定trunk r6961，22项口径缺口保留；未授权调参、冻结提交或发布。
+- 修订验证：最终XLSX实际5699个公式（XML `<f>`自动计数），全部缓存与Python复算一致；19964个数值输出一致，公式错误/缺缓存均0；16页、4923条阅读记录。特殊条件9行单列；6处缺缓存/2处错误缓存/19处外链分别记录，说明字段不判为派奖或运行故障；G01/G02优先级继续待确认。
 - 读取时间：2026-09-16 17:58:52（北京时间）；唯一来源为公司SVN trunk，同轮不混dev、101或历史数字。
 - 产物：[报告及交付导航](REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)。完整数值总表/资源关系/公式/缺口在本机受控包，public Git仅保留工具和脱敏交接。
 - 机器美金Bet>1沿用85%、<1沿用95%；=1及配置冲突待确认。薯片、777、拳击、挖矿分别整理，组合与排期未定，通常同时两个，不默认四个全开。
