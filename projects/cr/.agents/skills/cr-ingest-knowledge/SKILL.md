@@ -1,7 +1,9 @@
 ---
 name: cr-ingest-knowledge
-description: 筛选、导入并整理 Cash Royal 项目的飞书文档、本地文档和附件。用于把 CR 资料直接落入 SVN、排除 101/Spades/Bingo 等其他项目、保存来源元数据、建立原文归档与业务整理文档，并检查仓库相对路径和内容完整性。
+description: 筛选、导入并整理 Cash Royal 项目的飞书文档、本地文档和附件。用于把 CR 资料落入 AI-Workspace 的 projects/cr/、排除 101/Spades/Bingo 等其他项目、保存来源元数据、建立原文归档与业务整理文档，并检查仓库相对路径和内容完整性。
 ---
+
+路径基准：本文相对路径均指 CR 项目目录 `projects/cr/`。先继承 Workspace 根 `AGENTS.md`，再读取本项目 `AGENTS.md`；Git 日常资料写入与公司 SVN 正式配置提交按各自授权处理。
 
 # CR 资料落库
 

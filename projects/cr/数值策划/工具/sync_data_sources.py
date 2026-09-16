@@ -64,7 +64,7 @@ def load_sources(config_path: Path, repo_root: Path) -> list[Source]:
                 f"未配置数据源环境变量 {source_env}。"
                 f"请将它设置为“{raw['label']}”在本机的目录。"
             )
-        destination = (repo_root / raw["destination"]).resolve()
+        destination = (repo_root / raw["destination"].replace("\\", "/")).resolve()
         try:
             destination.relative_to(repo_root.resolve())
         except ValueError as error:

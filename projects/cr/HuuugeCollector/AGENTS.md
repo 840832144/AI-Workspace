@@ -1,5 +1,10 @@
 # Agent Collaboration Rules
 
+## 当前定位：历史副本（2026-09-16）
+
+本目录随 CR 历史导入，供只读研究参考。当前开发、采集与部署入口见 [Huuuge 项目控制面](../../huuuge-android-research/README.md) 指向的 `840832144/huuuge-android-research`。
+下方旧流程保留原始来源，不是当前执行指令；不得因为读取本副本而自动 pull/rebase、写入配置、同步 SVN、提交、真实采集或部署。相关工作必须在当前真相源及正式 Task 的明确授权范围执行。本迁移只适配入口标识，不升级或启动本副本。
+
 This repository is shared by ChatGPT and Codex. Treat the Git repository as the source of truth for cross-agent coordination.
 
 The detailed modification/commit standard is in `CONTRIBUTING.md` and is mandatory for every agent.

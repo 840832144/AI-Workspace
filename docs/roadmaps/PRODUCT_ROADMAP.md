@@ -12,9 +12,9 @@
 
 ### CR 单仓策划入口
 
-- User 于 2026-09-16 批准将 CR 资料、唯一 Skill 正文及分析工具纳入 AI-Workspace 的 `projects/cr/`，目标迁移期间及合并后保持 public。
-- 当前状态：`Blocked before import`；正式 [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md) 已登记，本地备份与历史扫描完成，发现原始样本/逐笔数据，发布暂停；尚未切换或完成迁移。
-- 唯一下一步：User 决定是否接受隔离副本历史清洗及新旧 SHA 映射；见 [RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md) 和 [脱敏审查记录](../migrations/CR-MIGRATION-20260916.md)。批准前不导入、不发布；本条尚未发布到飞书。
+- User 于 2026-09-16 批准 public AI-Workspace 的 `projects/cr/` 作为 CR 日常资料、唯一 Skills 与分析工具入口，并批准三个 Top Tycoon 工作簿及原始记录历史。
+- 当前状态：TASK-0032 原样导入与适配完成，候选正在验收；保留在 Current，未经正式 Review 不进入 Done。
+- 下一步：提交 PR Review；最终合并、切换和旧库归档等待 User 确认。见 [RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md) 与 [迁移报告](../migrations/CR-MIGRATION-20260916.md)。本任务只更新 Git，未另行发布飞书或扩大分享。
 
 ### 【游戏】 Collector 1.0
 

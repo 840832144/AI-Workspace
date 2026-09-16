@@ -1,5 +1,9 @@
 # Game Planner AI Workspace｜项目全景说明
 
+## 2026-09-16 仓库定位更新
+
+TASK-0032 / RFC-0005 将 CR 策划资料与分析工具纳入 `projects/cr/`；下文治理职责继续有效，但不再将本仓库一概描述为仅控制面。CR 三个已报告的 Top Tycoon 工作簿及原始记录历史已获 User 明确批准公开入库，其余敏感内容限制不变。公司 SVN 正式配置及其他项目实现保持原真相源，HuuugeCollector 副本只读参考。最终 Review、合并及切换状态见 [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)。
+
 > Git 源稿：`docs/overview/AI_WORKSPACE_PROJECT_OVERVIEW.md`
 > 核验基线：`AI-Workspace main@c74c85a9524d1524ea3696835509de2a55e9f524`
 > 更新时间：2026-08-29

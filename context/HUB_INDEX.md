@@ -1,5 +1,14 @@
 # Game Planner AI Workspace｜实时 Context Hub
 
+## CR 阅读入口
+
+- [项目入口](../projects/cr/README.md)与[项目工作流](../projects/cr/WORKFLOW.md)。
+- [根 Skill 路由](../.agents/skills/cr-project/SKILL.md)：正文唯一保存在 CR 项目内。
+- [上下文摘要](../projects/cr/CONTEXT.md)：生成器只选入口，不递归收录 CR 工作簿或正文。
+- [迁移报告](../docs/migrations/CR-MIGRATION-20260916.md)：公开范围、来源、路径、切换与回滚。
+
+此处登记阅读路径，不新增 Capability 名称、不增加 Context Hub 自动发布项或外部分享权限。
+
 这是策划、ChatGPT、Codex 和 Generic Agent 的统一协作入口。Git 保存规则、Task 和状态的可审计真相；飞书提供在线阅读与协作；本地 Context Pack 供没有飞书连接的 Host 使用。
 
 ## 怎么使用

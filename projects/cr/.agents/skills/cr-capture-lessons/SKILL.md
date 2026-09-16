@@ -3,6 +3,8 @@ name: cr-capture-lessons
 description: 沉淀 Cash Royal 协作任务中的问题、失败尝试、根因、解决方案和未解决事项。用于任务出现数据、工具、编码、权限、配置、流程或交付问题时，以及用户要求复盘或共享经验时；无论问题最终是否解决，都在任务结束前把可复用结论写入共享 Skill。
 ---
 
+路径基准：本文相对路径均指 CR 项目目录 `projects/cr/`。先继承 Workspace 根 `AGENTS.md`，再读取本项目 `AGENTS.md`；Git 日常资料写入与公司 SVN 正式配置提交按各自授权处理。
+
 # CR 问题经验沉淀
 
 ## 核心规则

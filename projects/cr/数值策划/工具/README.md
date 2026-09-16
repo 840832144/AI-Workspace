@@ -1,5 +1,11 @@
 # 数值工具
 
+## 路径与验收边界
+
+以下命令相对 `AI-Workspace/projects/cr/`；从 Workspace 根运行时给脚本路径加 `projects/cr/` 前缀。工具默认从自身位置定位 CR 项目，源目录只通过本机 `CR_DESIGNER_WORKBOOKS_DIR` 提供；同步目标不会落到 Workspace 根或 101 目录。
+目录构建/仓库校验默认不计算或比对文件哈希；保留实际结构、文件大小、数量及可读性检查。仅明确需要时可分别指定 `--with-hashes` / `--verify-hashes`。卡包 `check_bundle.py` 默认直接比对 Excel 与 CSV 的内容并检查业务引用，哈希也仅显式 `--verify-hashes` 时使用。
+默认阅读与迁移验收不执行任何 `--apply`、SVN 提交、真实采集或部署。下方写入示例仅在相应任务已授权后使用。
+
 所有工具使用 Python 3，当前脚本仅依赖标准库。
 
 ## 数据同步
@@ -52,16 +58,16 @@ python .\数值策划\工具\simulate_new_user_spin.py `
 
 ## SVN 安全提交
 
-默认命令只读取状态并演练，不会添加或提交文件：
+必须显式指定经核验的公司 SVN 工作副本和对应策略；Git 中的 CR 资料目录不作为默认提交根。命令只读取状态并演练，不会添加或提交文件：
 
 ```powershell
-python .\数值策划\工具\svn_submit.py
+python .\数值策划\工具\svn_submit.py --root "明确的公司SVN工作副本" --config "该工作副本已批准策略的绝对路径"
 ```
 
 演练通过且已确认提交说明后，执行全流程自动提交：
 
 ```powershell
-python .\数值策划\工具\svn_submit.py --execute -m "更新活动数值方案与推导脚本"
+python .\数值策划\工具\svn_submit.py --root "明确的公司SVN工作副本" --config "该工作副本已批准策略的绝对路径" --execute -m "更新活动数值方案与推导脚本"
 ```
 
 工具会依次更新工作副本、运行仓库验收、拦截冲突和风险文件、添加新文件、提交并复核工作副本。

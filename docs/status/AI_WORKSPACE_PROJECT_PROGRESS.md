@@ -1,10 +1,10 @@
 # Game Planner AI Workspace｜项目进度与能力状态
 
-## 2026-09-16 增量：CR 单仓迁移尚未切换
+## 2026-09-16 增量：CR 单仓候选，尚未切换
 
-[TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md) 已经 remote-CAS 正式登记，完整方案先提交 Git；两仓备份、恢复和 full fsck 通过。User 已批准目标在迁移期间及合并后保持 public。审查发现三个 CR 工作簿在当前树和祖先历史中包含原始样本、金币前后记录或逐笔资源流水，状态为 `Blocked before import`。来源 private 本身不阻塞。
+[TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md) 由 remote-CAS 正式分配，RFC/Task 先于导入提交。User 明确批准 public 迁移及三个 Top Tycoon 工作簿原始记录和历史，清洗提案不采用。原样 subtree `fe07557` 保留来源13提交和276文件，适配覆盖规则、入口、Skills、上下文及工具路径。
 
-[迁移审查记录](../migrations/CR-MIGRATION-20260916.md) 提供来源 SHA、对象与文件映射、检查范围、未完成项和回滚。User 决定是否接受隔离副本历史清洗及新旧 SHA 映射前，暂停导入和发布；未推送迁移分支、未创建 PR，未改两仓权限/可见性，也未切换日常入口。公司 SVN、HuuugeCollector 权威边界、CR/101 数据隔离均保持原状。此增量只更新 Git；未发布或扩大任何云端分享权限。
+正在全新候选克隆验收，结果与回滚见[迁移报告](../migrations/CR-MIGRATION-20260916.md)。随后推送 PR 等待 Review，最终合并、切换与旧库归档另需 User 确认。公司 SVN 正式配置、Huuuge 当前实现真相源与 CR/101 边界保持独立。本增量只更新 Git，未扩大任何权限或执行云端发布。Subagents: none。
 
 以下为 2026-08-29 的既有快照，保持原核验时点，不代表本次现场重新验收。
 

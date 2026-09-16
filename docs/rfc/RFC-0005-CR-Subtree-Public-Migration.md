@@ -16,7 +16,7 @@ User 明确要求将 `840832144/cr_design` 并入 `840832144/AI-Workspace` 的 `
 
 ## Capability 与仓库定位
 
-现有 Catalog 没有独立的仓库迁移 Capability；本次以 User 明确批准的 Git 维护工作流、Task contract 和本 RFC 定义一次性结果，不虚构新的 Registered Capability。Context 适配复用现有 Context reference implementation；没有云文档操作需求。现行纯控制面限制按本次批准，拟调整为允许 `projects/cr/` 内的 CR 策划资料、唯一 Skill 正文和分析工具。其他项目实现、共享 provider 实现与运行时配置继续在其权威位置。
+现有 Catalog 没有独立的仓库迁移 Capability；本次以 User 明确批准的 Git 维护工作流、Task contract 和本 RFC 定义一次性结果，不虚构新的 Registered Capability。Context 适配复用现有 Context reference implementation；没有云文档操作需求。现行纯控制面限制按本次批准，调整为允许 `projects/cr/` 内的 CR 策划资料、唯一 Skill 正文和分析工具。其他项目实现、共享 provider 实现与运行时配置继续在其权威位置。
 
 ## 来源、备份与并发范围
 
@@ -34,7 +34,7 @@ User 明确要求将 `840832144/cr_design` 并入 `840832144/AI-Workspace` 的 `
 1. 将本完整方案和 canonical Task 提交 Git，重建并验证 Registry。
 2. 扫描待导入树、全部可达 commit/tree/blob/tag、已删除历史文件及归档内内容。核验缺失对象、嵌套 `.git` / `.svn`、submodule、凭据、账号信息、原始采集数据、完整响应、逐笔余额、私有 Registry 和敏感日志。保留脱敏路径、类别、对象定位与覆盖统计，不输出敏感值。
 3. 发现禁止发布内容即暂停发布。报告具体类别、影响范围和处理方案；不得只从 HEAD 删除后仍公开旧历史，也不得静默重写来源历史。未完成审查不得把清单或工具成功等同于通过。
-4. 审查通过后在 `codex/cr-subtree-migration` 执行 `git subtree add --prefix=projects/cr <本机CR Git来源> <固定SHA>`，不使用 `--squash` 或 submodule。该提交只做原样导入；比较源树与导入子树的完整 mode/path/blob 清单和内容。不得复制整个本机目录。
+4. 审查通过后在 `codex/cr-subtree-migration` 执行 `git subtree add --prefix=projects/cr <本机CR Git来源> <固定SHA>`，不使用 `--squash` 或 submodule。该提交只做原样导入；用 Git 直接 diff 核对源树与导入子树的路径、模式与内容。不得复制整个本机目录。
 5. 单独提交适配，保留 CR 内部结构。Skill 正文唯一保存在 CR 项目；根入口采用路由，避免复制正文。历史记录保留旧来源、日期和 SHA，以映射解释旧路径，不把旧记录改写成当前事实。
 6. 更新现行入口、规则、架构、上下文与资料同步路径，离线验证后提交证据。通过安全 gate 后才推送迁移分支、创建 PR；要求 merge commit，禁止 squash/rebase 合并。
 
@@ -77,6 +77,6 @@ PR 合并并经 User 确认切换后，唯一日常 Git 入口为 AI-Workspace�
 - Git revert 不能撤回已公开历史；因此发布前完整可达历史审查是硬 gate。若历史含敏感内容，须先决定清洗方案并重新审查，不能依赖事后 revert。
 - 如需恢复旧 Git 写入口，需 User 明确指定切换时间和迁移期间新增内容归属，先停止双写，再选择性回迁；SVN 不受本迁移回滚影响。
 
-## 当前未完成项
+## 当前实施状态
 
-完整可达对象枚举与文本/Office 扫描已完成，发现三个含原始样本和逐笔资源数据的工作簿，发布 gate 未通过。脱敏证据、范围及清洗历史提案见 [迁移审查记录](../migrations/CR-MIGRATION-20260916.md)。subtree 导入、路径适配、全新克隆验收和迁移 PR 均未执行；待 User 决定是否接受仅在隔离副本清洗历史并保留新旧 SHA 映射。不得提前切换日常入口。
+原样 subtree 导入 `fe07557ce5052da6a0eaaaaa1207b416ac081474` 已完成，来源 main 保持13个原提交、276个原文件。三个工作簿的公开授权已明确，清洗提案不采用。适配与验收证据见 [迁移报告](../migrations/CR-MIGRATION-20260916.md)；最终 PR Review、合并、切换与旧库归档状态以 Task 为准。不得提前宣称正式切换。

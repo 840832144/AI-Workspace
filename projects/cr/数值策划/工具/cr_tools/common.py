@@ -9,7 +9,7 @@ from typing import Any
 
 
 def repository_root() -> Path:
-    """返回 CR_design 仓库根目录。"""
+    """从工具位置定位 CR 项目目录（projects/cr），不依赖 cwd 或 Git 根。"""
 
     return Path(__file__).resolve().parents[3]
 

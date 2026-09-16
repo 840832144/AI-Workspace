@@ -26,7 +26,7 @@ def parse_args() -> argparse.Namespace:
         "--root",
         type=Path,
         default=repository_root(),
-        help="CR_design 仓库根目录。",
+        help="CR 项目目录（AI-Workspace/projects/cr），不依赖当前工作目录。",
     )
     parser.add_argument(
         "--max-header-values",
@@ -34,6 +34,7 @@ def parse_args() -> argparse.Namespace:
         default=12,
         help="每个 Sheet 最多保留多少个表头预览值。",
     )
+    parser.add_argument("--with-hashes", action="store_true", help="仅在明确需要时生成文件哈希；默认跳过。")
     return parser.parse_args()
 
 
@@ -233,7 +234,7 @@ def main() -> int:
             "modified_at": datetime.fromtimestamp(
                 stat.st_mtime, tz=timezone.utc
             ).isoformat(),
-            "sha256": file_sha256(path),
+            "sha256": file_sha256(path) if args.with_hashes else "",
             **inspection,
         }
         details.append(record)
@@ -265,6 +266,7 @@ def main() -> int:
         knowledge_root / "工作簿结构.json",
         {
             "schema_version": 1,
+            "hashes_included": args.with_hashes,
             "generated_at_utc": generated_at,
             "workbook_count": len(details),
             "source_counts": totals,
@@ -286,7 +288,8 @@ def main() -> int:
 
 - `工作簿目录.csv`：适合 Excel、文本搜索和 AI 快速定位。
 - `工作簿结构.json`：包含各 Sheet 的有效行列与表头预览。
-- `同步清单.json`：记录来源、目标、文件大小和 SHA-256。
+- `同步清单.json`：保留来源、目标、文件大小及历史来源记录。
+- 目录默认不计算文件哈希；只有显式 `--with-hashes` 才生成，未计算的字段为空。
 
 ## 使用原则
 

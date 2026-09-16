@@ -70,8 +70,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--root",
         type=Path,
-        default=repository_root(),
-        help="SVN 工作副本根目录，默认自动定位当前资源库。",
+        required=True,
+        help="明确的公司 SVN 工作副本根目录；不得默认使用 Git 中的 CR 资料目录。",
     )
     parser.add_argument(
         "--config",

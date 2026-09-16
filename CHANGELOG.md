@@ -2,12 +2,12 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
-## 2026-09-16 — TASK-0032 CR public subtree 迁移准备与暂停
+## 2026-09-16 — TASK-0032 CR public subtree 候选
 
-- 正式 remote-CAS 登记 TASK-0032，先提交 RFC-0005 与完整公开迁移、验收和回滚方案；目标保持 public，不改两仓可见性、协作者或外部分享权限。
-- 两仓受控本地 bundle 已验证并恢复通过 full fsck；枚举和扫描完整可达图、文本与 Office XML，确认三个 CR 工作簿含原始样本和逐笔资源数据。
-- 按 User 条件暂停导入/发布，保留原历史与原工作副本；记录脱敏证据、清洗历史决定、路径映射和未完成验收。未执行 subtree、源表修改、SVN 提交、同步 apply、采集、部署、迁移 push/PR、合并或归档。
-- Task、Status、Handoff 与 Roadmap 保持 `Blocked before import`；批准隔离副本清洗与新旧 SHA 映射前，不切换日常入口。Subagents: none。
+- 正式登记 Task/RFC 并完成两仓受控备份与完整可达图审查；User 后续明确批准三个 Top Tycoon 工作簿原始记录和历史，取消该项暂停，不清洗原历史。
+- 使用非 squash subtree 原样导入 CR，13个来源提交和276个文件保留，直接 diff 为空；单独适配根/项目规则、四启动文件、ChatGPT/Codex/TRAE、唯一 Skill 路由、Context 与资料同步路径。
+- 默认目录/卡包检查不计算文件哈希；验证实际结构、内容及行为。SVN 工具要求明确提交根，历史 Collector 副本不启动、不自动同步。
+- 正在全新单仓克隆验收，随后提交 PR Review；未合并、切换或归档，未修改源表、权限、正式配置，未执行同步 apply、SVN 提交、采集或部署。Subagents: none。
 
 ## 2026-09-09 — TASK-0029 有限文档试用 Accepted
 

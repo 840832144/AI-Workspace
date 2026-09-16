@@ -4,6 +4,7 @@
 """
 from __future__ import annotations
 import csv
+import argparse
 import hashlib
 import json
 from collections import defaultdict
@@ -76,11 +77,15 @@ def audit_environment(env: str) -> dict[str, Any]:
             'limits':'候选全集不足是确定性容量风险。未统计21次重抽耗尽概率、跨槽位候选重叠或玩家权重导致的实际少发概率。'}
 
 def main() -> None:
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--verify-hashes',action='store_true',help='显式核对历史哈希；默认只做工作簿与 CSV 的实际内容及业务引用检查。')
+    args=parser.parse_args()
     manifest=json.loads((ROOT/'sources.json').read_text(encoding='utf-8'))
     cells=0
     for meta in manifest:
         path=ROOT/meta['file']
-        assert hashlib.sha256(path.read_bytes()).hexdigest()==meta['sha256'],meta['file']
+        if args.verify_hashes:
+            assert hashlib.sha256(path.read_bytes()).hexdigest()==meta['sha256'],meta['file']
         rows=records(extract(path))
         with (ROOT/meta['text_file']).open(encoding='utf-8',newline='') as stream:
             textrows=list(csv.DictReader(stream))

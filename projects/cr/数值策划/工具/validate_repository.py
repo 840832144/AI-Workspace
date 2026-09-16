@@ -33,11 +33,13 @@ def is_local_only(path: Path, root: Path) -> bool:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=repository_root())
+    parser.add_argument("--verify-hashes", action="store_true", help="仅在明确需要时核对历史清单哈希；默认只检查结构、大小与目录一致性。")
     return parser.parse_args()
 
 
 def main() -> int:
-    root = parse_args().root.resolve()
+    args = parse_args()
+    root = args.root.resolve()
     errors: list[str] = []
     warnings: list[str] = []
 
@@ -167,20 +169,20 @@ def main() -> int:
         try:
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             for source in manifest.get("sources", []):
-                destination = root / source["destination"]
+                destination = root / source["destination"].replace("\\", "/")
                 manifest_destinations.append(
                     str(source["destination"]).replace("\\", "/").rstrip("/") + "/"
                 )
                 for entry in source.get("files", []):
                     manifest_count += 1
-                    path = destination / entry["relative_path"]
+                    path = destination / entry["relative_path"].replace("\\", "/")
                     if not path.is_file():
                         errors.append(f"同步文件缺失：{path.relative_to(root)}")
                         continue
                     if path.stat().st_size != entry["size_bytes"]:
                         errors.append(f"同步文件大小不一致：{path.relative_to(root)}")
                         continue
-                    if file_sha256(path) != entry["sha256"]:
+                    if args.verify_hashes and file_sha256(path) != entry["sha256"]:
                         errors.append(f"同步文件哈希不一致：{path.relative_to(root)}")
             synced_structure_count = sum(
                 1

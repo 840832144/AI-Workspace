@@ -1,5 +1,7 @@
 # CR 数值策划项目规则
 
+先读取 `../../AGENTS.md` 和 `../../bootstrap/AGENTS.md`，然后继承本项目 `AGENTS.md`。以下“根目录”均指 CR 项目目录 `projects/cr/`。日常资料提交 Git 分支/PR；公司 SVN 提交需单独明确授权与目标。新增问题经验使用 `cr-capture-lessons`；HuuugeCollector 仅历史参考。
+
 你正在处理 Cash Royal 数值策划资源库。
 
 1. 先阅读根目录 `README.md`、`AGENTS.md` 和相关目录 README。

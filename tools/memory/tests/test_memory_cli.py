@@ -467,8 +467,8 @@ class MemoryCliTests(unittest.TestCase):
         self.assertIn("docs/incidents/INCIDENT-TEST.md", manifest)
         self.assertTrue((self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md").exists())
         source_pack = (self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md").read_text(encoding="utf-8")
-        self.assertIn("<!-- SOURCE: PLANNER_WRITING_STYLE.md -->", source_pack)
-        self.assertIn("<!-- SOURCE: WORKSPACE.md -->", source_pack)
+        self.assertIn("<!-- SOURCE: standards/PLANNER_WRITING_STYLE.md -->", source_pack)
+        self.assertIn("<!-- SOURCE: memory/context/WORKSPACE.md -->", source_pack)
         self.assertIn("Canonical terminology rule.", source_pack)
         replacement = (self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_REPLACEMENT_LIST.md").read_text(encoding="utf-8")
         self.assertIn("manual upload required", replacement)
@@ -479,6 +479,23 @@ class MemoryCliTests(unittest.TestCase):
         self.assertIn("git_head", output["workspace_memory"])
         current = (self.root / "bootstrap/chatgpt/02_CURRENT_STATE.md").read_text(encoding="utf-8")
         self.assertIn("MEMORY-CONTEXT:START", current)
+
+    def test_refresh_cr_entry_does_not_collect_project_body_or_workbooks(self) -> None:
+        project = self.root / "projects/cr"
+        project.mkdir(parents=True)
+        (project / "CONTEXT.md").write_text("# CR entry\n\nPUBLIC_ENTRY_SENTINEL\n", encoding="utf-8")
+        (project / "raw-records.md").write_text("RAW_BODY_SENTINEL\n", encoding="utf-8")
+        (project / "source.xlsx").write_bytes(b"RAW_WORKBOOK_SENTINEL")
+        _, output = self.run_cli("refresh")
+        self.assertEqual("not read", output["private_repositories"])
+        manifest = (self.root / "CONTEXT_MANIFEST.yaml").read_text(encoding="utf-8")
+        pack = (self.root / "bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md").read_text(encoding="utf-8")
+        self.assertIn("projects/cr/CONTEXT.md", manifest)
+        self.assertNotIn("raw-records.md", manifest)
+        self.assertNotIn("source.xlsx", manifest)
+        self.assertIn("PUBLIC_ENTRY_SENTINEL", pack)
+        self.assertNotIn("RAW_BODY_SENTINEL", pack)
+        self.assertNotIn("RAW_WORKBOOK_SENTINEL", pack)
 
     def test_refresh_active_tasks_excludes_companion(self) -> None:
         (self.root / "tasks/TASK-0001-CANONICAL.md").write_text(

@@ -3,6 +3,8 @@ name: cr-numerical-design
 description: 分析、设计、复核并沉淀 Cash Royal 项目的经济、成长、奖励、概率、活动、Quest、礼包和配置数值。用于读取 CR 策划源表或程序导出 Excel、推导数值方案、检查概率/权重/产销平衡、比较配置版本、编写可复算 Python 3 脚本、输出评审文档或上线复盘。
 ---
 
+路径基准：本文相对路径均指 CR 项目目录 `projects/cr/`。先继承 Workspace 根 `AGENTS.md`，再读取本项目 `AGENTS.md`；Git 日常资料写入与公司 SVN 正式配置提交按各自授权处理。
+
 # CR 数值策划
 
 ## 任务路由

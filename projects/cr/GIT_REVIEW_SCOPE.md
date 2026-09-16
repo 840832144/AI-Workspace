@@ -1,5 +1,9 @@
 # CR Design Git 审阅副本说明
 
+## 当前范围（2026-09-16）
+
+本文下方是原私有镜像的历史导出记录。当前在 public AI-Workspace 的 `projects/cr/` 保留其 Git 内容与历史，授权与清单见 [迁移报告](../../docs/migrations/CR-MIGRATION-20260916.md)。三个 Top Tycoon 工作簿原始记录已获 User 明确批准。不把历史私有可见性作为迁移阻塞，也不因此改变任一仓库权限。HuuugeCollector 仍为历史副本。
+
 ## 用途
 
 本仓库是 Cash Royal 数值策划 SVN 工作副本的私有 Git 审阅镜像，供 GPT、Codex 和策划协作者检查项目逻辑、目录结构、数值推导方法、文档组织和 Agent 协作规则。

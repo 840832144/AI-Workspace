@@ -1,107 +1,82 @@
-# CR 迁移审查记录
-
-## 2026-09-16 后续决定：恢复原历史迁移
-
-User 已明确允许下文指出的三份 Top Tycoon 工作簿及其原始 Spin、金币前后值和逐笔资源记录入库；不清洗相关文件或历史，不再以此阻塞。User 同时要求省去多余哈希校验，后续只使用直接 diff、Git 祖先关系和必要功能检查。当前恢复 TASK-0032；下面暂停与清洗提案保留为前一阶段审计记录，不再是当前待决条件。
-
-## 前一阶段审查（已被上述授权更新）
+# CR 迁移清单与验收
 
 - 日期：2026-09-16
-- 状态：Blocked before import / Not published / No cutover
 - Task：[TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)
-- 方案：[RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md)
+- 方案：[RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md)；决策：[ADR-0008](../adr/ADR-0008-CR-Single-Repository.md)
+- 分支：`codex/cr-subtree-migration`；独立 linked worktree。
+- 状态：原样导入与适配已完成，正在全新克隆验收；尚未合并或切换。
 - Subagents: none
 
-本次已完成两仓安全同步、正式分配、Task/RFC Git 提交和受控本地备份。内容审查发现 CR 已纳管的原始记录与逐笔资源数据，触发 User 明确要求的暂停发布条件。尚未执行 subtree，未推送候选分支、未创建迁移 PR，未切换日常入口。来源 private、目标 public 本身不是阻断原因。
+## 来源与历史保留
 
-## 来源与备份
-
-| 对象 | 固定 SHA / 结果 |
+| 对象 | SHA / 结果 |
 | --- | --- |
-| AI-Workspace main | `5b5414cf7ecb9df3c06d23b3325cfb90b4fa2d7e` |
-| cr_design main | `1409737648b15f602586b79ade7e0c3e7a3813a0` |
-| Task/RFC 首次提交 | `52e3279e613858a0e691700bb5188b0a98cb8bc0` |
-| 迁移分支 | `codex/cr-subtree-migration`，独立非 main linked worktree |
-| 正式分配 | remote-CAS 返回 TASK-0032，pending-main；token 只保留本地 |
-| 备份方式 | 两仓 `git bundle create --all`，包含全部已获取 refs 的可达图 |
-| 备份验收 | 两个 bundle verify 均通过；各从 bundle 恢复为独立 bare 仓库，`git fsck --full` 均通过 |
-| 备份隔离 | 当前用户及 SYSTEM 专用本地目录；备份、manifest、扫描明细不进 Git |
+| AI-Workspace 原 main | `5b5414cf7ecb9df3c06d23b3325cfb90b4fa2d7e` |
+| cr_design 来源 main | `1409737648b15f602586b79ade7e0c3e7a3813a0` |
+| Task / RFC 首次提交 | `52e3279e613858a0e691700bb5188b0a98cb8bc0`，完整计划先于导入 |
+| User 后续公开范围确认 | `68b94b6c6ef1a2110dfe14ac4ecbb81845025408` |
+| 原样 subtree 导入 | `fe07557ce5052da6a0eaaaaa1207b416ac081474` |
+| 导入父提交 | 第一父为上述授权提交，第二父为 CR 来源 main |
+| 原样一致性 | `git diff <CR来源SHA> <导入SHA>:projects/cr` 为空；276 个路径/模式与内容一致 |
+| 历史保留 | `git merge-base --is-ancestor <CR来源SHA> <导入SHA>` 成功，CR main 的13个原提交成为祖先，无 squash、无重写 |
+| 非 main 分支 | 全 refs 的16个 CR 提交均已备份/审查；另外3个非 main 提交不隐式合入 |
 
-AI-Workspace 当前仍 public，cr_design 当前仍 private。本 Task 未改变可见性或任何协作者、飞书及外部共享权限。原 SVN 副本、本机未纳管文件与其他任务 worktree 保持原状。
+两仓全部已获取 refs 已分别创建受控本地 bundle，verify 后恢复为独立 bare 仓库，full fsck 均通过。备份目录 ACL 限当前用户与 SYSTEM，备份、扫描明细、token 与本机 Registry 不入 Git。没有为本次补做或重复文件哈希校验。
 
-## 已确认的禁止发布内容
+## 公开决定与审查结果
 
-以下三个文件均在当前 CR main，且自初始导入提交 `2285678335321217143b58aaf31d28a2f098dac5` 起进入可达历史。只记录工作表名称、记录数量和对象位置，不输出账号、金币值、逐笔明细或原始响应。
+AI-Workspace 在迁移期间及合并后保持 public，后续可见性由 User 自行调整；cr_design 保持原 private 状态。本任务不修改任一仓库可见性、协作者、飞书或其他分享权限。
 
-路径公共前缀：`数值策划/数值文档/03_分析与复盘/Top_Tycoon素材/`。
+首次审查暂停后，User 于 2026-09-16 明确允许下列三个工作簿中的原始 Spin 样本、金币前后值、逐笔资源记录及其 Git 历史公开入库。按最新授权原样导入，不清洗其历史，也不再次作为阻塞。该授权不放宽其他 Secret、账号、私有 Registry、完整响应、未批准采集数据或敏感日志的边界。
 
-| 文件 | 已确认内容 | Git blob |
-| --- | --- | --- |
-| `Top_Tycoon原始事件账.xlsx` | `SpinLog` 140 条记录；金币前值 138 个数值单元格、后值 139 个；`ResourceLedger` 315 条资源变化记录 | `2735611640b022f56997cdc9a664ad88facc9e32` |
-| `Top_Tycoon数值模型.xlsx` | `Spin样本` 140 条记录，包含 `coins_before / coins_after / coin_gain_observed` | `9a49c795feec0e3c1fb05fa2da7f179d094906be` |
-| `Top_Tycoon数值模型_v0.2.xlsx` | `Spin样本` 140 条；`建造样本` 48 条，包含 `coin_before / coin_after / coin_cost`；另有 391 条分段记录 | `d8c7fdeac6e3653a2be8d41f9d124979b5c3319b` |
+三文件原路径前缀：`数值策划/数值文档/03_分析与复盘/Top_Tycoon素材/`；均自原初始导入 `2285678335321217143b58aaf31d28a2f098dac5` 可达：
 
-检查直接读取 Git 已纳管工作簿的 Office XML，不运行游戏、不修改工作簿。工作表确有数值和数据行，因此不是仅凭文件名或空表头判断。两份模型包含原始样本副本，不能只删除“原始事件账”文件就认为安全。
+- `Top_Tycoon原始事件账.xlsx`：SpinLog 与 ResourceLedger。
+- `Top_Tycoon数值模型.xlsx`：Spin 样本。
+- `Top_Tycoon数值模型_v0.2.xlsx`：Spin、建造样本及分段记录。
 
-## 历史保留与暂停依据
+完整可达图审查覆盖：CR 436 个对象（16 commit / 121 tree / 299 blob），AI-Workspace 2422 个对象（197 commit / 1040 tree / 1185 blob）。包括已删除历史文件、Git 元数据、文本、53 个 Office 压缩对象及1038个成员；所有对象可读。22张内嵌图片已逐张查看，属于游戏设计、商城和表格参考，未确认凭据或账号登录信息；无其他嵌入附件。
 
-CR 当前 main 有 13 个可达提交、276 个文件，完整现存 refs 合计 16 个提交；目标 AI-Workspace 全 refs 有 197 个提交。全部源文件路径已生成一一对应清单，目标前缀统一为 `projects/cr/`。当前源树没有嵌套 `.git` / `.svn` 或 mode `160000` submodule。
+候选命中经语义核查：Collector 的 device_id 是代码字段；SQL 中的 uid 是查询字段；三份 JSON/HTML 逐步余额属于仿真输出；AI 的安全测试字符串属于合成样例，公共 Task Registry 不是私有 Registry。除已明确授权的三份工作簿外，未确认其他禁止公开内容。扫描是本次已获取全部可达内容的审查结果，不声称对未来新增文件自动授权。
 
-这些受影响 blob 处于待导入 main 的祖先图内。无 `--squash` 的 subtree 会公开其可达历史；在适配提交删除文件，或者日后 revert，都不会让旧对象退出可达图。因此尚不能同时做到“保留原始 SHA 历史”与“禁止公开这些逐笔数据”。本次未静默改变原历史，也未用 squash 或单快照替代 User 要求。
+## 文件与入口映射
 
-本地扫描已遍历 CR 全 refs 的 436 个对象（16 commit / 121 tree / 299 blob），检查 53 个 Office 压缩对象、1038 个成员；AI-Workspace 全 refs 为 2422 个对象（197 commit / 1040 tree / 1185 blob）。检查覆盖文本、Git 元数据、已删除历史 blob、文件路径及 Office XML，全部对象已可读取。非文本嵌入图片尚未逐张进行视觉审查；这也是清洗后发布复验范围，不能声称已穷尽所有敏感内容。
+[完整原样导入文件清单](CR-FILE-MAP-20260916.csv)记录276个纳管文件的原路径、目标路径与模式；未复制本机未纳管产物。统一映射：`cr_design/<path>` → `AI-Workspace/projects/cr/<path>`。
 
-正则命中仅作为候选，AI-Workspace 的合成安全测试字符串、代码字段与 Registry 文件名不直接视为泄漏。CR 的三份仿真 JSON/HTML 含逐步余额字段，需核对合成来源与公开范围，不能直接当作真实采集或自动放行；两份 SQL 查询记录与 Collector 字段匹配也须语义核查。已确认的发布阻断证据是上述三个工作簿。扫描明细只在本机，安全 gate 保持未通过。
-
-## 建议处理方案（待 User 决定）
-
-建议保留两仓原图与受控备份，仅在新的隔离 CR 副本清洗受影响文件的全部可达历史。先移除上述三个工作簿的原始样本/逐笔数据，核验派生文件、HTML 内嵌数据、Office 嵌入附件与历史版本是否重复携带；可复用模型只保留经审核的聚合、公式和明确标注的合成示例。原始策划源表及原两个仓库不修改、不强推。
-
-清洗会改变受影响提交及后继提交的 SHA。应生成“原 SHA → 清洗后 SHA”的完整映射，保留父子关系和来源说明；从清洗副本再以非 squash subtree 原样导入，单独提交适配。映射中的原 SHA 只能作为 provenance 文本，不能通过 parent、tag 或 remote ref 把旧敏感对象重新纳入公共候选图。必须重新执行全图审查与全新单仓克隆验收。
-
-需要 User 明确接受的变化：允许导入**清洗后的历史**，原历史 SHA 仅在本地备份和映射保留；不再要求原始 CR 提交对象直接在公共候选中可达。若必须保持原 SHA 可达，则继续暂停迁移，不能以放宽敏感数据禁入条件处理。
-
-## 入口与文件映射
-
-目前尚未切换。旧 CR Git 仓库继续是现行 Git 参考入口，公司 SVN 正式配置与提交流程不变；候选分支不作为日常写入口，避免在两个位置并行更新。
-
-| 原位置 | 审查通过并合并后的唯一位置 |
+| 原位置 / 责任 | 当前候选位置 / 规则 |
 | --- | --- |
-| `cr_design/AGENTS.md` | `AI-Workspace/projects/cr/AGENTS.md`，同时继承根规则 |
-| `cr_design/.agents/skills/` | `AI-Workspace/projects/cr/.agents/skills/`，正文保持唯一，根/其他 Agent 入口仅路由 |
-| `cr_design/数值策划/` | `AI-Workspace/projects/cr/数值策划/`，策划资料与工具在此写入 |
-| CR 卡包分析资料目录 | 原内部结构加 `projects/cr/` 前缀；dev/trunk 分开，20260915 附件是固定版本证据，不代表当前配置 |
-| `cr_design/HuuugeCollector/` | 相同前缀下的历史副本；不成为自动开发、采集或部署权威 |
-| 公司 SVN 配置 | 保持既有 SVN 权威流程，不进入新的程序配置快照结构 |
-| 101 分析 | 仍在101自己的受控项目，只引用 CR 方法；不复用 CR 参数作为101输入 |
+| CR AGENTS / README | `projects/cr/`，继承根规则与全局模板 |
+| `.agents/skills/` | `projects/cr/.agents/skills/` 是五个正文唯一位置；根 `.agents/skills/cr-project/SKILL.md` 仅路由 |
+| 数值文档、数据源、知识库、工具 | 保留原内部结构，加 `projects/cr/` 前缀 |
+| CR 卡包资料 | `projects/cr/数值策划/数值文档/03_分析与复盘/CR卡包价值分析资料_20260915/`，trunk/dev r6880 附件为历史证据 |
+| HuuugeCollector | 同前缀下历史副本；当前实现以 Huuuge 项目控制面所指外部仓库为准 |
+| 公司 SVN | 正式配置制作与提交流程保留；明确项目、URL、环境、revision 与策略后操作 |
+| 101 | 只引用 CR 方法；配置、代码和结果仍在101自己的受控位置 |
 
-四启动文件实际为 `00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`。根/项目 AGENTS、README、架构、ChatGPT/Codex/TRAE、Skill 路由、Context/Source Pack 和资料同步路径的修改清单已在 RFC 登记，等待安全 gate 后实施。
+旧文档中的 `CR_design`、`cr_design`、`D:\cr_design` 和旧 SVN revision 保留当时 provenance。当前文档链接使用新前缀；历史 Git 查看仍用原来源 SHA 的原路径（如 `git show <CR来源SHA>:README.md`），不能用新前缀查询旧提交。既有历史报告不批量重写日期或结论。
 
-## 验证与未完成项
+适配覆盖根 AGENTS / README / AI_TEAM / ARCHITECTURE / CONTRIBUTING、项目七类入口、四份 ChatGPT 启动文件、ChatGPT/Codex/TRAE 路由、Skill 索引、Context 生成器与同步路径。Source Pack 只增加 CR CONTEXT 摘要；不递归收录 CR 正文/工作簿，也未新增 Live Context 发布项或读取私有 Registry。Host-local Context 的既有内容指纹机制保留，不把它扩展为迁移文件哈希验收。
 
-| 检查 | 结果 |
-| --- | --- |
-| 最新 main、并发范围与正式分配 | 通过；无同目标 active Task，保护现有开放 PR 范围 |
-| 初始 Task Registry | 14 canonical / 0 collision / valid |
-| 登记后 Task Registry | 15 canonical / 0 collision / valid；6 条既有 grandfather 警告 |
-| Task 状态兼容 | canonical `Status: Review`（审查清洗决定）；`Execution status: Blocked before import` 明确执行暂停。现有 allocator 不接受 `Blocked` 为主状态，已按既有枚举修正，未修改治理工具 |
-| 治理记录校验 | Task Registry 15 canonical / 0 collision / valid；Context doctor `ok=true`；9 份 Markdown 的 28 个本地链接全部可达；10 个变更文件的敏感模式检查无命中；`git diff --check` 通过 |
-| Workspace Sync | ON_DEMAND / provider unavailable / stale 6 / conflicts 0；不作云端同步成功声明 |
-| 本地 bundle、恢复与全图 fsck | 两仓通过 |
-| 源树纳管范围 | 276 文件；无嵌套 Git/SVN 元数据或 submodule |
-| 内容与完整历史发布 gate | 未通过，已确认三个含原始记录的工作簿 |
-| subtree / 原样文件一致性 / 历史祖先可达性 | 未执行，待清洗历史决定与新一轮安全检查 |
-| 适配与新克隆的根/CR 两入口验收 | 未执行，不能用原 CR checkout 的可用性替代 |
-| `build_catalog.py` / `validate_repository.py` / 卡包相关校验 | 未在迁移候选中执行，不声明迁移验收通过 |
-| 原始源表 / 同步 apply / SVN 提交 / 真实采集 / 部署 | 均未修改或执行 |
-| 迁移分支推送 / PR / merge / 旧库归档 | 均未执行；仅 allocator 创建了已授权的最小 reservation ref |
+目录工具默认跳过文件哈希，仍读取工作簿结构；卡包检查直接比较 Excel 与 CSV 内容及业务引用。同步目标使用便携路径并以 CR 项目目录解析；SVN 提交工具要求显式 `--root`，防止误把 Git 根当 SVN 工作副本。未修改源表、SVN 策略或 Collector 运行代码。
 
-收尾只读复核两仓远端 main SHA 未变化，AI-Workspace 为 PUBLIC、cr_design 为 PRIVATE，迁移分支尚不存在于远端。扫描过程中初版对大量仿真余额命中逐一计算行号导致耗时，已只终止本 Task 明确识别的扫描进程，改为全部计数、限量行号定位和 Office 分块检查后完成；没有跳过历史对象，也没有操作其他运行进程。
+## 验收结果
 
-## 回滚与唯一下一步
+待最终全新克隆运行结果回填。本地已验证 Context 的13项相关测试；最终测试以候选提交和独立克隆记录为准。
 
-当前没有导入和日常入口切换，因此保持现状即可回退；不要合并候选。两个 bundle 已验证可恢复。TASK-0032 canonical 尚未进入 main，reservation 不 finalize、不提前 release；恢复本 Task 时继续原编号。
+## 切换、并发与未完成项
 
-未来如获准清洗并迁移，合并只能采用保留导入历史的 merge commit，禁止 squash/rebase。合并后要回滚，需 User 授权后确认 merge 的主线 parent，再提交 revert；这只能回退可见文件，不会撤销已经公开的历史，所以不能代替发布前审查。
+本候选尚未合并，不能宣称正式切换。Review 使用候选分支；User 确认合并并切换后，唯一日常 Git 入口为 AI-Workspace，CR 资料和工具只写 `projects/cr/`。旧 CR Git 与 SVN 资料镜像不再双写；公司 SVN 正式配置不是资料镜像，继续原流程。
 
-唯一下一步：User 决定是否接受隔离副本历史清洗及新旧 SHA 映射；批准前保持导入/发布暂停。
+已从最新 main 完成防重与 remote-CAS 正式分配，TASK-0032 reservation 保持 pending-main，只有 canonical 合入 main 后才能 finalize，不提前 release。开放 PR #2 EarlyMeeting / #4 Huuuge 及 TASK-0030 Pop Slots 具有共享入口潜在冲突；本分支不覆盖它们，合并前再次核对并发与来源增量。
+
+仍待完成：候选验收结果回填、推送/PR Review、User 确认最终合并与切换、canonical 进入 main 后 finalize、旧库是否归档。Context provider unavailable 不影响离线迁移；未发布云文档、未上传 Project Sources，也未扩大任何外部权限。
+
+## 回滚步骤
+
+1. 合并前：保留候选 PR / 分支，不切换日常入口即可保持原状；原两仓和受控 bundle 完整保留。不要删除旧库、强推 main 或释放已形成 canonical 的 reservation。
+2. 若需本机恢复：在全新空目录执行 `git clone --mirror <受控bundle绝对路径> <恢复目录>`，用原来源 SHA 创建工作分支；不覆盖已有 checkout。两份 bundle 已通过恢复验证。
+3. 合并后需经 User 授权，在最新 AI-Workspace main 创建回滚分支，确认 PR merge commit 的第一父为原目标主线，再 `git revert -m 1 <PR merge commit>`。检查导入目录、根入口、路由与生成物一起回退，验收后通过 PR 合并；不改写共享历史。
+4. Revert 无法撤回已公开历史。若后续发现凭据，先由所有者处置凭据，再单独评审历史处理；本次三个明确批准文件无需清洗。
+5. 恢复旧 Git 日常入口前，先冻结两端资料写入，核对迁移后的新增内容并由 User 指定去向与切换时点，防止双写丢失。公司 SVN 正式配置不受本迁移回滚影响。
+
+PR 合并必须选择 **Create a merge commit**，禁止 Squash and merge / Rebase and merge；否则无法保留 CR 原提交为主线祖先。最终合并和旧库归档不属于本次自动执行范围。
