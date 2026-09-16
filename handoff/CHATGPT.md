@@ -2,6 +2,21 @@
 
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
+## 2026-09-16 — TASK-0032：ChatGPT Review Round 1 Accepted
+
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，ChatGPT Review Round 1 已 Accepted（基线 `83eadec`）；等待 User 批准最终合并与切换。须使用 merge commit 保留 CR 导入历史；本轮不合并、不切换、不 finalize，旧库归档仍需另行授权。
+
+- Task：[TASK-0032](../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)；分支 `codex/cr-subtree-migration`；Subagents: none。
+- 完整评审：[Round 1](../reviews/TASK-0032-CHATGPT-REVIEW-1.md)，来源为 PR #5 已发布评审，基线 `83eadec13cb4a03fa5b75de8dcbdd1f83cb61048`；无必须修改项。Review 未独立复跑测试、工作簿检查或备份恢复，未重复历史敏感内容审查，不能把报告的81项本机测试称为本轮独立验收或 GitHub CI。
+- Task: Accepted；Execution status: 等待 User 批准最终合并与切换。本轮只固化完整评审、更新记录、重建/验证 Registry 并推送候选，不启动后续合并或切换流程。
+- User 已批准 public 迁移以及三个 Top Tycoon 工作簿的原始记录与历史；不再清洗这三份文件，不新增重复哈希工作。其他敏感内容限制不变，权限不改。
+- 来源 CR main `1409737648b15f602586b79ade7e0c3e7a3813a0`；原样导入 `fe07557ce5052da6a0eaaaaa1207b416ac081474`，直接 diff 为空且13个原提交保留。适配另行提交。
+- 根/CR 规则、四启动文件、三 Agent 入口、唯一 Skill 路由、Context 与同步路径已适配。公司 SVN 正式配置保持原流程，HuuugeCollector 为历史副本，CR/101 分离。
+- [迁移报告](../docs/migrations/CR-MIGRATION-20260916.md)记录来源、276文件映射、审查、验收与回滚。全新克隆的根/CR 两入口验收通过：14源表、36卡包附件、845935单元格、81项测试通过；上述为原迁移验收记录，Round 1 未独立复跑；现已 Accepted，尚未正式切换。
+- 不执行源表修改、同步 apply、SVN 提交、真实采集或部署。最终合并和旧库归档仍待 User 确认；reservation 保持 pending-main，canonical 进 main 后才 finalize。
+
+## 既有 Review 记录（保留原时点）
+
 - Updated: 2026-08-29
 - Current Review request: TASK-0019 — 项目全景说明与独立进度文档
 - TASK-0019 status: `Accepted`

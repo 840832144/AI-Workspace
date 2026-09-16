@@ -10,6 +10,12 @@
 
 ## 🔥 Current
 
+### CR 单仓策划入口
+
+- User 于 2026-09-16 批准 public AI-Workspace 的 `projects/cr/` 作为 CR 日常资料、唯一 Skills 与分析工具入口，并批准三个 Top Tycoon 工作簿及原始记录历史。
+- 当前状态：TASK-0032 原样导入与适配完成，全新单仓克隆验收通过，ChatGPT Review Round 1 已 Accepted；因最终合并与切换仍待 User 批准，继续保留在 Current。
+- 下一步：等待 User 批准最终合并与切换；旧库归档另行确认。完整 [Round 1](../../reviews/TASK-0032-CHATGPT-REVIEW-1.md) 保留未独立复跑测试的限制。见 [RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md) 与 [迁移报告](../migrations/CR-MIGRATION-20260916.md)。本任务只更新 Git，未另行发布飞书或扩大分享。
+
 ### 【游戏】 Collector 1.0
 
 - 当前状态：TASK-0026 已完成 allocator finalize；Collector 1.0 实现已 push 到 `CF_collect@7c32877` 并进入 ChatGPT Review，未执行新的动态 Spin。

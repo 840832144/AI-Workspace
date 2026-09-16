@@ -1,6 +1,18 @@
 # Game Planner Skill Tree
 
-本目录定义 Game Planner AI Workspace 的 Skill Tree。当前只建立分类、边界和未来登记入口，不包含可执行 Skill、提示词、脚本或工具配置。
+## 可用的 CR 专项 Skills
+
+根发现入口：[cr-project](../.agents/skills/cr-project/SKILL.md)。唯一正文位于 `projects/cr/.agents/skills/`：
+
+- [cr-numerical-design](../projects/cr/.agents/skills/cr-numerical-design/SKILL.md)：数值设计与复盘。
+- [cr-ingest-knowledge](../projects/cr/.agents/skills/cr-ingest-knowledge/SKILL.md)：资料筛选与 Git 落库。
+- [cr-govern-workbooks](../projects/cr/.agents/skills/cr-govern-workbooks/SKILL.md)：源表治理。
+- [cr-svn-submit](../projects/cr/.agents/skills/cr-svn-submit/SKILL.md)：已授权的公司 SVN 配置提交。
+- [cr-capture-lessons](../projects/cr/.agents/skills/cr-capture-lessons/SKILL.md)：经验沉淀。
+
+这些正文已存在；下方 Model only 状态仅指通用分类模型，不应据此判定 CR Skill 不可用。
+
+本目录定义 Game Planner AI Workspace 的 Skill Tree。本目录维护分类模型；已导入的 CR 专项 Skill 正文另在项目目录唯一维护，见下方路由。
 
 ## Skill 分类
 

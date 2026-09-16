@@ -1,0 +1,44 @@
+[
+  {
+    "sheet": "item",
+    "cell": "K75",
+    "value": 2592000,
+    "formula": "=864000*3"
+  },
+  {
+    "sheet": "item",
+    "cell": "K77",
+    "value": 2592000,
+    "formula": "=864000*3"
+  },
+  {
+    "sheet": "item",
+    "cell": "K264",
+    "value": 3600,
+    "formula": "=60*60*1"
+  },
+  {
+    "sheet": "item",
+    "cell": "K265",
+    "value": 3600,
+    "formula": "=60*60*1"
+  },
+  {
+    "sheet": "item",
+    "cell": "K266",
+    "value": 3600,
+    "formula": "=60*60*1"
+  },
+  {
+    "sheet": "item",
+    "cell": "K267",
+    "value": 3600,
+    "formula": "=60*60*1"
+  },
+  {
+    "sheet": "item",
+    "cell": "K268",
+    "value": 3600,
+    "formula": "=60*60*1"
+  }
+]

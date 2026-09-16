@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-08-26T03:18:52.557158+00:00",
+  "sources": [
+    {
+      "key": "designer_workbooks",
+      "label": "CR 系统数值策划源表",
+      "source_ref": "${CR_DESIGNER_WORKBOOKS_DIR}",
+      "destination": "数值策划\\数据源\\策划源表",
+      "authority": "策划原始工作目录",
+      "notes": "策划侧业务源表快照；回到原目录修改后再同步。",
+      "file_count": 14,
+      "changed_count": 0,
+      "files": [
+        {
+          "relative_path": "1+6礼包.xlsx",
+          "size_bytes": 684378,
+          "sha256": "832fb519430f9e7efcf463ef1e25123f38a09ac4c559ed77072cde9f0b0030b6"
+        },
+        {
+          "relative_path": "CR数值整理.xlsx",
+          "size_bytes": 2025883,
+          "sha256": "f68bf7b3075c847473fe5a55e924c09bfe8943486988dd866e8b1c7f6aec01c7"
+        },
+        {
+          "relative_path": "CR等级+buff新.xlsx",
+          "size_bytes": 27210084,
+          "sha256": "84a709d30ba5a325f38c9b20de06f669401cd9ae6379b7b28689b52c77f0af81"
+        },
+        {
+          "relative_path": "quest数值.xlsx",
+          "size_bytes": 6260434,
+          "sha256": "782eb98cd397a984493a75c942a4c62c91ee4cb9dda258a88e2627965d9eb494"
+        },
+        {
+          "relative_path": "免费奖励数值.xlsx",
+          "size_bytes": 18125,
+          "sha256": "571d350b4b92a61fcff1ecfa4f8925cf7523ca81014970c164ca6df38164625f"
+        },
+        {
+          "relative_path": "卡包数值调整.xlsx",
+          "size_bytes": 136252,
+          "sha256": "04c5462a87748810d88713bb82cfb246182b16dd69da360a9ce0952aeec98587"
+        },
+        {
+          "relative_path": "宝藏矿工.xlsx",
+          "size_bytes": 942161,
+          "sha256": "b954106fb2677826e936aa5deaf7d6737018f65c85d9d320286f669910fc1abb"
+        },
+        {
+          "relative_path": "幸运7数值.xlsx",
+          "size_bytes": 1746181,
+          "sha256": "8814f22a9a5c4b000c854ba149bb916017bb9060ad494aa4fa5b7176361409ef"
+        },
+        {
+          "relative_path": "建造数值.xlsx",
+          "size_bytes": 1314545,
+          "sha256": "60d7eb0c765c6801275cd34a403d575c9c5e10f3cfa0ab1802a2593add01eb3d"
+        },
+        {
+          "relative_path": "建造数值体验表.xlsx",
+          "size_bytes": 39520,
+          "sha256": "3865043f7c50b3a1eed7188f220d5224657a893050edbc48f2ddaf720925f021"
+        },
+        {
+          "relative_path": "弹球quest数值 (2).xlsx",
+          "size_bytes": 379637,
+          "sha256": "fed4e57a0e75470e8433710dab204f44d0352c05f3dfc7c4a5fc5f704169e88f"
+        },
+        {
+          "relative_path": "无尽礼包.xlsx",
+          "size_bytes": 366917,
+          "sha256": "0a35a3b2e41f0041b1afdf780bd9578ccf12f79c04e9876aa3211e6c142ea723"
+        },
+        {
+          "relative_path": "疯狂探险.xlsx",
+          "size_bytes": 22277,
+          "sha256": "5bb1a110c13081d4547b082edf32cb5a7195147691bf039af9af1930c31bbb17"
+        },
+        {
+          "relative_path": "薯片数值.xlsx",
+          "size_bytes": 175171,
+          "sha256": "7366ecef05ec3467aa8162aebb3112bfbb0eb65a63d74be696ea0b3a2479864f"
+        }
+      ]
+    }
+  ]
+}

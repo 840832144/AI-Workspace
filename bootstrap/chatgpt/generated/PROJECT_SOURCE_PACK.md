@@ -1,11 +1,17 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-08-29T09:33:41Z
+Generated: 2026-09-16T04:49:59Z
 
-本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。
+本文件组合当前分支的公共治理与项目入口摘要；候选是否已通过 Review 以 Task / PR 为准，Git 仍是最新真相源。不递归收录 CR 正文、工作簿或采集数据。
 
-<!-- SOURCE: 00_CORE_RULES.md -->
+<!-- SOURCE: bootstrap/chatgpt/00_CORE_RULES.md -->
 # 00 — Core Rules
+
+## CR 单仓库入口（TASK-0032）
+
+只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
+Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 ## 项目定位
 
@@ -189,8 +195,14 @@ Product Roadmap 是长期产品规划唯一入口，不与 Task、Documentation 
 - Project Source Pack / Project Sources 只是离线快照。Git 可用时禁止用旧快照覆盖 Workspace Memory；Git 不可用时必须标记快照可能过期。
 - OFF / ASSISTED / AUTO 是独立 kill switch；生产默认 ASSISTED，AUTO 不能绕过高影响 Review gate。
 
-<!-- SOURCE: 01_SYSTEM_CONTEXT.md -->
+<!-- SOURCE: bootstrap/chatgpt/01_SYSTEM_CONTEXT.md -->
 # 01 — System Context
+
+## CR 单仓库入口（TASK-0032）
+
+只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
+Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 ## 总体架构
 
@@ -199,7 +211,8 @@ AI-Workspace（治理、Task、规则、Memory、Handoff）
         │
         ├── huuuge-android-research（采集器、研究实现、证据）
         ├── AI Document Assistant（公司文档读写 Provider）
-        ├── CR 等业务项目仓库（各自实现真相源）
+        ├── AI-Workspace/projects/cr（CR 策划资料、Skills、分析工具）
+        ├── 公司 SVN（CR 正式配置）及其他业务项目仓库（各自实现真相源）
         └── 公司 SVN（正式包和公司资源分发）
 ```
 
@@ -253,7 +266,7 @@ Collector 和报告生成是两个独立功能。AI Document Assistant 只负责
 - GitHub：`840832144/AI-Workspace`
 - 定位：Game Planner AI Workspace 的治理与任务真相源。
 - 保存：Capability Catalog、Workflow、Skill、标准、Product Roadmap、Project Control Plane、Task、ADR、Handoff、Bootstrap。
-- 不保存：业务代码、运行时 endpoint、Secret、原始采集数据、私有 Registry。
+- 保存 RFC-0005 批准的 CR 策划资料与分析工具；不保存其他业务实现、运行时 endpoint、Secret、私有 Registry 或未批准原始采集数据。
 
 ### huuuge-android-research
 
@@ -363,7 +376,7 @@ Conversation / Agent
 
 标准 ChatGPT GitHub App 只读时使用 Outbox handoff；Codex 是默认 Git writer/Curator。Global hook、外部服务和生产 AUTO 不在默认接入中。
 
-<!-- SOURCE: PLANNER_WRITING_STYLE.md -->
+<!-- SOURCE: standards/PLANNER_WRITING_STYLE.md -->
 # 策划协作行文规范
 
 - Status: Accepted / Active
@@ -444,7 +457,7 @@ Conversation / Agent
 
 `Workspace Sync doctor` 对纳入 Live Context 的行文文件执行轻量检查，阻断连续孤立短行和异常标题密度。检查只是下限，不把中文写作变成僵硬模板。
 
-<!-- SOURCE: WORKSPACE.md -->
+<!-- SOURCE: memory/context/WORKSPACE.md -->
 # AI Workspace｜跨会话长期记忆
 
 > 本文件是新 AI 会话读取长期稳定结论的唯一 public-safe Git 入口。Git `main` 是真相源；本页不替代 Task、Review、Handoff 或业务仓库证据。
@@ -500,8 +513,14 @@ TASK-0016 已 Accepted；Git Memory 是 AI 跨会话长期真相源，云文档�
 
 - `workspace.git-memory-truth` / `MEM-20260828-B2DDD4B84544` / `2026-08-28` / 来源 `tasks/support/TASK-0016/WORKSPACE-MEMORY-CROSS-SESSION-CLOSURE.md`：Git Memory 是 AI 跨会话长期真相源；云文档主要供人类阅读与导航，不作为 AI 长期记忆真相源。
 
-<!-- SOURCE: PROJECT_INSTRUCTIONS.md -->
+<!-- SOURCE: bootstrap/chatgpt/PROJECT_INSTRUCTIONS.md -->
 # Project Instructions — Game Planner AI Workspace
+
+## CR 单仓库入口（TASK-0032）
+
+只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
+Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 本项目面向游戏策划研究与工具建设。默认中文，聊天保持简洁；只有复杂架构、流程或评审才展开，长期设计必须沉淀到 Git。
 
@@ -526,8 +545,14 @@ TASK-0016 已 Accepted；Git Memory 是 AI 跨会话长期真相源，云文档�
 16. ChatGPT 在任何项目聊天中主动提出值得长期保留的产品能力、长期优化、Workflow、Capability、Collector 思路或 UX 改进时，必须先防重并判断进入 Product Roadmap 的 `Current / Backlog / Ideas / Done`；在相关 Task 收尾时主动生成 Idea Handoff 通知 Codex，不依赖 User 手工提醒。Roadmap 不自动创建 Task，进入 Current 仍需 User 批准或 active canonical Task，进入 Done 需要实现、验证和正式 Review。
 17. 所有 AI 统一遵守 `standards/PLANNER_WRITING_STYLE.md` 的技术术语规则：默认使用策划可理解、准确且克制的研究表达；复现、工程判断、授权、合规、安全或风险依赖真实机制时，必须保留 Root、Frida、Hook、逆向分析、协议解密、校验绕过、系统修改、exploit 等精确术语。不得通过改名或模糊化规避安全策略、权限检查、User 授权或 Review，也不得弱化真实风险或夸大被动研究。
 
-<!-- SOURCE: 02_CURRENT_STATE.md -->
+<!-- SOURCE: bootstrap/chatgpt/02_CURRENT_STATE.md -->
 # 02 — Current State
+
+## CR 单仓库入口（TASK-0032）
+
+只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
+Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 _Last reviewed: 2026-08-29_
 
@@ -652,7 +677,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-08-29T09:33:41Z
+- Generated: 2026-09-16T04:49:59Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -662,10 +687,17 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md` — Ready
+- `TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md` — Review
 <!-- MEMORY-CONTEXT:END -->
 
-<!-- SOURCE: 03_NEW_CHAT_BOOTSTRAP.md -->
+<!-- SOURCE: bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md -->
 # 03 — New Chat Bootstrap
+
+## CR 单仓库入口（TASK-0032）
+
+只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
+Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 新建项目对话后，按本协议开始。它的目标是防止新对话在不了解体系时直接发明方案、重复开发已有功能或给 Codex 下错误任务。
 
@@ -710,7 +742,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 ```text
 执行 TASK-XXXX。
-请同步 AI-Workspace main 和对应业务仓库，读取任务文件。
+请安全读取 AI-Workspace 最新 main 和当前任务分支，读取任务文件；CR 已在 projects/cr，无需另克隆 CR。其他项目按各自真相源同步。
 严格按 Scope / Boundaries 实施、验证并提交。
 完成后更新 Handoff，返回 commit，等待 ChatGPT Review。
 ```
@@ -789,3 +821,14 @@ Feasibility Audit
 12. 技术术语是否符合真实工作和当前受众，并且没有淡化风险、隐藏机制或规避检查？
 
 如果第 5 或第 6 项无法确认，先查 Git，不要猜。
+
+<!-- SOURCE: projects/cr/CONTEXT.md -->
+# CR 项目上下文
+
+CR（Cash Royal）策划目标是形成有来源、假设、公式与验证的数值设计和分析资料。Owner 为 User，执行按 Workspace 正式 Task 分配。全局治理和跨项目 Task 位于仓库根；本目录维护 CR 设计资料、Skills 和分析工具。
+
+入口：[README](README.md)、[规则](AGENTS.md)、[状态](STATUS.md)、[工作流](WORKFLOW.md)、[记忆](MEMORY.md)。Skill 唯一正文在 `.agents/skills/`，从根可通过 `.agents/skills/cr-project/SKILL.md` 路由。卡包参考入口位于 `数值策划/数值文档/03_分析与复盘/CR卡包价值分析资料_20260915/README.md`。
+
+正式配置依赖公司 SVN 的明确目标 dev/trunk 和 revision；仓库内日期附件只证明当时版本。101 必须使用其自身配置与代码。HuuugeCollector 只是历史副本，当前实现见 `projects/huuuge-android-research/` 指向的外部仓库。
+
+公开导入和单入口决策见 [RFC-0005](../../docs/rfc/RFC-0005-CR-Subtree-Public-Migration.md)。本上下文仅提供路径与边界；生成器不得递归打包 CR 工作簿、正文归档、原始记录或完整附件，也不自动上传 ChatGPT、飞书或其他服务。
