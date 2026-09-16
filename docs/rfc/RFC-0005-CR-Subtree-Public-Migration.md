@@ -1,6 +1,6 @@
 # RFC-0005：CR 资料与分析工具并入 AI-Workspace
 
-- Status: Accepted scope / Pending implementation Review
+- Status: Accepted scope / Blocked before import
 - Date: 2026-09-16
 - Actors: User, Codex；最终 Review：ChatGPT / User
 - Task: [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)
@@ -43,7 +43,7 @@ User 明确要求将 `840832144/cr_design` 并入 `840832144/AI-Workspace` 的 `
 | `cr_design/<path>` | `AI-Workspace/projects/cr/<path>`；原样导入前后清单逐项核对 |
 | 根与项目规则 | 根 `AGENTS.md`、`README.md`、`AI_TEAM.md`、`ARCHITECTURE.md`、`CONTRIBUTING.md` 与 CR `AGENTS.md` 一致说明批准边界 |
 | CR 项目入口 | 补齐 README / CONTEXT / MEMORY / WORKFLOW / STATUS / REPORTS / ASSETS；不提前占用 subtree 前缀 |
-| 四份启动文件 | `bootstrap/chatgpt/00_CORE_CONSTITUTION.md`（按实际文件名核验）、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`；当前状态与稳定规则分离 |
+| 四份启动文件 | `bootstrap/chatgpt/00_CORE_RULES.md`、`01_SYSTEM_CONTEXT.md`、`02_CURRENT_STATE.md`、`03_NEW_CHAT_BOOTSTRAP.md`；当前状态与稳定规则分离 |
 | ChatGPT / Codex / TRAE | 检查各实际入口，根目录和 CR 子目录都能找到根规则与相关 Skills |
 | Skill 路由 | 以实际 CR `.agents/skills/*/SKILL.md` 为唯一正文；同步通用技能索引及 TRAE 入口 |
 | 上下文 | 适配实际 Context manifest、`tools/context/workspace_context.py`、Source Pack 生成器和刷新路径，不上传原始数据 |
@@ -77,4 +77,4 @@ PR 合并并经 User 确认切换后，唯一日常 Git 入口为 AI-Workspace�
 
 ## 当前未完成项
 
-完整树与历史审查、subtree 导入、路径适配、全新克隆验收和迁移 PR 均待执行。当前只确认授权、来源、备份和登记 gate；不声称迁移完成。
+完整可达对象枚举与文本/Office 扫描已完成，发现三个含原始样本和逐笔资源数据的工作簿，发布 gate 未通过。脱敏证据、范围及清洗历史提案见 [迁移审查记录](../migrations/CR-MIGRATION-20260916.md)。subtree 导入、路径适配、全新克隆验收和迁移 PR 均未执行；待 User 决定是否接受仅在隔离副本清洗历史并保留新旧 SHA 映射。不得提前切换日常入口。

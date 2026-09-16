@@ -2,6 +2,14 @@
 
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
+## 2026-09-16 — TASK-0032：历史清洗决定待确认
+
+User 已批准 CR 并入 AI-Workspace 的 `projects/cr/`，并明确目标保持 public。正式 Task 由 allocator 返回 [TASK-0032](../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)，完整方案为 [RFC-0005](../docs/rfc/RFC-0005-CR-Subtree-Public-Migration.md)。原历史中的三个工作簿含原始样本和逐笔资源数据，触发 User 指定的暂停发布条件；[脱敏审查记录](../docs/migrations/CR-MIGRATION-20260916.md) 已列出对象、行数、来源、清洗建议、未完成验收和回滚。
+
+当前为 Blocked before import，尚未执行 subtree、push 迁移分支或创建 PR，日常入口未切换。需要的 User 决定是：是否允许仅在隔离副本清洗历史，保留新旧 SHA 映射，再以非 squash subtree 导入。不能将“保持原 SHA 可达”与“删除敏感历史对象”同时声称完成。两仓可见性/协作者/外部分享权限均不改；原两仓与本地备份保留。Subagents: none。
+
+## 既有 Review 记录（保留原时点）
+
 - Updated: 2026-08-29
 - Current Review request: TASK-0019 — 项目全景说明与独立进度文档
 - TASK-0019 status: `Accepted`

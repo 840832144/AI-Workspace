@@ -8,6 +8,6 @@ RFC 用于需要讨论、影响多个组成部分或改变 AI 协作体系边界
 | [RFC-0002](RFC-0002-Document-Assistant.md) | Document Assistant | Proposed |
 | [RFC-0003](RFC-0003-AI-Skill-System.md) | AI Skill System | Proposed |
 | [RFC-0004](RFC-0004-Research-Environment-Strategy.md) | Research Environment Strategy | Proposed |
-| [RFC-0005](RFC-0005-CR-Subtree-Public-Migration.md) | CR public subtree 迁移 | Scope approved / Pending implementation Review |
+| [RFC-0005](RFC-0005-CR-Subtree-Public-Migration.md) | CR public subtree 迁移 | Scope approved / Blocked before import |
 
 新 RFC 从 `templates/RFC.md` 创建，编号连续且不可复用。

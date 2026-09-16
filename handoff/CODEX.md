@@ -1,5 +1,17 @@
 # Codex Handoff
 
+## 2026-09-16 — TASK-0032：CR public subtree 迁移暂停
+
+- 当前 Task：[TASK-0032](../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)，`Blocked before import`；分支 `codex/cr-subtree-migration`，Subagents: none。
+- User 已批准 AI-Workspace 在迁移期间及合并后保持 public；不改变两仓可见性、协作者或外部分享权限。最终合并与旧库归档仍待 User 确认。
+- main 基线：AI-Workspace `5b5414cf7ecb9df3c06d23b3325cfb90b4fa2d7e`；CR `1409737648b15f602586b79ade7e0c3e7a3813a0`。备份、bundle 恢复和 full fsck 已通过；Task/RFC 首次提交 `52e3279e613858a0e691700bb5188b0a98cb8bc0`。
+- 已遍历两仓全部现有 refs 可达图。三个 CR Top Tycoon 工作簿含已填写的原始样本、金币前后值或逐笔资源流水，且自初始提交即存在；不能以 HEAD 删除或 revert 防止公开旧历史。
+- 脱敏证据、完整迁移/路径适配清单、测试缺口和回滚见 [迁移审查记录](../docs/migrations/CR-MIGRATION-20260916.md) 与 [RFC-0005](../docs/rfc/RFC-0005-CR-Subtree-Public-Migration.md)。完整扫描明细、文件映射、恢复仓库和 reservation token 只在受控本机。
+- 未执行 subtree、入口切换、迁移分支 push/PR、SVN 提交、同步 apply、真实采集或部署。下方旧 Task 记录保留为历史，不恢复其执行；原 checkout 不修改。
+- 唯一下一步：User 接受或拒绝“仅隔离副本清洗完整历史，保留新旧 SHA 映射”。批准后继续本 Task，原两仓不重写，重新审查后再导入和验收；未通过前不发布。TASK-0032 reservation 保持 pending-main，不提前 release/finalize。
+
+## 既有交接记录（保留原时点）
+
 - Updated: 2026-08-29
 - Current task: TASK-0019 — AI Workspace 项目全景说明与独立进度文档
 - Status: Accepted — ChatGPT Review Round 3 已通过，执行 Context / 飞书 / main 收口

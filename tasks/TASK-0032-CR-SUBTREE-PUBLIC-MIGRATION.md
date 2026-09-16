@@ -1,6 +1,7 @@
 # TASK-0032 — CR 并入 AI-Workspace 的 public subtree 迁移
 
-- Status: In Progress
+- Status: Review
+- Execution status: Blocked before import; waiting for User history-cleaning decision
 - Project key: WORKSPACE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -26,15 +27,15 @@
 - 独立 linked worktree 分支：`codex/cr-subtree-migration`；main 已安全同步，原有 checkout 与 SVN 本机产物保留。
 - main Registry：14 canonical / 0 collision / valid；已检查 Task、RFC、Roadmap、远端 heads、开放 PR，无同目标 active Task。
 - remote-CAS 正式返回 TASK-0032；reservation 保持 pending-main，token 仅本地；canonical 合入 main 后才 finalize。
-- 两仓完整 refs 的本机 bundle 已创建并 verify；完整文件和可达历史审查尚未完成。
+- 两仓完整 refs 的本机 bundle 已创建并 verify，并从 bundle 恢复后通过 full fsck。CR 16 commit / 121 tree / 299 blob、目标 197 commit / 1040 tree / 1185 blob 已完成可达对象枚举和文本/Office 扫描。
 - Workspace Sync：ON_DEMAND / provider unavailable / stale 6 / conflicts 0；以最新 Git 为准，不自动发布。
 
 ## 阶段与成功证据
 
 | 阶段 | 当前状态 | 必要证据 |
 | --- | --- | --- |
-| 规则、并发、备份、登记 | 已准备 | 最新 SHA、bundle verify、allocator、Task/RFC Git commit |
-| 安全审查 | 待执行 | 完整对象覆盖、归档检查、脱敏问题及处理结论 |
+| 规则、并发、备份、登记 | 已完成 | 两仓最新 SHA、bundle 恢复/full fsck、allocator；Task/RFC 首次提交 `52e3279e613858a0e691700bb5188b0a98cb8bc0` |
+| 安全审查 | 未通过 | 三个含原始样本与逐笔数据的工作簿自初始导入起可达；[脱敏审查报告](../docs/migrations/CR-MIGRATION-20260916.md) |
 | 原样导入 | 待 gate | 非 squash subtree commit；树、清单、内容及祖先可达性一致 |
 | 单独适配 | 待导入 | 根/CR规则、四启动文件、三 Agent 入口、路由、上下文及同步路径 |
 | 全新克隆验收 | 待适配 | 仅候选 AI-Workspace、根/CR 两入口、catalog/repository/相关校验、源表不变 |
@@ -46,4 +47,4 @@ Secret、账号信息、原始采集数据、完整响应、逐笔余额、私�
 
 ## 下一步
 
-先提交本 Task/RFC 和自动 Registry，然后执行完整历史与待导入文件的本地审查；通过后才进行 subtree 与发布。
+User 决定是否接受仅在隔离副本清洗受影响文件的完整历史并记录新旧 SHA 映射。原两仓不重写，public 决定不变；批准前暂停导入和发布。未执行 subtree、入口切换、同步 apply、SVN 提交、真实采集或部署；未推送迁移分支或创建 PR。Task reservation 保持 pending-main，不重新分配。

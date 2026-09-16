@@ -10,6 +10,12 @@
 
 ## 🔥 Current
 
+### CR 单仓策划入口
+
+- User 于 2026-09-16 批准将 CR 资料、唯一 Skill 正文及分析工具纳入 AI-Workspace 的 `projects/cr/`，目标迁移期间及合并后保持 public。
+- 当前状态：`Blocked before import`；正式 [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md) 已登记，本地备份与历史扫描完成，发现原始样本/逐笔数据，发布暂停；尚未切换或完成迁移。
+- 唯一下一步：User 决定是否接受隔离副本历史清洗及新旧 SHA 映射；见 [RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md) 和 [脱敏审查记录](../migrations/CR-MIGRATION-20260916.md)。批准前不导入、不发布；本条尚未发布到飞书。
+
 ### 【游戏】 Collector 1.0
 
 - 当前状态：TASK-0026 已完成 allocator finalize；Collector 1.0 实现已 push 到 `CF_collect@7c32877` 并进入 ChatGPT Review，未执行新的动态 Spin。
