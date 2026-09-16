@@ -4,6 +4,8 @@
 
 ## 2026-09-16 — TASK-0032：CR 单仓候选
 
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，分支已推送，等待 Review。必须使用 merge commit 保留 CR 导入历史；最终合并、切换与旧库归档仍待 User 确认。
+
 - Task：[TASK-0032](../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)；分支 `codex/cr-subtree-migration`；Subagents: none。
 - User 已批准 public 迁移以及三个 Top Tycoon 工作簿的原始记录与历史；不再清洗这三份文件，不新增重复哈希工作。其他敏感内容限制不变，权限不改。
 - 来源 CR main `1409737648b15f602586b79ade7e0c3e7a3813a0`；原样导入 `fe07557ce5052da6a0eaaaaa1207b416ac081474`，直接 diff 为空且13个原提交保留。适配另行提交。

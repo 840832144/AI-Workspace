@@ -1,5 +1,7 @@
 # CR 迁移清单与验收
 
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，分支已推送，等待 Review。必须使用 merge commit 保留 CR 导入历史；最终合并、切换与旧库归档仍待 User 确认。
+
 - 日期：2026-09-16
 - Task：[TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)
 - 方案：[RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md)；决策：[ADR-0008](../adr/ADR-0008-CR-Single-Repository.md)

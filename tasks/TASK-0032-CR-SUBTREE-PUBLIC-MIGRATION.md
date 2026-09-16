@@ -1,5 +1,7 @@
 # TASK-0032 — CR 并入 AI-Workspace 的 public subtree 迁移
 
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，分支已推送，等待 Review。必须使用 merge commit 保留 CR 导入历史；最终合并、切换与旧库归档仍待 User 确认。
+
 - Status: Review
 - Execution status: Fresh-clone acceptance passed; awaiting PR Review
 - Project key: WORKSPACE

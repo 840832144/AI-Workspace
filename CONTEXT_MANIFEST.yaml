@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-09-16T04:47:22Z"
+generated_at: "2026-09-16T04:49:59Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-governance-and-project-entrypoints"
-repository_head: "51a8287e800a2e797e536c00d5297fbb615ee14f"
+repository_head: "65d1047fbac41df294ebd953c3246b2816eb424d"
 repository_branch: "codex/cr-subtree-migration"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -18,7 +18,7 @@ sources:
     sha256: "c123c6c8867dc687708dc032452ed896a8e0dd0a57357fc1a04ff174a58778f1"
     bytes: 7503
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "19f22f53a389dabaf6e3fe120cf15956c99fde3c014c94a05a3497a726cb037f"
+    sha256: "4817c552026e16315894de96bc8b28b72175b8e7a3e3e8ec3b01670dc9a1dcc0"
     bytes: 11306
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "49fee2097f6d38f4e9c25530d43df09e08d8c81b33cf57f6ef7b2af7e208c865"
@@ -75,11 +75,11 @@ sources:
     sha256: "a54b757c5501537adf665b585ac339bf41762ec0a1049d4c1a332192326678d6"
     bytes: 32264
   - path: "handoff/CHATGPT.md"
-    sha256: "e6fc6e7afd8652a3a1e0a23da6335f214944cc581ed34b5259ba683870af85ce"
-    bytes: 13288
+    sha256: "69696c6bedf02eb40187c67f8f616324f63ac64524bc1b3ee60fe4a476b9583b"
+    bytes: 13507
   - path: "handoff/CODEX.md"
-    sha256: "9f09d4b5ecde48235f8e409cd91f8a8fb0da615bcb072271c110fda8d6102fd1"
-    bytes: 23413
+    sha256: "f0e1d7bb1259c589c00bc3397a3f64e698c20357c6edddedbe963744fd69291e"
+    bytes: 23633
   - path: "handoff/POP-SLOTS-LOBBY-REPORT-KICKOFF.md"
     sha256: "7b0f5fc65a786b3cef4b2337b2d4f178ead16243eae4ec0d3ac1de33ddfdc447"
     bytes: 2953
@@ -99,8 +99,8 @@ sources:
     sha256: "3cedfd3959d03139b6ecdc01271cb24161847a44724a60d53797473479ef0422"
     bytes: 3315
   - path: "projects/cr/STATUS.md"
-    sha256: "1a8cb75b44ed2a06f9a43b01be38540dc3c7f966c651156760bb9cee460ce6e3"
-    bytes: 818
+    sha256: "fa77925979a84e53866c57447836577db5934dbc237b5abce28147d78110c1dd"
+    bytes: 1037
   - path: "projects/cr/WORKFLOW.md"
     sha256: "5a1f1ef85129ba02370e4cfe2ecaf77d0ebd53db0c808a9a9ffc1149d0fdfa2c"
     bytes: 1302
@@ -213,8 +213,8 @@ sources:
     sha256: "de58d80ae434beb29e7a44010b214dcd69ad9a165f92ad89fc57c3a1c1748525"
     bytes: 6528
   - path: "tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md"
-    sha256: "28c234c102779a64ecfc651b7960dbfac6cc50f59931d8ef8b8755713fef97e0"
-    bytes: 4245
+    sha256: "ed3dcf0834cdb9a37a1d8ada8f511729145069b69c8f257c0c0a22e87844e01a"
+    bytes: 4464
   - path: "tasks/TASK_REGISTRY.yaml"
     sha256: "6073d1af70779d6010ddb924e12bd9162f3216eeeeaea26634ce8796f6de3a50"
     bytes: 20158

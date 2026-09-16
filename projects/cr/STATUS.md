@@ -1,5 +1,7 @@
 # CR 当前状态
 
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，分支已推送，等待 Review。必须使用 merge commit 保留 CR 导入历史；最终合并、切换与旧库归档仍待 User 确认。
+
 - 更新时间：2026-09-16
 - Task： [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)
 - Owner：User；Executor：Codex；Subagents: none
