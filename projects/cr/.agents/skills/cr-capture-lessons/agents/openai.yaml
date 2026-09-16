@@ -1,0 +1,4 @@
+interface:
+  display_name: "CR 问题经验沉淀"
+  short_description: "结构化沉淀任务问题、尝试、根因、结果与可复用解决方案"
+  default_prompt: "Use $cr-capture-lessons to record reusable issues, attempted fixes, outcomes, and follow-ups from this CR task."

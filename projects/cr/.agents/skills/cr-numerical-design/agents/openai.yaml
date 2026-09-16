@@ -1,0 +1,27 @@
+interface:
+  display_name: "CR 数值策划"
+  short_description: "复核、推导并沉淀 Cash Royal 项目数值设计方案"
+  default_prompt: "使用 $cr-numerical-design 分析这份配置并输出可复核的数值结论。"
+
+# 模型提供商配置
+model_providers:
+  deepseek:
+    provider: "deepseek"
+    base_url: "https://api.deepseek.com/v1"
+    api_key: "${DEEPSEEK_API_KEY}"
+    model: "deepseek-chat"
+    max_tokens: 8192
+    temperature: 0.3
+
+# 可选的其他模型提供商
+# openai:
+#   provider: "openai"
+#   base_url: "https://api.openai.com/v1"
+#   api_key: "${OPENAI_API_KEY}"
+#   model: "gpt-4o"
+#
+# anthropic:
+#   provider: "anthropic"
+#   base_url: "https://api.anthropic.com"
+#   api_key: "${ANTHROPIC_API_KEY}"
+#   model: "claude-3.5-sonnet"
