@@ -11,7 +11,7 @@
 
 ## 只需克隆 AI-Workspace
 
-迁移 Review 使用 `codex/cr-subtree-migration`，合并后日常使用 `main`。从 Workspace 根执行：
+迁移 Review 使用 `codex/cr-subtree-migration`，合并后日常使用 `main`。单分支克隆后从 Workspace 根运行 `git fetch origin main:refs/remotes/origin/main`，让 Task / Context 检查获取同仓库最新主线，不切换候选分支。从 Workspace 根执行：
 
 ```powershell
 $env:PYTHONDONTWRITEBYTECODE = "1"

@@ -1,8 +1,8 @@
 schema_version: "1.0"
-generated_at: "2026-09-16T04:39:27Z"
+generated_at: "2026-09-16T04:47:22Z"
 memory_mode: "ASSISTED"
 repository_scope: "public-governance-and-project-entrypoints"
-repository_head: "fe07557ce5052da6a0eaaaaa1207b416ac081474"
+repository_head: "51a8287e800a2e797e536c00d5297fbb615ee14f"
 repository_branch: "codex/cr-subtree-migration"
 repository_dirty_before_refresh: true
 repository_sync: "not-requested"
@@ -18,8 +18,8 @@ sources:
     sha256: "c123c6c8867dc687708dc032452ed896a8e0dd0a57357fc1a04ff174a58778f1"
     bytes: 7503
   - path: "bootstrap/chatgpt/02_CURRENT_STATE.md"
-    sha256: "b521a6caca95f5898df613460511ff0588f650ed807b80442fbbdbe6bd7a08e8"
-    bytes: 11311
+    sha256: "19f22f53a389dabaf6e3fe120cf15956c99fde3c014c94a05a3497a726cb037f"
+    bytes: 11306
   - path: "bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md"
     sha256: "49fee2097f6d38f4e9c25530d43df09e08d8c81b33cf57f6ef7b2af7e208c865"
     bytes: 7228
@@ -72,14 +72,14 @@ sources:
     sha256: "4825d43d3e66d834a2e514ac9291d081a1948046fd191cf3745908249aba76d5"
     bytes: 4387
   - path: "handoff/101-CARD-PACK-VALUATION-20260915.md"
-    sha256: "4139d191f8bcfbfc7382de49cafdfeec9d58129d87a627db616de1f8fd1c4e04"
-    bytes: 32077
+    sha256: "a54b757c5501537adf665b585ac339bf41762ec0a1049d4c1a332192326678d6"
+    bytes: 32264
   - path: "handoff/CHATGPT.md"
-    sha256: "06c9040ef7e78c8bcaec3c8de7714d7620864f5e4c6b625711285ad360968e79"
-    bytes: 13215
+    sha256: "e6fc6e7afd8652a3a1e0a23da6335f214944cc581ed34b5259ba683870af85ce"
+    bytes: 13288
   - path: "handoff/CODEX.md"
-    sha256: "01e7816dc5fc58ce873235487767edca0cfae21576478d4329af3cadf4766b2e"
-    bytes: 23339
+    sha256: "9f09d4b5ecde48235f8e409cd91f8a8fb0da615bcb072271c110fda8d6102fd1"
+    bytes: 23413
   - path: "handoff/POP-SLOTS-LOBBY-REPORT-KICKOFF.md"
     sha256: "7b0f5fc65a786b3cef4b2337b2d4f178ead16243eae4ec0d3ac1de33ddfdc447"
     bytes: 2953
@@ -96,11 +96,11 @@ sources:
     sha256: "e94929277e46a7b3f86f16e1b04d58b1dd4eb821e32d20ef64cc5b9b841a9420"
     bytes: 728
   - path: "projects/cr/README.md"
-    sha256: "cec870e19a83a85b045abf7f89b390953b4e7d9204d46e8d37a9e8e23d7c821b"
-    bytes: 3143
+    sha256: "3cedfd3959d03139b6ecdc01271cb24161847a44724a60d53797473479ef0422"
+    bytes: 3315
   - path: "projects/cr/STATUS.md"
-    sha256: "13ec12539ecb1e8bf0874aa349d43be30230573cf1340a5458a9fe67f25744b5"
-    bytes: 777
+    sha256: "1a8cb75b44ed2a06f9a43b01be38540dc3c7f966c651156760bb9cee460ce6e3"
+    bytes: 818
   - path: "projects/cr/WORKFLOW.md"
     sha256: "5a1f1ef85129ba02370e4cfe2ecaf77d0ebd53db0c808a9a9ffc1149d0fdfa2c"
     bytes: 1302
@@ -213,11 +213,11 @@ sources:
     sha256: "de58d80ae434beb29e7a44010b214dcd69ad9a165f92ad89fc57c3a1c1748525"
     bytes: 6528
   - path: "tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md"
-    sha256: "9b4ac6974e2c07061217f42f1f65317b930c458f8a9120eec718e3017fc0f454"
-    bytes: 4207
+    sha256: "28c234c102779a64ecfc651b7960dbfac6cc50f59931d8ef8b8755713fef97e0"
+    bytes: 4245
   - path: "tasks/TASK_REGISTRY.yaml"
-    sha256: "6ce4cd8d97c2d2898ad44395c2aa0876d803de1b77c152e244b2e79b577bf2d2"
-    bytes: 20163
+    sha256: "6073d1af70779d6010ddb924e12bd9162f3216eeeeaea26634ce8796f6de3a50"
+    bytes: 20158
   - path: "tasks/candidates/CANDIDATE-20260827-CASH-FRENZY-COLLECTOR-FEASIBILITY.md"
     sha256: "f9d184f63ac18cee0c95d57406521e46aa939bebe5e379b941f0ede217f1ff4b"
     bytes: 13809

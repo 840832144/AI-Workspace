@@ -4,7 +4,7 @@
 - Task：[TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)
 - 方案：[RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md)；决策：[ADR-0008](../adr/ADR-0008-CR-Single-Repository.md)
 - 分支：`codex/cr-subtree-migration`；独立 linked worktree。
-- 状态：原样导入与适配已完成，正在全新克隆验收；尚未合并或切换。
+- 状态：全新克隆验收通过，候选等待 PR Review；尚未合并或切换。
 - Subagents: none
 
 ## 来源与历史保留
@@ -61,7 +61,47 @@ AI-Workspace 在迁移期间及合并后保持 public，后续可见性由 User 
 
 ## 验收结果
 
-待最终全新克隆运行结果回填。本地已验证 Context 的13项相关测试；最终测试以候选提交和独立克隆记录为准。
+验收代码提交：`51a8287e800a2e797e536c00d5297fbb615ee14f`（适配主体 `f18a0f11d01aaf530390378a21ef0dbc8981a364`）。在全新目录执行 `git clone --no-local --single-branch --branch codex/cr-subtree-migration <本机AI候选仓库> <全新目录>`；没有克隆 CR、没有对象 alternates，也没有使用原 SVN。之后仅从同一 AI-Workspace 获取 main 引用，供既有治理校验使用。
+
+| 检查 | 结果 |
+| --- | --- |
+| 根与 CR 子目录阅读入口 | 两处均能读取全局模板、根/项目 AGENTS、项目状态与入口；五个 Skill 唯一正文可达 |
+| 原始导入文件 | 276 个路径均保留；无 submodule、嵌套 Git/SVN 纳管元数据；不重建退役快照 |
+| `build_catalog.py` | 根与 CR 两处运行均为14工作簿、0读取异常；默认 hashes_included=false |
+| `validate_repository.py` | 根与 CR 两处运行均为0错误、0警告；未启用哈希选项 |
+| 卡包 `tools/check_bundle.py` | 36份 XLSX、845935个 CSV 单元格一致；trunk/dev 各4290状态检查，无无效权重组或声明张数不匹配 |
+| 原有卡包风险 | trunk/dev 各102个候选容量不足状态为来源既有研究结果，不是迁移新增，也不是玩家概率；未修改配置或代替估值模拟 |
+| Memory / Context / Task 现有测试 | 45 + 13 + 23 = 81 项通过，含新 Context 入口 allowlist 检查；测试使用隔离合成仓库，不连接真实服务 |
+| Context 生成 | 从 CR 调用根 memory_cli refresh 成功：83来源、0敏感模式问题、0断链、private_repositories=not read；只增加入口摘要，仍需人工上传，本任务未上传 |
+| Context doctor / Task Registry | doctor ok；15 canonical、0 collision、valid；6条原有 grandfather 提示保留 |
+| 资料同步路径 | CR 目标解析正确，越出项目到101的测试路径被拒绝；只加载配置，不执行 apply 或来源同步 |
+| SVN 参数边界 | 未传 --root 即 argparse 拒绝，未调用 SVN；现有策略未放宽 |
+| Skill / 文档 / diff | 根路由通过 quick_validate；60份适配 Markdown 的链接检查无断链；diff --check 通过 |
+| 原始源表 | 相对原样导入及验收运行后的 Git diff 中，所有 XLSX/XLS/XLSM 均无变更；无额外文件哈希复验 |
+
+验收命令（在新克隆内，先设置 `PYTHONDONTWRITEBYTECODE=1`）：
+
+```powershell
+# Workspace 根
+git fetch origin main:refs/remotes/origin/main
+python projects/cr/数值策划/工具/build_catalog.py
+python projects/cr/数值策划/工具/validate_repository.py
+python projects/cr/数值策划/数值文档/03_分析与复盘/CR卡包价值分析资料_20260915/tools/check_bundle.py
+python -m unittest discover -s tools/memory/tests
+python -m unittest discover -s tools/context/tests
+python -m unittest discover -s tools/tasks/tests
+python tools/tasks/task_cli.py validate
+# CR 子目录
+cd projects/cr
+python 数值策划/工具/build_catalog.py
+python 数值策划/工具/validate_repository.py
+python ../../tools/memory/memory_cli.py refresh
+```
+
+构建只改三个派生目录文件；Context refresh 只改五个既有治理派生文件/受管段。验收目录保留这些可解释差异，未把测试临时产物提交。没有修改原始源表、执行 sync --apply、SVN 提交、真实采集、部署或云端发布。
+
+失败与处理：单分支克隆最初缺 origin/main，既有 Task 校验按设计拒绝；从同一个 AI-Workspace fetch main 后通过，已补入新人说明，未降低治理要求。Skill 工具最初受 Windows 默认 GBK 解码影响，改用 `python -X utf8` 后通过。后续仅修订说明、状态和生成物，未改变已验收的业务工具。
+
 
 ## 切换、并发与未完成项
 
@@ -69,7 +109,7 @@ AI-Workspace 在迁移期间及合并后保持 public，后续可见性由 User 
 
 已从最新 main 完成防重与 remote-CAS 正式分配，TASK-0032 reservation 保持 pending-main，只有 canonical 合入 main 后才能 finalize，不提前 release。开放 PR #2 EarlyMeeting / #4 Huuuge 及 TASK-0030 Pop Slots 具有共享入口潜在冲突；本分支不覆盖它们，合并前再次核对并发与来源增量。
 
-仍待完成：候选验收结果回填、推送/PR Review、User 确认最终合并与切换、canonical 进入 main 后 finalize、旧库是否归档。Context provider unavailable 不影响离线迁移；未发布云文档、未上传 Project Sources，也未扩大任何外部权限。
+仍待完成：PR Review、User 确认最终合并与切换、canonical 进入 main 后 finalize、旧库是否归档。发布前再次 fetch：两仓 main SHA 与表中基线一致；AI-Workspace PUBLIC、cr_design PRIVATE；开放 PR 仍为 #2 和 #4。Context provider unavailable 不影响离线迁移；未发布云文档、未上传 Project Sources，也未扩大任何外部权限。
 
 ## 回滚步骤
 

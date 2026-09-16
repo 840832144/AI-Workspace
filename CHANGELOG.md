@@ -7,7 +7,7 @@
 - 正式登记 Task/RFC 并完成两仓受控备份与完整可达图审查；User 后续明确批准三个 Top Tycoon 工作簿原始记录和历史，取消该项暂停，不清洗原历史。
 - 使用非 squash subtree 原样导入 CR，13个来源提交和276个文件保留，直接 diff 为空；单独适配根/项目规则、四启动文件、ChatGPT/Codex/TRAE、唯一 Skill 路由、Context 与资料同步路径。
 - 默认目录/卡包检查不计算文件哈希；验证实际结构、内容及行为。SVN 工具要求明确提交根，历史 Collector 副本不启动、不自动同步。
-- 正在全新单仓克隆验收，随后提交 PR Review；未合并、切换或归档，未修改源表、权限、正式配置，未执行同步 apply、SVN 提交、采集或部署。Subagents: none。
+- 全新单仓克隆根/CR 两入口、14源表、36卡包附件与81项测试通过，提交 PR Review；未合并、切换或归档，未修改源表、权限、正式配置，未执行同步 apply、SVN 提交、采集或部署。Subagents: none。
 
 ## 2026-09-09 — TASK-0029 有限文档试用 Accepted
 

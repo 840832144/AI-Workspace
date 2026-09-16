@@ -1,6 +1,6 @@
 # RFC-0005：CR 资料与分析工具并入 AI-Workspace
 
-- Status: Accepted scope / Implementation resumed
+- Status: Accepted scope / Candidate ready for Review
 - Date: 2026-09-16
 - Actors: User, Codex；最终 Review：ChatGPT / User
 - Task: [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)

@@ -4,7 +4,7 @@
 
 [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md) 由 remote-CAS 正式分配，RFC/Task 先于导入提交。User 明确批准 public 迁移及三个 Top Tycoon 工作簿原始记录和历史，清洗提案不采用。原样 subtree `fe07557` 保留来源13提交和276文件，适配覆盖规则、入口、Skills、上下文及工具路径。
 
-正在全新候选克隆验收，结果与回滚见[迁移报告](../migrations/CR-MIGRATION-20260916.md)。随后推送 PR 等待 Review，最终合并、切换与旧库归档另需 User 确认。公司 SVN 正式配置、Huuuge 当前实现真相源与 CR/101 边界保持独立。本增量只更新 Git，未扩大任何权限或执行云端发布。Subagents: none。
+全新候选克隆根/CR 两入口验收通过，14源表、36卡包附件及81项相关测试通过；结果与回滚见[迁移报告](../migrations/CR-MIGRATION-20260916.md)。随后推送 PR 等待 Review，最终合并、切换与旧库归档另需 User 确认。公司 SVN 正式配置、Huuuge 当前实现真相源与 CR/101 边界保持独立。本增量只更新 Git，未扩大任何权限或执行云端发布。Subagents: none。
 
 以下为 2026-08-29 的既有快照，保持原核验时点，不代表本次现场重新验收。
 

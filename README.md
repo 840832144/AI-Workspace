@@ -3,7 +3,7 @@
 ## CR 新人入口
 
 本候选的验收命令：`git clone --branch codex/cr-subtree-migration --single-branch https://github.com/840832144/AI-Workspace.git`。
-合并后日常使用 `main`，无需另外克隆 `cr_design`。先读 [全局模板](bootstrap/AGENTS.md)、[根规则](AGENTS.md)、[CR 入口](projects/cr/README.md)。迁移来源、清单与回滚见 [迁移报告](docs/migrations/CR-MIGRATION-20260916.md)。
+单分支克隆后，运行 `git -C AI-Workspace fetch origin main:refs/remotes/origin/main` 供现有 Task / Context 校验检查最新主线；只获取同一 AI-Workspace 的引用，不需要另一个仓库。合并后日常使用 `main`，无需另外克隆 `cr_design`。先读 [全局模板](bootstrap/AGENTS.md)、[根规则](AGENTS.md)、[CR 入口](projects/cr/README.md)。迁移来源、清单与回滚见 [迁移报告](docs/migrations/CR-MIGRATION-20260916.md)。
 AI-Workspace 迁移期间及合并后保持 public；后续可见性由 User 自行调整。
 
 AI-Workspace 是面向游戏策划团队的 **Game Planner AI Workspace**。它以 Git 为协作真相源，管理游戏设计工作中的架构、能力、技能、工作流、模板、项目记忆、状态与 Agent 交接；同时承载已批准公开的 CR 策划资料与分析工具（`projects/cr/`）。

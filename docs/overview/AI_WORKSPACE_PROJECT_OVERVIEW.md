@@ -124,7 +124,7 @@ Evidence Plane
 ```
 
 - **Global Codex Layer** 提供跨项目稳定规则，但不保存项目实时状态。
-- **AI-Workspace** 是 Game Design 协作与治理真相源，不复制业务实现。
+- **AI-Workspace** 是 Game Design 协作与治理真相源，并维护 RFC-0005 批准的 CR 策划资料与分析工具；其他业务实现保持原真相源。
 - **业务仓库** 保存代码、测试、运行证据和发布状态；每个项目可有独立仓库。
 - **飞书** 是面向人的正式阅读与协作层，不替代 Git 或业务仓库。
 - **公司 SVN** 用于策划正式包和公司资源分发；只同步审阅过的安全白名单。
@@ -238,7 +238,8 @@ Slots → Systems → Events → Others
 | 内容 | 真相源 | 面向人的展示/分发 |
 | --- | --- | --- |
 | 治理、Capability、RFC/ADR、Task、Review、Handoff | AI-Workspace | 飞书稳定说明与状态快照 |
-| 业务代码、测试、分析、运行证据 | 对应业务仓库 | 已审阅报告或脱敏引用 |
+| CR 策划资料、Skills、分析工具 | AI-Workspace/projects/cr | 已批准公开范围，版本边界见项目入口 |
+| 其他业务代码、测试、分析、运行证据 | 对应业务仓库 | 已审阅报告或脱敏引用 |
 | 正式策划包 | 业务 Git + 公司 SVN 修订版 | SVN 下载、部署手册 |
 | 公司协作文档 | Git 源稿 + Document Provider 回读 | 飞书原生文档与权限 |
 | Secret、凭据、私有 Registry、Raw、账号数据 | 本机/受控存储 | 不进入 Git、SVN、飞书或聊天 |

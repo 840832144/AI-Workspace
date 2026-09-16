@@ -1,7 +1,7 @@
 # TASK-0032 — CR 并入 AI-Workspace 的 public subtree 迁移
 
-- Status: In Progress
-- Execution status: Resumed; original-history import authorized
+- Status: Review
+- Execution status: Fresh-clone acceptance passed; awaiting PR Review
 - Project key: WORKSPACE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -39,9 +39,9 @@
 | 规则、并发、备份、登记 | 已完成 | 两仓最新 SHA、bundle 恢复/full fsck、allocator；Task/RFC 首次提交 `52e3279e613858a0e691700bb5188b0a98cb8bc0` |
 | 安全审查 | 通过本次授权范围 | 全图扫描与22张图片审查；三份工作簿已获公开批准，其他候选经语义核查；见迁移报告 |
 | 原样导入 | 已完成 | `fe07557` 非 squash；276 文件直接 diff 为空，来源13提交成为祖先 |
-| 单独适配 | 已完成，待提交验收 | 根/CR规则、四启动文件、三 Agent 入口、路由、上下文及同步路径 |
-| 全新克隆验收 | 正在执行 | 仅候选 AI-Workspace、根/CR 两入口、catalog/repository/卡包/相关校验、源表不变 |
-| 推送/PR | 待验收通过 | commit、PR、merge commit 要求；不自行 squash/rebase/merge |
+| 单独适配 | 已完成 | 根/CR规则、四启动文件、三 Agent 入口、路由、上下文及同步路径 |
+| 全新克隆验收 | 已通过 | 仅候选 AI-Workspace、根/CR 两入口、catalog/repository/卡包/相关校验、源表不变 |
+| 推送/PR | 验收通过，提交 Review | commit、PR、merge commit 要求；不自行 squash/rebase/merge |
 
 ## 限制
 
@@ -49,4 +49,4 @@
 
 ## 下一步
 
-完成全新候选克隆验收并回填 [迁移报告](../docs/migrations/CR-MIGRATION-20260916.md)，推送分支和创建保留历史的 PR 等待 Review。最终合并、切换与旧库归档仍需 User 确认；Task reservation 保持 pending-main，不重新分配或提前 finalize。
+全新克隆验收结果已回填 [迁移报告](../docs/migrations/CR-MIGRATION-20260916.md)：14源表、36卡包附件、845935单元格、81项测试通过。提交保留历史的 PR 等待 Review。最终合并、切换与旧库归档仍需 User 确认；Task reservation 保持 pending-main，不重新分配或提前 finalize。
