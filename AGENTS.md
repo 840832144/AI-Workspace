@@ -4,7 +4,7 @@
 
 全局稳定规则的版本化阅读入口是 `bootstrap/AGENTS.md`；无需改写 Host 的全局配置。
 CR 任务继承本文件后读取 `projects/cr/AGENTS.md`、`README.md`、`STATUS.md`，从 `.agents/skills/cr-project/SKILL.md` 选择唯一专项正文。目录内相对路径以 `projects/cr/` 为准；从子目录启动也须读 Workspace 的 Task / Handoff。
-迁移候选在 `codex/cr-subtree-migration`，Review 期间保留当前分支，安全 fetch main 后检查并发，不自动切换分支或把 main pull 进候选。仅 User 确认合并后切换日常入口。不要新增重复哈希校验；使用直接 diff、来源 commit、祖先关系及实际功能验收。
+PR #5 已于2026-09-16按 User 授权合并并切换；当前入口为 AI-Workspace 最新 `main`，CR 日常内容只在 `projects/cr/` 通过独立分支/PR 写入，旧库不再双写。`codex/cr-subtree-migration@04a7568` 保留作历史候选；已有其他任务分支先保护未提交修改、fetch 并核对并发，不自动覆盖或切换。不要新增重复哈希校验；使用直接 diff、来源 commit、祖先关系及实际功能验收。
 
 This repository is the governance and coordination control plane for the Game Planner AI Workspace. Its default and only business domain is Game Design; it is not a general-purpose AI platform. It also hosts the User-approved CR design materials and analysis tools under `projects/cr/` (RFC-0005).
 

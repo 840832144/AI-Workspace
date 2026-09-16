@@ -1,12 +1,12 @@
 # Game Planner AI Workspace｜项目进度与能力状态
 
-## 2026-09-16 增量：CR 单仓候选，尚未切换
+## 2026-09-16 增量：CR 已合并并切换单仓入口
 
-PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，ChatGPT Review Round 1 已 Accepted（基线 `83eadec`）；等待 User 批准最终合并与切换。须使用 merge commit 保留 CR 导入历史；本轮不合并、不切换、不 finalize，旧库归档仍需另行授权。
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5) 已按 User 最终授权于 2026-09-16 15:03:31（北京时间）使用 Create a merge commit 合并，merge commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`。当前日常入口为 AI-Workspace `main`，CR 资料与工具只写 `projects/cr/`；原 reservation 已 finalize。旧 cr_design 保留，不归档、不删除，权限不变。
 
 [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md) 由 remote-CAS 正式分配，RFC/Task 先于导入提交。User 明确批准 public 迁移及三个 Top Tycoon 工作簿原始记录和历史，清洗提案不采用。原样 subtree `fe07557` 保留来源13提交和276文件，适配覆盖规则、入口、Skills、上下文及工具路径。
 
-全新候选克隆根/CR 两入口验收通过，14源表、36卡包附件及81项相关测试通过；结果与回滚见[迁移报告](../migrations/CR-MIGRATION-20260916.md)。[ChatGPT Review Round 1](../../reviews/TASK-0032-CHATGPT-REVIEW-1.md) 基线 `83eadec` 已 Accepted；Review 未独立复跑测试、工作簿检查或备份恢复。等待 User 批准最终合并与切换；本轮不合并、不切换、不 finalize，旧库归档另需授权。公司 SVN 正式配置、Huuuge 当前实现真相源与 CR/101 边界保持独立。本增量只更新 Git，未扩大任何权限或执行云端发布。Subagents: none。
+全新候选克隆根/CR 两入口验收通过，14源表、36卡包附件及81项相关测试通过；结果与回滚见[迁移报告](../migrations/CR-MIGRATION-20260916.md)。[ChatGPT Review Round 1](../../reviews/TASK-0032-CHATGPT-REVIEW-1.md) 基线 `83eadec` 已 Accepted；Review 未独立复跑测试、工作簿检查或备份恢复。User 已授权最终合并与切换，PR #5 merge commit `3c214e2` 已进入 main，合并后根/CR 入口及来源祖先关系通过；catalog 14工作簿/0异常，repository 0错误/0警告，原 reservation finalized。Task Complete，旧库保留不双写，暂不归档、不删除。公司 SVN 正式配置、Huuuge 当前实现真相源与 CR/101 边界保持独立。本增量只更新 Git，未扩大任何权限或执行云端发布。Subagents: none。
 
 以下为 2026-08-29 的既有快照，保持原核验时点，不代表本次现场重新验收。
 

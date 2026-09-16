@@ -2,7 +2,14 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
-## 2026-09-16 — TASK-0032 ChatGPT Review Round 1 Accepted
+## 2026-09-16 — TASK-0032 最终合并与单仓切换
+
+- User 明确授权后完成两仓最新 main、候选增量及共享文件并发检查；PR #5 以 Create a merge commit 合并，commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`，没有 squash/rebase 或强推共享历史。
+- 最新 main 保留 CR 来源 `1409737` 与原样导入 `fe07557`；根/CR 入口、5个唯一 Skill、276文件映射和工具边界通过，catalog 14工作簿/0异常，repository 0错误/0警告。原 canonical 进入 main 后使用原 reservation finalize 成功。
+- Task Complete，CR Status/Handoff、迁移报告、四启动文件和相关当前入口改为 main；候选验收与 Review 记录保留原时点，未改写未独立复跑的限制。Registry 与 Context 由既有工具重建验证。
+- 当前 CR Git 资料与工具只写 `projects/cr/`，公司 SVN 正式配置不变；旧库不再双写，保留且不归档、不删除，AI-Workspace 保持 public，未调整权限或发布云端内容。Subagents: none。
+
+## 历史阶段：2026-09-16 TASK-0032 ChatGPT Review Round 1 Accepted
 
 - 完整固化 PR #5 已发布评审至 `reviews/TASK-0032-CHATGPT-REVIEW-1.md`，基线 `83eadec13cb4a03fa5b75de8dcbdd1f83cb61048`，结论 Accepted，无必须修改项。
 - 保留评审未独立复跑测试、工作簿检查或备份恢复，亦未重复完整历史敏感内容审查的限制；不把原本机验收报告称为 GitHub CI。

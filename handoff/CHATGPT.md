@@ -2,7 +2,19 @@
 
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
-## 2026-09-16 — TASK-0032：ChatGPT Review Round 1 Accepted
+## 2026-09-16 — TASK-0032：已合并并切换单仓入口
+
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5) 已按 User 最终授权于 2026-09-16 15:03:31（北京时间）使用 Create a merge commit 合并，merge commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`。当前日常入口为 AI-Workspace `main`，CR 资料与工具只写 `projects/cr/`；原 reservation 已 finalize。旧 cr_design 保留，不归档、不删除，权限不变。
+
+- Task：[TASK-0032](../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)，Complete；Review Round 1 Accepted；Subagents: none。
+- 合并前 main 与 CR 来源未变，候选 `04a7568` 相对 `83eadec` 只有已授权评审记录；PR #2/#4 既有共享文件工作留在各自分支，无新增 main 冲突。
+- 合并后 `1409737` / `fe07557` 均为 main 祖先；根与 CR 两入口、5个唯一 Skill、276文件映射和工具边界通过，catalog 14工作簿/0异常，repository 0错误/0警告。
+- canonical 进入 main 后按原 reservation 返回 `finalized`；没有新分配 Task。候选分支 `codex/cr-subtree-migration@04a7568` 保留作历史，后续从最新 main 建独立分支/PR。
+- 日常 CR Git 资料和工具只写 `AI-Workspace/projects/cr/`，旧库不再双写。公司 SVN 正式配置流程、CR/101 隔离与 HuuugeCollector 历史副本定位不变。
+- [迁移报告](../docs/migrations/CR-MIGRATION-20260916.md)记录实际合并、最小必要验证和回滚。下方候选/Review 为历史：Review 未独立复跑，81项测试是此前本机候选验收，不是本轮或 GitHub CI。
+- 未执行旧库归档/删除、权限调整、源表修改、同步 apply、SVN 提交、采集、部署或云端发布；手工 Project Sources 尚未上传，联网 Agent 以最新 Git main 为准。
+
+## 历史阶段：2026-09-16 TASK-0032 ChatGPT Review Round 1 Accepted（合并前）
 
 PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，ChatGPT Review Round 1 已 Accepted（基线 `83eadec`）；等待 User 批准最终合并与切换。须使用 merge commit 保留 CR 导入历史；本轮不合并、不切换、不 finalize，旧库归档仍需另行授权。
 

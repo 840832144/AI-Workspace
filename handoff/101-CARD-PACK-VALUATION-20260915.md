@@ -17,13 +17,13 @@
 
 **第一步：让 Agent 拉取 AI-Workspace。**
 
-确认本机父目录与 Git 可用，已有目录先核验仓库身份并保护未提交修改。迁移 Review 使用：
+确认本机父目录与 Git 可用，已有目录先核验仓库身份并保护未提交修改。CR 单仓已正式切换，当前使用 main：
 
 ```text
-git clone --branch codex/cr-subtree-migration --single-branch https://github.com/840832144/AI-Workspace.git AI-Workspace
+git clone --branch main https://github.com/840832144/AI-Workspace.git AI-Workspace
 ```
 
-单分支克隆后，运行 `git -C AI-Workspace fetch origin main:refs/remotes/origin/main`，供 Task / Context 校验读取最新主线；不切换当前候选分支。User 确认合并后，日常将上面的分支改为 `main`。无需额外克隆 cr_design、申请其读取权限或新增 101 Git 仓库。读取根 AGENTS、bootstrap/AGENTS 和本交接书，记录实际 AI-Workspace 分支与 commit；本机路径不回写公共 Git。
+已有克隆先保护未提交修改，运行 `git -C AI-Workspace fetch origin main:refs/remotes/origin/main`，从最新 main 建独立工作分支，供 Task / Context 校验读取最新主线。无需额外克隆 cr_design、申请其读取权限或新增 101 Git 仓库。读取根 AGENTS、bootstrap/AGENTS 和本交接书，记录实际 AI-Workspace 分支与 commit；本机路径不回写公共 Git。
 
 AI-Workspace 保存任务、规则与已批准的 CR 参考，不能作为 101 的配置仓库。CR 公开授权见 RFC-0005，不扩大任何协作者或外部分享权限。Git/网络或目录失败时保留现场并报告；参考未读必须保留缺口，仍可先做 101 只读预检。
 

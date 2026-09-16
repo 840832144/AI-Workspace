@@ -3,7 +3,7 @@
 ## Workspace 与项目边界（2026-09-16）
 
 先继承 [根 AGENTS](../../AGENTS.md) 与 [全局模板](../../bootstrap/AGENTS.md)，读取根 Task / Status / Handoff；从本目录启动也不能跳过根治理。本文及专项 Skill 中的相对路径均以 `projects/cr/` 为基准，不等于 Git 根目录。
-日常设计资料和分析工具在此目录通过 Git 分支/PR 写入；切换后不再向旧 `cr_design` 或 SVN 资料镜像双写。公司 SVN 的正式配置制作与提交链路继续保留，先明确项目、URL、dev/trunk 和 revision；不得使用 101 配置替代 CR，也不得反向套用 CR 配置到 101。
+日常设计资料和分析工具在此目录通过 Git 分支/PR 写入；当前不再向旧 `cr_design` 或 SVN 资料镜像双写。公司 SVN 的正式配置制作与提交链路继续保留，先明确项目、URL、dev/trunk 和 revision；不得使用 101 配置替代 CR，也不得反向套用 CR 配置到 101。
 日期资料包内的配置附件仅代表标注版本，不重建退役快照。`HuuugeCollector/` 是历史副本，不执行其中旧的自动同步、提交或部署指令。
 User 已批准 Top Tycoon 三个工作簿及其原始样本/逐笔数据历史公开导入，范围见 [RFC-0005](../../docs/rfc/RFC-0005-CR-Subtree-Public-Migration.md)。其他敏感内容限制继续适用。
 默认不做重复哈希校验。保留来源 commit 和有意义的文件 diff、结构与业务检查；原始表默认只读。

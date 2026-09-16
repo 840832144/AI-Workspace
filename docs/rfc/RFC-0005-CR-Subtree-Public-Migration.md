@@ -1,6 +1,6 @@
 # RFC-0005：CR 资料与分析工具并入 AI-Workspace
 
-- Status: Accepted scope / Candidate Review Round 1 Accepted; merge and cutover pending User approval
+- Status: Accepted / Implemented; PR #5 merged, cutover complete, reservation finalized
 - Date: 2026-09-16
 - Actors: User, Codex；最终 Review：ChatGPT / User
 - Task: [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)
@@ -12,13 +12,13 @@
 
 User 明确要求将 `840832144/cr_design` 并入 `840832144/AI-Workspace` 的 `projects/cr/`，使 Agent 只克隆 AI-Workspace 就能读取全局规则、CR 策划资料、Skills 与分析工具。目标仓库在迁移期间及合并后保持 public；后续可见性由 User 自行调整。来源为 private 不构成单独阻塞理由。不得修改任一仓库的可见性、协作者权限或飞书及其他外部分享权限。
 
-本次授权覆盖准备、备份、完整历史审查、非 squash subtree 导入、入口适配、离线验收、推送候选分支和创建 PR。最终合并、旧库归档、源历史清洗或重写另等 User 决定；不得删除旧库或强推主分支。
+准备阶段授权覆盖备份、完整历史审查、非 squash subtree 导入、入口适配、离线验收、推送候选分支和创建 PR，当时未授权最终合并。User 于2026-09-16随后明确批准 PR #5 以 merge commit 合并、切换单仓入口及 finalize 原 reservation；现已执行，详见迁移报告。旧库暂不归档、不删除，禁止权限调整、源历史清洗/重写或强推主分支。
 
 ## Capability 与仓库定位
 
 现有 Catalog 没有独立的仓库迁移 Capability；本次以 User 明确批准的 Git 维护工作流、Task contract 和本 RFC 定义一次性结果，不虚构新的 Registered Capability。Context 适配复用现有 Context reference implementation；没有云文档操作需求。现行纯控制面限制按本次批准，调整为允许 `projects/cr/` 内的 CR 策划资料、唯一 Skill 正文和分析工具。其他项目实现、共享 provider 实现与运行时配置继续在其权威位置。
 
-## 来源、备份与并发范围
+## 来源、备份与并发范围（准备时记录）
 
 | 仓库 | 审查基线 main SHA | 当前可见性 |
 | --- | --- | --- |
@@ -68,7 +68,7 @@ User 明确要求将 `840832144/cr_design` 并入 `840832144/AI-Workspace` 的 `
 
 ## 切换与防双写
 
-PR 合并并经 User 确认切换后，唯一日常 Git 入口为 AI-Workspace，CR 策划资料和分析工具只写 `projects/cr/`。迁移审查期间尚未切换：旧 Git 仓库保持原状，候选分支不能当作新的正式真相源。公司 SVN 正式配置流程不变；旧库是否归档另等 User 确认。
+2026-09-16 User 批准后，PR #5 已合并并完成切换。唯一日常 Git 入口为 AI-Workspace 最新 main，CR 策划资料和分析工具只写 `projects/cr/`；后续从最新 main 建独立分支/PR。迁移审查时未切换的候选记录仅供追溯，旧 Git 仓库保留但不再双写。公司 SVN 正式配置流程不变；旧库暂不归档、不删除。
 
 ## 回滚
 
@@ -79,4 +79,4 @@ PR 合并并经 User 确认切换后，唯一日常 Git 入口为 AI-Workspace�
 
 ## 当前实施状态
 
-原样 subtree 导入 `fe07557ce5052da6a0eaaaaa1207b416ac081474` 已完成，来源 main 保持13个原提交、276个原文件。三个工作簿的公开授权已明确，清洗提案不采用。适配与验收证据见 [迁移报告](../migrations/CR-MIGRATION-20260916.md)；最终 PR Review、合并、切换与旧库归档状态以 Task 为准。不得提前宣称正式切换。
+原样 subtree 导入 `fe07557ce5052da6a0eaaaaa1207b416ac081474` 已完成，来源 main 保持13个原提交、276个原文件。三个工作簿的公开授权已明确，清洗提案不采用。适配与验收证据见 [迁移报告](../migrations/CR-MIGRATION-20260916.md)；Round 1 已 Accepted；最终合并、切换与原 reservation finalize 已完成，merge commit `3c214e2`。旧库仍保留，归档和权限调整不在本次授权内；当前执行状态以 Task 为准。

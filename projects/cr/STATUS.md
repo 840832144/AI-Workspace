@@ -1,14 +1,15 @@
 # CR 当前状态
 
-PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，ChatGPT Review Round 1 已 Accepted（基线 `83eadec`）；等待 User 批准最终合并与切换。须使用 merge commit 保留 CR 导入历史；本轮不合并、不切换、不 finalize，旧库归档仍需另行授权。
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5) 已按 User 最终授权于 2026-09-16 15:03:31（北京时间）使用 Create a merge commit 合并，merge commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`。当前日常入口为 AI-Workspace `main`，CR 资料与工具只写 `projects/cr/`；原 reservation 已 finalize。旧 cr_design 保留，不归档、不删除，权限不变。
 
 - 更新时间：2026-09-16
-- Task： [TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)
+- Task：[TASK-0032](../../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)；Complete
 - Owner：User；Executor：Codex；Subagents: none
-- 阶段：Accepted；ChatGPT Review Round 1 已通过，尚未合并/切换。
-- 执行状态：等待 User 批准最终合并与切换
-- 评审：[Round 1](../../reviews/TASK-0032-CHATGPT-REVIEW-1.md)；基线 `83eadec`。Review 未独立复跑测试、工作簿检查或备份恢复；原运行结果仍引用迁移报告。
-- 已确认：来源 CR main `1409737648b15f602586b79ade7e0c3e7a3813a0`，原样导入 `fe07557ce5052da6a0eaaaaa1207b416ac081474`，13 个 main 提交保留且直接 diff 为空。
-- 公开范围：本次 CR 内容与三个 Top Tycoon 工作簿/历史已获 User 批准；其他敏感内容仍受限制。
-- 当前配置：继续以明确公司 SVN 环境为准；未修改配置、未提交 SVN、未采集或部署。
-- 下一步：等待 User 批准最终合并与切换；不提前 finalize，不修改权限、不删除或归档旧库。
+- 执行状态：PR #5 已合并，单仓入口已切换，原 reservation finalized。
+- 当前入口：从 AI-Workspace 最新 `main` 建独立分支/PR，CR 日常 Git 资料、唯一 Skill 正文与分析工具只写 `projects/cr/`；旧 CR Git 和 SVN 资料镜像不再双写。
+- 合并验证：`1409737648b15f602586b79ade7e0c3e7a3813a0` 和 `fe07557ce5052da6a0eaaaaa1207b416ac081474` 均为 main 祖先；合并树与候选 `04a7568` 无差异。
+- 本轮验证：根/CR 两入口、7个入口文件、5个唯一 Skill、276文件映射、卡包阅读入口和同步/SVN 参数边界通过；build_catalog 14工作簿/0异常；validate_repository 根/CR 均0错误/0警告；未增加文件哈希检查。
+- 评审：[Round 1](../../reviews/TASK-0032-CHATGPT-REVIEW-1.md) 基线 `83eadec`，Accepted；完整评审保留当时状态及未独立复跑测试、工作簿或备份恢复的限制。81项测试和完整卡包业务检查属于[原候选验收](../../docs/migrations/CR-MIGRATION-20260916.md)，本轮未重复运行。
+- 公开范围：AI-Workspace 保持 public；本次 CR 内容与三个 Top Tycoon 工作簿/历史已获 User 批准，其他敏感内容限制不变。
+- 当前配置：继续走公司 SVN 明确项目、URL、dev/trunk、revision 与批准策略；CR 日期附件、101配置和 Huuuge 当前实现分别管理。
+- 后续边界：旧库保留，不归档、不删除，不改权限。未修改源表、执行同步 apply、SVN 提交、真实采集、部署或云端发布。

@@ -3,13 +3,13 @@
 - Status: Accepted
 - Date: 2026-09-16
 - Decision owner: User
-- Implementation: TASK-0032，ChatGPT Review Round 1 已 Accepted；等待 User 批准最终合并与切换，本决策不等于已合并。
+- Implementation: TASK-0032 Complete；ChatGPT Review Round 1 Accepted，User 随后批准最终合并与切换；PR #5 merge commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`，原 reservation finalized。
 - Related RFC: [RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md)
 - Supersedes: 仅替代旧架构对 CR 必须独立 Git 仓库/不得纳入设计工具的限定，其他项目真相源不变。
 
 ## 决策
 
-以非 squash git subtree 将 cr_design main 纳入 public AI-Workspace 的 `projects/cr/`，保留内部路径与来源历史。合并并切换后，CR 策划资料、Skills、分析工具只在此目录日常写入；旧库暂保留追溯，归档需 User 另行确认。
+以非 squash git subtree 将 cr_design main 纳入 public AI-Workspace 的 `projects/cr/`，保留内部路径与来源历史。2026-09-16 合并并切换后，CR 策划资料、Skills、分析工具只在此目录日常写入；旧库暂保留追溯，归档需 User 另行确认。
 
 User 明确要求 AI-Workspace 迁移期间及合并后保持 public，后续自行调整可见性；不修改任一仓库可见性或协作者权限。2026-09-16 后续授权包含三个 Top Tycoon 工作簿的原始 Spin、金币前后值与逐笔记录及历史。该特定授权不放宽其他 Secrets、账号、私有 Registry、完整响应或敏感日志限制。
 

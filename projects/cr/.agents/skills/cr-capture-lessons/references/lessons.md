@@ -522,12 +522,12 @@
 ## CR-2026-09-16-001 迁移必须按最新明确授权判断资料范围，并区分历史入口
 
 - 日期：2026-09-16
-- 状态：部分解决（原样导入、适配与全新克隆验收通过；PR Review、合并与切换待完成）
+- 状态：已解决（原样导入、适配、候选验收和 Review 完成；User 最终授权后已合并、切换并 finalize）
 - 场景：将 CR 私有 Git 以完整 main 历史导入 public AI-Workspace；初次审查暂停了三个包含原始 Spin 和逐笔记录的 Top Tycoon 工作簿。
 - 已确认：User 随后明确允许这三个文件及历史入库，要求省去重复哈希工作；不得继续把该已批准范围或 private→public 本身当作阻塞。其他凭据、账号与私有 Registry 限制不变。
 - 处理：保留来源 main 的13个提交，subtree 不 squash；原样导入单独提交，直接 Git diff 为空，再单独适配路径。旧说明误指已退役快照、HuuugeCollector 自动 SVN 同步，已改为历史来源与当前任务授权边界。
 - 验证：来源祖先关系、直接内容 diff、全新 AI-Workspace 候选克隆与实际工具运行；不用重复文件哈希代替行为验收。来源 SHA 与结果以根迁移报告为准。
-- 后续：Review 通过并经 User 确认合并后，CR 日常仅写 `projects/cr/`；正式配置仍写明确的公司 SVN 环境，旧库归档另行确认。
+- 后续：PR #5 已于2026-09-16以 merge commit `3c214e2` 合并，latest main 保留 `1409737` / `fe07557` 祖先关系，原 reservation finalized；CR 日常仅写 `projects/cr/`，正式配置仍写明确的公司 SVN 环境。旧库保留且不双写，暂不归档、不删除；Review 未独立复跑限制保留，历史验收不混称本轮重新执行。
 - 证据：根 `docs/rfc/RFC-0005-CR-Subtree-Public-Migration.md`、`tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md`、原样导入 `fe07557ce5052da6a0eaaaaa1207b416ac081474`。
 
 - 本次补充：单分支克隆无 origin/main 时从同一 AI-Workspace 获取 main 引用，再执行治理校验；不要求第二个 CR 仓库。Windows Skill 验证器以 `python -X utf8` 避免默认 GBK 解码失败。81项相关测试与根/CR 两入口验收均通过，配置未修改。

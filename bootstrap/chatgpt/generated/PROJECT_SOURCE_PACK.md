@@ -1,6 +1,6 @@
 # ChatGPT Project Source Pack
 
-Generated: 2026-09-16T04:49:59Z
+Generated: 2026-09-16T07:12:30Z
 
 本文件组合当前分支的公共治理与项目入口摘要；候选是否已通过 Review 以 Task / PR 为准，Git 仍是最新真相源。不递归收录 CR 正文、工作簿或采集数据。
 
@@ -10,7 +10,7 @@ Generated: 2026-09-16T04:49:59Z
 ## CR 单仓库入口（TASK-0032）
 
 只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
-Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+PR #5 已于2026-09-16按 User 授权合并并切换。当前从 AI-Workspace 最新 main 读取，建独立分支/PR 写入 `projects/cr/`，旧 CR Git 保留且不再双写；迁移候选仅作历史记录。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
 公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 ## 项目定位
@@ -201,7 +201,7 @@ Product Roadmap 是长期产品规划唯一入口，不与 Task、Documentation 
 ## CR 单仓库入口（TASK-0032）
 
 只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
-Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+PR #5 已于2026-09-16按 User 授权合并并切换。当前从 AI-Workspace 最新 main 读取，建独立分支/PR 写入 `projects/cr/`，旧 CR Git 保留且不再双写；迁移候选仅作历史记录。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
 公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 ## 总体架构
@@ -519,7 +519,7 @@ TASK-0016 已 Accepted；Git Memory 是 AI 跨会话长期真相源，云文档�
 ## CR 单仓库入口（TASK-0032）
 
 只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
-Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+PR #5 已于2026-09-16按 User 授权合并并切换。当前从 AI-Workspace 最新 main 读取，建独立分支/PR 写入 `projects/cr/`，旧 CR Git 保留且不再双写；迁移候选仅作历史记录。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
 公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 本项目面向游戏策划研究与工具建设。默认中文，聊天保持简洁；只有复杂架构、流程或评审才展开，长期设计必须沉淀到 Git。
@@ -551,7 +551,7 @@ Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读�
 ## CR 单仓库入口（TASK-0032）
 
 只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
-Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+PR #5 已于2026-09-16按 User 授权合并并切换。当前从 AI-Workspace 最新 main 读取，建独立分支/PR 写入 `projects/cr/`，旧 CR Git 保留且不再双写；迁移候选仅作历史记录。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
 公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 _Last reviewed: 2026-08-29_
@@ -677,7 +677,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 <!-- MEMORY-CONTEXT:START -->
 ## Automatic Memory Context
 
-- Generated: 2026-09-16T04:49:59Z
+- Generated: 2026-09-16T07:12:30Z
 - Effective mode during refresh: `ASSISTED`
 - Context Manifest: `CONTEXT_MANIFEST.yaml`
 - Project Sources update: `manual upload required`
@@ -687,7 +687,6 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 
 - `TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md` — Review
 - `TASK-0025-TOP-TYCOON-ANDROID-F4-COLLECTION-FEASIBILITY-AUDIT.md` — Ready
-- `TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md` — Review
 <!-- MEMORY-CONTEXT:END -->
 
 <!-- SOURCE: bootstrap/chatgpt/03_NEW_CHAT_BOOTSTRAP.md -->
@@ -696,7 +695,7 @@ AI-Workspace/tasks/TASK-0018-Huuuge-Lottery-Numerical-Breakdown-Report.md
 ## CR 单仓库入口（TASK-0032）
 
 只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
-Review 期间使用 `codex/cr-subtree-migration`，合并后日常从 main 读取与写入 `projects/cr/`，不再双写旧 CR Git。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+PR #5 已于2026-09-16按 User 授权合并并切换。当前从 AI-Workspace 最新 main 读取，建独立分支/PR 写入 `projects/cr/`，旧 CR Git 保留且不再双写；迁移候选仅作历史记录。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
 公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
 
 新建项目对话后，按本协议开始。它的目标是防止新对话在不了解体系时直接发明方案、重复开发已有功能或给 Codex 下错误任务。
@@ -825,7 +824,7 @@ Feasibility Audit
 <!-- SOURCE: projects/cr/CONTEXT.md -->
 # CR 项目上下文
 
-CR（Cash Royal）策划目标是形成有来源、假设、公式与验证的数值设计和分析资料。Owner 为 User，执行按 Workspace 正式 Task 分配。全局治理和跨项目 Task 位于仓库根；本目录维护 CR 设计资料、Skills 和分析工具。
+CR（Cash Royal）策划目标是形成有来源、假设、公式与验证的数值设计和分析资料。Owner 为 User，执行按 Workspace 正式 Task 分配。全局治理和跨项目 Task 位于仓库根；本目录维护 CR 设计资料、Skills 和分析工具。2026-09-16 PR #5 已使用 merge commit `3c214e2` 合并并切换；当前从最新 main 建独立分支/PR，只在 AI-Workspace/projects/cr 写入，旧库保留且不再双写。
 
 入口：[README](README.md)、[规则](AGENTS.md)、[状态](STATUS.md)、[工作流](WORKFLOW.md)、[记忆](MEMORY.md)。Skill 唯一正文在 `.agents/skills/`，从根可通过 `.agents/skills/cr-project/SKILL.md` 路由。卡包参考入口位于 `数值策划/数值文档/03_分析与复盘/CR卡包价值分析资料_20260915/README.md`。
 

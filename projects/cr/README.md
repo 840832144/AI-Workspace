@@ -1,6 +1,6 @@
 # Cash Royal（CR）策划资料与分析工具
 
-这是 AI-Workspace 的 CR 项目目录。合并并切换后，CR 日常设计、资料、Skills 与分析工具只写入 `AI-Workspace/projects/cr/`，不与旧 `cr_design` 双写。正式配置仍在公司 SVN 的明确目标环境制作、审阅与提交。
+这是 AI-Workspace 的 CR 项目目录。PR #5 已于2026-09-16合并并切换，CR 日常设计、资料、Skills 与分析工具只写入 `AI-Workspace/projects/cr/`，不与旧 `cr_design` 双写。正式配置仍在公司 SVN 的明确目标环境制作、审阅与提交。
 
 ## 阅读顺序
 
@@ -11,7 +11,7 @@
 
 ## 只需克隆 AI-Workspace
 
-迁移 Review 使用 `codex/cr-subtree-migration`，合并后日常使用 `main`。单分支克隆后从 Workspace 根运行 `git fetch origin main:refs/remotes/origin/main`，让 Task / Context 检查获取同仓库最新主线，不切换候选分支。从 Workspace 根执行：
+当前使用 AI-Workspace 最新 `main`：`git clone --branch main https://github.com/840832144/AI-Workspace.git`。已有仓库先保护修改并安全 fetch，从最新 main 建独立工作分支。迁移候选分支仅作历史记录。从 Workspace 根执行：
 
 ```powershell
 $env:PYTHONDONTWRITEBYTECODE = "1"

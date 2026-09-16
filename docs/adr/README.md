@@ -12,4 +12,4 @@ ADR 记录已采纳、会长期影响 AI 协作体系的架构决定。
 
 ADR 状态：Proposed、Accepted、Deprecated、Superseded。历史 ADR 不删除、不重写结论；使用新 ADR 替代。
 
-- [ADR-0008](ADR-0008-CR-Single-Repository.md) — User 批准 CR 单仓库日常入口；候选 Round 1 已 Accepted，最终合并与切换待 User 批准。
+- [ADR-0008](ADR-0008-CR-Single-Repository.md) — User 批准 CR 单仓库日常入口；Round 1 Accepted，User 批准后 PR #5 已合并并切换，原 reservation finalized。
