@@ -1,6 +1,14 @@
 # ChatGPT Handoff
 
-## 2026-09-17 — TASK-0033 Round 2 Accepted，等待User合并授权
+## 2026-09-17 — TASK-0033 PR #6已合并，原reservation已finalized
+
+- User已明确批准Git收口；[PR #6](https://github.com/840832144/AI-Workspace/pull/6)于2026-09-17 09:50:41（北京时间）通过merge commit合入main：`998a4d8a90541df25b0cedbcaeba069bbd1a010d`。保留候选f6bf84b、受评bdcdb3d及TASK-0033历史；[Round 1](../reviews/TASK-0033-CHATGPT-REVIEW-1.md)和[Round 2](../reviews/TASK-0033-CHATGPT-REVIEW-2.md)原文未改。
+- 合并树与候选直接diff为空；main中的canonical Task、CR Status、Handoff、Registry及两轮Review已核对。Registry valid/16 canonical/0 collision；canonical进入main后，原linked worktree安全快进，再以原reservation执行既有finalize，结果finalized。不新建Task。
+- [Task](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)为Complete（整理交付及Git收口），Review Round 2仍为Accepted。固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。完整数值与受控附件仍留本机，不新增公开数值。
+- 本次只做Git收口；未改配置、提交SVN、调参、冻结或发布，也未改权限。各轮证据限制继续保留，不把合并检查当业务复算重跑。Subagents: none。
+- 下方为历史阶段记录；当前事实以本节、Task和[报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)为准，其他任务交接保持原样。
+
+## 历史阶段 — 2026-09-17 TASK-0033 Round 2 Accepted，等待User合并授权
 
 - [完整Round 2](../reviews/TASK-0033-CHATGPT-REVIEW-2.md)已落库：Accepted，评审基线`bdcdb3da6d1367c38e62fe7d45428b752d7e3063`；[Task](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)已更新为Accepted，保留Round 1历史，不新建Task。
 - 固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。R1/R2均通过，无必须修改项；不等于完整机台/活动周期EV或所有业务定义已闭合。

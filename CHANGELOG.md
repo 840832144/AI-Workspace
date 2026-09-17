@@ -14,6 +14,12 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0033 PR #6合并与finalize
+
+- User明确授权后，PR #6通过merge commit `998a4d8a90541df25b0cedbcaeba069bbd1a010d`合入main，保留TASK-0033历史及Round 1/2 Review；相对受评版本只有已授权治理收口记录，无新增数值修改。
+- 合并树与候选f6bf84b一致；核对main中的canonical、Status、Handoff和Registry后，以原reservation执行既有finalize，返回finalized。Task改为Complete（整理交付及Git收口），同步报告与工具生成Registry。
+- 固定trunk r6961现值整理已通过；22项业务缺口保留，尚未冻结或发布。此次授权只用于Git收口，未改配置、提交SVN、调参或发布；完整数值继续留受控目录。Subagents: none。
+
 ## 2026-09-17 — TASK-0033 ChatGPT Review Round 2 Accepted
 
 - 完整Round 2评审落库，基线bdcdb3d，Accepted；保留Round 1历史及各轮证据限制，不新建Task。
