@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: In Progress
-- Execution status: 已由allocator登记；先定向检查数值相关路径版本差异，再复用/增量刷新并制作报告
+- Status: Review
+- Execution status: r7013无数值路径变化，现值体验与制作人报告已完成；等待ChatGPT Review，不调参、不冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -47,3 +47,13 @@
 - SVN差异摘要列出数值相关路径边界、读取时间、固定revision、变化清单及复用/刷新决定；原Accepted工作不重跑。
 - public报告不含完整商业数值/受控数据/内部地址/凭据。受控包含复算输入引用、公式、阶段/资源结果、当前版本证明及证据限制。
 - 仅新增分析与Git记录，无源配置回滚；需撤回时保留旧证据，通过后续Git更正处理，不强推或删除原数据。Review通过不自动授权调参、SVN、冻结或发布。
+
+## 交付与验证（2026-09-17）
+
+- [脱敏制作人报告与受控入口](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/README.md)：八类系统、Executive Summary、静态分层、100/500/1000 Spin、资源产消、成长、付费/Pass、卡包与双活动、风险和Unknown均已覆盖。
+- 15:49:34北京时间固定公司trunk r7013；r6961→r7013整个trunk变更路径摘要为空，包含ExcelConfigExport/Excel、QuestMap、slots及潜在新增数值路径。所有系统复用，源刷新0；r6961原证据与r7013适用revision分别标记，无hash、全量正文扫描或重新导出。
+- 仅新增36组静态Spin、72条薯片/777结果、36条精确掉卡条件；连续积分用命中次数分布逐项结算，未将平均积分代入阶段充作期望。毛下注只记一次，跨活动相关性Unknown保留概率上下界。
+- 固定档模型不代表玩家分布/真实升级；常规85%/95%与特殊RTP分离。道具来源上限不等于完整周期成本；未明经验、福利频次、商品单位、持卡状态、完整活动EV等归为9组解释边界，沿用历史22项来源，不新开冻结Gate。
+- 完整数值、受控报告、38个实际读取的Accepted输入、可复算脚本与版本摘要在 `%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-experience-20260917/`。复核ZIP不含reservation token、内部SVN地址或完整运行日志；public Git只放脱敏报告/方法/治理记录。
+- 新模型6项测试通过；实际输出的场景唯一性、概率质量、金币守恒、共享成本和八类覆盖通过。仅按既有工具重建/验证Task Registry，检查本轮diff/链接；没有重跑TASK-0033/0034/0035 Accepted数值验收或原始XLSX公式。
+- 分支 `codex/cr-0922-producer-experience` 交ChatGPT Review；reservation保持pending-main，不合并或提前finalize。0035零数值变更候选、原始源表不动；不调参、不修改/提交SVN、不冻结、不发布。Subagents: none。

@@ -1,12 +1,12 @@
 # Codex Handoff
 
-## 2026-09-17 — TASK-0036全项目数值体验与制作人汇报启动
+## 2026-09-17 — TASK-0036全项目数值体验待ChatGPT Review
 
-- [TASK-0036](../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)由allocator正式分配，In Progress，原reservation pending-main；起点main b0a36c8，PR #9及0035 Complete元数据已进入main。
-- 覆盖Slots、货币、等级/VIP、任务福利、常驻、商城/Pass、卡包卡册及9.22薯片+777；先检查r6961到当前trunk全部数值相关路径，未变复用、变化只刷新受影响部分，不重做Accepted工作。
-- 制作人版输出分层与100/500/1000 Spin体验、资源产消/成长/付费价值/叠加及Unknown；完整数值留受控包。不得把条件期望当真实玩家分布。
-- 不调参、不改SVN、不冻结、不发布；不做广告、生命周期、技术或线上审计；不做hash或无关全量扫描。先交ChatGPT Review。Subagents: none。
-
+- [TASK-0036](../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)为Review；allocator原reservation pending-main，分支codex/cr-0922-producer-experience。起点main b0a36c8，PR #9与0035 Complete记录已合入，下方旧待Review语句为历史。
+- 15:49:34北京时间固定trunk r7013；r6961→r7013全trunk变更路径摘要为空，覆盖全部数值根及新增/删除。所有系统直接复用Accepted证据，源刷新0；不重做0033/0034/0035、不做hash或全量正文扫描。
+- [制作人报告及受控包](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/README.md)已完成八类覆盖；36组静态Spin、72条双活动、36条掉卡条件；6项新增模型测试与定向输出核对通过。仅普通扣金币Spin，固定档/足够余额；不代表真实玩家分布、升级路径或实际机台适用RTP。
+- 剩余9组解释边界逐项列缺项/影响/负责人，历史22项保留来源，不新开冻结Gate。完整数值与复算输入受控，Git仅脱敏报告和方法；777 forceTurn闭合，活动仅薯片+777，0035现值候选不改。
+- Review重点：特殊/常规RTP分层，离散积分期望，毛下注及资源不重计，成长/付费/卡册Unknown。Task Registry按既有工具重建验证；不调参、不改或提交SVN、不冻结、不发布，不合并或finalize。Subagents: none。
 
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
