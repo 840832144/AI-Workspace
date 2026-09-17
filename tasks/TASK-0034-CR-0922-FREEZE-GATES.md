@@ -1,14 +1,14 @@
 # TASK-0034 — CR 9.22 配置冻结阻塞项闭合
 
-- Status: Review
-- Execution status: Round 2 Gate状态已修订；6 Closed / 4 Conditional / 12 Non-blocking；等待下一轮轻量Review（Round 3），未冻结或发布
+- Status: Accepted
+- Execution status: ChatGPT Round 3 Accepted；6 Closed / 4 Conditional / 12 Non-blocking；等待User明确PR #7合并授权；尚未冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 2026-09-19 冻结决策依据
 - Date: 2026-09-17
 - Updated: 2026-09-17
-- User decision: Approved（本轮仅按Round 2修Gate分类和冻结结论；不重算数值、不改配置、不提交SVN、不调参、不冻结、不发布、不合并或finalize）
+- User decision: Approved（仅Round 3 Accepted评审落库、治理记录收口及推送原分支；PR #7合并另等User明确授权；不改配置、不提交SVN、不调参、不冻结、不发布或提前finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033
 - Subagents: none
@@ -40,7 +40,16 @@
 
 仅做与当前 Gate 直接相关的字段/关系/规则验证、变更文档检查与既有 Registry 重建校验；禁止新增或重复文件哈希、全量无差别扫描、Accepted 总表重复验收。不为满足形式重复运行 catalog/全仓业务验收。完成后提交候选、推送并交 ChatGPT Review；合并另等 User 授权。
 
-## 当前修订 — Round 2 Gate分类修正 / 等待Round 3
+## 当前状态 — ChatGPT Round 3 Accepted，等待User合并授权
+
+- [完整Round 3](../reviews/TASK-0034-CHATGPT-REVIEW-3.md)：Accepted，受评commit `d8f1b72dab0514510bfdf1b6b7ae4bfdbf0b1e11`，无必须修改项；Round 1/2及前轮证据保留。本轮只收口评审和治理状态。
+- [Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)维持**6 Closed / 4 Conditional / 12 Non-blocking**。G03剩余缺档价值比较、G09选777的forceTurn、G12选挖矿的缺关奖励、G16选拳击/挖矿的源建造币移除继续按条件触发；业务规则Closed不等于候选配置已可冻结。
+- 冻结阻塞已形成可执行Gate，评审Accepted；**尚未冻结或发布**，四活动最终组合仍由User决定。完整数值留原受控目录，源配置、模型和历史数值交付不动。
+- Round 3仅核对Matrix、Task、Status与PR状态一致性；未独立重跑前轮数值、Registry、链接、diff或其他Codex执行证据。这些限制原样保留，不为Accepted追加数值验收。
+- 原Task、分支codex/cr-0922-freeze-gates和PR #7保持不变；safe fetch确认main仍eb13bbb、候选仍d8f1b72，工作树开始时干净。Registry按既有工具重建后valid（17 canonical/0 collision，6项既有legacy提示）；完整评审原文、Accepted入口及23个新增相对链接核对通过，diff检查通过。此为治理增量核对，不是前轮数值或ChatGPT独立验收；未重算、重跑TASK-0033、做哈希或全量业务扫描。
+- 唯一下一步：等待User明确PR #7合并授权。原reservation保持pending-main；不改源配置、不提交SVN、不调参、不冻结、不发布、不合并或提前finalize。Subagents: none。
+
+## 历史Round 3候选 — Round 2 Gate分类修正（d8f1b72，已获Round 3 Accepted）
 
 - [完整Round 2](../reviews/TASK-0034-CHATGPT-REVIEW-2.md)已落Git：Needs changes，受评761b08c；数值与规则应用未发现计算问题，只要求区分规则闭合和配置落实。Round 1及前轮数值产物保留。
 - 状态履历：Review → Changes Requested（Round 2）→ Review（本次状态修订，等待下一轮轻量Review）；不新建Task，原分支/PR #7和pending-main reservation继续保留。

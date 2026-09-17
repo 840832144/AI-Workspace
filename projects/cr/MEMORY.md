@@ -2,6 +2,8 @@
 
 ## 2026-09-17 User后续决定 — 冻结Gate
 
+[Round 3](../../reviews/TASK-0034-CHATGPT-REVIEW-3.md)已Accepted（受评d8f1b72）；仅接受Gate交付，6 Closed / 4 Conditional / 12 Non-blocking保留，尚未冻结或发布。PR #7仍等待User明确合并授权，原reservation pending-main。
+
 [正式输入唯一原文](../../tasks/support/TASK-0034/USER-DECISIONS-20260917.md)已落Git。四活动积分按溢出连续结算；末档循环且num=0停产道具。薯片/拳击Pass共用同levelId门槛且可追溯付费奖励；本版建造模块关闭、奖励从分析层排除。不要沿用旧清零假设或777每格一次清盘总量作为现行成本。
 
 当前[Matrix](REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)经[Round 2](../../reviews/TASK-0034-CHATGPT-REVIEW-2.md)修正为6 Closed / 4 Conditional / 12 Non-blocking：G09选777补forceTurn、G03剩余缺档需价值比较、G12选挖矿补齐id4–12奖励或User明确无奖励、G16选拳击/挖矿移除源建造币奖励。业务规则Closed保留在说明列；已决定但未落实的配置动作必须列条件阻塞，不能仅写证据限制或用分析层排除代替。当前不改源表、不冻结，不用旧值或0补奖励。

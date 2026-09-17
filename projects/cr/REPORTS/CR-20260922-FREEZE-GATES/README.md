@@ -1,10 +1,10 @@
 # CR 9.22 配置冻结阻塞项闭合
 
-[TASK-0034](../../../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)Round 2状态修订已完成，等待下一轮轻量Review（Round 3）。[Matrix](FREEZE_GATE_MATRIX.md)当前为**6 Closed、4 Conditional、12 Non-blocking；无无条件业务规则阻塞，4类条件阻塞**。尚未冻结或发布。
+[TASK-0034](../../../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)已获ChatGPT Round 3 **Accepted**（受评d8f1b72），等待User明确PR #7合并授权。[Matrix](FREEZE_GATE_MATRIX.md)当前为**6 Closed、4 Conditional、12 Non-blocking；无无条件业务规则阻塞，4类条件阻塞**。尚未冻结或发布。
 
-[Round 2完整评审](../../../../reviews/TASK-0034-CHATGPT-REVIEW-2.md) Needs changes（受评761b08c）已落Git；[Round 1](../../../../reviews/TASK-0034-CHATGPT-REVIEW-1.md)历史保留。[PR #7 User正式决定](../../../../tasks/support/TASK-0034/USER-DECISIONS-20260917.md)已落Git。仍是原Task、原分支和pending-main reservation，不重新分配或提前finalize。
+[Round 3完整评审](../../../../reviews/TASK-0034-CHATGPT-REVIEW-3.md) Accepted已落Git；[Round 2](../../../../reviews/TASK-0034-CHATGPT-REVIEW-2.md) Needs changes（受评761b08c）保留为历史；[Round 1](../../../../reviews/TASK-0034-CHATGPT-REVIEW-1.md)历史保留。[PR #7 User正式决定](../../../../tasks/support/TASK-0034/USER-DECISIONS-20260917.md)已落Git。仍是原Task、原分支和pending-main reservation，不重新分配或提前finalize。
 
-## 当前状态修订
+## Accepted交付与保留条件
 
 | Gate | 触发条件 | 冻结前必须满足 |
 | --- | --- | --- |
@@ -13,7 +13,7 @@
 | G12 Conditional | 选挖矿 | 补齐r6961缺失的id4–12通关奖励，或由User明确这些关无通关奖励 |
 | G16 Conditional | 选拳击或挖矿 | 移除对应候选源配置的相关建造币奖励；分析层排除不能替代源配置修改 |
 
-G12的同ID对应/12关结束、G16的关闭建造/移除奖励决定仍属于业务规则Closed；本轮只纠正其配置落实条件。四活动继续保留候选，不代选组合，不执行上述配置动作。
+G12的同ID对应/12关结束、G16的关闭建造/移除奖励决定仍属于业务规则Closed；其配置落实条件已经Round 3接受，当前不执行配置动作。四活动继续保留候选，不代选组合，不执行上述配置动作。
 
 ## 前轮模型交付（761b08c，数值和验证不重跑）
 
@@ -53,8 +53,8 @@ python -m unittest discover -s projects/cr/数值策划/工具 -p test_freeze_ga
 
 前轮工具拒绝混revision、覆盖既有输出或输出到Git工作树；不访问外部系统。`build_freeze_gate_evidence.py`只保留首轮历史证据复现用途，本轮没有重跑。受控阅读包和Matrix由交付步骤同步，不由数值脚本自动作冻结决定。
 
-## 验证与下一步
+## Review证据边界与下一步
 
-本轮只核对22项Gate分类/触发条件、当前文档一致性、变更相对链接和Git diff，检查通过；Registry由既有工具重建后valid（17 canonical、0 collision，6项既有legacy提示）。前轮4项连续结算回归、21项定向数值检查与86个链接记录属于761b08c历史证据，本轮没有重新执行。分析工具及完整数值产物未修改；没有源表读取、SVN访问、数值复算、TASK-0033验收、catalog、哈希或全量业务扫描。
+Round 3仅核对PR #7 Matrix、Task、Status与PR状态一致性，确认两项分类修订已闭合；未独立重跑前轮数值、Registry、链接、diff或其他Codex执行证据，不为本次Accepted追加这些验收。前轮数值/状态验证记录保留为历史。本次仅核对评审落库与治理状态，按既有流程更新Registry；不修改数值产物，不重算、不重跑TASK-0033、不做哈希或全量业务扫描，也未读取源表或访问SVN。
 
-下一轮只需轻量复核G12/G16的条件是否明确、G03/G09是否保留、6/4/12统计与各入口是否一致。PR #7保持OPEN，Task为Review，原reservation pending-main；不改配置、不提交SVN、不调参、不冻结、不发布、不合并或finalize。Subagents: none。
+Task为**Accepted**，PR #7保持OPEN，等待User明确合并授权，原reservation保持pending-main。6 Closed / 4 Conditional / 12 Non-blocking及尚未冻结边界不变；不改配置、不提交SVN、不调参、不冻结、不发布、不合并或提前finalize。Subagents: none。

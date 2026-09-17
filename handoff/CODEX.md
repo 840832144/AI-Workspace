@@ -1,6 +1,14 @@
 # Codex Handoff
 
-## 2026-09-17 — TASK-0034 Gate状态修订，等待下一轮轻量Review（Round 3）
+## 2026-09-17 — TASK-0034 Round 3 Accepted，等待User合并授权
+
+- [Task](../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)为**Accepted**；[完整Round 3](../reviews/TASK-0034-CHATGPT-REVIEW-3.md)已落Git，受评d8f1b72，无必须修改项；Round 1/2及历史证据保留。
+- [当前Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)保持**6 Closed / 4 Conditional / 12 Non-blocking**。G03/G09/G12/G16按原条件触发；规则Closed不等于源配置已满足冻结条件，活动组合仍由User决定。**尚未冻结或发布**。
+- Review仅做轻量状态复核，未独立重跑前轮数值、Registry、链接、diff或其他Codex证据；本轮仅落库评审并同步治理状态，不重算、不重跑TASK-0033、不做哈希或全量业务扫描。完整数值留原受控目录。
+- 原分支codex/cr-0922-freeze-gates / PR #7等待User明确合并授权；reservation保持pending-main，不新建Task、不提前finalize。不改源配置、不提交SVN、不调参、不冻结、不发布、不合并。Subagents: none。
+
+
+## 历史Round 3候选 — TASK-0034 Gate状态修订（d8f1b72，已Accepted）
 
 - [Task](../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)为Review；[完整Round 2](../reviews/TASK-0034-CHATGPT-REVIEW-2.md) Needs changes，受评761b08c；经过Changes Requested后只修状态，原分支codex/cr-0922-freeze-gates / PR #7及pending-main reservation不变。Subagents: none。
 - [当前Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)：**6 Closed / 4 Conditional / 12 Non-blocking**。无无条件业务规则阻塞；不能再写只有2类条件，业务规则Closed与候选配置可冻结分开。
