@@ -2,6 +2,30 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0034 ChatGPT Round 3 Accepted
+
+- 完整Round 3 Accepted（受评d8f1b72）落库，保留Round 1/2及未独立复跑的证据限制；Task/Status/Handoff/报告同步Accepted。
+- 6 Closed / 4 Conditional / 12 Non-blocking不变，尚未冻结或发布；只收口评审与治理记录，不重算数值、不重跑TASK-0033、不做哈希或全量业务扫描。
+- 原分支/PR #7等待User明确合并授权，reservation保持pending-main；不改配置、不提交SVN、不调参、不冻结、不发布、不合并或提前finalize。Subagents: none。
+
+## 2026-09-17 — TASK-0034 Round 2 Gate状态修订，待Round 3
+
+- 固化完整Round 2 Needs changes（761b08c）；同Task修订后继续Review，原reservation pending-main。
+- G12/G16改Conditional，规则Closed保留说明；与原G03/G09共4类条件，统计6 Closed / 4 Conditional / 12 Non-blocking。选挖矿须补齐缺关奖励或User明确无奖励；选拳击/挖矿须移除源建造币。
+- 只更新Gate分类、冻结结论和治理记录；不改分析工具/数值，不重算、不重跑TASK-0033、不做哈希或全量业务扫描；未改配置、SVN、冻结、合并或finalize。
+
+## 2026-09-17 — TASK-0034 正式决定修订，待Round 2
+
+- 保存PR #7完整Round 1 Needs changes与后续User正式输入；同一Task修订后回到Review，原reservation保持pending-main。
+- Matrix收敛为7 Closed / 2 Conditional / 13 Non-blocking：无无条件业务阻塞，最多forceTurn及剩余缺档价值比较2类条件问题；四活动不代选。
+- 仅更新受影响模型和定向复算，完整数值留受控包；源表覆盖/注释与规则差异保留。未重跑TASK-0033、全量扫描或哈希，未改配置、SVN、调参、冻结、发布、合并或finalize。
+
+## 2026-09-17 — TASK-0034 CR 冻结 Gate 候选
+
+- 按正式allocator独立登记新Task，TASK-0033保持Complete；只读确认trunk相对r6961无变化，复用Accepted整理结果。
+- User决定USD Bet=1归95%。新增脱敏Freeze Gate Matrix、四活动候选卡、8组最小策划问题及定向证据工具；完整数值仍在受控目录，未改配置或执行冻结。
+- 定向规则、条件成本、查价与治理验证通过后交ChatGPT Review；不关闭全部原缺口、不选四选二、不合并或提前finalize，无SVN提交、调参、发布、权限变更或哈希工作。Subagents: none。
+
 ## 2026-09-17 — TASK-0033 PR #6合并与finalize
 
 - User明确授权后，PR #6通过merge commit `998a4d8a90541df25b0cedbcaeba069bbd1a010d`合入main，保留TASK-0033历史及Round 1/2 Review；相对受评版本只有已授权治理收口记录，无新增数值修改。
