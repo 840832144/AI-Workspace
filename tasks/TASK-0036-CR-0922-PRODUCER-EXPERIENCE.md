@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: r7013无数值路径变化，现值体验与制作人报告已完成；等待ChatGPT Review，不调参、不冻结或发布
+- Execution status: 数值报告ChatGPT Round 1已Accepted；飞书展示副本已创建并回读，链接登记等待User轻量Review；不调参、不冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -9,7 +9,7 @@
 - Date: 2026-09-17
 - Updated: 2026-09-17
 - User decision: Approved（全项目体验分析与报告；不调参、不改SVN、不冻结、不发布）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN，等待ChatGPT Review）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；数值报告已Accepted，展示副本登记待User轻量Review）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
@@ -58,3 +58,12 @@
 - 完整数值、受控报告、38个实际读取的Accepted输入、可复算脚本与版本摘要在 `%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-experience-20260917/`。复核ZIP不含reservation token、内部SVN地址或完整运行日志；public Git只放脱敏报告/方法/治理记录。
 - 新模型6项测试通过；实际输出的场景唯一性、概率质量、金币守恒、共享成本和八类覆盖通过。仅按既有工具重建/验证Task Registry，检查本轮diff/链接；没有重跑TASK-0033/0034/0035 Accepted数值验收或原始XLSX公式。
 - 分支 `codex/cr-0922-producer-experience` 交ChatGPT Review；reservation保持pending-main，不合并或提前finalize。0035零数值变更候选、原始源表不动；不调参、不修改/提交SVN、不冻结、不发布。Subagents: none。
+
+## 飞书展示副本链接登记（2026-09-17）
+
+- 展示文档：[CR 9.22 全项目数值体验｜制作人展示版｜r7013](https://gfok27asqq.feishu.cn/docx/Rm2GdeMcXoEg2SxodIScDdzpn1c)。Git/TASK-0036继续是真相源；本篇仅为会议展示副本，不替代原报告或受控底稿。
+- 依据PR #10已发布的ChatGPT Round 1 Accepted（受评`d663a0c728395f5f504f3ce5c7305c2aeaefcd8c`）及User同PR的展示授权；本轮只创建展示副本并登记链接，不改数值、Unknown、r6961原证据/r7013适用版本或既有候选。
+- 使用已接入飞书CLI、显式user身份，在既有目录检查同名后创建；回读revision 4，7个章节顺序、8张展示表、36组Spin汇总、八类系统、9组Unknown、全部段落及2个Git来源链接与草稿一致，目标目录同名文档仅1篇。
+- 权限回读为`tenant_readable`（公司内链接可读），沿用新文档默认内部权限；没有执行ACL/分享设置修改或开启公网链接分享。无附件，未上传受控包完整商业明细、源配置、内部URL/路径、token、私有Registry或敏感日志；完整展示草稿只留本机受控目录。
+- 当前Review针对本次展示副本及链接登记；数值报告Accepted依据不变。未重算数值、重跑旧Task或做hash；Workspace Sync为ON_DEMAND/provider unavailable/stale 6/conflicts 0，展示文档CLI的真实创建/回读结果独立记录，不冒充Context provider可用。
+- 按User本次授权仅登记Task/Status/Handoff链接；未执行正式冻结或发布，不修改/提交SVN、不调参、不合并PR #10或finalize，原reservation pending-main。Subagents: none。
