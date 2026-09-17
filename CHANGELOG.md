@@ -2,6 +2,11 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0035薯片+777现值候选待Review
+
+- User确认没有数值改动；14个指定trunk文件r6961:7004无变化后锁定r7004，交付0数值变更方案、候选/阅读层、546条Accepted阶段引用及8个forceTurn规则示例。
+- 完整数值与14个源XLSX留受控复核包，public仅方案/方法/验证摘要；TASK-0034 Matrix保留历史，合并finalize状态和当前TASK-0035 Review分别标明。不提交SVN、不冻结、不发布，新reservation不提前finalize。
+
 ## 2026-09-17 — TASK-0034合并finalize；登记TASK-0035
 
 - PR #7以merge commit 051a551合入main，确认canonical后finalize原reservation；TASK-0034交付收口Complete，尚未冻结或发布。

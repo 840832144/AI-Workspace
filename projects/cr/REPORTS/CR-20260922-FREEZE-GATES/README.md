@@ -1,8 +1,10 @@
 # CR 9.22 配置冻结阻塞项闭合
 
-[TASK-0034](../../../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)已获ChatGPT Round 3 **Accepted**（受评d8f1b72），等待User明确PR #7合并授权。[Matrix](FREEZE_GATE_MATRIX.md)当前为**6 Closed、4 Conditional、12 Non-blocking；无无条件业务规则阻塞，4类条件阻塞**。尚未冻结或发布。
+2026-09-17更新：PR #7已以merge commit `051a55195a6a483ce198fe432fe7af29d92444b3`合入main；确认canonical及三轮Review进入main后，原reservation已finalized。[TASK-0034](../../../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)交付收口Complete，尚未冻结或发布。Complete元数据随TASK-0035分支更新。
 
-[Round 3完整评审](../../../../reviews/TASK-0034-CHATGPT-REVIEW-3.md) Accepted已落Git；[Round 2](../../../../reviews/TASK-0034-CHATGPT-REVIEW-2.md) Needs changes（受评761b08c）保留为历史；[Round 1](../../../../reviews/TASK-0034-CHATGPT-REVIEW-1.md)历史保留。[PR #7 User正式决定](../../../../tasks/support/TASK-0034/USER-DECISIONS-20260917.md)已落Git。仍是原Task、原分支和pending-main reservation，不重新分配或提前finalize。
+[Round 3完整评审](../../../../reviews/TASK-0034-CHATGPT-REVIEW-3.md) Accepted（受评d8f1b72）与Round 1/2全部保留。[Matrix](FREEZE_GATE_MATRIX.md)的6 Closed / 4 Conditional / 12 Non-blocking保留为当时四候选的Accepted快照，不重写历史。后续User已选择薯片+777并闭合forceTurn，当前候选见[新TASK-0035报告](../CR-20260922-SNACK-777-FREEZE-PREP/README.md)。
+
+以下为TASK-0034合并前交付与证据历史，其中“仍待组合/forceTurn”等表述只代表当时状态。
 
 ## Accepted交付与保留条件
 

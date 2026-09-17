@@ -8,7 +8,7 @@
 - Priority: P1 / 2026-09-19 冻结决策依据
 - Date: 2026-09-17
 - Updated: 2026-09-17
-- User decision: Approved（仅Round 3 Accepted评审落库、治理记录收口及推送原分支；PR #7合并另等User明确授权；不改配置、不提交SVN、不调参、不冻结、不发布或提前finalize）
+- User decision: Approved（2026-09-17明确授权合并PR #7、canonical进入main后finalize原reservation；已执行，未授权配置冻结/SVN提交/发布）
 - Allocation relationship: new
 - Related tasks: TASK-0033
 - Subagents: none
