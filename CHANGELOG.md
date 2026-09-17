@@ -2,6 +2,21 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0035 ChatGPT Round 1 Accepted
+
+- PR #8完整Round 1（受评0676ef3）落库；Task/Status/Handoff/报告及Registry同步Accepted，保留ChatGPT未独立连接公司SVN的证据限制。
+- 本轮仅治理收口，不重算数值、不重跑TASK-0033/0034、不做hash或全量扫描。PR保持OPEN，等待User明确合并授权；不提交SVN、不正式冻结/发布，reservation保持pending-main，不提前finalize。
+
+## 2026-09-17 — TASK-0035薯片+777现值候选待Review
+
+- User确认没有数值改动；14个指定trunk文件r6961:7004无变化后锁定r7004，交付0数值变更方案、候选/阅读层、546条Accepted阶段引用及8个forceTurn规则示例。
+- 完整数值与14个源XLSX留受控复核包，public仅方案/方法/验证摘要；TASK-0034 Matrix保留历史，合并finalize状态和当前TASK-0035 Review分别标明。不提交SVN、不冻结、不发布，新reservation不提前finalize。
+
+## 2026-09-17 — TASK-0034合并finalize；登记TASK-0035
+
+- PR #7以merge commit 051a551合入main，确认canonical后finalize原reservation；TASK-0034交付收口Complete，尚未冻结或发布。
+- 从最新main完整枚举tasks/并通过Registry，allocator分配TASK-0035。仅薯片+777，User确认没有数值改动，先定向检查trunk版本，再制作现值冻结候选；不纳入拳击/挖矿，不提交SVN或执行正式冻结/发布。
+
 ## 2026-09-17 — TASK-0034 ChatGPT Round 3 Accepted
 
 - 完整Round 3 Accepted（受评d8f1b72）落库，保留Round 1/2及未独立复跑的证据限制；Task/Status/Handoff/报告同步Accepted。
