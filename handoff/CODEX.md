@@ -1,5 +1,33 @@
 # Codex Handoff
 
+## 2026-09-17 — TASK-0033 Round 2 Accepted，等待User合并授权
+
+- [完整Round 2](../reviews/TASK-0033-CHATGPT-REVIEW-2.md)已落库：Accepted，评审基线`bdcdb3da6d1367c38e62fe7d45428b752d7e3063`；[Task](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)已更新为Accepted，保留Round 1历史，不新建Task。
+- 固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。R1/R2均通过，无必须修改项；不等于完整机台/活动周期EV或所有业务定义已闭合。
+- 评审独立验证与未复跑项按原文保留；本次不改数值产物或重复业务测试。[报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)提供当前状态，受控包及VALIDATION-R1.json保留受评版本证据，不将旧状态当当前状态。
+- PR #6和原分支`codex/cr-0922-numerical-inventory`保留，等待User明确合并授权；原reservation pending-main。不改配置、不提交SVN、不调参、不冻结、不合并、不提前finalize；完整数值和受控附录继续留受控目录。Subagents: none。
+- 下方为历史阶段记录；其他任务交接保持原样。
+
+## 历史阶段 — 2026-09-16 TASK-0033 R1/R2修订完成，等待Round 2
+
+- [完整 Review](../reviews/TASK-0033-CHATGPT-REVIEW-1.md)已落库：Needs changes，基线04f7b29；Task经过Changes Requested，修订后回到Review，等待ChatGPT Round 2。
+- R1：特殊RTP条件页/CSV保留同版全部9行、空/重复ID、等级上下界、5个活动条件与本表枚举；与常规85/95分开。优先级/实际生效继续关联G01/G02。
+- R2：6处缺缓存、2处Excel错误缓存、19处外链分别定位，G05补齐说明字段异常；不把错误字符串用作数值，不判派奖/运行故障。
+- 最终XLSX实际5699个公式（XML `<f>`自动计数），全部缓存与Python复算一致；19964个数值输出一致，公式错误/缺缓存均0；16页、4923条阅读记录。4个改动页视觉复核；81个特殊配置源字段和2处错误原式/缓存独立读取一致；非编辑范围50625个既有阅读单元格值/类型保持一致。
+- [整理报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)与验证文件已统一实测数字，最终统计工具排除以“=”开头的说明。catalog/repository/Registry/diff通过；3项R1/R2回归通过。
+- 固定trunk r6961，22项业务缺口保留；完整数值和受控附录留本机。没有重新访问SVN或混版，源公式/外链未独立求值，完整机台/活动EV仍未闭合。Round 1未独立复跑catalog/Registry/视觉的限制照录，不能将本轮Codex验证冒充第二轮Review。
+- 原分支codex/cr-0922-numerical-inventory、PR #6；原reservation pending-main。不新建Task、不调参、不改源表、不提交SVN、不冻结、不合并、不finalize、不改权限；Subagents: none。
+- 下方首轮交付为历史候选，当前交付以本节和报告为准；保留其他任务交接。
+
+## 历史候选 — 2026-09-16 TASK-0033 首轮交付（04f7b29）
+
+- [TASK-0033](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)：Review；独立分支 `codex/cr-0922-numerical-inventory`，基线 `a75630a`，原reservation pending-main，Subagents: none。
+- trunk r6961已固定读取，时间2026-09-16 17:58:52（北京时间）；不得以新HEAD补部分输入，不混dev/101/历史附件。
+- [报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)说明15页总表、完整CSV/JSON、资源关系、22项缺口及两份只读工具。完整数值在本机受控包，禁止顺手加入public Git。
+- 输出公式与Python比对、源格独立抽核和15页视觉检查已完成；源外链、缺缓存、JSON语法读取缺口及业务状态定义未补齐，不据此修改源表。等待ChatGPT Review和对应策划/配置负责人补充。
+- 本轮不改配置、不冻结/发布，不选活动组合、不设优化目标、不做技术/线上运营审计；附件v0.1不能扩大最新User授权。日常Git仍只写projects/cr，公司SVN正式流程不变。
+- 不合并候选、不提前finalize，不改权限、不归档/删除旧库；保留下方已有交接，不覆盖并发PR #2/#4内容。
+
 ## 2026-09-16 — TASK-0032：已合并并切换单仓入口
 
 PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5) 已按 User 最终授权于 2026-09-16 15:03:31（北京时间）使用 Create a merge commit 合并，merge commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`。当前日常入口为 AI-Workspace `main`，CR 资料与工具只写 `projects/cr/`；原 reservation 已 finalize。旧 cr_design 保留，不归档、不删除，权限不变。

@@ -2,6 +2,26 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0033 ChatGPT Review Round 2 Accepted
+
+- 完整Round 2评审落库，基线bdcdb3d，Accepted；保留Round 1历史及各轮证据限制，不新建Task。
+- Task、CR Status、Handoff和报告明确：固定trunk r6961现值整理已通过；22项业务缺口保留；尚未冻结或发布。按既有工具重建并验证Task Registry。
+- 原分支/PR #6等待User明确合并授权，原reservation保持pending-main；本次仅治理记录收口，不改配置、不提交SVN、不调参、不冻结、不合并或finalize，完整数值继续留受控目录。Subagents: none。
+
+## 2026-09-16 — TASK-0033 Round 1 R1/R2修订
+
+- 完整ChatGPT Round 1 Needs changes落Git，状态先Changes Requested，修订后Review / 等待Round 2；仍用原Task、原分支、固定trunk r6961及原reservation。
+- 特殊新手/活动关联RTP原行与本表注释单列阅读层，常规85/95不变，优先级保留G01/G02；补齐2处源错误缓存并分开缺缓存/外链，不改源表、不判派奖故障。
+- 最终XLSX实际公式自动计数，纠正说明文字误计；最终XLSX实际5699个公式（XML `<f>`自动计数），全部缓存与Python复算一致；19964个数值输出一致，公式错误/缺缓存均0；16页、4923条阅读记录。Task/Status/Handoff/报告/验证与PR同步，完整数值和受控附录不进public Git。
+- 仅修R1/R2；22项业务缺口保留，不调参、不提交SVN、不冻结、不合并或finalize；Subagents: none。
+
+## 历史交付 — 2026-09-16 TASK-0033 CR 9.22 全数值整理交Review
+
+- 按既有allocator查重登记，锁定SVN trunk r6961，只读盘点当前配置与机台/地图数值；复用CR Skill和XLSX读取器，补充全目录提取与条件复算工具。
+- 本机受控交付总表、资源关系、可复算明细与22项口径缺口；public Git仅保存工具、版本、方法和脱敏Task/Status/Handoff。不上传当前完整配置，不重建退役快照，不双写旧库。
+- 保留User关于85/95 RTP、活动组合未定、毛下注/净耗/实付分离及排除运营/技术审计的范围；附件扩展指令不覆盖User明确请求。
+- 输出公式比对、独立源格抽核和视觉复核通过；源公式缓存/外链、动态玩法期望和未明规则的限制明确记录。任务Review，不授权调参、冻结、发布或提前finalize；Subagents: none。
+
 ## 2026-09-16 — TASK-0032 最终合并与单仓切换
 
 - User 明确授权后完成两仓最新 main、候选增量及共享文件并发检查；PR #5 以 Create a merge commit 合并，commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`，没有 squash/rebase 或强推共享历史。
