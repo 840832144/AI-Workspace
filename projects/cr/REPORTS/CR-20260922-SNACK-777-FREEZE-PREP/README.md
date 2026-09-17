@@ -2,10 +2,10 @@
 
 ## 1. 文档信息与结论
 
-- Task：[TASK-0035](../../../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)；执行：Codex；业务负责人：User；评审：ChatGPT；状态：ChatGPT Round 1 Accepted（受评0676ef3）。
+- Task：[TASK-0035](../../../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)；执行：Codex；业务负责人：User；评审：ChatGPT；候选评审：ChatGPT Round 1 Accepted（受评0676ef3）；治理状态：Complete（PR #8已合并，原reservation已finalized）。
 - 适用：9.22已选择的薯片 + 777；2026-09-17制作，供最晚2026-09-19的冻结决策参考。
 - User补充目标为“没有改动”。本候选**保留trunk r7004现值，数值变更0项**，没有调参目标或优化建议。没有修改源配置、提交SVN、正式冻结或发布。
-- 两活动当前无剩余业务规则Gate；候选已Accepted；PR #8保持OPEN，等待User明确合并授权；正式冻结/发布仍需后续明确授权。规则闭合、候选评审、正式冻结是不同状态。
+- 两活动当前无剩余业务规则Gate；候选已Accepted，PR #8已合并；正式冻结/发布仍需后续明确授权。规则闭合、候选评审、正式冻结是不同状态。
 
 ## 2. 目标与范围
 
@@ -95,15 +95,22 @@ Review通过仍不自动授权SVN、冻结或发布。若后续出现相关源�
 
 ## 9. Git收口与历史
 
-PR #7于2026-09-17以merge commit `051a55195a6a483ce198fe432fe7af29d92444b3`合入main。确认TASK-0034 canonical和三轮Review进入main后，原reservation已finalized。TASK-0034 Complete元数据随本新分支更新，其原6 Closed / 4 Conditional / 12 Non-blocking Matrix保留为组合决定前的Accepted快照。
+PR #7于2026-09-17以merge commit `051a55195a6a483ce198fe432fe7af29d92444b3`合入main。确认TASK-0034 canonical和三轮Review进入main后，原reservation已finalized。TASK-0034 Complete元数据已随PR #8进入main，其原6 Closed / 4 Conditional / 12 Non-blocking Matrix保留为组合决定前的Accepted快照。
 
-从最新main完整枚举30个tasks文件，Registry验证后由allocator分配TASK-0035。本任务现为Accepted，reservation pending-main；PR #8保持OPEN，等待User明确合并授权，不提前finalize。2026-09-17 v0.1：首次交付r7004零数值变更候选。
+从最新main完整枚举30个tasks文件，Registry验证后由allocator分配TASK-0035。本任务候选已Accepted，PR #8已合并；确认canonical进入main后原reservation已finalized，治理状态Complete。2026-09-17 v0.1：首次交付r7004零数值变更候选。
 
 
-## 10. ChatGPT Round 1 Accepted收口
+## 10. 历史 — ChatGPT Round 1 Accepted收口（合并前）
 
 [完整评审](../../../../reviews/TASK-0035-CHATGPT-REVIEW-1.md)已落Git，受评`0676ef30322ae7e8e8b89f34f21688f3eeaa979a`，无阻塞项。ChatGPT核对受控包统计、零变更和复用证据身份，并独立对照r6961 Accepted材料：35900个选中字段全部可映射，值差异0、缺失映射0。以上为Review记录的执行结果，本轮Codex没有重复字段比对或数值验证。
 
 ChatGPT未独立连接公司SVN，HEAD/路径差异仍引用Codex首轮记录；forceTurn示例不代表运行时状态机验收；PriceCheatSheet/ItemExchange选中行0不扩展为查价或产消结论。受控包和原VALIDATION.json保留为受评历史证据，不因Accepted而重生成。
 
 本轮仅收口文档与Registry；不重算、不重跑TASK-0033/0034、不做hash或全量扫描。PR #8保持OPEN，等待User明确合并授权。没有SVN提交、正式冻结或发布，reservation未finalize。Subagents: none。
+
+
+## 11. 合并后治理收口
+
+2026-09-17确认PR #8已合并，merge commit及本次同步最新main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。canonical与Round 1 Accepted Review均已进入main；使用原TASK-0035 reservation调用既有finalize，返回finalized。Complete仅指候选交付和Git治理完成，尚未正式冻结或发布。
+
+本次只更新治理状态，数值方案正文、源配置、验证结果、Review原文及受控候选包不变；不重算、不做hash或全量扫描，不提交SVN。Complete元数据随合并后文档PR记录。Subagents: none。

@@ -2,6 +2,11 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0035已合并并finalized
+
+- PR #8 merge commit `fde35b2f804e1f69bf02acc6d9581c5d009b118a`，canonical及Round 1 Accepted Review已进入最新main；既有工具使用原reservation返回finalized，未重新分配Task。
+- Task/Status/Handoff及Registry收口Complete，候选Review保持Accepted；仅治理文档变更，数值候选不动。不重算、不做hash或全量业务扫描，不提交SVN、不正式冻结或发布。
+
 ## 2026-09-17 — TASK-0035 ChatGPT Round 1 Accepted
 
 - PR #8完整Round 1（受评0676ef3）落库；Task/Status/Handoff/报告及Registry同步Accepted，保留ChatGPT未独立连接公司SVN的证据限制。
