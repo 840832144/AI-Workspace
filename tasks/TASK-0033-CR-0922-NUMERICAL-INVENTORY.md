@@ -1,14 +1,14 @@
 # TASK-0033 — CR 9.22 全数值整理
 
-- Status: Accepted
-- Execution status: 固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布；PR #6 等待 User 明确合并授权，原 reservation 保持 pending-main
+- Status: Complete
+- Execution status: PR #6 已按 User 授权合并 main，原 reservation 已 finalized；固定 trunk r6961 现值整理已通过，22项业务缺口保留，尚未冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 2026-09-19 前配置冻结依据
 - Date: 2026-09-16
 - Updated: 2026-09-17
-- User decision: Approved（仅整理与复算）
+- User decision: Approved（现值整理与复算；2026-09-17批准PR #6合并及原reservation finalize，仅Git收口，不授权配置冻结或发布）
 - Related tasks: TASK-0032
 - Subagents: none
 
@@ -38,13 +38,21 @@
 
 - Git 基线 `a75630ac14eb60c7caf5b7663e58428516614f62`；独立 linked worktree/branch `codex/cr-0922-numerical-inventory`。
 - 完整 Task Registry 查重：15 canonical、0 collision、valid；现有迁移 TASK-0032 已 Complete，无同目标 active Task。开放 PR #2/#4 不属于本范围，共享 Handoff/Registry 只增补本任务。
-- 正式 allocator 返回 TASK-0033，原 reservation 保持 pending-main；不提前 finalize、不重新占号。
+- 正式 allocator 返回 TASK-0033，原 reservation 在canonical进入main前保持pending-main；现已按原reservation finalize，不重新占号。
 - Workspace Sync：ON_DEMAND，provider unavailable，stale 6、conflicts 0；Git 为真相源，不把外部服务缺失作为整理前置。
 - 先锁定 SVN 版本并完成目录盘点，再按依赖读取/复算。只读原表；本机固定版本输入不进入 Git，不重建退役资料快照库。
 - 复用只读 XLSX 提取器，核对字段、行ID、单位和关联；对输出做实际来源抽样、代表性手算、缺口传播和公式边界检查，不新增文件哈希校验。
 - 按项目规则运行 catalog、validate_repository 及相关最小校验；Task/Status/Handoff 随状态更新，Registry 由工具重建。Accepted须依据正式ChatGPT Review记录；最终合并仍须User明确授权，不以Accepted代替合并授权。
 
 ## 当前进展与下一步
+
+User于2026-09-17明确批准PR #6合并与Git收口。PR已于2026-09-17 09:50:41（北京时间）通过正常merge commit合入main：`998a4d8a90541df25b0cedbcaeba069bbd1a010d`，双亲为原main `a75630a` 与候选 `f6bf84b`，未squash/rebase。受评基线`bdcdb3d`及TASK-0033历史、Round 1/2 Review均保留。
+
+合并树与候选f6bf84b直接diff为空；已在最新main核对canonical Task、CR Status、两份Handoff、Registry及两轮Review。Registry为16 canonical、0 collision、valid。确认canonical进入main并将原linked worktree安全快进后，既有工具使用原reservation返回`finalized`（TASK-0033，project_key=CR）；未重新分配任务。
+
+**固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。** Task的Complete仅表示本次整理交付及Git生命周期收口完成，不代表业务缺口、完整机台/活动周期EV或冻结事项全部闭合。完整数值仍在受控目录。本次无源配置修改、SVN提交、调参或发布，无权限变更。Subagents: none。
+
+## 历史阶段 — 合并前的交付与评审状态
 
 2026-09-17 收口 [ChatGPT Review Round 2](../reviews/TASK-0033-CHATGPT-REVIEW-2.md)：Accepted，评审基线 `bdcdb3da6d1367c38e62fe7d45428b752d7e3063`，R1/R2均通过、无必须修改项。**固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。** PR #6保持开放，等待User明确合并授权；本Task为Accepted，尚非合并完成，不提前finalize。以下Round 1及验证记录保留为当时的执行证据。
 
@@ -76,7 +84,7 @@
 - main仍a75630a、候选受评基线04f7b29；PR #2/#4 head未变化，共享文件仅修改本Task段落与工具生成Registry。Workspace Sync为ON_DEMAND、provider unavailable、stale 6/conflict 0，无外部发布。
 - 22项缺口不要求本轮关闭；原reservation保持pending-main。本轮无重新分配、调参、源表写入、SVN提交、冻结、合并、finalize或权限变更。Subagents: none。
 
-## Round 2 Accepted 收口（2026-09-17）
+## 历史阶段 — Round 2 Accepted 收口（2026-09-17，合并前）
 
 - 完整评审落库，Round 1原文不改；本次只更新治理记录，数值工具、固定版本输入、工作簿和受控复核包均保留受评版本。
 - Round 2独立验证：5699个输出公式、19964个数值格、9行/81个特殊配置源字段、45处阅读文字、6/2/19异常或依赖清单、3项合成回归及新增页定向渲染通过。上述为ChatGPT评审证据，不冒充此次Codex重新执行。

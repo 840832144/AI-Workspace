@@ -1,7 +1,7 @@
 # CR 9.22 全数值整理
 
 - Task：[TASK-0033](../../../../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)
-- 状态：Accepted（[ChatGPT Round 2](../../../../reviews/TASK-0033-CHATGPT-REVIEW-2.md)，评审基线bdcdb3d，2026-09-17收口）。固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。PR #6等待User明确合并授权。
+- 状态：Complete（整理交付及Git收口）；[ChatGPT Round 2](../../../../reviews/TASK-0033-CHATGPT-REVIEW-2.md) Accepted，评审基线bdcdb3d。固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。PR #6已按User明确授权合并，原reservation已finalized。
 - 唯一版本：公司 SVN **trunk r6961**；读取时间 **2026-09-16 17:58:52（北京时间）**，trunk最近内容提交为r6918。本轮全部输入固定为r6961。
 - 交付目标：现行全系统数值总表、资源产消与系统关联、可复算公式/阶段成本/奖励期望/返还率，以及具名缺口。
 - 时间节点：为2026-09-19前的配置冻结提供依据；未授权修改、冻结提交或发布。
@@ -78,7 +78,7 @@ source-lock需有 `environment=trunk`、整数revision和读取时间。本轮�
 - catalog、repository、Registry及diff的最终结果见Task；未增加重复文件哈希，没有改源表、同步apply、SVN提交、调参、采集、部署或外部权限变更。
 - 附件 `CR_922_Codex_首轮审计任务_v0.1.md`仅为参考材料；其中广告、生命周期、技术审计、运营数据、优化和哈希等扩展指令不覆盖User明确范围。
 
-ChatGPT Round 2已接受R1/R2及相关输出一致性，无必须修改项；Task为Accepted，22项业务缺口继续保留。PR #6等待User明确合并授权；不改配置、不提交SVN、不调参、不冻结、不合并、不提前finalize。日常Git仍只写AI-Workspace/projects/cr/，公司SVN正式配置流程不变。Subagents: none。
+ChatGPT Round 2已接受R1/R2及相关输出一致性，无必须修改项；User另行明确批准PR #6合并及原reservation finalize，现已完成Git收口。22项业务缺口继续保留，不改配置、不提交SVN、不调参、不冻结或发布。日常Git仍只写AI-Workspace/projects/cr/，公司SVN正式配置流程不变。Subagents: none。
 
 ## 历史记录 — Round 1 修订与证据限制
 
@@ -92,10 +92,16 @@ R2原验证器把全系统总览E7的“=”开头文字误当公式；现由[in
 
 完整复核包补入两份同r6961原始源表用于R1/R2复查（合计14份）；源表原件不改。首轮工作簿与ZIP保存在受控备份，当前完整数值、附录和复核包不进入public Git。没有新取SVN、混版或新增哈希检查。
 
-## Round 2 Accepted（2026-09-17收口）
+## 历史阶段 — Round 2 Accepted（2026-09-17，合并前）
 
 [完整Round 2评审](../../../../reviews/TASK-0033-CHATGPT-REVIEW-2.md)记录基线`bdcdb3da6d1367c38e62fe7d45428b752d7e3063`：R1/R2通过，固定trunk r6961现值整理及已列明假设的条件复算被接受。22项业务缺口保留，尚未冻结或发布；Accepted不是全部数值闭合、上线验收或合并授权。
 
 Round 2独立复算5699个输出公式、核对19964个数值格及R1的81个源字段/45处文字，重扫6/2/19异常与依赖清单，运行3项合成回归并定向渲染新增页。评审没有重取SVN、重算全部源公式/外链或建立完整周期EV；catalog/repository/Registry、4页视觉及50625个旧格不变比较未由Review独立重跑，仍属于Codex此前的证据。
 
 本次仅收口Git中的评审和治理状态，不重建总表或复核包、不增加重复哈希检查。[VALIDATION-R1.json](VALIDATION-R1.json)及受控包内验证文件保留受评提交时的执行状态和数值证据；当前Accepted及待User合并授权状态以Task、本文和Round 2记录为准。原reservation保持pending-main，完整数值继续留受控目录。
+
+## 最终Git收口（2026-09-17）
+
+User明确批准后，[PR #6](https://github.com/840832144/AI-Workspace/pull/6)于2026-09-17 09:50:41（北京时间）通过正常merge commit合入main：`998a4d8a90541df25b0cedbcaeba069bbd1a010d`，保留完整候选与Review历史，无squash/rebase。合并树与候选f6bf84b直接diff为空；已核对main中的canonical Task、Status、Handoff、Registry及两轮Review，Registry valid/16 canonical/0 collision。
+
+canonical进入main、原linked worktree安全快进后，以原reservation执行现有finalize，结果`finalized`（TASK-0033，CR）。Task Complete仅表示整理交付与Git生命周期完成；22项业务缺口保留，尚未冻结或发布。本次不改变受评工作簿、受控复核包、源配置或数值工具，不修改/提交SVN、不调参、不发布；各轮独立验证与未复跑限制继续按原文保留。
