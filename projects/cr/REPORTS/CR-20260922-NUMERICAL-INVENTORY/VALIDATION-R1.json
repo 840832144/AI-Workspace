@@ -1,0 +1,41 @@
+{
+  "task": "TASK-0033",
+  "revision": 6961,
+  "reviewed_commit": "04f7b2953dfbd792523ee89778f2fc1d0fc9562f",
+  "review_round_1": "Needs changes",
+  "status": "Review / waiting ChatGPT Round 2",
+  "formula_cells": 5699,
+  "formula_count_source": "final XLSX XML <f> elements",
+  "formula_caches_compared_to_python": 5699,
+  "formula_error_caches": 0,
+  "missing_output_formula_caches": 0,
+  "numeric_output_cells_compared": 19964,
+  "workbook_sheets": 16,
+  "reading_rows": 4923,
+  "special_rtp_rows": 9,
+  "special_rtp_source_field_checks": 81,
+  "source_evidence_counts": {
+    "missing_cache": 6,
+    "excel_error_cache": 2,
+    "external_reference": 19
+  },
+  "source_errors_independent_raw_and_cache_checks": 2,
+  "unchanged_existing_cells_checked": 50625,
+  "targeted_regression_tests": 3,
+  "visual_review": "4 changed sheets and special RTP detail ranges reviewed by Codex",
+  "source_formula_recalculation": "not performed",
+  "remaining_business_gaps": 22,
+  "subagents": "none",
+  "repository_checks": {
+    "catalog_workbooks": 14,
+    "catalog_errors": 0,
+    "repository_errors": 0,
+    "repository_warnings": 0,
+    "registry_status": "valid",
+    "registry_canonical": 16,
+    "registry_collisions": 0,
+    "registry_legacy_warnings": 6,
+    "ast_files": 3,
+    "diff_check": "passed"
+  }
+}

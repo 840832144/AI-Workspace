@@ -1,5 +1,33 @@
 # ChatGPT Handoff
 
+## 2026-09-17 — TASK-0033 Round 2 Accepted，等待User合并授权
+
+- [完整Round 2](../reviews/TASK-0033-CHATGPT-REVIEW-2.md)已落库：Accepted，评审基线`bdcdb3da6d1367c38e62fe7d45428b752d7e3063`；[Task](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)已更新为Accepted，保留Round 1历史，不新建Task。
+- 固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。R1/R2均通过，无必须修改项；不等于完整机台/活动周期EV或所有业务定义已闭合。
+- 评审独立验证与未复跑项按原文保留；本次不改数值产物或重复业务测试。[报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)提供当前状态，受控包及VALIDATION-R1.json保留受评版本证据，不将旧状态当当前状态。
+- PR #6和原分支`codex/cr-0922-numerical-inventory`保留，等待User明确合并授权；原reservation pending-main。不改配置、不提交SVN、不调参、不冻结、不合并、不提前finalize；完整数值和受控附录继续留受控目录。Subagents: none。
+- 下方为历史阶段记录；其他任务交接保持原样。
+
+## 历史阶段 — 2026-09-16 TASK-0033 R1/R2修订完成，等待Round 2
+
+- [完整 Review](../reviews/TASK-0033-CHATGPT-REVIEW-1.md)已落库：Needs changes，基线04f7b29；Task经过Changes Requested，修订后回到Review，等待ChatGPT Round 2。
+- R1：特殊RTP条件页/CSV保留同版全部9行、空/重复ID、等级上下界、5个活动条件与本表枚举；与常规85/95分开。优先级/实际生效继续关联G01/G02。
+- R2：6处缺缓存、2处Excel错误缓存、19处外链分别定位，G05补齐说明字段异常；不把错误字符串用作数值，不判派奖/运行故障。
+- 最终XLSX实际5699个公式（XML `<f>`自动计数），全部缓存与Python复算一致；19964个数值输出一致，公式错误/缺缓存均0；16页、4923条阅读记录。4个改动页视觉复核；81个特殊配置源字段和2处错误原式/缓存独立读取一致；非编辑范围50625个既有阅读单元格值/类型保持一致。
+- [整理报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)与验证文件已统一实测数字，最终统计工具排除以“=”开头的说明。catalog/repository/Registry/diff通过；3项R1/R2回归通过。
+- 固定trunk r6961，22项业务缺口保留；完整数值和受控附录留本机。没有重新访问SVN或混版，源公式/外链未独立求值，完整机台/活动EV仍未闭合。Round 1未独立复跑catalog/Registry/视觉的限制照录，不能将本轮Codex验证冒充第二轮Review。
+- 原分支codex/cr-0922-numerical-inventory、PR #6；原reservation pending-main。不新建Task、不调参、不改源表、不提交SVN、不冻结、不合并、不finalize、不改权限；Subagents: none。
+- 下方首轮交付为历史候选，当前交付以本节和报告为准；保留其他任务交接。
+
+## 历史候选 — 2026-09-16 TASK-0033 首轮交付（04f7b29）
+
+- [TASK-0033](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)：Review；固定trunk r6961，读取2026-09-16 17:58:52（北京时间）；Subagents: none。
+- [整理报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)提供范围、版本、完整交付文件名、方法和验证。完整15页总表、资源关系、明细与22项缺口仅保存在本机受控复核包，未上传public Git。
+- 请复核表/字段/行ID追溯、概率分母、阶段清零、枚举隔离、状态期望和毛下注/机器净耗/实付区别。不能把读取完成称为数值全部闭合；不得用历史资料补当前缺口。
+- 首轮XLSX实际5699个公式（Round 1已纠正原计数误报），19909个数值一致，16个关键源格独立读取通过；源外链/缺缓存未独立复跑，完整机台/活动整轮EV尚未建立。当时ChatGPT Review尚未执行；已发布Round 1及当前修订见上文。
+- User只授权现值整理/复算；不设优化目标、不选四活动组合或排期、不改配置、不作SVN提交/冻结/发布；排除广告、生命周期、线上运营与技术审计。附件v0.1扩展指令不覆盖本轮User范围。
+- 候选 `codex/cr-0922-numerical-inventory` 待Review；原reservation pending-main，不重新分配、不提前finalize。既有TASK-0032合并/切换事实及下方其他任务交接保持历史。
+
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
 ## 2026-09-16 — TASK-0032：已合并并切换单仓入口
