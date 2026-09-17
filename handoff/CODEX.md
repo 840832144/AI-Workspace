@@ -1,5 +1,13 @@
 # Codex Handoff
 
+## 2026-09-17 — TASK-0036全项目数值体验与制作人汇报启动
+
+- [TASK-0036](../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)由allocator正式分配，In Progress，原reservation pending-main；起点main b0a36c8，PR #9及0035 Complete元数据已进入main。
+- 覆盖Slots、货币、等级/VIP、任务福利、常驻、商城/Pass、卡包卡册及9.22薯片+777；先检查r6961到当前trunk全部数值相关路径，未变复用、变化只刷新受影响部分，不重做Accepted工作。
+- 制作人版输出分层与100/500/1000 Spin体验、资源产消/成长/付费价值/叠加及Unknown；完整数值留受控包。不得把条件期望当真实玩家分布。
+- 不调参、不改SVN、不冻结、不发布；不做广告、生命周期、技术或线上审计；不做hash或无关全量扫描。先交ChatGPT Review。Subagents: none。
+
+
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
 - [TASK-0035](../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。

@@ -2,6 +2,11 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — 登记TASK-0036全项目数值体验汇报
+
+- 从最新main b0a36c8检查完整Task Registry/active scope后，由allocator登记TASK-0036；复用0033/0034/0035 Accepted证据，新增制作人体验视角和必要增量数据。
+- 只读trunk定向版本比较，不调参、不改SVN、不冻结、不发布；完整数值受控，Git只放脱敏报告和方法。
+
 ## 2026-09-17 — TASK-0035已合并并finalized
 
 - PR #8 merge commit `fde35b2f804e1f69bf02acc6d9581c5d009b118a`，canonical及Round 1 Accepted Review已进入最新main；既有工具使用原reservation返回finalized，未重新分配Task。
