@@ -1,5 +1,11 @@
 # CR 长期记录入口
 
+## 2026-09-17 User后续决定 — 冻结Gate
+
+[正式输入唯一原文](../../tasks/support/TASK-0034/USER-DECISIONS-20260917.md)已落Git。四活动积分按溢出连续结算；末档循环且num=0停产道具。薯片/拳击Pass共用同levelId门槛且可追溯付费奖励；本版建造模块关闭、奖励从分析层排除。不要沿用旧清零假设或777每格一次清盘总量作为现行成本。
+
+当前[Matrix](REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)为7 Closed / 2 Conditional / 13 Non-blocking。条件仅G09（选777时forceTurn精确定义）和G03（剩余缺档需价值比较）。User规则不代表r6961配置已落实；不改源表、不冻结。源奖励覆盖不足和数量分布精度限制照录，不通过旧值补齐。
+
 ## 2026-09-17 User决策 — 常规USD Bet边界
 
 User在[TASK-0034](../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)启动请求中明确：USD Bet=1归95%。常规规则保持>1为85%、<=1为95%；不重新设计RTP。该决定不自动覆盖新手/活动特殊配置，不证明trunk字段/注释或配置优先级已符合，也不授权改配置、SVN提交、调参、冻结或发布。历史TASK-0033中的“等于1待确认”保留为当时记录，当前使用本决策。

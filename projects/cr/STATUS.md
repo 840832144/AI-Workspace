@@ -1,6 +1,17 @@
 # CR 当前状态
 
-## 2026-09-17 — TASK-0034 冻结 Gate 整理交 Review
+## 2026-09-17 — TASK-0034 正式决定已应用，等待Round 2
+
+- [TASK-0034](../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)仍为Review，原分支codex/cr-0922-freeze-gates / PR #7，原reservation pending-main；Subagents: none。
+- [Round 1完整记录](../../reviews/TASK-0034-CHATGPT-REVIEW-1.md)Needs changes，基线007202e；PR #7 User正式决定已逐项应用。状态经过Changes Requested，当前等待Round 2，不预先写Accepted。
+- [Matrix](REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)当前7 Closed、2 Conditional、13 Non-blocking，**无无条件业务阻塞，最多2类条件问题**：选777才补forceTurn；拳击/挖矿仍需比较缺档奖励价值才处理G03。G01/G02退出前置；其他原非阻塞缺口不要求本轮关闭。
+- 积分改为溢出连续跨档/末档规则，Pass共享门槛；建造币从受影响模型排除，5处金币缺档仍在；777旧每格一次账本退出当前周期成本。四活动保留可选候选，不决定组合。
+- 固定r6961；只读8张受影响表，550条阶段记录、30对Pass、27个建造币奖励槽位排除。源奖励只覆盖挖矿id1..3且有round，未用取模补4..12；G12规则Closed不代表现表齐备或完整12关EV。仅计算层覆盖，没有源配置写入。
+- 4项连续结算回归及受影响输出定向核对；Registry工具重建/验证，变更链接/diff检查；不重跑TASK-0033、catalog、全仓业务扫描或哈希。完整数值及[增量复核包导航](REPORTS/CR-20260922-FREEZE-GATES/README.md)留受控目录，旧Accepted及首轮包保持历史。
+- Round 2只核对正式输入应用、旧假设退出当前结论、最多2类条件Gate及源表证据限制。PR保持OPEN，不改配置、提交SVN、调参、冻结、发布、合并或finalize。下方首轮8组问题是历史，不再要求重答。
+
+
+## 历史首轮 — 2026-09-17 TASK-0034 冻结 Gate 整理交 Review
 
 - [TASK-0034](../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)：Review；新任务由allocator正式分配，TASK-0033保持Complete。分支codex/cr-0922-freeze-gates，reservation pending-main；Subagents: none。
 - 当前结论：[Freeze Gate Matrix](REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)已交付；10项Needs Planner Decision、1项Conditional、11项Non-blocking。部分规则子项Closed，未冒充整项闭合；仍需8组策划确认，尚未冻结或发布。

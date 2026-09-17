@@ -2,6 +2,12 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0034 正式决定修订，待Round 2
+
+- 保存PR #7完整Round 1 Needs changes与后续User正式输入；同一Task修订后回到Review，原reservation保持pending-main。
+- Matrix收敛为7 Closed / 2 Conditional / 13 Non-blocking：无无条件业务阻塞，最多forceTurn及剩余缺档价值比较2类条件问题；四活动不代选。
+- 仅更新受影响模型和定向复算，完整数值留受控包；源表覆盖/注释与规则差异保留。未重跑TASK-0033、全量扫描或哈希，未改配置、SVN、调参、冻结、发布、合并或finalize。
+
 ## 2026-09-17 — TASK-0034 CR 冻结 Gate 候选
 
 - 按正式allocator独立登记新Task，TASK-0033保持Complete；只读确认trunk相对r6961无变化，复用Accepted整理结果。

@@ -1,14 +1,14 @@
 # TASK-0034 — CR 9.22 配置冻结阻塞项闭合
 
 - Status: Review
-- Execution status: 指定冻结Gate证据与候选卡已交付，8组策划规则待确认；等待ChatGPT Review，未冻结或发布
+- Execution status: 正式User决定已应用；7 Closed / 2 Conditional / 13 Non-blocking；等待ChatGPT Round 2，未冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 2026-09-19 冻结决策依据
 - Date: 2026-09-17
 - Updated: 2026-09-17
-- User decision: Approved（启动本任务；USD Bet=1归95%；不授权改配置、SVN提交、调参、冻结或发布）
+- User decision: Approved（PR #7后续正式输入授权Matrix、受影响模型及定向复算；USD Bet=1归95%；不授权配置、SVN、调参、冻结、发布、合并或finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033
 - Subagents: none
@@ -40,7 +40,20 @@
 
 仅做与当前 Gate 直接相关的字段/关系/规则验证、变更文档检查与既有 Registry 重建校验；禁止新增或重复文件哈希、全量无差别扫描、Accepted 总表重复验收。不为满足形式重复运行 catalog/全仓业务验收。完成后提交候选、推送并交 ChatGPT Review；合并另等 User 授权。
 
-## 本轮交付与结论
+## 当前修订 — PR #7 User正式输入 / 等待Round 2
+
+- [完整Round 1](../reviews/TASK-0034-CHATGPT-REVIEW-1.md)已落Git：Needs changes，基线007202e；接受首轮证据/分类，要求收敛业务决定。其未独立连接SVN的限制保留，不能冒充本轮新取证。
+- [正式User输入原文](support/TASK-0034/USER-DECISIONS-20260917.md)来源PR #7讨论，不从聊天自行补规则。状态履历为Review → Changes Requested（R1）→ Review（本轮修订，待R2）；原reservation pending-main，不新建Task或finalize。
+- 当前[Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)：G07/G08/G10/G11/G12/G13/G20 Closed，G01/G02 Non-blocking；连同原非阻塞项共7 Closed / 2 Conditional / 13 Non-blocking，0 Needs Planner Decision。
+- 剩余最多2类条件：选777才补forceTurn计数/重置/触发方式（特殊格不能强制命中已定）；拳击/挖矿剩余缺档奖励仍需价值比较才处理G03。移除建造币后原5处17型奖励引用仍在，不插值、不补0。没有新设第三类业务前置。
+- 只读8张受影响r6961表及首轮证据，定向生成550条连续积分阶段成本、30对共享Pass门槛，排除27个建造币奖励槽位；拳击按剩余类别原权重归一，挖矿按主动点击扣费且连锁逐格结算。仅计算层覆盖，不修改任何源配置。
+- 旧逐档清零/777每格一次账本保留为首轮历史，退出当前模型。源表“清0”注释、建造币尚在；挖矿源奖励仅id1..3并有round，缺id4..12；规则虽Closed，但本轮不能算完整12关奖励，也不把Closed写成现表齐备。
+- 薯片/拳击/挖矿规则达到可选候选；777保留条件候选。不替User选四选二。未配置数量分布等精度限制保留，不扩展程序、线上、运营或支付审计。
+- 4项新增连续结算回归通过。受控输出定向检查：累计/边际成本、30对门槛、建造币排除与5处保留缺档、拳击原权重、挖矿概率质量与源键覆盖。完整数值留受控Round 2增量包；首轮包和TASK-0033 Accepted产物不动。
+- 最新main仍eb13bbb、PR #7原head007202e；开放PR #2/#4 head未变，共享文件只追加本Task当前状态并标记旧段历史。Registry已由既有工具重建并valid（17 canonical/0 collision，6项既有legacy提示）；21项本轮定向检查、86个变更相对链接通过，diff定向检查，不重跑catalog/全仓业务验收或哈希。
+- 下一步只交ChatGPT Round 2；未执行冻结、发布、配置修改、SVN提交、调参、合并或权限调整。Subagents: none。
+
+## 历史首轮交付与结论（007202e，后续以本轮正式输入为准）
 
 - [报告](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/README.md)与[Freeze Gate Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)：22个原Gate逐项定级，10项Needs Planner Decision、1项Conditional、11项Non-blocking；Closed子项单列，不虚报整个Gate闭合。
 - 2026-09-17 10:40:04北京时间只读SVN比较：观察HEAD r6987，trunk最后内容提交r6918，r6961:r6987无路径变化。继续固定r6961，不重跑Accepted盘点；未读取dev、101或历史附件数值作为输入。
@@ -51,7 +64,7 @@
 - G20从Accepted目录收敛为76个工作簿/80个非空Sheet的适用性签认表（原缺口将76写作Sheet）；仅本轮报告纠正口径，不改TASK-0033历史。其他归属及运营/线上问题不扩为审计。
 - 完整数值、规则问题与可追溯JSON/CSV保存在本机受控复核包；公开分支只存脱敏结论和工具。8组问题分别对应机台口径、查价、获取、薯片、777、拳击、挖矿和9.22模块范围。无需关闭本轮11项Non-blocking。
 
-## 实测与限制
+## 历史首轮实测与限制
 
 - 新工具实际输出23表证据、220条决策覆盖、4个阶段示例；逐表锁r6961。3个精确分数RTP边界、覆盖CSV历史/新决策分离通过；4例整数门槛手算及777三轮条件清盘独立算式与输出一致，异ID骰子未抵扣。
 - 新价格关系定向检查通过：5处缺档均在同一金额、21等级档无精确行；源错误缓存等Accepted问题本轮未重复检查。Matrix检查22个唯一Gate、指定范围/状态统计一致；新增工具AST通过。
@@ -59,6 +72,6 @@
 - 冻结结论：指定Gate中的规则缺口仍影响数值准入，暂不具备无条件冻结依据。未证明完整活动周期EV、所有状态转移、实际线上RTP或9.22启用范围；这些不转化为额外技术审计前置。
 - Review前Registry由工具重建后valid，17 canonical/0 collision，保留6项既有legacy提示；新增文档14个相对链接与diff检查通过。最新main仍eb13bbb，PR #2/#4本轮观察head未变，共享文件只追加本任务。原reservation保持pending-main，未提前finalize。
 
-## 唯一下一步
+## 历史首轮下一步（Q1–Q8已由上文正式输入收敛）
 
 ChatGPT复核本轮Matrix、同版来源和条件推导；需User/对应策划答复的最小问题集中在Q1–Q8。当前不改配置、不提交SVN、不调参、不冻结、不发布、不合并。TASK-0033继续Complete；本Task独立等待Review。Subagents: none。

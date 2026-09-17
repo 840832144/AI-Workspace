@@ -1,40 +1,47 @@
 # CR 9.22 配置冻结阻塞项闭合
 
-[TASK-0034](../../../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md) 的 Review 入口。**指定 Gate 的证据整理已完成，仍需8组策划确认；尚未冻结或发布。** TASK-0033 保持 Complete，原Accepted总表与两轮Review不变。
+[TASK-0034](../../../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)修订已完成，等待ChatGPT Round 2。[Matrix](FREEZE_GATE_MATRIX.md)当前为**7 Closed、2 Conditional、13 Non-blocking；无无条件业务阻塞，最多2类条件问题**。尚未冻结或发布。
 
-先读 [Freeze Gate Matrix](FREEZE_GATE_MATRIX.md)：逐项状态、已闭合子项、四活动候选卡、证据边界和最小问题清单。当前10项 Needs Planner Decision、1项 Conditional、11项 Non-blocking。四活动均保留候选，不选四选二，不把部分规则闭合说成全部数值闭合。
+[Round 1完整评审](../../../../reviews/TASK-0034-CHATGPT-REVIEW-1.md)与[PR #7 User正式决定](../../../../tasks/support/TASK-0034/USER-DECISIONS-20260917.md)已落Git。仍是原Task、原分支和pending-main reservation，不重新分配或提前finalize。
 
-## 本轮增量
+## 当前交付
 
-- 只读 SVN trunk 路径差异为空：本次观察 HEAD r6987，继续使用固定r6961；读取时间2026-09-17 10:40:04北京时间。
-- User已确认USD Bet=1归95%；220条原精确等于1参考组合另建决策覆盖CSV，没有改Accepted总表或源配置。
-- 针对候选奖励作价格关联检查，将缺档问题收敛为同一金额档的5处引用；单位/枚举、积分清零注释、难度隔离、同资源边界、宝石关联、Pass配对和地图键均有定向证据。
-- 已制作9个圈/轮的777条件清盘分资源总量、四活动条件阶段示例、22项Matrix和8组规则问题。条件总量不是实际周期EV，不用缺口填0。
+- G07/G08/G10/G11/G12/G13/G20规则闭合；G01/G02退出本轮前置，原歧义仍保留。
+- 只有选777时需确认forceTurn精确定义；特殊格不能强制命中已确定。
+- 排除建造币后，5处G03缺档引用仍是金币奖励；只在拳击/挖矿需要比较这些奖励价值时处理。
+- 新模型使用积分溢出连续跨档和末档规则，Pass引用共享门槛；拳击按剩余类别原Weight归一；挖矿按主动点击扣费、连锁逐格结算，分析层排除建造币。旧777每格一次的条件总量保留作历史，不再冒充当前周期成本。
+- 固定trunk r6961，只读8张受影响表及首轮证据；输出550条阶段成本、30对Pass门槛，定向排除27个建造币奖励槽位。没有重跑TASK-0033、全量价格检查或哈希。
 
-## 受控交付
+## 证据限制
 
-完整数值继续保存在本机受控目录，路径只在本机交接/用户回复中提供。public Git不包含当前完整数值、内部SVN地址、完整云响应或allocator token。
+本轮复用首轮SVN观察：2026-09-17 10:40:04北京时间HEAD r6987，trunk r6961:r6987无路径变化；没有再次连接SVN或读取新revision。User规则是计算层覆盖，不代表源配置已落实。
 
-| 文件 | 内容 |
+挖矿User已确认直接同ID对应、12关结束，但r6961奖励只记录id1..3并含round行；缺少id4..12且旧round不可擅自选档，完整12关奖励不能复算。源“积分清0”注释、仍在源内的建造币也未被修改。规则Gate关闭不隐去这些源表差异，不自动授权配置修改或发布。
+
+拳击1..MaxNum内部数量分布、薯片概率字段到单奖过程的映射、777未明格子标识和完整周期EV仍属分析精度边界，不扩为新冻结问题。完整数值留本机受控目录；TASK-0033原Accepted产物、Review及TASK-0034首轮包均不改写。
+
+## 受控复核包
+
+| 文件 | 当前用途 |
 | --- | --- |
-| `TASK-0034-受控冻结Gate复核包.md` | 自包含阅读入口、Matrix、数值附录、关键公式及8组问题 |
-| `Freeze-Gate-Matrix.csv` | 22项主Gate及状态、证据、影响、负责人 |
-| `gate-evidence.json` | 定向源字段位置/现值、条件推导、价格缺档、Pass配对与范围目录 |
-| `USD-Bet-等于1-决策覆盖.csv` | 220条参考组合的新User规则覆盖；原受评列保留，新增列标明决策 |
-| `validation.json` | 本轮真实最小验证、证据限制与来源版本 |
-| `G20-模块归属待确认.csv` | 80个非空Sheet按表名导航分组，待主策签认，不按文件名判断启用 |
-| `source-scope.json` | SVN比较和正式资料读取的版本/范围说明；无凭据 |
+| `TASK-0034-R2-受控冻结Gate复核包.md` | 自包含增量阅读入口、剩余条件、实际示例与限制 |
+| `Freeze-Gate-Matrix.csv` | 当前22项Gate与冻结条件 |
+| `decision-models.json` | 新规则覆盖、字段/行证据、排除的建造币、保留缺档及分析限制 |
+| `G07-连续积分阶段成本.csv` | 固定示例上下文下累计/边际成本及末档循环 |
+| `G20-本轮模块范围.csv` | 仅给原导航7组加“不调整、保留现值”，不等同启用清单 |
+| `validation.json` | 本轮最小真实验证与未执行项目 |
 
-重建证据使用现有Accepted盘点输出及本轮私有SVN比较文件：
+本轮入口（Python标准库）：
 
 ```powershell
-python projects/cr/数值策划/工具/build_freeze_gate_evidence.py --inventory <受控r6961盘点目录> --svn-delta <受控svn-delta.json> --output <新的受控输出目录>
+python projects/cr/数值策划/工具/apply_freeze_gate_decisions.py --inventory <受控r6961盘点目录> --prior <TASK-0034首轮final目录> --output <新的受控目录>
+python -m unittest discover -s projects/cr/数值策划/工具 -p test_freeze_gate_decisions.py
 ```
 
-工具只读取23张相关表和既有索引，复用现有group/stage_spins方法；拒绝混revision、有trunk变更、覆盖既有输出或写入Git工作树。它不访问SVN，不调用飞书，不自动判定Freeze Gate状态。
+新工具拒绝混revision、覆盖既有输出或输出到Git工作树；不访问外部系统。`build_freeze_gate_evidence.py`只保留首轮历史证据复现用途，本轮没有重跑。受控阅读包和Matrix由交付步骤同步，不由数值脚本自动作冻结决定。
 
-## 验证与交接
+## 验证与下一步
 
-本轮仅验证新增决策边界、定向价格关系、条件清盘/阶段推导、Matrix范围与状态及Git治理一致性。详细实测结果见Task和受控validation；不重复Accepted公式/工作簿/源缓存/catalog/全仓业务验收，没有文件哈希。官方资料搜索范围有限、规则缺口和条件模型限制均保留。
+连续跨档、末档循环/停产4项回归通过；当前产物定向检查涵盖累计成本、Pass共享门槛、移除奖励和保留缺档、拳击权重、挖矿概率分母与源奖励覆盖。本轮21项定向检查通过，Registry valid（17 canonical/0 collision，6项既有legacy提示），86个变更相对链接有效；只检查变更文档链接和diff，不重复Accepted工作簿、catalog或全仓业务验收。
 
-Task为Review，原reservation保持pending-main；等待ChatGPT Review，不合并、不finalize。未改源配置、提交SVN、调参、冻结、发布或权限。Subagents: none。
+ChatGPT Round 2只需复核正式输入是否正确应用、旧假设是否退出当前结论、剩余Gate是否限于2类条件。原PR #7保持OPEN，等待Review；不改源配置、不提交SVN、不调参、不冻结、不发布、不合并或finalize。Subagents: none。
