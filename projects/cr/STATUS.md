@@ -2,7 +2,7 @@
 
 ## 2026-09-17 — TASK-0036全项目数值体验待ChatGPT Review
 
-- [TASK-0036](../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)为Review；allocator原reservation pending-main，分支codex/cr-0922-producer-experience。起点main b0a36c8，PR #9与0035 Complete记录已合入，下方旧待Review语句为历史。
+- [TASK-0036](../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)为Review；allocator原reservation pending-main，分支codex/cr-0922-producer-experience / [PR #10](https://github.com/840832144/AI-Workspace/pull/10) OPEN。起点main b0a36c8，PR #9与0035 Complete记录已合入，下方旧待Review语句为历史。
 - 15:49:34北京时间固定trunk r7013；r6961→r7013全trunk变更路径摘要为空，覆盖全部数值根及新增/删除。所有系统直接复用Accepted证据，源刷新0；不重做0033/0034/0035、不做hash或全量正文扫描。
 - [制作人报告及受控包](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/README.md)已完成八类覆盖；36组静态Spin、72条双活动、36条掉卡条件；6项新增模型测试与定向输出核对通过。仅普通扣金币Spin，固定档/足够余额；不代表真实玩家分布、升级路径或实际机台适用RTP。
 - 剩余9组解释边界逐项列缺项/影响/负责人，历史22项保留来源，不新开冻结Gate。完整数值与复算输入受控，Git仅脱敏报告和方法；777 forceTurn闭合，活动仅薯片+777，0035现值候选不改。

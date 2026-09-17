@@ -1,6 +1,6 @@
 # CR 9.22 全项目数值体验与制作人汇报
 
-[TASK-0036](../../../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md) · **Review候选，等待ChatGPT** · 2026-09-17 · Subagents: none。
+[TASK-0036](../../../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md) · [PR #10](https://github.com/840832144/AI-Workspace/pull/10) OPEN · **Review候选，等待ChatGPT** · 2026-09-17 · Subagents: none。
 
 本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。当前不调参、不修改SVN、不冻结、不发布；TASK-0035的零数值变更候选保持原样。
 
