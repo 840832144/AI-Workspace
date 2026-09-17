@@ -7,7 +7,7 @@
 - Executor: Codex
 - Priority: P1
 - Date: 2026-09-07
-- Updated: 2026-09-15
+- Updated: 2026-09-17
 - Candidate provenance: `tasks/candidates/CANDIDATE-20260907-EARLYMEETING-LOCAL-CALLBACK.md`
 - Allocation relationship: new
 - Related tasks: none
@@ -17,6 +17,8 @@
 在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日发卡。从2026-09-11起北京时间09:30每群每天一张，替代09:40。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭；本机晨会记录仅保留北京时间当天，启动及跨天自动清理旧日数据。飞书群历史消息保留。另已交付Linux常驻版本和技术交接，User已追加授权由Codex实施公司Linux移植，并从2026-09-16起增加已提交记录归档和维护日志；已于2026-09-15在技术确认主机身份和User批准维护窗口后正式切到公司Linux；Windows停止并锁定启动，实际维护与证据在EarlyMeeting。
 
 ## Scope
+
+2026-09-17 群2超时恢复及预防补丁：[EarlyMeeting@88f2508](https://github.com/840832144/EarlyMeeting/commit/88f2508f211f3e881b6ffb0bfa12caf74e85b08a) / [实测记录](https://github.com/840832144/EarlyMeeting/blob/88f2508f211f3e881b6ffb0bfa12caf74e85b08a/docs/RECOVERY_20260917.md)。User批准修复并要求先尽快恢复；原新增操作用同UUID/sequence补试后获明确成功，原卡/记录保留，无重发或整卡刷新。共享补丁87ccd33已部署两群：20秒API等待、临时网络失败最多追加两次原意图重试，保留队列及预算，不把冲突视为成功。13项恢复检查及Linux CI 35172219918通过；最终云端两群ready、pending/queued均为0。普通网络短暂失败已增加有限恢复，通用未知结果自动核验、客户端草稿保留仍未声称解决。与最新origin/main@a75630a同步并保留双方Task记录，Registry16 canonical / 0 collision / valid；继续TASK-0028 Review、reservation pending-main，不另占号。业务实现/日志与证据仅在EarlyMeeting。Subagents: none。当前修复直接更新Task/Handoff，不新增Roadmap方向或Future Task。
 
 2026-09-15 公司云端正式切换完成：[EarlyMeeting@b9968b8](https://github.com/840832144/EarlyMeeting/commit/b9968b8dc8d192b09e1cd191160728d1b51fe833) / [公司技术维护入口](https://github.com/840832144/EarlyMeeting/blob/b9968b8dc8d192b09e1cd191160728d1b51fe833/docs/LINUX_SYSTEMD.md)。技术确认SSH指纹、User明确批准切换后，Codex正常停止Windows，迁移两群当天完整状态，再启动公司Linux用户级systemd服务；真实CONNECTED/READY，两群原卡保留、无新发或模拟群操作，本机启动器已加防重复运行保护。工作日09:30、群隔离、本人权限、群2AI及当天状态清理保留；维护日志已生成，归档配置从2026-09-16生效。运行代码de8b267通过Linux CI 34927676289；公司现场已验证服务运行和断开SSH后持续连接，真实员工回调/AI、明日准点发卡/归档、服务器重启及实际回退尚未验证，详细证据仅在EarlyMeeting。TASK-0028返回Review、reservation pending-main，不标记Done；Registry15 canonical / 0 collision / valid，无重复Task。Subagents: none。当前部署收尾直接更新Task/Handoff，不新建Roadmap方向、Candidate或Future Task。
 

@@ -1,5 +1,11 @@
 # Codex Handoff
 
+## 2026-09-17 TASK-0028 恢复交接
+
+2026-09-17 群2超时恢复及预防补丁：[EarlyMeeting@88f2508](https://github.com/840832144/EarlyMeeting/commit/88f2508f211f3e881b6ffb0bfa12caf74e85b08a) / [实测记录](https://github.com/840832144/EarlyMeeting/blob/88f2508f211f3e881b6ffb0bfa12caf74e85b08a/docs/RECOVERY_20260917.md)。User批准修复并要求先尽快恢复；原新增操作用同UUID/sequence补试后获明确成功，原卡/记录保留，无重发或整卡刷新。共享补丁87ccd33已部署两群：20秒API等待、临时网络失败最多追加两次原意图重试，保留队列及预算，不把冲突视为成功。13项恢复检查及Linux CI 35172219918通过；最终云端两群ready、pending/queued均为0。普通网络短暂失败已增加有限恢复，通用未知结果自动核验、客户端草稿保留仍未声称解决。与最新origin/main@a75630a同步并保留双方Task记录，Registry16 canonical / 0 collision / valid；继续TASK-0028 Review、reservation pending-main，不另占号。业务实现/日志与证据仅在EarlyMeeting。Subagents: none。当前修复直接更新Task/Handoff，不新增Roadmap方向或Future Task。
+
+唯一下一步：Review本次补丁，保持云端单实例，正常使用中观察；不追加正式群测试卡。
+
 ## 2026-09-16 — TASK-0032：已合并并切换单仓入口
 
 PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5) 已按 User 最终授权于 2026-09-16 15:03:31（北京时间）使用 Create a merge commit 合并，merge commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`。当前日常入口为 AI-Workspace `main`，CR 资料与工具只写 `projects/cr/`；原 reservation 已 finalize。旧 cr_design 保留，不归档、不删除，权限不变。
