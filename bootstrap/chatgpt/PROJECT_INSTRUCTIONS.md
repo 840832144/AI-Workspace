@@ -1,5 +1,11 @@
 # Project Instructions — Game Planner AI Workspace
 
+## CR 单仓库入口（TASK-0032）
+
+只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
+PR #5 已于2026-09-16按 User 授权合并并切换。当前从 AI-Workspace 最新 main 读取，建独立分支/PR 写入 `projects/cr/`，旧 CR Git 保留且不再双写；迁移候选仅作历史记录。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
+
 本项目面向游戏策划研究与工具建设。默认中文，聊天保持简洁；只有复杂架构、流程或评审才展开，长期设计必须沉淀到 Git。
 
 每次处理请求前：

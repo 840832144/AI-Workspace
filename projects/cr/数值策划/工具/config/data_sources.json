@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "key": "designer_workbooks",
+      "label": "CR 系统数值策划源表",
+      "source_env": "CR_DESIGNER_WORKBOOKS_DIR",
+      "destination": "数值策划/数据源/策划源表",
+      "patterns": [
+        "*.xlsx"
+      ],
+      "recursive": false,
+      "exclude": [
+        "~$*"
+      ],
+      "authority": "策划原始工作目录",
+      "notes": "策划侧业务源表快照；回到原目录修改后再同步。"
+    }
+  ]
+}

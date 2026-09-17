@@ -1,6 +1,6 @@
 # Architecture
 
-AI-Workspace 的架构范围限定为游戏策划 AI 工作台。它不提供通用领域业务内容，也不承载业务实现。Workspace Kernel 的对象定义见 [`docs/architecture/WorkspaceKernel.md`](docs/architecture/WorkspaceKernel.md)，能力分层见 [`docs/CapabilityModel.md`](docs/CapabilityModel.md)，发现入口见 [`Capability Catalog`](capabilities/README.md)。
+AI-Workspace 的架构范围限定为游戏策划 AI 工作台。它不提供通用领域业务内容，承载经 User 批准公开的 CR 策划资料与分析工具；其他项目业务实现按各自真相源维护。Workspace Kernel 的对象定义见 [`docs/architecture/WorkspaceKernel.md`](docs/architecture/WorkspaceKernel.md)，能力分层见 [`docs/CapabilityModel.md`](docs/CapabilityModel.md)，发现入口见 [`Capability Catalog`](capabilities/README.md)。
 
 ## 总体模型
 
@@ -13,6 +13,7 @@ Global Codex layer — ~/.codex/AGENTS.md
                          ▼
 Governance plane — AI-Workspace
   Capability Catalog / Game Design 章程 / RFC / ADR / 标准 / 模板 / 项目索引 / 交接
+  projects/cr — CR 设计资料 / 唯一 Skill 正文 / 分析工具
                          │
                          ▼
 Execution plane — project repositories and connected systems
@@ -23,7 +24,7 @@ Evidence plane — verified outputs
   测试结果 / API 响应 / 版本号 / commit / artifact reference
 ```
 
-Global Codex 层负责从 User Outcome 发现 Capability，应用一致的安全基线，并约束 Codex Subagent 的委派边界。AI-Workspace 提供可审阅的 Capability Catalog 和 Pilot 决策记录，管理 Game Design 中“如何协作”和“各项目处于什么状态”，但不复制执行平面的实现。
+Global Codex 层负责从 User Outcome 发现 Capability，应用一致的安全基线，并约束 Codex Subagent 的委派边界。AI-Workspace 提供可审阅的 Capability Catalog 和 Pilot 决策记录，管理 Game Design 中“如何协作”和“各项目处于什么状态”，并按 RFC-0005 在 `projects/cr/` 维护 CR 策划资料和分析工具。公司 SVN 正式配置与外部服务实现不随之迁入。
 
 TASK-0016 在 Governance plane 内加入 Git-backed Memory 管道：Host 在内容产生时输出结构化 Event/Candidate，deterministic validator 负责 Secret、scope、sensitivity、dedup、conflict 与 destination gate，Curator 再进入 Review、Archive 或 allowlist promotion。Host local memory 仍是 recall layer，不属于 Evidence plane 或 canonical truth。
 
@@ -53,7 +54,7 @@ Standards 是已生效的横向规则，例如证据纪律、命名、安全边�
 
 ### Projects
 
-`projects/` 只保存游戏项目控制面。每个项目必须具有 Context、Memory、Workflow、Status、Reports、Assets 六部分，业务实现仍留在项目自己的仓库。
+`projects/` 保存游戏项目控制面；CR 另含保留内部结构和 Git 历史的策划资料、五个 Skills 与分析工具。每个项目具有 Context、Memory、Workflow、Status、Reports、Assets 六部分。其他业务实现仍留在各自仓库。
 
 ### Handoff
 
@@ -63,7 +64,11 @@ Standards 是已生效的横向规则，例如证据纪律、命名、安全边�
 
 | 信息 | 真相源 |
 | --- | --- |
-| 业务代码、测试、构建配置 | 对应项目仓库 |
+| CR 策划资料、Skills、分析工具 | `projects/cr/`（切换后唯一 Git 写入位置） |
+| CR 正式配置、测试服/正式服发布 | 公司 SVN 明确目标 URL、dev/trunk 与 revision，沿用原制作与提交流程 |
+| CR 历史版本附件 | 日期资料包中的只读来源；不代表当前配置，不重建退役快照目录 |
+| HuuugeCollector 副本 | 仅历史参考；当前实现以 `projects/huuuge-android-research/` 指向的仓库为准 |
+| 其他业务代码、测试、构建配置 | 对应项目仓库 |
 | 跨项目章程、标准、路线图 | AI-Workspace |
 | 长期产品方向与优先级分区 | `docs/roadmaps/PRODUCT_ROADMAP.md`；飞书只提供正式阅读入口 |
 | 长期架构决策 | `docs/adr/` |

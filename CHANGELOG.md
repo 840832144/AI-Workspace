@@ -10,6 +10,27 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-16 — TASK-0032 最终合并与单仓切换
+
+- User 明确授权后完成两仓最新 main、候选增量及共享文件并发检查；PR #5 以 Create a merge commit 合并，commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`，没有 squash/rebase 或强推共享历史。
+- 最新 main 保留 CR 来源 `1409737` 与原样导入 `fe07557`；根/CR 入口、5个唯一 Skill、276文件映射和工具边界通过，catalog 14工作簿/0异常，repository 0错误/0警告。原 canonical 进入 main 后使用原 reservation finalize 成功。
+- Task Complete，CR Status/Handoff、迁移报告、四启动文件和相关当前入口改为 main；候选验收与 Review 记录保留原时点，未改写未独立复跑的限制。Registry 与 Context 由既有工具重建验证。
+- 当前 CR Git 资料与工具只写 `projects/cr/`，公司 SVN 正式配置不变；旧库不再双写，保留且不归档、不删除，AI-Workspace 保持 public，未调整权限或发布云端内容。Subagents: none。
+
+## 历史阶段：2026-09-16 TASK-0032 ChatGPT Review Round 1 Accepted
+
+- 完整固化 PR #5 已发布评审至 `reviews/TASK-0032-CHATGPT-REVIEW-1.md`，基线 `83eadec13cb4a03fa5b75de8dcbdd1f83cb61048`，结论 Accepted，无必须修改项。
+- 保留评审未独立复跑测试、工作簿检查或备份恢复，亦未重复完整历史敏感内容审查的限制；不把原本机验收报告称为 GitHub CI。
+- Task 更新为 Accepted，执行状态为“等待 User 批准最终合并与切换”；同步 CR Status、Handoff 与现行状态引用，按既有工具重建并验证 Task Registry。
+- 本轮仅提交/推送评审收口记录；不合并、不切换、不重新分配、不 finalize，不增加重复哈希检查，不修改权限、不删除或归档旧库。Subagents: none。
+
+## 2026-09-16 — TASK-0032 CR public subtree 候选
+
+- 正式登记 Task/RFC 并完成两仓受控备份与完整可达图审查；User 后续明确批准三个 Top Tycoon 工作簿原始记录和历史，取消该项暂停，不清洗原历史。
+- 使用非 squash subtree 原样导入 CR，13个来源提交和276个文件保留，直接 diff 为空；单独适配根/项目规则、四启动文件、ChatGPT/Codex/TRAE、唯一 Skill 路由、Context 与资料同步路径。
+- 默认目录/卡包检查不计算文件哈希；验证实际结构、内容及行为。SVN 工具要求明确提交根，历史 Collector 副本不启动、不自动同步。
+- 全新单仓克隆根/CR 两入口、14源表、36卡包附件与81项测试通过，提交 PR Review；未合并、切换或归档，未修改源表、权限、正式配置，未执行同步 apply、SVN 提交、采集或部署。Subagents: none。
+
 ## 2026-09-15 — TASK-0028 Linux技术交接
 
 - 续接现有Task与PR #4指定留言，引用EarlyMeeting@7887c1b的Linux代码、Compose及技术切换说明；最终代码Linux CI通过。公司部署与生产回调尚未验证，Task继续Review。Windows实例及正式群本轮未操作，具体业务与证据保留在EarlyMeeting。

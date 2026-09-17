@@ -45,9 +45,9 @@ class WorkspaceMemorySessionTests(unittest.TestCase):
 
     def test_source_pack_contains_ordered_workspace_memory_snapshot(self) -> None:
         pack = (ROOT / "bootstrap/chatgpt/generated/PROJECT_SOURCE_PACK.md").read_text(encoding="utf-8")
-        self.assertLess(pack.index("<!-- SOURCE: 00_CORE_RULES.md -->"), pack.index("<!-- SOURCE: 01_SYSTEM_CONTEXT.md -->"))
-        self.assertLess(pack.index("<!-- SOURCE: 01_SYSTEM_CONTEXT.md -->"), pack.index("<!-- SOURCE: PLANNER_WRITING_STYLE.md -->"))
-        self.assertLess(pack.index("<!-- SOURCE: PLANNER_WRITING_STYLE.md -->"), pack.index("<!-- SOURCE: WORKSPACE.md -->"))
+        self.assertLess(pack.index("<!-- SOURCE: bootstrap/chatgpt/00_CORE_RULES.md -->"), pack.index("<!-- SOURCE: bootstrap/chatgpt/01_SYSTEM_CONTEXT.md -->"))
+        self.assertLess(pack.index("<!-- SOURCE: bootstrap/chatgpt/01_SYSTEM_CONTEXT.md -->"), pack.index("<!-- SOURCE: standards/PLANNER_WRITING_STYLE.md -->"))
+        self.assertLess(pack.index("<!-- SOURCE: standards/PLANNER_WRITING_STYLE.md -->"), pack.index("<!-- SOURCE: memory/context/WORKSPACE.md -->"))
         self.assertIn("Project Source Pack 是离线快照", pack)
 
 

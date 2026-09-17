@@ -2,13 +2,13 @@
 
 ## 适用范围
 
-所有 User、ChatGPT、Codex 对本仓库的修改都必须遵循本规范。本仓库只接受 Game Design / 游戏策划领域的治理、模型、Skill、Workflow、Template 和项目控制面内容。
+所有 User、ChatGPT、Codex 对本仓库的修改都必须遵循本规范。本仓库只接受 Game Design / 游戏策划领域的治理、模型、Skill、Workflow、Template 和项目控制面内容，以及 RFC-0005 批准的 CR 策划资料与分析工具。
 
 ## 开始前
 
 1. 使用安全方式同步 `main`，不得 force-push 或重写他人历史。
 2. 阅读 `AI_TEAM.md`、`ARCHITECTURE.md` 和相关 handoff。
-3. 确认修改属于游戏策划治理、协作、标准、模板或项目控制面，而不是业务实现或非游戏领域内容。
+3. 确认修改属于游戏策划治理、协作、标准、模板或项目控制面，或 RFC-0005 的 CR 范围，不引入其他业务实现或非游戏领域内容。
 4. 检查相关 RFC、ADR、项目 Status 和 CHANGELOG，避免重复或冲突。
 5. 需要共享能力时遵循 Global Codex Capability Discovery：先匹配 Capability contract，再选择实现；不得在本仓库新增运行时工具目录、安装入口、endpoint、credential 或连接状态。
 
@@ -62,7 +62,7 @@
 - `REPORTS/`
 - `ASSETS/`
 
-项目实现细节应以链接或 commit 引用方式指向业务仓库，不复制源代码和敏感数据。
+CR 策划资料与分析工具维护在 `projects/cr/`；其他实现以链接或 commit 指向业务仓库，正式配置仍走公司 SVN。敏感资料不得借迁移扩大范围。
 
 ## 文档质量
 
@@ -79,8 +79,8 @@
 
 提交前确认：
 
-- 没有 secret、token、私钥、个人数据或完整业务数据。
-- 没有复制其他仓库业务代码。
+- 没有 secret、token、私钥、个人身份数据或未获公开批准的完整业务数据；CR 三个工作簿的具体例外见 RFC-0005。
+- 导入范围符合 RFC-0005；其他项目实现仍留在各自真相源。
 - 没有把假设写成事实。
 - 没有覆盖无关用户或 Agent 变更。
 
@@ -90,4 +90,4 @@
 2. 项目 Status 或 handoff 已反映共享状态变化。
 3. CHANGELOG 已记录用户可见或工作流可见的变化。
 4. Git diff 已审阅，工作树没有意外文件。
-5. 变更已提交并推送到共享 `main`。
+5. 变更已提交候选分支并创建 PR 等待 Review；仅获 User 明确授权后合并。保留 subtree 历史的 PR 必须使用 merge commit，不做 squash/rebase merge。

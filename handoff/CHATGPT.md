@@ -2,6 +2,40 @@
 
 这是 ChatGPT 的固定交接入口。长期事实必须同步到 Capability contract、项目 Memory / Status、Task、RFC、ADR 或正式 Review，而不是只留在聊天中。
 
+## 2026-09-16 — TASK-0032：已合并并切换单仓入口
+
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5) 已按 User 最终授权于 2026-09-16 15:03:31（北京时间）使用 Create a merge commit 合并，merge commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`。当前日常入口为 AI-Workspace `main`，CR 资料与工具只写 `projects/cr/`；原 reservation 已 finalize。旧 cr_design 保留，不归档、不删除，权限不变。
+
+- Task：[TASK-0032](../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)，Complete；Review Round 1 Accepted；Subagents: none。
+- 合并前 main 与 CR 来源未变，候选 `04a7568` 相对 `83eadec` 只有已授权评审记录；PR #2/#4 既有共享文件工作留在各自分支，无新增 main 冲突。
+- 合并后 `1409737` / `fe07557` 均为 main 祖先；根与 CR 两入口、5个唯一 Skill、276文件映射和工具边界通过，catalog 14工作簿/0异常，repository 0错误/0警告。
+- canonical 进入 main 后按原 reservation 返回 `finalized`；没有新分配 Task。候选分支 `codex/cr-subtree-migration@04a7568` 保留作历史，后续从最新 main 建独立分支/PR。
+- 日常 CR Git 资料和工具只写 `AI-Workspace/projects/cr/`，旧库不再双写。公司 SVN 正式配置流程、CR/101 隔离与 HuuugeCollector 历史副本定位不变。
+- [迁移报告](../docs/migrations/CR-MIGRATION-20260916.md)记录实际合并、最小必要验证和回滚。下方候选/Review 为历史：Review 未独立复跑，81项测试是此前本机候选验收，不是本轮或 GitHub CI。
+- 未执行旧库归档/删除、权限调整、源表修改、同步 apply、SVN 提交、采集、部署或云端发布；手工 Project Sources 尚未上传，联网 Agent 以最新 Git main 为准。
+
+## 历史阶段：2026-09-16 TASK-0032 ChatGPT Review Round 1 Accepted（合并前）
+
+PR：[AI-Workspace #5](https://github.com/840832144/AI-Workspace/pull/5)，ChatGPT Review Round 1 已 Accepted（基线 `83eadec`）；等待 User 批准最终合并与切换。须使用 merge commit 保留 CR 导入历史；本轮不合并、不切换、不 finalize，旧库归档仍需另行授权。
+
+- Task：[TASK-0032](../tasks/TASK-0032-CR-SUBTREE-PUBLIC-MIGRATION.md)；分支 `codex/cr-subtree-migration`；Subagents: none。
+- 完整评审：[Round 1](../reviews/TASK-0032-CHATGPT-REVIEW-1.md)，来源为 PR #5 已发布评审，基线 `83eadec13cb4a03fa5b75de8dcbdd1f83cb61048`；无必须修改项。Review 未独立复跑测试、工作簿检查或备份恢复，未重复历史敏感内容审查，不能把报告的81项本机测试称为本轮独立验收或 GitHub CI。
+- Task: Accepted；Execution status: 等待 User 批准最终合并与切换。本轮只固化完整评审、更新记录、重建/验证 Registry 并推送候选，不启动后续合并或切换流程。
+- User 已批准 public 迁移以及三个 Top Tycoon 工作簿的原始记录与历史；不再清洗这三份文件，不新增重复哈希工作。其他敏感内容限制不变，权限不改。
+- 来源 CR main `1409737648b15f602586b79ade7e0c3e7a3813a0`；原样导入 `fe07557ce5052da6a0eaaaaa1207b416ac081474`，直接 diff 为空且13个原提交保留。适配另行提交。
+- 根/CR 规则、四启动文件、三 Agent 入口、唯一 Skill 路由、Context 与同步路径已适配。公司 SVN 正式配置保持原流程，HuuugeCollector 为历史副本，CR/101 分离。
+- [迁移报告](../docs/migrations/CR-MIGRATION-20260916.md)记录来源、276文件映射、审查、验收与回滚。全新克隆的根/CR 两入口验收通过：14源表、36卡包附件、845935单元格、81项测试通过；上述为原迁移验收记录，Round 1 未独立复跑；现已 Accepted，尚未正式切换。
+- 不执行源表修改、同步 apply、SVN 提交、真实采集或部署。最终合并和旧库归档仍待 User 确认；reservation 保持 pending-main，canonical 进 main 后才 finalize。
+
+## 既有 Review 记录（保留原时点）
+
+- Updated: 2026-08-29
+- Current Review request: TASK-0019 — 项目全景说明与独立进度文档
+- TASK-0019 status: `Accepted`
+- Project key: `WORKSPACE`
+
+## EarlyMeeting TASK-0028 branch handoff
+
 - Updated: 2026-09-07
 - Current Review request: TASK-0028 — EarlyMeeting 本机卡片回调接管
 - TASK-0028 status: `Review`（两区域核心实现已提交）；历史 TASK-0019 仍 Accepted

@@ -1,0 +1,27 @@
+interface:
+  display_name: "CR SVN 安全提交"
+  short_description: "自动检查、添加、提交并核验 CR 数值资源库的 SVN 变更"
+  default_prompt: "Use $cr-svn-submit to safely validate and commit the current CR numerical-design changes to SVN."
+
+# 模型提供商配置
+model_providers:
+  deepseek:
+    provider: "deepseek"
+    base_url: "https://api.deepseek.com/v1"
+    api_key: "${DEEPSEEK_API_KEY}"
+    model: "deepseek-chat"
+    max_tokens: 8192
+    temperature: 0.3
+
+# 可选的其他模型提供商
+# openai:
+#   provider: "openai"
+#   base_url: "https://api.openai.com/v1"
+#   api_key: "${OPENAI_API_KEY}"
+#   model: "gpt-4o"
+#
+# anthropic:
+#   provider: "anthropic"
+#   base_url: "https://api.anthropic.com"
+#   api_key: "${ANTHROPIC_API_KEY}"
+#   model: "claude-3.5-sonnet"

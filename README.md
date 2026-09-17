@@ -1,6 +1,12 @@
 # AI-Workspace
 
-AI-Workspace 是面向游戏策划团队的 **Game Planner AI Workspace**。它以 Git 为协作真相源，管理游戏设计工作中的架构、能力、技能、工作流、模板、项目记忆、状态与 Agent 交接；本仓库不承载业务代码。
+## CR 新人入口
+
+日常入口已切换至 main：`git clone --branch main https://github.com/840832144/AI-Workspace.git`。
+已有仓库先保护未提交修改，安全 fetch 最新 main，再从最新 main 创建独立工作分支；CR 资料与工具只写 `projects/cr/`，无需另外克隆或双写 `cr_design`。先读 [全局模板](bootstrap/AGENTS.md)、[根规则](AGENTS.md)、[CR 入口](projects/cr/README.md)。迁移来源、清单与回滚见 [迁移报告](docs/migrations/CR-MIGRATION-20260916.md)。
+AI-Workspace 迁移期间及合并后保持 public；后续可见性由 User 自行调整。
+
+AI-Workspace 是面向游戏策划团队的 **Game Planner AI Workspace**。它以 Git 为协作真相源，管理游戏设计工作中的架构、能力、技能、工作流、模板、项目记忆、状态与 Agent 交接；同时承载已批准公开的 CR 策划资料与分析工具（`projects/cr/`）。
 
 ## 目标用户
 
@@ -19,7 +25,7 @@ AI-Workspace 是面向游戏策划团队的 **Game Planner AI Workspace**。它�
 3. 游戏项目当前是什么状态：Context、Memory、Workflow、Status、Reports 和 Assets。
 4. ChatGPT 与 Codex 如何交接：固定 handoff、确认事实、风险与下一动作。
 
-项目实现、运行时数据、凭据和项目私有产物必须留在各自仓库或受控系统中。AI-Workspace 只记录关系、经过验证的事实和可复用的游戏策划方法。
+CR 策划资料与分析工具的日常 Git 入口为 `projects/cr/`；正式配置仍以公司 SVN 的目标环境为准。其他项目实现、运行时数据、凭据和未批准公开的私有产物留在各自仓库或受控系统中。
 
 ## 核心结构
 
@@ -39,7 +45,7 @@ AI-Workspace/
 ├── memory/            # Public-safe Candidate、Review、Archive 与索引
 ├── solutions/         # 已验证、可复用的 Public-safe Solution records
 ├── tools/memory/      # Memory reference implementation 与 Windows 入口
-├── projects/          # 游戏项目控制面与统一模板
+├── projects/          # 项目控制面、统一模板和 CR 策划资料/工具
 ├── handoff/           # ChatGPT / Codex 固定交接入口
 ├── bootstrap/         # 新环境、Global AGENTS 与 Codex Agent 模板
 ├── tasks/             # 可执行任务规格与状态
@@ -48,7 +54,7 @@ AI-Workspace/
 
 核心对象和关系见 [`docs/architecture/WorkspaceKernel.md`](docs/architecture/WorkspaceKernel.md)，能力分层见 [`docs/CapabilityModel.md`](docs/CapabilityModel.md)，统一发现入口见 [`Capability Catalog`](capabilities/README.md)。
 
-当前登记项目：[`huuuge-android-research`](projects/huuuge-android-research/README.md)。
+当前登记项目：[`cr`](projects/cr/README.md)、[`huuuge-android-research`](projects/huuuge-android-research/README.md)。
 
 ## 阅读顺序
 
@@ -69,12 +75,12 @@ AI-Workspace/
 - Game Design 是默认且唯一的业务领域。
 - Git 是协作记录的最终来源。
 - 已确认事实与假设必须分开记录。
-- 项目代码仓库是实现真相源；AI-Workspace 是游戏策划协作和治理真相源。
-- 不在本仓库保存密钥、token、个人数据、完整运行日志或业务数据。
+- AI-Workspace 是协作治理及 CR 策划资料/分析工具真相源；正式配置和其他实现按架构中的来源表处理。
+- 不保存密钥、token、个人身份数据、敏感日志或未批准公开的业务数据；CR 公开范围见 RFC-0005。
 - 跨项目变更先写 RFC；不可逆或长期架构选择再写 ADR。
 - 每次有意义的工作都必须留下可由下一个 Agent 独立继续的记录。
 
-当前阶段只建立 Workspace Kernel、能力模型、Capability Roadmap、技能树和游戏项目标准，不迁移现有项目，也不实现业务功能。
+TASK-0032 将 CR 以保留历史的 subtree 纳入。仅克隆 AI-Workspace 即可阅读全局模板、项目规则、五个 CR Skills、卡包资料和工具；PR #5 已于2026-09-16合并并切换，实际证据见 Task 与迁移报告。
 
 TASK-0016 增加了治理控制面的 Memory reference implementation；它只处理 public-safe 元数据、Candidate 和 Context refresh，不把本仓库变成通用 Agent memory service，也不承载私有业务数据。
 

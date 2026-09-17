@@ -1,0 +1,1629 @@
+{
+  "name": "Sheet1",
+  "rows": [
+    {
+      "row": 1,
+      "cells": {
+        "A1": {
+          "value": "集满奖励"
+        },
+        "B1": {
+          "value": "最低牌局数"
+        },
+        "C1": {
+          "value": "一局消耗"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A2": {
+          "value": 0,
+          "formula": "='10.24调整'!AX3",
+          "formula_attributes": {
+            "ca": "1"
+          }
+        },
+        "B2": {
+          "value": 0,
+          "formula": "='10.24调整'!AZ3"
+        },
+        "C2": {
+          "value": 7000
+        }
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A3": {
+          "value": 0,
+          "formula": "='10.24调整'!AX4"
+        },
+        "B3": {
+          "value": 0,
+          "formula": "='10.24调整'!AZ4"
+        },
+        "C3": {
+          "value": 21000
+        }
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A4": {
+          "value": 200000,
+          "formula": "='10.24调整'!AX5"
+        },
+        "B4": {
+          "value": 25.6410256410256,
+          "formula": "='10.24调整'!AZ5"
+        },
+        "C4": {
+          "value": 70000
+        },
+        "D4": {
+          "value": 5
+        },
+        "E4": {
+          "value": 10
+        },
+        "F4": {
+          "value": 15
+        },
+        "G4": {
+          "value": 20
+        },
+        "H4": {
+          "value": 25
+        },
+        "I4": {
+          "value": 30
+        },
+        "J4": {
+          "value": 35
+        },
+        "K4": {
+          "value": 40
+        },
+        "L4": {
+          "value": 50
+        },
+        "M4": {
+          "value": 60
+        },
+        "N4": {
+          "value": 70
+        },
+        "O4": {
+          "value": 80
+        },
+        "P4": {
+          "value": 90
+        },
+        "Q4": {
+          "value": 100
+        }
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A5": {
+          "value": 4100000,
+          "formula": "='10.24调整'!AX6"
+        },
+        "B5": {
+          "value": 384.615384615385,
+          "formula": "='10.24调整'!AZ6"
+        },
+        "C5": {
+          "value": 140000
+        },
+        "D5": {
+          "value": 50,
+          "formula": "=D4*10"
+        },
+        "E5": {
+          "value": 100,
+          "formula": "=E4*10",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "E5:Q5",
+            "si": "0"
+          }
+        },
+        "F5": {
+          "value": 150,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "G5": {
+          "value": 200,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "H5": {
+          "value": 250,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "I5": {
+          "value": 300,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J5": {
+          "value": 350,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "K5": {
+          "value": 400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "L5": {
+          "value": 500,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "M5": {
+          "value": 600,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "N5": {
+          "value": 700,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "O5": {
+          "value": 800,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "P5": {
+          "value": 900,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "Q5": {
+          "value": 1000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        }
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A6": {
+          "value": 22000000,
+          "formula": "='10.24调整'!AX7"
+        },
+        "B6": {
+          "value": 769.230769230769,
+          "formula": "='10.24调整'!AZ7"
+        },
+        "C6": {
+          "value": 350000
+        },
+        "D6": {
+          "value": 100,
+          "formula": "=D5*2"
+        },
+        "E6": {
+          "value": 200,
+          "formula": "=E5*2",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "E6:Q6",
+            "si": "1"
+          }
+        },
+        "F6": {
+          "value": 300,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "G6": {
+          "value": 400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "H6": {
+          "value": 500,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "I6": {
+          "value": 600,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "J6": {
+          "value": 700,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "K6": {
+          "value": 800,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "L6": {
+          "value": 1000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "M6": {
+          "value": 1200,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "N6": {
+          "value": 1400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "O6": {
+          "value": 1600,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "P6": {
+          "value": 1800,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q6": {
+          "value": 2000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        }
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "A7": {
+          "value": 45000000,
+          "formula": "='10.24调整'!AX8"
+        },
+        "B7": {
+          "value": 1131.22171945701,
+          "formula": "='10.24调整'!AZ8"
+        },
+        "C7": {
+          "value": 700000
+        },
+        "D7": {
+          "value": 150,
+          "formula": "=D6*1.5"
+        },
+        "E7": {
+          "value": 300,
+          "formula": "=E6*1.5",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "E7:Q7",
+            "si": "2"
+          }
+        },
+        "F7": {
+          "value": 450,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "G7": {
+          "value": 600,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "H7": {
+          "value": 750,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "I7": {
+          "value": 900,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "J7": {
+          "value": 1050,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "K7": {
+          "value": 1200,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "L7": {
+          "value": 1500,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "M7": {
+          "value": 1800,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "N7": {
+          "value": 2100,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "O7": {
+          "value": 2400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "P7": {
+          "value": 2700,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "Q7": {
+          "value": 3000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        }
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A8": {
+          "value": 200000000,
+          "formula": "='10.24调整'!AX9"
+        },
+        "B8": {
+          "value": 3418.80341880342,
+          "formula": "='10.24调整'!AZ9"
+        },
+        "C8": {
+          "value": 1400000
+        },
+        "D8": {
+          "value": 450,
+          "formula": "=D7*3"
+        },
+        "E8": {
+          "value": 900,
+          "formula": "=E7*3",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "E8:Q8",
+            "si": "3"
+          }
+        },
+        "F8": {
+          "value": 1350,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "G8": {
+          "value": 1800,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "H8": {
+          "value": 2250,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "I8": {
+          "value": 2700,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "J8": {
+          "value": 3150,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "K8": {
+          "value": 3600,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "L8": {
+          "value": 4500,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "M8": {
+          "value": 5400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "N8": {
+          "value": 6300,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "O8": {
+          "value": 7200,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P8": {
+          "value": 8100,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "Q8": {
+          "value": 9000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        }
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A9": {
+          "value": 200000000,
+          "formula": "='10.24调整'!AX10"
+        },
+        "B9": {
+          "value": 1465.20146520147,
+          "formula": "='10.24调整'!AZ10"
+        },
+        "C9": {
+          "value": 3500000
+        },
+        "D9": {
+          "value": 100
+        },
+        "E9": {
+          "value": 200
+        },
+        "F9": {
+          "value": 300
+        },
+        "G9": {
+          "value": 400
+        },
+        "H9": {
+          "value": 500
+        },
+        "I9": {
+          "value": 600
+        },
+        "J9": {
+          "value": 700
+        },
+        "K9": {
+          "value": 800
+        },
+        "L9": {
+          "value": 1000
+        },
+        "M9": {
+          "value": 1200
+        },
+        "N9": {
+          "value": 1400
+        },
+        "O9": {
+          "value": 1600
+        },
+        "P9": {
+          "value": 1800
+        },
+        "Q9": {
+          "value": 2000
+        }
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A10": {
+          "value": 200000000,
+          "formula": "='10.24调整'!AX11"
+        },
+        "B10": {
+          "value": 683.760683760684,
+          "formula": "='10.24调整'!AZ11"
+        },
+        "C10": {
+          "value": 7000000
+        },
+        "D10": {
+          "value": 200,
+          "formula": "=D9*2",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "D10:Q10",
+            "si": "4"
+          }
+        },
+        "E10": {
+          "value": 400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "F10": {
+          "value": 600,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "G10": {
+          "value": 800,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "H10": {
+          "value": 1000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "I10": {
+          "value": 1200,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "J10": {
+          "value": 1400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "K10": {
+          "value": 1600,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "L10": {
+          "value": 2000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "M10": {
+          "value": 2400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "N10": {
+          "value": 2800,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "O10": {
+          "value": 3200,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "P10": {
+          "value": 3600,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        },
+        "Q10": {
+          "value": 4000,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "4"
+          }
+        }
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "D12": {
+          "value": 0.571428571428571,
+          "formula": "=$A4/($C4*D4)"
+        },
+        "E12": {
+          "value": 0.285714285714286,
+          "formula": "=$A4/($C4*E4)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "E12:Q12",
+            "si": "5"
+          }
+        },
+        "F12": {
+          "value": 0.19047619047619,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "G12": {
+          "value": 0.142857142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "H12": {
+          "value": 0.114285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "I12": {
+          "value": 0.0952380952380952,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "J12": {
+          "value": 0.0816326530612245,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "K12": {
+          "value": 0.0714285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "L12": {
+          "value": 0.0571428571428571,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "M12": {
+          "value": 0.0476190476190476,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "N12": {
+          "value": 0.0408163265306122,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "O12": {
+          "value": 0.0357142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "P12": {
+          "value": 0.0317460317460317,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        },
+        "Q12": {
+          "value": 0.0285714285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "5"
+          }
+        }
+      }
+    },
+    {
+      "row": 13,
+      "cells": {
+        "D13": {
+          "value": 0.585714285714286,
+          "formula": "=$A5/($C5*D5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "D13:D18",
+            "si": "6"
+          }
+        },
+        "E13": {
+          "value": 0.292857142857143,
+          "formula": "=$A5/($C5*E5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "E13:E18",
+            "si": "7"
+          }
+        },
+        "F13": {
+          "value": 0.195238095238095,
+          "formula": "=$A5/($C5*F5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "F13:F18",
+            "si": "8"
+          }
+        },
+        "G13": {
+          "value": 0.146428571428571,
+          "formula": "=$A5/($C5*G5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "G13:G18",
+            "si": "9"
+          }
+        },
+        "H13": {
+          "value": 0.117142857142857,
+          "formula": "=$A5/($C5*H5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "H13:H18",
+            "si": "10"
+          }
+        },
+        "I13": {
+          "value": 0.0976190476190476,
+          "formula": "=$A5/($C5*I5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I13:I18",
+            "si": "11"
+          }
+        },
+        "J13": {
+          "value": 0.0836734693877551,
+          "formula": "=$A5/($C5*J5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "J13:J18",
+            "si": "12"
+          }
+        },
+        "K13": {
+          "value": 0.0732142857142857,
+          "formula": "=$A5/($C5*K5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "K13:K18",
+            "si": "13"
+          }
+        },
+        "L13": {
+          "value": 0.0585714285714286,
+          "formula": "=$A5/($C5*L5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "L13:L18",
+            "si": "14"
+          }
+        },
+        "M13": {
+          "value": 0.0488095238095238,
+          "formula": "=$A5/($C5*M5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "M13:M18",
+            "si": "15"
+          }
+        },
+        "N13": {
+          "value": 0.0418367346938776,
+          "formula": "=$A5/($C5*N5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "N13:N18",
+            "si": "16"
+          }
+        },
+        "O13": {
+          "value": 0.0366071428571429,
+          "formula": "=$A5/($C5*O5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "O13:O18",
+            "si": "17"
+          }
+        },
+        "P13": {
+          "value": 0.0325396825396825,
+          "formula": "=$A5/($C5*P5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "P13:P18",
+            "si": "18"
+          }
+        },
+        "Q13": {
+          "value": 0.0292857142857143,
+          "formula": "=$A5/($C5*Q5)",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "Q13:Q18",
+            "si": "19"
+          }
+        }
+      }
+    },
+    {
+      "row": 14,
+      "cells": {
+        "D14": {
+          "value": 0.628571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "E14": {
+          "value": 0.314285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "F14": {
+          "value": 0.20952380952381,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "G14": {
+          "value": 0.157142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "H14": {
+          "value": 0.125714285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "I14": {
+          "value": 0.104761904761905,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "J14": {
+          "value": 0.0897959183673469,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "K14": {
+          "value": 0.0785714285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "L14": {
+          "value": 0.0628571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "M14": {
+          "value": 0.0523809523809524,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "N14": {
+          "value": 0.0448979591836735,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "O14": {
+          "value": 0.0392857142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        },
+        "P14": {
+          "value": 0.0349206349206349,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "18"
+          }
+        },
+        "Q14": {
+          "value": 0.0314285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        }
+      }
+    },
+    {
+      "row": 15,
+      "cells": {
+        "D15": {
+          "value": 0.428571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "E15": {
+          "value": 0.214285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "F15": {
+          "value": 0.142857142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "G15": {
+          "value": 0.107142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "H15": {
+          "value": 0.0857142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "I15": {
+          "value": 0.0714285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "J15": {
+          "value": 0.0612244897959184,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "K15": {
+          "value": 0.0535714285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "L15": {
+          "value": 0.0428571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "M15": {
+          "value": 0.0357142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "N15": {
+          "value": 0.0306122448979592,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "O15": {
+          "value": 0.0267857142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        },
+        "P15": {
+          "value": 0.0238095238095238,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "18"
+          }
+        },
+        "Q15": {
+          "value": 0.0214285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        }
+      }
+    },
+    {
+      "row": 16,
+      "cells": {
+        "D16": {
+          "value": 0.317460317460317,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "E16": {
+          "value": 0.158730158730159,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "F16": {
+          "value": 0.105820105820106,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "G16": {
+          "value": 0.0793650793650794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "H16": {
+          "value": 0.0634920634920635,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "I16": {
+          "value": 0.0529100529100529,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "J16": {
+          "value": 0.0453514739229025,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "K16": {
+          "value": 0.0396825396825397,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "L16": {
+          "value": 0.0317460317460317,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "M16": {
+          "value": 0.0264550264550265,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "N16": {
+          "value": 0.0226757369614512,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "O16": {
+          "value": 0.0198412698412698,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        },
+        "P16": {
+          "value": 0.017636684303351,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "18"
+          }
+        },
+        "Q16": {
+          "value": 0.0158730158730159,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        }
+      }
+    },
+    {
+      "row": 17,
+      "cells": {
+        "D17": {
+          "value": 0.571428571428571,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "E17": {
+          "value": 0.285714285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "F17": {
+          "value": 0.19047619047619,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "G17": {
+          "value": 0.142857142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "H17": {
+          "value": 0.114285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "I17": {
+          "value": 0.0952380952380952,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "J17": {
+          "value": 0.0816326530612245,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "K17": {
+          "value": 0.0714285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "L17": {
+          "value": 0.0571428571428571,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "M17": {
+          "value": 0.0476190476190476,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "N17": {
+          "value": 0.0408163265306122,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "O17": {
+          "value": 0.0357142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        },
+        "P17": {
+          "value": 0.0317460317460317,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "18"
+          }
+        },
+        "Q17": {
+          "value": 0.0285714285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        }
+      }
+    },
+    {
+      "row": 18,
+      "cells": {
+        "D18": {
+          "value": 0.142857142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "6"
+          }
+        },
+        "E18": {
+          "value": 0.0714285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "7"
+          }
+        },
+        "F18": {
+          "value": 0.0476190476190476,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "8"
+          }
+        },
+        "G18": {
+          "value": 0.0357142857142857,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "9"
+          }
+        },
+        "H18": {
+          "value": 0.0285714285714286,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "10"
+          }
+        },
+        "I18": {
+          "value": 0.0238095238095238,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "11"
+          }
+        },
+        "J18": {
+          "value": 0.0204081632653061,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "12"
+          }
+        },
+        "K18": {
+          "value": 0.0178571428571429,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "13"
+          }
+        },
+        "L18": {
+          "value": 0.0142857142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "14"
+          }
+        },
+        "M18": {
+          "value": 0.0119047619047619,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "15"
+          }
+        },
+        "N18": {
+          "value": 0.0102040816326531,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "16"
+          }
+        },
+        "O18": {
+          "value": 0.00892857142857143,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "17"
+          }
+        },
+        "P18": {
+          "value": 0.00793650793650794,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "18"
+          }
+        },
+        "Q18": {
+          "value": 0.00714285714285714,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "19"
+          }
+        }
+      }
+    }
+  ]
+}

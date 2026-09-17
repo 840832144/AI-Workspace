@@ -1,0 +1,512 @@
+[
+  {
+    "environment": "trunk",
+    "table": "CardAlbumCfg",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardAlbumCfg.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6286,
+    "file": "config/trunk/CardAlbumCfg.xlsx",
+    "sha256": "b8ece8f5781a69000cac81b5e54252c362913ed1d955f4f1ddbd88528cd62836",
+    "rows": 2,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/CardAlbumCfg.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "CardAlbumTheme",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardAlbumTheme.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 317,
+    "file": "config/trunk/CardAlbumTheme.xlsx",
+    "sha256": "2fe8871db8b8b66b395636a4916c130c5207aac24f16cc96a080a170e3313a80",
+    "rows": 13,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/CardAlbumTheme.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "CardPack",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardPack.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6108,
+    "file": "config/trunk/CardPack.xlsx",
+    "sha256": "2e3d771d29f771211db4a1f4f9ea81d651bbcd05d104b6a844931ab249a00295",
+    "rows": 158,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/CardPack.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "CardGroup",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardGroup.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6582,
+    "file": "config/trunk/CardGroup.xlsx",
+    "sha256": "91aadb2d0bbc7045f714aff2038697d802dad48bb1f1a9353b2883698544d02b",
+    "rows": 3010,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/CardGroup.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "CardChapter",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardChapter.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6283,
+    "file": "config/trunk/CardChapter.xlsx",
+    "sha256": "b731db3bfc86047891a0b180c1217c19ac352a5692ead957b3e8828bb763e579",
+    "rows": 42,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/CardChapter.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "CardList",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardList.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6283,
+    "file": "config/trunk/CardList.xlsx",
+    "sha256": "cb9e5bfb3feb4a2109ae63ab2245e1dd41f4aac9c895064e7eb3a705c3719888",
+    "rows": 339,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/CardList.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "CardStarTrade",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardStarTrade.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 317,
+    "file": "config/trunk/CardStarTrade.xlsx",
+    "sha256": "b508b131f9d26bb8821adf774f7d9a58e1eded116b9c41969551bf5c18567fad",
+    "rows": 5,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/CardStarTrade.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "CardTradeCfg",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardTradeCfg.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 317,
+    "file": "config/trunk/CardTradeCfg.xlsx",
+    "sha256": "57f21a8f9b9535f5586a69221553f3be4dbd5015f23686cd78f0301ad5806564",
+    "rows": 1,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/CardTradeCfg.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "CardActivityClose",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardActivityClose.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 317,
+    "file": "config/trunk/CardActivityClose.xlsx",
+    "sha256": "15ea6cc5a5f67d7de506137f935e5eb59b52259ce632610973184fa1ea6cfb79",
+    "rows": 40,
+    "sheets": [
+      "Sheet1",
+      "Sheet2",
+      "Sheet3"
+    ],
+    "text_file": "data/trunk/CardActivityClose.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "Cardget",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/Cardget.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 1799,
+    "file": "config/trunk/Cardget.xlsx",
+    "sha256": "32e7b203e1d124f0e342470cca10439eab891c42bb723fd4fdaf6d128e08ffc4",
+    "rows": 526,
+    "sheets": [
+      "Sheet1",
+      "Sheet2",
+      "Sheet3"
+    ],
+    "text_file": "data/trunk/Cardget.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "SlotsCasinoDropCards",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/SlotsCasinoDropCards.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6176,
+    "file": "config/trunk/SlotsCasinoDropCards.xlsx",
+    "sha256": "92ec1fe476e031c8e0bbda7a7e8d1f6a37e3a77a164b3411ca251c2151e2cf57",
+    "rows": 12768,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/SlotsCasinoDropCards.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "Item",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/Item.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 4080,
+    "file": "config/trunk/Item.xlsx",
+    "sha256": "9705c74e32cb416f3056397f6f76eb1223c7cddcf403701eb4e630a03309f253",
+    "rows": 309,
+    "sheets": [
+      "item"
+    ],
+    "text_file": "data/trunk/Item.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "PayDiamond",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/PayDiamond.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 2112,
+    "file": "config/trunk/PayDiamond.xlsx",
+    "sha256": "f58d3538f8d85464910b60cfd4b1509ddea7a58a5cd0ec692134b6fa83231850",
+    "rows": 1048,
+    "sheets": [
+      "item"
+    ],
+    "text_file": "data/trunk/PayDiamond.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "PriceCheatSheet",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/PriceCheatSheet.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6663,
+    "file": "config/trunk/PriceCheatSheet.xlsx",
+    "sha256": "7a024fcc202947c54a2325940ffc6c95eb41c482df42498548fe2abb7a83028f",
+    "rows": 7236,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/PriceCheatSheet.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "SlotsCasinoBetList",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/SlotsCasinoBetList.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 1355,
+    "file": "config/trunk/SlotsCasinoBetList.xlsx",
+    "sha256": "473be2231c5a92c46c750802984cc629fc98af146e99396f4767971815d592b3",
+    "rows": 38,
+    "sheets": [
+      "Sheet1",
+      "Sheet2"
+    ],
+    "text_file": "data/trunk/SlotsCasinoBetList.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "ItemExchange",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/ItemExchange.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 3306,
+    "file": "config/trunk/ItemExchange.xlsx",
+    "sha256": "6f0f4b2dc9754f9b57a514857f22961e60e3be5618f7b3906e8820b5884afabc",
+    "rows": 17,
+    "sheets": [
+      "item"
+    ],
+    "text_file": "data/trunk/ItemExchange.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "SysUnlock",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/SysUnlock.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6136,
+    "file": "config/trunk/SysUnlock.xlsx",
+    "sha256": "9fbefa5cb7015a54e586aeccc2aa6b2c8562a773a478838d5d3cba395d8c7c9b",
+    "rows": 25,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/trunk/SysUnlock.csv"
+  },
+  {
+    "environment": "trunk",
+    "table": "CardCollectSimulator",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/trunk/ExcelConfigExport/Excel/CardCollectSimulator.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 317,
+    "file": "config/trunk/CardCollectSimulator.xlsx",
+    "sha256": "0bbd84a7ef366b41713cfc33ac7bdb4bdaf437e68d1e8e8379897eacdc110292",
+    "rows": 11,
+    "sheets": [
+      "Sheet1",
+      "Sheet2"
+    ],
+    "text_file": "data/trunk/CardCollectSimulator.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardAlbumCfg",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardAlbumCfg.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6577,
+    "file": "config/dev/CardAlbumCfg.xlsx",
+    "sha256": "b8ece8f5781a69000cac81b5e54252c362913ed1d955f4f1ddbd88528cd62836",
+    "rows": 2,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardAlbumCfg.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardAlbumTheme",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardAlbumTheme.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 5923,
+    "file": "config/dev/CardAlbumTheme.xlsx",
+    "sha256": "c9b60874d59bc7ac5937926d3e07e5ecd8e02b608453a3e36af20e36e04afefe",
+    "rows": 13,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardAlbumTheme.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardPack",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardPack.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6097,
+    "file": "config/dev/CardPack.xlsx",
+    "sha256": "2e3d771d29f771211db4a1f4f9ea81d651bbcd05d104b6a844931ab249a00295",
+    "rows": 158,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardPack.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardGroup",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardGroup.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6583,
+    "file": "config/dev/CardGroup.xlsx",
+    "sha256": "91aadb2d0bbc7045f714aff2038697d802dad48bb1f1a9353b2883698544d02b",
+    "rows": 3010,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardGroup.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardChapter",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardChapter.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6577,
+    "file": "config/dev/CardChapter.xlsx",
+    "sha256": "b731db3bfc86047891a0b180c1217c19ac352a5692ead957b3e8828bb763e579",
+    "rows": 42,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardChapter.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardList",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardList.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6577,
+    "file": "config/dev/CardList.xlsx",
+    "sha256": "cb9e5bfb3feb4a2109ae63ab2245e1dd41f4aac9c895064e7eb3a705c3719888",
+    "rows": 339,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardList.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardStarTrade",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardStarTrade.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 5923,
+    "file": "config/dev/CardStarTrade.xlsx",
+    "sha256": "79e6d4875aa2c84b0e585ddb17790e7e25fcc42d4509885500aa663ccc81c497",
+    "rows": 5,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardStarTrade.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardTradeCfg",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardTradeCfg.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 5923,
+    "file": "config/dev/CardTradeCfg.xlsx",
+    "sha256": "be72038c5466900adfd7f5de5d647e619a6fa3d8c67e7d7027d6b2903fdf8335",
+    "rows": 1,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardTradeCfg.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardActivityClose",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardActivityClose.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 5923,
+    "file": "config/dev/CardActivityClose.xlsx",
+    "sha256": "3deeb0d187599ea3a4132a542defb84fdacc60852b832450a1d1da4376e3d655",
+    "rows": 40,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardActivityClose.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "Cardget",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/Cardget.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 5923,
+    "file": "config/dev/Cardget.xlsx",
+    "sha256": "9e3b8b82a9fbf709e02427704d1fc2338199f767ad2ba9333f1b84fc2c99d427",
+    "rows": 526,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/Cardget.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "SlotsCasinoDropCards",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/SlotsCasinoDropCards.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6314,
+    "file": "config/dev/SlotsCasinoDropCards.xlsx",
+    "sha256": "b068da7a592b13c279734cb4f44f797b5345291ae098184d56c55a7b830e4b01",
+    "rows": 12768,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/SlotsCasinoDropCards.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "Item",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/Item.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6266,
+    "file": "config/dev/Item.xlsx",
+    "sha256": "f1e43012f7159dce405be607dda2df8dd1795046e7ff388a815429f6c89ea4ce",
+    "rows": 309,
+    "sheets": [
+      "item"
+    ],
+    "text_file": "data/dev/Item.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "PayDiamond",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/PayDiamond.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6688,
+    "file": "config/dev/PayDiamond.xlsx",
+    "sha256": "b0a137dc534f38f140203abdf286955ecce2cb7acb767bfccc6bb9ab62da6f6a",
+    "rows": 1040,
+    "sheets": [
+      "item"
+    ],
+    "text_file": "data/dev/PayDiamond.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "PriceCheatSheet",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/PriceCheatSheet.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6662,
+    "file": "config/dev/PriceCheatSheet.xlsx",
+    "sha256": "6dcee35a9b66f05d2b7b1bf0599913cdb5cddd2678fc035035a32b9b23a8c465",
+    "rows": 7236,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/PriceCheatSheet.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "SlotsCasinoBetList",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/SlotsCasinoBetList.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 5923,
+    "file": "config/dev/SlotsCasinoBetList.xlsx",
+    "sha256": "69cf1fee6e886d721b4646e34e2113c677a688de31f9265dd1f017fd2637dda5",
+    "rows": 38,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/SlotsCasinoBetList.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "ItemExchange",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/ItemExchange.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 5923,
+    "file": "config/dev/ItemExchange.xlsx",
+    "sha256": "c273a789fdbe005a331331f61bff69ef3deb9f33f6e9ca77eb92cbdaf225c2f2",
+    "rows": 17,
+    "sheets": [
+      "item"
+    ],
+    "text_file": "data/dev/ItemExchange.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "SysUnlock",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/SysUnlock.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 6688,
+    "file": "config/dev/SysUnlock.xlsx",
+    "sha256": "6e1bfabd1510d5df3b3c9c020408b4bfef2849bb86bbf2cba2b9629afdc02ddc",
+    "rows": 24,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/SysUnlock.csv"
+  },
+  {
+    "environment": "dev",
+    "table": "CardCollectSimulator",
+    "svn_url": "http://140.143.33.242/svn/cr/x_proj_share/dev/ExcelConfigExport/Excel/CardCollectSimulator.xlsx",
+    "revision": 6880,
+    "last_changed_revision": 5923,
+    "file": "config/dev/CardCollectSimulator.xlsx",
+    "sha256": "e3cb8dc5702a0881f014bd4925a90ae2f9db77dabc9c261c26e0c6ad0b93c281",
+    "rows": 11,
+    "sheets": [
+      "Sheet1"
+    ],
+    "text_file": "data/dev/CardCollectSimulator.csv"
+  }
+]
