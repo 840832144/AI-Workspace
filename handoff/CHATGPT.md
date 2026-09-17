@@ -1,6 +1,17 @@
 # ChatGPT Handoff
 
-## 2026-09-17 — TASK-0034 请轻量Review Round 2
+## 2026-09-17 — TASK-0034 Gate状态修订，等待下一轮轻量Review（Round 3）
+
+- [Task](../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)为Review；[完整Round 2](../reviews/TASK-0034-CHATGPT-REVIEW-2.md) Needs changes，受评761b08c；经过Changes Requested后只修状态，原分支codex/cr-0922-freeze-gates / PR #7及pending-main reservation不变。Subagents: none。
+- [当前Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)：**6 Closed / 4 Conditional / 12 Non-blocking**。无无条件业务规则阻塞；不能再写只有2类条件，业务规则Closed与候选配置可冻结分开。
+- **G12 Conditional**：选挖矿时，r6961缺id4–12通关奖励必须补齐，或由User明确这些关无通关奖励；同ID/12关结束的规则Closed保留。
+- **G16 Conditional**：选拳击或挖矿时，必须移除对应源配置中的相关建造币奖励；关闭建造/移除奖励的决定Closed，前轮分析层排除27槽位不能替代源修改。
+- G03（剩余缺档需价值比较）和G09（选777补forceTurn）继续Conditional；其他状态/数值规则不变，不代选活动。
+- [报告](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/README.md)已同步；本轮只做Gate/文档一致性、链接/diff及Registry校验，不重算数值、不读源表、不运行分析工具、不重跑TASK-0033、不做哈希或全量业务扫描。原受控Round 2包数值继续复用，旧Gate统计为历史。
+- 下一轮轻量Review只核对上述分类和冻结条件；不改配置、不提交SVN、不调参、不冻结、不发布、不合并或finalize。下方“仅2类条件”为受评历史，当前以本节为准。
+
+
+## 历史Round 2候选（761b08c，Gate分类已修正）— TASK-0034 请轻量Review Round 2
 
 - [TASK-0034](../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)仍为Review，原分支codex/cr-0922-freeze-gates / PR #7，原reservation pending-main；Subagents: none。
 - [Round 1完整记录](../reviews/TASK-0034-CHATGPT-REVIEW-1.md)Needs changes，基线007202e；PR #7 User正式决定已逐项应用。状态经过Changes Requested，当前等待Round 2，不预先写Accepted。

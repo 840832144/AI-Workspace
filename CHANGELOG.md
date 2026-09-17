@@ -2,6 +2,12 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0034 Round 2 Gate状态修订，待Round 3
+
+- 固化完整Round 2 Needs changes（761b08c）；同Task修订后继续Review，原reservation pending-main。
+- G12/G16改Conditional，规则Closed保留说明；与原G03/G09共4类条件，统计6 Closed / 4 Conditional / 12 Non-blocking。选挖矿须补齐缺关奖励或User明确无奖励；选拳击/挖矿须移除源建造币。
+- 只更新Gate分类、冻结结论和治理记录；不改分析工具/数值，不重算、不重跑TASK-0033、不做哈希或全量业务扫描；未改配置、SVN、冻结、合并或finalize。
+
 ## 2026-09-17 — TASK-0034 正式决定修订，待Round 2
 
 - 保存PR #7完整Round 1 Needs changes与后续User正式输入；同一Task修订后回到Review，原reservation保持pending-main。

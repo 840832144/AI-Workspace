@@ -1,14 +1,14 @@
 # TASK-0034 — CR 9.22 配置冻结阻塞项闭合
 
 - Status: Review
-- Execution status: 正式User决定已应用；7 Closed / 2 Conditional / 13 Non-blocking；等待ChatGPT Round 2，未冻结或发布
+- Execution status: Round 2 Gate状态已修订；6 Closed / 4 Conditional / 12 Non-blocking；等待下一轮轻量Review（Round 3），未冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 2026-09-19 冻结决策依据
 - Date: 2026-09-17
 - Updated: 2026-09-17
-- User decision: Approved（PR #7后续正式输入授权Matrix、受影响模型及定向复算；USD Bet=1归95%；不授权配置、SVN、调参、冻结、发布、合并或finalize）
+- User decision: Approved（本轮仅按Round 2修Gate分类和冻结结论；不重算数值、不改配置、不提交SVN、不调参、不冻结、不发布、不合并或finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033
 - Subagents: none
@@ -19,11 +19,11 @@
 
 ## 范围与决策
 
-- 仅处理 G01/G02/G03/G07/G20、G08–G12；G13 只在薯片或拳击仍为候选时作为条件阻塞；其他原缺口标 Non-blocking，不要求本轮全部闭合。
+- 初始范围为G01/G02/G03/G07/G20、G08–G12及候选相关G13。当前按Round 2与User指令，将G12和G16源配置落实改为Conditional，保留G03/G09；其他状态不变，不重做已通过的模型。
 - User 已决定常规机器 USD Bet>1 为85%、USD Bet<=1 为95%。这是策划规则，不自动证明 trunk 配置或特殊新手/活动覆盖规则已符合；特殊条件和优先级继续独立列证据。
 - 先只读比较 trunk 相对 r6961 的数值变化。有变化则固定最新一致 revision 并复用现有工具重跑；无变化则沿用 r6961，记录比较范围、读取时间与实际 revision。禁止混用 dev、101、历史值或旧报告数值。
 - 四活动分别整理获取、消耗、阶段成本、奖励、返还和候选成立条件，不替 User 四选二或决定排期。证据不能解决的规则压缩为最小问题，由策划负责人/User确认。
-- Matrix 每项明确 Closed / Needs Planner Decision / Conditional / Non-blocking、证据、影响和冻结结论。Closed 仅指该项规则已有足够证据，不等于授权配置冻结。
+- Matrix 每项明确 Closed / Needs Planner Decision / Conditional / Non-blocking、证据、影响和冻结结论。业务规则Closed保留在说明列；已确认但尚未落实的候选配置条件必须显式列Conditional，不能仅作为证据限制。状态修订不等于授权配置冻结。
 - 不开展程序、线上、运营或支付技术审计，不将日志或技术验收作为前置。不改源配置、不提交 SVN、不调参、不冻结、不发布。
 
 ## 登记与并发
@@ -40,7 +40,19 @@
 
 仅做与当前 Gate 直接相关的字段/关系/规则验证、变更文档检查与既有 Registry 重建校验；禁止新增或重复文件哈希、全量无差别扫描、Accepted 总表重复验收。不为满足形式重复运行 catalog/全仓业务验收。完成后提交候选、推送并交 ChatGPT Review；合并另等 User 授权。
 
-## 当前修订 — PR #7 User正式输入 / 等待Round 2
+## 当前修订 — Round 2 Gate分类修正 / 等待Round 3
+
+- [完整Round 2](../reviews/TASK-0034-CHATGPT-REVIEW-2.md)已落Git：Needs changes，受评761b08c；数值与规则应用未发现计算问题，只要求区分规则闭合和配置落实。Round 1及前轮数值产物保留。
+- 状态履历：Review → Changes Requested（Round 2）→ Review（本次状态修订，等待下一轮轻量Review）；不新建Task，原分支/PR #7和pending-main reservation继续保留。
+- 当前[Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)：**6 Closed / 4 Conditional / 12 Non-blocking**，无无条件业务规则阻塞；4类条件为G03/G09/G12/G16，不能再写仅2类。
+- G12改Conditional：同ID对应、12关结束的业务规则Closed；**选挖矿时**，r6961缺id4–12通关奖励必须补齐，或由User明确这些关无通关奖励；此前不得视为配置可冻结。
+- G16改Conditional：关闭建造模块/移除建造币的业务决定Closed，但分析层排除不等于源配置移除；**选拳击或挖矿时**必须移除相关源奖励（前轮证据27槽位：拳击Pass12、奖池6、挖矿通关9）。本轮不执行源修改。
+- G03仍仅在剩余缺档奖励需价值比较时触发；G09仍仅选777时补forceTurn精确定义，特殊格不强制已确认。其他业务规则Closed说明和Gate状态保留；不代选四活动组合。
+- 固定r6961，只改状态、冻结结论及治理记录；不读取源表、不修改或运行分析工具、不重算数值、不重跑TASK-0033、不做哈希/全量业务扫描。前轮4项回归/21项数值核对不是本轮新验收。
+- 本轮22项Gate与文档一致性检查通过，仅G12/G16状态变化，G03/G09原行及模型说明不变；变更链接/diff通过，Registry由既有工具重建后valid（17 canonical/0 collision，6项既有legacy提示）。最新main eb13bbb、PR受评head761b08c安全fetch后无增量，工作树开始时干净，共享文件保留其他Task内容。
+- 唯一下一步：ChatGPT轻量Review状态修订。未改源配置、提交SVN、调参、冻结、发布、合并或finalize；Subagents: none。
+
+## 历史Round 2候选 — PR #7 User正式输入（761b08c，Gate分类已由上文修正）
 
 - [完整Round 1](../reviews/TASK-0034-CHATGPT-REVIEW-1.md)已落Git：Needs changes，基线007202e；接受首轮证据/分类，要求收敛业务决定。其未独立连接SVN的限制保留，不能冒充本轮新取证。
 - [正式User输入原文](support/TASK-0034/USER-DECISIONS-20260917.md)来源PR #7讨论，不从聊天自行补规则。状态履历为Review → Changes Requested（R1）→ Review（本轮修订，待R2）；原reservation pending-main，不新建Task或finalize。
