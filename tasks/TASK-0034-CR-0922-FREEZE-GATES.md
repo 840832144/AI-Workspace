@@ -1,7 +1,7 @@
 # TASK-0034 — CR 9.22 配置冻结阻塞项闭合
 
-- Status: Accepted
-- Execution status: ChatGPT Round 3 Accepted；6 Closed / 4 Conditional / 12 Non-blocking；等待User明确PR #7合并授权；尚未冻结或发布
+- Status: Complete
+- Execution status: PR #7已合并；canonical确认进入main后原reservation已finalized；Gate交付与Git收口Complete，尚未冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -40,7 +40,14 @@
 
 仅做与当前 Gate 直接相关的字段/关系/规则验证、变更文档检查与既有 Registry 重建校验；禁止新增或重复文件哈希、全量无差别扫描、Accepted 总表重复验收。不为满足形式重复运行 catalog/全仓业务验收。完成后提交候选、推送并交 ChatGPT Review；合并另等 User 授权。
 
-## 当前状态 — ChatGPT Round 3 Accepted，等待User合并授权
+## 当前状态 — PR #7已合并，原reservation已finalized
+
+- User明确授权后，PR #7于2026-09-17 14:27:58北京时间使用merge commit `051a55195a6a483ce198fe432fe7af29d92444b3`合入main，保留受评d8f1b72和收口b494bda；合并树与候选直接diff一致。
+- 最新main中canonical Task与三轮Review均存在；原linked worktree安全快进后，以原reservation执行既有finalize，结果finalized。没有新分配旧Task或提前finalize。
+- 本Task为Complete（Gate整理与Git收口），Round 3仍Accepted，历史6 Closed / 4 Conditional / 12 Non-blocking不改写。后续User已选择薯片+777并确认forceTurn，进入新的TASK-0035；拳击/挖矿不选，不在新Task处理其条件。
+- 本次仅Git合并/收口；没有源配置修改、SVN提交、调参、正式冻结或发布。Subagents: none。
+
+## 历史Round 3 Accepted — 合并前等待User授权
 
 - [完整Round 3](../reviews/TASK-0034-CHATGPT-REVIEW-3.md)：Accepted，受评commit `d8f1b72dab0514510bfdf1b6b7ae4bfdbf0b1e11`，无必须修改项；Round 1/2及前轮证据保留。本轮只收口评审和治理状态。
 - [Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)维持**6 Closed / 4 Conditional / 12 Non-blocking**。G03剩余缺档价值比较、G09选777的forceTurn、G12选挖矿的缺关奖励、G16选拳击/挖矿的源建造币移除继续按条件触发；业务规则Closed不等于候选配置已可冻结。

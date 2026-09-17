@@ -1,6 +1,14 @@
 # CR 当前状态
 
-## 2026-09-17 — TASK-0034 Round 3 Accepted，等待User合并授权
+## 2026-09-17 — TASK-0034合并完成；TASK-0035薯片+777现值冻结准备
+
+- PR #7已按User授权以merge commit `051a55195a6a483ce198fe432fe7af29d92444b3`合入main；canonical及三轮Review进入main后，原TASK-0034 reservation返回finalized，旧Task的Gate交付与Git收口Complete。
+- [TASK-0035](../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)由allocator正式分配，In Progress；只覆盖9.22薯片+777。User补充“没有改动”，按现值制作零数值变更方案、清单和冻结候选；forceTurn完整口径已在PR #7正式闭合，不重开业务Gate。
+- 相关trunk定向freshness check待执行，先锁实际版本，不直接沿用r6961；复用0033/0034已Accepted方法，排除拳击/挖矿，不做无关全量扫描或哈希。
+- 新分支codex/cr-snack777-freeze-prep，原Task完整历史保留；新reservation pending-main。只准备候选，等待ChatGPT Review，不改源配置、不提交SVN、不调参、不正式冻结或发布。Subagents: none。
+
+
+## 历史 — TASK-0034 Round 3 Accepted（合并前）
 
 - [Task](../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)为**Accepted**；[完整Round 3](../../reviews/TASK-0034-CHATGPT-REVIEW-3.md)已落Git，受评d8f1b72，无必须修改项；Round 1/2及历史证据保留。
 - [当前Matrix](REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)保持**6 Closed / 4 Conditional / 12 Non-blocking**。G03/G09/G12/G16按原条件触发；规则Closed不等于源配置已满足冻结条件，活动组合仍由User决定。**尚未冻结或发布**。
