@@ -2,6 +2,12 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0034 CR 冻结 Gate 候选
+
+- 按正式allocator独立登记新Task，TASK-0033保持Complete；只读确认trunk相对r6961无变化，复用Accepted整理结果。
+- User决定USD Bet=1归95%。新增脱敏Freeze Gate Matrix、四活动候选卡、8组最小策划问题及定向证据工具；完整数值仍在受控目录，未改配置或执行冻结。
+- 定向规则、条件成本、查价与治理验证通过后交ChatGPT Review；不关闭全部原缺口、不选四选二、不合并或提前finalize，无SVN提交、调参、发布、权限变更或哈希工作。Subagents: none。
+
 ## 2026-09-17 — TASK-0033 PR #6合并与finalize
 
 - User明确授权后，PR #6通过merge commit `998a4d8a90541df25b0cedbcaeba069bbd1a010d`合入main，保留TASK-0033历史及Round 1/2 Review；相对受评版本只有已授权治理收口记录，无新增数值修改。

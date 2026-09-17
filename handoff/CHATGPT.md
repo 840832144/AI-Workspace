@@ -1,5 +1,18 @@
 # ChatGPT Handoff
 
+## 2026-09-17 — TASK-0034 CR冻结Gate，等待ChatGPT Review
+
+- 新Task：[TASK-0034](../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)，Review，独立分支codex/cr-0922-freeze-gates；TASK-0033保持Complete，不续写。原reservation pending-main，不提前finalize。Subagents: none。
+- [报告](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/README.md)及[Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)已经交付；10项Needs Planner Decision、1项Conditional、11项Non-blocking。已闭合子项与整Gate状态分开，冻结依据尚不充分；没有执行冻结。
+- 2026-09-17 10:40:04北京时间读取SVN：HEAD r6987，trunk最后内容r6918，相对r6961无路径变化，继续同版r6961。只读23张关联表和既有索引，没有重跑Accepted总表或文件哈希。
+- User已确定常规USD Bet=1归95%；新受控CSV为220条参考组合增加决策覆盖，原总表不动。特殊RTP优先级仍待确认，不能把策划决定当配置已符合。
+- 价格缺档收敛为同一金额的5处引用；4个阶段样例、9个777圈/轮的条件清盘账本和资源关系可复算。候选保留薯片/777/拳击/挖矿，不替User选四选二。G13因薯片/拳击仍在候选中保持条件阻塞。
+- 9份当前正式知识库原文有revision证据；历史数值附件未作当前输入。全局搜索权限不足但已知CashRoyal目录读取成功；不扩大权限，也不声称已检索所有正式资料。8组最小问题集中在Matrix的Q1–Q8，由对应策划/User补规则，不要求程序/线上/运营/支付审计。
+- 验证：新工具真实输出、3个RTP边界、220条新旧口径分离、4个阶段手算、777条件清盘、定向价格覆盖和22项Matrix状态一致；AST通过。Registry由工具重建后valid（17 canonical/0 collision，6项既有legacy提示）；新增文档14个相对链接有效，diff检查通过。未重复Accepted工作簿/源缓存/外链/catalog/全仓业务验收。
+- 完整数值、受控复核包与证据仅在本机；public Git只有脱敏报告/工具/治理。未改源表、提交SVN、调参、冻结、发布、合并或权限。
+- 唯一下一步：ChatGPT Review本轮Gate整理及条件边界；User/策划集中答复Q1–Q8。下方TASK-0033及其他任务记录保留原时点。
+
+
 ## 2026-09-17 — TASK-0033 PR #6已合并，原reservation已finalized
 
 - User已明确批准Git收口；[PR #6](https://github.com/840832144/AI-Workspace/pull/6)于2026-09-17 09:50:41（北京时间）通过merge commit合入main：`998a4d8a90541df25b0cedbcaeba069bbd1a010d`。保留候选f6bf84b、受评bdcdb3d及TASK-0033历史；[Round 1](../reviews/TASK-0033-CHATGPT-REVIEW-1.md)和[Round 2](../reviews/TASK-0033-CHATGPT-REVIEW-2.md)原文未改。

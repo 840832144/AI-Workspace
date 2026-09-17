@@ -1,5 +1,17 @@
 # CR 当前状态
 
+## 2026-09-17 — TASK-0034 冻结 Gate 整理交 Review
+
+- [TASK-0034](../../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)：Review；新任务由allocator正式分配，TASK-0033保持Complete。分支codex/cr-0922-freeze-gates，reservation pending-main；Subagents: none。
+- 当前结论：[Freeze Gate Matrix](REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)已交付；10项Needs Planner Decision、1项Conditional、11项Non-blocking。部分规则子项Closed，未冒充整项闭合；仍需8组策划确认，尚未冻结或发布。
+- 2026-09-17 10:40:04北京时间只读观察SVN HEAD r6987；trunk相对r6961无路径变化，沿用固定r6961。没有重新全量盘点或混revision。
+- User已确认常规USD Bet=1归95%，所以常规规则为>1:85%、<=1:95%；特殊新手/活动配置单列，适用优先级待确认。此决定更新阅读层，不修改配置。
+- 四活动均保留独立可选候选卡，数值准入仍有条件；不替User决定二选组合或排期。G13因薯片/拳击仍在候选中保留条件阻塞；其余指定范围之外缺口为Non-blocking。
+- [报告及交付导航](REPORTS/CR-20260922-FREEZE-GATES/README.md)记录定向证据：同一金额档的5处价格引用、4个阶段样例、777条件清盘账本、Pass配对及模块适用性。完整数值只留受控包；公开Git保留脱敏Matrix及工具。
+- 未重验TASK-0033 Accepted总表/源缓存/外链，未新增哈希或全仓业务扫描；未改配置、SVN提交、调参、冻结、发布或权限。等待ChatGPT Review。
+
+下方TASK-0033为已完成整理任务的历史事实；当时“=1待确认”已被本轮User决定更新，不代表其他配置歧义已解决。
+
 ## 2026-09-17 — TASK-0033 整理交付及 Git 收口完成
 
 - Task：[TASK-0033](../../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)，Complete（整理交付及Git收口）；Executor: Codex；Subagents: none。
