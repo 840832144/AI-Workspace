@@ -5,7 +5,7 @@
 - PR #7已按User授权以merge commit `051a55195a6a483ce198fe432fe7af29d92444b3`合入main；canonical及三轮Review进入main后，原TASK-0034 reservation返回finalized，旧Task的Gate交付与Git收口Complete。
 - [TASK-0035](../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)由allocator正式分配，当前Review；仅9.22薯片+777。User确认“没有改动”，r7004零数值变更方案、清单、候选及受控复核包已完成；forceTurn已正式闭合，两个活动无剩余业务规则Gate。
 - 2026-09-17 14:32:41北京时间读取HEAD r7004；14个指定工作簿相对r6961无变化，统一导出r7004。阅读层2437行；复用546条Accepted阶段记录不重算；8个forceTurn定义示例及候选定向验证通过。
-- 新分支codex/cr-snack777-freeze-prep，原Task完整历史保留；新reservation pending-main。等待ChatGPT Review；不改源配置、不提交SVN、不调参、不正式冻结或发布。旧Task Complete元数据随本新分支更新；新Task不提前finalize。Subagents: none。
+- 新分支codex/cr-snack777-freeze-prep / [PR #8](https://github.com/840832144/AI-Workspace/pull/8)，原Task完整历史保留；新reservation pending-main。等待ChatGPT Review；不改源配置、不提交SVN、不调参、不正式冻结或发布。旧Task Complete元数据随本新分支更新；新Task不提前finalize。Subagents: none。
 - [当前方案、候选及受控复核包导航](../projects/cr/REPORTS/CR-20260922-SNACK-777-FREEZE-PREP/README.md)；完整数值继续留受控目录。历史TASK-0034的6/4/12为组合决定前快照，不能用其中待授权/待forceTurn语句替代当前输入。
 
 

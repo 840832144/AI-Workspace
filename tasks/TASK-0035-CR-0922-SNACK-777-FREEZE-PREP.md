@@ -1,6 +1,7 @@
 # TASK-0035 — CR 9.22 薯片 + 777 数值调整与冻结准备
 
 - Status: Review
+- Pull request: [PR #8](https://github.com/840832144/AI-Workspace/pull/8)（等待ChatGPT Review）
 - Execution status: r7004零数值变更候选已完成，等待ChatGPT Review；尚未冻结或发布，reservation pending-main
 - Project key: CR
 - Owner: User
