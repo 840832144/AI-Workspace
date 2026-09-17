@@ -1,15 +1,15 @@
 # TASK-0035 — CR 9.22 薯片 + 777 数值调整与冻结准备
 
-- Status: Review
-- Pull request: [PR #8](https://github.com/840832144/AI-Workspace/pull/8)（等待ChatGPT Review）
-- Execution status: r7004零数值变更候选已完成，等待ChatGPT Review；尚未冻结或发布，reservation pending-main
+- Status: Accepted
+- Pull request: [PR #8](https://github.com/840832144/AI-Workspace/pull/8)（OPEN；等待User明确合并授权）
+- Execution status: ChatGPT Round 1 Accepted；等待User明确PR #8合并授权；尚未冻结或发布，reservation pending-main
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 2026-09-19 冻结决策依据
 - Date: 2026-09-17
 - Updated: 2026-09-17
-- User decision: Approved（启动新任务、制作方案/清单/候选及验证；补充“没有改动”）
+- User decision: Approved（启动任务及“没有改动”决定；本轮仅Accepted评审落库、治理收口与原分支推送；合并另等明确授权）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034
 - Subagents: none
@@ -45,7 +45,7 @@
 ## 验收与回滚
 
 - 可从受控候选定位每个相关源文件及固定revision；新方案不包含拳击/挖矿数值，数值变更为0，正式冻结状态为未执行。
-- ChatGPT可复核版本、范围、规则、单位、变更清单和验证边界；本Task状态不预先写Accepted。
+- ChatGPT可复核版本、范围、规则、单位、变更清单和验证边界；状态依据正式Review更新，本轮已获得Accepted。
 - 本轮无SVN写入，因此无需源配置回滚；候选未获认可时保留上一已Accepted材料，撤回/替换Git候选文档，不删除旧证据、不强推或改变权限。
 
 ## 实际交付与验证
@@ -54,5 +54,13 @@
 - 受控目录：`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/snack-777-freeze-20260917/`；复核包`TASK-0035-CHATGPT-REVIEW-PACK-r7004.zip`含14个只读源XLSX及阅读层/清单/公式引用，不含token或内部地址，不进public Git。
 - 定向读取14表/16个Sheet，阅读层2437行、35900个字段位置。只复用薯片/777的546条Accepted阶段成本，保留原r6961证据与r7004适用关系；未重算。现值与建议值相同，不新增源表修改。
 - 8个forceTurn定义示例、候选范围/版本/空值与零/空变更清单检查通过；示例不证明游戏运行时或状态机重置。源错误计数仅针对本次选中字段，不重验0033全量结果。
-- Registry重建/validator、变更链接和diff按本任务范围收口。Catalog/validate_repository全量校验遵照User效率要求不执行。源SVN提交/正式冻结/发布均未执行；新Task未Accepted、未合并、未finalize。
+- Registry重建/validator、变更链接和diff按本任务范围收口。Catalog/validate_repository全量校验遵照User效率要求不执行。源SVN提交/正式冻结/发布均未执行；新Task现已Accepted、未合并、未finalize。
 - 原TASK-0034的Complete元数据在本候选分支更新；其canonical及Round 1/2/3在main已确认，原reservation已finalized，未重新分配旧任务。
+
+## ChatGPT Review Round 1 — Accepted
+
+- [完整Review](../reviews/TASK-0035-CHATGPT-REVIEW-1.md)已按PR #8原文落库；受评commit `0676ef30322ae7e8e8b89f34f21688f3eeaa979a`，无阻塞项。接受r7004现值、0数值变更的薯片+777候选。
+- ChatGPT独立定向复核包内统计、KEEP/revision标记及复用身份，并与r6961 Accepted材料对照35900个选中字段：全部可映射、值差异0、缺失映射0；本次Codex不重复执行这些检查。
+- 保留证据限制：ChatGPT未独立连接公司SVN；forceTurn示例不等于运行时状态机验收；PriceCheatSheet/ItemExchange的selected_rows=0不扩大查价或产消结论。
+- 本轮只更新Review、Task、Status、Handoff、报告、长期状态及Registry；原数值、源表、工具与受控包不改。不重算、不重跑TASK-0033/0034、不做hash或全量扫描。
+- PR #8保持OPEN，等待User明确合并授权；reservation保持pending-main，不提交SVN、不执行正式冻结/发布、不提前finalize。Subagents: none。

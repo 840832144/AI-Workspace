@@ -2,10 +2,10 @@
 
 ## 1. 文档信息与结论
 
-- Task：[TASK-0035](../../../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)；执行：Codex；业务负责人：User；评审：ChatGPT；状态：Review，尚未Accepted。
+- Task：[TASK-0035](../../../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)；执行：Codex；业务负责人：User；评审：ChatGPT；状态：ChatGPT Round 1 Accepted（受评0676ef3）。
 - 适用：9.22已选择的薯片 + 777；2026-09-17制作，供最晚2026-09-19的冻结决策参考。
 - User补充目标为“没有改动”。本候选**保留trunk r7004现值，数值变更0项**，没有调参目标或优化建议。没有修改源配置、提交SVN、正式冻结或发布。
-- 两活动当前无剩余业务规则Gate；候选仍待ChatGPT Review和后续User明确授权。规则闭合、候选评审、正式冻结是不同状态。
+- 两活动当前无剩余业务规则Gate；候选已Accepted；PR #8保持OPEN，等待User明确合并授权；正式冻结/发布仍需后续明确授权。规则闭合、候选评审、正式冻结是不同状态。
 
 ## 2. 目标与范围
 
@@ -71,13 +71,13 @@ python projects/cr/数值策划/工具/prepare_snack777_freeze.py --input <受�
 
 **数值变更清单为空（0项）**。无配置增删、数值调整、SVN提交清单或覆盖命令。候选以固定版本的只读源文件和规则说明组成，完整数值不进入public Git。
 
-本轮验证：14个导出回执均为r7004；指定路径相对r6961无变化；选中2437行保留源坐标和空值，选中字段错误缓存0；0数值变更；Accepted阶段记录仅选questType4/5；forceTurn的8个输入/边界示例通过。圈/轮重置在示例中作为输入约定，不代表已验收游戏状态机。
+首轮候选验证（0676ef3历史执行证据，本次不复跑）：14个导出回执均为r7004；指定路径相对r6961无变化；选中2437行保留源坐标和空值，选中字段错误缓存0；0数值变更；Accepted阶段记录仅选questType4/5；forceTurn的8个输入/边界示例通过。圈/轮重置在示例中作为输入约定，不代表已验收游戏状态机。
 
 源错误计数只适用于本次选中字段，不替代TASK-0033历史异常记录。未重跑已Accepted数值验收、源公式重算、全目录扫描、hash、catalog或validate_repository全量校验；按User要求采用本任务定向验证、Registry、变更链接和diff检查。验证摘要见[VALIDATION.json](VALIDATION.json)。
 
 ## 7. 冻结结论与证据限制
 
-**可提交现值候选Review，尚未正式冻结。** 组合和forceTurn已正式闭合；拳击/挖矿条件不触发。新候选没有新业务问题需要User回答。薯片概率字段到单奖过程的映射、777特殊格标识和完整周期EV等原分析精度边界继续保留为Non-blocking，不据此伪造期望值或扩大审计范围。
+**现值候选已获ChatGPT Round 1 Accepted，尚未正式冻结。** 组合和forceTurn已正式闭合；拳击/挖矿条件不触发。新候选没有新业务问题需要User回答。薯片概率字段到单奖过程的映射、777特殊格标识和完整周期EV等原分析精度边界继续保留为Non-blocking，不据此伪造期望值或扩大审计范围。
 
 Review通过仍不自动授权SVN、冻结或发布。若后续出现相关源变更，只复核变化路径和受影响关系，再更新一致版本候选；不能把本次读取时间之外的最新性当已验证。
 
@@ -97,4 +97,13 @@ Review通过仍不自动授权SVN、冻结或发布。若后续出现相关源�
 
 PR #7于2026-09-17以merge commit `051a55195a6a483ce198fe432fe7af29d92444b3`合入main。确认TASK-0034 canonical和三轮Review进入main后，原reservation已finalized。TASK-0034 Complete元数据随本新分支更新，其原6 Closed / 4 Conditional / 12 Non-blocking Matrix保留为组合决定前的Accepted快照。
 
-从最新main完整枚举30个tasks文件，Registry验证后由allocator分配TASK-0035。本任务保持Review，reservation pending-main，等待ChatGPT Review，不提前finalize。2026-09-17 v0.1：首次交付r7004零数值变更候选。
+从最新main完整枚举30个tasks文件，Registry验证后由allocator分配TASK-0035。本任务现为Accepted，reservation pending-main；PR #8保持OPEN，等待User明确合并授权，不提前finalize。2026-09-17 v0.1：首次交付r7004零数值变更候选。
+
+
+## 10. ChatGPT Round 1 Accepted收口
+
+[完整评审](../../../../reviews/TASK-0035-CHATGPT-REVIEW-1.md)已落Git，受评`0676ef30322ae7e8e8b89f34f21688f3eeaa979a`，无阻塞项。ChatGPT核对受控包统计、零变更和复用证据身份，并独立对照r6961 Accepted材料：35900个选中字段全部可映射，值差异0、缺失映射0。以上为Review记录的执行结果，本轮Codex没有重复字段比对或数值验证。
+
+ChatGPT未独立连接公司SVN，HEAD/路径差异仍引用Codex首轮记录；forceTurn示例不代表运行时状态机验收；PriceCheatSheet/ItemExchange选中行0不扩展为查价或产消结论。受控包和原VALIDATION.json保留为受评历史证据，不因Accepted而重生成。
+
+本轮仅收口文档与Registry；不重算、不重跑TASK-0033/0034、不做hash或全量扫描。PR #8保持OPEN，等待User明确合并授权。没有SVN提交、正式冻结或发布，reservation未finalize。Subagents: none。

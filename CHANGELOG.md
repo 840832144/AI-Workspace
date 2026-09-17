@@ -2,6 +2,11 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0035 ChatGPT Round 1 Accepted
+
+- PR #8完整Round 1（受评0676ef3）落库；Task/Status/Handoff/报告及Registry同步Accepted，保留ChatGPT未独立连接公司SVN的证据限制。
+- 本轮仅治理收口，不重算数值、不重跑TASK-0033/0034、不做hash或全量扫描。PR保持OPEN，等待User明确合并授权；不提交SVN、不正式冻结/发布，reservation保持pending-main，不提前finalize。
+
 ## 2026-09-17 — TASK-0035薯片+777现值候选待Review
 
 - User确认没有数值改动；14个指定trunk文件r6961:7004无变化后锁定r7004，交付0数值变更方案、候选/阅读层、546条Accepted阶段引用及8个forceTurn规则示例。
