@@ -1,7 +1,7 @@
 # CR 9.22 全数值整理
 
 - Task：[TASK-0033](../../../../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)
-- 状态：Review / 等待 ChatGPT Round 2；Round 1 Needs changes已落库，本轮仅完成R1/R2修订，22项业务缺口保留。
+- 状态：Accepted（[ChatGPT Round 2](../../../../reviews/TASK-0033-CHATGPT-REVIEW-2.md)，评审基线bdcdb3d，2026-09-17收口）。固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。PR #6等待User明确合并授权。
 - 唯一版本：公司 SVN **trunk r6961**；读取时间 **2026-09-16 17:58:52（北京时间）**，trunk最近内容提交为r6918。本轮全部输入固定为r6961。
 - 交付目标：现行全系统数值总表、资源产消与系统关联、可复算公式/阶段成本/奖励期望/返还率，以及具名缺口。
 - 时间节点：为2026-09-19前的配置冻结提供依据；未授权修改、冻结提交或发布。
@@ -70,7 +70,7 @@ python projects/cr/数值策划/工具/recalculate_numerical_inventory.py --inpu
 
 source-lock需有 `environment=trunk`、整数revision和读取时间。本轮均由 `svn export -r6961 URL@6961` 只读取得；JSON也来自同版，不能用新HEAD补一部分。工具不访问SVN、不改配置，完整输出必须在Git工作树之外。
 
-## 验证与交接
+## 已交付版本的验证与交接
 
 - 独立XLSX读取器抽核16个关键源格通过；6个缺值/除数/离散门槛边界检查通过。
 - 最终XLSX实际5699个公式（XML `<f>`自动计数），全部缓存与Python复算一致；19964个数值输出一致，公式错误/缺缓存均0；16页、4923条阅读记录。4个改动阅读页及特殊RTP横向字段/末行已渲染复核；其余页保留首轮视觉证据，不声称本轮全部重跑。
@@ -78,9 +78,9 @@ source-lock需有 `environment=trunk`、整数revision和读取时间。本轮�
 - catalog、repository、Registry及diff的最终结果见Task；未增加重复文件哈希，没有改源表、同步apply、SVN提交、调参、采集、部署或外部权限变更。
 - 附件 `CR_922_Codex_首轮审计任务_v0.1.md`仅为参考材料；其中广告、生命周期、技术审计、运营数据、优化和哈希等扩展指令不覆盖User明确范围。
 
-等待ChatGPT Round 2复核本轮R1/R2及相关输出一致性，不要求本轮关闭全部22项业务缺口。Task保持Review，不写Accepted、不合并候选、不提前finalize；日常Git仍只写AI-Workspace/projects/cr/，公司SVN正式配置流程不变。Subagents: none。
+ChatGPT Round 2已接受R1/R2及相关输出一致性，无必须修改项；Task为Accepted，22项业务缺口继续保留。PR #6等待User明确合并授权；不改配置、不提交SVN、不调参、不冻结、不合并、不提前finalize。日常Git仍只写AI-Workspace/projects/cr/，公司SVN正式配置流程不变。Subagents: none。
 
-## Round 1 修订与证据限制
+## 历史记录 — Round 1 修订与证据限制
 
 [完整评审](../../../../reviews/TASK-0033-CHATGPT-REVIEW-1.md)保存Needs changes原文（基线04f7b29），包括“未独立复跑catalog/Registry/视觉检查”和没有重取SVN/全源表的限制。状态经过Changes Requested后，修订完成再交Review，未写Accepted。
 
@@ -91,3 +91,11 @@ R2原验证器把全系统总览E7的“=”开头文字误当公式；现由[in
 本轮新增81个特殊配置源字段位置与同版原XLSX核对一致；2处错误的原式/缓存独立读取一致；3项合成回归验证空/错误/外链分类、空/重复ID及非公式说明计数。50625个非编辑范围的既有阅读单元格值/类型与受评工作簿一致。源公式没有重新求值；新表仅照录配置和注释，无新业务公式。
 
 完整复核包补入两份同r6961原始源表用于R1/R2复查（合计14份）；源表原件不改。首轮工作簿与ZIP保存在受控备份，当前完整数值、附录和复核包不进入public Git。没有新取SVN、混版或新增哈希检查。
+
+## Round 2 Accepted（2026-09-17收口）
+
+[完整Round 2评审](../../../../reviews/TASK-0033-CHATGPT-REVIEW-2.md)记录基线`bdcdb3da6d1367c38e62fe7d45428b752d7e3063`：R1/R2通过，固定trunk r6961现值整理及已列明假设的条件复算被接受。22项业务缺口保留，尚未冻结或发布；Accepted不是全部数值闭合、上线验收或合并授权。
+
+Round 2独立复算5699个输出公式、核对19964个数值格及R1的81个源字段/45处文字，重扫6/2/19异常与依赖清单，运行3项合成回归并定向渲染新增页。评审没有重取SVN、重算全部源公式/外链或建立完整周期EV；catalog/repository/Registry、4页视觉及50625个旧格不变比较未由Review独立重跑，仍属于Codex此前的证据。
+
+本次仅收口Git中的评审和治理状态，不重建总表或复核包、不增加重复哈希检查。[VALIDATION-R1.json](VALIDATION-R1.json)及受控包内验证文件保留受评提交时的执行状态和数值证据；当前Accepted及待User合并授权状态以Task、本文和Round 2记录为准。原reservation保持pending-main，完整数值继续留受控目录。

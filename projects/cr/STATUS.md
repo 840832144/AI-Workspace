@@ -1,15 +1,16 @@
 # CR 当前状态
 
-## 2026-09-16 — TASK-0033 CR 9.22 全数值整理
+## 2026-09-17 — TASK-0033 CR 9.22 全数值整理 Accepted
 
-- Task：[TASK-0033](../../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)，Review；Executor: Codex；Subagents: none。
-- 执行状态：[ChatGPT Round 1](../../reviews/TASK-0033-CHATGPT-REVIEW-1.md) Needs changes（基线04f7b29）；R1/R2修订已完成，等待Round 2；固定trunk r6961，22项口径缺口保留；未授权调参、冻结提交或发布。
+- Task：[TASK-0033](../../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)，Accepted；Executor: Codex；Subagents: none。
+- 执行状态：固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。[ChatGPT Round 2](../../reviews/TASK-0033-CHATGPT-REVIEW-2.md) Accepted（基线bdcdb3d），R1/R2无必须修改项；[Round 1](../../reviews/TASK-0033-CHATGPT-REVIEW-1.md)历史保留。PR #6等待User明确合并授权。
 - 修订验证：最终XLSX实际5699个公式（XML `<f>`自动计数），全部缓存与Python复算一致；19964个数值输出一致，公式错误/缺缓存均0；16页、4923条阅读记录。特殊条件9行单列；6处缺缓存/2处错误缓存/19处外链分别记录，说明字段不判为派奖或运行故障；G01/G02优先级继续待确认。
 - 读取时间：2026-09-16 17:58:52（北京时间）；唯一来源为公司SVN trunk，同轮不混dev、101或历史数字。
 - 产物：[报告及交付导航](REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)。完整数值总表/资源关系/公式/缺口在本机受控包，public Git仅保留工具和脱敏交接。
 - 机器美金Bet>1沿用85%、<1沿用95%；=1及配置冲突待确认。薯片、777、拳击、挖矿分别整理，组合与排期未定，通常同时两个，不默认四个全开。
 - 2026-09-19为User期望的最晚冻结节点；本Task只提供依据。无源配置写入、SVN提交、数据采集、技术审计、部署或权限变更。
-- Git日常仍只写AI-Workspace/projects/cr/；原reservation pending-main，候选待Review，不合并、不提前finalize。
+- 证据边界：Round 2独立检查输出公式/CSV、特殊RTP源项、3项回归与新增页定向渲染；未重新访问SVN或重跑全部源公式/外链/完整周期EV。catalog/repository/Registry及其他视觉/旧格比较的独立复跑限制见完整评审。本次仅收口治理记录。
+- Git日常仍只写AI-Workspace/projects/cr/；原reservation pending-main。Accepted不代表冻结、发布或合并授权；不改配置、不提交SVN、不调参、不冻结、不合并、不提前finalize。
 
 ## 历史完成记录 — TASK-0032 单仓切换
 

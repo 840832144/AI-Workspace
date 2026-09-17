@@ -1,6 +1,14 @@
 # ChatGPT Handoff
 
-## 2026-09-16 — TASK-0033 R1/R2修订完成，等待Round 2
+## 2026-09-17 — TASK-0033 Round 2 Accepted，等待User合并授权
+
+- [完整Round 2](../reviews/TASK-0033-CHATGPT-REVIEW-2.md)已落库：Accepted，评审基线`bdcdb3da6d1367c38e62fe7d45428b752d7e3063`；[Task](../tasks/TASK-0033-CR-0922-NUMERICAL-INVENTORY.md)已更新为Accepted，保留Round 1历史，不新建Task。
+- 固定 trunk r6961 现值整理已通过；22项业务缺口保留；尚未冻结或发布。R1/R2均通过，无必须修改项；不等于完整机台/活动周期EV或所有业务定义已闭合。
+- 评审独立验证与未复跑项按原文保留；本次不改数值产物或重复业务测试。[报告](../projects/cr/REPORTS/CR-20260922-NUMERICAL-INVENTORY/README.md)提供当前状态，受控包及VALIDATION-R1.json保留受评版本证据，不将旧状态当当前状态。
+- PR #6和原分支`codex/cr-0922-numerical-inventory`保留，等待User明确合并授权；原reservation pending-main。不改配置、不提交SVN、不调参、不冻结、不合并、不提前finalize；完整数值和受控附录继续留受控目录。Subagents: none。
+- 下方为历史阶段记录；其他任务交接保持原样。
+
+## 历史阶段 — 2026-09-16 TASK-0033 R1/R2修订完成，等待Round 2
 
 - [完整 Review](../reviews/TASK-0033-CHATGPT-REVIEW-1.md)已落库：Needs changes，基线04f7b29；Task经过Changes Requested，修订后回到Review，等待ChatGPT Round 2。
 - R1：特殊RTP条件页/CSV保留同版全部9行、空/重复ID、等级上下界、5个活动条件与本表枚举；与常规85/95分开。优先级/实际生效继续关联G01/G02。
