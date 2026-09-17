@@ -4,7 +4,7 @@
 
 PR #7已合并main（051a551），TASK-0034原reservation已finalized；6/4/12保留为历史Accepted快照。User后续正式选择薯片+777并闭合forceTurn：当前圈付费抽奖计数，普通格N前未自然命中则第N次强制，提前命中取消，换圈/轮重置，特殊格排除。[正式输入与当前方案](REPORTS/CR-20260922-SNACK-777-FREEZE-PREP/README.md)。
 
-新TASK-0035按allocator登记，User答复“没有改动”，保持现值，0数值变更。2026-09-17定向检查14表无变化后锁定r7004；不将r6961历史证据重新标成新读取，不重跑Accepted模型。当前已获[ChatGPT Round 1 Accepted](../../reviews/TASK-0035-CHATGPT-REVIEW-1.md)（受评0676ef3）；PR #8保持OPEN，等待User明确合并授权。未提交SVN、未冻结、未发布；新reservation仍pending-main。下节旧待合并/待组合/待forceTurn描述属于当时历史。
+新TASK-0035按allocator登记，User答复“没有改动”，保持现值，0数值变更。2026-09-17定向检查14表无变化后锁定r7004；不将r6961历史证据重新标成新读取，不重跑Accepted模型。当前已获[ChatGPT Round 1 Accepted](../../reviews/TASK-0035-CHATGPT-REVIEW-1.md)（受评0676ef3）；PR #8已合并（fde35b2），canonical与Review已进入main，原reservation已finalized；治理收口Complete。未修改数值候选、未提交SVN、未冻结、未发布。Complete元数据通过合并后文档PR记录。下节旧待合并/待组合/待forceTurn描述属于当时历史。
 
 
 ## 历史 — 2026-09-17 User后续决定与Round 3冻结Gate

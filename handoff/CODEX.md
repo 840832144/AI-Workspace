@@ -1,6 +1,13 @@
 # Codex Handoff
 
-## 2026-09-17 — TASK-0035 ChatGPT Round 1 Accepted
+## 2026-09-17 — TASK-0035合并与finalize完成
+
+- [TASK-0035](../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。
+- 已直接确认canonical与Round 1 Accepted Review进入main，使用原reservation执行既有finalize返回finalized，远端reservation已解除；不新建或重新分配Task。
+- r7004现值、0数值变更的薯片+777候选保持原样，Accepted结论及证据限制保留；没有重算、hash、全量业务扫描或SVN操作。**尚未正式冻结或发布**。Subagents: none。
+- 本次仅收口Task/Status/Handoff、报告治理状态和Registry；Complete元数据随codex/task-0035-git-closeout候选分支提交PR，等待Review。下方Accepted/OPEN/pending-main为合并前历史。
+
+## 历史 — TASK-0035 ChatGPT Round 1 Accepted（合并前）
 
 - [完整Round 1](../reviews/TASK-0035-CHATGPT-REVIEW-1.md)已落库，受评0676ef3，结论Accepted，无阻塞项。ChatGPT独立核对35900个选中字段无差异，未独立连接公司SVN；本次只做治理收口，不重算、不重跑TASK-0033/0034、不做hash或全量扫描。
 - PR #7已按User授权以merge commit `051a55195a6a483ce198fe432fe7af29d92444b3`合入main；canonical及三轮Review进入main后，原TASK-0034 reservation返回finalized，旧Task的Gate交付与Git收口Complete。

@@ -314,7 +314,7 @@ entries:
     canonical_file: "tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md"
     file: "tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md"
     title: "CR 9.22 薯片 + 777 数值调整与冻结准备"
-    status: "Accepted"
+    status: "Complete"
     project_key: "CR"
     human_alias: ""
     owner: "User"
