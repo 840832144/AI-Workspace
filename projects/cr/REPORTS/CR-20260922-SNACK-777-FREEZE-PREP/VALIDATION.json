@@ -1,0 +1,32 @@
+{
+  "task_id": "TASK-0035",
+  "status": "PASS",
+  "read_at_utc": "2026-09-17T06:32:41.110606+00:00",
+  "trunk_revision": 7004,
+  "prior_revision": 6961,
+  "targeted_files": 14,
+  "changed_paths": 0,
+  "source_exports": 14,
+  "sheets": 16,
+  "selected_rows": 2437,
+  "reading_cells": 35900,
+  "source_error_cells_in_selection": 0,
+  "numeric_changes": 0,
+  "source_writes": 0,
+  "accepted_stage_rows_reused_not_recalculated": 546,
+  "force_turn_rule_examples_passed": 8,
+  "evidence_limit": "规则函数输入示例与候选读取检查，不是运行时证明；Accepted计算未重跑；尚未冻结",
+  "registry": {
+    "status": "valid",
+    "canonical_count": 18,
+    "collisions": 0,
+    "existing_legacy_warnings": 6
+  },
+  "diff_links": {
+    "status": "PASS",
+    "checked_relative_links": 17,
+    "scope": "only changed lines and new report"
+  },
+  "subagents": "none",
+  "python_syntax": "PASS"
+}

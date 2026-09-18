@@ -1,5 +1,65 @@
 # Codex Handoff
 
+## 2026-09-17 — TASK-0035合并与finalize完成
+
+- [TASK-0035](../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。
+- 已直接确认canonical与Round 1 Accepted Review进入main，使用原reservation执行既有finalize返回finalized，远端reservation已解除；不新建或重新分配Task。
+- r7004现值、0数值变更的薯片+777候选保持原样，Accepted结论及证据限制保留；没有重算、hash、全量业务扫描或SVN操作。**尚未正式冻结或发布**。Subagents: none。
+- 本次仅收口Task/Status/Handoff、报告治理状态和Registry；Complete元数据随codex/task-0035-git-closeout候选分支提交PR，等待Review。下方Accepted/OPEN/pending-main为合并前历史。
+
+## 历史 — TASK-0035 ChatGPT Round 1 Accepted（合并前）
+
+- [完整Round 1](../reviews/TASK-0035-CHATGPT-REVIEW-1.md)已落库，受评0676ef3，结论Accepted，无阻塞项。ChatGPT独立核对35900个选中字段无差异，未独立连接公司SVN；本次只做治理收口，不重算、不重跑TASK-0033/0034、不做hash或全量扫描。
+- PR #7已按User授权以merge commit `051a55195a6a483ce198fe432fe7af29d92444b3`合入main；canonical及三轮Review进入main后，原TASK-0034 reservation返回finalized，旧Task的Gate交付与Git收口Complete。
+- [TASK-0035](../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)由allocator正式分配，当前Accepted；仅9.22薯片+777。User确认“没有改动”，r7004零数值变更方案、清单、候选及受控复核包已完成；forceTurn已正式闭合，两个活动无剩余业务规则Gate。
+- 2026-09-17 14:32:41北京时间读取HEAD r7004；14个指定工作簿相对r6961无变化，统一导出r7004。阅读层2437行；复用546条Accepted阶段记录不重算；8个forceTurn定义示例及候选定向验证通过。
+- 新分支codex/cr-snack777-freeze-prep / [PR #8](https://github.com/840832144/AI-Workspace/pull/8)，原Task完整历史保留；新reservation pending-main。PR保持OPEN，等待User明确合并授权；不改源配置、不提交SVN、不调参、不正式冻结或发布。旧Task Complete元数据随本新分支更新；新Task不提前finalize。Subagents: none。
+- [当前方案、候选及受控复核包导航](../projects/cr/REPORTS/CR-20260922-SNACK-777-FREEZE-PREP/README.md)；完整数值继续留受控目录。历史TASK-0034的6/4/12为组合决定前快照，不能用其中待授权/待forceTurn语句替代当前输入。
+
+
+## 历史 — TASK-0034 Round 3 Accepted（合并前）
+
+- [Task](../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)为**Accepted**；[完整Round 3](../reviews/TASK-0034-CHATGPT-REVIEW-3.md)已落Git，受评d8f1b72，无必须修改项；Round 1/2及历史证据保留。
+- [当前Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)保持**6 Closed / 4 Conditional / 12 Non-blocking**。G03/G09/G12/G16按原条件触发；规则Closed不等于源配置已满足冻结条件，活动组合仍由User决定。**尚未冻结或发布**。
+- Review仅做轻量状态复核，未独立重跑前轮数值、Registry、链接、diff或其他Codex证据；本轮仅落库评审并同步治理状态，不重算、不重跑TASK-0033、不做哈希或全量业务扫描。完整数值留原受控目录。
+- 原分支codex/cr-0922-freeze-gates / PR #7等待User明确合并授权；reservation保持pending-main，不新建Task、不提前finalize。不改源配置、不提交SVN、不调参、不冻结、不发布、不合并。Subagents: none。
+
+
+## 历史Round 3候选 — TASK-0034 Gate状态修订（d8f1b72，已Accepted）
+
+- [Task](../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)为Review；[完整Round 2](../reviews/TASK-0034-CHATGPT-REVIEW-2.md) Needs changes，受评761b08c；经过Changes Requested后只修状态，原分支codex/cr-0922-freeze-gates / PR #7及pending-main reservation不变。Subagents: none。
+- [当前Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)：**6 Closed / 4 Conditional / 12 Non-blocking**。无无条件业务规则阻塞；不能再写只有2类条件，业务规则Closed与候选配置可冻结分开。
+- **G12 Conditional**：选挖矿时，r6961缺id4–12通关奖励必须补齐，或由User明确这些关无通关奖励；同ID/12关结束的规则Closed保留。
+- **G16 Conditional**：选拳击或挖矿时，必须移除对应源配置中的相关建造币奖励；关闭建造/移除奖励的决定Closed，前轮分析层排除27槽位不能替代源修改。
+- G03（剩余缺档需价值比较）和G09（选777补forceTurn）继续Conditional；其他状态/数值规则不变，不代选活动。
+- [报告](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/README.md)已同步；本轮只做Gate/文档一致性、链接/diff及Registry校验，不重算数值、不读源表、不运行分析工具、不重跑TASK-0033、不做哈希或全量业务扫描。原受控Round 2包数值继续复用，旧Gate统计为历史。
+- 下一轮轻量Review只核对上述分类和冻结条件；不改配置、不提交SVN、不调参、不冻结、不发布、不合并或finalize。下方“仅2类条件”为受评历史，当前以本节为准。
+
+
+## 历史Round 2候选（761b08c，Gate分类已修正）— TASK-0034 后续正式决定修订，等待Round 2
+
+- [TASK-0034](../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)仍为Review，原分支codex/cr-0922-freeze-gates / PR #7，原reservation pending-main；Subagents: none。
+- [Round 1完整记录](../reviews/TASK-0034-CHATGPT-REVIEW-1.md)Needs changes，基线007202e；PR #7 User正式决定已逐项应用。状态经过Changes Requested，当前等待Round 2，不预先写Accepted。
+- [Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)当前7 Closed、2 Conditional、13 Non-blocking，**无无条件业务阻塞，最多2类条件问题**：选777才补forceTurn；拳击/挖矿仍需比较缺档奖励价值才处理G03。G01/G02退出前置；其他原非阻塞缺口不要求本轮关闭。
+- 积分改为溢出连续跨档/末档规则，Pass共享门槛；建造币从受影响模型排除，5处金币缺档仍在；777旧每格一次账本退出当前周期成本。四活动保留可选候选，不决定组合。
+- 固定r6961；只读8张受影响表，550条阶段记录、30对Pass、27个建造币奖励槽位排除。源奖励只覆盖挖矿id1..3且有round，未用取模补4..12；G12规则Closed不代表现表齐备或完整12关EV。仅计算层覆盖，没有源配置写入。
+- 4项连续结算回归及受影响输出定向核对；Registry工具重建/验证，变更链接/diff检查；不重跑TASK-0033、catalog、全仓业务扫描或哈希。完整数值及[增量复核包导航](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/README.md)留受控目录，旧Accepted及首轮包保持历史。
+- Round 2只核对正式输入应用、旧假设退出当前结论、最多2类条件Gate及源表证据限制。PR保持OPEN，不改配置、提交SVN、调参、冻结、发布、合并或finalize。下方首轮8组问题是历史，不再要求重答。
+
+
+## 历史首轮 — 2026-09-17 TASK-0034 CR冻结Gate，等待ChatGPT Review
+
+- 新Task：[TASK-0034](../tasks/TASK-0034-CR-0922-FREEZE-GATES.md)，Review，独立分支codex/cr-0922-freeze-gates；TASK-0033保持Complete，不续写。原reservation pending-main，不提前finalize。Subagents: none。
+- [报告](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/README.md)及[Matrix](../projects/cr/REPORTS/CR-20260922-FREEZE-GATES/FREEZE_GATE_MATRIX.md)已经交付；10项Needs Planner Decision、1项Conditional、11项Non-blocking。已闭合子项与整Gate状态分开，冻结依据尚不充分；没有执行冻结。
+- 2026-09-17 10:40:04北京时间读取SVN：HEAD r6987，trunk最后内容r6918，相对r6961无路径变化，继续同版r6961。只读23张关联表和既有索引，没有重跑Accepted总表或文件哈希。
+- User已确定常规USD Bet=1归95%；新受控CSV为220条参考组合增加决策覆盖，原总表不动。特殊RTP优先级仍待确认，不能把策划决定当配置已符合。
+- 价格缺档收敛为同一金额的5处引用；4个阶段样例、9个777圈/轮的条件清盘账本和资源关系可复算。候选保留薯片/777/拳击/挖矿，不替User选四选二。G13因薯片/拳击仍在候选中保持条件阻塞。
+- 9份当前正式知识库原文有revision证据；历史数值附件未作当前输入。全局搜索权限不足但已知CashRoyal目录读取成功；不扩大权限，也不声称已检索所有正式资料。8组最小问题集中在Matrix的Q1–Q8，由对应策划/User补规则，不要求程序/线上/运营/支付审计。
+- 验证：新工具真实输出、3个RTP边界、220条新旧口径分离、4个阶段手算、777条件清盘、定向价格覆盖和22项Matrix状态一致；AST通过。Registry由工具重建后valid（17 canonical/0 collision，6项既有legacy提示）；新增文档14个相对链接有效，diff检查通过。未重复Accepted工作簿/源缓存/外链/catalog/全仓业务验收。
+- 完整数值、受控复核包与证据仅在本机；public Git只有脱敏报告/工具/治理。未改源表、提交SVN、调参、冻结、发布、合并或权限。
+- 唯一下一步：ChatGPT Review本轮Gate整理及条件边界；User/策划集中答复Q1–Q8。下方TASK-0033及其他任务记录保留原时点。
+
+
 ## 2026-09-17 — TASK-0033 PR #6已合并，原reservation已finalized
 
 - User已明确批准Git收口；[PR #6](https://github.com/840832144/AI-Workspace/pull/6)于2026-09-17 09:50:41（北京时间）通过merge commit合入main：`998a4d8a90541df25b0cedbcaeba069bbd1a010d`。保留候选f6bf84b、受评bdcdb3d及TASK-0033历史；[Round 1](../reviews/TASK-0033-CHATGPT-REVIEW-1.md)和[Round 2](../reviews/TASK-0033-CHATGPT-REVIEW-2.md)原文未改。
