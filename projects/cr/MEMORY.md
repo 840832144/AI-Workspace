@@ -1,5 +1,11 @@
 # CR 长期记录入口
 
+## 2026-09-17 — 制作人体验的计算边界（TASK-0036，待Review）
+
+[本轮报告](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/README.md)在r7013路径差异为空后复用r6961证据，不重新提取源表。新增静态档体验必须保留实际扣金币Spin、固定等级/VIP/Bet、足够余额和活动初始状态假设；不能据此推真实升级或破产概率。连续积分的道具期望要对命中次数分布逐项结算，不能用“平均积分能换多少”代替；跨活动毛下注只计一次，积分产物上限不等于777完整周期清盘成本。
+
+这些是本Task待Review的方法与证据边界，不代表ChatGPT已Accepted；旧0033/0034/0035结论继续以各自正式Review为准。未调参、修改SVN、冻结或发布。日常Git仍只写AI-Workspace/projects/cr/。
+
 ## 2026-09-17 当前决定 — 薯片+777零数值变更候选
 
 PR #7已合并main（051a551），TASK-0034原reservation已finalized；6/4/12保留为历史Accepted快照。User后续正式选择薯片+777并闭合forceTurn：当前圈付费抽奖计数，普通格N前未自然命中则第N次强制，提前命中取消，换圈/轮重置，特殊格排除。[正式输入与当前方案](REPORTS/CR-20260922-SNACK-777-FREEZE-PREP/README.md)。

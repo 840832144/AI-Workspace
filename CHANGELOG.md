@@ -1,6 +1,20 @@
 # Changelog
 
+## 2026-09-18 — TASK-0036相对外链master与无外链展示版
+
+- 固定r7013原始导出；概览+完整明细、外链/元数据清理、飞书文件回读完成。原数值Accepted保留，Excel等待ChatGPT Review；不冻结/发布、合并或finalize。
+
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
+
+## 2026-09-17 — TASK-0036制作人体验报告交Review
+
+- 全trunk路径差异r6961→r7013为空，直接复用0033/0034/0035 Accepted输入；新增八类系统体验解释、36组Spin/72条活动/36条掉卡条件和9组Unknown。
+- 完整数值只在受控报告/复核包，Git保存脱敏制作人版、标准库复算方法及验证摘要；6项新增测试通过，不重跑Accepted全量验收。未改数值候选、SVN、冻结或发布，原reservation pending-main。
+
+## 2026-09-17 — 登记TASK-0036全项目数值体验汇报
+
+- 从最新main b0a36c8检查完整Task Registry/active scope后，由allocator登记TASK-0036；复用0033/0034/0035 Accepted证据，新增制作人体验视角和必要增量数据。
+- 只读trunk定向版本比较，不调参、不改SVN、不冻结、不发布；完整数值受控，Git只放脱敏报告和方法。
 
 ## 2026-09-17 — TASK-0035已合并并finalized
 

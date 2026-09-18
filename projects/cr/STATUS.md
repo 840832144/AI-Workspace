@@ -1,5 +1,30 @@
 # CR 当前状态
 
+## 2026-09-18 — TASK-0036双版本Excel完成，等待ChatGPT Review
+
+- 按PR #10最新User输入形成相对外链master与无外链飞书展示版；原数值报告Round 1 Accepted保留，本次Excel仍为Review。前版14页产物的Needs changes与旧自包含方案保留为历史。
+- [当前飞书展示版](https://gfok27asqq.feishu.cn/wiki/UZD8wLpQKicKV7kcorIcNIb8nwd)；原旧表及前版候选未覆盖。Git/TASK-0036与本机受控master是真相源，飞书是展示快照。公司内链接可读、external access closed，未修改ACL或开启公网分享。
+- 37份原始trunk工作簿定向`svn export -r7013`导出；26张前台含12组概览/明细、总览和Unknown。等级5000行及升级奖励4999行、价格7236行完整保留；104个筛选表、26页冻结前6行/首列，等级分组和内页跳转。
+- 最终master 1,062,421公式、37条相对外链；展示版0公式/0外链。969个关键输出与Accepted底稿一致，两个版本逐格一致，源格缓存一致；公式错误/缺缓存/作者或绝对路径检查为0。搬移后37条链接解析、代表源格刷新及原生窗格回读通过；26页视觉复核。飞书下载回读969项通过。
+- 完整文件、相对源包、版本清单和验证证据位于受控`producer-master-20260918/`；公开Git仅工具、结构、方法、脱敏验证与交接。旧Wiki系统功能19页/17份XLSX子模块结构已检查，旧值没有入当前计算。
+- 9组Unknown保留，未重跑旧Task模型/全量配置盘点或hash；未重算或修改源表。不调参、不提交SVN、不冻结或发布；PR #10保持OPEN，原reservation pending-main，不合并或finalize。Subagents: none。
+
+## 2026-09-17 — TASK-0036飞书展示副本已创建，待User轻量Review
+
+- [展示文档：CR 9.22 全项目数值体验｜制作人展示版｜r7013](https://gfok27asqq.feishu.cn/docx/Rm2GdeMcXoEg2SxodIScDdzpn1c)；[TASK-0036](../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)与Git仍为真相源，飞书仅为会议展示副本。
+- 依据PR #10已发布Round 1 Accepted（受评d663a0c）；本轮只创建及登记展示链接，数值、9组Unknown和r6961原证据/r7013适用口径不变。当前等待User对展示副本与Git登记做轻量Review；下方数值报告“待ChatGPT Review”为当时历史。
+- CLI显式user创建并回读revision 4：7节顺序、8张表、36组Spin、八类系统、9组Unknown、段落与来源链接一致，同名1篇。只展示报告汇总；无源配置/受控包附件、内部URL/路径或敏感日志上传。
+- 当前公司内链接可读（tenant_readable）；未改权限、未开启公网链接分享。原分支codex/cr-0922-producer-experience / PR #10保持OPEN；不调参、不改SVN、不冻结、不发布、不合并或finalize，reservation pending-main。Subagents: none。
+
+## 历史 — TASK-0036全项目数值体验提交ChatGPT Review时
+
+
+- [TASK-0036](../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)为Review；allocator原reservation pending-main，分支codex/cr-0922-producer-experience / [PR #10](https://github.com/840832144/AI-Workspace/pull/10) OPEN。起点main b0a36c8，PR #9与0035 Complete记录已合入，下方旧待Review语句为历史。
+- 15:49:34北京时间固定trunk r7013；r6961→r7013全trunk变更路径摘要为空，覆盖全部数值根及新增/删除。所有系统直接复用Accepted证据，源刷新0；不重做0033/0034/0035、不做hash或全量正文扫描。
+- [制作人报告及受控包](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/README.md)已完成八类覆盖；36组静态Spin、72条双活动、36条掉卡条件；6项新增模型测试与定向输出核对通过。仅普通扣金币Spin，固定档/足够余额；不代表真实玩家分布、升级路径或实际机台适用RTP。
+- 剩余9组解释边界逐项列缺项/影响/负责人，历史22项保留来源，不新开冻结Gate。完整数值与复算输入受控，Git仅脱敏报告和方法；777 forceTurn闭合，活动仅薯片+777，0035现值候选不改。
+- Review重点：特殊/常规RTP分层，离散积分期望，毛下注及资源不重计，成长/付费/卡册Unknown。Task Registry按既有工具重建验证；不调参、不改或提交SVN、不冻结、不发布，不合并或finalize。Subagents: none。
+
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
 - [TASK-0035](../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。
