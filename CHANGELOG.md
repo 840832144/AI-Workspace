@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-18 TASK-0028 本人多行
+
+2026-09-18 本人多行规则已部署：[EarlyMeeting@56455ab](https://github.com/840832144/EarlyMeeting/commit/56455ab5b09845b90fe7df80e3f0df52e8561318)，运行代码c7bdf66。User要求去掉已有一行后不能再加的限制，现策划、程序均可继续新增本人行；回调防重、本人权限、行版本及卡片容量保护保留。两个群共享代码更新后ready，原5/4行、pending/queued=0，无重发或整卡刷新。15项队列/恢复检查与Linux CI 35297410731通过；截图的客户端行不可见原因未独立复现，不冒称定位，多行真实员工填写待正常使用。多行状态不可直接回退到要求owner唯一的旧版。Registry19 canonical / 0 collision / valid，同目标继续TASK-0028 Review、reservation pending-main，未新建Task；Sync ON_DEMAND / provider unavailable / stale6 / conflicts0。实现和证据只在EarlyMeeting；直接更新现有Task/Handoff，不新建Roadmap方向或Future Task。Subagents: none。
+
 ## 2026-09-17 — TASK-0028 云端超时恢复
 
 - 2026-09-17 群2超时恢复及预防补丁：[EarlyMeeting@88f2508](https://github.com/840832144/EarlyMeeting/commit/88f2508f211f3e881b6ffb0bfa12caf74e85b08a) / [实测记录](https://github.com/840832144/EarlyMeeting/blob/88f2508f211f3e881b6ffb0bfa12caf74e85b08a/docs/RECOVERY_20260917.md)。User批准修复并要求先尽快恢复；原新增操作用同UUID/sequence补试后获明确成功，原卡/记录保留，无重发或整卡刷新。共享补丁87ccd33已部署两群：20秒API等待、临时网络失败最多追加两次原意图重试，保留队列及预算，不把冲突视为成功。13项恢复检查及Linux CI 35172219918通过；最终云端两群ready、pending/queued均为0。普通网络短暂失败已增加有限恢复，通用未知结果自动核验、客户端草稿保留仍未声称解决。收尾同步origin/main@eb13bbb并保留并行Task记录，Registry17 canonical / 0 collision / valid；继续TASK-0028 Review、reservation pending-main，不另占号。业务实现/日志与证据仅在EarlyMeeting。Subagents: none。当前修复直接更新Task/Handoff，不新增Roadmap方向或Future Task。

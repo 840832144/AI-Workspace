@@ -1,5 +1,9 @@
 # Codex Handoff
 
+## 2026-09-18 TASK-0028 本人多行
+
+2026-09-18 本人多行规则已部署：[EarlyMeeting@56455ab](https://github.com/840832144/EarlyMeeting/commit/56455ab5b09845b90fe7df80e3f0df52e8561318)，运行代码c7bdf66。User要求去掉已有一行后不能再加的限制，现策划、程序均可继续新增本人行；回调防重、本人权限、行版本及卡片容量保护保留。两个群共享代码更新后ready，原5/4行、pending/queued=0，无重发或整卡刷新。15项队列/恢复检查与Linux CI 35297410731通过；截图的客户端行不可见原因未独立复现，不冒称定位，多行真实员工填写待正常使用。多行状态不可直接回退到要求owner唯一的旧版。Registry19 canonical / 0 collision / valid，同目标继续TASK-0028 Review、reservation pending-main，未新建Task；Sync ON_DEMAND / provider unavailable / stale6 / conflicts0。实现和证据只在EarlyMeeting；直接更新现有Task/Handoff，不新建Roadmap方向或Future Task。Subagents: none。
+
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
 - [TASK-0035](../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。
