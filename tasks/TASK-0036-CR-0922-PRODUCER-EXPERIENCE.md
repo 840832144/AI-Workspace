@@ -1,13 +1,13 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: 数值报告ChatGPT Round 1已Accepted；飞书展示副本已创建并回读，链接登记等待User轻量Review；不调参、不冻结或发布
+- Execution status: 数值报告Round 1 Accepted保留；相对外链master与无外链展示版已完成并回读，等待ChatGPT Review；不调参、不冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
-- Updated: 2026-09-17
+- Updated: 2026-09-18
 - User decision: Approved（全项目体验分析与报告；不调参、不改SVN、不冻结、不发布）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；数值报告已Accepted，展示副本登记待User轻量Review）
 - Allocation relationship: new
@@ -17,6 +17,23 @@
 ## Goal
 
 基于TASK-0033全数值底稿、TASK-0034规则闭合及TASK-0035薯片+777现值候选，形成可供制作人决策的全项目数值体验汇报，交ChatGPT Review。不重新盘点或验收已Accepted工作；当前任务只新增体验场景、跨系统解释和必要的变化数据。
+
+## 2026-09-18 当前正式输入：原始r7013外链master与独立展示版
+
+- [最新User决定](https://github.com/840832144/AI-Workspace/pull/10#issuecomment-5724897864)覆盖下方历史“全部自包含/每模块单页”约束；原Task与reservation沿用，不新建Task。
+- [前版Excel产物Review](https://github.com/840832144/AI-Workspace/pull/10#issuecomment-5724542994)为Needs changes，针对User上传文件而非最新commit；不撤销原数值报告Accepted。本轮修复元数据本机路径、长表阅读结构，并按User最终输入保留全部逐行明细。
+- 仅定向`svn export -r7013`导出实际所需37份trunk原始工作簿；新master配置输入来自这些原始格，r6961抽取不再作为本次Excel源。Accepted场景/结果用作定义与交付核对；旧Wiki只供结构、阅读节点和展示方式。
+- master在受控本机使用，SRC相对外链直指原始源格；CALC/前台公式可追溯。每模块概览+明细，完整适用原行/原字段、筛选、冻结、分组/跳转；等级沿用旧表节点并补业务变化点。
+- 独立飞书展示版使用相同版本清单和master已验证缓存，移除外链并保留内页跳转；不上传master/原始源包，不覆盖旧附件、不修改权限。生成后清理作者和绝对路径，验证整包搬移及master/展示版一致性。
+- 已安全fetch main与原PR分支，远端未新增共享文件改动；Task补充输入造成Registry drift后按原工具重建，19 canonical / 0 collision / valid。Subagents: none。
+
+## 历史正式输入：首版自包含数值体验Excel（已被上述要求覆盖）
+
+- 沿用TASK-0036及原reservation，不新建Task。User及[PR #10正式输入](https://github.com/840832144/AI-Workspace/pull/10#issuecomment-5724092870)要求Excel作为主要策划/制作人展示产物，既有飞书文档保留为辅助说明。
+- 只读下载旧`CashRoyal数值.xlsx`，分析模块、横向档位对比、累计和公式习惯；旧值、旧经验规则和外链不作为当前数值依据。当前依据仍为r7013适用版本及Accepted底稿，9组Unknown不改。
+- 新`CR_9.22_数值体验表_r7013.xlsx`每模块一张前台Sheet；隐藏SRC配置、CALC计算和来源索引，前台公式引用。无外部文件链接，不手填派生结果，Unknown不补0。优先14模块含Buff；只定向读取所需Accepted抽取，不重跑旧Task、SVN或hash。
+- 完整数值/旧表/预览/复核包留受控目录。Git只保存生成方法、旧表结构说明、脱敏验证摘要和治理记录。使用现有飞书CLI上传到旧数值资料所在知识目录，不覆盖旧表、不扩大权限。
+- 开始前已安全fetch main及原分支；Registry 19 canonical、0 collision、valid，共享文件无新增并发差异。Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。原PR #10保持OPEN，交ChatGPT Review，不合并或finalize。Subagents: none。
 
 ## 范围与正式输入
 
@@ -67,3 +84,14 @@
 - 权限回读为`tenant_readable`（公司内链接可读），沿用新文档默认内部权限；没有执行ACL/分享设置修改或开启公网链接分享。无附件，未上传受控包完整商业明细、源配置、内部URL/路径、token、私有Registry或敏感日志；完整展示草稿只留本机受控目录。
 - 当前Review针对本次展示副本及链接登记；数值报告Accepted依据不变。未重算数值、重跑旧Task或做hash；Workspace Sync为ON_DEMAND/provider unavailable/stale 6/conflicts 0，展示文档CLI的真实创建/回读结果独立记录，不冒充Context provider可用。
 - 按User本次授权仅登记Task/Status/Handoff链接；未执行正式冻结或发布，不修改/提交SVN、不调参、不合并PR #10或finalize，原reservation pending-main。Subagents: none。
+
+## 2026-09-18 — TASK-0036双版本Excel完成，等待ChatGPT Review
+
+- 按PR #10最新User输入形成相对外链master与无外链飞书展示版；原数值报告Round 1 Accepted保留，本次Excel仍为Review。前版14页产物的Needs changes与旧自包含方案保留为历史。
+- [当前飞书展示版](https://gfok27asqq.feishu.cn/wiki/UZD8wLpQKicKV7kcorIcNIb8nwd)；原旧表及前版候选未覆盖。Git/TASK-0036与本机受控master是真相源，飞书是展示快照。公司内链接可读、external access closed，未修改ACL或开启公网分享。
+- 37份原始trunk工作簿定向`svn export -r7013`导出；26张前台含12组概览/明细、总览和Unknown。等级5000行及升级奖励4999行、价格7236行完整保留；104个筛选表、26页冻结前6行/首列，等级分组和内页跳转。
+- 最终master 1,062,421公式、37条相对外链；展示版0公式/0外链。969个关键输出与Accepted底稿一致，两个版本逐格一致，源格缓存一致；公式错误/缺缓存/作者或绝对路径检查为0。搬移后37条链接解析、代表源格刷新及原生窗格回读通过；26页视觉复核。飞书下载回读969项通过。
+- 完整文件、相对源包、版本清单和验证证据位于受控`producer-master-20260918/`；公开Git仅工具、结构、方法、脱敏验证与交接。旧Wiki系统功能19页/17份XLSX子模块结构已检查，旧值没有入当前计算。
+- 9组Unknown保留，未重跑旧Task模型/全量配置盘点或hash；未重算或修改源表。不调参、不提交SVN、不冻结或发布；PR #10保持OPEN，原reservation pending-main，不合并或finalize。Subagents: none。
+
+- [结构/复现方法](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/WORKBOOK.md)、[最终验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/WORKBOOK_VALIDATION.json)、[首版Excel产物Review](../reviews/TASK-0036-CHATGPT-EXCEL-REVIEW-1.md)。

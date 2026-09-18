@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-18 — TASK-0036相对外链master与无外链展示版
+
+- 固定r7013原始导出；概览+完整明细、外链/元数据清理、飞书文件回读完成。原数值Accepted保留，Excel等待ChatGPT Review；不冻结/发布、合并或finalize。
+
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
 ## 2026-09-17 — TASK-0036制作人体验报告交Review

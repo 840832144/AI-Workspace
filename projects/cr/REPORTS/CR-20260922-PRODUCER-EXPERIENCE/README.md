@@ -1,8 +1,16 @@
 # CR 9.22 全项目数值体验与制作人汇报
 
-[TASK-0036](../../../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md) · [PR #10](https://github.com/840832144/AI-Workspace/pull/10) OPEN · **Review候选，等待ChatGPT** · 2026-09-17 · Subagents: none。
+[TASK-0036](../../../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md) · [PR #10](https://github.com/840832144/AI-Workspace/pull/10) OPEN · **数值报告Accepted；双版本Excel等待ChatGPT Review** · 2026-09-17 · Subagents: none。
 
 本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。当前不调参、不修改SVN、不冻结、不发布；TASK-0035的零数值变更候选保持原样。
+
+## 当前Excel交付（2026-09-18）
+
+[双版本工作簿与旧表结构分析](WORKBOOK.md) · [最终验证](WORKBOOK_VALIDATION.json) · [飞书展示版](https://gfok27asqq.feishu.cn/wiki/UZD8wLpQKicKV7kcorIcNIb8nwd)。
+
+当前master使用37份固定r7013原始导出及相对外链；展示版为相同版本的无外链快照。26张前台、完整逐行明细、969个关键输出/两版一致性及整包搬移通过。原数值Accepted和9组Unknown保留，新Excel等待Review；尚未冻结或发布。
+
+下文是2026-09-17数值报告的Accepted方法与证据。其“r6961原证据/源刷新0/不重新导出”描述当时分析步骤；本轮Excel已按User新要求直接导出r7013，不以历史抽取代替master源格。
 
 ## Executive Summary
 
