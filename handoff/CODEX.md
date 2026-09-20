@@ -1,5 +1,12 @@
 # Codex Handoff
 
+## 2026-09-20 — TASK-0036返还闭环补全
+
+- Dashboard Round 1对`5ddb642`结论为Needs changes；完整阻塞见[Review](../reviews/TASK-0036-CHATGPT-DASHBOARD-REVIEW-1.md)与canonical Task最新章节。
+- 目标不是继续加配置字段，而是把当前有效消费/成长/活动模块统一补齐“机器理论净耗$→返还$→返还率%→净成本$→最终完成成本$”。
+- 等级/VIP/商城/777补已有输入可直接计算的返还率；卡包拆理论完成期望与赛季完成率；薯片拆自然不可达与补充渠道；福利/货币用N/A；Buff并入权益；常驻未闭合项明确状态。
+- 执行前先重建/验证Task Registry；继续r7013相对外链master与0外链展示版，不重跑0033/0034/0035全量，不调参、不改SVN、不冻结/发布、不合并或finalize。
+
 ## 2026-09-20 — TASK-0036制作人Dashboard候选完成，交ChatGPT Review
 
 - 按最新Task规格重构r7013双版本Excel；原数值报告Accepted保留，新Dashboard/模拟本身为Review。继续原PR #10与原reservation，不新建Task。起点安全同步e306145，首先按既有工具重建/验证Registry：19 canonical、0 collision、valid。
