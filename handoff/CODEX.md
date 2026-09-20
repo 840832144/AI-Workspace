@@ -1,5 +1,13 @@
 # Codex Handoff
 
+## 2026-09-20 — TASK-0036制作人汇报型Excel重构执行入口
+
+- User已授权继续现有TASK-0036，不新建Task；Task已切到Changes Requested。执行前先同步当前PR #10分支并读取Task最新2026-09-20规格。
+- 核心目标：把r7013双版本Excel从技术/配置核对表升级为制作人可直接汇报的Dashboard；保持“概览+完整明细”和r7013相对外链证据链。
+- 已闭合业务口径：成本=机器理论净耗USD；等级95%RTP+最大已解锁Bet+levelExp；VIP $1=100点；模块道具价值只按老虎机自然获取成本；总返还按基础/阶段/终局分层；卡册按章/整册；薯片20盒；777特殊内圈消格；关闭模块不纳入经济总览。
+- 第一执行动作：重建/验证Task Registry以同步Changes Requested状态；禁止手工编辑Registry。随后只做定向生成/验证，不重跑0033/0034/0035全量。
+- 不调参、不修改/提交SVN、不冻结/发布、不合并PR #10、不finalize；完成后更新Task/Status/Handoff/Registry并返回commit和受控产物交ChatGPT Review。
+
 ## 2026-09-18 — TASK-0036双版本Excel完成，等待ChatGPT Review
 
 - 按PR #10最新User输入形成相对外链master与无外链飞书展示版；原数值报告Round 1 Accepted保留，本次Excel仍为Review。前版14页产物的Needs changes与旧自包含方案保留为历史。
