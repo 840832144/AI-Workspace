@@ -1,5 +1,5 @@
 {
-  "manifest_id": "TASK0036-r7013-dashboard-20260920",
+  "manifest_id": "TASK0036-r7013-return-loop-20260920",
   "revision": 7013,
   "source_workbooks": 44,
   "visible_sheets": [
@@ -31,16 +31,18 @@
     "关闭_历史配置",
     "Unknown"
   ],
-  "master_formulas": 1625084,
+  "master_formulas": 2181847,
   "display_formulas": 0,
   "master_relative_links": 44,
   "display_external_links": 0,
+  "accepted_key_outputs": 0,
+  "accepted_mismatches": 0,
   "master_display_mismatches": 0,
   "linked_source_mismatches": 0,
   "formula_errors": 0,
   "missing_caches": 0,
   "metadata_or_absolute_paths": 0,
-  "filter_tables": 93,
+  "filter_tables": 102,
   "grouped_rows": 51910,
   "frozen_front_sheets": 27,
   "level_detail_rows": 10009,
@@ -48,54 +50,49 @@
   "unknown_groups": 9,
   "no_hash": true,
   "old_values_used": false,
-  "current_checks": 36,
+  "closure_checks": 896,
+  "card_completion_samples": 6000,
+  "natural_unreachable_targets": 11,
+  "album_is_same_path_terminal": true,
+  "reward_denominators_separate": true,
   "native": {
-    "relative_link_resolution": true,
-    "vip_driver_changes_cost": true,
     "version": "12.0",
-    "charts": 24,
-    "engine": "Microsoft Excel",
-    "row_groups": 22,
-    "bet_variant_changes_cost": true,
-    "tables": 93,
+    "native_chart_images": 24,
     "inputs_restored": true,
+    "source_saved": false,
+    "resolved_links": 44,
+    "vip_return_driver": true,
+    "engine": "Microsoft Excel",
     "relative_link_count": 44
   },
-  "charts": 24,
-  "current_business_checks": true,
-  "accepted_baseline_not_rerun": true,
-  "current_key_outputs": 36,
-  "current_mismatches": 0,
   "status": "Review",
-  "prior_numeric_report": "Accepted",
+  "zero_increment_cost_label": "N/A：本圈新增净耗为0",
+  "literal_label_correction_only": true,
+  "numeric_formulas_and_values_preserved": true,
   "visual_review": {
     "overview_pages": 13,
-    "native_chart_images": 24,
-    "all_native_chart_pngs_decoded": true,
-    "kpi_alignment_and_long_notes_corrected": true,
-    "renderer_preview_is_not_native_chart_evidence": true
+    "new_subtables": 4,
+    "native_charts": 24,
+    "unknown_page": true,
+    "corrected_kpi_labels": true
   },
-  "source_workbooks_saved": false,
-  "feishu_current_upload": false,
-  "historical_feishu_20260918": {
-    "url": "https://gfok27asqq.feishu.cn/wiki/UZD8wLpQKicKV7kcorIcNIb8nwd",
-    "current_dashboard": false
+  "legacy_accepted_tests_rerun": false,
+  "workspace_sync": {
+    "mode": "ON_DEMAND",
+    "provider_available": false,
+    "stale": 6,
+    "conflicts": 0
   },
-  "limitations": [
-    "机型列绑定未唯一确认；显式二倍数制参考及五列敏感性",
-    "薯片自然上限与卡册季末删失保留Unknown，不报告完成子集均值为总体期望",
-    "通用VIP Pass字段未证明适用于薯片，未计入有效Buff",
-    "随机计数/离散路由须由生成器重算；Excel不自动重跑Monte Carlo",
-    "本轮未上传/替换云端展示副本，尚未冻结或发布"
-  ],
-  "reward_layer_checks": 12,
-  "governance_validation": {
-    "registry": "valid",
+  "subagents": "none",
+  "cloud_upload": false,
+  "svn_writes": false,
+  "freeze": false,
+  "merged": false,
+  "finalized": false,
+  "registry": {
     "canonical_count": 19,
-    "collisions": 0,
-    "changed_python_syntax": "pass",
-    "git_diff_check": "pass",
-    "changed_markdown_links": "pass",
-    "markdown_files_checked": 8
+    "collision_count": 0,
+    "status": "valid",
+    "canonical_status": "Review"
   }
 }

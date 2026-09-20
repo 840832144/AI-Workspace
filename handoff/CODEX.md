@@ -1,6 +1,14 @@
 # Codex Handoff
 
-## 2026-09-20 — TASK-0036返还闭环补全
+## 2026-09-20 — TASK-0036返还闭环修订交Review（当前）
+
+- 原分支从`1be0b64`继续，第一步既有CLI重建/验证Registry，19 canonical/0 collision/valid。Task现为Review，原reservation pending-main，不新建Task。[修订报告](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/RETURN_LOOP.md)与[验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/WORKBOOK_VALIDATION.json)是当前入口。
+- 等级阶段/累计、VIP礼包、商城支付/Pass玩法、777圈层/三轮闭环完成；卡册理论模型跑至章/册完成并独立列季内完成率；薯片自然160上限与补包完成分账。福利/货币N/A；常驻启用/成本未闭合，未计入完成经济结论。
+- 896项定向检查通过；6000条卡册完成记录；44条r7013 MASTER相对外链、0外链展示版；错误/缺缓存/源格与双版本差异0。13张概览、4组新增子表、24张原生图表视觉复核完成。777零新增机器成本来自库存结转，不等于无付费抽奖。
+- 受控目录`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-return-loop-20260920/`包含双Excel及完整复核ZIP，MASTER须保留相对`source/r7013/`。下方旧Dashboard及9/18飞书仅为历史，本轮未上传云端。卡册日Spin/UID情景与777 User规则/代码差异仍是Review边界。
+- Workspace Sync：ON_DEMAND/provider unavailable/stale 6/conflicts 0。原报告Accepted与Round 1 Needs changes保留；PR #10 OPEN，等待ChatGPT Review，不自行Accepted。不重跑旧Task或hash，不调参、不改/提交SVN、不冻结/发布、不合并/finalize。Subagents: none。
+
+## 历史输入 — 2026-09-20 TASK-0036返还闭环补全
 
 - Dashboard Round 1对`5ddb642`结论为Needs changes；完整阻塞见[Review](../reviews/TASK-0036-CHATGPT-DASHBOARD-REVIEW-1.md)与canonical Task最新章节。
 - 目标不是继续加配置字段，而是把当前有效消费/成长/活动模块统一补齐“机器理论净耗$→返还$→返还率%→净成本$→最终完成成本$”。

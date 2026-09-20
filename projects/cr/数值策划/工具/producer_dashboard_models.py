@@ -50,6 +50,10 @@ def lucky_simulation(raw: dict, samples: int = 1000) -> tuple[list[dict], dict]:
             by_ring = {c: [g for g in grids if g['inout'] == c] for c in (1,2,3)}
             selected, paid, special, paid_special = set(), Counter(), Counter(), Counter()
             counts = Counter()
+            earned_by_paid_ring = {c: Counter() for c in (1, 2, 3)}
+            collection = Counter()
+            collection_ring = {}
+            paid_ring = 1
 
             def draw(circle: int, is_paid: bool) -> dict:
                 ordinary_inner = [g for g in by_ring.get(circle+1, []) if g['itemId'] != 215006 and g['gridId'] not in selected]
@@ -69,15 +73,22 @@ def lucky_simulation(raw: dict, samples: int = 1000) -> tuple[list[dict], dict]:
                 else:
                     assert hit['gridId'] not in selected
                     selected.add(hit['gridId']); counts[hit['gridId']]+=1
+                    earned_by_paid_ring[paid_ring][hit['gridId']] += 1
+                    collection[hit['itemId']] += hit['itemCount'] or 0
+                    # r7013 StrikeLuckySvc.cs:20-21 defines these two collection IDs.
+                    for kind, item in (('cherry', 13), ('seven', 12)):
+                        if kind not in collection_ring and collection[item] >= rd[kind+'Collect']:
+                            collection_ring[kind] = paid_ring
                     if due:checks['ordinary_guarantee']+=1
                 return hit
 
             for circle in (1,2,3):
+                paid_ring = circle
                 while any(g['itemId']!=215006 and g['gridId'] not in selected for g in by_ring[circle]):
                     draw(circle,True)
                     assert sum(paid.values()) < 500
             assert len(selected)==sum(g['itemId']!=215006 for g in grids)
-            result.append({'sample':sample,'round':rd['round'],'paid':[paid[c] for c in (1,2,3)],'special':[special[c] for c in (1,2,3)],'paid_special':[paid_special[c] for c in (1,2,3)],'counts':dict(counts)})
+            result.append({'sample':sample,'round':rd['round'],'paid':[paid[c] for c in (1,2,3)],'special':[special[c] for c in (1,2,3)],'paid_special':[paid_special[c] for c in (1,2,3)],'counts':dict(counts),'earned_by_paid_ring':{c:dict(v) for c,v in earned_by_paid_ring.items()},'collection_ring':collection_ring})
     return result,dict(checks)
 
 
@@ -127,10 +138,11 @@ def snack_simulation(raw: dict, samples: int = 400) -> tuple[list[dict], dict]:
     return result,dict(checks)
 
 
-def card_simulation(raw: dict, profiles: list[dict], samples: int = 100) -> tuple[list[dict], dict]:
+def card_simulation(raw: dict, profiles: list[dict], samples: int = 100, until_complete: bool = False) -> tuple[list[dict], dict]:
     """r7013包→组→章→卡，21次拒绝重抽、UID 0..9均衡敏感性。
     只含自然Spin掉包；从空册开始，不叠加赠送、交易或星星兑换。
-    季末右删失；不把已完成子样本均值报作无条件期望。
+    默认保留历史季末模型；until_complete沿同版阶段卡池跑至完成，赛季率独立统计。
+    超出配置day上界停止报错，不外推卡池或把未完成子样本均值当期望。
     """
     rng=random.Random(SEED+2)
     season=max(raw['CardAlbumCfg'],key=lambda r:r['startTime'])
@@ -146,6 +158,7 @@ def card_simulation(raw: dict, profiles: list[dict], samples: int = 100) -> tupl
     groups=defaultdict(list)
     for r in raw['CardGroup']:
         if not r['isPrestige'] and r['chapterId'] in cp:groups[r['group']].append(r)
+    last_config_day=max(r['seasonDayMax'] for r in raw['CardGroup'])
 
     @lru_cache(None)
     def candidates(group: int, day: int, progress: int) -> list[dict]:
@@ -162,10 +175,12 @@ def card_simulation(raw: dict, profiles: list[dict], samples: int = 100) -> tupl
         ids=[drop[f'cardId{i}'] for i in (1,2,3)];weights=[drop[f'cardWeight{i}'] or 0 for i in (1,2,3)]
         for sample in range(samples):
             held=Counter();completed={};spins=0;opened=0;uid=sample%10
-            while spins < days*prof['daily_spin'] and len(completed)<len(chapters):
+            while (until_complete or spins < days*prof['daily_spin']) and len(completed)<len(chapters):
                 spins+=max(1,math.ceil(math.log1p(-rng.random())/math.log1p(-prob)))
-                if spins>days*prof['daily_spin']:break
+                if not until_complete and spins>days*prof['daily_spin']:break
                 day=int((spins-1)//prof['daily_spin']);progress=len(held)
+                if day > last_config_day:
+                    raise ValueError('理论完成超出r7013卡池日期范围，不能延伸假设')
                 pack=weighted(rng,ids,weights)
                 if not packs[pack]:raise ValueError('当前赛季掉包缺少组成')
                 rule=weighted(rng,packs[pack],[r['weight'] for r in packs[pack]],True)
@@ -195,6 +210,6 @@ def card_simulation(raw: dict, profiles: list[dict], samples: int = 100) -> tupl
                 for ch in chapters:
                     if ch['id'] not in completed and all(r['cardId'] in held for r in by_ch[ch['id']]):completed[ch['id']]=spins
             for ch in chapters:
-                result.append({'profile':prof['name'],'sample':sample,'uid_class':uid,'chapter':ch['id'],'spins':completed.get(ch['id']),'horizon':days*prof['daily_spin'],'opened':opened,'unique':len(held),'complete':int(ch['id'] in completed)})
-            result.append({'profile':prof['name'],'sample':sample,'uid_class':uid,'chapter':'整册','spins':max(completed.values()) if len(completed)==len(chapters) else None,'horizon':days*prof['daily_spin'],'opened':opened,'unique':len(held),'complete':int(len(completed)==len(chapters))})
+                result.append({'profile':prof['name'],'sample':sample,'uid_class':uid,'chapter':ch['id'],'spins':completed.get(ch['id']),'horizon':days*prof['daily_spin'],'opened':opened,'unique':len(held),'complete':int(ch['id'] in completed),'within_season':int(ch['id'] in completed and completed[ch['id']] <= days*prof['daily_spin'])})
+            result.append({'profile':prof['name'],'sample':sample,'uid_class':uid,'chapter':'整册','spins':max(completed.values()) if len(completed)==len(chapters) else None,'horizon':days*prof['daily_spin'],'opened':opened,'unique':len(held),'complete':int(len(completed)==len(chapters)),'within_season':int(len(completed)==len(chapters) and max(completed.values())<=days*prof['daily_spin'])})
     return result,dict(checks)

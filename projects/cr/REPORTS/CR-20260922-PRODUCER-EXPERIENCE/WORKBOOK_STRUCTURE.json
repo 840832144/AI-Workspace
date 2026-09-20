@@ -1,5 +1,5 @@
 {
-  "manifest_id": "TASK0036-r7013-dashboard-20260920",
+  "manifest_id": "TASK0036-r7013-return-loop-20260920",
   "revision": 7013,
   "visible_sheets": [
     "总览",
@@ -77,12 +77,13 @@
     "CommCfg"
   ],
   "source_workbooks": 44,
-  "hidden_sheets": 88,
+  "hidden_sheets": 89,
   "overview_pages": 13,
   "charts": 24,
-  "current_checks": 36,
+  "current_checks": 896,
   "historical_969_checks_rerun": false,
   "no_old_values": true,
-  "svn_operation": "read-only fixed export -r7013; no working copy",
-  "no_hash": true
+  "svn_operation": "reuse fixed export -r7013; no source writes",
+  "no_hash": true,
+  "current_method": "RETURN_LOOP.md"
 }

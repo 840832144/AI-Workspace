@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Changes Requested
-- Execution status: 制作人Dashboard Round 1 Needs changes；进入返还闭环补全，等待Codex修订后回到ChatGPT Review；不调参、不冻结或发布
+- Status: Review
+- Execution status: Dashboard Round 1返还闭环修订已完成并定向验证，等待ChatGPT复核；原数值报告Accepted保留，尚未冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -9,7 +9,7 @@
 - Date: 2026-09-17
 - Updated: 2026-09-20
 - User decision: Approved（全项目体验分析与报告；不调参、不改SVN、不冻结、不发布）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；9/20制作人Dashboard候选等待ChatGPT Review）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；返还闭环修订等待ChatGPT Review）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
@@ -18,7 +18,18 @@
 
 基于TASK-0033全数值底稿、TASK-0034规则闭合及TASK-0035薯片+777现值候选，形成可供制作人决策的全项目数值体验汇报，交ChatGPT Review。不重新盘点或验收已Accepted工作；当前任务只新增体验场景、跨系统解释和必要的变化数据。
 
-## 2026-09-20 — Dashboard Round 1 Needs changes：返还闭环补全
+## 2026-09-20 — 返还闭环修订完成，交ChatGPT Review
+
+- 安全同步PR原分支至`1be0b64208892fa246eb15b95d14e618d6f8be39`后，第一步使用既有CLI重建并验证Registry：19 canonical、0 collision、valid；无新Task或reservation。
+- 按[Dashboard Round 1](../reviews/TASK-0036-CHATGPT-DASHBOARD-REVIEW-1.md)完成等级阶段/累计、VIP礼包、商城支付与Pass玩法、777圈级/三轮的返还闭环。分母分别为机器理论净耗、充值/支付或明确分栏的综合成本；免费福利、货币基准、Buff权益为N/A。
+- 卡册同版模型运行到章/整册完成，6000条完成记录；理论完成期望与赛季内完成率分列，整册取同路径终点。薯片复用原随机路径，11个目标的部分/全部路径超自然160上限，明确“自然渠道不可达”，另列两条当前SKU补包成本。没有重跑0033/0034/0035或旧969项验收。
+- 777圈层按奖励实际取得时归属；库存结转使个别圈新增机器净耗为0时，返还率为“N/A：本圈新增净耗为0”，不误称无付费抽奖。常驻仅定向核对13项物品身份，获取成本/启用仍未闭合，不计入已完成经济结论。
+- 受控当前目录：`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-return-loop-20260920/`。MASTER与44份固定r7013相对源整包使用；展示版0公式/0外链。完整商业值、模拟明细和源文件不进Git。9/18飞书副本及下方旧Dashboard记录均为历史，本轮未上传云端。
+- 896项返还闭环定向检查通过；源格、双版本、公式错误、缺缓存、作者/绝对路径差异均0；44条外链原生解析、VIP驱动变化并还原通过。27张前台保留完整细节，13张概览、4组新增子表和24张原生图表已视觉复核。最后仅修正文本标签，并验证未改变数值/公式运算。
+- 详见[返还闭环报告](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/RETURN_LOOP.md)和[验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/WORKBOOK_VALIDATION.json)。当前为Review，不自行Accepted；9组解释边界保留，卡册样本期望仍为Estimate。
+- Workspace Sync：ON_DEMAND/provider unavailable/stale 6/conflicts 0，未宣称外部Context同步。PR #10保持OPEN，原reservation pending-main；不调参、不改/提交SVN、不冻结/发布、不合并或finalize。Subagents: none。
+
+## 历史输入 — 2026-09-20 Dashboard Round 1 Needs changes：返还闭环补全
 
 [Dashboard Review Round 1](../reviews/TASK-0036-CHATGPT-DASHBOARD-REVIEW-1.md) 已评审 `5ddb642925ae85ded6bc262a03b038c9504164a1`。本轮不重做已Accepted底稿，重点只补齐制作人汇报闭环。
 

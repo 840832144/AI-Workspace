@@ -4,7 +4,15 @@
 
 本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。当前不调参、不修改SVN、不冻结、不发布；TASK-0035的零数值变更候选保持原样。
 
-## 当前制作人Dashboard候选（2026-09-20）
+## 当前返还闭环修订（2026-09-20，等待Review）
+
+[返还闭环报告与复现方法](RETURN_LOOP.md) · [结构](WORKBOOK_STRUCTURE.json) · [验证摘要](WORKBOOK_VALIDATION.json)。等级、VIP、商城、卡册、薯片、777已补成本/返还率/净成本与完成终点；福利/货币无消费分母用N/A，常驻仍为待启用确认/成本未闭合。
+
+卡册6000条完成记录将理论完成期望与赛季完成率分开；薯片明确自然160上限及两条补包情景。896项新增定向检查通过；27张前台、13张概览、24张原生图表与4组新增子表已视觉复核。44条MASTER相对外链、0外链展示版与源格一致，错误/缺缓存/绝对路径残留均0。原数值报告Accepted及Round 1 Needs changes历史不覆盖，本次修订为Review。
+
+当前受控目录为`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-return-loop-20260920/`；MASTER须与`source/r7013/`整包使用。完整值与明细不入Git，本轮未上传飞书。PR #10保持OPEN，reservation pending-main；尚未冻结或发布。
+
+## 历史Dashboard候选（2026-09-20，受评5ddb642）
 
 [方法、旧正式表结构与具体边界](WORKBOOK.md) · [结构](WORKBOOK_STRUCTURE.json) · [本轮验证](WORKBOOK_VALIDATION.json)。27张前台、13张概览及24张图；44份固定r7013相对源链接。5000级完整细节保留，首页改为模块成本、返还、膨胀与完成边界。
 

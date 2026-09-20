@@ -1,6 +1,13 @@
 # CR 当前状态
 
-## 2026-09-20 — TASK-0036 Dashboard Round 1 Needs changes
+## 2026-09-20 — TASK-0036返还闭环修订交Review（当前）
+
+- Task由Changes Requested回到Review；Dashboard Round 1历史与原数值报告Accepted保留。[当前报告](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/RETURN_LOOP.md)逐项对应返还闭环，未增加无关配置。
+- 等级/VIP/商城/卡册/薯片/777均有对应成本、返还率、净成本及完成终点；支付与机器净耗分开。卡册理论完成与季内完成率分开；薯片自然160上限明确不可达并单列补包；免费福利/货币为N/A；常驻仍待启用确认/成本未闭合。
+- r7013 MASTER相对外链44条、展示版0外链；896项定向检查通过，源格/双版本/错误/缺缓存/绝对路径均0。13张概览、4组子表与24张原生图表已视觉复核。当前受控目录`producer-return-loop-20260920/`，完整源与数值不入Git；9/18云端和下方旧候选均为历史。
+- 原PR #10 OPEN、reservation pending-main；Registry由既有CLI重建验证，不新建Task。Workspace Sync provider unavailable，不冒充外部同步。未调参、改/提交SVN、冻结/发布、合并或finalize。Subagents: none。
+
+## 历史输入 — 2026-09-20 TASK-0036 Dashboard Round 1 Needs changes
 
 - [Dashboard Review Round 1](../../reviews/TASK-0036-CHATGPT-DASHBOARD-REVIEW-1.md)：受评`5ddb642`。当前从Review切回Changes Requested，原数值报告Accepted不变。
 - 必须补齐制作人返还闭环：等级/VIP阶段返还率、BET机器返还/净耗率、商城支付返还率、777圈级返还与三轮总通关；卡包理论完成成本与赛季完成率拆开；薯片自然不可达与补充渠道拆开。

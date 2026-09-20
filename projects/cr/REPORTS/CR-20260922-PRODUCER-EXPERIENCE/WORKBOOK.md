@@ -1,6 +1,10 @@
 # TASK-0036 数值体验工作簿：master 与飞书展示版
 
-当前依据TASK-0036的“2026-09-20 — 制作人汇报型Excel重构”规格。原数值报告Accepted保留，新Dashboard候选单独交ChatGPT Review；不修改TASK-0035候选，尚未冻结或发布。
+当前交付为[Dashboard Round 1返还闭环修订](RETURN_LOOP.md)，依据TASK-0036最新canonical规格。当前受控目录为`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-return-loop-20260920/`；双版本仍待ChatGPT Review，尚未冻结或发布。卡册理论完成/季内完成率、薯片自然不可达/补包成本、常驻具体状态等以下旧方法已经被本轮报告覆盖；旧结构分析和历史证据继续保留，不作为当前验收。
+
+## 历史 — 受评5ddb642的9/20 Dashboard说明
+
+当时依据TASK-0036的“2026-09-20 — 制作人汇报型Excel重构”规格。原数值报告Accepted保留，新Dashboard候选单独交ChatGPT Review；不修改TASK-0035候选，尚未冻结或发布。
 
 [9/18历史飞书展示版](https://gfok27asqq.feishu.cn/wiki/UZD8wLpQKicKV7kcorIcNIb8nwd)未被本轮覆盖，不能用其下载结果验收9/20产物。本轮受控目录为`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-dashboard-20260920/`；master与`source/r7013/`整包使用，展示版可单独使用。本轮先交本地双版本Review。
 

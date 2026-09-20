@@ -15,6 +15,29 @@ for (let d = path.resolve(outputDir); ; d = path.dirname(d)) {
 const plan = JSON.parse(await fs.readFile(planPath, 'utf8'));
 const wb = Workbook.create();
 const letter = (n) => { let s='';for(;n;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s; };
+if(plan.changed){
+  // 定向编辑：Artifact只生成变化单元格，原生外链/完整未改明细由OOXML适配保留。
+  for(const name of plan.sheets)wb.worksheets.add(name);
+  for(const p of [...plan.changed.filter(s=>s.hidden),...plan.changed.filter(s=>!s.hidden)]){
+    if(!p.edits.length)continue;
+    const sheet=wb.worksheets.getItem(p.name);
+    let r0=Infinity,r1=0,c0=Infinity,c1=0;
+    for(const [r,c] of p.edits){r0=Math.min(r0,r);r1=Math.max(r1,r);c0=Math.min(c0,c);c1=Math.max(c1,c);}
+    const values=Array.from({length:r1-r0+1},()=>Array(c1-c0+1).fill(null));
+    const formulas=values.map(row=>row.slice());
+    for(const [r,c,v] of p.edits){
+      if(typeof v==='string'&&v.startsWith('='))formulas[r-r0][c-c0]=v;
+      else values[r-r0][c-c0]=v;
+    }
+    const range=sheet.getRange(`${letter(c0)}${r0}:${letter(c1)}${r1}`);
+    range.values=values;range.formulas=formulas;
+    console.log(`authored changed cells ${p.name}: ${p.edits.length}`);
+  }
+  await fs.mkdir(outputDir,{recursive:true});
+  const patch=await SpreadsheetFile.exportXlsx(wb);await patch.save(path.join(outputDir,'return-patch.xlsx'));
+  console.log('patch exported; complete calculation follows after original sources are restored');
+  process.exit(0);
+}
 for (const p of plan.sheets) wb.worksheets.add(p.name);
 await fs.mkdir(outputDir, {recursive:true});
 // Artifact每次写入会重算依赖；先写计算/输入，最后写汇总，避免样本逐行触发整列聚合。

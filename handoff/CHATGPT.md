@@ -1,6 +1,15 @@
 # ChatGPT Handoff
 
-## 2026-09-20 — TASK-0036返还闭环补全
+## 2026-09-20 — TASK-0036返还闭环修订待复核（当前）
+
+- Task已回到Review，继续原PR #10（OPEN）和reservation pending-main；原数值报告Accepted、Dashboard Round 1 Needs changes保留。[修订逐项说明](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/RETURN_LOOP.md) · [实际验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/WORKBOOK_VALIDATION.json)。Registry已由既有CLI重建验证，无新Task。
+- 请复核分母与终点：等级/卡册/777用机器理论净耗；VIP与普通商品用充值/支付；薯片补包和Pass分别列机器净耗、补包及Pass支付。免费福利/货币无分母为N/A，Buff归权益，常驻待启用确认/成本未闭合不作为已完成经济结论。
+- 卡册理论模型6000条章/册记录全部完成，季内完成率另列，整册直接取同路径终点；固定日Spin/UID等仍是Estimate。薯片11个目标含自然不可达路径，已列上限内实际返还、缺口与两种当前SKU补包成本，不能把自然单价外推或把潜在奖当已得奖。
+- 777圈级按实际奖归属，三轮总成本/返还独立汇总；零新增机器成本来自库存结转，返还率N/A而非无付费抽奖。User内圈分析口径与当前代码差异未被消除，也没有程序审计。
+- 当前双版本位于受控`producer-return-loop-20260920/`：44相对外链MASTER与0外链展示版；896项定向检查、源格/双版本一致性、13概览/4子表/24原生图表视觉复核通过。完整商业明细仅在受控ZIP，Git是方法和脱敏结果；旧云端链接没有替换，不能拿历史附件复核当前版。
+- Workspace Sync provider unavailable；9组解释边界保留，尚未冻结或发布。没有重跑0033/0034/0035、hash、调参、SVN写入、合并或finalize。Subagents: none。
+
+## 历史输入 — 2026-09-20 TASK-0036返还闭环补全
 
 - Dashboard Round 1对`5ddb642`结论为Needs changes；完整阻塞见[Review](../reviews/TASK-0036-CHATGPT-DASHBOARD-REVIEW-1.md)与canonical Task最新章节。
 - 目标不是继续加配置字段，而是把当前有效消费/成长/活动模块统一补齐“机器理论净耗$→返还$→返还率%→净成本$→最终完成成本$”。
