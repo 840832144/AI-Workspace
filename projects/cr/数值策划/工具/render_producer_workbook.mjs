@@ -105,7 +105,7 @@ for (const p of writeOrder) {
         if(spec.type==='line')chart.series.items[i].line={fill:color,style:'solid',width:2};
       }
     }
-    s.freezePanes.freezeRows(30);
+    s.freezePanes.freezeRows(4);
     console.log(`built dashboard ${p.name}`);continue;
   }
   s.tabColor='#284B63';

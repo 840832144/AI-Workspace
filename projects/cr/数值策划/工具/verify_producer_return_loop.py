@@ -115,7 +115,7 @@ try{
     $chart.Axes(2).TickLabels.NumberFormat=[string]$ch.format
    }
   }
-  $freeze=6;if($p.dashboard){$freeze=30}
+  $freeze=6;if($p.dashboard){$freeze=4}
   $app.ActiveWindow.FreezePanes=$false;$s.Range(('B'+($freeze+1))).Select();$app.ActiveWindow.SplitColumn=1;$app.ActiveWindow.SplitRow=$freeze;$app.ActiveWindow.FreezePanes=$true
  }
  $app.CalculateFullRebuild()
