@@ -142,6 +142,28 @@ try{
 '''
 
 
+def order_sheets(plan: dict, path: Path) -> None:
+    """仅调整页签元数据；保留sheetId/rId、源链接、公式缓存与所有工作表内容。"""
+    data=read_parts(path);wb=E.fromstring(data['xl/workbook.xml']);collection=wb.find('m:sheets',NS)
+    old=[s.get('name') for s in collection];desired=[s['name'] for s in plan['sheets']]
+    assert len(desired)==len(set(desired)) and set(old)==set(desired)
+    positions={name:i for i,name in enumerate(desired)};nodes={s.get('name'):s for s in collection}
+    collection[:]=[nodes[name] for name in desired]
+    for node in wb.findall('m:definedNames/m:definedName',NS):
+        if node.get('localSheetId') is not None:node.set('localSheetId',str(positions[old[int(node.get('localSheetId'))]]))
+    for node in wb.findall('m:bookViews/m:workbookView',NS):
+        for key in ('activeTab','firstSheet'):
+            if node.get(key) is not None:node.set(key,str(positions[old[int(node.get(key))]]))
+    data['xl/workbook.xml']=xml(wb)
+    if 'docProps/app.xml' in data:
+        app=E.fromstring(data['docProps/app.xml']);titles=app.find('{*}TitlesOfParts/{*}vector')
+        if titles is not None:
+            count=len(old);assert [v.text for v in list(titles)[:count]]==old
+            for node,name in zip(titles,desired):node.text=name
+            data['docProps/app.xml']=xml(app)
+    write_parts(path,data)
+
+
 def validate_closure(plan: dict, values: dict, evidence: dict) -> dict:
     checks=0
     def equal(a: float, b: float) -> None:
@@ -211,7 +233,7 @@ def main() -> None:
         (d/'return-native.ps1').write_text(NATIVE,encoding='utf-8-sig')
         subprocess.run(['powershell.exe','-NoProfile','-ExecutionPolicy','Bypass','-File',str(d/'return-native.ps1'),'-Directory',str(d)],check=True,timeout=1200)
     master=d/'CR_9.22_数值体验表_r7013_MASTER.xlsx';display=d/'CR_9.22_数值体验表_r7013_飞书展示版.xlsx'
-    sanitize(plan,master);snapshot(master,display)
+    sanitize(plan,master);order_sheets(plan,master);snapshot(master,display)
     # 本轮不重复旧36项/969项验收；仅复核当前产物完整性与本轮闭环。
     pairplan=dict(plan,checks=[]);result=validate_pair(pairplan,master,display)
     values,metrics=read_cells(master);evidence=json.loads((d/'simulation-evidence.json').read_text(encoding='utf-8'))

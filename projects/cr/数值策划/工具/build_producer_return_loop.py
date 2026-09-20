@@ -198,7 +198,8 @@ def revise(plan: dict, evidence: dict) -> tuple[dict, list[str]]:
             s['cost_columns']=[i+1 for i,h in enumerate(headers) if any(k in h for k in ('成本','净耗','支付'))]
             s['reward_columns']=[i+1 for i,h in enumerate(headers) if any(k in h for k in ('奖励','返还','礼包','回补')) and i+1 not in s['cost_columns']]
     # 每个消费闭环都有相应明细；只增本轮计算列/表，不新增无关配置。
-    plan['sheets']=list(b.sheets.values());plan['manifest_id']='TASK0036-r7013-return-loop-20260920';plan['return_loop']=True
+    plan['sheets']=sorted(b.sheets.values(),key=lambda s:3 if s['hidden'] else 0 if s.get('dashboard') else 1 if s['name'].endswith('_明细') else 2)
+    plan['manifest_id']='TASK0036-r7013-return-loop-20260920';plan['return_loop']=True
     plan['closure_locations']={'777_total_first':totalfirst,'snack_supplement_first':suppfirst,'snack_grand_sku2':grandsupp,'snack_pass15_sku2':passsupp,'card_mid_album':cardmid}
     return plan,sorted(changed)
 
