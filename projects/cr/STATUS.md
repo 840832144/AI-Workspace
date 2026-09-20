@@ -1,5 +1,16 @@
 # CR 当前状态
 
+## 2026-09-20 — TASK-0036制作人Dashboard候选完成，交ChatGPT Review
+
+- 按最新Task规格重构r7013双版本Excel；原数值报告Accepted保留，新Dashboard/模拟本身为Review。继续原PR #10与原reservation，不新建Task。起点安全同步e306145，首先按既有工具重建/验证Registry：19 canonical、0 collision、valid。
+- 27张前台含Dashboard、12组概览/完整明细、关闭索引与9组Unknown；13张概览、24张原生Excel图表已视觉核对。保留5000级、4999条升级奖励、7236条价格原配置；不重做0033/0034/0035 Accepted底稿。
+- 固定r7013原始导出源44份，MASTER相对外链44条；完整商业值仅留受控目录`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-dashboard-20260920/`。展示版为无外链缓存快照。本轮未上传云端，9/18飞书链接是历史副本。
+- 原生重算后36项新增关键输出通过；机型/VIP驱动变化后已还原，源格/双版本差异、公式错误、缺缓存、作者/绝对路径均0。MASTER实际1,625,084公式，展示版0公式/0外链；93个筛选表、27页冻结，完整长表分组与跳转保留。最终计数见WORKBOOK_VALIDATION.json。
+- 已还原最大解锁Bet、等级经验与95%成本、VIP100点/$、当前价值换算；卡册逐章状态模型、薯片20盒/JP/Pass、777普通/特殊/圈/轮成本已形成。旧BET/卡包正式表只复用公式关系与阅读方式，旧值未入r7013。
+- Review重点：显式机型列参考、卡册季末删失、薯片自然获取封顶、潜在奖励与已实现返还分开、777按User内圈口径与当前代码差异。通用VIP Pass字段未证实适用于薯片，已移历史索引；商品按实际薯片礼包/Pass表关联，不补0。9组Unknown仍保留，未新增冻结Gate。
+- Workspace Sync仍为ON_DEMAND/provider unavailable/stale 6/conflicts 0；不冒充外部Context已同步。Git只保存方法/生成器/脱敏验证和治理；没有hash、全量无关扫描或旧Task重复验收。
+- PR #10保持OPEN，原reservation pending-main，等待ChatGPT Review；不调参、不修改/提交SVN、不冻结/发布、不合并或finalize。Subagents: none。
+
 ## 2026-09-20 — TASK-0036制作人汇报型Excel重构已授权
 
 - User已确认业务口径并授权继续TASK-0036；当前从Review切回Changes Requested。目标从“配置/公式核对正确”升级为“制作人可直接汇报的版本数值体验Dashboard + 模块概览/明细”。

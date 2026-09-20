@@ -1,8 +1,38 @@
 # TASK-0036 数值体验工作簿：master 与飞书展示版
 
-当前产物等待 ChatGPT Review，原数值报告 Accepted 保留。本次依据 [PR #10 最新 User 输入](https://github.com/840832144/AI-Workspace/pull/10#issuecomment-5724897864)，覆盖此前“全部自包含、每模块单页”的展示方案。未修改 TASK-0035 数值候选，尚未冻结或发布。
+当前依据TASK-0036的“2026-09-20 — 制作人汇报型Excel重构”规格。原数值报告Accepted保留，新Dashboard候选单独交ChatGPT Review；不修改TASK-0035候选，尚未冻结或发布。
 
-[飞书展示版](https://gfok27asqq.feishu.cn/wiki/UZD8wLpQKicKV7kcorIcNIb8nwd)。本机受控目录：`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-master-20260918/`。master与`source/r7013/`需要整包搬移；展示版可单独使用。
+[9/18历史飞书展示版](https://gfok27asqq.feishu.cn/wiki/UZD8wLpQKicKV7kcorIcNIb8nwd)未被本轮覆盖，不能用其下载结果验收9/20产物。本轮受控目录为`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-dashboard-20260920/`；master与`source/r7013/`整包使用，展示版可单独使用。本轮先交本地双版本Review。
+
+## 9/20制作人Dashboard与计算方法
+
+当前27张前台：Dashboard、12组模块概览/明细、关闭模块索引、9组Unknown。每张概览有4个KPI、完整阶段表和1–2张图；36组Accepted静态Spin下沉明细。各项成本和返还不可跨模块直接相加。
+
+- 固定r7013，复用原37份工作簿并定向补充7份必要配置，当前相对外链源共44份。补充仅涉及解锁Bet、旧表逻辑还原、卡池、钻石/商品、Jackpot及指定常量；不做trunk全量扫描。原始源表只读，不保存或改数值。
+- 等级全5000行使用当前最大已解锁普通Bet，经验门槛除以对应每Spin经验向上取整；升级成本统一95%。当前代码与配置表明单次升级上限为1且丢弃溢出。累计列采用前行累计加本行，避免重复长范围依赖。原4999条升级奖励与7236条价格配置完整保留。
+- 旧正式BET表采用阈值近似匹配的INDEX/MATCH；沿用“已解锁档→Bet→体验”的关系。机型金额默认以旧二倍数制做显式参考，明细保留五列×四VIP敏感性；当前机台与五列的唯一绑定仍Unknown，不把默认列冒充全机台。
+- VIP按100点/美元计算增量与累计充值成本，礼包单独估值；商品点数差异仅作一致性提示。VIP不增加等级经验。普通金币按当前等级/VIP，9/17类配置美元分除100，钻石列出当前可见商店所有档位；主估值使用最低标价档，并非统一市场公允价。
+- 福利保留各自周期；混合商品只汇总可确定价值的部分。仅薯片Pass有效；通用VIP Pass字段未证明适用于薯片，移至关闭/历史索引，未加入有效Buff或薯片奖励。薯片商品按ID关联当前SnackItemPack或黄金Pass奖励，不用空的通用金币/钻石栏补0。黄金Pass回报明确是全完成潜在价值。关闭模块与历史Buff从当前有效经济中分离。没有唯一开放或兑换证据的常驻项保留具体Unknown。
+- 薯片按20盒初始与重置、JP重复、Pass共享门槛模拟400条路径；阶段首达和固定开盒量分开。自然获取末档封顶，因此超过上限的样本不以零成本或已完成子集均值替代；阶段成本、Spin与返还率保留Unknown，另给自然上限内完成率与潜在奖励。黄金Pass奖励单列，不计免费总返还。
+- 777按User已闭合forceTurn与内圈普通格消失规则模拟1000条三轮路径，区分普通/特殊付费命中、圈、轮和三轮累计骰子与自然获取成本。r7013代码自动进入内圈仍扣费，与User本轮免费临时取奖口径不同；本模型明确按User分析口径，不声称程序运行一致。
+- 卡册从空册、赛季第1天开始，逐卡维护去重、稀有度、章节补缺与持卡状态。低/中/高三个情景各100样本，UID权重档等配，只是敏感性输入；使用r7013抽卡链和配置，不使用旧附件数字。季末未完成保留删失；仅全部样本完成时展示样本均值，否则章/册期望成本Unknown。高阶册未以普通册平均数替代。
+
+旧`卡包数值调整.xlsx`共有8个Sheet：旧正式表以“所需开包数÷掉包效率”推最低局数，并按最高星瓶颈比较；未发现可直接复用的老虎机完整持卡状态模拟或正式玩家分层。其历史所需包数、旧概率与旧值均未进入r7013。当前逐章模拟是新增Estimate，不能沿用原报告Accepted标签。
+
+随机计数与离散阶段路由由固定seed的生成器产生；金额与关键成本以工作簿公式引用源格。修改概率、卡池、离散数量或玩家情景后须重跑对应生成器，不能声称Excel会重新运行Monte Carlo。静态等级/VIP标签不作为任意修改即重算的选择器；机型列与VIP点/美元两个明确驱动在原生Excel做变化后还原验证。
+
+```text
+python build_producer_dashboard.py --baseline <9/18受控目录> --output <9/20受控目录>
+node --max-old-space-size=10000 render_producer_workbook.mjs <9/20/dashboard-plan.json> <9/20受控目录>
+python verify_producer_dashboard.py --directory <9/20受控目录> --baseline <9/18受控目录> --native
+node render_producer_workbook.mjs <9/20/dashboard-preview-plan.json> <受控预览目录> --preview-only
+```
+
+`--reuse-simulation`仅用于同一固定源、同一模型的版式或公式修正；不用于源/概率变化。导出器保留未变的Accepted隐藏页，接回后由原生Excel重算当前master；这不是重跑TASK-0033/0034/0035验收。最终计数、链接、缓存一致性和实际视觉验收见[验证摘要](WORKBOOK_VALIDATION.json)。
+
+## 以下为9/18方案与结构证据（历史）
+
+下文的26页、37源、969检查及当时Unknown描述只记录9/18交付，不覆盖上方9/20新口径。
 
 ## 旧资料的结构分析
 

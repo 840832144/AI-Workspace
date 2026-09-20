@@ -4,7 +4,15 @@
 
 本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。当前不调参、不修改SVN、不冻结、不发布；TASK-0035的零数值变更候选保持原样。
 
-## 当前Excel交付（2026-09-18）
+## 当前制作人Dashboard候选（2026-09-20）
+
+[方法、旧正式表结构与具体边界](WORKBOOK.md) · [结构](WORKBOOK_STRUCTURE.json) · [本轮验证](WORKBOOK_VALIDATION.json)。27张前台、13张概览及24张图；44份固定r7013相对源链接。5000级完整细节保留，首页改为模块成本、返还、膨胀与完成边界。
+
+新增36项关键输出、源格及双版本一致性、0错误/缺缓存、0绝对路径/作者残留、原生驱动变化与全部概览视觉检查通过。卡册/薯片/777新模拟交独立Review；季末删失、自然道具封顶和机型绑定等具体Unknown保留，不能将潜在奖励视为已实现返还。
+
+受控产物位于`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-dashboard-20260920/`；master须与source/r7013整包使用。9/20展示版当前为本地候选，未替换云端历史附件。尚未冻结或发布，PR #10不合并、reservation不finalize。
+
+## 历史Excel交付（2026-09-18）
 
 [双版本工作簿与旧表结构分析](WORKBOOK.md) · [最终验证](WORKBOOK_VALIDATION.json) · [飞书展示版](https://gfok27asqq.feishu.cn/wiki/UZD8wLpQKicKV7kcorIcNIb8nwd)。
 

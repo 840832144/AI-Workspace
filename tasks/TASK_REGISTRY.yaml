@@ -335,7 +335,7 @@ entries:
     executor: "Codex"
     priority: "P1 / 9.22制作人汇报"
     created_date: "2026-09-17"
-    updated_date: "2026-09-18"
+    updated_date: "2026-09-20"
     related_tasks: ["TASK-0033", "TASK-0034", "TASK-0035"]
     kind: "canonical"
   - id: "TASK-0016"

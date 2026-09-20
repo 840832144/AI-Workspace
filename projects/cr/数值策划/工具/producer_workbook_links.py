@@ -11,6 +11,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote
 import shutil
 import subprocess
+from copy import deepcopy
 from lxml import etree as E
 
 M='http://schemas.openxmlformats.org/spreadsheetml/2006/main'
@@ -98,14 +99,31 @@ def bind_sources(plan: dict, path: Path) -> None:
 
 def sanitize(plan: dict, path: Path) -> None:
     data=read_parts(path)
+    styles=E.fromstring(data['xl/styles.xml']);xfs=styles.find('m:cellXfs',NS);centered={}
     visible={s['name'] for s in plan['sheets'] if not s['hidden']}
     for name,part in sheets(data).items():
         if name not in visible:continue
         root=E.fromstring(data[part])
+        spec=next(s for s in plan['sheets'] if s['name']==name)
+        if spec.get('dashboard'):
+            for c in root.findall('m:sheetData/m:row/m:c',NS):
+                if c.get('r') not in ('A7','D7','G7','J7'):continue
+                original=int(c.get('s','0'))
+                if original not in centered:
+                    xf=deepcopy(xfs[original]);alignment=xf.find('m:alignment',NS)
+                    if alignment is None:alignment=sub(xf,'alignment')
+                    alignment.set('horizontal','center');xf.set('applyAlignment','1')
+                    centered[original]=len(xfs);xfs.append(xf)
+                c.set('s',str(centered[original]))
+            if name in ('卡包_概览','777_概览','商城_Pass_概览','常驻_概览'):
+                for row in root.findall('m:sheetData/m:row',NS):
+                    if any(sec['row']<int(row.get('r'))<=sec['end'] for sec in spec['sections']):row.set('ht','80');row.set('customHeight','1')
         for pane in root.findall('m:sheetViews/m:sheetView/m:pane',NS):
             # 当前本机COM消费者保存时将SplitRow误写为1；以标准OOXML固定最终阅读窗格。
-            pane.attrib.update({'xSplit':'1','ySplit':'6','topLeftCell':'B7','activePane':'bottomRight','state':'frozen'})
+            count=30 if next(s for s in plan['sheets'] if s['name']==name).get('dashboard') else 6
+            pane.attrib.update({'xSplit':'1','ySplit':str(count),'topLeftCell':'B'+str(count+1),'activePane':'bottomRight','state':'frozen'})
         data[part]=xml(root)
+    xfs.set('count',str(len(xfs)));data['xl/styles.xml']=xml(styles)
     if 'docProps/custom.xml' in data:
         del data['docProps/custom.xml']
         for name in ('_rels/.rels','[Content_Types].xml'):
@@ -174,7 +192,7 @@ def read_cells(path: Path) -> tuple[dict,dict]:
     for name,n in sheets(data).items():
         root=E.fromstring(data[n]);rr=root.findall('m:sheetData/m:row',NS);metrics['rows'][name]=len(rr)
         metrics['tables']+=len(root.findall('m:tableParts/m:tablePart',NS));metrics['grouped_rows']+=sum(int(r.get('outlineLevel','0'))>0 for r in rr)
-        metrics['frozen']+=sum(p.get('state') in ('frozen','frozenSplit') and p.get('xSplit')=='1' and p.get('ySplit')=='6' for p in root.findall('m:sheetViews/m:sheetView/m:pane',NS))
+        metrics['frozen']+=sum(p.get('state') in ('frozen','frozenSplit') and p.get('xSplit')=='1' and p.get('ySplit') in ('6','30') for p in root.findall('m:sheetViews/m:sheetView/m:pane',NS))
         for c in root.findall('.//m:sheetData/m:row/m:c',NS):
             key=name+'!'+c.get('r');f=c.find('m:f',NS);v=c.find('m:v',NS);t=c.get('t')
             if t=='s':value=ss[int(v.text)] if v is not None and v.text else ''

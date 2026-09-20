@@ -1,14 +1,16 @@
 {
+  "manifest_id": "TASK0036-r7013-dashboard-20260920",
+  "revision": 7013,
   "visible_sheets": [
     "总览",
-    "货币_概览",
-    "货币_明细",
+    "等级_阶段概览",
+    "等级_明细",
     "VIP_概览",
     "VIP_明细",
     "BET_RTP_概览",
     "BET_RTP_明细",
-    "等级_阶段概览",
-    "等级_明细",
+    "货币_概览",
+    "货币_明细",
     "Buff_概览",
     "Buff_明细",
     "美金金币档位_概览",
@@ -25,6 +27,7 @@
     "777_明细",
     "常驻_概览",
     "常驻_明细",
+    "关闭_历史配置",
     "Unknown"
   ],
   "source_tables": [
@@ -64,11 +67,22 @@
     "StrikeLuckyRound",
     "StrikeLucky",
     "DailyTreasurePoint",
-    "VoyageChapter"
+    "VoyageChapter",
+    "SlotsCasinoBetUnlock",
+    "SlotsCasinoBetShow",
+    "CardList",
+    "CardGroup",
+    "PayDiamond",
+    "QuestJackpotCfg",
+    "CommCfg"
   ],
-  "hidden_sheets": 60,
-  "accepted_comparisons": 969,
+  "source_workbooks": 44,
+  "hidden_sheets": 88,
+  "overview_pages": 13,
+  "charts": 24,
+  "current_checks": 36,
+  "historical_969_checks_rerun": false,
   "no_old_values": true,
-  "svn_operation": "read-only export -r7013",
+  "svn_operation": "read-only fixed export -r7013; no working copy",
   "no_hash": true
 }

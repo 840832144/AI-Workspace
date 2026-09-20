@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-20 — TASK-0036制作人Dashboard候选交Review
+
+- 固定r7013相对源重构27页/24图双版本；新增等级、VIP、卡册与薯片/777成本返还，具体Unknown及旧Accepted边界保留。36项定向检查、源格/缓存一致性与视觉复核通过；没有调参、SVN写入、冻结、合并或finalize。
+
 ## 2026-09-18 — TASK-0036相对外链master与无外链展示版
 
 - 固定r7013原始导出；概览+完整明细、外链/元数据清理、飞书文件回读完成。原数值Accepted保留，Excel等待ChatGPT Review；不冻结/发布、合并或finalize。
