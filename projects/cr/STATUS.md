@@ -1,5 +1,12 @@
 # CR 当前状态
 
+## 2026-09-20 — TASK-0036制作人汇报型Excel重构已授权
+
+- User已确认业务口径并授权继续TASK-0036；当前从Review切回Changes Requested。目标从“配置/公式核对正确”升级为“制作人可直接汇报的版本数值体验Dashboard + 模块概览/明细”。
+- 成本主指标统一为机器理论净耗USD；等级用最大已解锁Bet + SlotsCasinoBetList.levelExp计算预计Spin和升级成本；VIP按$1=100点；卡册按每章/整册成本返还；薯片20盒重置；777特殊内圈取当前未消失格并消格；福利按真实周期；关闭模块不进入当前经济总览。
+- 仍使用r7013相对外链master与无外链飞书展示版双交付；完整规格见TASK-0036最新“2026-09-20 — 制作人汇报型Excel重构”章节。
+- PR #10保持OPEN，原reservation pending-main；不调参、不改/提交SVN、不冻结/发布、不合并或finalize。Task状态变更后Registry需由Codex按既有工具重建，禁止手工编辑Registry。
+
 ## 2026-09-18 — TASK-0036双版本Excel完成，等待ChatGPT Review
 
 - 按PR #10最新User输入形成相对外链master与无外链飞书展示版；原数值报告Round 1 Accepted保留，本次Excel仍为Review。前版14页产物的Needs changes与旧自包含方案保留为历史。
