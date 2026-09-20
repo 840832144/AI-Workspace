@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Review
-- Execution status: r7013制作人Dashboard双版本候选已完成并验证，等待ChatGPT Review；原报告Accepted保留；不调参、不冻结或发布
+- Status: Changes Requested
+- Execution status: 制作人Dashboard Round 1 Needs changes；进入返还闭环补全，等待Codex修订后回到ChatGPT Review；不调参、不冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -17,6 +17,19 @@
 ## Goal
 
 基于TASK-0033全数值底稿、TASK-0034规则闭合及TASK-0035薯片+777现值候选，形成可供制作人决策的全项目数值体验汇报，交ChatGPT Review。不重新盘点或验收已Accepted工作；当前任务只新增体验场景、跨系统解释和必要的变化数据。
+
+## 2026-09-20 — Dashboard Round 1 Needs changes：返还闭环补全
+
+[Dashboard Review Round 1](../reviews/TASK-0036-CHATGPT-DASHBOARD-REVIEW-1.md) 已评审 `5ddb642925ae85ded6bc262a03b038c9504164a1`。本轮不重做已Accepted底稿，重点只补齐制作人汇报闭环。
+
+- 所有真正有消费/成长/活动闭环的当前有效模块，概览必须统一回答：**机器理论净耗$ → 可计价返还$ → 返还率% → 净成本$ → 阶段/最终完成成本$**。
+- 等级补阶段/累计返还率；VIP补本级/累计礼包返还率；BET/RTP同时展示机器返还率与净耗率；商城改用支付返还率%，薯片Pass与普通SKU拆分；777补圈级返还率/净成本与三轮总通关。
+- 卡包将“理论完成期望”与“赛季内完成率”拆开：理论模型跑到章节/整册完成，季末只作为完成率/超期风险，不再用删失直接把期望成本写Unknown；整册必须由完整状态模拟直接得到。
+- 薯片自然来源超过160写“自然渠道不可达”；自然区间保留真实返还率，超过上限的Pass/Grand展示缺口道具和补充渠道成本，不允许把自然单价无限外推。
+- 福利/货币等无统一消费分母的模块返还率使用N/A并说明“免费投放/价值基准”；Buff并入实际权益模块；常驻无法闭合时明确“待启用确认/成本未闭合”，不能与已完成经济模块并列。
+- 当前审查证据：卡包60行中39行返还率非数值；薯片21行中11行返还率非数值；等级/VIP已有成本与奖励但缺阶段返还率；777轮级已完成但圈级缺失。
+- 修订后需更新Dashboard与各模块概览、定向验证返还公式/模型闭合、重做视觉复核；master仍使用r7013相对外链，展示版0外链且关键输出与master一致。
+- 第一执行动作仍为按既有工具重建/验证Registry以同步Changes Requested；禁止手工编辑Registry。不调参、不改/提交SVN、不冻结/发布、不合并或finalize。
 
 ## 2026-09-20 — TASK-0036制作人Dashboard候选完成，交ChatGPT Review
 
