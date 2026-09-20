@@ -119,9 +119,12 @@ def sanitize(plan: dict, path: Path) -> None:
                 for row in root.findall('m:sheetData/m:row',NS):
                     if any(sec['row']<int(row.get('r'))<=sec['end'] for sec in spec['sections']):row.set('ht','80');row.set('customHeight','1')
         for pane in root.findall('m:sheetViews/m:sheetView/m:pane',NS):
-            # 概览只冻结标题区，不能把30行图表区冻结到WPS可见区域外。
-            count=4 if next(s for s in plan['sheets'] if s['name']==name).get('dashboard') else 6
-            pane.attrib.update({'xSplit':'1','ySplit':str(count),'topLeftCell':'B'+str(count+1),'activePane':'bottomRight','state':'frozen'})
+            if spec.get('dashboard'):
+                view=pane.getparent();view.remove(pane)
+                for selection in view.findall('m:selection',NS):
+                    selection.attrib.pop('pane',None);selection.set('activeCell','A1');selection.set('sqref','A1')
+            else:
+                pane.attrib.update({'xSplit':'1','ySplit':'6','topLeftCell':'B7','activePane':'bottomRight','state':'frozen'})
         data[part]=xml(root)
     xfs.set('count',str(len(xfs)));data['xl/styles.xml']=xml(styles)
     if 'docProps/custom.xml' in data:
@@ -192,7 +195,7 @@ def read_cells(path: Path) -> tuple[dict,dict]:
     for name,n in sheets(data).items():
         root=E.fromstring(data[n]);rr=root.findall('m:sheetData/m:row',NS);metrics['rows'][name]=len(rr)
         metrics['tables']+=len(root.findall('m:tableParts/m:tablePart',NS));metrics['grouped_rows']+=sum(int(r.get('outlineLevel','0'))>0 for r in rr)
-        metrics['frozen']+=sum(p.get('state') in ('frozen','frozenSplit') and p.get('xSplit')=='1' and p.get('ySplit') in ('4','6') for p in root.findall('m:sheetViews/m:sheetView/m:pane',NS))
+        metrics['frozen']+=sum(p.get('state') in ('frozen','frozenSplit') and p.get('xSplit')=='1' and p.get('ySplit')=='6' for p in root.findall('m:sheetViews/m:sheetView/m:pane',NS))
         for c in root.findall('.//m:sheetData/m:row/m:c',NS):
             key=name+'!'+c.get('r');f=c.find('m:f',NS);v=c.find('m:v',NS);t=c.get('t')
             if t=='s':value=ss[int(v.text)] if v is not None and v.text else ''

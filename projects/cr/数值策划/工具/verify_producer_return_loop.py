@@ -115,8 +115,8 @@ try{
     $chart.Axes(2).TickLabels.NumberFormat=[string]$ch.format
    }
   }
-  $freeze=6;if($p.dashboard){$freeze=4}
-  $app.ActiveWindow.FreezePanes=$false;$s.Range(('B'+($freeze+1))).Select();$app.ActiveWindow.SplitColumn=1;$app.ActiveWindow.SplitRow=$freeze;$app.ActiveWindow.FreezePanes=$true
+  $app.ActiveWindow.FreezePanes=$false;$app.ActiveWindow.SplitColumn=0;$app.ActiveWindow.SplitRow=0
+  if(-not $p.dashboard){$s.Range('B7').Select();$app.ActiveWindow.SplitColumn=1;$app.ActiveWindow.SplitRow=6;$app.ActiveWindow.FreezePanes=$true}
  }
  $app.CalculateFullRebuild()
  # 实际变更关键返还输入后回读：只修改派生包内已导出公式输入，不修改源工作簿。

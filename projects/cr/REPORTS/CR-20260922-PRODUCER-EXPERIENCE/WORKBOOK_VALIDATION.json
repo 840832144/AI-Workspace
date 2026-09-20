@@ -44,7 +44,7 @@
   "metadata_or_absolute_paths": 0,
   "filter_tables": 102,
   "grouped_rows": 51910,
-  "frozen_front_sheets": 27,
+  "frozen_front_sheets": 14,
   "level_detail_rows": 10009,
   "price_detail_rows": 7243,
   "unknown_groups": 9,
@@ -97,7 +97,7 @@
   },
   "tab_order": "overview_then_detail",
   "tab_order_only_verification": "pass; sheet contents, formulas, styles and links unchanged",
-  "freeze_pane_fix": {
+  "historical_freeze_pane_fix": {
     "overview_pages": 13,
     "overview_frozen_rows": 4,
     "detail_frozen_rows": 6,
@@ -109,5 +109,18 @@
     "numeric_recalculation": false,
     "only_sheet_views_changed": true,
     "all_contents_formulas_styles_links_and_order_preserved": true
+  },
+  "current_pane_settings": {
+    "overview_pages": 13,
+    "overview_frozen_rows": 0,
+    "overview_frozen_columns": 0,
+    "remaining_front_frozen_pages": 14,
+    "detail_frozen_rows": 6,
+    "detail_frozen_columns": 1,
+    "wps_overview_pages_tested": 13,
+    "wps_scroll_failures": 0,
+    "wps_read_only": true,
+    "only_view_nodes_changed": true,
+    "numerical_recalculation": false
   }
 }

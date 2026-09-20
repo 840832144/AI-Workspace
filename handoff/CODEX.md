@@ -2,7 +2,7 @@
 
 ## 2026-09-20 — TASK-0036返还闭环修订交Review（当前）
 
-- WPS超出可见区域的原因是概览冻结30行（含图表，830pt）；已将渲染、原生写入、最终窗格适配统一为4行/首列，明细仍6行/首列。实际双版本仅视图节点改变，WPS展示版27页滚动40→10行通过；未保存源或重算数值。
+- User后续决定已落实：总览及12张模块概览完全取消冻结（行/列均0），明细仍保留前6行/首列。双版本和受控ZIP同步；WPS只读回读13个概览均无冻结且滚动40→1行通过。仅修改视图，数值/公式/链接/页签顺序未变，未重算。
 - 后续User阅读调整已完成：双版本全部概览在前、全部明细在后，关闭/历史与Unknown置末；生成器和受控ZIP同步。保存后核对仅页签元数据变化，源链接/公式/缓存/样式均保留，不重算。
 - 原分支从`1be0b64`继续，第一步既有CLI重建/验证Registry，19 canonical/0 collision/valid。Task现为Review，原reservation pending-main，不新建Task。[修订报告](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/RETURN_LOOP.md)与[验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/WORKBOOK_VALIDATION.json)是当前入口。
 - 等级阶段/累计、VIP礼包、商城支付/Pass玩法、777圈层/三轮闭环完成；卡册理论模型跑至章/册完成并独立列季内完成率；薯片自然160上限与补包完成分账。福利/货币N/A；常驻启用/成本未闭合，未计入完成经济结论。
