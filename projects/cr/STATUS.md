@@ -1,5 +1,12 @@
 # CR 当前状态
 
+## 2026-09-20 — TASK-0036 Dashboard Round 1 Needs changes
+
+- [Dashboard Review Round 1](../../reviews/TASK-0036-CHATGPT-DASHBOARD-REVIEW-1.md)：受评`5ddb642`。当前从Review切回Changes Requested，原数值报告Accepted不变。
+- 必须补齐制作人返还闭环：等级/VIP阶段返还率、BET机器返还/净耗率、商城支付返还率、777圈级返还与三轮总通关；卡包理论完成成本与赛季完成率拆开；薯片自然不可达与补充渠道拆开。
+- 福利/货币等无统一消费分母模块明确N/A；Buff并入对应权益；常驻未闭合项明确“待启用确认/成本未闭合”。
+- 继续r7013相对外链master + 无外链展示版；第一步重建Registry。不调参、不改SVN、不冻结/发布、不合并PR #10或finalize。
+
 ## 2026-09-20 — TASK-0036制作人Dashboard候选完成，交ChatGPT Review
 
 - 按最新Task规格重构r7013双版本Excel；原数值报告Accepted保留，新Dashboard/模拟本身为Review。继续原PR #10与原reservation，不新建Task。起点安全同步e306145，首先按既有工具重建/验证Registry：19 canonical、0 collision、valid。
