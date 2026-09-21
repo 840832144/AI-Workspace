@@ -1,20 +1,30 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: dev r7252同Bet体验对比及17档经验拟议值待验收；Bet冲突按较低值闭合；296点整Spin模型匹配，前4级/小数期望/美元成本/非参考档仍有差异；LevelCfg未改，禁止SVN提交
+- Execution status: Bet/EXP已提交CR dev r7258并完成远端回读；17锚点保留、9处倒挂消除；四列简表待Review，LevelCfg未改、VIP暂存
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-09-21
-- User decision: Approved（仅本地候选、对比图及数据Excel；LevelCfg用User已修改的dev现值，不再修改；Bet同等级解锁且金币原值一致；验收后另等提交授权，VIP暂存）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前dev r7252同Bet体验候选等待User验收及Review）
+- User decision: Approved（2026-09-21明确“dev可以先提了”；缺档按相邻经验锚点插值、最高档后按末档EXP/Bet比例延伸后提交；保留17锚点和User的LevelCfg，VIP暂存）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前dev r7258 Bet/EXP及简表等待Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-09-21 — User最终明确同Bet游戏升级体验（当前）
+## 2026-09-21 — dev提交授权、倒挂修复与四列简表（当前）
+
+- User批准本轮Bet/EXP提交dev，并确认能修复且不影响整体的倒挂应修复。保留17个已对标锚点；中间缺档按相邻锚点线性插值并取整数，高于最高锚点按末档EXP/Bet比例延伸，低于首个EXP锚点保留现值；34处经验变更，9处倒挂降为0，5–300级296个整Spin结果保持。
+- 定向读取最新dev r7257；六份当前依赖与r7252无内容变化，保护User的LevelCfg。只拟提交SlotsCasinoBetList与SlotsCasinoBetUnlock；VIP、PriceCheatSheet、BetShow、CommCfg及trunk均不改。
+- 普通Bet的28档首次解锁及1–5000级最大Bet对齐保守目标；解锁表新增11行、移除2行超过目标上限的普通Bet。原有保留行活动字段原样保留；新增行继承同等级原最高Bet的活动设置。HighRoller解锁不改；经验列为共用字段，其经验会随本轮改变，不伪称已获得CF HighRoller验收。
+- User确认CF折扣系数为1/6；同金币Bet、相同Spin下美元单位成本一致。前4级保留User门槛，CF小数期望与CR整次Spin仍分别显示，不能将美元口径闭合写成所有行结果完全一致。
+- 交付改为“概览、明细”两个可见页，CR/CF各四列：等级、最大解锁Bet、Spin、消耗美金；5000级明细保留，300级后CF Spin/消耗N/A。完整配置、逐格diff、Excel及私有receipt留受控目录。
+- 按既有cr-svn-submit执行隔离工作副本、定向validation、dry-run、提交、远端表格/日志回读；不冻结、不发布、不合并PR #10、不finalize。Task仍Review，原reservation保留。Subagents: none。
+- 实际提交：**CR dev r7258**，以r7257为基线；两个目标文件远端单元格与候选差异0，日志中文/账号与此前已授权dev提交核对一致，隔离WC干净。LevelCfg、BetShow、PriceCheatSheet、CommCfg未变，VIP未提交；完整凭据/URL/账号仅本机受控。证据与回滚见[报告](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_SAME_BET_EXPERIENCE.md)。
+
+## 历史记录 — 2026-09-21 User最终明确同Bet游戏升级体验
 
 - 最终目标为游戏内同金币Bet下升级体验与Bet解锁节奏一致，同时保留美元消耗门槛曲线以定位分歧。覆盖此前将USD成本作为唯一判据的说法；历史r7237结果保留身份，不套用到r7252。
 - User已确认：Bet金币原值一致；CF两份源冲突取较低值作为本轮正式目标；可以用Bet及升级Spin反推经验。CF原始EXP未提供不再阻止反推候选，但不能将反推值称作CF原始配置。

@@ -1,6 +1,14 @@
 # ChatGPT Handoff
 
-## 2026-09-21 — TASK-0036同Bet游戏体验候选（当前）
+## 2026-09-21 — TASK-0036 Bet/EXP已提交dev r7258（当前）
+
+- User批准本轮dev提交及经验缺档插值/尾段比例延伸。最新dev r7257定向检查无相关并发变化；r7258只提交BetList/BetUnlock，远端单元格差异0、中文日志/作者核对一致、隔离WC干净。LevelCfg及VIP未改，trunk未提交。
+- 34处经验调整，17锚点保留，9处倒挂消除；5–300级296个整Spin对标结果保持。普通Bet新增11行/移除2行，28档首次解锁与5000级最大Bet核对通过；保留行活动字段及HighRoller解锁不变，新增行沿用同等级原最高Bet活动设置。共用EXP对HighRoller的影响已披露，不冒称客户端验收。
+- 四列简表为“概览、明细”两个可见页，CR/CF各列等级、最大解锁Bet、Spin、消耗美金；70行概览、5000级明细、3张300点折线图。CF成本按User确认1/6，同Spin单位美元成本一致；前4级及小数期望/整Spin差别保留，300级后CF Spin/成本N/A。
+- 43,260个公式缓存、驱动响应/恢复及视觉复核通过，0错误/外链/冻结。完整数值、配置、逐格diff与内部receipt留受控目录。Task仍Review、PR #10 OPEN、原reservation保留；不冻结/发布、合并或finalize。Registry由既有CLI重建validate，无hash或无关全量扫描。Subagents: none。
+- 当前报告：[同Bet体验、受控产物和回滚](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_SAME_BET_EXPERIENCE.md)。下方r7252未提交记录为历史，不能覆盖本轮dev授权及结果。
+
+## 历史记录 — 2026-09-21 TASK-0036同Bet游戏体验候选
 
 - User最终目标：同金币Bet下升级体验及解锁节奏与CF一致，美元门槛同时展示。固定dev r7252、LevelCfg原样保留；CF冲突按较低金币Bet正式取值，允许按门槛/CF Spin反推经验。
 - 受控Excel包含7可见页、3隐藏SRC、5折线图、完整5000级、28个目标Bet档及17档经验拟议值。5–300级296点匹配CF期望向上取整后的模拟次数；并非CF游戏实测或小数期望零误差。

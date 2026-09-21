@@ -1,4 +1,40 @@
-# CR / Cash Frenzy 同Bet升级体验候选 — dev r7252
+# CR / Cash Frenzy 同Bet升级体验 — dev r7258
+
+2026-09-21 · TASK-0036 · dev已提交，Git待Review · Subagents: none。
+
+## 当前结果：倒挂修复、dev提交与简表
+
+User明确批准“dev可以先提了”，并批准缺档按相邻锚点线性插值、超过最高参考Bet按末档EXP/Bet比例延伸。已从最新dev **r7257**定向核对六份依赖，与上一轮r7252无内容变化；使用隔离工作副本和既有`svn_submit.py`完成dry-run及提交，实际版本 **r7258**。
+
+- 仅提交`SlotsCasinoBetList.xlsx`、`SlotsCasinoBetUnlock.xlsx`。34个经验值修改，17个已对标锚点保留；全38档经验随Bet单调不下降，9处倒挂降为0。5–300级296个整Spin模拟结果保持，不因补缺档改变已有对标结果。
+- 普通Bet的28个目标档首次解锁、1–5000级最大Bet全部符合User确认的同金币/保守取值目标。普通解锁新增11行，移除2行超过目标上限的档位；不是重写完整Bet池。现有保留行活动字段不变，新行沿用同等级原最高Bet的活动设置，不引入新活动参数。原HighRoller解锁485行保持原样；BetList经验字段两模式共用，因此HighRoller经验也会随之改变，未声称获得CF HighRoller实测对标。
+- User的LevelCfg及5000级终点完整保留；VIP继续暂存。BetShow、PriceCheatSheet、CommCfg未变，未提交trunk、正式冻结或发布。
+- 远端r7258两份工作簿与候选单元格差异0，提交路径仅两个目标文件；中文日志完整，作者与此前已授权dev提交一致，隔离工作副本干净。内部URL、账号和完整日志仅留受控目录。
+
+## CF折扣与四列简表
+
+User确认CF消耗按历史理论值的**1/6**计入本轮比较，这是业务输入，未声称来自实付账单。两边同金币Bet、同Spin的美元单位成本因此一致；保留原CR等级专项95%与CF历史85%及各自金币/USD，不修改价格或RTP配置。
+
+- CR单级净耗USD：`CR整Spin × Bet ÷ CR金币/USD × CR净损率`。
+- CF单级净耗USD：`CF原始期望Spin × Bet ÷ CF金币/USD × CF净损率 × 1/6`。
+- 插值EXP：`左EXP + (右EXP−左EXP) × (Bet−左Bet)/(右Bet−左Bet)`，四舍五入至整数；尾部为`末档EXP × Bet / 末档Bet`再取整数。小于首个EXP模式锚点的档保持现值。
+- 两个可见页依次为**概览、明细**，两边各四列：**等级、最大解锁Bet、Spin、消耗美金**。概览70行，按解锁/价值/模式变化点及其边界选择，明细保留全部5000级；3张同轴折线图保留1–300全部逐级点，公式与来源在隐藏SRC。
+- “消耗美金”为该级到下一级的模型净耗，不是毛下注、累计消耗或实付金额。CF小数期望原样保留，不能通过显示取整制造一致；301级后CF Spin/消耗明确N/A，5000级没有下一次升级。
+
+## 验证、边界与回滚
+
+- 43,260个公式缓存定向验证通过，错误/缺缓存/外链/冻结均0；原生Excel完成CF折扣驱动变化/恢复。3张折线图各两条300点曲线、概览及300/5000边界表格完成视觉复核。当前验证是配置模型与实际SVN写后回读，**未执行游戏客户端运行验收**。
+- 仍有明确差异：1–4级保留User的Spin门槛；7组共享Bet不能同时精确复现全部CF小数期望。整次Spin和小数期望导致的成本差别仍如实显示。缺档/301级后补齐为User授权拟合，不能改称CF原始数据或全部Bet实测一致。
+- 配置生成时发现本机Artifact导入工作簿回写保留旧公式、只改变缓存，逐格验证拦截了该产物。用原生Excel在源配置副本精确修改，再按全部非目标值/公式及目标值重新核对；没有降低断言或直接提交缓存成功的文件。简表继续由Artifact生成，原生Excel回算验证。
+- Registry只通过既有CLI重建/validate；不重跑TASK-0033/0034、不做hash或无关全量目录扫描。Task仍Review、PR #10 OPEN、原reservation保留，未合并/finalize。
+- 若需回退，先获得User批准，在最新dev的独立工作副本对**r7258的两个文件**制作反向变更，核对后续并发及全部非目标值后走同一dry-run/提交/回读流程。不要覆盖或回滚User的LevelCfg/VIP，不直接以旧整表覆盖最新dev；Git文档可追加纠正或revert本轮收口commit，不强推历史。
+
+受控目录：`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/outputs/task0036-bet-dev-20260921/`。
+包含`CR_CF_等级体验_简表.xlsx`、`candidate/`两份提交表、`configuration_diff.csv`、`candidate-validation.json`、`workbook-validation.json`、`svn-result.json`及私有receipt。完整数值/源表/候选均不进public Git。复现工具为`build_cr_bet_dev.py`、`render_cr_bet_dev.mjs`、`verify_cr_bet_dev_native.ps1`；配置回写遇到导入公式保留限制时采用已记录的原生步骤，`-ReportOnly`只刷新简表。
+
+## 历史记录：r7252的未提交候选
+
+以下保留当时结论；“没有提交dev”“美元差异”“9处倒挂”等均为追加授权与修复之前的状态，以本页当前结果为准。
 
 2026-09-21 · TASK-0036 · 待User验收 / ChatGPT Review · Subagents: none。
 

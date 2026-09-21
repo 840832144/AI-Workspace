@@ -1,6 +1,6 @@
 # CR 数值调优候选：POP VIP门槛 + Cash Frenzy等级体验 + 100%→500%档位膨胀
 
-> 当前追加口径见[CR同Bet游戏体验候选](CR_SAME_BET_EXPERIENCE.md)：LevelCfg保留dev r7252；Bet同金币、冲突取较低值；经验只作受控拟议，不提交SVN。下文前期候选及已授权r7237提交均保留历史身份。
+> 当前追加结果见[CR同Bet游戏体验](CR_SAME_BET_EXPERIENCE.md)：User批准Bet/EXP提交dev r7258，缺档补齐且倒挂消除；LevelCfg不改、VIP暂存。简表已按CF折扣1/6比较。下文前期候选及r7237提交均保留历史身份，不覆盖当前授权或版本。
 
 - Parent Task: TASK-0036
 - Status: Changes Requested / User Approved
