@@ -1,4 +1,7 @@
-"""TASK-0036：固定r7013的POP/CF调优候选；源表只读，完整值仅输出受控目录。
+"""TASK-0036历史候选重现：A/B等级拉伸已被User撤销，不可用于当前dev提交。
+
+当前等级使用build_cr_level_dev.py（已有1–300逐级对标、后续拟合）；VIP暂存。
+以下固定r7013旧候选仅供历史追溯，源表只读，完整值仅输出受控目录。
 
 python build_cr_tuning.py extract|verify --baseline <原受控根> --output <本轮受控目录>
 XLSX由render_cr_tuning.mjs生成；未选定的等级映射和未确认真相源的价格表不写值。

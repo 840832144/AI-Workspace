@@ -1,5 +1,7 @@
 # TASK-0036 — POP/CF调优候选验证
 
+> 后续User已撤销A/B等级拉伸方案，改为已有300级同级对标、后续拟合，并授权等级提交dev；当前实际结果为[CR_LEVEL_DEV_RESULT](CR_LEVEL_DEV_RESULT.md)中的r7237。本文保留6d02f8c阶段的历史候选验证，不能作为当前等级提交输入。VIP继续暂存，PriceSetting未提交。
+
 2026-09-21 · **Review；配置应用条件未满足** · [实施规格](CR_TUNING_POP_CF.md) · [Task](../../../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md) · PR #10 OPEN · Subagents: none。
 
 本轮已按User授权生成受控候选与可复算曲线，未提交SVN、覆盖r7013、冻结、发布、合并或finalize。原报告Accepted不自动覆盖本轮候选。完整商业值、代码证据、逐格diff和Excel仅在受控目录；Git只保留方法与脱敏结果。

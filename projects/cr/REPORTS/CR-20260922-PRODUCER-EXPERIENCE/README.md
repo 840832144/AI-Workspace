@@ -2,9 +2,15 @@
 
 [TASK-0036](../../../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md) · [PR #10](https://github.com/840832144/AI-Workspace/pull/10) OPEN · **数值报告Accepted；双版本Excel等待ChatGPT Review** · 2026-09-17 · Subagents: none。
 
-本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。9/21已按User新增授权进入受控调优候选；不覆盖r7013、不修改SVN、不冻结、不发布；TASK-0035历史候选保持原样。
+本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。9/21已按User新增授权仅将等级升级门槛提交dev r7237；VIP暂存，不覆盖r7013、不提交trunk、不冻结、不发布；TASK-0035历史候选保持原样。
 
-## 当前POP/CF调优候选（2026-09-21，等待Review）
+## 当前等级dev结果（2026-09-21，r7237）
+
+[实际提交、最终拟合与验证](CR_LEVEL_DEV_RESULT.md)。User最终要求禁止拉伸：CF已有1–300级目标同级对应，301–4999按末段趋势拟合，5000级终点保留。仅LevelCfg的4999个升级门槛格已提交CR dev r7237，远端逐格回读一致；VIP暂存，价格/其他配置未提交。
+
+目标逐级对应与整数实现误差分开：前300级142级成本精确一致，其余向上取整，最大3.174603%。新受控曲线有概览与完整明细；已验证公式、拟合响应、图表及视觉。仅dev仓库提交，不代表游戏内效果、trunk、正式冻结或发布已验收；PR #10保持OPEN，reservation不finalize。
+
+## 历史POP/CF调优候选（2026-09-21，A/B拉伸已作废）
 
 [规格](CR_TUNING_POP_CF.md) · [结果、公式与验证](CR_TUNING_VALIDATION.md)。VIP前10档按指定门槛，11–15按User选择的POP高阶趋势外推；VipCfg仅15个needExp格改变。零门槛安全Gate未通过。两套CF→5000级体验方案待选，LevelCfg未改；30档保形100%→500%已形成，但PriceSetting制作真相源未确认，停止写值。等级膨胀仅共同1–300级No Change，后续缺CF证据。
 

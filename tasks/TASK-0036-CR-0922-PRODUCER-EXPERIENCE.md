@@ -1,20 +1,31 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: POP VIP含11–15趋势拟合、CF两套5000级映射及档位保形方案已交Review；VIP零门槛安全、等级映射选择、价格制作真相源尚未闭合，不可导入正式配置
+- Execution status: 等级升级门槛已按User最终口径提交CR dev r7237；CF1–300级目标同级对应、301–4999拟合、5000终点保留；远端回读通过，VIP暂存，待后续Review/确认，尚未冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-09-21
-- User decision: Approved（数值整理 + 定向调优候选；允许修改受控候选VipCfg/LevelCfg/PriceSetting，不提交SVN、不冻结、不发布）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前调优候选等待ChatGPT Review）
+- User decision: Approved（本轮仅等级升级门槛提交CR dev；CF已有等级逐级对标、后续拟合；VIP暂存，其他配置、trunk、正式冻结/发布未授权）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前等级dev r7237收口等待Review，VIP暂存）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-09-21 — POP/CF调优候选交Review（当前）
+## 2026-09-21 — User批准等级dev提交并纠正映射（当前）
+
+- 执行结果：[等级dev收口](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_DEV_RESULT.md)。以dev r7232准备，经提交前最新依赖核对后提交r7237；仅LevelCfg.levelUpExp共4999格，远端逐格差异0、中文日志正确、工作副本干净。VIP未提交。
+- User先批准“等级相关先提dev，VIP暂存”，随后明确“不能拉抻，已有的数据和等级完全对标，后续的进行拟合”。这覆盖此前短暂选择B及A/B候选，不能把旧方案写入dev。
+- CF现有1–300级目标值保留且同级对应；301–4999的升级成本只外推，5000为终点，不重复/压缩/重排已有等级。末段250–300在剔除等级金币倍率后严格线性，按该连续段拟合并锚定300级，再按CR保留的等级倍率折回机器理论净耗。拟合不是CF实测数据。
+- 仅改LevelCfg.levelUpExp，保留levelUpType、levelUpVip、5000级终点及其他配置；整数Spin产生的实现误差单列，不把目标完全对应写成落表成本零误差。VIP候选完整暂存，不提交。
+- 已锁定CR dev r7232作提交基线；等级门槛/模式、Bet与经验、普通最大Bet解锁和相关美元金币倍率与r7013候选依赖一致。dev保有活动解锁字段差异，原样保留，不跨环境整表同步。
+- 前300级目标值300/300同级保留；整数Spin实际落表142级精确一致，其余向上取整，最大相对差3.174603%。完整误差在受控明细中保留；不把“同级目标对应”误写成“所有实际成本零误差”。
+- 新曲线包含概览/5000级明细，2张折线图分别保留300点与4999次升级全点；公式、拟合斜率响应且前300不受影响、取整、逐格diff、元数据与视觉通过。仅确认dev仓库提交及回读，不宣称游戏内效果已验收。
+- 首步及收尾均由既有CLI重建/validate Registry：19 canonical、0 collision、valid。继续原Task/PR #10/reservation；不提交trunk、不执行正式冻结/发布、不合并PR或finalize。Subagents: none。
+
+## 历史候选 — 2026-09-21 POP/CF调优交Review
 
 - [脱敏结果、公式、验证与受控交付位置](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_TUNING_VALIDATION.md)。原Task/PR/reservation沿用；本轮不自行Accepted。
 - VIP1–10保持指定门槛；VIP11–15按User选择的POP高阶趋势，以VIP10锚点拟合Tier6–10对数门槛后外推。仅受控VipCfg的15个needExp格改变，权益/商城倍率不变；候选严格单调且在int32范围。

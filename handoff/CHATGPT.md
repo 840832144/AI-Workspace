@@ -1,6 +1,15 @@
 # ChatGPT Handoff
 
-## 2026-09-21 — TASK-0036 POP/CF调优候选交Review（当前）
+## 2026-09-21 — TASK-0036等级已提交CR dev r7237，VIP暂存（当前）
+
+- User最终决定禁止拉伸；CF已有1–300级目标与CR同级对应，仅301–4999拟合，5000级终点保留。原A/B候选及短暂B选择均被覆盖，不再作为提交输入。
+- 已按User明确授权提交 **dev r7237**，仅 `LevelCfg.xlsx / levelUpExp` 4999格。准备基线r7232；提交前四项升级依赖核对无变化，活动字段差异保留。独立稀疏WC，远端逐格回读差异0、中文日志正确、WC干净。
+- 拟合采用CF250–300末段“净耗×等级金币倍率”的线性趋势，锚定300级，除以CR保留的等级倍率折回成本。前300目标300/300对应；实际整数Spin成本142级精确一致，其余向上取整，最大相对差3.174603%，未隐藏取整误差。
+- 新曲线概览/完整5000级明细、2张原生折线图、公式与拟合响应/恢复、逐格diff和视觉通过。[结果、公式与受控文件](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_DEV_RESULT.md)。
+- **VIP继续暂存，不提交**；PriceSetting、PriceCheatSheet、Bet、奖励、活动配置均未写入。仅确认dev仓库结果，游戏内效果尚未验收；没有trunk提交、正式冻结或发布。
+- Task仍Review；原PR #10保持OPEN、reservation pending-main。Registry由既有CLI重建validate；未新建Task、hash或全量重跑、合并或finalize。Subagents: none。
+
+## 历史候选 — 2026-09-21 TASK-0036 POP/CF调优（A/B拉伸已作废）
 
 - 当前Review，PR #10 OPEN；原报告Accepted不扩展为本轮候选Accepted。受控目录为 `outputs/task0036-tuning-pop-cf-20260921/`，完整交付及验证见下方报告链接。
 - VIP1–10为指定值，11–15按User选择的POP高阶趋势，以VIP10为锚点拟合Tier6–10后外推。仅VipCfg的15个needExp格改变，严格单调/int32范围通过，权益不变；VIP1=0登录校正与加0经验入口行为不同，客户端/服务端未运行验证，安全Gate未通过。
