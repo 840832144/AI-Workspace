@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Review
-- Execution status: CR+CF五页合并曲线已生成并完成定向验证，等待ChatGPT Review；CF VIP累计属性已闭合，S$→USD固定汇率仍待User确认
+- Status: Changes Requested
+- Execution status: User修订CF币种与VIP膨胀口径；合并曲线候选需修VIP消费门槛证据与商城金币倍率曲线，等待Codex修订后回ChatGPT Review
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -17,6 +17,16 @@
 ## Goal
 
 基于TASK-0033全数值底稿、TASK-0034规则闭合及TASK-0035薯片+777现值候选，形成可供制作人决策的全项目数值体验汇报，交ChatGPT Review。不重新盘点或验收已Accepted工作；当前任务只新增体验场景、跨系统解释和必要的变化数据。
+
+## 2026-09-21 — CR/CF VIP口径修订（User新增输入）
+
+- CF截图价格币种确认是**新加坡元SGD/S$**；`VIP_消费门槛`必须保留全部可读商城“价格→VIP点→点/SGD”样本、最低/最高效率来源、每档VIP最低/最高SGD门槛，并保留显式SGD→USD输入用于同轴比较。
+- 原`VIP_膨胀系数`的“累计消费门槛/VIP1”定义退出当前展示，改为**商城金币倍率**同口径比较。
+- CR r7013正式“商店VIP加成”来自`PriceSetting(currencyType=1,vipType=1)`：VIP0=1x、VIP1=1.25x、VIP2=1.5x、VIP3=1.75x、VIP4=2x、VIP5=2.25x、VIP6–15=2.5x封顶。
+- r7013 `VipPrivilege`中确有最高650的其他VIP字段，但不是同口径商城金币，且旧payChipRate被注释为废弃；本页不得用650替代当前PriceSetting商店倍率。
+- CF商城金币按截图：黄金2.5x、铂金4x、钛金7x、尊徽10x、百夫长20x、王者风范40x；缺失低档保持N/A，不外推。
+- VIP膨胀主图改为`CR商城金币倍率`与`CF商城金币倍率`两条线，Y轴用倍数x，表格同时给百分比。完整细则见[CR_CF_CURVE_COMPARISON](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVE_COMPARISON.md)。
+- 第一动作重建/validate Registry；不改CR配置、历史附件、CF_collect，不采集、不发布、不合并或finalize。
 
 ## 2026-09-21 — CR vs Cash Frenzy合并曲线对照（User新增授权）
 
