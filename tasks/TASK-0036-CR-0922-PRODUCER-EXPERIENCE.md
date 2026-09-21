@@ -1,18 +1,28 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Review
-- Execution status: CF VIP序号、固定SGD→USD汇率及商城金币倍率修订完成；本地合并Excel与定向验证已交ChatGPT Review，PR #10保持OPEN，原reservation pending-main
+- Status: Changes Requested
+- Execution status: User进入CR数值调优候选阶段：POP VIP消费门槛、Cash Frenzy升级难度5000级、等级膨胀验证、PriceSetting 5x档位膨胀；允许受控候选改表但不提交SVN/发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-09-21
-- User decision: Approved（全项目体验分析与报告；不调参、不改SVN、不冻结、不发布）
+- User decision: Approved（数值整理 + 定向调优候选；允许修改受控候选VipCfg/LevelCfg/PriceSetting，不提交SVN、不冻结、不发布）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；返还闭环修订等待ChatGPT Review）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
+
+## 2026-09-21 — CR数值调优候选：POP + Cash Frenzy（User新增授权）
+
+- 完整实施规格：[CR_TUNING_POP_CF](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_TUNING_POP_CF.md)。本轮从纯展示进入**定向参数候选**，但仍不提交SVN/冻结/发布。
+- VIP消费门槛：CR VIP1–10按User字面对标POP Tier1–10消费门槛；POP门槛0/75/300/1600/5500/22000/60000/250000/750000/2000000 TP，商城设计标称约80TP/USD，CR仍100VIP点/USD。候选needExp为0/94/375/2000/6875/27500/75000/312500/937500/2500000；VIP1=0必须先做升级逻辑安全验证。
+- VIP权益/商城金币膨胀本轮不改，保持CR当前配置；POP权益截图只作门槛证据，不复制其Bonus。
+- 升级难度按Cash Frenzy体验并扩展到5000级：优先恢复旧正式数值表已有300→5000映射公式，以升级消耗体验反推LevelCfg；没有唯一映射时只交候选映射，不写LevelCfg。
+- 等级膨胀完全参考Cash Frenzy，User预期当前配置已经满足：只验证，一致则No Change，不一致先报差异不自动改。
+- 档位膨胀改为相邻业务档位**5x**，定向修改承担该逻辑的PriceSetting；禁止全表×5，VIP倍率/其他货币不连带改。若真相源实际不是PriceSetting，停止并报告。
+- 交付受控VipCfg/LevelCfg/PriceSetting候选、逐格diff、新`CR_调优候选_vs_CF_POP_数值曲线.xlsx`及验证摘要；不改原r7013，不提交SVN。
 
 ## 2026-09-21 — 固定汇率与商城金币倍率修订完成（当前，Review）
 
