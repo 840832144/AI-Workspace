@@ -1,9 +1,11 @@
 # Cash Frenzy 竞品数值曲线对照表规格
 
 - Parent Task: TASK-0036
-- Status: Changes Requested / User Approved
+- Status: Review / User Approved（2026-09-21交付；原要求保留）
 - Date: 2026-09-21
 - Scope: 只生成Cash Frenzy竞品曲线展示Excel；不改CR r7013配置，不修改CF_collect，不采集新数据
+
+当前交付与保留的来源缺口见[脱敏验证摘要](CASH_FRENZY_CURVES_VALIDATION.md)，不代表ChatGPT已Accepted。
 
 ## 目标
 

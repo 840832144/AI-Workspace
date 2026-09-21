@@ -1,13 +1,13 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Changes Requested
-- Execution status: User新增Cash Frenzy竞品曲线对照表交付；继续TASK-0036并进入Changes Requested，等待Codex生成同构5页Excel后回ChatGPT Review；原返还闭环候选保留
+- Status: Review
+- Execution status: Cash Frenzy同构5页曲线Excel已在受控目录生成并完成定向验证；VIP累计属性及Bet内部冲突保留N/A，等待ChatGPT Review；原返还闭环候选保留
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
-- Updated: 2026-09-20
+- Updated: 2026-09-21
 - User decision: Approved（全项目体验分析与报告；不调参、不改SVN、不冻结、不发布）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；返还闭环修订等待ChatGPT Review）
 - Allocation relationship: new
@@ -19,6 +19,15 @@
 基于TASK-0033全数值底稿、TASK-0034规则闭合及TASK-0035薯片+777现值候选，形成可供制作人决策的全项目数值体验汇报，交ChatGPT Review。不重新盘点或验收已Accepted工作；当前任务只新增体验场景、跨系统解释和必要的变化数据。
 
 ## 2026-09-21 — Cash Frenzy竞品曲线对照表（User已授权）
+
+### 本轮交付：等待ChatGPT Review
+
+- 已按最新规格完成本地 `CashFrenzy_数值曲线对照.xlsx`，受控目录为`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/outputs/task0036-cashfrenzy-20260921/`；[脱敏验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVES_VALIDATION.md)。5页同名同序、5张原生折线图，300级完整明细，无冻结/外链。
+- 只用旧总表CF区块，不混另一版竞品附件、CR或运行数据。VIP0–7全部保留；VIP1=100%，VIP2–7因累计属性未明标N/A。普通最大Bet与$1等值同图同单位；56个源表内部冲突等级的最大Bet为N/A，highroller条件缺口明确保留。
+- 本轮来源复算、输出逐点、原生驱动变化并还原、图表点数和5页视觉验收通过；0公式错误/缺缓存/作者及绝对路径元数据。第一步Registry重建/validate为19 canonical、0 collision、valid；收尾继续由工具重建。
+- Workspace Sync为ON_DEMAND/provider unavailable/stale 6/conflicts 0，不冒充外部同步。完整数值/原附件/预览留本机，不上传。无hash或无关全量重跑；PR #10 OPEN、原reservation pending-main，不合并或finalize。Subagents: none。
+
+### 原授权规格（保留）
 
 - 继续现有TASK-0036，不新建Task：该交付与当前CR数值整理/制作人曲线展示范围直接重叠。
 - 完整规格见[Cash Frenzy竞品数值曲线对照表](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVE_COMPARISON.md)。

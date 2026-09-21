@@ -1,6 +1,13 @@
 # ChatGPT Handoff
 
-## 2026-09-21 — TASK-0036 Cash Frenzy竞品曲线对照
+## 2026-09-21 — TASK-0036 Cash Frenzy曲线等待轻量Review
+
+- 当前Review。新增本地受控`CashFrenzy_数值曲线对照.xlsx`与[脱敏验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVES_VALIDATION.md)，完整值仅在本机。5页同名同序、全部原生折线图、300级完整成本/返还、最大Bet与$1等值同图同单位，0冻结。
+- Review重点：VIP1=100%的绝对口径；VIP2–7因原经验未注明累计/本级而N/A；普通最大Bet244个一致点、56个源表冲突留空；highroller条件未明，不能当全模式绝对上限。另一版同套附件不混用，CF曲线不套CR RTP/币值。
+- 原表缓存复算、前台逐点、原生驱动变化并还原、图表缓存点数和五页视觉检查通过；0公式错误/缺缓存/外链/作者及绝对路径。Registry已由CLI重建并验证，非手工编辑。
+- PR #10 OPEN，原reservation pending-main；原CR返还闭环候选及Accepted报告保持。无hash/全量扫描、源附件改写、SVN/CF_collect修改、上传发布、合并或finalize。Subagents: none。
+
+## 历史输入 — 2026-09-21 Cash Frenzy竞品曲线对照
 
 - User已授权继续现有TASK-0036新增Cash Frenzy同构曲线Excel；Task已切Changes Requested，完整规格见[竞品曲线规格](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVE_COMPARISON.md)。
 - 首选历史正式数值体验资料的旧`CashRoyal数值.xlsx` / `cashFrenzy等级`及同套竞品数据；缺失字段不得借CR规则补齐。

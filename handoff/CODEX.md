@@ -1,6 +1,13 @@
 # Codex Handoff
 
-## 2026-09-21 — TASK-0036 Cash Frenzy竞品曲线对照
+## 2026-09-21 — TASK-0036 Cash Frenzy曲线交Review
+
+- 同一Task/PR #10，当前Review。已生成本机受控`CashFrenzy_数值曲线对照.xlsx`；目录和复现见[脱敏摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVES_VALIDATION.md)。5页/5原生折线图与CR v2同构，300级明细保留，无冻结。
+- VIP累计属性未明的6档标N/A；VIP1=100%绝对指数。最大Bet与$1等值同图同单位，244个普通上限一致点、56个内部冲突缺口；highroller条件不冒充已知。来源只用旧总表CF区块，另一版附件只比对，不混入数值。
+- 逐点来源复算、输出、原生驱动变化并还原、5页视觉检查通过；0公式错误/缺缓存/外链/作者或本机路径。Registry由CLI重建/validate，第一步19 canonical/0 collision/valid；收尾同样按工具更新。
+- Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。完整Excel/预览未上传；未做hash、旧底稿重验、调参、改SVN/CF_collect、发布、合并或finalize。原reservation pending-main。Subagents: none。
+
+## 历史输入 — 2026-09-21 Cash Frenzy竞品曲线对照
 
 - User已授权继续现有TASK-0036新增Cash Frenzy同构曲线Excel；Task已切Changes Requested，完整规格见[竞品曲线规格](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVE_COMPARISON.md)。
 - 首选历史正式数值体验资料的旧`CashRoyal数值.xlsx` / `cashFrenzy等级`及同套竞品数据；缺失字段不得借CR规则补齐。

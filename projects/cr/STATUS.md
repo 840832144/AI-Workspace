@@ -1,6 +1,13 @@
 # CR 当前状态
 
-## 2026-09-21 — TASK-0036新增Cash Frenzy竞品曲线对照表
+## 2026-09-21 — TASK-0036 Cash Frenzy曲线已交Review
+
+- 当前Status为Review；已生成独立受控Excel，5页同名同序、5张原生折线图、300级完整明细、0冻结。完整数值/来源/预览只留本机，见[脱敏验证摘要](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVES_VALIDATION.md)。
+- VIP1为100%绝对指数；VIP2–7因累计属性未明保留N/A。普通最大Bet与$1等值同图同单位，56个来源内部冲突等级留N/A，highroller条件与历史版本缺口保留。没有借CR或CF_collect/Web数据补齐。
+- 来源复算、逐点输出、原生重算/驱动还原及五页视觉检查通过；0公式错误/缺缓存/外链/作者或绝对路径。Registry已按工具重建验证，未新建Task。Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。
+- PR #10 OPEN、reservation pending-main；原CR返还闭环候选和Accepted报告保留。未调参、改SVN、改CF_collect、采集、上传、发布、合并或finalize。Subagents: none。
+
+## 历史输入 — 2026-09-21新增Cash Frenzy竞品曲线对照表
 
 - User授权在现有TASK-0036内新增Cash Frenzy同构曲线Excel，不新建Task；当前状态Changes Requested。
 - 数据优先来自历史正式数值体验资料中的旧`CashRoyal数值.xlsx` / `cashFrenzy等级`及同套Cash Frenzy竞品表。Git已确认该旧主表包含`cashFrenzy等级`结构记录；本轮允许使用其中竞品历史数值，但不得把CR值/规则填入缺口。
