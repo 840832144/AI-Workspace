@@ -1,6 +1,13 @@
 # ChatGPT Handoff
 
-## 2026-09-21 — TASK-0036 CR vs Cash Frenzy合并曲线
+## 2026-09-21 — TASK-0036合并曲线待Review
+
+- 已提交本地受控`CR_vs_CashFrenzy_数值曲线对照.xlsx`，Task为Review；[脱敏验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。5页同指标同主折线图，等级1–300比较且完整数据保留。
+- Review重点：本轮User正式输入已闭合CF累计VIP点；消费边界按最高/最低点/S$分别推最低/最高成本；CF绝对膨胀只一条线。固定S$→USD未提供，黄色输入留空，不作最终美元成本结论。
+- 原生测试确认填入汇率后CF两条USD线响应，绝对指数不变，测试后恢复空白。当前该图实际点数15/0/0，其余图点数见摘要；14个刻意绘图NA()显式记录，非预期错误/缺缓存均0。56个CF Bet冲突点仍断线。
+- 既有模型缓存原样复用，无重跑；五页视觉、输出定向验证、Registry重建validate完成。PR #10 OPEN、原reservation pending-main；不改CR/SVN/CF_collect、采集、发布、合并或finalize。Subagents: none。
+
+## 历史输入 — 2026-09-21 CR vs Cash Frenzy合并曲线
 
 - User补充CF App VIP/商城截图并要求把CR与CF合并到同一曲线Excel；Task已切Changes Requested。完整规格：[CR_CF_CURVE_COMPARISON](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVE_COMPARISON.md)。
 - CF累计VIP点现闭合为0/1k/10k/31k/260k/2.1m/10m/50m；商城兑换上下界18.0401–37.2542点/S$。

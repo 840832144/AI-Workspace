@@ -4,7 +4,11 @@
 
 本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。当前不调参、不修改SVN、不冻结、不发布；TASK-0035的零数值变更候选保持原样。
 
-## 当前Cash Frenzy曲线交付（2026-09-21，等待Review）
+## 当前CR vs Cash Frenzy合并对照（2026-09-21，等待Review）
+
+[规格](CR_CF_CURVE_COMPARISON.md) · [验证摘要](CR_CF_CURVES_VALIDATION.md)。5页同指标同主折线图，等级主比较1–300，完整数据保留。CF VIP累计属性与S$成本边界已闭合；固定S$→USD汇率未提供，输入格留空，CF美元成本两条线等待输入后显示。既有模型值变化0；完整Excel只留受控本机。Task为Review，PR #10不合并、reservation不finalize。
+
+## 历史Cash Frenzy独立曲线候选（2026-09-21）
 
 [规格](CASH_FRENZY_CURVE_COMPARISON.md) · [脱敏验证摘要与来源缺口](CASH_FRENZY_CURVES_VALIDATION.md)。已生成独立受控Excel，5页与CR v2同名同序、全部原生折线图；300级成本/返还完整保留，最大Bet与$1等值同图。VIP累计属性和源Bet内部冲突保留N/A，不借用CR或采集数据。只有本地交付，未上传/发布；TASK-0036及PR #10等待ChatGPT Review。
 

@@ -166,9 +166,9 @@ def verify(source: Path, output: Path) -> dict:
     return summary
 
 
-def sanitize(output: Path) -> dict:
+def sanitize(output: Path, filename: str = FILE) -> dict:
     """原生保存会回填Host作者；只去除输出包的作者元数据，保留计算缓存。"""
-    book = output/FILE
+    book = output/filename
     temporary = output/'metadata-clean.tmp'
     with ZipFile(book) as old, ZipFile(temporary, 'w') as new:
         for item in old.infolist():

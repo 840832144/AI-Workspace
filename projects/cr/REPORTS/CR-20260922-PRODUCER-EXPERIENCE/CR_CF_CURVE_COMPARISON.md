@@ -1,10 +1,12 @@
 # CR vs Cash Frenzy 数值曲线合并对照表规格
 
 - Parent Task: TASK-0036
-- Status: Changes Requested / User Approved
+- Status: Review / User Approved（2026-09-21已交合并候选，固定汇率待确认）
 - Date: 2026-09-21
 - Scope: 合并现有CR与Cash Frenzy曲线Excel；补齐CF VIP截图证据与商城VIP点兑换上下界
 - Output: `CR_vs_CashFrenzy_数值曲线对照.xlsx`
+
+当前交付、实际图表点数与汇率边界见[脱敏验证摘要](CR_CF_CURVES_VALIDATION.md)。独立Review未执行，原规格保留。
 
 ## 目标
 

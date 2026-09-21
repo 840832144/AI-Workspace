@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Changes Requested
-- Execution status: User补充Cash Frenzy App VIP/商城证据并要求CR+CF合并曲线Excel；进入Changes Requested，等待Codex完成合并对照表后回ChatGPT Review
+- Status: Review
+- Execution status: CR+CF五页合并曲线已生成并完成定向验证，等待ChatGPT Review；CF VIP累计属性已闭合，S$→USD固定汇率仍待User确认
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -19,6 +19,16 @@
 基于TASK-0033全数值底稿、TASK-0034规则闭合及TASK-0035薯片+777现值候选，形成可供制作人决策的全项目数值体验汇报，交ChatGPT Review。不重新盘点或验收已Accepted工作；当前任务只新增体验场景、跨系统解释和必要的变化数据。
 
 ## 2026-09-21 — CR vs Cash Frenzy合并曲线对照（User新增授权）
+
+### 合并候选已交Review
+
+- 已生成受控`CR_vs_CashFrenzy_数值曲线对照.xlsx`，见[脱敏验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。目录：`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/outputs/task0036-cr-cf-20260921/`。
+- 固定5页/5原生主折线图/13系列，同指标CR与CF同图；等级主比较1–300，保留CR 4999级成本/返还、5000级Bet与CF完整300级，56个Bet冲突点不插值。来源只读既有曲线缓存，不重算旧模型。
+- CF累计点、S$成本上下界及VIP1=100%的单条绝对膨胀已闭合。固定汇率未提供，黄色`VIP_消费门槛!B4`/`CF_SGD_TO_USD`留空；CF两条USD线等待输入，未把S$当USD。原单独CF候选的VIP N/A记录保留为历史。
+- 输入缓存/输出逐点、图表范围、原生临时汇率变化并恢复及5页视觉检查通过。0非预期错误/缺缓存/外链/冻结/作者和绝对目录；缺汇率时隐藏图表区14个刻意NA()单列，不能声称零公式错误。完整值/图像不入Git。
+- 首步Registry重建/validate为19 canonical、0 collision、valid；收尾由既有工具重建。Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。PR #10 OPEN、原reservation pending-main；未改CR/CF_collect/SVN、采集、发布、合并或finalize。Subagents: none。
+
+### 本轮正式输入（保留）
 
 - User提供Cash Frenzy App VIP与商城截图，闭合旧表VIP累计门槛属性，并要求把CR与CF曲线合并到同一Excel、同指标同页同图。
 - 完整规格见[CR vs Cash Frenzy合并曲线对照](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVE_COMPARISON.md)。
