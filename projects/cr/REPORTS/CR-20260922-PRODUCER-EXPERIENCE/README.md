@@ -6,6 +6,8 @@
 
 ## 当前等级dev结果（2026-09-21，r7237）
 
+已补充受控PNG/PDF难度曲线对照与逐级偏差图，详见[简报图示交付](CR_LEVEL_EXPERIENCE_SIMULATION.md#对比图交付仅受控本机)。图不进public Git。
+
 [升级难度曲线核验简报](CR_LEVEL_EXPERIENCE_SIMULATION.md)：User确认按同级机器理论净耗USD核验，Spin差异不作为判定标准。1–300级目标完全同级对应，配置取整累计误差+0.49%、单级最大+3.17%；撤回此前按Spin否定对标的误判，dev配置未再修改。
 
 [实际提交、最终拟合与验证](CR_LEVEL_DEV_RESULT.md)。User最终要求禁止拉伸：CF已有1–300级目标同级对应，301–4999按末段趋势拟合，5000级终点保留。仅LevelCfg的4999个升级门槛格已提交CR dev r7237，远端逐格回读一致；VIP暂存，价格/其他配置未提交。

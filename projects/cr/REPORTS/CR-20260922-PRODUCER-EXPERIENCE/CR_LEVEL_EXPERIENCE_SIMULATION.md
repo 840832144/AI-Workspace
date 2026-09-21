@@ -41,3 +41,15 @@ User再次确认：本任务核验升级难度曲线，指标沿用已闭合的�
 本轮不新增SVN提交、不调参、不冻结或发布。VIP继续暂存，PR #10保持OPEN，原reservation不finalize。
 
 复核方法：`projects/cr/数值策划/工具/simulate_cr_level_experience.py`。完整逐级值与JSON继续留在受控目录`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/outputs/task0036-level-simulation-r7237/`，不进public Git。
+
+## 对比图交付（仅受控本机）
+
+沿上述受控目录进入`charts/`：
+
+- `CR_vs_CF_升级难度_1-300.png`：同轴叠加完整300级，左下早期放大，右下逐级相对偏差，最大偏差标注L71。
+- `CR_升级难度_后续拟合.png`：4999次升级全曲线及250–400级边界；CF只画到300，后段拟合明确分色。
+- `CR_vs_CF_升级难度曲线对照.pdf`：两页矢量版。
+
+绘图序列与既有模拟明细直接对应，11组序列长度/值核对通过；未平滑、抽样或重算模型。两张最终PNG视觉与PDF两页中文读取通过。图含完整商业曲线，不上传public Git。
+
+复现工具：`projects/cr/数值策划/工具/plot_cr_level_difficulty.py`。依赖matplotlib，本轮仅在受控输出的`plot-libs/`隔离安装，未修改仓库或全局Python依赖。运行时将该目录设为当前进程PYTHONPATH，传入`--simulation <受控模拟目录> --level-inputs <既有等级level-inputs.json>`即可。
