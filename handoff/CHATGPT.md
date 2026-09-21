@@ -1,5 +1,16 @@
 # ChatGPT Handoff
 
+## 2026-09-21 — TASK-0036 POP/CF调优候选交Review（当前）
+
+- 当前Review，PR #10 OPEN；原报告Accepted不扩展为本轮候选Accepted。受控目录为 `outputs/task0036-tuning-pop-cf-20260921/`，完整交付及验证见下方报告链接。
+- VIP1–10为指定值，11–15按User选择的POP高阶趋势，以VIP10为锚点拟合Tier6–10后外推。仅VipCfg的15个needExp格改变，严格单调/int32范围通过，权益不变；VIP1=0登录校正与加0经验入口行为不同，客户端/服务端未运行验证，安全Gate未通过。
+- LevelCfg未改：历史正式表未恢复唯一CF→5000映射，只交A全段拉伸/B保留前100级两套体验方案。PriceSetting未改：30档可保形归一100%→500%，但旧服务已废弃，现有取值指向PriceCheatSheet，制作生成链未证实；928格仅拟议diff。
+- 等级膨胀1–300逐级一致，No Change；301–5000缺CF证据，保留CR现值。8可见页/7原生折线图，5000级完整明细、15/0/0实际改格、公式/锚点响应及前台视觉通过；0错误/缺缓存/外链/冻结。
+- 需Review/后续确认：VIP零门槛安全、两套等级映射选择、正确价格制作源。当前不是可直接导入/冻结的配置包。
+- Registry首步/收尾均由CLI重建validate；Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。未重跑旧Accepted模型、hash或全量扫描；未改r7013/SVN/CF_collect、采集、冻结/发布、合并/finalize，原reservation pending-main。Subagents: none。
+
+[当前候选、证据与复现](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_TUNING_VALIDATION.md)。
+
 ## 2026-09-21 — TASK-0036档位膨胀最终口径
 
 - User纠正：档位膨胀=最低100%→最高500%的整体曲线，最高/最低=5x；**不是相邻档5x**。
@@ -13,7 +24,7 @@
 - 升级难度复用历史CF→CR映射扩5000级；等级膨胀只验证预期No Change；档位膨胀相邻业务档5x，定向PriceSetting且禁止全表×5。
 - 允许改受控候选VipCfg/LevelCfg/PriceSetting，但不得SVN commit、覆盖r7013、冻结或发布。第一步重建/validate Registry，完成后交diff+新曲线Excel。
 
-## 2026-09-21 — TASK-0036固定汇率/商城金币倍率交Review（当前）
+## 历史候选 — 2026-09-21 TASK-0036固定汇率/商城金币倍率交Review
 
 - 同一Task/原PR #10；当前Review。[交付目录、来源与验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。新候选在受控`outputs/task0036-cr-cf-fixed-vip-20260921/`，旧合并候选为历史。
 - CF前台统一VIP1–VIP7；1 SGD=0.78408 USD固定，无可编辑输入；SGD原始上下界、USD两条成本线和九个商城样本完整。倍率页改为商城金币：CR最高2.5x、CF最高40x；旧累计消费门槛指数已删除。

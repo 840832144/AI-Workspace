@@ -2,9 +2,15 @@
 
 [TASK-0036](../../../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md) · [PR #10](https://github.com/840832144/AI-Workspace/pull/10) OPEN · **数值报告Accepted；双版本Excel等待ChatGPT Review** · 2026-09-17 · Subagents: none。
 
-本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。当前不调参、不修改SVN、不冻结、不发布；TASK-0035的零数值变更候选保持原样。
+本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。9/21已按User新增授权进入受控调优候选；不覆盖r7013、不修改SVN、不冻结、不发布；TASK-0035历史候选保持原样。
 
-## 当前CR vs Cash Frenzy合并对照（2026-09-21，等待Review）
+## 当前POP/CF调优候选（2026-09-21，等待Review）
+
+[规格](CR_TUNING_POP_CF.md) · [结果、公式与验证](CR_TUNING_VALIDATION.md)。VIP前10档按指定门槛，11–15按User选择的POP高阶趋势外推；VipCfg仅15个needExp格改变。零门槛安全Gate未通过。两套CF→5000级体验方案待选，LevelCfg未改；30档保形100%→500%已形成，但PriceSetting制作真相源未确认，停止写值。等级膨胀仅共同1–300级No Change，后续缺CF证据。
+
+当前受控曲线8页/7图、完整5000级明细，实际配置diff为15/0/0；公式、缓存、整Spin实际成本/返还、原生联动和前台视觉已核对。候选尚不可导入正式配置，等待ChatGPT Review；没有SVN提交、冻结、发布、PR合并或finalize。
+
+## 历史CR vs Cash Frenzy合并对照（2026-09-21，等待Review）
 
 [规格](CR_CF_CURVE_COMPARISON.md) · [验证摘要](CR_CF_CURVES_VALIDATION.md)。当前为固定汇率/商城金币倍率修订：CF标签VIP1–VIP7；SGD上下界与按0.78408换算的USD上下界同页，九个商城样本完整。倍率页为CR最高2.5x、CF最高40x，旧累计门槛指数退出。5页/5主折线图/13系列，等级1–300比较、完整明细与56个CF Bet缺口保留；既有模型未重算。公式/图表/币种与五页视觉已验证，独立ChatGPT Review待执行。当前目录见摘要；旧可编辑汇率候选仅为历史，未上传或发布。
 

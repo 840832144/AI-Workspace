@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Changes Requested
-- Execution status: User明确档位膨胀为最低100%→最高500%的整体曲线（非相邻5x）；CR调优候选继续Changes Requested，等待Codex按最终口径实施并回Review
+- Status: Review
+- Execution status: POP VIP含11–15趋势拟合、CF两套5000级映射及档位保形方案已交Review；VIP零门槛安全、等级映射选择、价格制作真相源尚未闭合，不可导入正式配置
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -9,10 +9,27 @@
 - Date: 2026-09-17
 - Updated: 2026-09-21
 - User decision: Approved（数值整理 + 定向调优候选；允许修改受控候选VipCfg/LevelCfg/PriceSetting，不提交SVN、不冻结、不发布）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；返还闭环修订等待ChatGPT Review）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前调优候选等待ChatGPT Review）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
+
+## 2026-09-21 — POP/CF调优候选交Review（当前）
+
+- [脱敏结果、公式、验证与受控交付位置](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_TUNING_VALIDATION.md)。原Task/PR/reservation沿用；本轮不自行Accepted。
+- VIP1–10保持指定门槛；VIP11–15按User选择的POP高阶趋势，以VIP10锚点拟合Tier6–10对数门槛后外推。仅受控VipCfg的15个needExp格改变，权益/商城倍率不变；候选严格单调且在int32范围。
+- VIP1=0静态入口核对发现：登录校正会进入VIP1，加0经验直接返回，0→1直接升级的差值也为0。有限循环检查不是运行验收；客户端及跨入口状态/领奖尚未验证，安全Gate未通过。
+- 历史正式表定向检查未恢复唯一CF300→CR5000映射；交A全段拉伸/B保留前100级两套阶梯映射，完整5000级、整Spin取整后的实际成本与返还率保留，LevelCfg未写值。
+- 30档历史形状与当前PriceSetting金币行匹配，保形归一到100%→500%，单调不下降；928格仅为拟议diff。r7013的PriceSettingSvc已标废弃，现有价格服务读PriceCheatSheet，制作/生成关系未证实，PriceSetting停止写值。
+- 等级膨胀在共同1–300级全部一致，No Change；301–5000缺CF证据，保留CR现值，不能宣称5000级全验证。
+- 8张可见页/7原生折线图、5000级明细、15/0/0实际配置改格、公式与缓存及锚点响应通过；0错误/缺缓存/外链/冻结/作者或绝对路径。完成全部前台与30档明细视觉复核。
+- Registry首步和收尾均由既有CLI重建validate；Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。不重跑旧Accepted底稿、不做hash或全量扫描；不改r7013/SVN/CF_collect、不采集、不冻结/发布、不合并/finalize。Subagents: none。
+
+## 2026-09-21 — User追加：VIP11–15拟合
+
+- User在本轮执行中明确“后续vip做拟合”，随后选择“按POP高阶门槛趋势外推”。这覆盖原规格VIP11–15不改的限制；VIP1–10仍保持指定needExp。
+- 候选以VIP10=2,500,000点为固定锚点，采用POP Tier6–10的对数门槛趋势外推VIP11–15；拟合窗口、公式、整数取整与单调性在受控包中公开给Review。不调整VIP权益。
+- VIP1=0升级逻辑Gate保留；候选不是安全通过、正式冻结或SVN提交授权。
 
 ## 2026-09-21 — 档位膨胀最终口径修订（User决定）
 
@@ -33,7 +50,7 @@
 - 档位膨胀改为**最低100%→最高500%**的整体曲线，定向修改承担该逻辑的PriceSetting；中间档位逐档升高，不是相邻5x。禁止全表×5，VIP倍率/其他货币不连带改。若真相源实际不是PriceSetting，停止并报告。
 - 交付受控VipCfg/LevelCfg/PriceSetting候选、逐格diff、新`CR_调优候选_vs_CF_POP_数值曲线.xlsx`及验证摘要；不改原r7013，不提交SVN。
 
-## 2026-09-21 — 固定汇率与商城金币倍率修订完成（当前，Review）
+## 历史候选 — 2026-09-21固定汇率与商城金币倍率修订（Review）
 
 - 已按最新User决定生成受控`CR_vs_CashFrenzy_数值曲线对照.xlsx`；当前目录为`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/outputs/task0036-cr-cf-fixed-vip-20260921/`。[脱敏验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)记录公式、来源及复现。
 - CF前台仅VIP1–VIP7，固定1 SGD=0.78408 USD；保留SGD原始上下界、两条USD边界与九个商城样本，删除可编辑汇率输入。商城金币倍率替换旧累计消费门槛指数：CR r7013最高2.5x、CF最高40x；CF VIP1=1.5x由旧正式表唯一补齐并标注历史来源。
