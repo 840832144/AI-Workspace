@@ -7,7 +7,7 @@
 - Executor: Codex
 - Priority: P1
 - Date: 2026-09-07
-- Updated: 2026-09-18
+- Updated: 2026-09-21
 - Candidate provenance: `tasks/candidates/CANDIDATE-20260907-EARLYMEETING-LOCAL-CALLBACK.md`
 - Allocation relationship: new
 - Related tasks: none
@@ -17,6 +17,8 @@
 在 User 实际 Windows 电脑维护“策划 / 程序”本人行与“今日交付”同卡汇总；支持本人删除、提交后文字展示及编辑，以及多群独立的工作日发卡。从2026-09-11起北京时间09:30每群每天一张，替代09:40。当前只启用两个正式群，正式群2自动识别交付，正式群1继续手填；测试群已关闭；本机晨会记录仅保留北京时间当天，启动及跨天自动清理旧日数据。飞书群历史消息保留。另已交付Linux常驻版本和技术交接，User已追加授权由Codex实施公司Linux移植，并从2026-09-16起增加已提交记录归档和维护日志；已于2026-09-15在技术确认主机身份和User批准维护窗口后正式切到公司Linux；Windows停止并锁定启动，实际维护与证据在EarlyMeeting。
 
 ## Scope
+
+2026-09-21 发卡前日志与日期保护已交付：[EarlyMeeting@d5f864f](https://github.com/840832144/EarlyMeeting/commit/d5f864fc1d920f7072a7e077e6d9afdf8384cf99) / [维护说明](https://github.com/840832144/EarlyMeeting/blob/codex/task-0028-local-callback/docs/SEND_GUARD.md)。持久发送登记阻止重复/未知发送，日期跳变暂停新发卡及按日期清理。公司云端实际已拦截日期异常，两群原卡恢复，无新发消息；系统时钟校准和登记核对解除尚未执行。33项局部检查及Linux CI 35584684659通过；继续Review，未标记Done。Registry19 canonical / 0 collision / valid；Sync ON_DEMAND / provider unavailable / stale6 / conflicts0。沿用本Task，不新增编号、Roadmap方向或Future Task；业务代码、配置、完整维护与脱敏实测留在EarlyMeeting。Subagents: none。
 
 2026-09-18 本人多行规则已部署：[EarlyMeeting@56455ab](https://github.com/840832144/EarlyMeeting/commit/56455ab5b09845b90fe7df80e3f0df52e8561318)，运行代码c7bdf66。User要求去掉已有一行后不能再加的限制，现策划、程序均可继续新增本人行；回调防重、本人权限、行版本及卡片容量保护保留。两个群共享代码更新后ready，原5/4行、pending/queued=0，无重发或整卡刷新。15项队列/恢复检查与Linux CI 35297410731通过；截图的客户端行不可见原因未独立复现，不冒称定位，多行真实员工填写待正常使用。多行状态不可直接回退到要求owner唯一的旧版。Registry19 canonical / 0 collision / valid，同目标继续TASK-0028 Review、reservation pending-main，未新建Task；Sync ON_DEMAND / provider unavailable / stale6 / conflicts0。实现和证据只在EarlyMeeting；直接更新现有Task/Handoff，不新建Roadmap方向或Future Task。Subagents: none。
 
