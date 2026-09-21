@@ -1,5 +1,12 @@
 # ChatGPT Handoff
 
+## 2026-09-21 — TASK-0036 CF标签与固定汇率
+
+- User最终决定：CF前台统一VIP1–VIP7，不显示称号；固定分析汇率 **1 SGD = 0.78408 USD**（2026-09-21 02:24 UTC），不再保留可编辑汇率输入。
+- CF VIP消费门槛保留SGD原始上下界并按×0.78408生成USD上下界；点数兑换边界18.0401–37.2542点/SGD不变。
+- VIP膨胀继续按商城金币倍率：CR r7013 PriceSetting最高2.5x，CF最高40x。
+- Task已Changes Requested；先重建/validate Registry，再修订合并Excel并做定向验证，不改源数据、不采集、不发布。
+
 ## 2026-09-21 — TASK-0036 CR/CF VIP曲线修订
 
 - User确认CF商城截图为SGD/S$；VIP消费门槛需补全9个可读商城样本、点/SGD上下界、每档VIP最低/最高SGD门槛及显式SGD→USD输入。
