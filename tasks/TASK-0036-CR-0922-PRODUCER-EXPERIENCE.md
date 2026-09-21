@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Review
-- Execution status: Cash Frenzy同构5页曲线Excel已在受控目录生成并完成定向验证；VIP累计属性及Bet内部冲突保留N/A，等待ChatGPT Review；原返还闭环候选保留
+- Status: Changes Requested
+- Execution status: User补充Cash Frenzy App VIP/商城证据并要求CR+CF合并曲线Excel；进入Changes Requested，等待Codex完成合并对照表后回ChatGPT Review
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -17,6 +17,18 @@
 ## Goal
 
 基于TASK-0033全数值底稿、TASK-0034规则闭合及TASK-0035薯片+777现值候选，形成可供制作人决策的全项目数值体验汇报，交ChatGPT Review。不重新盘点或验收已Accepted工作；当前任务只新增体验场景、跨系统解释和必要的变化数据。
+
+## 2026-09-21 — CR vs Cash Frenzy合并曲线对照（User新增授权）
+
+- User提供Cash Frenzy App VIP与商城截图，闭合旧表VIP累计门槛属性，并要求把CR与CF曲线合并到同一Excel、同指标同页同图。
+- 完整规格见[CR vs Cash Frenzy合并曲线对照](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVE_COMPARISON.md)。
+- CF VIP累计点门槛按旧表+截图闭合为0/1,000/10,000/31,000/260,000/2.1M/10M/50M；VIP2–7不再因“累计属性未明”标N/A。
+- 商城截图兑换范围为18.0401–37.2542 VIP点/S$，VIP消费门槛需输出CF最低成本与最高成本两条边界；不得取平均。
+- 绝对膨胀指数中兑换率为常数倍会约掉，因此CF膨胀只画一条线，不重复上下界。
+- 合并表固定5页：VIP消费门槛、VIP绝对膨胀、等级升级消耗、等级Bet曲线、等级升级消耗返还；主比较图同页叠加CR/CF。
+- 等级类主图使用共同1–300级区间，完整CR 1–4999与CF 1–300数据继续保留；CF已知冲突点不插值。
+- 截图商城币种明确为S$；不得静默按USD或1:1。合并表需提供显式S$→USD输入，未获User汇率时不得冒充同单位得出最终金额结论。
+- 第一执行动作重建/validate Registry；不修改原截图/历史附件、CR r7013、CF_collect，不采集、不发布、不合并或finalize。
 
 ## 2026-09-21 — Cash Frenzy竞品曲线对照表（User已授权）
 
