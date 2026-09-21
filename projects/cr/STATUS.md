@@ -1,10 +1,11 @@
 # CR 当前状态
 
-## 2026-09-21 — TASK-0036等级体验模拟交Review（当前）
+## 2026-09-21 — TASK-0036升级难度曲线核验口径纠正（当前）
 
-- [简单体验报告](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_EXPERIENCE_SIMULATION.md)：dev r7237前300次升级美元机器净耗仅比CF历史模型高0.49%，但Spin为7.41倍，不能称为升级节奏一致。从1级100/500/1000 Spin后，CR到3/11/14级，CF历史模型到23/95/165级。
-- 18组逐Spin场景和门槛边界通过，奖励返还按同版dev配置补读；完整逐级值/路径留受控目录。CF为历史理论表，CR成本沿用95%等级假设；没有当前游戏实测、中奖分布或301级以后CF证据。
-- 只出模拟与报告，不因差异自动改配置或追加SVN提交。VIP暂存，尚未冻结/发布；Task仍Review、PR #10 OPEN、原reservation pending-main，不合并/finalize。Registry由CLI重建validate，无hash/无关全量重跑。Subagents: none。
+- User确认只比较升级难度曲线，沿用同级机器理论净耗USD；Spin数量/固定Spin等级差异不作为验收条件。[修订报告](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_EXPERIENCE_SIMULATION.md)。
+- 1–300级目标300/300对应CF同级原值；实际配置取整后142级在容差内一致，单级最大+3.17%，前300次升级累计+0.49%。301起保留拟合身份，不伪称CF逐点验证；未自行设通过阈值。
+- 撤回Agent按Spin差异否定r7237的错误结论及改成Spin对标的建议。dev r7237保持不变，此轮只更新报告/治理；不重算、不新增SVN提交，VIP暂存。
+- Task仍Review，PR #10 OPEN，原reservation pending-main；Registry由CLI重建validate，不做hash/全量扫描、不调参、冻结/发布、合并或finalize。Subagents: none。
 
 ## 2026-09-21 — TASK-0036等级已提交CR dev r7237，VIP暂存（提交记录）
 

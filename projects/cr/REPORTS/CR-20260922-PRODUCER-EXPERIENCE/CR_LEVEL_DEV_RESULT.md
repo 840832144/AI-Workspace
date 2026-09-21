@@ -2,7 +2,7 @@
 
 2026-09-21 · **CR dev r7237已提交并回读** · VIP暂存 · 尚未冻结或发布 · Subagents: none。
 
-后续User要求已完成[体验模拟](CR_LEVEL_EXPERIENCE_SIMULATION.md)：本页的成本对标结论不能扩大为Spin/节奏一致。前300次升级CR约为CF历史模型7.41倍Spin；本页提交记录不变。
+后续已完成[升级难度曲线核验](CR_LEVEL_EXPERIENCE_SIMULATION.md)。User明确沿用同级机器理论净耗USD，Spin差异不是对标判定标准；撤回Agent据Spin差异否定r7237的误判。本页成本曲线、误差与实际提交记录保持有效，配置未修改。
 
 ## 最终User输入
 

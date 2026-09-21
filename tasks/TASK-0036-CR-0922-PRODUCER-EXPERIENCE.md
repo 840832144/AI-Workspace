@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: dev r7237等级体验模拟完成；同区间机器净耗比CF历史模型高0.49%，但升级Spin约7.41倍，不能称为体验一致；等待Review，VIP暂存，尚未冻结或发布
+- Execution status: dev r7237升级难度曲线已核验；1–300级目标与CF同级一致，配置取整累计误差+0.49%/单级最大+3.17%；Spin差异不是验收项，等待Review，VIP暂存
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -14,12 +14,13 @@
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-09-21 — 新等级体验模拟（当前）
+## 2026-09-21 — User纠正模拟判定：只验证升级难度曲线（当前）
 
-- User要求用新等级跑模拟，核实与CF体验是否一致，简单出报告；只做定向模型比较，不新建Task、不追加调参或SVN提交。
-- [体验简报](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_EXPERIENCE_SIMULATION.md)：1–300级的美元机器净耗目标接近不代表Spin一致。前300次升级CR/CF Spin=7.41倍，成本+0.49%；从1级100/500/1000 Spin，CR到3/11/14级，CF历史模型到23/95/165级。
-- 固定dev r7237等级；复用已验Bet/价格依赖，仅补读同版CommCfg/LevelAward/PayDiamond。18组逐Spin路径、门槛边界与CF原表公式定向检查通过；成本采用已闭合等级95%假设，CF为历史85%模型，不代表两款游戏当前实测。300级以后无CF证据。
-- 完整商业明细与模拟JSON留受控目录，Git只收简报、方法和治理。Registry首步由工具重建validate，19 canonical/0 collision/valid；收尾继续用既有工具验证。不做hash/全量扫描，不改配置、不新增SVN提交、不冻结/发布、不合并/finalize。Subagents: none。
+- User明确“就是要升级难度对齐，跟spin没关系，模拟结果也只是验证升级难度曲线是否和frenzy一致”。沿用已闭合的同级机器理论净耗USD指标；不要求同Spin数或固定Spin后的等级相同。
+- [修订简报](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_EXPERIENCE_SIMULATION.md)：1–300级目标300/300与CF同级原值对应；实际配置整数门槛反算142级在容差内一致，其余有取整偏差，单级最大+3.174603%，前300次升级累计+0.488982%。没有新设误差阈值或自行Accepted。
+- Agent此前以Spin差异判断“不满足要求”、提出改按Spin对标是误判，已撤回；不能据此修改或回滚dev r7237。301–4999仍是基于末段趋势的拟合，缺CF同级源值；5000终点保留。
+- 既有18组路径及明细保留为历史计算证据，不作为本轮难度曲线验收项。此轮只修报告、判定和交接，不重跑数值、不改源配置、不新增SVN提交。VIP继续暂存。
+- Registry通过既有CLI重建validate：19 canonical/0 collision/valid。原Task/PR/reservation沿用；不做hash/全量扫描，不调参、冻结/发布、合并或finalize。Subagents: none。
 
 ## 2026-09-21 — User批准等级dev提交并纠正映射（已完成提交）
 
