@@ -1,5 +1,12 @@
 # Codex Handoff
 
+## 2026-09-21 — TASK-0036 CR数值调优候选
+
+- User已授权从展示进入定向调优候选；完整规格见[CR_TUNING_POP_CF](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_TUNING_POP_CF.md)。
+- POP只对标VIP消费门槛；CR VIP1–10目标needExp候选0/94/375/2000/6875/27500/75000/312500/937500/2500000，VIP1=0先验证升级逻辑安全；VIP权益不改。
+- 升级难度复用历史CF→CR映射扩5000级；等级膨胀只验证预期No Change；档位膨胀相邻业务档5x，定向PriceSetting且禁止全表×5。
+- 允许改受控候选VipCfg/LevelCfg/PriceSetting，但不得SVN commit、覆盖r7013、冻结或发布。第一步重建/validate Registry，完成后交diff+新曲线Excel。
+
 ## 2026-09-21 — TASK-0036固定汇率/商城金币倍率交Review（当前）
 
 - 同一Task/原PR #10；当前Review。[交付目录、来源与验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。新候选在受控`outputs/task0036-cr-cf-fixed-vip-20260921/`，旧合并候选为历史。
