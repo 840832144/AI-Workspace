@@ -1,5 +1,12 @@
 # Codex Handoff
 
+## 2026-09-21 — TASK-0036 CR vs Cash Frenzy合并曲线
+
+- User补充CF App VIP/商城截图并要求把CR与CF合并到同一曲线Excel；Task已切Changes Requested。完整规格：[CR_CF_CURVE_COMPARISON](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVE_COMPARISON.md)。
+- CF累计VIP点现闭合为0/1k/10k/31k/260k/2.1m/10m/50m；商城兑换上下界18.0401–37.2542点/S$。
+- 输出5页同指标CR/CF同图；VIP消费门槛画CF最低/最高成本，VIP绝对膨胀只画一条CF线；等级主比较1–300并保留完整数据。
+- S$不得冒充USD；做显式S$→USD输入。第一步重建/validate Registry；不改CR、CF_collect、历史附件，不采集、不发布。
+
 ## 2026-09-21 — TASK-0036 Cash Frenzy曲线交Review
 
 - 同一Task/PR #10，当前Review。已生成本机受控`CashFrenzy_数值曲线对照.xlsx`；目录和复现见[脱敏摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVES_VALIDATION.md)。5页/5原生折线图与CR v2同构，300级明细保留，无冻结。
