@@ -1,5 +1,11 @@
 # ChatGPT Handoff
 
+## 2026-09-21 — TASK-0036 CR/CF VIP曲线修订
+
+- User确认CF商城截图为SGD/S$；VIP消费门槛需补全9个可读商城样本、点/SGD上下界、每档VIP最低/最高SGD门槛及显式SGD→USD输入。
+- VIP膨胀改成商城金币倍率：CR用r7013 PriceSetting商店VIP加成（1x→2.5x封顶），CF用截图2.5x/4x/7x/10x/20x/40x；旧累计门槛指数退出当前展示。
+- 650是CR其他/旧VIP字段，不是同口径商城金币；不要混用。第一步重建Registry，修订合并Excel后回Review。
+
 ## 2026-09-21 — TASK-0036合并曲线待Review
 
 - 已提交本地受控`CR_vs_CashFrenzy_数值曲线对照.xlsx`，Task为Review；[脱敏验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。5页同指标同主折线图，等级1–300比较且完整数据保留。
