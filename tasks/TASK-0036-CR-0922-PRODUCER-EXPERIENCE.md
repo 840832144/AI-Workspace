@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Review
-- Execution status: Dashboard Round 1返还闭环修订已完成并定向验证，等待ChatGPT复核；原数值报告Accepted保留，尚未冻结或发布
+- Status: Changes Requested
+- Execution status: User新增Cash Frenzy竞品曲线对照表交付；继续TASK-0036并进入Changes Requested，等待Codex生成同构5页Excel后回ChatGPT Review；原返还闭环候选保留
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -17,6 +17,17 @@
 ## Goal
 
 基于TASK-0033全数值底稿、TASK-0034规则闭合及TASK-0035薯片+777现值候选，形成可供制作人决策的全项目数值体验汇报，交ChatGPT Review。不重新盘点或验收已Accepted工作；当前任务只新增体验场景、跨系统解释和必要的变化数据。
+
+## 2026-09-21 — Cash Frenzy竞品曲线对照表（User已授权）
+
+- 继续现有TASK-0036，不新建Task：该交付与当前CR数值整理/制作人曲线展示范围直接重叠。
+- 完整规格见[Cash Frenzy竞品数值曲线对照表](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVE_COMPARISON.md)。
+- 目标：基于历史正式数值体验资料中的Cash Frenzy竞品数据，生成与当前CR曲线表v2同构的独立Excel，方便逐页并排比较；不把CR和竞品强行混在同图。
+- 可见页固定5张：`VIP_消费门槛`、`VIP_膨胀系数`、`等级_升级消耗`、`等级_Bet曲线`、`等级_升级消耗返还`，全部折线图。
+- VIP膨胀口径为绝对指数（VIP1=100%），不是相邻环比；最大Bet和$1等值推荐Bet必须同页同图。
+- 首选旧`CashRoyal数值.xlsx`的`cashFrenzy等级`及同套历史竞品资料。不得用CR r7013或CR 95% RTP等规则填补Cash Frenzy缺口；来源不足则明确N/A/缺失字段。
+- 本任务只整理已有竞品数据，不修改原附件、不改CR配置、不修改CF_collect、不启动Collector/模拟器/Root/Frida、不采集或Web补数。
+- Task状态切为Changes Requested后Registry需由Codex使用既有工具重建/validate，禁止手工编辑Registry；完成后提交受控Excel与脱敏验证摘要交ChatGPT Review。
 
 ## 2026-09-20 — 返还闭环修订完成，交ChatGPT Review
 
