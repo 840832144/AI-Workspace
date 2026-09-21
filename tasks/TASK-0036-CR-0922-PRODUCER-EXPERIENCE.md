@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Changes Requested
-- Execution status: User修正CR+CF曲线展示口径：CF前台统一VIP1–VIP7，SGD→USD固定为2026-09-21当前汇率0.78408；进入Changes Requested，等待Codex修订合并Excel后回ChatGPT Review
+- Status: Review
+- Execution status: CF VIP序号、固定SGD→USD汇率及商城金币倍率修订完成；本地合并Excel与定向验证已交ChatGPT Review，PR #10保持OPEN，原reservation pending-main
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -13,6 +13,14 @@
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
+
+## 2026-09-21 — 固定汇率与商城金币倍率修订完成（当前，Review）
+
+- 已按最新User决定生成受控`CR_vs_CashFrenzy_数值曲线对照.xlsx`；当前目录为`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/outputs/task0036-cr-cf-fixed-vip-20260921/`。[脱敏验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)记录公式、来源及复现。
+- CF前台仅VIP1–VIP7，固定1 SGD=0.78408 USD；保留SGD原始上下界、两条USD边界与九个商城样本，删除可编辑汇率输入。商城金币倍率替换旧累计消费门槛指数：CR r7013最高2.5x、CF最高40x；CF VIP1=1.5x由旧正式表唯一补齐并标注历史来源。
+- 5页/5原生折线图/13系列，成本图实际点数15/7/7、倍率图16/7；完整等级明细与56个CF Bet断点保留。既有模型缓存未变；公式错误、缺缓存、外链、冻结、作者/绝对路径均0。五页原生视觉通过，独立Review待执行。
+- 第一动作从1644afc运行Registry重建/validate：19 canonical、0 collision、valid；收尾仍使用工具更新。Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。无hash、无关全量扫描、源表/CR配置/CF_collect改写、采集、SVN、冻结或发布；不合并/finalize。Subagents: none。
+- 下方旧合并候选的待汇率、称号及累计门槛指数是历史，不作为当前交付口径；此前Accepted数值报告和Review历史保留。
 
 ## Goal
 
@@ -37,9 +45,9 @@
 - 其余已确认口径不变：CF商城VIP点兑换边界18.0401–37.2542点/SGD；VIP膨胀改为商城金币倍率；CR商城金币倍率按r7013 PriceSetting最高2.5x，CF最高40x。
 - 修订后重新生成`CR_vs_CashFrenzy_数值曲线对照.xlsx`并做公式、图表、标签、币种与视觉定向验证；不改CR/CF源数据、不采集、不发布、不合并或finalize。
 
-## 2026-09-21 — CR vs Cash Frenzy合并曲线对照（User新增授权）
+## 历史候选 — 2026-09-21 CR vs Cash Frenzy合并曲线对照
 
-### 合并候选已交Review
+### 首版合并候选记录（已由固定汇率/商城金币倍率修订取代）
 
 - 已生成受控`CR_vs_CashFrenzy_数值曲线对照.xlsx`，见[脱敏验证摘要](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。目录：`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/outputs/task0036-cr-cf-20260921/`。
 - 固定5页/5原生主折线图/13系列，同指标CR与CF同图；等级主比较1–300，保留CR 4999级成本/返还、5000级Bet与CF完整300级，56个Bet冲突点不插值。来源只读既有曲线缓存，不重算旧模型。

@@ -1,20 +1,28 @@
 # CR 当前状态
 
-## 2026-09-21 — TASK-0036 CF标签/固定汇率修订
+## 2026-09-21 — TASK-0036固定汇率/商城金币倍率交Review（当前）
+
+- 同一Task/原PR #10；当前Review。[交付目录、来源与验证](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。新候选在受控`outputs/task0036-cr-cf-fixed-vip-20260921/`，旧合并候选为历史。
+- CF前台统一VIP1–VIP7；1 SGD=0.78408 USD固定，无可编辑输入；SGD原始上下界、USD两条成本线和九个商城样本完整。倍率页改为商城金币：CR最高2.5x、CF最高40x；旧累计消费门槛指数已删除。
+- CR倍率只读r7013 PriceSetting商店金币行；CF VIP1=1.5x由旧正式表唯一补齐并注明历史，VIP2–7依已登记截图口径。未独立复读App截图，不冒充新的现网验证。
+- 5页/5原生图/13系列，成本15/7/7点、倍率16/7点；既有等级缓存不变，完整明细和56个CF Bet缺口保留。公式错误/缺缓存/外链/冻结/作者及绝对目录均0，五页视觉通过；独立ChatGPT Review尚未执行。
+- Registry首步及收尾均用既有工具重建validate，19 canonical/0 collision/valid；Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。PR #10 OPEN、reservation pending-main；不改源数据/CR/CF_collect、不采集、无hash或全量重跑、不提交SVN、不冻结/发布、不合并/finalize。Subagents: none。
+
+## 历史输入 — 2026-09-21 TASK-0036 CF标签/固定汇率修订
 
 - User最终确认CF对照图只使用VIP1–VIP7序号，不使用游戏内称号作为前台标签。
 - SGD→USD分析汇率固定为 **1 SGD = 0.78408 USD**（2026-09-21 02:24 UTC），删除可编辑/待确认汇率输入；CF消费门槛保留SGD原值并直接生成USD上下界。
 - CF点数兑换边界18.0401–37.2542点/SGD不变；VIP膨胀页继续按商城金币倍率而非消费门槛指数，CR最高2.5x、CF最高40x。
 - Task为Changes Requested，等待合并曲线Excel修订并回Review；不改源数据、不采集、不发布、不合并或finalize。
 
-## 2026-09-21 — TASK-0036 CR/CF VIP曲线口径修订
+## 历史输入 — 2026-09-21 TASK-0036 CR/CF VIP曲线口径修订
 
 - User确认CF商城截图币种为SGD/S$；当前合并表VIP消费门槛需补商城兑换样本证据、SGD上下界与显式USD换算输入。
 - VIP膨胀改为商城金币倍率，不再用累计消费门槛指数。CR当前同口径商店VIP倍率由r7013 PriceSetting确认最高2.5x（VIP6+封顶）；650属于其他/旧VIP字段，不用于本页。
 - CF截图商城金币倍率：黄金2.5x、铂金4x、钛金7x、尊徽10x、百夫长20x、王者风范40x。
 - Task切回Changes Requested；完整规格已更新。PR #10保持OPEN，不改配置/CF_collect，不采集、发布、合并或finalize。
 
-## 2026-09-21 — TASK-0036合并曲线已交Review
+## 历史候选 — 2026-09-21 TASK-0036合并曲线已交Review
 
 - 当前状态Review，新增受控`CR_vs_CashFrenzy_数值曲线对照.xlsx`；[验证摘要](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。5页/5主折线图/13系列，等级1–300同图对比，CR完整4999/5000级和CF 300级保留；56个CF Bet冲突点不插值。
 - CF VIP累计属性现闭合，绝对指数只一条CF线。S$上下界完整，固定汇率仍待User确认；输入格留空，CF USD两条系列暂不绘制，填写后自动显示。旧独立CF的VIP N/A为历史记录。

@@ -6,7 +6,7 @@
 
 ## 当前CR vs Cash Frenzy合并对照（2026-09-21，等待Review）
 
-[规格](CR_CF_CURVE_COMPARISON.md) · [验证摘要](CR_CF_CURVES_VALIDATION.md)。5页同指标同主折线图，等级主比较1–300，完整数据保留。CF VIP累计属性与S$成本边界已闭合；固定S$→USD汇率未提供，输入格留空，CF美元成本两条线等待输入后显示。既有模型值变化0；完整Excel只留受控本机。Task为Review，PR #10不合并、reservation不finalize。
+[规格](CR_CF_CURVE_COMPARISON.md) · [验证摘要](CR_CF_CURVES_VALIDATION.md)。当前为固定汇率/商城金币倍率修订：CF标签VIP1–VIP7；SGD上下界与按0.78408换算的USD上下界同页，九个商城样本完整。倍率页为CR最高2.5x、CF最高40x，旧累计门槛指数退出。5页/5主折线图/13系列，等级1–300比较、完整明细与56个CF Bet缺口保留；既有模型未重算。公式/图表/币种与五页视觉已验证，独立ChatGPT Review待执行。当前目录见摘要；旧可编辑汇率候选仅为历史，未上传或发布。
 
 ## 历史Cash Frenzy独立曲线候选（2026-09-21）
 
