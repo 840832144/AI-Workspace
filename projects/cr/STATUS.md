@@ -1,5 +1,13 @@
 # CR 当前状态
 
+## 2026-09-21 — TASK-0036进入CR调优候选阶段
+
+- User授权定向生成配置候选：POP VIP消费门槛对标、CF升级难度扩展5000级、CF等级膨胀一致性验证、5x档位膨胀。Task切为Changes Requested。
+- 本轮允许在受控候选副本修改VipCfg/LevelCfg/PriceSetting，但**不提交SVN、不覆盖r7013、不冻结/发布**。
+- VIP1–10按POP Tier1–10消费门槛目标；权益/商城金币倍率不改。升级难度优先复用旧正式表已有CF→CR映射；无唯一映射时不写LevelCfg。
+- 等级膨胀预期No Change；档位膨胀相邻业务档5x，先验证PriceSetting是否真为该逻辑真相源，禁止全表乘5。
+- 完整规格见`CR_TUNING_POP_CF.md`；完成后需交配置diff+调优曲线表给ChatGPT/User Review后再决定SVN动作。
+
 ## 2026-09-21 — TASK-0036固定汇率/商城金币倍率交Review（当前）
 
 - 同一Task/原PR #10；当前Review。[交付目录、来源与验证](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。新候选在受控`outputs/task0036-cr-cf-fixed-vip-20260921/`，旧合并候选为历史。
