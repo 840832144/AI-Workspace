@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Changes Requested
-- Execution status: User修订CF币种与VIP膨胀口径；合并曲线候选需修VIP消费门槛证据与商城金币倍率曲线，等待Codex修订后回ChatGPT Review
+- Execution status: User修正CR+CF曲线展示口径：CF前台统一VIP1–VIP7，SGD→USD固定为2026-09-21当前汇率0.78408；进入Changes Requested，等待Codex修订合并Excel后回ChatGPT Review
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -27,6 +27,15 @@
 - CF商城金币按截图：黄金2.5x、铂金4x、钛金7x、尊徽10x、百夫长20x、王者风范40x；缺失低档保持N/A，不外推。
 - VIP膨胀主图改为`CR商城金币倍率`与`CF商城金币倍率`两条线，Y轴用倍数x，表格同时给百分比。完整细则见[CR_CF_CURVE_COMPARISON](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVE_COMPARISON.md)。
 - 第一动作重建/validate Registry；不改CR配置、历史附件、CF_collect，不采集、不发布、不合并或finalize。
+
+## 2026-09-21 — CR vs CF标签与汇率最终修订（User决定）
+
+- CF前台VIP标签统一使用 **VIP1 / VIP2 / … / VIP7**；截图中的黄金/铂金/钛金/尊徽/百夫长/王者风范只作证据定位，不进入曲线X轴和主表标签。
+- User要求汇率按当前值固定。本Task冻结分析汇率为 **1 SGD = 0.78408 USD**（取值时点：2026-09-21 02:24 UTC）；后续市场波动不自动刷新。
+- 删除此前“CF_SGD_TO_USD可编辑输入/待User确认”方案；CF VIP消费门槛直接按固定汇率生成USD最低/最高边界，同时保留SGD原始门槛列。
+- 具体公式：CF最低/最高USD门槛 = 对应SGD门槛 × 0.78408；与CR USD同轴比较。
+- 其余已确认口径不变：CF商城VIP点兑换边界18.0401–37.2542点/SGD；VIP膨胀改为商城金币倍率；CR商城金币倍率按r7013 PriceSetting最高2.5x，CF最高40x。
+- 修订后重新生成`CR_vs_CashFrenzy_数值曲线对照.xlsx`并做公式、图表、标签、币种与视觉定向验证；不改CR/CF源数据、不采集、不发布、不合并或finalize。
 
 ## 2026-09-21 — CR vs Cash Frenzy合并曲线对照（User新增授权）
 
