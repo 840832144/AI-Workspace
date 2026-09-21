@@ -1,5 +1,13 @@
 # CR 当前状态
 
+## 2026-09-21 — TASK-0036新增Cash Frenzy竞品曲线对照表
+
+- User授权在现有TASK-0036内新增Cash Frenzy同构曲线Excel，不新建Task；当前状态Changes Requested。
+- 数据优先来自历史正式数值体验资料中的旧`CashRoyal数值.xlsx` / `cashFrenzy等级`及同套Cash Frenzy竞品表。Git已确认该旧主表包含`cashFrenzy等级`结构记录；本轮允许使用其中竞品历史数值，但不得把CR值/规则填入缺口。
+- 输出固定5页同构折线图：VIP消费门槛、VIP绝对膨胀（VIP1=100%）、等级升级消耗、最大Bet+$1等值推荐Bet同图、等级升级消耗返还。
+- CF_collect最新main仍为`4df10ec20e79bb737912c8d1b847fae3659031ae`；本任务不修改或运行CF_collect，不做新采集。
+- 完整规格见`CASH_FRENZY_CURVE_COMPARISON.md`。Codex第一步需重建/验证Registry；不调参、不改SVN、不发布、不合并PR #10或finalize。
+
 ## 2026-09-20 — TASK-0036返还闭环修订交Review（当前）
 
 - User后续决定已落实：总览及12张模块概览完全取消冻结（行/列均0），明细仍保留前6行/首列。双版本和受控ZIP同步；WPS只读回读13个概览均无冻结且滚动40→1行通过。仅修改视图，数值/公式/链接/页签顺序未变，未重算。
