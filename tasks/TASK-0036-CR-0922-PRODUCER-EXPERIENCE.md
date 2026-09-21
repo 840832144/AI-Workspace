@@ -1,20 +1,38 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: dev r7237升级难度曲线已核验；1–300级目标与CF同级一致，配置取整累计误差+0.49%/单级最大+3.17%；Spin差异不是验收项，等待Review，VIP暂存
+- Execution status: dev r7252同Bet体验对比及17档经验拟议值待验收；Bet冲突按较低值闭合；296点整Spin模型匹配，前4级/小数期望/美元成本/非参考档仍有差异；LevelCfg未改，禁止SVN提交
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-09-21
-- User decision: Approved（本轮仅等级升级门槛提交CR dev；CF已有等级逐级对标、后续拟合；VIP暂存，其他配置、trunk、正式冻结/发布未授权）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前等级dev r7237体验模拟等待Review，VIP暂存）
+- User decision: Approved（仅本地候选、对比图及数据Excel；LevelCfg用User已修改的dev现值，不再修改；Bet同等级解锁且金币原值一致；验收后另等提交授权，VIP暂存）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前dev r7252同Bet体验候选等待User验收及Review）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-09-21 — User纠正模拟判定：只验证升级难度曲线（当前）
+## 2026-09-21 — User最终明确同Bet游戏升级体验（当前）
+
+- 最终目标为游戏内同金币Bet下升级体验与Bet解锁节奏一致，同时保留美元消耗门槛曲线以定位分歧。覆盖此前将USD成本作为唯一判据的说法；历史r7237结果保留身份，不套用到r7252。
+- User已确认：Bet金币原值一致；CF两份源冲突取较低值作为本轮正式目标；可以用Bet及升级Spin反推经验。CF原始EXP未提供不再阻止反推候选，但不能将反推值称作CF原始配置。
+- [候选、证据、公式、限制与受控交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_SAME_BET_EXPERIENCE.md)。7可见页、3隐藏SRC、5原生折线图，概览在前，完整5000级明细在后；目标解锁28档含主表保守选择引入的档位，经验17档仅为Excel拟议值。
+- 同Bet模拟读该金币Bet对应的经验，不能误用CR当级最大Bet经验。5–300级296点可匹配CF期望向上取整后的模拟次数；7组精确小数期望仍冲突，1–4级保持User已改Spin门槛且仍有差异。没有CF客户端游戏验收证据。
+- 缺来源档暂留旧值时存在9处全Bet经验倒挂，不能直接落表；未覆盖的同级/非参考Bet经验、解锁活动字段关系与美元差异明确保留，不自行接受误差或改变RTP/价值配置。
+- 固定CR dev r7252，2026-09-21 12:25:10 UTC读取；LevelCfg原样保留，VIP暂存。原生公式回算及驱动恢复、图表源点数、候选边界定向核验完成；Registry由CLI重建validate。未修改任何SVN源表、不提交dev/trunk、不冻结/发布、不合并/finalize。Subagents: none。
+
+## 本轮输入记录 — 2026-09-21 User追加Bet解锁及单Spin经验对标
+
+- 固定只读CR dev r7252的LevelCfg、SlotsCasinoBetList、SlotsCasinoBetUnlock、SlotsCasinoBetShow、PriceCheatSheet、CommCfg。User已改LevelCfg前段4个门槛；全部保留，5000级终点亦不改。
+- User确认Bet按“同等级解锁、金币Bet原值完全一致”，不按USD等值转换；美元成本单独比较，不把金币相同说成美元相同。
+- 目标包括升级难度、Bet解锁、单Spin原始经验；Spin数量仍不是升级难度的替代判据。来源无法证明的项保留缺口，不反推CF原始经验后称为实测。
+- 初始发现CF正式旧表主表B列与AJ/AK在56级冲突、未提供原始EXP。User随后明确冲突取较低Bet，允许按Bet/Spin反推；最终决定见上节。exp×2仅为倍率，VIP经验不替代角色经验。
+- 本轮先完成可核实的对比与受控数据Excel；不改LevelCfg、不提交SVN，待User验收后另等提交授权。此前r7237提交授权仅为历史事实，不延伸至当前候选。继续TASK-0036/PR #10/reservation，VIP暂存、不冻结/发布、合并或finalize。Subagents: none。
+- 首步已由既有工具重建并validate Registry：19 canonical、0 collision、valid；不做hash或无关全量扫描。
+
+## 历史记录 — 2026-09-21 User纠正模拟判定：只验证升级难度曲线
 
 - 已按User要求补齐难度对比图：1–300级同轴叠加CR实际配置反算与CF历史基准，含1–30级放大及逐级偏差；另图展示完整拟合与250–400边界。11组绘图序列与已有明细对应、300/4999点完整、无平滑/抽样；两张PNG视觉及两页PDF中文检查通过。完整图仅留受控charts目录，Git只存生成器与脱敏记录；未重算模型或修改配置。
 - User明确“就是要升级难度对齐，跟spin没关系，模拟结果也只是验证升级难度曲线是否和frenzy一致”。沿用已闭合的同级机器理论净耗USD指标；不要求同Spin数或固定Spin后的等级相同。

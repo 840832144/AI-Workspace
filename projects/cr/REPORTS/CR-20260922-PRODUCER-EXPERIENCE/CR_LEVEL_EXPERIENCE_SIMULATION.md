@@ -1,5 +1,7 @@
 # CR升级难度曲线核验简报 — dev r7237
 
+> 历史r7237报告。当前User已修改dev LevelCfg且新增同Bet游戏体验目标；最新基线r7252与判据见[本轮同Bet报告](CR_SAME_BET_EXPERIENCE.md)，下文结果不作为当前验收结论。
+
 2026-09-21 · TASK-0036 · 等待ChatGPT Review · Subagents: none。
 
 **结论：1–300级目标难度曲线与CF同级一致；配置实现曲线存在整数门槛取整误差，累计约+0.49%，单级最大约+3.17%。**
