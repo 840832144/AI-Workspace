@@ -1,5 +1,13 @@
 # CR 当前状态
 
+## 2026-09-21 — TASK-0036新增CR vs Cash Frenzy合并曲线
+
+- User补充CF App截图，历史VIP序列现可按累计门槛解释：0/1k/10k/31k/260k/2.1m/10m/50m；原CF曲线中VIP2–7 N/A需要修订。
+- 商城可见样本兑换比18.0401–37.2542 VIP点/S$；CF VIP消费门槛需形成最低/最高成本边界。绝对VIP膨胀不受固定兑换倍数影响，只保留一条CF膨胀线。
+- 新交付为`CR_vs_CashFrenzy_数值曲线对照.xlsx`：5个指标页同页叠加CR/CF主曲线；等级主比较区间1–300，完整数据保留。
+- 商城币种为S$，需显式汇率输入后才能和CR USD做最终同轴金额结论；禁止1:1偷换。完整规格见`CR_CF_CURVE_COMPARISON.md`。
+- Task切回Changes Requested；先重建Registry。不改CR/CF_collect、不采集、不上传/发布、不合并或finalize。
+
 ## 2026-09-21 — TASK-0036 Cash Frenzy曲线已交Review
 
 - 当前Status为Review；已生成独立受控Excel，5页同名同序、5张原生折线图、300级完整明细、0冻结。完整数值/来源/预览只留本机，见[脱敏验证摘要](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVES_VALIDATION.md)。
