@@ -1,5 +1,12 @@
 # CR 当前状态
 
+## 2026-09-21 — TASK-0036 CR/CF VIP曲线口径修订
+
+- User确认CF商城截图币种为SGD/S$；当前合并表VIP消费门槛需补商城兑换样本证据、SGD上下界与显式USD换算输入。
+- VIP膨胀改为商城金币倍率，不再用累计消费门槛指数。CR当前同口径商店VIP倍率由r7013 PriceSetting确认最高2.5x（VIP6+封顶）；650属于其他/旧VIP字段，不用于本页。
+- CF截图商城金币倍率：黄金2.5x、铂金4x、钛金7x、尊徽10x、百夫长20x、王者风范40x。
+- Task切回Changes Requested；完整规格已更新。PR #10保持OPEN，不改配置/CF_collect，不采集、发布、合并或finalize。
+
 ## 2026-09-21 — TASK-0036合并曲线已交Review
 
 - 当前状态Review，新增受控`CR_vs_CashFrenzy_数值曲线对照.xlsx`；[验证摘要](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。5页/5主折线图/13系列，等级1–300同图对比，CR完整4999/5000级和CF 300级保留；56个CF Bet冲突点不插值。
