@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: 等级升级门槛已按User最终口径提交CR dev r7237；CF1–300级目标同级对应、301–4999拟合、5000终点保留；远端回读通过，VIP暂存，待后续Review/确认，尚未冻结或发布
+- Execution status: dev r7237等级体验模拟完成；同区间机器净耗比CF历史模型高0.49%，但升级Spin约7.41倍，不能称为体验一致；等待Review，VIP暂存，尚未冻结或发布
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -9,12 +9,19 @@
 - Date: 2026-09-17
 - Updated: 2026-09-21
 - User decision: Approved（本轮仅等级升级门槛提交CR dev；CF已有等级逐级对标、后续拟合；VIP暂存，其他配置、trunk、正式冻结/发布未授权）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前等级dev r7237收口等待Review，VIP暂存）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前等级dev r7237体验模拟等待Review，VIP暂存）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-09-21 — User批准等级dev提交并纠正映射（当前）
+## 2026-09-21 — 新等级体验模拟（当前）
+
+- User要求用新等级跑模拟，核实与CF体验是否一致，简单出报告；只做定向模型比较，不新建Task、不追加调参或SVN提交。
+- [体验简报](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_EXPERIENCE_SIMULATION.md)：1–300级的美元机器净耗目标接近不代表Spin一致。前300次升级CR/CF Spin=7.41倍，成本+0.49%；从1级100/500/1000 Spin，CR到3/11/14级，CF历史模型到23/95/165级。
+- 固定dev r7237等级；复用已验Bet/价格依赖，仅补读同版CommCfg/LevelAward/PayDiamond。18组逐Spin路径、门槛边界与CF原表公式定向检查通过；成本采用已闭合等级95%假设，CF为历史85%模型，不代表两款游戏当前实测。300级以后无CF证据。
+- 完整商业明细与模拟JSON留受控目录，Git只收简报、方法和治理。Registry首步由工具重建validate，19 canonical/0 collision/valid；收尾继续用既有工具验证。不做hash/全量扫描，不改配置、不新增SVN提交、不冻结/发布、不合并/finalize。Subagents: none。
+
+## 2026-09-21 — User批准等级dev提交并纠正映射（已完成提交）
 
 - 执行结果：[等级dev收口](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_DEV_RESULT.md)。以dev r7232准备，经提交前最新依赖核对后提交r7237；仅LevelCfg.levelUpExp共4999格，远端逐格差异0、中文日志正确、工作副本干净。VIP未提交。
 - User先批准“等级相关先提dev，VIP暂存”，随后明确“不能拉抻，已有的数据和等级完全对标，后续的进行拟合”。这覆盖此前短暂选择B及A/B候选，不能把旧方案写入dev。

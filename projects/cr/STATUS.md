@@ -1,6 +1,12 @@
 # CR 当前状态
 
-## 2026-09-21 — TASK-0036等级已提交CR dev r7237，VIP暂存（当前）
+## 2026-09-21 — TASK-0036等级体验模拟交Review（当前）
+
+- [简单体验报告](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_EXPERIENCE_SIMULATION.md)：dev r7237前300次升级美元机器净耗仅比CF历史模型高0.49%，但Spin为7.41倍，不能称为升级节奏一致。从1级100/500/1000 Spin后，CR到3/11/14级，CF历史模型到23/95/165级。
+- 18组逐Spin场景和门槛边界通过，奖励返还按同版dev配置补读；完整逐级值/路径留受控目录。CF为历史理论表，CR成本沿用95%等级假设；没有当前游戏实测、中奖分布或301级以后CF证据。
+- 只出模拟与报告，不因差异自动改配置或追加SVN提交。VIP暂存，尚未冻结/发布；Task仍Review、PR #10 OPEN、原reservation pending-main，不合并/finalize。Registry由CLI重建validate，无hash/无关全量重跑。Subagents: none。
+
+## 2026-09-21 — TASK-0036等级已提交CR dev r7237，VIP暂存（提交记录）
 
 - User最终决定禁止拉伸；CF已有1–300级目标与CR同级对应，仅301–4999拟合，5000级终点保留。原A/B候选及短暂B选择均被覆盖，不再作为提交输入。
 - 已按User明确授权提交 **dev r7237**，仅 `LevelCfg.xlsx / levelUpExp` 4999格。准备基线r7232；提交前四项升级依赖核对无变化，活动字段差异保留。独立稀疏WC，远端逐格回读差异0、中文日志正确、WC干净。
