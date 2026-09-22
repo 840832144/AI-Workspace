@@ -113,10 +113,10 @@ def prepare(base: Path, out: Path) -> dict:
         if lv<=300:
             assert math.isclose(d['cr_loss']/v[6],d['cf_loss']/(d['cf_base']*d['cf'][lv-1][3])/6,rel_tol=1e-10)
     assert all(r['candidate_spins']==r['cf_ceil_spins'] for r in d['calculations'][4:300])
-    overview = {1,2,3,4,5,300,301,4999,5000}
-    for a,b in zip(d['cr'],d['cr'][1:]):
-        if (a[1],a[6],a[12]) != (b[1],b[6],b[12]):
-            overview.update((a[0],b[0]))
+    overview = {1}
+    for a,b in zip(d['calculations'],d['calculations'][1:]):
+        if a['official_bet'] != b['official_bet']:
+            overview.add(b['level'])
     d.update(revision=receipt['revision'],read_at_utc=receipt['read_at_utc'],cf_discount=1/6,
              overview=sorted(overview),unlock_rows=unlock_grid,unlock_changes=changes)
     d['authority']['svn_submission']='User authorized CR dev Bet/EXP; no LevelCfg or VIP'
@@ -195,13 +195,17 @@ def verify_book(out: Path) -> dict:
     def check(sheet: str, levels: list[int]) -> None:
         for values,lv in zip(c[sheet].iter_rows(min_row=8,max_row=7+len(levels),values_only=True),levels):
             r=d['calculations'][lv-1]
-            expected=[lv,r['official_bet'],r['candidate_spins'],r['candidate_cost'],None,lv,r['official_bet'],d['cf'][lv-1][2] if lv<=300 else None,r['cf_discounted_cost']]
+            expected=[lv,r['official_bet'],r['candidate_spins'],r['candidate_cost'],d['cr'][lv-1][6]/d['cr'][0][6],None,lv,r['official_bet'],d['cf'][lv-1][2] if lv<=300 else None,r['cf_discounted_cost'],d['cf'][lv-1][3]/d['cf'][0][3] if lv<=300 else None]
             for i,value in enumerate(expected):
-                if i==4:continue
+                if i==5:continue
                 got=values[i]
                 if value is None:assert got=='N/A',(sheet,lv,i,got)
                 else:assert math.isclose(got,value,rel_tol=1e-10,abs_tol=1e-9),(sheet,lv,i,got,value)
+    expected_overview=[1]+[b['level'] for a,b in zip(d['calculations'],d['calculations'][1:]) if a['official_bet']!=b['official_bet']]
+    assert d['overview']==expected_overview
     check('明细',list(range(1,5001)));check('概览',d['overview'])
+    for s in ('概览','明细'):
+        assert w[s]['E8'].number_format==w[s]['K8'].number_format=='#,##0'
     with ZipFile(out/BOOK) as z:
         assert not any(n.startswith('xl/externalLinks/') for n in z.namelist())
         for name in z.namelist():
@@ -216,6 +220,7 @@ def verify_book(out: Path) -> dict:
     result={'visible_sheets':['概览','明细'],'levels':5000,'overview_rows':len(d['overview']),
             'formula_cells':formulas,'formula_errors':0,'external_links':0,'frozen_panes':0,'charts':3,
             'CF_discount':'1/6 per User','CF_fractional_expectation_preserved':True,
+            'inflation_base':'level1 = 1; integer multiples','inflation_levels_CR':5000,'inflation_levels_CF':300,
             'USD_equal_at_same_Spin':True,'integer_Spin_can_differ_from_fractional_CF':True}
     save(out/'workbook-validation.json',result)
     return result

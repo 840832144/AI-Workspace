@@ -1,5 +1,10 @@
 # CR 当前状态
 
+## 2026-09-22 — TASK-0036简表展示更新
+
+- 概览和明细的CR/CF各追加第5列“等级膨胀”，使用整数倍数（1级=1）；CF超过300级N/A。概览只保留26个最大Bet变化的解锁等级，明细仍5000级，原四列逐级核对不变。
+- 当前文件为受控`outputs/task0036-bet-simple-20260922/CR_CF_等级体验_简表.xlsx`。52,960公式缓存及新增列/筛选/无冻结核对通过，原3图保留。dev r7258不变，本轮无配置/SVN写入；原Task/PR继续Review，不合并/finalize。Subagents: none。
+
 ## 2026-09-21 — TASK-0036 Bet/EXP已提交dev r7258（当前）
 
 - User批准本轮dev提交及经验缺档插值/尾段比例延伸。最新dev r7257定向检查无相关并发变化；r7258只提交BetList/BetUnlock，远端单元格差异0、中文日志/作者核对一致、隔离WC干净。LevelCfg及VIP未改，trunk未提交。

@@ -1,20 +1,26 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: Bet/EXP已提交CR dev r7258并完成远端回读；17锚点保留、9处倒挂消除；四列简表待Review，LevelCfg未改、VIP暂存
+- Execution status: Bet/EXP已提交CR dev r7258并完成远端回读；17锚点保留、9处倒挂消除；五列简表（含整数等级膨胀）待Review，LevelCfg未改、VIP暂存
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
-- Updated: 2026-09-21
+- Updated: 2026-09-22
 - User decision: Approved（2026-09-21明确“dev可以先提了”；缺档按相邻经验锚点插值、最高档后按末档EXP/Bet比例延伸后提交；保留17锚点和User的LevelCfg，VIP暂存）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前dev r7258 Bet/EXP及简表等待Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-09-21 — dev提交授权、倒挂修复与四列简表（当前）
+## 2026-09-22 — 简表增加整数等级膨胀（当前展示）
+
+- User要求在两边“消耗美金”后追加“等级膨胀”，按整数倍数显示，1级=1；CR使用本级金币/USD除以1级基准，CF沿用原始等级倍率。CR保留5000级，CF仅1–300级有来源，之后N/A，不补数。
+- 概览仅保留最大Bet发生变化的解锁等级，共26行；明细仍为5000行。原四列逐级比对不变；两页五列、52,960公式缓存/3图及新增列格式核对通过，无外链或冻结。
+- 当前受控简表移至`outputs/task0036-bet-simple-20260922/CR_CF_等级体验_简表.xlsx`（完整根目录见报告）；旧四列版本保留历史。本轮仅展示调整，不重算旧模型、不修改或再次提交SVN；dev r7258提交事实不变。原Task/PR #10继续Review，不合并/finalize。Subagents: none。
+
+## 2026-09-21 — dev提交授权、倒挂修复与四列简表（提交记录）
 
 - User批准本轮Bet/EXP提交dev，并确认能修复且不影响整体的倒挂应修复。保留17个已对标锚点；中间缺档按相邻锚点线性插值并取整数，高于最高锚点按末档EXP/Bet比例延伸，低于首个EXP锚点保留现值；34处经验变更，9处倒挂降为0，5–300级296个整Spin结果保持。
 - 定向读取最新dev r7257；六份当前依赖与r7252无内容变化，保护User的LevelCfg。只拟提交SlotsCasinoBetList与SlotsCasinoBetUnlock；VIP、PriceCheatSheet、BetShow、CommCfg及trunk均不改。
