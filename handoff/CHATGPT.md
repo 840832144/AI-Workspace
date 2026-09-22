@@ -1,5 +1,12 @@
 # ChatGPT Handoff
 
+## 2026-09-22 — TASK-0036 CF最新实测重基线
+
+- User提供最新CF本机实测分析包（1,020手/45升级/L6–L50）和VIP/服务器主表；完整新规格见[CF_LIVE_REBASE_20260922](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_20260922.md)。
+- 旧task0036 CF历史目标在冲突处退出：EXP=bet÷3、当前Bet档、×14等级权益、VIP门槛/权益均以新证据为准；51+EXP未知不补旧值。
+- 无折扣coins/USD主场景=500k与约150k；×5.5折扣只留CALC，不进体验表。重做同5页曲线并出r7258 vs L6–L50最新CF差异。
+- r7258不自动回滚，但暂停任何新增SVN写入，等User看新曲线后决定。第一步重建/validate Registry；Raw/账号/逐手不进Git。
+
 ## 2026-09-22 — TASK-0036简表展示更新
 
 - 概览和明细的CR/CF各追加第5列“等级膨胀”，使用整数倍数（1级=1）；CF超过300级N/A。概览只保留26个最大Bet变化的解锁等级，明细仍5000级，原四列逐级核对不变。
