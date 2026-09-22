@@ -1,21 +1,24 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Changes Requested
-- Execution status: User提供2026-09-22 Cash Frenzy L6–L50实测与当前VIP/服务器主表；旧CF历史基线需重做，暂停新增SVN写入，等待最新VIP/升级5曲线及r7258差异Review
+- Status: Review
+- Execution status: CF最新实测5页曲线及r7258差异表已交付；102条EXP比例源冲突保留待Review，暂停新增SVN写入，未Accepted
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-09-22
-- User decision: Approved（2026-09-21明确“dev可以先提了”；缺档按相邻经验锚点插值、最高档后按末档EXP/Bet比例延伸后提交；保留17锚点和User的LevelCfg，VIP暂存）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前dev r7258 Bet/EXP及简表等待Review，未合并/finalize）
+- User decision: Approved（2026-09-22只读CF最新证据重基线与Git交付；暂停新增SVN写入，r7258不自动回滚，VIP继续暂存）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前CF实测重基线及r7258差异等待Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
 ## 2026-09-22 — Cash Frenzy最新实测重基线（User新增输入）
 
+- 交付及验证：[CF_LIVE_REBASE_VALIDATION](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_VALIDATION.md)。受控5页曲线/独立45行差异表已完成；同级Bet24/45一致、膨胀45/45一致；44段标准化Spin及两场景成本均有差异，两场景返还率一致。0公式错误/外链/冻结，原生公式响应和视觉复核通过。
+- 源证据限制：44段累计经验差核对为0，但另有102条非零EXP/Bet比值与1/3冲突。按Task规则生成模型并显式标待Review，不把经验累计一致扩大成每手比例恒定/精确门槛已独立证明。L6缺锚点、51+成本/返还N/A；没有用旧CF插值补齐。
+- Registry已通过既有CLI重建validate；本轮仅Git工具/脱敏记录及受控Excel，无SVN操作、源配置写入、冻结/发布、合并/finalize。旧CF冲突与1/6折扣记录均保留历史身份。Subagents: none。
 - 完整规格：[CF_LIVE_REBASE_20260922](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_20260922.md)。User提供本机实测分析包：1,020手、45次升级、L6→L50连续证据；Raw/账号信息继续仅本地，不进Git。
 - 最新CF证据覆盖旧task0036重叠范围：EXP=bet÷3；L7–L50逐级门槛精确；当前Bet解锁金额L10=450k/L15=1.05m/L30=7.5m/L35=9m等与旧表冲突；等级金币权益当前只到×14封顶，旧×16/×18/×25退出当前主曲线。
 - VIP改用当前客户端/服务器规则：累计门槛0/150/4100/31k/260k/2.1m/10m/50m；购买SKU点/USD约9.0180–18.0090，因此VIP消费门槛重新画纯购买成本上下界。Coin Packages权益为×1/1.5/2.5/4/7/10/20/40/50。
@@ -25,7 +28,7 @@
 - dev r7258不自动回滚，但它基于旧CF目标，当前不再视为最新CF验证通过；先生成r7258 vs L6–L50实测差异，再由User决定保留/修订/部分回滚。**本轮暂停新增CR SVN写入。**
 - 第一动作仍为重建/validate Registry；不重跑无关Accepted任务、不采集、不冻结/发布、不合并/finalize。
 
-## 2026-09-22 — 简表增加整数等级膨胀（当前展示）
+## 历史展示 — 2026-09-22 简表增加整数等级膨胀（旧CF基线）
 
 - User要求在两边“消耗美金”后追加“等级膨胀”，按整数倍数显示，1级=1；CR使用本级金币/USD除以1级基准，CF沿用原始等级倍率。CR保留5000级，CF仅1–300级有来源，之后N/A，不补数。
 - 概览仅保留最大Bet发生变化的解锁等级，共26行；明细仍为5000行。原四列逐级比对不变；两页五列、52,960公式缓存/3图及新增列格式核对通过，无外链或冻结。

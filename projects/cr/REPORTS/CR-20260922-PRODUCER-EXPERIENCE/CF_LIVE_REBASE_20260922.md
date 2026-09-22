@@ -5,6 +5,8 @@
 - Date: 2026-09-22
 - Scope: 用2026-09-22实测替换TASK-0036旧CF历史基线，重做VIP/升级曲线与CR对照；暂不新增SVN写入
 
+执行交付已进入Review，见[定向验证与证据冲突](CF_LIVE_REBASE_VALIDATION.md)。以下保留User输入规格；独立核对发现102条非零EXP/Bet比例冲突，不能把本规格中的“精确恢复/全程Bet÷3”当成已独立验证的结论。
+
 ## 结论与证据优先级
 
 本轮以User提供的2026-09-22本机实测分析包为Cash Frenzy当前最高优先级证据，覆盖旧 `reference_task0036_cf_levels.csv` / 历史 `cashFrenzy等级` 在重叠范围内的数值。

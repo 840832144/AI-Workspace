@@ -2,6 +2,8 @@
 
 ## 2026-09-22 — TASK-0036 CF最新实测重基线
 
+- 交Review：[CF_LIVE_REBASE_VALIDATION](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_VALIDATION.md)。受控5页曲线及独立45行r7258差异表已完成；Bet24/45、等级膨胀45/45一致，44段模型Spin/成本均不同。两场景返还率一致，公式/图表/视觉通过，源表/SVN未写。
+- 本轮Review请重点看到达/出发等级映射、基础币率×等级权益，以及102条非零EXP/Bet比例与Task Bet÷3冲突；累计经验段差0不证明恒定经验比或精确门槛。模型按Task继续，但实测普适性未关闭。CF L6及51+升级成本/返还N/A，旧冲突数据降为历史。PR #10 OPEN，不冻结/发布、合并或finalize；Subagents: none。
 - User提供最新CF本机实测分析包（1,020手/45升级/L6–L50）和VIP/服务器主表；完整新规格见[CF_LIVE_REBASE_20260922](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_20260922.md)。
 - 旧task0036 CF历史目标在冲突处退出：EXP=bet÷3、当前Bet档、×14等级权益、VIP门槛/权益均以新证据为准；51+EXP未知不补旧值。
 - 无折扣coins/USD主场景=500k与约150k；×5.5折扣只留CALC，不进体验表。重做同5页曲线并出r7258 vs L6–L50最新CF差异。
