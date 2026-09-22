@@ -1,5 +1,13 @@
 # ChatGPT Handoff
 
+## 2026-09-22 — TASK-0036 最新CF等级对齐候选交Review
+
+- [最新候选及验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)。5份配置/完整5000级Excel/逐格diff留受控目录。Task Review；本轮不是此前Accepted报告的自动延续验收，不提交dev。
+- User闭合：所有.99档位取整美元；基础商城50万→150万，等级/VIP另乘；125+膨胀保留dev原节点和值。经验按1万金币=1点，同比换算，38档整数且最低1点。
+- Review重点：44段到达/出发等级映射和等比Spin保持、尾部趋势与25级Bet节点假设、125+旧倍率保留、取整美元两路基准一致、HighRoller共用字段影响。到达300级最新拟合门槛仅约旧推算24%，与“差不太多”预期不一致，不能以拟合自洽称真实CF全段一致。
+- 44段理论/整Spin相同，4950段拟合整Spin差异0；公式/原生响应/视觉及非目标保护通过。102条源经验比冲突仍未闭合，早期门槛/51+实测缺口保留。游戏内/WPS实机未验收。
+- Registry由CLI重建validate；无hash/全量扫描。PR #10 OPEN，等待User检查及Review；不提交SVN、冻结/发布、合并/finalize，原reservation保留。Subagents: none。
+
 ## 2026-09-22 — TASK-0036 CF最新实测重基线
 
 - 交Review：[CF_LIVE_REBASE_VALIDATION](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_VALIDATION.md)。受控5页曲线及独立45行r7258差异表已完成；Bet24/45、等级膨胀45/45一致，44段模型Spin/成本均不同。两场景返还率一致，公式/图表/视觉通过，源表/SVN未写。

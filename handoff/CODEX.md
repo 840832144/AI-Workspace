@@ -1,5 +1,13 @@
 # Codex Handoff
 
+## 2026-09-22 — TASK-0036 最新CF等级对齐候选
+
+- [候选结果、受控位置及复现](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)。dev r7284只读来源；5份候选配置和5000级体验Excel等待User检查，尚未提交dev。不要续用下方旧CF/1/6折扣或×14平延方案覆盖当前规则。
+- 最新User决定：所有.99档位取整美元，基础兑换50万→150万且等级/VIP另乘；125+原膨胀节点和值保留。经验单位取Bet金币公约数1万，最低1点、38档整数；门槛同比缩小，VIP配置不写。
+- 44已知段理论/整Spin保持；4950拟合段整数Spin差异0，最大理论舍入误差约0.000162。非目标字段、5000终点、30档币率、公式/图表/视觉通过；源EXP比例102条冲突保留，不称游戏验收。
+- 到达300级拟合门槛约旧推算24%，需User重点检查；51+为最新趋势拟合。HighRoller解锁行不变，但共用Bet/EXP受到影响。后续dev必须另获User授权并定向freshness check，不能沿用旧提交授权。
+- Task Review/PR #10 OPEN/reservation原样；Registry由CLI重建validate。Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。不采集、hash或全量扫描，不提交SVN、冻结/发布、合并/finalize。Subagents: none。
+
 ## 2026-09-22 — TASK-0036 CF最新实测重基线
 
 - 已完成受控5页曲线与45行r7258差异，Task Review：[验证、公式与受控位置](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_VALIDATION.md)。Bet24/45、膨胀45/45一致；44段标准化Spin与成本均不同，两场景返还率一致。原生公式响应/恢复、图表和视觉通过。

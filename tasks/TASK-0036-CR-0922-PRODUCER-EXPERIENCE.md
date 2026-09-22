@@ -1,18 +1,32 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: CF最新实测5页曲线及r7258差异表已交付；102条EXP比例源冲突保留待Review，暂停新增SVN写入，未Accepted
+- Execution status: 最新CF等级/Bet/兑换5000级候选已交User检查；.99统一取整美元、125+原膨胀保留；定向验证通过，未提交dev；源EXP冲突及尾段拟合待Review
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-09-22
-- User decision: Approved（2026-09-22只读CF最新证据重基线与Git交付；暂停新增SVN写入，r7258不自动回滚，VIP继续暂存）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；当前CF实测重基线及r7258差异等待Review，未合并/finalize）
+- User decision: Approved（2026-09-22受控候选：基础商城50万→150万金币/USD，等级/VIP另乘；Bet/EXP/Spin/毛下注对齐，净耗保留各自RTP；经验同比缩小，User验收后另行提交dev）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；最新CF等级对齐受控候选等待User检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
+
+## 2026-09-22 — 最新CF等级对齐候选（User追加）
+
+- 交付：[受控候选、公式、验证与限制](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)。5份配置副本、4页体验表/3折线图、28个最大Bet解锁概览点、5000级明细、逐格/逐键diff均留受控目录；Git仅工具和脱敏摘要。
+- 验证：44段已知规则的理论/整Spin相同，4950段拟合取整Spin差异0；全部经验正整数/int32、非目标字段、125+原倍率与节点、30档取整美元/首末币率通过。0公式错误/外链/冻结，原生驱动响应/恢复及4页3图视觉通过，非游戏内验收。
+- 待User重点检查：到达300级最新拟合门槛仅约旧推算的24%，并不接近旧表；51+仍为拟合，源102条经验比例冲突继续保留。HighRoller解锁行原样，但共用Bet/EXP会随候选改变，不宣称该模式已验收。
+- Registry由既有工具首步/收尾重建validate；Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。源表/工作副本未写，未提交SVN、冻结/发布、合并/finalize；原Task/reservation继续。Subagents: none。
+- 继续TASK-0036/PR #10，不新建Task。User要求等级部分按最新CF，50级后依据最新调研拟合至5000级，旧300级只作偏差比较，不强行匹配历史值。
+- 两项已确认：基础商城档位50万→150万金币/USD（100%→300%），等级/VIP倍率另乘；对齐Bet、EXP、Spin及毛下注，净耗保留CR/CF各自RTP并显示差异，不新增RTP调整。
+- User补充：**所有尾数.99的SKU均按向上取整后的美元计算**，例如0.99→1、4.99→5、99.99→100。金币/USD及体验成本统一使用该策划口径；原标价字段保留，不改支付价格。
+- User同意门槛与每Spin经验等比例缩小，随后明确不限定除100，要求尽量小且规整。本轮选全部Bet金币的公约数1万作为单位：`每Spin经验=Bet/10000`，`升级门槛=CF原始EXP×3/10000`，最小Bet恰为1点、全部38档经验为整数；已知44段比值不变。此前1/10、1/100仅为讨论示例，不进入当前候选。
+- User进一步明确：**125级及以后的等级膨胀保留dev原解锁节点及数值**。此前暂拟14倍保持方案撤回；基础商城50万→150万与等级膨胀是不同维度，不混用。已知段按CF，后段沿用dev且明确历史来源身份。
+- 最新只读dev基线r7284。LevelCfg仍为r7247，BetList/Unlock仍为r7258；CommCfg r7283只改变大厅随机宝箱冷却，原样保护。价格读当前PriceCheatSheet，PriceSetting为已登记退役路径，不因旧文件名要求误写。
+- 本轮允许修改受控候选，不覆盖源配置/工作副本，不提交SVN。先交User检查；确认后再走正式dev流程。VIP继续暂存，不冻结/发布、不合并PR #10、不finalize。
 
 ## 2026-09-22 — Cash Frenzy最新实测重基线（User新增输入）
 

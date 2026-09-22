@@ -1,5 +1,12 @@
 # CR 当前状态
 
+## 2026-09-22 — TASK-0036 最新CF等级对齐候选待User检查
+
+- [当前交付及限制](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)：固定CR dev r7284，5份配置副本、5000级Excel、逐格/逐键diff只在受控目录。源配置不改，不提交dev；下方重基线报告和r7258为历史事实。
+- User已闭合：所有.99档位向上取整美元；基础商城50万→150万、等级/VIP另乘；125及以后等级膨胀沿用dev原节点/数值。经验同比采用1万金币=1EXP，最小档1点，38档均为整数。
+- 44段已知模型的理论/整Spin一致；4950段拟合整Spin差异0，公式/非目标字段/币率/视觉通过。到达300级拟合门槛约旧推算24%，51+不是实测；102条源经验比冲突未关闭，共用Bet/EXP对HighRoller影响须随候选检查。
+- Task Review、PR #10 OPEN、原reservation保留，等待User和ChatGPT Review；不冻结/发布、不合并/finalize。Registry由CLI重建validate；无hash/全量扫描。Subagents: none。
+
 ## 2026-09-22 — TASK-0036 Cash Frenzy最新实测重基线
 
 - 已交付受控5页曲线与r7258独立差异表，当前Review：[结果与证据限制](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_VALIDATION.md)。45级Bet24一致、等级膨胀45一致；44段模型Spin/成本均有差异。两场景返还率一致，公式/图表/视觉通过。
