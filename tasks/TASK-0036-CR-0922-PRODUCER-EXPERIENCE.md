@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
-- Status: Review
-- Execution status: Bet/EXP已提交CR dev r7258并完成远端回读；17锚点保留、9处倒挂消除；五列简表（含整数等级膨胀）待Review，LevelCfg未改、VIP暂存
+- Status: Changes Requested
+- Execution status: User提供2026-09-22 Cash Frenzy L6–L50实测与当前VIP/服务器主表；旧CF历史基线需重做，暂停新增SVN写入，等待最新VIP/升级5曲线及r7258差异Review
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -13,6 +13,17 @@
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
+
+## 2026-09-22 — Cash Frenzy最新实测重基线（User新增输入）
+
+- 完整规格：[CF_LIVE_REBASE_20260922](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_20260922.md)。User提供本机实测分析包：1,020手、45次升级、L6→L50连续证据；Raw/账号信息继续仅本地，不进Git。
+- 最新CF证据覆盖旧task0036重叠范围：EXP=bet÷3；L7–L50逐级门槛精确；当前Bet解锁金额L10=450k/L15=1.05m/L30=7.5m/L35=9m等与旧表冲突；等级金币权益当前只到×14封顶，旧×16/×18/×25退出当前主曲线。
+- VIP改用当前客户端/服务器规则：累计门槛0/150/4100/31k/260k/2.1m/10m/50m；购买SKU点/USD约9.0180–18.0090，因此VIP消费门槛重新画纯购买成本上下界。Coin Packages权益为×1/1.5/2.5/4/7/10/20/40/50。
+- 升级曲线主证据只闭合L7–L50；51+没有现行EXP门槛，不再拿旧历史插值冒充实测。L50升级奖励11.5m保留为唯一已实测特殊里程碑尖峰。
+- User新的无折扣兑币场景：500,000 coins/USD 与约150,000 coins/USD；主体验表同时展示两条成本线。折扣场景=上述coins/USD×5.5，只留CALC/说明，**本轮不进入体验表/主图**。约150k若需精确化必须有当前来源，不得自行改成1.5m。
+- 重做5页曲线：VIP消费门槛、VIP膨胀、等级升级消耗、等级Bet、等级升级消耗返还；CF全部切到最新实测/当前服务器规则，CR保留当前状态用于同图对照。
+- dev r7258不自动回滚，但它基于旧CF目标，当前不再视为最新CF验证通过；先生成r7258 vs L6–L50实测差异，再由User决定保留/修订/部分回滚。**本轮暂停新增CR SVN写入。**
+- 第一动作仍为重建/validate Registry；不重跑无关Accepted任务、不采集、不冻结/发布、不合并/finalize。
 
 ## 2026-09-22 — 简表增加整数等级膨胀（当前展示）
 
