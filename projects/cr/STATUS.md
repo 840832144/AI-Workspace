@@ -1,5 +1,11 @@
 # CR 当前状态
 
+## 2026-09-22 — TASK-0036 等级修订已提交dev r7300
+
+- [当前提交/验证/受控文件](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)：按User授权提交5表dev r7300，远端单元格/公式差异0，中文日志/作者及干净隔离WC核对通过；等待User进游戏检查。
+- 102条经验比例差异采用1/3标准取整拟合，不再业务阻塞。272级起恢复原dev美元消耗，4728段最大舍入差约$0.000391；前271级保持，125+原膨胀和.99取整美元不变。4页5图及5000明细已更新。
+- VIP未提交、trunk未写，未冻结/发布；Task Review、PR #10 OPEN、reservation保留。Registry由CLI重建validate，无hash/全量扫描。下方候选和r7258为历史，不覆盖本轮r7300。Subagents: none。
+
 ## 2026-09-22 — TASK-0036 最新CF等级对齐候选待User检查
 
 - [当前交付及限制](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)：固定CR dev r7284，5份配置副本、5000级Excel、逐格/逐键diff只在受控目录。源配置不改，不提交dev；下方重基线报告和r7258为历史事实。

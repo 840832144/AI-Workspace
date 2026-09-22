@@ -32,11 +32,11 @@ try {
   if($s.Name -in @('SRC','CALC')){$s.Visible=0;continue}
   $s.Activate();$app.ActiveWindow.FreezePanes=$false;$app.ActiveWindow.SplitRow=0;$app.ActiveWindow.SplitColumn=0
   $app.ActiveWindow.ScrollRow=1;$app.ActiveWindow.ScrollColumn=1;$app.ActiveWindow.Zoom=85;$s.Columns('AA:AZ').Hidden=$true
-  if($s.Name -eq '等级_明细'){$null=$s.Range('A7:M5007').AutoFilter()}
-  if($s.Name -eq '等级_概览'){$null=$s.Range("A7:M$($d.overview.Count+7)").AutoFilter()}
+  if($s.Name -eq '等级_明细'){$null=$s.Range('A7:O5007').AutoFilter()}
+  if($s.Name -eq '等级_概览'){$null=$s.Range("A7:O$($d.overview.Count+7)").AutoFilter()}
   for($i=1;$i -le $s.ChartObjects().Count;$i++){
    $c=$s.ChartObjects().Item($i).Chart;$c.ChartType=4;$c.PlotVisibleOnly=$false;$c.DisplayBlanksAs=1;$c.Axes(1).HasMajorGridlines=$false
-   $c.Axes(1).TickLabelSpacing=$(if($s.Name -eq '商城档位'){3}else{25});$c.Axes(2).MinimumScale=0
+   $c.Axes(1).TickLabelSpacing=$(if($s.Name -eq '商城档位'){3}elseif($i -eq 4){250}else{25});$c.Axes(2).MinimumScale=0
    $c.HasLegend=$true;$c.Legend.Position=-4160;$c.ChartArea.Font.Name='Microsoft YaHei'
    foreach($se in $c.SeriesCollection()){$se.AxisGroup=1;$se.Smooth=$false;$se.MarkerStyle=-4142}
   }
@@ -53,7 +53,7 @@ try {
   if($s.Visible -ne -1){continue};$s.Activate()
   for($i=1;$i -le $s.ChartObjects().Count;$i++){$obj=$s.ChartObjects().Item($i);$null=$obj.Activate();$null=$obj.Chart.Export((Join-Path $preview ($s.Name+"-$i.png")),'PNG')}
   $null=$s.Range('A1').Select();$s.PageSetup.Orientation=2;$s.PageSetup.PaperSize=9;$s.PageSetup.Zoom=$false;$s.PageSetup.FitToPagesWide=1;$s.PageSetup.FitToPagesTall=1
-  $s.PageSetup.PrintArea=$(if($s.Name -eq '候选说明'){'A1:C18'}elseif($s.Name -eq '商城档位'){'A1:L37'}else{'A1:M24'})
+  $s.PageSetup.PrintArea=$(if($s.Name -eq '候选说明'){'A1:C18'}elseif($s.Name -eq '商城档位'){'A1:L37'}else{'A1:O24'})
   $s.ExportAsFixedFormat(0,(Join-Path $preview ($s.Name+'.pdf')))
  }
  Write-Output 'Controlled candidate copies and report recalc/response/restore/previews completed; no SVN operations.'

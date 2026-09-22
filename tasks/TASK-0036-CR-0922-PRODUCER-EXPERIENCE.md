@@ -1,21 +1,30 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: 最新CF等级/Bet/兑换5000级候选已交User检查；.99统一取整美元、125+原膨胀保留；定向验证通过，未提交dev；源EXP冲突及尾段拟合待Review
+- Execution status: 已按User授权提交dev r7300，5表远端回读差异0；102条经验比取整拟合，272+恢复原dev消耗；等待User游戏检查，VIP未提交
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-09-22
-- User decision: Approved（2026-09-22受控候选：基础商城50万→150万金币/USD，等级/VIP另乘；Bet/EXP/Spin/毛下注对齐，净耗保留各自RTP；经验同比缩小，User验收后另行提交dev）
-- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；最新CF等级对齐受控候选等待User检查及Review，未合并/finalize）
+- User decision: Approved（2026-09-22最新明确授权“这版就直接提吧，我去dev检查”；只提交本轮5份等级/Bet/兑换配置到dev，VIP暂存；不提交trunk、冻结/发布、合并/finalize）
+- PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；dev r7300等待User游戏检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-09-22 — 最新CF等级对齐候选（User追加）
+## 2026-09-22 — 取整拟合与272级后恢复原难度，已提交dev r7300
 
+- User已批准直接提交本版dev并自行进游戏检查。当前[提交结果与受控交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)：LevelCfg、BetList、BetUnlock、BetShow、PriceCheatSheet共5表提交r7300；freshness核对到r7298依赖无变化，既有工具再次update/校验通过。远端逐格/公式差异0、中文日志/作者正确、隔离WC干净。
+- 102条比例差异采用User指定1/3标准取整拟合，业务处理闭合、不再阻塞，源证据和成因不篡改。当前272级起恢复原dev美元消耗，按新经验单位/币率反算门槛；4728段最大舍入差约$0.000391/0.000254%，前271级、其他4候选、5000终点保持。
+- .99取整美元、基础商城50万→150万且等级/VIP另乘、125+原膨胀保留。Excel补原dev/旧拟合/本轮成本叠加图，4页5图/5000明细/0公式错误外链冻结。当前文件在受控outputs/task0036-cf-alignment-20260922-r2；不带-r2目录为历史。
+- Registry由CLI重建validate，Task仍Review；VIP未提交、trunk未写，不冻结/发布、不合并PR #10、不finalize。等待User游戏检查，不称客户端已验收。Subagents: none。
+
+## 历史候选4c0907b — 最新CF等级对齐（提交前）
+
+- 最新User修订：102条非零EXP/Bet差异采用标准1/3取整拟合，不再作为候选业务阻塞；不改原始证据，也不声称差异成因已证实。新旧美元消耗在272级首次交叉（270多级范围），从当前272级起恢复原dev难度，用当前经验单位/兑换率反算门槛，5000终点保持。
+- 随后User明确批准直接提交本版dev并自行进游戏检查，覆盖下方“先检查再批准dev”的历史等待状态。2026-09-22 07:02 UTC定向freshness check到r7298，7份相关依赖相对固定r7284均未变化；按cr-svn-submit在隔离稀疏WC执行，不修改User工作副本。
 - 交付：[受控候选、公式、验证与限制](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)。5份配置副本、4页体验表/3折线图、28个最大Bet解锁概览点、5000级明细、逐格/逐键diff均留受控目录；Git仅工具和脱敏摘要。
 - 验证：44段已知规则的理论/整Spin相同，4950段拟合取整Spin差异0；全部经验正整数/int32、非目标字段、125+原倍率与节点、30档取整美元/首末币率通过。0公式错误/外链/冻结，原生驱动响应/恢复及4页3图视觉通过，非游戏内验收。
 - 待User重点检查：到达300级最新拟合门槛仅约旧推算的24%，并不接近旧表；51+仍为拟合，源102条经验比例冲突继续保留。HighRoller解锁行原样，但共用Bet/EXP会随候选改变，不宣称该模式已验收。

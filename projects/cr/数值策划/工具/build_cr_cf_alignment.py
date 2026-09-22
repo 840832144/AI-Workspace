@@ -9,6 +9,8 @@ import argparse
 import csv
 import json
 import math
+import subprocess
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from decimal import Decimal, ROUND_HALF_UP
 import openpyxl
@@ -144,16 +146,28 @@ def prepare(base: Path, out: Path) -> dict:
         else:
             raw=anchor+slope*(l+1-50);need=rounded(raw*3/coin_unit);method='L30-L50线性趋势，锚定到达L50；拟合非实测'
         assert l==5000 or 0<need<2**31
-        edit('LevelCfg',rec['_excel_row'],'C',rec['levelUpExp'],need,method)
         mult=level_multi(l)
         target_spin=raw/(cap[l-1]/3) if raw is not None else None
         actual_spin=None if l==5000 else need if rec['levelUpType']==1 else need/exp
         oldcf=history['cf'][l-1] if l<=300 else None
         old_raw=oldcf[1]*oldcf[2]/3 if oldcf else None
+        old_rate=basis[max(x for x in basis if x<=l)]['vip_16_0']
         rows.append([l,cap[l-1],exp,need,raw,target_spin,actual_spin,mult,rec['levelUpType'] or 0,
-                     old_coin[oldident],prior_spin,live['cr'][l-1][5],old_raw,method,
+                     old_coin[oldident],prior_spin,old_rate,old_raw,method,
                      'CF现行倍率' if 2<=l<=124 else 'L1基准' if l==1 else 'User决定：保留dev原解锁与数值，非最新CF实测',
                      '现值保留，CF金额缺口' if l<5 else '服务器区间推定' if l==5 else 'CF实测金额' if l<=50 else '尾部拟合/可用档位取下界'])
+    # User: restore original difficulty after the crossing in the 270s.
+    # Compare USD consumption, not raw EXP numbers across different point/currency units.
+    restore_from=next(r[0] for r in rows[269:279]
+                      if r[6]*r[1]/(500000*r[7]) < r[10]*r[9]/r[11])
+    for row,rec in zip(rows,levels):
+        if restore_from<=row[0]<5000:
+            old_gross=row[10]*row[9]/row[11]
+            row[3]=rounded(old_gross*(500000*row[7])/coin_unit)
+            row[6]=row[3]/row[2]
+            row[13]=f'L{restore_from}+恢复原dev美元消耗；换算为小整数经验，非CF拟合'
+            assert 0<row[3]<2**31
+        edit('LevelCfg',rec['_excel_row'],'C',rec['levelUpExp'],row[3],row[13])
     known_checks=[]
     for row in rows[5:49]:
         assert row[1]==cf[row[0]-1][1]
@@ -166,7 +180,9 @@ def prepare(base: Path, out: Path) -> dict:
           'rows':rows,'tiers':tier_rows,'changes':changes,'unlock_rows':output,'unlock_sheet':tables['SlotsCasinoBetUnlock']['sheet'],
           'unlock_sources':unlock_notes,'overview':overview,'known_transition_start_levels':known_checks,
           'source_exp_ratio_conflicts':live['evidence']['exp_ratio_conflicts'],
-          'assumptions':['User: .99 prices count as next whole USD','CR EXP=CF EXP*3/10000; min Bet gives1EXP','L51+ EXP anchored linear 30-50','Bet cadence25 after50; floor to available tier',
+          'restore_from_level':restore_from,
+          'exp_ratio_disposition':'User decision: fit to base Bet/3 and round in the common integer EXP unit; source exceptions retained, non-blocking',
+          'assumptions':['User: .99 prices count as next whole USD','CR EXP=CF EXP*3/10000; min Bet gives1EXP',f'L51 to departure L{restore_from-1}: EXP anchored linear 30-50',f'L{restore_from}+ restore source dev USD cost','Bet cadence25 after50; floor to available tier',
                          'level inflation125+ preserved dev by User','CR5% / CF15% historical net loss models unchanged']}
     save(out/'alignment-inputs.json',data)
     with (out/'configuration_diff.csv').open('w',encoding='utf-8-sig',newline='') as f:
@@ -174,15 +190,35 @@ def prepare(base: Path, out: Path) -> dict:
         for name,items in changes.items():
             for item in items:w.writerow([name+'.xlsx',*item])
     return {'revision':receipt['revision'],'known_transitions_equal':len(known_checks),'level_rows':len(rows),
-            'coins_per_EXP':coin_unit,'int32':True,'candidate_cells':{k:len(v) for k,v in changes.items()},
+            'coins_per_EXP':coin_unit,'restore_from_level':restore_from,'int32':True,'candidate_cells':{k:len(v) for k,v in changes.items()},
             'ordinary_unlock_rows':sum(r[1]==0 for r in output),'svn_submitted':False}
 
 
-def verify(out: Path) -> dict:
+def verify(out: Path, root: Path | None = None) -> dict:
     d=json.loads((out/'alignment-inputs.json').read_text(encoding='utf-8'))
+    candidate=root or out/'candidate'
+    if root:
+        from svn_submit import locate_svn
+        receipt=json.loads((out/'source.local.json').read_text(encoding='utf-8'))
+        def svn_xml(*args: str) -> ET.Element:
+            result=subprocess.run([str(locate_svn()),*args],capture_output=True)
+            assert result.returncode==0, 'SVN identity/freshness read failed'
+            return ET.fromstring(result.stdout)
+        entry=svn_xml('info','--xml',str(root)).find('entry')
+        assert entry.findtext('url')==receipt['url'] and entry.findtext('repository/uuid')==receipt['uuid']
+        assert entry.findtext('relative-url')=='^/x_proj_share/dev/ExcelConfigExport/Excel'
+        for item in receipt['files']:
+            e=svn_xml('info','--xml',receipt['url']+'/'+item['file']+'@HEAD').find('entry')
+            assert e.find('commit').get('revision')==str(item['last_changed_revision']), 'Related dependency changed; stop before commit'
+        status=svn_xml('status','--xml','--ignore-externals',str(root)).findall('.//entry')
+        assert {Path(e.get('path')).name for e in status}=={name+'.xlsx' for name in FILES}
+        for e in status:
+            s=e.find('wc-status')
+            assert s.get('item')=='modified' and s.get('props') in ('normal','none') and s.get('tree-conflicted')!='true'
     counts={}
     for name in FILES:
-        path=out/'candidate'/(name+'.xlsx');sanitize(path.parent,path.name)
+        path=candidate/(name+'.xlsx')
+        if not root:sanitize(path.parent,path.name)
         a=grid(out/'source'/(name+'.xlsx'));b=grid(path);assert a.keys()==b.keys()
         if name=='SlotsCasinoBetUnlock':
             sheet=d['unlock_sheet'];assert b[sheet][:4]==a[sheet][:4]
@@ -208,9 +244,9 @@ def verify(out: Path) -> dict:
                     if (sheet,cell) in edits:assert new==edits[(sheet,cell)];n+=1
                     else:assert new==old,(name,sheet,cell)
         assert n==len(edits);counts[name]={'changed_cells':n,'non_target_cells_unchanged':True}
-    bet=read_source(out/'candidate/SlotsCasinoBetList.xlsx')['records'];byid={r['levelId']:r for r in bet}
+    bet=read_source(candidate/'SlotsCasinoBetList.xlsx')['records'];byid={r['levelId']:r for r in bet}
     unlock=d['unlock_rows'];normal=[r for r in unlock if r[1]==0]
-    lev=read_source(out/'candidate/LevelCfg.xlsx')['records']
+    lev=read_source(candidate/'LevelCfg.xlsx')['records']
     for row,rec in zip(d['rows'],lev):
         l=row[0];stage=max(r[0] for r in normal if r[0]<=l)
         cap=max(byid[r[2]]['bet2'] for r in normal if r[0]==stage)
@@ -220,7 +256,7 @@ def verify(out: Path) -> dict:
     for r in bet:
         for field,factor in [('bet3',1.5),('bet33',1.65),('bet9',.9),('bet35',1.75)]:
             assert math.isclose(r[field],r['bet2']*factor,abs_tol=1e-5)
-    price=read_source(out/'candidate/PriceCheatSheet.xlsx')['records']
+    price=read_source(candidate/'PriceCheatSheet.xlsx')['records']
     original_prices=read_source(out/'source/PriceCheatSheet.xlsx')['records']
     for old,new in zip(original_prices,price):
         if old['priceType'] in (9,17):
@@ -255,11 +291,19 @@ def verify(out: Path) -> dict:
             gross=row[6]*row[1]/(500000*row[7]);assert math.isclose(s.cell(i,4).value,gross,rel_tol=1e-10)
             assert math.isclose(s.cell(i,5).value,gross*.05,rel_tol=1e-10)
             assert math.isclose(s.cell(i,6).value,gross*.15,rel_tol=1e-10)
-    assert len(f['等级_概览']._charts)==2 and len(f['商城档位']._charts)==1
+    restored=[]
+    for row in d['rows'][d['restore_from_level']-1:4999]:
+        old=row[10]*row[9]/row[11];actual=row[6]*row[1]/(500000*row[7])
+        assert abs(actual-old)<=d['coin_unit']/(500000*row[7])/2+1e-9
+        restored.append((actual-old,(actual-old)/old))
+        excel_row=row[0]+7
+        assert math.isclose(v['等级_明细'].cell(excel_row,14).value,old,rel_tol=1e-10)
+        assert math.isclose(v['等级_明细'].cell(excel_row,15).value,actual-old,abs_tol=1e-9)
+    assert len(f['等级_概览']._charts)==4 and len(f['商城档位']._charts)==1
     assert not f._external_links
     f.close();v.close()
     old300=d['rows'][298]
-    tail=d['rows'][49:4999]
+    tail=d['rows'][49:d['restore_from_level']-1]
     rounding={'max_abs_theoretical_spin_error':max(abs(r[5]-r[6]) for r in tail),
               'ceil_spin_difference_count':sum(math.ceil(r[5])!=math.ceil(r[6]) for r in tail),
               'max_abs_ceil_spin_difference':max(abs(math.ceil(r[5])-math.ceil(r[6])) for r in tail)}
@@ -269,11 +313,15 @@ def verify(out: Path) -> dict:
             'shop_and_linear_base_match':True,'tail_rounding':rounding,'VIP_not_edited':True,
             'all_5000_max_bets_validated':True,'formula_errors':0,'external_links':0,'frozen_sheets':0,
             'tail_target_vs_old_arrive300_ratio':old300[4]/old300[12],
-            'source_exp_ratio_conflicts':d['source_exp_ratio_conflicts'],'SVN_submitted':False}
-    save(out/'validation.json',result);return result
+            'restored_difficulty':{'from_level':d['restore_from_level'],'level_count':len(restored),
+                'max_abs_USD_rounding_error':max(abs(r[0]) for r in restored),
+                'max_abs_relative_rounding_error':max(abs(r[1]) for r in restored)},
+            'source_exp_ratio_conflicts':d['source_exp_ratio_conflicts'],
+            'exp_ratio_disposition':d['exp_ratio_disposition'],'SVN_submitted':False}
+    save(out/('precommit-validation.json' if root else 'validation.json'),result);return result
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['prepare','verify'])
-    p.add_argument('--base',type=Path);p.add_argument('--out',required=True,type=Path);a=p.parse_args()
-    print(json.dumps(prepare(a.base,a.out) if a.action=='prepare' else verify(a.out),ensure_ascii=False))
+    p.add_argument('--base',type=Path);p.add_argument('--out',required=True,type=Path);p.add_argument('--root',type=Path);a=p.parse_args()
+    print(json.dumps(prepare(a.base,a.out) if a.action=='prepare' else verify(a.out,a.root),ensure_ascii=False))

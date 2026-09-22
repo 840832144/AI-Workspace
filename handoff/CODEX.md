@@ -1,5 +1,12 @@
 # Codex Handoff
 
+## 2026-09-22 — TASK-0036 已按User授权提交dev r7300
+
+- [当前结果/复现/回退](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)。5个等级/Bet/兑换文件已提交dev r7300，远端逐格/公式差异0，中文日志和作者正确，隔离WC干净；User自行进游戏检查，不继续自动提交。
+- 102条差异按1/3标准取整拟合，User业务决定已闭合，源证据不篡改、不再阻塞。272级起恢复原dev美元消耗，用新单位反算门槛，4728段最大舍入差约$0.000391；前271级/其他4候选保持，5000终点保留。
+- 当前受控目录outputs/task0036-cf-alignment-20260922-r2，含4页5图Excel、提交表、远端回读、三份diff和svn-result；不带-r2目录为历史候选。VIP暂存，trunk未提交。
+- Registry由CLI重建validate；Task Review/PR #10 OPEN/reservation保留。不冻结/发布、合并/finalize，未证明客户端效果。Subagents: none。
+
 ## 2026-09-22 — TASK-0036 最新CF等级对齐候选
 
 - [候选结果、受控位置及复现](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)。dev r7284只读来源；5份候选配置和5000级体验Excel等待User检查，尚未提交dev。不要续用下方旧CF/1/6折扣或×14平延方案覆盖当前规则。

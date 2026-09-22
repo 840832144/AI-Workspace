@@ -1,5 +1,11 @@
 # ChatGPT Handoff
 
+## 2026-09-22 — TASK-0036 dev r7300待User游戏检查
+
+- User明确批准本版直接提交dev，5表r7300及远端单元格/公式零差回读已完成。[当前报告/受控对比表](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)。VIP未提交、trunk未写；授权不含Git合并/冻结/发布。
+- 当前口径：102条经验比例采用1/3取整拟合，业务闭合、原始差异保留来源；272级起按原dev美元消耗反算小整数EXP，不再以旧纯CF尾段/约24%比值作当前目标。4728段最大舍入差约$0.000391/0.000254%，已给出新旧曲线和逐级差异。
+- 前271级及其他4份候选保持，.99取整美元、125+原倍率/节点保留。等待User dev实机检查，文件验证不代表游戏效果Accepted。Task Review、PR #10 OPEN、Registry由CLI重建validate，reservation不finalize。Subagents: none。
+
 ## 2026-09-22 — TASK-0036 最新CF等级对齐候选交Review
 
 - [最新候选及验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)。5份配置/完整5000级Excel/逐格diff留受控目录。Task Review；本轮不是此前Accepted报告的自动延续验收，不提交dev。
