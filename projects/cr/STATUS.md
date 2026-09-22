@@ -1,5 +1,203 @@
 # CR 当前状态
 
+## 2026-09-22 — TASK-0036 等级修订已提交dev r7300
+
+- [当前提交/验证/受控文件](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)：按User授权提交5表dev r7300，远端单元格/公式差异0，中文日志/作者及干净隔离WC核对通过；等待User进游戏检查。
+- 102条经验比例差异采用1/3标准取整拟合，不再业务阻塞。272级起恢复原dev美元消耗，4728段最大舍入差约$0.000391；前271级保持，125+原膨胀和.99取整美元不变。4页5图及5000明细已更新。
+- VIP未提交、trunk未写，未冻结/发布；Task Review、PR #10 OPEN、reservation保留。Registry由CLI重建validate，无hash/全量扫描。下方候选和r7258为历史，不覆盖本轮r7300。Subagents: none。
+
+## 2026-09-22 — TASK-0036 最新CF等级对齐候选待User检查
+
+- [当前交付及限制](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)：固定CR dev r7284，5份配置副本、5000级Excel、逐格/逐键diff只在受控目录。源配置不改，不提交dev；下方重基线报告和r7258为历史事实。
+- User已闭合：所有.99档位向上取整美元；基础商城50万→150万、等级/VIP另乘；125及以后等级膨胀沿用dev原节点/数值。经验同比采用1万金币=1EXP，最小档1点，38档均为整数。
+- 44段已知模型的理论/整Spin一致；4950段拟合整Spin差异0，公式/非目标字段/币率/视觉通过。到达300级拟合门槛约旧推算24%，51+不是实测；102条源经验比冲突未关闭，共用Bet/EXP对HighRoller影响须随候选检查。
+- Task Review、PR #10 OPEN、原reservation保留，等待User和ChatGPT Review；不冻结/发布、不合并/finalize。Registry由CLI重建validate；无hash/全量扫描。Subagents: none。
+
+## 2026-09-22 — TASK-0036 Cash Frenzy最新实测重基线
+
+- 已交付受控5页曲线与r7258独立差异表，当前Review：[结果与证据限制](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CF_LIVE_REBASE_VALIDATION.md)。45级Bet24一致、等级膨胀45一致；44段模型Spin/成本均有差异。两场景返还率一致，公式/图表/视觉通过。
+- 定向实测检查发现102条非零EXP/Bet比值不等于1/3；模型继续遵循本轮Task规则但保留该冲突，不能宣称全部实测验证通过。L6及51+升级数据N/A；不以累计经验差为0证明精确门槛或恒定比值。
+- Task仍Review，PR #10 OPEN，原reservation保留。Registry使用既有CLI更新；新增SVN写入暂停，本轮无SVN操作，不改配置、不冻结/发布、不合并/finalize。Subagents: none。
+- User提供2026-09-22最新CF实测：1,020手/45升级/L6→L50，以及当前VIP常量与服务器等级主表。旧task0036 CF数据在重叠冲突处降为历史参考。
+- 当前Confirmed：EXP=bet÷3；L7–L50门槛精确；当前Bet解锁与旧表多处不同；等级金币权益当前×1→×14封顶；VIP门槛0/150/4100/31k/260k/2.1m/10m/50m，购买点/USD约9.0180–18.0090。
+- 主体验表按User新口径使用500k coins/USD与约150k coins/USD两种无折扣场景；×5.5折扣版本暂不进入主表/主图。
+- 重新生成相同5页CF/CR对照曲线；CF升级成本/返还只把L7–L50标为当前实测闭合，51+不再用旧历史推算冒充。
+- dev r7258保留但需重新对照最新CF；暂停新增SVN写入，先交差异和曲线Review。完整规格见`CF_LIVE_REBASE_20260922.md`。
+
+## 历史展示 — 2026-09-22 TASK-0036简表（旧CF基线）
+
+- 概览和明细的CR/CF各追加第5列“等级膨胀”，使用整数倍数（1级=1）；CF超过300级N/A。概览只保留26个最大Bet变化的解锁等级，明细仍5000级，原四列逐级核对不变。
+- 当前文件为受控`outputs/task0036-bet-simple-20260922/CR_CF_等级体验_简表.xlsx`。52,960公式缓存及新增列/筛选/无冻结核对通过，原3图保留。dev r7258不变，本轮无配置/SVN写入；原Task/PR继续Review，不合并/finalize。Subagents: none。
+
+## 2026-09-21 — TASK-0036 Bet/EXP已提交dev r7258（当前）
+
+- User批准本轮dev提交及经验缺档插值/尾段比例延伸。最新dev r7257定向检查无相关并发变化；r7258只提交BetList/BetUnlock，远端单元格差异0、中文日志/作者核对一致、隔离WC干净。LevelCfg及VIP未改，trunk未提交。
+- 34处经验调整，17锚点保留，9处倒挂消除；5–300级296个整Spin对标结果保持。普通Bet新增11行/移除2行，28档首次解锁与5000级最大Bet核对通过；保留行活动字段及HighRoller解锁不变，新增行沿用同等级原最高Bet活动设置。共用EXP对HighRoller的影响已披露，不冒称客户端验收。
+- 四列简表为“概览、明细”两个可见页，CR/CF各列等级、最大解锁Bet、Spin、消耗美金；70行概览、5000级明细、3张300点折线图。CF成本按User确认1/6，同Spin单位美元成本一致；前4级及小数期望/整Spin差别保留，300级后CF Spin/成本N/A。
+- 43,260个公式缓存、驱动响应/恢复及视觉复核通过，0错误/外链/冻结。完整数值、配置、逐格diff与内部receipt留受控目录。Task仍Review、PR #10 OPEN、原reservation保留；不冻结/发布、合并或finalize。Registry由既有CLI重建validate，无hash或无关全量扫描。Subagents: none。
+- 当前报告：[同Bet体验、受控产物和回滚](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_SAME_BET_EXPERIENCE.md)。下方r7252未提交记录为历史，不能覆盖本轮dev授权及结果。
+
+## 历史记录 — 2026-09-21 TASK-0036同Bet游戏体验候选
+
+- User最终目标：同金币Bet下升级体验及解锁节奏与CF一致，美元门槛同时展示。固定dev r7252、LevelCfg原样保留；CF冲突按较低金币Bet正式取值，允许按门槛/CF Spin反推经验。
+- 受控Excel包含7可见页、3隐藏SRC、5折线图、完整5000级、28个目标Bet档及17档经验拟议值。5–300级296点匹配CF期望向上取整后的模拟次数；并非CF游戏实测或小数期望零误差。
+- 尚未全部一致：1–4级Spin门槛、7组小数期望冲突、美元成本差异、非参考Bet及后段来源缺口；缺来源档保持旧值产生9处经验倒挂，不能直接落表。解锁表活动字段映射亦未擅改。
+- 已完成公式回算、驱动响应/恢复、逐级数据及图表引用定向验证；源表未改，VIP暂存。等待User验收及ChatGPT Review，不提交dev/trunk、不冻结/发布、不合并PR #10、不finalize；原reservation保留。Registry使用既有CLI重建validate。Subagents: none。
+- 详细方法、结果及受控位置：[同Bet体验报告](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_SAME_BET_EXPERIENCE.md)。旧r7237仅是历史结果，不作为当前r7252验收结论。
+
+## 历史记录 — 2026-09-21 TASK-0036升级难度曲线核验口径纠正
+
+- 已按User要求补齐难度对比图：1–300级同轴叠加CR实际配置反算与CF历史基准，含1–30级放大及逐级偏差；另图展示完整拟合与250–400边界。11组绘图序列与已有明细对应、300/4999点完整、无平滑/抽样；两张PNG视觉及两页PDF中文检查通过。完整图仅留受控charts目录，Git只存生成器与脱敏记录；未重算模型或修改配置。
+- User确认只比较升级难度曲线，沿用同级机器理论净耗USD；Spin数量/固定Spin等级差异不作为验收条件。[修订报告](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_EXPERIENCE_SIMULATION.md)。
+- 1–300级目标300/300对应CF同级原值；实际配置取整后142级在容差内一致，单级最大+3.17%，前300次升级累计+0.49%。301起保留拟合身份，不伪称CF逐点验证；未自行设通过阈值。
+- 撤回Agent按Spin差异否定r7237的错误结论及改成Spin对标的建议。dev r7237保持不变，此轮只更新报告/治理；不重算、不新增SVN提交，VIP暂存。
+- Task仍Review，PR #10 OPEN，原reservation pending-main；Registry由CLI重建validate，不做hash/全量扫描、不调参、冻结/发布、合并或finalize。Subagents: none。
+
+## 2026-09-21 — TASK-0036等级已提交CR dev r7237，VIP暂存（提交记录）
+
+- User最终决定禁止拉伸；CF已有1–300级目标与CR同级对应，仅301–4999拟合，5000级终点保留。原A/B候选及短暂B选择均被覆盖，不再作为提交输入。
+- 已按User明确授权提交 **dev r7237**，仅 `LevelCfg.xlsx / levelUpExp` 4999格。准备基线r7232；提交前四项升级依赖核对无变化，活动字段差异保留。独立稀疏WC，远端逐格回读差异0、中文日志正确、WC干净。
+- 拟合采用CF250–300末段“净耗×等级金币倍率”的线性趋势，锚定300级，除以CR保留的等级倍率折回成本。前300目标300/300对应；实际整数Spin成本142级精确一致，其余向上取整，最大相对差3.174603%，未隐藏取整误差。
+- 新曲线概览/完整5000级明细、2张原生折线图、公式与拟合响应/恢复、逐格diff和视觉通过。[结果、公式与受控文件](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_LEVEL_DEV_RESULT.md)。
+- **VIP继续暂存，不提交**；PriceSetting、PriceCheatSheet、Bet、奖励、活动配置均未写入。仅确认dev仓库结果，游戏内效果尚未验收；没有trunk提交、正式冻结或发布。
+- Task仍Review；原PR #10保持OPEN、reservation pending-main。Registry由既有CLI重建validate；未新建Task、hash或全量重跑、合并或finalize。Subagents: none。
+
+## 历史候选 — 2026-09-21 TASK-0036 POP/CF调优（A/B拉伸已作废）
+
+- 当前Review，PR #10 OPEN；原报告Accepted不扩展为本轮候选Accepted。受控目录为 `outputs/task0036-tuning-pop-cf-20260921/`，完整交付及验证见下方报告链接。
+- VIP1–10为指定值，11–15按User选择的POP高阶趋势，以VIP10为锚点拟合Tier6–10后外推。仅VipCfg的15个needExp格改变，严格单调/int32范围通过，权益不变；VIP1=0登录校正与加0经验入口行为不同，客户端/服务端未运行验证，安全Gate未通过。
+- LevelCfg未改：历史正式表未恢复唯一CF→5000映射，只交A全段拉伸/B保留前100级两套体验方案。PriceSetting未改：30档可保形归一100%→500%，但旧服务已废弃，现有取值指向PriceCheatSheet，制作生成链未证实；928格仅拟议diff。
+- 等级膨胀1–300逐级一致，No Change；301–5000缺CF证据，保留CR现值。8可见页/7原生折线图，5000级完整明细、15/0/0实际改格、公式/锚点响应及前台视觉通过；0错误/缺缓存/外链/冻结。
+- 需Review/后续确认：VIP零门槛安全、两套等级映射选择、正确价格制作源。当前不是可直接导入/冻结的配置包。
+- Registry首步/收尾均由CLI重建validate；Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。未重跑旧Accepted模型、hash或全量扫描；未改r7013/SVN/CF_collect、采集、冻结/发布、合并/finalize，原reservation pending-main。Subagents: none。
+
+[当前候选、证据与复现](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_TUNING_VALIDATION.md)。
+
+## 2026-09-21 — TASK-0036档位膨胀口径修正
+
+- User明确：档位膨胀是**最低100%→最高500%**，最高档相对最低档5x；不是每个相邻档5x。
+- 中间档位需从100%逐档升高且单调不下降；优先保留当前/旧表相对分布形状后归一到100%→500%，不默认线性。
+- 无唯一中间曲线时只出两套候选，不写PriceSetting；其余调优范围与“不提交SVN/发布”边界不变。
+
+## 2026-09-21 — TASK-0036进入CR调优候选阶段
+
+- User授权定向生成配置候选：POP VIP消费门槛对标、CF升级难度扩展5000级、CF等级膨胀一致性验证、5x档位膨胀。Task切为Changes Requested。
+- 本轮允许在受控候选副本修改VipCfg/LevelCfg/PriceSetting，但**不提交SVN、不覆盖r7013、不冻结/发布**。
+- VIP1–10按POP Tier1–10消费门槛目标；权益/商城金币倍率不改。升级难度优先复用旧正式表已有CF→CR映射；无唯一映射时不写LevelCfg。
+- 等级膨胀预期No Change；档位膨胀相邻业务档5x，先验证PriceSetting是否真为该逻辑真相源，禁止全表乘5。
+- 完整规格见`CR_TUNING_POP_CF.md`；完成后需交配置diff+调优曲线表给ChatGPT/User Review后再决定SVN动作。
+
+## 历史候选 — 2026-09-21 TASK-0036固定汇率/商城金币倍率交Review
+
+- 同一Task/原PR #10；当前Review。[交付目录、来源与验证](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。新候选在受控`outputs/task0036-cr-cf-fixed-vip-20260921/`，旧合并候选为历史。
+- CF前台统一VIP1–VIP7；1 SGD=0.78408 USD固定，无可编辑输入；SGD原始上下界、USD两条成本线和九个商城样本完整。倍率页改为商城金币：CR最高2.5x、CF最高40x；旧累计消费门槛指数已删除。
+- CR倍率只读r7013 PriceSetting商店金币行；CF VIP1=1.5x由旧正式表唯一补齐并注明历史，VIP2–7依已登记截图口径。未独立复读App截图，不冒充新的现网验证。
+- 5页/5原生图/13系列，成本15/7/7点、倍率16/7点；既有等级缓存不变，完整明细和56个CF Bet缺口保留。公式错误/缺缓存/外链/冻结/作者及绝对目录均0，五页视觉通过；独立ChatGPT Review尚未执行。
+- Registry首步及收尾均用既有工具重建validate，19 canonical/0 collision/valid；Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。PR #10 OPEN、reservation pending-main；不改源数据/CR/CF_collect、不采集、无hash或全量重跑、不提交SVN、不冻结/发布、不合并/finalize。Subagents: none。
+
+## 历史输入 — 2026-09-21 TASK-0036 CF标签/固定汇率修订
+
+- User最终确认CF对照图只使用VIP1–VIP7序号，不使用游戏内称号作为前台标签。
+- SGD→USD分析汇率固定为 **1 SGD = 0.78408 USD**（2026-09-21 02:24 UTC），删除可编辑/待确认汇率输入；CF消费门槛保留SGD原值并直接生成USD上下界。
+- CF点数兑换边界18.0401–37.2542点/SGD不变；VIP膨胀页继续按商城金币倍率而非消费门槛指数，CR最高2.5x、CF最高40x。
+- Task为Changes Requested，等待合并曲线Excel修订并回Review；不改源数据、不采集、不发布、不合并或finalize。
+
+## 历史输入 — 2026-09-21 TASK-0036 CR/CF VIP曲线口径修订
+
+- User确认CF商城截图币种为SGD/S$；当前合并表VIP消费门槛需补商城兑换样本证据、SGD上下界与显式USD换算输入。
+- VIP膨胀改为商城金币倍率，不再用累计消费门槛指数。CR当前同口径商店VIP倍率由r7013 PriceSetting确认最高2.5x（VIP6+封顶）；650属于其他/旧VIP字段，不用于本页。
+- CF截图商城金币倍率：黄金2.5x、铂金4x、钛金7x、尊徽10x、百夫长20x、王者风范40x。
+- Task切回Changes Requested；完整规格已更新。PR #10保持OPEN，不改配置/CF_collect，不采集、发布、合并或finalize。
+
+## 历史候选 — 2026-09-21 TASK-0036合并曲线已交Review
+
+- 当前状态Review，新增受控`CR_vs_CashFrenzy_数值曲线对照.xlsx`；[验证摘要](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_CURVES_VALIDATION.md)。5页/5主折线图/13系列，等级1–300同图对比，CR完整4999/5000级和CF 300级保留；56个CF Bet冲突点不插值。
+- CF VIP累计属性现闭合，绝对指数只一条CF线。S$上下界完整，固定汇率仍待User确认；输入格留空，CF USD两条系列暂不绘制，填写后自动显示。旧独立CF的VIP N/A为历史记录。
+- 已有模型只读缓存复用，输出值变化0；原生汇率响应/还原与5页视觉验收通过。0非预期错误/缺缓存/外链/冻结，14个刻意绘图NA()明确单列；不声称已完成美元金额比较。
+- Registry经既有工具重建validate；PR #10 OPEN、原reservation pending-main。未改CR/SVN/CF_collect、采集、上传发布、合并或finalize。Subagents: none。
+
+## 历史输入 — 2026-09-21新增CR vs Cash Frenzy合并曲线
+
+- User补充CF App截图，历史VIP序列现可按累计门槛解释：0/1k/10k/31k/260k/2.1m/10m/50m；原CF曲线中VIP2–7 N/A需要修订。
+- 商城可见样本兑换比18.0401–37.2542 VIP点/S$；CF VIP消费门槛需形成最低/最高成本边界。绝对VIP膨胀不受固定兑换倍数影响，只保留一条CF膨胀线。
+- 新交付为`CR_vs_CashFrenzy_数值曲线对照.xlsx`：5个指标页同页叠加CR/CF主曲线；等级主比较区间1–300，完整数据保留。
+- 商城币种为S$，需显式汇率输入后才能和CR USD做最终同轴金额结论；禁止1:1偷换。完整规格见`CR_CF_CURVE_COMPARISON.md`。
+- Task切回Changes Requested；先重建Registry。不改CR/CF_collect、不采集、不上传/发布、不合并或finalize。
+
+## 2026-09-21 — TASK-0036 Cash Frenzy曲线已交Review
+
+- 当前Status为Review；已生成独立受控Excel，5页同名同序、5张原生折线图、300级完整明细、0冻结。完整数值/来源/预览只留本机，见[脱敏验证摘要](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CASH_FRENZY_CURVES_VALIDATION.md)。
+- VIP1为100%绝对指数；VIP2–7因累计属性未明保留N/A。普通最大Bet与$1等值同图同单位，56个来源内部冲突等级留N/A，highroller条件与历史版本缺口保留。没有借CR或CF_collect/Web数据补齐。
+- 来源复算、逐点输出、原生重算/驱动还原及五页视觉检查通过；0公式错误/缺缓存/外链/作者或绝对路径。Registry已按工具重建验证，未新建Task。Workspace Sync ON_DEMAND/provider unavailable/stale 6/conflicts 0。
+- PR #10 OPEN、reservation pending-main；原CR返还闭环候选和Accepted报告保留。未调参、改SVN、改CF_collect、采集、上传、发布、合并或finalize。Subagents: none。
+
+## 历史输入 — 2026-09-21新增Cash Frenzy竞品曲线对照表
+
+- User授权在现有TASK-0036内新增Cash Frenzy同构曲线Excel，不新建Task；当前状态Changes Requested。
+- 数据优先来自历史正式数值体验资料中的旧`CashRoyal数值.xlsx` / `cashFrenzy等级`及同套Cash Frenzy竞品表。Git已确认该旧主表包含`cashFrenzy等级`结构记录；本轮允许使用其中竞品历史数值，但不得把CR值/规则填入缺口。
+- 输出固定5页同构折线图：VIP消费门槛、VIP绝对膨胀（VIP1=100%）、等级升级消耗、最大Bet+$1等值推荐Bet同图、等级升级消耗返还。
+- CF_collect最新main仍为`4df10ec20e79bb737912c8d1b847fae3659031ae`；本任务不修改或运行CF_collect，不做新采集。
+- 完整规格见`CASH_FRENZY_CURVE_COMPARISON.md`。Codex第一步需重建/验证Registry；不调参、不改SVN、不发布、不合并PR #10或finalize。
+
+## 2026-09-20 — TASK-0036返还闭环修订交Review（当前）
+
+- User后续决定已落实：总览及12张模块概览完全取消冻结（行/列均0），明细仍保留前6行/首列。双版本和受控ZIP同步；WPS只读回读13个概览均无冻结且滚动40→1行通过。仅修改视图，数值/公式/链接/页签顺序未变，未重算。
+- 按User阅读要求，当前双版本已改为“全部概览→全部明细→关闭/历史与Unknown”，隐藏源/计算页不变；生成器及受控ZIP同步，仅调序、未重算。
+- Task由Changes Requested回到Review；Dashboard Round 1历史与原数值报告Accepted保留。[当前报告](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/RETURN_LOOP.md)逐项对应返还闭环，未增加无关配置。
+- 等级/VIP/商城/卡册/薯片/777均有对应成本、返还率、净成本及完成终点；支付与机器净耗分开。卡册理论完成与季内完成率分开；薯片自然160上限明确不可达并单列补包；免费福利/货币为N/A；常驻仍待启用确认/成本未闭合。
+- r7013 MASTER相对外链44条、展示版0外链；896项定向检查通过，源格/双版本/错误/缺缓存/绝对路径均0。13张概览、4组子表与24张原生图表已视觉复核。当前受控目录`producer-return-loop-20260920/`，完整源与数值不入Git；9/18云端和下方旧候选均为历史。
+- 原PR #10 OPEN、reservation pending-main；Registry由既有CLI重建验证，不新建Task。Workspace Sync provider unavailable，不冒充外部同步。未调参、改/提交SVN、冻结/发布、合并或finalize。Subagents: none。
+
+## 历史输入 — 2026-09-20 TASK-0036 Dashboard Round 1 Needs changes
+
+- [Dashboard Review Round 1](../../reviews/TASK-0036-CHATGPT-DASHBOARD-REVIEW-1.md)：受评`5ddb642`。当前从Review切回Changes Requested，原数值报告Accepted不变。
+- 必须补齐制作人返还闭环：等级/VIP阶段返还率、BET机器返还/净耗率、商城支付返还率、777圈级返还与三轮总通关；卡包理论完成成本与赛季完成率拆开；薯片自然不可达与补充渠道拆开。
+- 福利/货币等无统一消费分母模块明确N/A；Buff并入对应权益；常驻未闭合项明确“待启用确认/成本未闭合”。
+- 继续r7013相对外链master + 无外链展示版；第一步重建Registry。不调参、不改SVN、不冻结/发布、不合并PR #10或finalize。
+
+## 2026-09-20 — TASK-0036制作人Dashboard候选完成，交ChatGPT Review
+
+- 按最新Task规格重构r7013双版本Excel；原数值报告Accepted保留，新Dashboard/模拟本身为Review。继续原PR #10与原reservation，不新建Task。起点安全同步e306145，首先按既有工具重建/验证Registry：19 canonical、0 collision、valid。
+- 27张前台含Dashboard、12组概览/完整明细、关闭索引与9组Unknown；13张概览、24张原生Excel图表已视觉核对。保留5000级、4999条升级奖励、7236条价格原配置；不重做0033/0034/0035 Accepted底稿。
+- 固定r7013原始导出源44份，MASTER相对外链44条；完整商业值仅留受控目录`%LOCALAPPDATA%/AI-Workspace/cr-numerics-20260922/producer-dashboard-20260920/`。展示版为无外链缓存快照。本轮未上传云端，9/18飞书链接是历史副本。
+- 原生重算后36项新增关键输出通过；机型/VIP驱动变化后已还原，源格/双版本差异、公式错误、缺缓存、作者/绝对路径均0。MASTER实际1,625,084公式，展示版0公式/0外链；93个筛选表、27页冻结，完整长表分组与跳转保留。最终计数见WORKBOOK_VALIDATION.json。
+- 已还原最大解锁Bet、等级经验与95%成本、VIP100点/$、当前价值换算；卡册逐章状态模型、薯片20盒/JP/Pass、777普通/特殊/圈/轮成本已形成。旧BET/卡包正式表只复用公式关系与阅读方式，旧值未入r7013。
+- Review重点：显式机型列参考、卡册季末删失、薯片自然获取封顶、潜在奖励与已实现返还分开、777按User内圈口径与当前代码差异。通用VIP Pass字段未证实适用于薯片，已移历史索引；商品按实际薯片礼包/Pass表关联，不补0。9组Unknown仍保留，未新增冻结Gate。
+- Workspace Sync仍为ON_DEMAND/provider unavailable/stale 6/conflicts 0；不冒充外部Context已同步。Git只保存方法/生成器/脱敏验证和治理；没有hash、全量无关扫描或旧Task重复验收。
+- PR #10保持OPEN，原reservation pending-main，等待ChatGPT Review；不调参、不修改/提交SVN、不冻结/发布、不合并或finalize。Subagents: none。
+
+## 2026-09-20 — TASK-0036制作人汇报型Excel重构已授权
+
+- User已确认业务口径并授权继续TASK-0036；当前从Review切回Changes Requested。目标从“配置/公式核对正确”升级为“制作人可直接汇报的版本数值体验Dashboard + 模块概览/明细”。
+- 成本主指标统一为机器理论净耗USD；等级用最大已解锁Bet + SlotsCasinoBetList.levelExp计算预计Spin和升级成本；VIP按$1=100点；卡册按每章/整册成本返还；薯片20盒重置；777特殊内圈取当前未消失格并消格；福利按真实周期；关闭模块不进入当前经济总览。
+- 仍使用r7013相对外链master与无外链飞书展示版双交付；完整规格见TASK-0036最新“2026-09-20 — 制作人汇报型Excel重构”章节。
+- PR #10保持OPEN，原reservation pending-main；不调参、不改/提交SVN、不冻结/发布、不合并或finalize。Task状态变更后Registry需由Codex按既有工具重建，禁止手工编辑Registry。
+
+## 2026-09-18 — TASK-0036双版本Excel完成，等待ChatGPT Review
+
+- 按PR #10最新User输入形成相对外链master与无外链飞书展示版；原数值报告Round 1 Accepted保留，本次Excel仍为Review。前版14页产物的Needs changes与旧自包含方案保留为历史。
+- [当前飞书展示版](https://gfok27asqq.feishu.cn/wiki/UZD8wLpQKicKV7kcorIcNIb8nwd)；原旧表及前版候选未覆盖。Git/TASK-0036与本机受控master是真相源，飞书是展示快照。公司内链接可读、external access closed，未修改ACL或开启公网分享。
+- 37份原始trunk工作簿定向`svn export -r7013`导出；26张前台含12组概览/明细、总览和Unknown。等级5000行及升级奖励4999行、价格7236行完整保留；104个筛选表、26页冻结前6行/首列，等级分组和内页跳转。
+- 最终master 1,062,421公式、37条相对外链；展示版0公式/0外链。969个关键输出与Accepted底稿一致，两个版本逐格一致，源格缓存一致；公式错误/缺缓存/作者或绝对路径检查为0。搬移后37条链接解析、代表源格刷新及原生窗格回读通过；26页视觉复核。飞书下载回读969项通过。
+- 完整文件、相对源包、版本清单和验证证据位于受控`producer-master-20260918/`；公开Git仅工具、结构、方法、脱敏验证与交接。旧Wiki系统功能19页/17份XLSX子模块结构已检查，旧值没有入当前计算。
+- 9组Unknown保留，未重跑旧Task模型/全量配置盘点或hash；未重算或修改源表。不调参、不提交SVN、不冻结或发布；PR #10保持OPEN，原reservation pending-main，不合并或finalize。Subagents: none。
+
+## 2026-09-17 — TASK-0036飞书展示副本已创建，待User轻量Review
+
+- [展示文档：CR 9.22 全项目数值体验｜制作人展示版｜r7013](https://gfok27asqq.feishu.cn/docx/Rm2GdeMcXoEg2SxodIScDdzpn1c)；[TASK-0036](../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)与Git仍为真相源，飞书仅为会议展示副本。
+- 依据PR #10已发布Round 1 Accepted（受评d663a0c）；本轮只创建及登记展示链接，数值、9组Unknown和r6961原证据/r7013适用口径不变。当前等待User对展示副本与Git登记做轻量Review；下方数值报告“待ChatGPT Review”为当时历史。
+- CLI显式user创建并回读revision 4：7节顺序、8张表、36组Spin、八类系统、9组Unknown、段落与来源链接一致，同名1篇。只展示报告汇总；无源配置/受控包附件、内部URL/路径或敏感日志上传。
+- 当前公司内链接可读（tenant_readable）；未改权限、未开启公网链接分享。原分支codex/cr-0922-producer-experience / PR #10保持OPEN；不调参、不改SVN、不冻结、不发布、不合并或finalize，reservation pending-main。Subagents: none。
+
+## 历史 — TASK-0036全项目数值体验提交ChatGPT Review时
+
+
+- [TASK-0036](../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)为Review；allocator原reservation pending-main，分支codex/cr-0922-producer-experience / [PR #10](https://github.com/840832144/AI-Workspace/pull/10) OPEN。起点main b0a36c8，PR #9与0035 Complete记录已合入，下方旧待Review语句为历史。
+- 15:49:34北京时间固定trunk r7013；r6961→r7013全trunk变更路径摘要为空，覆盖全部数值根及新增/删除。所有系统直接复用Accepted证据，源刷新0；不重做0033/0034/0035、不做hash或全量正文扫描。
+- [制作人报告及受控包](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/README.md)已完成八类覆盖；36组静态Spin、72条双活动、36条掉卡条件；6项新增模型测试与定向输出核对通过。仅普通扣金币Spin，固定档/足够余额；不代表真实玩家分布、升级路径或实际机台适用RTP。
+- 剩余9组解释边界逐项列缺项/影响/负责人，历史22项保留来源，不新开冻结Gate。完整数值与复算输入受控，Git仅脱敏报告和方法；777 forceTurn闭合，活动仅薯片+777，0035现值候选不改。
+- Review重点：特殊/常规RTP分层，离散积分期望，毛下注及资源不重计，成长/付费/卡册Unknown。Task Registry按既有工具重建验证；不调参、不改或提交SVN、不冻结、不发布，不合并或finalize。Subagents: none。
+
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
 - [TASK-0035](../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。
