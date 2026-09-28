@@ -233,6 +233,9 @@ sources:
   - path: "tasks/candidates/CANDIDATE-20260828-TOP-TYCOON-F4-FEASIBILITY.md"
     sha256: "e94ed6c4f55f6fe8f56dea67990b429de315a176d1580ec1d7763a7b88c9c7d0"
     bytes: 11569
+  - path: "tasks/candidates/CANDIDATE-20260907-EARLYMEETING-LOCAL-CALLBACK.md"
+    sha256: "75d1baeddbc3f252ae157de6180d0793ec73b96c6f4d4856dc05e38d53727fba"
+    bytes: 1129
   - path: "tasks/candidates/README.md"
     sha256: "89820e73a5c089de7031c3f6c825ddaad9321a541f2b6411ce0c39157addc648"
     bytes: 1810
