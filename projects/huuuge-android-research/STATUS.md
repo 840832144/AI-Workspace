@@ -2,11 +2,11 @@
 
 ## 2026-09-29 — TASK-0031 v2-GooglePlay 续接
 
-- [TASK-0031](../../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md)：In Progress；Google/Play 安装及无探针游戏已取得真实证据；云端 ADB 实连被审批拦截，真实采集与停止保存未执行。原PR #11 / 5ff7190顺序与目标保留。
+- [TASK-0031](../../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md)：In Progress；Google/Play 安装及无探针游戏已取得真实证据；云端一次 ADB 验证返回 unauthorized，已断开并停止专用 server；真实采集与停止保存未执行。原PR #11 / 5ff7190顺序与目标保留。
 - 官方eds-aic/EdsAgent管理通道已验证；User授权既有OAuth Account，不重复RAM配置。Google内置三包启用回读，User登录后从Play新安装Huuuge，来源/12.09.27229/1789041595/ARM64已确认。认证无法读取，首页/搜索未单独验证。
 - User无探针游戏可玩但有图形异常；仅Huuuge启用内置ANGLE、显式BootActivity重启，运行日志确认；User“现在好了”。长期稳定性未测，无Frida。
 - 自行核实已有香港Linux与CloudAssistant，未改nginx/晨会。原私网TCP超时；User新建公网映射后API目标匹配，Linux→映射TCP成功。
-- 云端安装官方ADB并connect计划被自动审批拒绝（blocked by policy），未提交ECS/未安装/未生成密钥/未认证；controller私网gate保持，不能以TCP代替采集成功。下一步由User明确该现有公网入口和ADB安装的本轮验证授权，不改安全组或新增端口。
+- User明确仅一次云端ADB验证，正常默认审批本次放行；官方Platform-Tools37.0.1安装于任务独立目录。首次启动参数问题未产生connect，修正localhost并实核回环后，一次connect/get-state返回unauthorized。已disconnect/停止专用server并独立回读进程不存在、监听0；现有手机绑定未变，未运行Frida/采集。下一步由User本人处理设备授权或受控配置现有绑定密钥，本轮不再连接。
 - 浏览器自动化保持停止，不重放未知点击。真实新增解码、正常停止/保存仍未执行，计数unknown。原PR交增量Review；Registry19/0collision/valid，reservation pending-main；[当前Handoff](../../handoff/TASK-0031-HUUUGE-CLOUD.md)。Subagents: none。
 
 ## 2026-09-15 — 单实例云端准备
