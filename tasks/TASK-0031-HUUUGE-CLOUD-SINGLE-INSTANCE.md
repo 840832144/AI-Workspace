@@ -1,6 +1,6 @@
 # TASK-0031 — Huuuge 单实例云端游戏与采集闭环
 
-- Status: Changes Requested
+- Status: In Progress
 - Project key: HUUUGE
 - Owner: User
 - Executor: Codex
@@ -21,10 +21,10 @@
 - 已将最新 main `b0a36c8` 安全合入原治理分支，保留双方 Changelog，Registry 从 canonical 重建；19 canonical、0 collision、validate=valid。Workspace Sync 实测 ON_DEMAND / provider unavailable / stale 6 / conflicts 0。
 - User 更正 Workbench CLI 需要 Codex 安装。现已从阿里云官方发布包安装 Windows amd64 `v1.0.1`（commit `86c0aff`），官方 SHA-256 校验通过；版本、根帮助、exec/配置/列表帮助已读取。只安装管理工具，未部署本机采集、解码或持续转发。
 - 当前管理 Host 未发现 Workbench 默认配置文件；没有读取凭据、连接 ECS 或修改安全组。安装成功不代表认证或目标核验成功，实际云手机与 Linux 执行端仍须分别核验。
-- 浏览器 provider 返回 fetch 失败；桌面窗口列表可见“无影云手机”Chrome 窗口，但 Computer Use 因无法可靠识别当前浏览器 URL 而停止本轮界面操作。没有读取到手机组件/网络状态，没有取得 Google 登录页，没有安装或启用 GMS。
+- 上轮浏览器 provider 失败且 Computer Use 无法核验 URL，已停止操作。User 后续提供普通控制台入口；本轮通过受支持的内置浏览器访问 `https://wya.wuying.aliyun.com/instanceLayouts`，实际 URL 回读为官方 `account.aliyun.com/login/login.htm`，标题为“阿里云登录”。User 随后确认已登录；实际 URL 回读为无影官方实例页，核对唯一已购实例：可用、香港、4c8g32G、Android 12、镜像 26.09.1。未读取密码/验证码或导出 Cookie。点击连接时工具超时并重置，后续浏览器枚举返回 fetch 失败，无法核验连接后的 URL，已按 User 要求停止；连接结果 unknown，手机组件/网络、Google 登录和 GMS 安装仍未执行。
 - 已定向阅读业务 `402e0d4` 的 controller → decoder → stop/结果回读调用链；保持现有采集器及 gate，本轮没有代码重写或运行探针。历史合成 CI 仅为准备证据。
 - 顺序：Codex 核查并官方安装/启用 Google Play/GMS → User 亲自登录 → 商店首页/搜索/详情与认证状态分别验证 → Google Play 获取或确认 Huuuge → User 无探针游戏基线 → 受控云端采集 → Stop/退出/结果回读。手机准备不依赖先找到 Linux 执行端。
-- 当前状态 Changes Requested：执行修订已登记，浏览器控制与凭据/真实目标尚未就绪；不再等待其他技术对接人，不新增付费资源或公网调试端口。
+- 当前状态 In Progress：登录与实例页核验完成，连接后的浏览器状态无法读取，执行停在连接结果待核验。Workbench 凭据或 Linux 执行端未就绪不作为手机组件准备的前置阻塞；未重复安装 CLI，不新增付费资源或公网调试端口。
 
 ## 初始登记与能力契约（2026-09-15；续接状态见上节）
 
@@ -47,7 +47,7 @@
 
 | 项目 | 必须证据 | 当前结果 |
 | --- | --- | --- |
-| Google Play/GMS 前置 | 组件前后状态、官方方法、User 登录、商店可用与认证状态 | 未执行；浏览器控制被停止，不能推断组件缺失 |
+| Google Play/GMS 前置 | 组件前后状态、官方方法、User 登录、商店可用与认证状态 | 手机检查未执行；阿里云登录与目标实例页已核验，连接结果 unknown |
 | 网页游戏 | Google Play 获取/确认 Huuuge 后，User 无探针正常交互 | 未执行 |
 | 真实采集解码 | 本轮新增、关联普通手动操作的成功业务解码样本 | 未执行；计数 unknown |
 | 正常结束保存 | Stop/flush、进程退出、结果仍可读、捕获/成功/失败数可核对 | 未执行；没有云端 Session |
@@ -61,5 +61,5 @@
 - 实施 [PR #2](https://github.com/840832144/huuuge-android-research/pull/2)，代码 commit `9bb241b`；中文[部署说明](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-cloud-single-instance/deploy/cloud/README.md)和[验收记录](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-cloud-single-instance/deploy/cloud/ACCEPTANCE.md)已提交。
 - Linux [CI 34957001266](https://github.com/840832144/huuuge-android-research/actions/runs/34957001266) 14/14 合成检查通过：实际 decoder 子进程、损坏 wrapper 保留、断连失败、单运行锁、SIGTERM、supervisor 启停与最终文件回读；没有真实云手机数据。
 - 业务 Status/COLLAB_LOG/TASKS/CHANGELOG/Handoff 均已更新。仅在云端部署所需的 Linux controller、配置模板和现有 decoder 异常处理有代码变更，未运行本机采集或修改晨会。
-- 下一步恢复可核验 URL 的云手机浏览器控制，先只读检查 Google 组件和手机网络，再推进官方安装/启用。Workbench 凭据由 User 在受控本机交互配置，随后只读核验 Linux 目标；密码、验证码及密钥不进聊天或 Git。不把 CLI 安装成功写成云端连接成功。
+- 下一步仅在受支持浏览器恢复后读取现有标签实际 URL 与连接结果，避免盲目重复点击连接；可靠核验后由 Codex 检查 Google 组件和手机网络、推进适用官方安装/启用。到 Google 原生登录页再通知 User 本人登录；不以 Workbench/Linux 状态阻塞手机准备。URL 无法可靠核验时保持停止并报告具体工具错误。
 - reservation 保持 pending-main，待 Review 后 canonical 进入共享 main，再由本独立 worktree 使用本机 reservation 元数据 finalize；不提前释放或伪称已合入 main。

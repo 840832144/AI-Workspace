@@ -3,7 +3,7 @@
 - Updated: 2026-09-29
 - Actor: Codex
 - Owner: User；本人负责权限、账号登录与手动游戏操作
-- Status: Changes Requested；v2 已登记，真实云端验收未执行
+- Status: In Progress；登录和实例页已核验，连接动作结果 unknown，浏览器错误后保持停止
 - Task: [TASK-0031](../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md)
 - Source: [Issue #1 v3](https://github.com/840832144/huuuge-android-research/issues/1)
 - Subagents: none
@@ -15,7 +15,7 @@ User 指定 [PR #11 v2-GooglePlay / 5ff7190](https://github.com/840832144/AI-Wor
 - 原治理分支安全合入 main `b0a36c8`；保留双方 Changelog，Registry 从 canonical 重建后 19 canonical / 0 collision / valid。Workspace Sync 实测 ON_DEMAND / provider unavailable / stale 6 / conflicts 0。原 PR #4 / 业务 PR #2 保留，未合并共享 main，reservation 保持 pending-main。
 - User 更正 Workbench CLI 需要 Codex 安装。已安装阿里云官方 Windows amd64 包 v1.0.1（`86c0aff`），官方 SHA-256 校验通过，version/exec/配置/列表帮助已核验。安装路径与方法见业务部署说明；不把治理仓库变成运行时配置入口。
 - 默认 Workbench 配置文件尚不存在；未读取凭据、连接 ECS 或更改安全组。CLI 面向 Linux ECS，不能据此认为云手机已有受控通道；两个目标均须分别核验。
-- 浏览器 provider 返回 fetch 失败；桌面窗口列表只能确认“无影云手机”Chrome 窗口存在。Computer Use 因无法可靠识别当前 URL 而停止本轮界面操作，未继续点击或绕过检查。Google 组件/网络/镜像/ABI 未读到，未安装或启用 GMS，未到登录页。
+- 上轮浏览器 provider 失败、Computer Use 不能可靠识别 URL，已停止且未绕过。User 后续提供 `https://wya.wuying.aliyun.com/instanceLayouts`，本轮通过受支持的内置浏览器访问并回读实际 URL 为 `account.aliyun.com/login/login.htm`，标题“阿里云登录”；User 本人确认完成登录后，实际 URL 回读为无影官方实例页；核对唯一已购实例可用、香港/4c8g32G/Android 12/镜像 26.09.1。未读取密码/验证码或导出 Cookie。对唯一目标点击“连接”时工具报 `js execution timed out; kernel reset, rerun your request`；随后枚举报 `Browsers: Error: nodeRepl.fetch request failed`，无法核验连接后 URL，按 User 要求停止，不再点击或改走其他通道。连接结果 unknown，Google 组件/网络/ABI 未读到，尚未安装 GMS 或到 Google 登录节点。
 - 已定向阅读业务 `402e0d4` controller → decoder → stop/结果回读调用链；不改写现有采集器，不启动探针。历史 Linux 14/14 合成 CI 仍仅是准备证据。
 - 安装时 checksum HTTP 响应为字节数组，首次解析未找到条目便停止；正确 UTF-8 解码后校验成功，未跳过校验。官方脚本注释与实际目录不一致，因此使用同源发布包校验后安装用户目录。
 - 合并未完成时 Registry 写入被 latest-main gate 拒绝；本地完成 main 合入、重建后验证通过才继续登记，没有发布冲突文件。
@@ -31,6 +31,6 @@ User 指定 [PR #11 v2-GooglePlay / 5ff7190](https://github.com/840832144/AI-Wor
 
 ## 唯一下一步
 
-恢复能够核验 URL 的云手机浏览器控制，Codex 先检查 Google 组件与手机网络，再按厂商适用方法安装/启用。到 Google 原生登录页停止敏感输出并通知 User 本人登录。Workbench 凭据由 User 在受控本机交互配置，Linux 目标单独核验，不阻止先做手机准备。后续严格按 v2 顺序记录真实结果，最后 Stop → 进程退出 → 保存结果回读，更新业务部署/验收与原 Task/Status/Handoff。当前没有商店、游戏或云端采集成功结论。
+待受支持浏览器恢复后，先读取现有标签 URL 和连接结果；此前连接动作超时但结果不明，不能盲目重复或把它写成已连接。可靠核验后再进入已确认的唯一实例。Codex 检查 Google 组件与手机网络、按厂商适用方法安装/启用；到 Google 原生登录页停止敏感输出并通知 User 本人登录。Workbench/Linux 状态不作为手机准备的前置阻塞，不重复安装 CLI。若 URL 再次无法可靠核验，保持停止并返回具体工具错误。后续严格按 v2 顺序记录真实结果，最后 Stop → 进程退出 → 保存结果回读；当前没有商店、游戏或云端采集成功结论。
 
 治理分支尚未合入 main；reservation 保持 pending-main，Review/合入后再 finalize。无额外 Agent，Subagents: none。
