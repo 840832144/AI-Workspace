@@ -4,11 +4,12 @@
 
 ## 2026-09-29 — TASK-0031 按 v2-GooglePlay 续接
 
-- 最新支持流程恢复确认网页 Android 桌面，纠正此前连接 unknown；只读远程命令结果未返回，工具再次超时后停止浏览器。原 Task/Status/Handoff 更新官方 eds-aic 管理准备、CLI 离线核验、凭据/香港管理接入点待就绪及先查原任务的下一步；真实 Google/游戏/采集验收仍未通过。
-- 后续普通入口尝试：已核验官方阿里云登录和 User 登录后的无影实例页；唯一已购目标的地域/规格/系统/镜像已读取。连接动作超时，随后浏览器枚举失败，当前 URL 无法核验，已停止并记录连接结果 unknown。未检查或修改 Google 组件。
+- 真实打通 eds-aic + EdsAgent；现有 OAuth Account 由 User 明确授权复用。启用镜像内置 Play/GMS/GSF并回读，User 登录后从 Play 新安装 Huuuge，来源/版本/ABI已验证。
+- 新增本轮真实部署记录：Huuuge 专属 ANGLE 设置、真实 BootActivity、回滚条件；日志确认驱动生效，User 确认画面恢复。没有改采集器。
+- 自行核实已有 Linux 与 Cloud Assistant；私网 ADB TCP 超时，User 新建公网映射后云端 TCP 成功。云端 ADB 下载/实连被自动审批拒绝，未执行，不冒称认证或采集成功。
+- 原 Task/Status/Handoff/验收同步真实状态，认证记录无法读取；保留未知浏览器命令及泛用 launcher 失败证据。原 PR 交增量 Review，未新增任务/付费资源、本机持续采集或晨会改动。
 
-- 同步最新 main，语义保留 Changelog 双方记录并从 canonical 重建 Registry；继续原 Task 与 PR #4，不分配新编号。
-- 原 Task/Status/Handoff 纳入 PR #11 `5ff7190` 顺序与 User 本人负责权限/登录/操作的修订。记录 Workbench v1.0.1 安装成功、尚无凭据配置，以及浏览器 URL 安全检查导致界面操作停止的实际边界；未部署探针或宣称云端通过。
+- 继续原PR #2/#4；Registry19 canonical/0collision/valid，reservation pending-main；不新建任务或另建平台。
 
 ## 2026-09-17 — TASK-0035已合并并finalized
 
