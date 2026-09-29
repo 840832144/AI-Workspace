@@ -4,6 +4,7 @@
 
 ## 2026-09-29 — TASK-0031 按 v2-GooglePlay 续接
 
+- 最新支持流程恢复确认网页 Android 桌面，纠正此前连接 unknown；只读远程命令结果未返回，工具再次超时后停止浏览器。原 Task/Status/Handoff 更新官方 eds-aic 管理准备、CLI 离线核验、凭据/香港管理接入点待就绪及先查原任务的下一步；真实 Google/游戏/采集验收仍未通过。
 - 后续普通入口尝试：已核验官方阿里云登录和 User 登录后的无影实例页；唯一已购目标的地域/规格/系统/镜像已读取。连接动作超时，随后浏览器枚举失败，当前 URL 无法核验，已停止并记录连接结果 unknown。未检查或修改 Google 组件。
 
 - 同步最新 main，语义保留 Changelog 双方记录并从 canonical 重建 Registry；继续原 Task 与 PR #4，不分配新编号。

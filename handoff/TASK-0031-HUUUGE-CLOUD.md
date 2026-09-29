@@ -3,7 +3,7 @@
 - Updated: 2026-09-29
 - Actor: Codex
 - Owner: User；本人负责权限、账号登录与手动游戏操作
-- Status: In Progress；登录和实例页已核验，连接动作结果 unknown，浏览器错误后保持停止
+- Status: In Progress；网页 Android 桌面已确认，只读命令结果 unknown；API 凭据/管理接入点待就绪
 - Task: [TASK-0031](../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md)
 - Source: [Issue #1 v3](https://github.com/840832144/huuuge-android-research/issues/1)
 - Subagents: none
@@ -15,7 +15,10 @@ User 指定 [PR #11 v2-GooglePlay / 5ff7190](https://github.com/840832144/AI-Wor
 - 原治理分支安全合入 main `b0a36c8`；保留双方 Changelog，Registry 从 canonical 重建后 19 canonical / 0 collision / valid。Workspace Sync 实测 ON_DEMAND / provider unavailable / stale 6 / conflicts 0。原 PR #4 / 业务 PR #2 保留，未合并共享 main，reservation 保持 pending-main。
 - User 更正 Workbench CLI 需要 Codex 安装。已安装阿里云官方 Windows amd64 包 v1.0.1（`86c0aff`），官方 SHA-256 校验通过，version/exec/配置/列表帮助已核验。安装路径与方法见业务部署说明；不把治理仓库变成运行时配置入口。
 - 默认 Workbench 配置文件尚不存在；未读取凭据、连接 ECS 或更改安全组。CLI 面向 Linux ECS，不能据此认为云手机已有受控通道；两个目标均须分别核验。
-- 上轮浏览器 provider 失败、Computer Use 不能可靠识别 URL，已停止且未绕过。User 后续提供 `https://wya.wuying.aliyun.com/instanceLayouts`，本轮通过受支持的内置浏览器访问并回读实际 URL 为 `account.aliyun.com/login/login.htm`，标题“阿里云登录”；User 本人确认完成登录后，实际 URL 回读为无影官方实例页；核对唯一已购实例可用、香港/4c8g32G/Android 12/镜像 26.09.1。未读取密码/验证码或导出 Cookie。对唯一目标点击“连接”时工具报 `js execution timed out; kernel reset, rerun your request`；随后枚举报 `Browsers: Error: nodeRepl.fetch request failed`，无法核验连接后 URL，按 User 要求停止，不再点击或改走其他通道。连接结果 unknown，Google 组件/网络/ABI 未读到，尚未安装 GMS 或到 Google 登录节点。
+- 最新一次支持流程恢复成功读回同一官方 instanceLayouts URL、原连接窗口及 Android 桌面，证明此前连接已生效；没有重放连接点击。唯一已购实例可用、香港/4c8g32G/Android 12/26.09.1。未读取密码/验证码或 Cookie。
+- 控制台远程命令选择唯一实例，填入固定只读脚本并全文核对，只点击一次执行。输出为空，关闭表单时再次报 `js execution timed out; kernel reset, rerun your request`；浏览器自动化停止。命令任务/结果 unknown，先查任务，不重放执行。Google 组件/网络/ABI 尚无真实输出，未安装/启用/清数据/重建，未到 Google 登录页。
+- 按 User 授权准备官方 eds-aic RunCommand/DescribeTasks 路径，Aliyun CLI v3.5.1 官方发布包校验并安装管理 Host 用户目录；版本、帮助、脚本 bash -n 和虚构目标离线参数预演通过，没有 API 调用。未发现 API 默认配置/标准凭据环境变量；官方接入点和 CLI 仅列上海/新加坡，香港地域预演报 unknown endpoint，实际目标管理接入点及 AgentType 待核实。Workbench 保留原安装，不对云手机 ID 使用，不新增 ECS/NAT/公网 ADB。
+- 本轮业务交付 `60d74e1` 已推送原 PR #2：固定只读检查、官方管理步骤、部署/验收及协作记录；本轮未修改现有采集器。治理原 PR #4 继续交准备增量 Review。
 - 已定向阅读业务 `402e0d4` controller → decoder → stop/结果回读调用链；不改写现有采集器，不启动探针。历史 Linux 14/14 合成 CI 仍仅是准备证据。
 - 安装时 checksum HTTP 响应为字节数组，首次解析未找到条目便停止；正确 UTF-8 解码后校验成功，未跳过校验。官方脚本注释与实际目录不一致，因此使用同源发布包校验后安装用户目录。
 - 合并未完成时 Registry 写入被 latest-main gate 拒绝；本地完成 main 合入、重建后验证通过才继续登记，没有发布冲突文件。
@@ -29,8 +32,10 @@ User 指定 [PR #11 v2-GooglePlay / 5ff7190](https://github.com/840832144/AI-Wor
 - 三项真实验收均未执行，捕获/成功/失败计数 unknown。未连接云实例、未部署本机采集组件、未购买资源、未触碰晨会。当前未创建本轮云资源，后续资源计费/保留/释放由 User/技术确认。
 - Issue v3 明确排除本地安装包，因此本轮未执行 SVN 安装包同步。Workspace Sync ON_DEMAND / provider unavailable / stale 6 / conflicts 0；Git 是本轮依据。
 
-## 唯一下一步
+## 下一步与保留的验收目标
 
-待受支持浏览器恢复后，先读取现有标签 URL 和连接结果；此前连接动作超时但结果不明，不能盲目重复或把它写成已连接。可靠核验后再进入已确认的唯一实例。Codex 检查 Google 组件与手机网络、按厂商适用方法安装/启用；到 Google 原生登录页停止敏感输出并通知 User 本人登录。Workbench/Linux 状态不作为手机准备的前置阻塞，不重复安装 CLI。若 URL 再次无法可靠核验，保持停止并返回具体工具错误。后续严格按 v2 顺序记录真实结果，最后 Stop → 进程退出 → 保存结果回读；当前没有商店、游戏或云端采集成功结论。
+User 在本机完成已获准的 STS profile 配置，具体单步入口见业务[只读管理说明](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-cloud-single-instance/deploy/cloud/GOOGLE_READONLY.md)，不在聊天提供密钥或扩大管理员权限。Codex 核实香港目标对应官方管理接入点后，先用 DescribeTasks 定向查回控制台命令；没有查清前不重发 RunCommand。当前浏览器自动化停止，不能把等待恢复作为唯一后续动作。
+
+取得 Google 组件/Android/必要网络实况后，Codex 按厂商适用方法安装/启用 Google；到原生登录页通知 User 本人登录。Workbench/Linux 状态不作为手机准备前置阻塞。继续商店可用与 Huuuge 来源核验、User 无探针游戏、云端新增采集与解码、正常 Stop → 退出 → 保存结果回读。原 PR #2/#4 交准备增量 Review，任务保持 In Progress，不能把网页桌面或离线预演记为完整验收。
 
 治理分支尚未合入 main；reservation 保持 pending-main，Review/合入后再 finalize。无额外 Agent，Subagents: none。
