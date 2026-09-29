@@ -1,5 +1,13 @@
 # Huuuge Android Research — Project Status
 
+## 2026-09-29 — TASK-0031 v2-GooglePlay 续接
+
+- [TASK-0031](../../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md) 改为 Changes Requested，执行 [PR #11](https://github.com/840832144/AI-Workspace/pull/11) `5ff7190`；User 本人负责权限、登录与操作，不等待其他技术人员。
+- Workbench CLI 官方 Windows 包已安装并校验，版本 v1.0.1 / `86c0aff`，帮助已核验；默认凭据配置尚不存在，未连接或修改安全组。管理工具不承担本机生产采集。
+- 云手机窗口存在，但浏览器 provider 失败，Computer Use 又因不能可靠识别 URL 而停止本轮界面操作。Google 组件、手机网络、Linux 执行端尚未现场核验；未修改 Google 环境、未到登录节点。
+- 商店可用、Google Play 获取/确认 Huuuge、无探针游戏、真实采集、正常停止保存均未验证。历史 14/14 合成 CI 不提升为云端证据。
+- 原分支同步最新 main 后 Registry 19 canonical / 0 collision / valid；[当前 Handoff](../../handoff/TASK-0031-HUUUGE-CLOUD.md)。下一步恢复浏览器控制并由 Codex 检查、准备 Google Play/GMS；不新建 Task/PR，不动晨会。
+
 ## 2026-09-15 — 单实例云端准备
 
 - [TASK-0031](../../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md)：Review（代码与说明准备），关联业务 Issue #1 v3；User 确认资源尚未就绪。

@@ -2,6 +2,11 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-29 — TASK-0031 按 v2-GooglePlay 续接
+
+- 同步最新 main，语义保留 Changelog 双方记录并从 canonical 重建 Registry；继续原 Task 与 PR #4，不分配新编号。
+- 原 Task/Status/Handoff 纳入 PR #11 `5ff7190` 顺序与 User 本人负责权限/登录/操作的修订。记录 Workbench v1.0.1 安装成功、尚无凭据配置，以及浏览器 URL 安全检查导致界面操作停止的实际边界；未部署探针或宣称云端通过。
+
 ## 2026-09-17 — TASK-0035已合并并finalized
 
 - PR #8 merge commit `fde35b2f804e1f69bf02acc6d9581c5d009b118a`，canonical及Round 1 Accepted Review已进入最新main；既有工具使用原reservation返回finalized，未重新分配Task。
