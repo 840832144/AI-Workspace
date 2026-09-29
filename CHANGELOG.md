@@ -2,6 +2,97 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-09-17 — TASK-0035已合并并finalized
+
+- PR #8 merge commit `fde35b2f804e1f69bf02acc6d9581c5d009b118a`，canonical及Round 1 Accepted Review已进入最新main；既有工具使用原reservation返回finalized，未重新分配Task。
+- Task/Status/Handoff及Registry收口Complete，候选Review保持Accepted；仅治理文档变更，数值候选不动。不重算、不做hash或全量业务扫描，不提交SVN、不正式冻结或发布。
+
+## 2026-09-17 — TASK-0035 ChatGPT Round 1 Accepted
+
+- PR #8完整Round 1（受评0676ef3）落库；Task/Status/Handoff/报告及Registry同步Accepted，保留ChatGPT未独立连接公司SVN的证据限制。
+- 本轮仅治理收口，不重算数值、不重跑TASK-0033/0034、不做hash或全量扫描。PR保持OPEN，等待User明确合并授权；不提交SVN、不正式冻结/发布，reservation保持pending-main，不提前finalize。
+
+## 2026-09-17 — TASK-0035薯片+777现值候选待Review
+
+- User确认没有数值改动；14个指定trunk文件r6961:7004无变化后锁定r7004，交付0数值变更方案、候选/阅读层、546条Accepted阶段引用及8个forceTurn规则示例。
+- 完整数值与14个源XLSX留受控复核包，public仅方案/方法/验证摘要；TASK-0034 Matrix保留历史，合并finalize状态和当前TASK-0035 Review分别标明。不提交SVN、不冻结、不发布，新reservation不提前finalize。
+
+## 2026-09-17 — TASK-0034合并finalize；登记TASK-0035
+
+- PR #7以merge commit 051a551合入main，确认canonical后finalize原reservation；TASK-0034交付收口Complete，尚未冻结或发布。
+- 从最新main完整枚举tasks/并通过Registry，allocator分配TASK-0035。仅薯片+777，User确认没有数值改动，先定向检查trunk版本，再制作现值冻结候选；不纳入拳击/挖矿，不提交SVN或执行正式冻结/发布。
+
+## 2026-09-17 — TASK-0034 ChatGPT Round 3 Accepted
+
+- 完整Round 3 Accepted（受评d8f1b72）落库，保留Round 1/2及未独立复跑的证据限制；Task/Status/Handoff/报告同步Accepted。
+- 6 Closed / 4 Conditional / 12 Non-blocking不变，尚未冻结或发布；只收口评审与治理记录，不重算数值、不重跑TASK-0033、不做哈希或全量业务扫描。
+- 原分支/PR #7等待User明确合并授权，reservation保持pending-main；不改配置、不提交SVN、不调参、不冻结、不发布、不合并或提前finalize。Subagents: none。
+
+## 2026-09-17 — TASK-0034 Round 2 Gate状态修订，待Round 3
+
+- 固化完整Round 2 Needs changes（761b08c）；同Task修订后继续Review，原reservation pending-main。
+- G12/G16改Conditional，规则Closed保留说明；与原G03/G09共4类条件，统计6 Closed / 4 Conditional / 12 Non-blocking。选挖矿须补齐缺关奖励或User明确无奖励；选拳击/挖矿须移除源建造币。
+- 只更新Gate分类、冻结结论和治理记录；不改分析工具/数值，不重算、不重跑TASK-0033、不做哈希或全量业务扫描；未改配置、SVN、冻结、合并或finalize。
+
+## 2026-09-17 — TASK-0034 正式决定修订，待Round 2
+
+- 保存PR #7完整Round 1 Needs changes与后续User正式输入；同一Task修订后回到Review，原reservation保持pending-main。
+- Matrix收敛为7 Closed / 2 Conditional / 13 Non-blocking：无无条件业务阻塞，最多forceTurn及剩余缺档价值比较2类条件问题；四活动不代选。
+- 仅更新受影响模型和定向复算，完整数值留受控包；源表覆盖/注释与规则差异保留。未重跑TASK-0033、全量扫描或哈希，未改配置、SVN、调参、冻结、发布、合并或finalize。
+
+## 2026-09-17 — TASK-0034 CR 冻结 Gate 候选
+
+- 按正式allocator独立登记新Task，TASK-0033保持Complete；只读确认trunk相对r6961无变化，复用Accepted整理结果。
+- User决定USD Bet=1归95%。新增脱敏Freeze Gate Matrix、四活动候选卡、8组最小策划问题及定向证据工具；完整数值仍在受控目录，未改配置或执行冻结。
+- 定向规则、条件成本、查价与治理验证通过后交ChatGPT Review；不关闭全部原缺口、不选四选二、不合并或提前finalize，无SVN提交、调参、发布、权限变更或哈希工作。Subagents: none。
+
+## 2026-09-17 — TASK-0033 PR #6合并与finalize
+
+- User明确授权后，PR #6通过merge commit `998a4d8a90541df25b0cedbcaeba069bbd1a010d`合入main，保留TASK-0033历史及Round 1/2 Review；相对受评版本只有已授权治理收口记录，无新增数值修改。
+- 合并树与候选f6bf84b一致；核对main中的canonical、Status、Handoff和Registry后，以原reservation执行既有finalize，返回finalized。Task改为Complete（整理交付及Git收口），同步报告与工具生成Registry。
+- 固定trunk r6961现值整理已通过；22项业务缺口保留，尚未冻结或发布。此次授权只用于Git收口，未改配置、提交SVN、调参或发布；完整数值继续留受控目录。Subagents: none。
+
+## 2026-09-17 — TASK-0033 ChatGPT Review Round 2 Accepted
+
+- 完整Round 2评审落库，基线bdcdb3d，Accepted；保留Round 1历史及各轮证据限制，不新建Task。
+- Task、CR Status、Handoff和报告明确：固定trunk r6961现值整理已通过；22项业务缺口保留；尚未冻结或发布。按既有工具重建并验证Task Registry。
+- 原分支/PR #6等待User明确合并授权，原reservation保持pending-main；本次仅治理记录收口，不改配置、不提交SVN、不调参、不冻结、不合并或finalize，完整数值继续留受控目录。Subagents: none。
+
+## 2026-09-16 — TASK-0033 Round 1 R1/R2修订
+
+- 完整ChatGPT Round 1 Needs changes落Git，状态先Changes Requested，修订后Review / 等待Round 2；仍用原Task、原分支、固定trunk r6961及原reservation。
+- 特殊新手/活动关联RTP原行与本表注释单列阅读层，常规85/95不变，优先级保留G01/G02；补齐2处源错误缓存并分开缺缓存/外链，不改源表、不判派奖故障。
+- 最终XLSX实际公式自动计数，纠正说明文字误计；最终XLSX实际5699个公式（XML `<f>`自动计数），全部缓存与Python复算一致；19964个数值输出一致，公式错误/缺缓存均0；16页、4923条阅读记录。Task/Status/Handoff/报告/验证与PR同步，完整数值和受控附录不进public Git。
+- 仅修R1/R2；22项业务缺口保留，不调参、不提交SVN、不冻结、不合并或finalize；Subagents: none。
+
+## 历史交付 — 2026-09-16 TASK-0033 CR 9.22 全数值整理交Review
+
+- 按既有allocator查重登记，锁定SVN trunk r6961，只读盘点当前配置与机台/地图数值；复用CR Skill和XLSX读取器，补充全目录提取与条件复算工具。
+- 本机受控交付总表、资源关系、可复算明细与22项口径缺口；public Git仅保存工具、版本、方法和脱敏Task/Status/Handoff。不上传当前完整配置，不重建退役快照，不双写旧库。
+- 保留User关于85/95 RTP、活动组合未定、毛下注/净耗/实付分离及排除运营/技术审计的范围；附件扩展指令不覆盖User明确请求。
+- 输出公式比对、独立源格抽核和视觉复核通过；源公式缓存/外链、动态玩法期望和未明规则的限制明确记录。任务Review，不授权调参、冻结、发布或提前finalize；Subagents: none。
+
+## 2026-09-16 — TASK-0032 最终合并与单仓切换
+
+- User 明确授权后完成两仓最新 main、候选增量及共享文件并发检查；PR #5 以 Create a merge commit 合并，commit `3c214e2ca75eb82c16af6a186f7366fb3c249140`，没有 squash/rebase 或强推共享历史。
+- 最新 main 保留 CR 来源 `1409737` 与原样导入 `fe07557`；根/CR 入口、5个唯一 Skill、276文件映射和工具边界通过，catalog 14工作簿/0异常，repository 0错误/0警告。原 canonical 进入 main 后使用原 reservation finalize 成功。
+- Task Complete，CR Status/Handoff、迁移报告、四启动文件和相关当前入口改为 main；候选验收与 Review 记录保留原时点，未改写未独立复跑的限制。Registry 与 Context 由既有工具重建验证。
+- 当前 CR Git 资料与工具只写 `projects/cr/`，公司 SVN 正式配置不变；旧库不再双写，保留且不归档、不删除，AI-Workspace 保持 public，未调整权限或发布云端内容。Subagents: none。
+
+## 历史阶段：2026-09-16 TASK-0032 ChatGPT Review Round 1 Accepted
+
+- 完整固化 PR #5 已发布评审至 `reviews/TASK-0032-CHATGPT-REVIEW-1.md`，基线 `83eadec13cb4a03fa5b75de8dcbdd1f83cb61048`，结论 Accepted，无必须修改项。
+- 保留评审未独立复跑测试、工作簿检查或备份恢复，亦未重复完整历史敏感内容审查的限制；不把原本机验收报告称为 GitHub CI。
+- Task 更新为 Accepted，执行状态为“等待 User 批准最终合并与切换”；同步 CR Status、Handoff 与现行状态引用，按既有工具重建并验证 Task Registry。
+- 本轮仅提交/推送评审收口记录；不合并、不切换、不重新分配、不 finalize，不增加重复哈希检查，不修改权限、不删除或归档旧库。Subagents: none。
+
+## 2026-09-16 — TASK-0032 CR public subtree 候选
+
+- 正式登记 Task/RFC 并完成两仓受控备份与完整可达图审查；User 后续明确批准三个 Top Tycoon 工作簿原始记录和历史，取消该项暂停，不清洗原历史。
+- 使用非 squash subtree 原样导入 CR，13个来源提交和276个文件保留，直接 diff 为空；单独适配根/项目规则、四启动文件、ChatGPT/Codex/TRAE、唯一 Skill 路由、Context 与资料同步路径。
+- 默认目录/卡包检查不计算文件哈希；验证实际结构、内容及行为。SVN 工具要求明确提交根，历史 Collector 副本不启动、不自动同步。
+- 全新单仓克隆根/CR 两入口、14源表、36卡包附件与81项测试通过，提交 PR Review；未合并、切换或归档，未修改源表、权限、正式配置，未执行同步 apply、SVN 提交、采集或部署。Subagents: none。
+
 ## 2026-09-15 — TASK-0031 单实例云端 Huuuge
 
 - 按 Issue #1 v3 与 User 授权，在独立 worktree 完成 scan/validate、防重及 remote-CAS 登记。资源未就绪，先做代码和部署准备；三项真实云端验收均待资源。

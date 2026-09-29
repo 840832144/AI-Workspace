@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Top Tycoon 数值拆解报告（v0.2）</title>
+<style>
+:root{--ink:#172033;--muted:#657086;--paper:#f3f0e8;--card:#fffefa;--line:#d6d0c3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 "Microsoft YaHei","PingFang SC",sans-serif}
+main{max-width:1240px;margin:auto;padding:28px}
+header{display:grid;grid-template-columns:1.6fr .8fr;gap:24px;border-bottom:2px solid var(--ink);padding:28px 0}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.08;margin:0 0 12px}
+h2{margin:40px 0 14px;border-left:5px solid #4f46e5;padding-left:10px}
+h3{margin:26px 0 10px}
+.eyebrow{color:#4f46e5;font-size:12px;font-weight:800;letter-spacing:2px}
+.meta{border-left:1px solid var(--line);padding-left:20px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.card b{display:block;margin-bottom:4px}
+.kpi b{display:block;font-size:26px}
+.kpi span,.note{color:var(--muted);font-size:13px}
+.callout{border-left:5px solid #e08b2c;background:#fff8e8;padding:14px 18px;margin:16px 0}
+.warn{border-left:5px solid #d3577a;background:#fdf0f2;padding:14px 18px;margin:16px 0}
+.pay{border-top:5px solid #d3577a}
+.stack{display:flex;height:34px;border-radius:8px;overflow:hidden;background:#e5e0d6;margin:8px 0}
+.stack .seg{display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);margin:6px 0}
+.dot{display:inline-block;width:9px;height:9px;margin-right:4px;border-radius:2px}
+table{width:100%;border-collapse:collapse;background:var(--card);font-variant-numeric:tabular-nums;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;max-height:560px}
+.hbar{margin:8px 0}
+.hbar .label{font-size:12px;color:var(--muted)}
+.hbar .track{height:20px;background:#e5e0d6;border-radius:6px;overflow:hidden;margin-top:3px}
+.hbar .fill{height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-size:11px;font-weight:800;border-radius:6px;min-width:34px}
+footer{margin:40px 0 20px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media(max-width:900px){header{grid-template-columns:1fr}.meta{border:0;padding:0}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){main{padding:16px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <div>
+    <div class="eyebrow">TOP TYCOON · TEARDOWN v0.2 · 2026-08-04</div>
+    <h1>Top Tycoon 数值拆解报告</h1>
+    <p>基于 6 段录屏（11,226s / 11,229 帧）的竞品数值拆解：建造(花金币) ↔ Slot(花能量赚金币) ↔ 小游戏/礼包(回流)。所有概率为观察频率；建造成本为 10 秒窗口量级；等价美金返还受锚点门控。</p>
+  </div>
+  <div class="meta">
+    <b>6 段视频 / 391 段切分</b>
+    <p>11,229 固定 1 fps 帧 · 模块定位 6/6</p>
+    <b>136 个有效单 Spin</b>
+    <p>A/B 级闭环率 97.1% · 建造 33 个可用窗口</p>
+  </div>
+</header>
+
+<h2>初始参数（先读）</h2>
+<section class="grid">
+  <article class="card"><b>玩家画像</b><p>多账号截面：新手段 x1、前期 x2/x5、前期至中期 x5/x10/x20、较高成长段 x100</p></article>
+  <article class="card"><b>能量机制</b><p>50 上限 + overflow；BET xN = N 能量/Spin（已确认）</p></article>
+  <article class="card"><b>核心循环</b><p>建造花金币 → 金币不足 → Slot 花能量赚金币 → 金币回流建造</p></article>
+  <article class="card"><b>等价美金锚点</b><p>HKD/USD 7.8 为工作假设；能量/金币锚点待业务确认</p></article>
+</section>
+
+<h2>证据门控指标</h2>
+<section class="grid">
+  <article class="card kpi"><b>136</b><span>有效单 Spin 概率样本</span></article>
+  <article class="card kpi"><b>97.1%</b><span>A/B 级闭环率（门槛 ≥95%）</span></article>
+  <article class="card kpi"><b>391</b><span>SegmentLog 切分段，模块定位 6/6</span></article>
+  <article class="card kpi"><b>48 / 33</b><span>建造消耗窗口 / 可闭合窗口</span></article>
+  <article class="card kpi"><b>0</b><span>实际购买（付费前后对比不可识别）</span></article>
+  <article class="card kpi"><b>待确认</b><span>等价美金返还（锚点门控）</span></article>
+</section>
+
+<h2>核心结论</h2>
+<section class="grid">
+  <article class="card"><b>闭环已确认</b><p>建造花金币 → Insufficient coins → Slot 花能量赚金币 → 金币回流建造</p></article>
+  <article class="card"><b>Slot 消耗</b><p>BET xN = N 能量/Spin；能量条 50 上限 + overflow</p></article>
+  <article class="card"><b>建造量级</b><p>33 个可用窗口合计消耗 74.98M 金币、推进 316,800 进度；加权 236.69 金币/进度（非单击价）</p></article>
+  <article class="card"><b>区域成本放大</b><p>从 Freefall 0.11 到 Port 389.79 / Wind Farm 300.00 金币/进度</p></article>
+  <article class="card"><b>付费</b><p>10 个报价全部未购买；累计付费档未知 → 无付费节点结论</p></article>
+  <article class="card"><b>等价美金</b><p>锚点候选冲突（Up to/TOTAL/混合包），确认前只输出原生口径</p></article>
+</section>
+
+<h2>模块覆盖与切分（固定 1 fps 时间轴）</h2>
+<div class="hbar"><div class="label">Slot — 4,780s / 42.6%（113 段，19 个可核账窗口）</div><div class="track"><div class="fill" style="width:100%;background:#4f46e5">42.6%</div></div></div>
+<div class="hbar"><div class="label">建造 — 3,616s / 32.2%（105 段，20 个可核账窗口）</div><div class="track"><div class="fill" style="width:75.6%;background:#2f9e6e">32.2%</div></div></div>
+<div class="hbar"><div class="label">小游戏 — 1,343s / 12.0%（70 段，0 个可核账窗口）</div><div class="track"><div class="fill" style="width:28.1%;background:#e08b2c">12.0%</div></div></div>
+<div class="hbar"><div class="label">礼包 — 950s / 8.5%（62 段，0 个可核账窗口）</div><div class="track"><div class="fill" style="width:19.9%;background:#d3577a">8.5%</div></div></div>
+<div class="hbar"><div class="label">转场/加载 — 460s / 4.1%（34 段，不适用）</div><div class="track"><div class="fill" style="width:9.6%;background:#9aa4b2">4.1%</div></div></div>
+<div class="hbar"><div class="label">主进度 — 80s / 0.7%（7 段，0 个可核账窗口）</div><div class="track"><div class="fill" style="width:1.7%;background:#8b5cf6">0.7%</div></div></div>
+<div class="table-wrap"><table>
+  <thead><tr><th>video_id</th><th>总定位秒数</th><th>已确认秒数</th><th>待复核秒数</th><th>可核账窗口</th><th>模块数</th><th>P0 定位</th></tr></thead>
+  <tbody>
+    <tr><td>TT_NEW_01</td><td>627</td><td>490</td><td>137</td><td>7</td><td>6</td><td>通过</td></tr>
+    <tr><td>TT_NEW_02</td><td>103</td><td>103</td><td>0</td><td>0</td><td>1</td><td>通过（独立小游戏，不进主循环）</td></tr>
+    <tr><td>TT_NEW_03</td><td>3,916</td><td>2,890</td><td>1,026</td><td>14</td><td>6</td><td>通过</td></tr>
+    <tr><td>TT_NEW_04</td><td>3,996</td><td>2,576</td><td>1,420</td><td>6</td><td>5</td><td>通过</td></tr>
+    <tr><td>TT_NEW_05</td><td>2,000</td><td>1,660</td><td>340</td><td>4</td><td>6</td><td>通过</td></tr>
+    <tr><td>TT_NEW_06</td><td>587</td><td>510</td><td>77</td><td>8</td><td>4</td><td>通过</td></tr>
+  </tbody>
+</table></div>
+<p class="note">每段均已登记 SegmentLog 模块位置；主进度、小游戏、礼包缺完整起止资源快照，暂无可核账窗口。</p>
+
+<h2>消耗阶段 × 模块产出分布</h2>
+<p class="note"><b>返还口径（用户确认）：</b>返还统一按金币计——Slot 消耗能量返还金币，建造、小游戏、进度奖励也产出金币；消耗端以能量为主（BET xN = N）。当前只有 Slot 金币可量化，建造/小游戏金币产出为“机制已确认、数值待补”。累计付费档在录屏中均为“未知”。</p>
+
+<h3>返还分布百分比（金币口径）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>模块</th><th>金币返还</th><th>占比（当前可识别样本内）</th><th>状态</th></tr></thead>
+  <tbody>
+    <tr><td>Slot（消耗能量 → 金币）</td><td>3,435,949（136 Spin，660 能量）</td><td>100%</td><td>已量化；均次 5,206 金币/能量</td></tr>
+    <tr><td>建造（Site tasks / 任务产出）</td><td>待确认</td><td>—</td><td>机制确认：Lead Pursuit 里程碑 1200→600K 金币、任务含金币</td></tr>
+    <tr><td>小游戏（Strike 等）</td><td>待确认</td><td>—</td><td>机制确认：Strike 棋盘含金币格；完整局不足</td></tr>
+    <tr><td>进度奖励</td><td>待确认</td><td>—</td><td>主进度节点以能量为主；Lead Pursuit 含金币里程碑</td></tr>
+  </tbody>
+</table></div>
+<div class="stack"><div class="seg" style="width:100%;background:#4f46e5">金币返还构成（可识别样本内）：Slot 100%</div></div>
+<p class="note">公式：模块金币返还占比 = 模块金币返还 ÷ 全模块金币返还合计；Slot 消耗返还 = 返还金币 ÷ 消耗能量（金币/耗能，原生口径）。占比会随建造/小游戏/进度金币补采后重算，届时 Slot 占比预计下降。</p>
+
+<h3>金币返还分布（按消耗阶段，Slot 可识别样本）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>消耗阶段</th><th>消耗能量</th><th>金币返还</th><th>金币/耗能</th><th>占 Slot 金币比例</th></tr></thead>
+  <tbody>
+    <tr><td>新手/前期（TT_NEW_01 x1）</td><td>44</td><td>177,889</td><td>4,042.93</td><td>5.2%</td></tr>
+    <tr><td>前期（TT_NEW_06 x2/x5）</td><td>231</td><td>1,293,037</td><td>5,597.56</td><td>37.6%</td></tr>
+    <tr><td>前期至中期（TT_NEW_03 x5/x10/x20）</td><td>385</td><td>1,965,023</td><td>5,103.95</td><td>57.2%</td></tr>
+    <tr><td><b>合计</b></td><td><b>660</b></td><td><b>3,435,949</b></td><td><b>5,205.98</b></td><td><b>100%</b></td></tr>
+  </tbody>
+</table></div>
+<div class="hbar"><div class="label">新手/前期 — 5.2%</div><div class="track"><div class="fill" style="width:9.1%;background:#4f46e5">5.2%</div></div></div>
+<div class="hbar"><div class="label">前期 — 37.6%</div><div class="track"><div class="fill" style="width:65.7%;background:#4f46e5">37.6%</div></div></div>
+<div class="hbar"><div class="label">前期至中期 — 57.2%</div><div class="track"><div class="fill" style="width:100%;background:#4f46e5">57.2%</div></div></div>
+
+<div class="table-wrap"><table>
+  <thead><tr><th>消耗阶段（成长段）</th><th>模块</th><th>切片/区域</th><th>消耗</th><th>原生产出</th><th>原生返还率</th><th>状态</th></tr></thead>
+  <tbody>
+    <tr><td>新手/前期</td><td>Slot</td><td>TT_NEW_01 x1</td><td>1 能量/Spin</td><td>金币 4,042.93/耗能 + 能量 0.80/Spin</td><td>能量自返还 79.5%</td><td>方向性</td></tr>
+    <tr><td>前期</td><td>Slot</td><td>TT_NEW_06 x2 / x5</td><td>2 / 5 能量/Spin</td><td>金币 2,283 / 5,686 /耗能</td><td>333.3% / 506.7%</td><td>方向性（n=3 / 45）</td></tr>
+    <tr><td>前期至中期</td><td>Slot</td><td>TT_NEW_03 x5 / x10 / x20</td><td>5 / 10 / 20 能量/Spin</td><td>金币 3,638 / 5,482 / 5,668 /耗能</td><td>471.8% / 9.6% / 66.7%</td><td>方向性（含离散大额回流）</td></tr>
+    <tr><td>多阶段（跨视频）</td><td>建造</td><td>12 个区域（33 窗口）</td><td>金币 74,983,206</td><td>区域进度 316,800</td><td>加权 236.69 金币/进度</td><td>推算（10 秒窗口量级）</td></tr>
+    <tr><td>较高成长段</td><td>小游戏</td><td>Strike / Whack / Jackpot</td><td>代币 / 锤 / 门票</td><td>可见奖档（60–1.5K 能量等）</td><td>—</td><td>机制确认；期望待补</td></tr>
+  </tbody>
+</table></div>
+
+<h3>分阶段模块产出贡献（原生口径，对标 CR 分阶段贡献）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>消耗阶段</th><th>消耗</th><th>Slot 金币产出</th><th>Slot 能量回流</th><th>进度产出（Slot / 建造）</th><th>状态</th></tr></thead>
+  <tbody>
+    <tr><td>新手/前期（TT_NEW_01 x1，44 Spin）</td><td>44 能量</td><td>177,889</td><td>35</td><td>24 / —</td><td>方向性</td></tr>
+    <tr><td>前期（TT_NEW_06 x2/x5，48 Spin）</td><td>231 能量</td><td>1,293,037</td><td>1,160</td><td>278 / —</td><td>方向性</td></tr>
+    <tr><td>前期至中期（TT_NEW_03 x5/x10/x20，44 Spin）</td><td>385 能量</td><td>1,965,023</td><td>464</td><td>75 / —</td><td>方向性（含离散大额回流）</td></tr>
+    <tr><td>建造（33 个 10 秒窗口）</td><td>74,983,206 金币</td><td>—（消耗端）</td><td>—</td><td>— / 316,800</td><td>推算（量级）</td></tr>
+    <tr><td>小游戏 / 礼包</td><td>门票 / 代币 / 锤</td><td>待确认</td><td>待确认</td><td>待确认</td><td>缺口</td></tr>
+  </tbody>
+</table></div>
+<div class="legend">
+  <span><i class="dot" style="background:#4f46e5"></i>Slot</span>
+  <span><i class="dot" style="background:#2f9e6e"></i>建造</span>
+  <span><i class="dot" style="background:#e08b2c"></i>待确认/缺口</span>
+</div>
+<div class="stack"><div class="seg" style="width:100%;background:#4f46e5">金币产出构成：Slot 100%（3,435,949；可识别样本内）</div></div>
+<div class="stack"><div class="seg" style="width:99.88%;background:#2f9e6e">进度产出构成：建造 99.88%（316,800）</div><div class="seg" style="width:0.12%;background:#4f46e5">Slot 0.12%（377）</div></div>
+<div class="stack"><div class="seg" style="width:100%;background:#4f46e5">能量回流构成：Slot 100%（1,659；进度/小游戏/礼包回流待确认）</div></div>
+<p class="note">金币返还统一按金币口径相加（当前可识别部分全部来自 Slot）；进度产出占比（建造 99.88% vs Slot 0.12%）与能量回流（Slot 为主）作为第二、第三口径保留。等价美金占比仍待锚点确认。</p>
+
+<h3>建造区域：金币消耗占比（合计 74,983,206）</h3>
+<div class="hbar"><div class="label">Wind Farm — 22.20M / 29.6%</div><div class="track"><div class="fill" style="width:100%;background:#2f9e6e">29.6%</div></div></div>
+<div class="hbar"><div class="label">Port — 21.83M / 29.1%</div><div class="track"><div class="fill" style="width:98.3%;background:#2f9e6e">29.1%</div></div></div>
+<div class="hbar"><div class="label">Emerald Trail — 8.93M / 11.9%</div><div class="track"><div class="fill" style="width:40.2%;background:#2f9e6e">11.9%</div></div></div>
+<div class="hbar"><div class="label">Sewage Treatment — 6.22M / 8.3%</div><div class="track"><div class="fill" style="width:28.0%;background:#2f9e6e">8.3%</div></div></div>
+<div class="hbar"><div class="label">Natural Gas — 6.09M / 8.1%</div><div class="track"><div class="fill" style="width:27.4%;background:#2f9e6e">8.1%</div></div></div>
+<div class="hbar"><div class="label">Circus Mirage — 3.14M / 4.2%</div><div class="track"><div class="fill" style="width:14.1%;background:#2f9e6e">4.2%</div></div></div>
+<div class="hbar"><div class="label">Fable Haven — 2.70M / 3.6%</div><div class="track"><div class="fill" style="width:12.2%;background:#2f9e6e">3.6%</div></div></div>
+<div class="hbar"><div class="label">Sky Plunge — 1.61M / 2.1%</div><div class="track"><div class="fill" style="width:7.2%;background:#2f9e6e">2.1%</div></div></div>
+<div class="hbar"><div class="label">Epic Splash — 1.10M / 1.5%</div><div class="track"><div class="fill" style="width:5.0%;background:#2f9e6e">1.5%</div></div></div>
+<div class="hbar"><div class="label">Apex Rush — 0.71M / 0.9%</div><div class="track"><div class="fill" style="width:3.2%;background:#2f9e6e">0.9%</div></div></div>
+<div class="hbar"><div class="label">Pixie Hollow — 0.45M / 0.6%</div><div class="track"><div class="fill" style="width:2.0%;background:#2f9e6e">0.6%</div></div></div>
+<div class="hbar"><div class="label">Freefall — 1.3K / 0.0%</div><div class="track"><div class="fill" style="width:0.6%;background:#2f9e6e">0.0%</div></div></div>
+
+<h3>建造区域：区域进度占比（合计 316,800）</h3>
+<div class="hbar"><div class="label">Wind Farm — 74,000 / 23.4%</div><div class="track"><div class="fill" style="width:100%;background:#4f46e5">23.4%</div></div></div>
+<div class="hbar"><div class="label">Port — 56,000 / 17.7%</div><div class="track"><div class="fill" style="width:75.7%;background:#4f46e5">17.7%</div></div></div>
+<div class="hbar"><div class="label">Circus Mirage — 38,000 / 12.0%</div><div class="track"><div class="fill" style="width:51.4%;background:#4f46e5">12.0%</div></div></div>
+<div class="hbar"><div class="label">Fable Haven — 28,000 / 8.8%</div><div class="track"><div class="fill" style="width:37.8%;background:#4f46e5">8.8%</div></div></div>
+<div class="hbar"><div class="label">Natural Gas — 22,000 / 6.9%</div><div class="track"><div class="fill" style="width:29.7%;background:#4f46e5">6.9%</div></div></div>
+<div class="hbar"><div class="label">Sky Plunge — 21,800 / 6.9%</div><div class="track"><div class="fill" style="width:29.5%;background:#4f46e5">6.9%</div></div></div>
+<div class="hbar"><div class="label">Sewage Treatment — 26,000 / 8.2%</div><div class="track"><div class="fill" style="width:35.1%;background:#4f46e5">8.2%</div></div></div>
+<div class="hbar"><div class="label">Epic Splash — 18,000 / 5.7%</div><div class="track"><div class="fill" style="width:24.3%;background:#4f46e5">5.7%</div></div></div>
+<div class="hbar"><div class="label">Apex Rush — 15,000 / 4.7%</div><div class="track"><div class="fill" style="width:20.3%;background:#4f46e5">4.7%</div></div></div>
+<div class="hbar"><div class="label">Freefall — 11,000 / 3.5%</div><div class="track"><div class="fill" style="width:14.9%;background:#4f46e5">3.5%</div></div></div>
+<div class="hbar"><div class="label">Emerald Trail — 5,000 / 1.6%</div><div class="track"><div class="fill" style="width:6.8%;background:#4f46e5">1.6%</div></div></div>
+<div class="hbar"><div class="label">Pixie Hollow — 2,000 / 0.6%</div><div class="track"><div class="fill" style="width:2.7%;background:#4f46e5">0.6%</div></div></div>
+
+<h3>Slot 结果类型占比（TT_NEW_01 x1，n=44）</h3>
+<div class="hbar"><div class="label">纯金币 — 27 / 61.4%</div><div class="track"><div class="fill" style="width:100%;background:#4f46e5">61.4%</div></div></div>
+<div class="hbar"><div class="label">混合奖励 — 7 / 15.9%</div><div class="track"><div class="fill" style="width:25.9%;background:#4f46e5">15.9%</div></div></div>
+<div class="hbar"><div class="label">Attack — 3 / 6.8%</div><div class="track"><div class="fill" style="width:11.1%;background:#4f46e5">6.8%</div></div></div>
+<div class="hbar"><div class="label">空奖 — 2 / 4.5%</div><div class="track"><div class="fill" style="width:7.4%;background:#4f46e5">4.5%</div></div></div>
+<div class="hbar"><div class="label">Shield — 2 / 4.5%</div><div class="track"><div class="fill" style="width:7.4%;background:#4f46e5">4.5%</div></div></div>
+<div class="hbar"><div class="label">纯进度 — 1 / 2.3%</div><div class="track"><div class="fill" style="width:3.7%;background:#4f46e5">2.3%</div></div></div>
+<div class="hbar"><div class="label">Credit Grab — 1 / 2.3%</div><div class="track"><div class="fill" style="width:3.7%;background:#4f46e5">2.3%</div></div></div>
+<div class="hbar"><div class="label">大奖 — 1 / 2.3%</div><div class="track"><div class="fill" style="width:3.7%;background:#d3577a">2.3%</div></div></div>
+
+<h2>Slot 基础盘</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>视频/下注</th><th>有效 n</th><th>纯金币</th><th>95% Wilson</th><th>空奖</th><th>95% Wilson</th></tr></thead>
+  <tbody>
+    <tr><td>TT_NEW_01 x1</td><td>44</td><td>61.4%</td><td>46.6%–74.3%</td><td>4.5%</td><td>1.3%–15.1%</td></tr>
+    <tr><td>TT_NEW_03 x5</td><td>17</td><td>47.1%</td><td>26.2%–69.0%</td><td>11.8%</td><td>3.3%–34.3%</td></tr>
+    <tr><td>TT_NEW_03 x10</td><td>24</td><td>75.0%</td><td>55.1%–88.0%</td><td>4.2%</td><td>0.7%–20.2%</td></tr>
+    <tr><td>TT_NEW_03 x20</td><td>3</td><td>33.3%</td><td>6.1%–79.2%</td><td>0.0%</td><td>0.0%–56.2%</td></tr>
+    <tr><td>TT_NEW_06 x2</td><td>3</td><td>33.3%</td><td>6.1%–79.2%</td><td>0.0%</td><td>0.0%–56.2%</td></tr>
+    <tr><td>TT_NEW_06 x5</td><td>45</td><td>53.3%</td><td>39.1%–67.1%</td><td>2.2%</td><td>0.4%–11.6%</td></tr>
+  </tbody>
+</table></div>
+<p class="note">切片差异不能解释为下注改变概率（成长段/活动/新手强控未控制，n 均低于 500）。</p>
+
+<div class="table-wrap"><table>
+  <thead><tr><th>切片</th><th>金币命中率</th><th>均次金币</th><th>金币/耗能均值</th><th>金币/耗能 P50</th><th>观察能量自返还率</th><th>均次进度</th></tr></thead>
+  <tbody>
+    <tr><td>TT_NEW_01 x1</td><td>90.9%</td><td>4,042.93</td><td>4,042.93</td><td>1,000</td><td>79.5%</td><td>0.55</td></tr>
+    <tr><td>TT_NEW_03 x5</td><td>82.4%</td><td>18,189.06</td><td>3,637.81</td><td>3,000</td><td>471.8%</td><td>2.06</td></tr>
+    <tr><td>TT_NEW_03 x10</td><td>95.8%</td><td>54,821.21</td><td>5,482.12</td><td>1,079.40</td><td>9.6%</td><td>0.83</td></tr>
+    <tr><td>TT_NEW_03 x20</td><td>100.0%</td><td>113,366.67</td><td>5,668.33</td><td>130</td><td>66.7%</td><td>6.67</td></tr>
+    <tr><td>TT_NEW_06 x2</td><td>66.7%</td><td>4,566.67</td><td>2,283.33</td><td>1,850</td><td>333.3%</td><td>2.67</td></tr>
+    <tr><td>TT_NEW_06 x5</td><td>93.3%</td><td>28,429.71</td><td>5,685.94</td><td>1,100</td><td>506.7%</td><td>6.00</td></tr>
+  </tbody>
+</table></div>
+<div class="warn"><b>不可外推：</b>超过 100% 的观察自返还率来自离散大额能量返还与片段选择偏置，不构成总体 RTP。</div>
+
+<h2>建造模块（10 秒窗口量级，非单击配置）</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>区域</th><th>可用窗口</th><th>金币总消耗</th><th>进度总增量</th><th>加权金币/进度</th><th>金币占比</th><th>进度占比</th></tr></thead>
+  <tbody>
+    <tr><td>Apex Rush</td><td>1</td><td>708,149</td><td>15,000</td><td>47.21</td><td>0.9%</td><td>4.7%</td></tr>
+    <tr><td>Circus Mirage</td><td>2</td><td>3,140,811</td><td>38,000</td><td>82.65</td><td>4.2%</td><td>12.0%</td></tr>
+    <tr><td>Emerald Trail</td><td>1</td><td>8,926,385</td><td>5,000</td><td>1,785.28</td><td>11.9%</td><td>1.6%</td></tr>
+    <tr><td>Epic Splash</td><td>1</td><td>1,102,558</td><td>18,000</td><td>61.25</td><td>1.5%</td><td>5.7%</td></tr>
+    <tr><td>Fable Haven</td><td>5</td><td>2,704,763</td><td>28,000</td><td>96.60</td><td>3.6%</td><td>8.8%</td></tr>
+    <tr><td>Freefall</td><td>3</td><td>1,261</td><td>11,000</td><td>0.11</td><td>0.0%</td><td>3.5%</td></tr>
+    <tr><td>Natural Gas</td><td>3</td><td>6,088,003</td><td>22,000</td><td>276.73</td><td>8.1%</td><td>6.9%</td></tr>
+    <tr><td>Pixie Hollow</td><td>1</td><td>451,793</td><td>2,000</td><td>225.90</td><td>0.6%</td><td>0.6%</td></tr>
+    <tr><td>Port</td><td>8</td><td>21,828,485</td><td>56,000</td><td>389.79</td><td>29.1%</td><td>17.7%</td></tr>
+    <tr><td>Sewage Treatment</td><td>2</td><td>6,223,622</td><td>26,000</td><td>239.37</td><td>8.3%</td><td>8.2%</td></tr>
+    <tr><td>Sky Plunge</td><td>2</td><td>1,607,649</td><td>21,800</td><td>73.75</td><td>2.1%</td><td>6.9%</td></tr>
+    <tr><td>Wind Farm</td><td>4</td><td>22,199,727</td><td>74,000</td><td>300.00</td><td>29.6%</td><td>23.4%</td></tr>
+    <tr><td><b>合计</b></td><td><b>33</b></td><td><b>74,983,206</b></td><td><b>316,800</b></td><td><b>236.69</b></td><td><b>100%</b></td><td><b>100%</b></td></tr>
+  </tbody>
+</table></div>
+<p class="note">BuildLog 一行 = 10 秒建造/Site task 批次，混合账号、区域与 Buff；已确认界面出现 Insufficient coins，建造是金币枯竭触发点；单击成本与完整章节成本不可恢复。</p>
+
+<h2>主进度与关卡节点</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>模块</th><th>截面/关卡</th><th>当前/目标</th><th>节点奖励</th><th>状态</th></tr></thead>
+  <tbody>
+    <tr><td>Slot 主进度</td><td>TT_NEW_03 x5</td><td>175/200</td><td>400 能量</td><td>已确认</td></tr>
+    <tr><td>Slot 主进度</td><td>TT_NEW_03 x10</td><td>5/540</td><td>1.2K 能量</td><td>已确认</td></tr>
+    <tr><td>Slot 主进度</td><td>TT_NEW_05 x100</td><td>2075/4100</td><td>5K 能量</td><td>已确认（高成长段）</td></tr>
+    <tr><td>Friendship Tower</td><td>邀请 1/2/5/8/10/20 人</td><td>—</td><td>40/40/170/210/420/1,000 能量</td><td>奖励阶梯已确认</td></tr>
+    <tr><td>Jackpot 三轨</td><td>绿/蓝/紫轨</td><td>各需 3 宝石</td><td>60/360/1.3K 能量</td><td>票价与奖励已确认</td></tr>
+    <tr><td>Whack a Pig</td><td>第 1 层</td><td>0/1</td><td>35/380/1,500 能量档</td><td>奖档已确认</td></tr>
+  </tbody>
+</table></div>
+<p class="note">主进度三个截面来自不同账号/时段，不能拟合为同账号连续曲线；小游戏均缺完整进入—结算窗口，期望返还不可计算。</p>
+
+<h2>付费节点（是否有付费、付了多少）</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>报价节点</th><th>视频</th><th>价格</th><th>可见资源</th><th>是否购买</th><th>节点类型</th></tr></thead>
+  <tbody>
+    <tr><td>Chapter Prize</td><td>TT_NEW_03</td><td>HK$40</td><td>Up to 2.06K 能量</td><td>否</td><td>offer_shown</td></tr>
+    <tr><td>Mission Pass</td><td>TT_NEW_03</td><td>HK$55.90</td><td>Up to 4K 能量</td><td>否</td><td>offer_shown</td></tr>
+    <tr><td>Ads Removal Pack</td><td>TT_NEW_03</td><td>HK$40</td><td>130 能量 + 60K 金币 + 去广告</td><td>否</td><td>offer_shown</td></tr>
+    <tr><td>Champion's Pack</td><td>TT_NEW_03</td><td>HK$788</td><td>3.7K 能量 + 1.8M 金币</td><td>否</td><td>offer_shown</td></tr>
+    <tr><td>Boxing Pass</td><td>TT_NEW_03</td><td>HK$40</td><td>TOTAL 940 能量 + 奖励轨</td><td>否</td><td>offer_shown</td></tr>
+    <tr><td>Mission Pass</td><td>TT_NEW_05</td><td>HK$55.90</td><td>Up to 7.1K 能量</td><td>否</td><td>offer_shown</td></tr>
+    <tr><td>Champion's Pack</td><td>TT_NEW_05</td><td>HK$788</td><td>6.6K 能量 + 4.1M 金币 + 100 票券</td><td>否</td><td>offer_shown</td></tr>
+    <tr><td>Prize Carnival Step 1</td><td>TT_NEW_05</td><td>HK$40</td><td>660 能量 + 1.2M 金币 + 4 卡包</td><td>否</td><td>可见可购</td></tr>
+    <tr><td>Prize Carnival Step 2</td><td>TT_NEW_05</td><td>HK$40</td><td>1.4K 能量 + 2.6M 金币 + 6 卡包</td><td>否</td><td>锁定（100% MORE）</td></tr>
+    <tr><td>Prize Carnival Step 3</td><td>TT_NEW_05</td><td>HK$40</td><td>1.9K 能量 + 3.5M 金币 + 宝箱</td><td>否</td><td>锁定（150% MORE）</td></tr>
+  </tbody>
+</table></div>
+<div class="callout"><b>付费节点结论：</b>6 段录屏中没有任何实际购买（0/10），累计付费档与 VIP 均未知，因此“哪些节点付费、付了多少、付费后进度与返还变化”均不可识别。Prize Carnival 为同价顺序解锁结构（660→1.4K→1.9K），但 Step 2/3 为锁定态，未观察购买。</div>
+
+<h2>节点体验表（含是否付费、本次/累计付费）</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>节点</th><th>时间/窗口</th><th>消耗</th><th>产出</th><th>是否付费</th><th>本次付费</th><th>累计付费</th><th>备注</th></tr></thead>
+  <tbody>
+    <tr><td>新手 Slot 段</td><td>TT_NEW_01（44 Spin）</td><td>44 能量</td><td>金币 177,889 / 能量 35 / 进度 24</td><td>否</td><td>$0.00</td><td>$0.00</td><td>新手段，方向性</td></tr>
+    <tr><td>前期 Slot 段</td><td>TT_NEW_06（48 Spin）</td><td>231 能量</td><td>金币 1,293,037 / 能量 1,160 / 进度 278</td><td>否</td><td>$0.00</td><td>$0.00</td><td>方向性</td></tr>
+    <tr><td>前期至中期 Slot 段</td><td>TT_NEW_03（44 Spin）</td><td>385 能量</td><td>金币 1,965,023 / 能量 464 / 进度 75</td><td>否</td><td>$0.00</td><td>$0.00</td><td>含离散大额回流</td></tr>
+    <tr><td>建造推进</td><td>33 个 10 秒窗口</td><td>74,983,206 金币</td><td>区域进度 316,800</td><td>否</td><td>$0.00</td><td>$0.00</td><td>推算量级，非单击价</td></tr>
+    <tr><td>Prize Carnival Step 1 展示</td><td>TT_NEW_05 00:24:05</td><td>—</td><td>660 能量 + 1.2M 金币 + 4 卡包</td><td>否</td><td>$0.00</td><td>$0.00</td><td>offer_shown</td></tr>
+    <tr><td>Mission Pass 展示</td><td>TT_NEW_03 / TT_NEW_05</td><td>—</td><td>Up to 4K / 7.1K 能量</td><td>否</td><td>$0.00</td><td>$0.00</td><td>offer_shown</td></tr>
+    <tr><td>Champion's Pack 展示</td><td>TT_NEW_03 / TT_NEW_05</td><td>—</td><td>3.7K / 6.6K 能量 + 金币</td><td>否</td><td>$0.00</td><td>$0.00</td><td>offer_shown</td></tr>
+    <tr><td><b>合计</b></td><td><b>6 段录屏</b></td><td>—</td><td>—</td><td><b>实际购买 0</b></td><td><b>$0.00</b></td><td><b>$0.00</b></td><td>累计付费档未知</td></tr>
+  </tbody>
+</table></div>
+<p class="note">付费列只记录录屏事件；无购买前后窗口，无法计算付费后余额、进度与返还变化。</p>
+
+<h2>原付费阶梯节点（报价展示）</h2>
+<section class="grid">
+  <article class="card pay"><b>Chapter Prize · TT_NEW_03</b><h3>HK$40 → Up to 2.06K 能量</h3><p>未购买</p><span class="note">累计付费 $0.00 · 无购买后余额</span></article>
+  <article class="card pay"><b>Mission Pass · TT_NEW_03</b><h3>HK$55.90 → Up to 4K 能量</h3><p>未购买</p><span class="note">通行证总量，非即时到账</span></article>
+  <article class="card pay"><b>Mission Pass · TT_NEW_05</b><h3>HK$55.90 → Up to 7.1K 能量</h3><p>未购买</p><span class="note">跨账号差异，只标样本差异</span></article>
+  <article class="card pay"><b>Ads Removal Pack · TT_NEW_03</b><h3>HK$40 → 130 能量 + 60K 金币 + 去广告</h3><p>未购买</p><span class="note">权益混合包，不可直折算</span></article>
+  <article class="card pay"><b>Champion's Pack · TT_NEW_03</b><h3>HK$788 → 3.7K 能量 + 1.8M 金币</h3><p>未购买</p><span class="note">混合资源，锚点未确认</span></article>
+  <article class="card pay"><b>Champion's Pack · TT_NEW_05</b><h3>HK$788 → 6.6K 能量 + 4.1M 金币 + 100 票券</h3><p>未购买</p><span class="note">混合资源，锚点未确认</span></article>
+  <article class="card pay"><b>Boxing Pass · TT_NEW_03</b><h3>HK$40 → TOTAL 940 能量 + 奖励轨</h3><p>未购买</p><span class="note">TOTAL 标称，非即时到账</span></article>
+  <article class="card pay"><b>Prize Carnival Step 1 · TT_NEW_05</b><h3>HK$40 → 660 能量 + 1.2M 金币 + 4 卡包</h3><p>未购买</p><span class="note">顺序解锁入口</span></article>
+  <article class="card pay"><b>Prize Carnival Step 2 · TT_NEW_05</b><h3>HK$40 → 1.4K 能量 + 2.6M 金币 + 6 卡包</h3><p>未购买</p><span class="note">锁定态（100% MORE）</span></article>
+  <article class="card pay"><b>Prize Carnival Step 3 · TT_NEW_05</b><h3>HK$40 → 1.9K 能量 + 3.5M 金币 + 宝箱</h3><p>未购买</p><span class="note">锁定态（150% MORE）</span></article>
+</section>
+
+<h2>等价美金锚点（输入待确认，公式先行）</h2>
+<p class="note">HKD/USD = 7.8 为工作假设，非确认财务口径；Up to、TOTAL、锁定礼包与权益混合包不能直接当直给单价。</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>候选</th><th>价格 USD</th><th>可见能量</th><th>USD/能量</th><th>结构</th><th>能否作直给锚点</th></tr></thead>
+  <tbody>
+    <tr><td>Chapter Prize</td><td>5.13</td><td>2,060</td><td>0.002489</td><td>Up to</td><td>不可直接采纳</td></tr>
+    <tr><td>Mission Pass（4K）</td><td>7.17</td><td>4,000</td><td>0.001792</td><td>通行证 Up to</td><td>不可直接采纳</td></tr>
+    <tr><td>Mission Pass（7.1K）</td><td>7.17</td><td>7,100</td><td>0.001009</td><td>跨账号、Up to</td><td>不可直接采纳</td></tr>
+    <tr><td>Ads Removal Pack</td><td>5.13</td><td>130</td><td>0.039448</td><td>权益 + 能量 + 金币</td><td>待业务确认</td></tr>
+    <tr><td>Champion's Pack（3.7K）</td><td>101.03</td><td>3,700</td><td>0.027304</td><td>能量 + 金币</td><td>待业务确认</td></tr>
+    <tr><td>Champion's Pack（6.6K）</td><td>101.03</td><td>6,600</td><td>0.015307</td><td>能量 + 金币 + 票券</td><td>待业务确认</td></tr>
+    <tr><td>Boxing Pass</td><td>5.13</td><td>940</td><td>0.005456</td><td>TOTAL / 付费轨</td><td>不可直接采纳</td></tr>
+    <tr><td>Prize Carnival Step 1</td><td>5.13</td><td>660</td><td>0.007770</td><td>混合资源</td><td>待业务确认</td></tr>
+    <tr><td>Prize Carnival Step 2</td><td>5.13</td><td>1,400</td><td>0.003663</td><td>锁定混合资源</td><td>待业务确认</td></tr>
+    <tr><td>Prize Carnival Step 3</td><td>5.13</td><td>1,900</td><td>0.002699</td><td>锁定混合资源</td><td>待业务确认</td></tr>
+  </tbody>
+</table></div>
+<div class="warn"><b>锚点冲突示例：</b>仅按可见能量计算的 USD/能量从 0.0010（Mission Pass 7.1K）到 0.0394（Ads Removal Pack），相差约 39 倍。能量与金币锚点均确认前，等价美金返还不输出确认值，模块返还表的 USD 列保持空白。</div>
+
+<h2>方向性续航模拟（TT_NEW_01 x1 经验重采样）</h2>
+<p class="note">随机种子 20260804、10,000 次试验、初始能量 1,000、上限 10,000 Spin（来自交付 JSON，替代工作簿内初始能量 50 的旧版跑数）。</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>情景</th><th>能量返还调整</th><th>平均总 Spin</th><th>中位</th><th>P10</th><th>P90</th><th>末态能量</th><th>金币</th><th>进度</th><th>触顶率</th></tr></thead>
+  <tbody>
+    <tr><td>下行</td><td>-10%</td><td>3,519.66</td><td>3,457</td><td>2,759</td><td>4,357</td><td>0.25</td><td>14.22M</td><td>1,918.7</td><td>0</td></tr>
+    <tr><td>基准</td><td>0%</td><td>4,887.64</td><td>4,740</td><td>3,540</td><td>6,410</td><td>0.17</td><td>19.76M</td><td>2,665.1</td><td>0.0009</td></tr>
+    <tr><td>上行</td><td>+10%</td><td>7,577.64</td><td>7,561</td><td>5,014</td><td>10,000</td><td>52.74</td><td>30.63M</td><td>4,133.5</td><td>0.1998</td></tr>
+  </tbody>
+</table></div>
+<div class="hbar"><div class="label">蒙特卡洛均值：下行 3,519.66</div><div class="track"><div class="fill" style="width:46.4%;background:#2f9e6e">3,520</div></div></div>
+<div class="hbar"><div class="label">蒙特卡洛均值：基准 4,887.64</div><div class="track"><div class="fill" style="width:64.5%;background:#4f46e5">4,888</div></div></div>
+<div class="hbar"><div class="label">蒙特卡洛均值：上行 7,577.64</div><div class="track"><div class="fill" style="width:100%;background:#d3577a">7,578</div></div></div>
+<p class="note">上行情景触顶率 20%，说明在 +10% 能量返还下部分试验不再枯竭；这不是续航预测，只说明当前经验分布对离散大额能量返还高度敏感，一次性奖励、活动上限和新手强控尚未从基础盘剥离。</p>
+
+<h2>关键判断</h2>
+<div class="grid">
+  <article class="card"><b>闭环成立</b><p>建造是金币主要消耗端，Slot 是金币主要生产端，能量是 Slot 燃料；小游戏/主进度/礼包补充能量或二级资源。</p></article>
+  <article class="card"><b>建造量级</b><p>高成长区域 10 秒窗口金币消耗可到百万至千万量级；单击成本不可恢复。</p></article>
+  <article class="card"><b>Slot 概率</b><p>结果树与资源归账已确认；概率只到方向性，不能当真实 RTP。</p></article>
+  <article class="card"><b>付费不可识别</b><p>无实际购买、无累计付费档，付费前后对比与待遇变化均不成立。</p></article>
+  <article class="card"><b>锚点门控</b><p>等价美金返还公式已就位，等待业务确认 USD/能量、USD/金币与 HKD/USD。</p></article>
+  <article class="card"><b>下一轮</b><p>补直给能量/金币包、每切片 ≥500 Spin、建造逐次点击完整轮次、小游戏完整局、购买前后窗口。</p></article>
+</div>
+
+<footer>
+  <p>数据源：Top_Tycoon素材/（原始事件账、数值模型 v0.2、拆解报告 v0.2、模拟 JSON）。返还分布百分比按金币口径计算（Slot 消耗能量返还金币；建造/小游戏/进度奖励产金币待补）；等价美金返还仍待锚点确认。竞品数据不直接作为 Cash Royal 配置结论。</p>
+</footer>
+
+</main>
+</body>
+</html>

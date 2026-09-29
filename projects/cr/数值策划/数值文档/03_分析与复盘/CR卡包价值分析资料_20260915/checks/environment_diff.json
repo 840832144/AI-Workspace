@@ -1,0 +1,570 @@
+[
+  {
+    "table": "CardActivityClose",
+    "trunk_rows": 40,
+    "dev_rows": 40,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "CardAlbumCfg",
+    "trunk_rows": 2,
+    "dev_rows": 2,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "CardAlbumTheme",
+    "trunk_rows": 13,
+    "dev_rows": 13,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "CardChapter",
+    "trunk_rows": 42,
+    "dev_rows": 42,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "CardCollectSimulator",
+    "trunk_rows": 11,
+    "dev_rows": 11,
+    "changed_cell_count": 34,
+    "changed_value_count": 34,
+    "examples": [
+      {
+        "sheet": "Sheet2",
+        "cell": "A1",
+        "trunk": {
+          "value": 36
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet2",
+        "cell": "A10",
+        "trunk": {
+          "value": 371
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet2",
+        "cell": "A12",
+        "trunk": {
+          "value": 515
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet2",
+        "cell": "A14",
+        "trunk": {
+          "value": 755
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet2",
+        "cell": "A16",
+        "trunk": {
+          "value": 1019
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet2",
+        "cell": "A18",
+        "trunk": {
+          "value": 1307
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet2",
+        "cell": "A20",
+        "trunk": {
+          "value": 1907
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet2",
+        "cell": "A22",
+        "trunk": {
+          "value": 2567
+        },
+        "dev": null
+      }
+    ]
+  },
+  {
+    "table": "CardGroup",
+    "trunk_rows": 3010,
+    "dev_rows": 3010,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "CardList",
+    "trunk_rows": 339,
+    "dev_rows": 339,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "CardPack",
+    "trunk_rows": 158,
+    "dev_rows": 158,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "CardStarTrade",
+    "trunk_rows": 5,
+    "dev_rows": 5,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "CardTradeCfg",
+    "trunk_rows": 1,
+    "dev_rows": 1,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "Cardget",
+    "trunk_rows": 526,
+    "dev_rows": 526,
+    "changed_cell_count": 15,
+    "changed_value_count": 15,
+    "examples": [
+      {
+        "sheet": "Sheet1",
+        "cell": "L1",
+        "trunk": {
+          "value": "ForbidKeyNote"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "L10",
+        "trunk": {
+          "value": "新手签到"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "L11",
+        "trunk": {
+          "value": "小猪礼包"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "L12",
+        "trunk": {
+          "value": "啤酒礼包"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "L13",
+        "trunk": {
+          "value": "周卡月卡"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "L14",
+        "trunk": {
+          "value": "赛马"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "L15",
+        "trunk": {
+          "value": "次充礼包"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "L2",
+        "trunk": {
+          "value": "string"
+        },
+        "dev": null
+      }
+    ]
+  },
+  {
+    "table": "Item",
+    "trunk_rows": 309,
+    "dev_rows": 309,
+    "changed_cell_count": 1492,
+    "changed_value_count": 1492,
+    "examples": [
+      {
+        "sheet": "item",
+        "cell": "AA1",
+        "trunk": {
+          "value": "scoreAddition"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "item",
+        "cell": "AA2",
+        "trunk": {
+          "value": "int"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "item",
+        "cell": "AA3",
+        "trunk": {
+          "value": "cs"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "item",
+        "cell": "AA4",
+        "trunk": {
+          "value": "//联赛积分加成，百分比"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "item",
+        "cell": "AB1",
+        "trunk": {
+          "value": "itemDuration"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "item",
+        "cell": "AB2",
+        "trunk": {
+          "value": "int"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "item",
+        "cell": "AB3",
+        "trunk": {
+          "value": "cs"
+        },
+        "dev": null
+      },
+      {
+        "sheet": "item",
+        "cell": "AB4",
+        "trunk": {
+          "value": "//buff类道具持续时间"
+        },
+        "dev": null
+      }
+    ]
+  },
+  {
+    "table": "ItemExchange",
+    "trunk_rows": 17,
+    "dev_rows": 17,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "PayDiamond",
+    "trunk_rows": 1048,
+    "dev_rows": 1040,
+    "changed_cell_count": 8339,
+    "changed_value_count": 8339,
+    "examples": [
+      {
+        "sheet": "item",
+        "cell": "A1001",
+        "trunk": {
+          "value": 1
+        },
+        "dev": {
+          "value": 2
+        }
+      },
+      {
+        "sheet": "item",
+        "cell": "A1002",
+        "trunk": {
+          "value": 1
+        },
+        "dev": {
+          "value": 2
+        }
+      },
+      {
+        "sheet": "item",
+        "cell": "A1006",
+        "trunk": {
+          "value": 2
+        },
+        "dev": {
+          "value": 1
+        }
+      },
+      {
+        "sheet": "item",
+        "cell": "A1007",
+        "trunk": {
+          "value": 2
+        },
+        "dev": {
+          "value": 1
+        }
+      },
+      {
+        "sheet": "item",
+        "cell": "A1008",
+        "trunk": {
+          "value": 2
+        },
+        "dev": {
+          "value": 1
+        }
+      },
+      {
+        "sheet": "item",
+        "cell": "A1009",
+        "trunk": {
+          "value": 2
+        },
+        "dev": {
+          "value": 1
+        }
+      },
+      {
+        "sheet": "item",
+        "cell": "A1010",
+        "trunk": {
+          "value": 2
+        },
+        "dev": {
+          "value": 1
+        }
+      },
+      {
+        "sheet": "item",
+        "cell": "A1013",
+        "trunk": {
+          "value": 1
+        },
+        "dev": {
+          "value": 2
+        }
+      }
+    ]
+  },
+  {
+    "table": "PriceCheatSheet",
+    "trunk_rows": 7236,
+    "dev_rows": 7236,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "SlotsCasinoBetList",
+    "trunk_rows": 38,
+    "dev_rows": 38,
+    "changed_cell_count": 337,
+    "changed_value_count": 283,
+    "examples": [
+      {
+        "sheet": "Sheet1",
+        "cell": "M1",
+        "trunk": {
+          "value": "dropRangeMin"
+        },
+        "dev": {
+          "value": "eventOpen"
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "M10",
+        "trunk": null,
+        "dev": {
+          "value": 0
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "M11",
+        "trunk": null,
+        "dev": {
+          "value": 0
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "M12",
+        "trunk": null,
+        "dev": {
+          "value": 0
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "M13",
+        "trunk": null,
+        "dev": {
+          "value": 0
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "M14",
+        "trunk": null,
+        "dev": {
+          "value": 0
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "M15",
+        "trunk": null,
+        "dev": {
+          "value": 0
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "M16",
+        "trunk": null,
+        "dev": {
+          "value": 0
+        }
+      }
+    ]
+  },
+  {
+    "table": "SlotsCasinoDropCards",
+    "trunk_rows": 12768,
+    "dev_rows": 12768,
+    "changed_cell_count": 0,
+    "changed_value_count": 0,
+    "examples": []
+  },
+  {
+    "table": "SysUnlock",
+    "trunk_rows": 25,
+    "dev_rows": 24,
+    "changed_cell_count": 113,
+    "changed_value_count": 113,
+    "examples": [
+      {
+        "sheet": "Sheet1",
+        "cell": "A10",
+        "trunk": {
+          "value": 6
+        },
+        "dev": {
+          "value": 7
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "A11",
+        "trunk": {
+          "value": 7
+        },
+        "dev": {
+          "value": 8
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "A12",
+        "trunk": {
+          "value": 8
+        },
+        "dev": {
+          "value": 9
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "A13",
+        "trunk": {
+          "value": 9
+        },
+        "dev": {
+          "value": 10
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "A14",
+        "trunk": {
+          "value": 10
+        },
+        "dev": {
+          "value": 11
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "A15",
+        "trunk": {
+          "value": 11
+        },
+        "dev": {
+          "value": 12
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "A16",
+        "trunk": {
+          "value": 12
+        },
+        "dev": {
+          "value": 13
+        }
+      },
+      {
+        "sheet": "Sheet1",
+        "cell": "A17",
+        "trunk": {
+          "value": 13
+        },
+        "dev": {
+          "value": 14
+        }
+      }
+    ]
+  }
+]

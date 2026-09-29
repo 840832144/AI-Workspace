@@ -1,0 +1,935 @@
+{
+  "name": "Sheet2",
+  "rows": [
+    {
+      "row": 1,
+      "cells": {
+        "A1": {
+          "value": "levelId"
+        },
+        "B1": {
+          "value": "bet2"
+        },
+        "C1": {
+          "value": "bet3"
+        },
+        "D1": {
+          "value": "bet33"
+        },
+        "E1": {
+          "value": "bet9"
+        },
+        "F1": {
+          "value": "bet35"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "cells": {
+        "A2": {
+          "value": "long"
+        },
+        "B2": {
+          "value": "long"
+        },
+        "C2": {
+          "value": "long"
+        },
+        "D2": {
+          "value": "long"
+        },
+        "E2": {
+          "value": "long"
+        },
+        "F2": {
+          "value": "long"
+        }
+      }
+    },
+    {
+      "row": 3,
+      "cells": {
+        "A3": {
+          "value": "s"
+        },
+        "B3": {
+          "value": "s"
+        },
+        "C3": {
+          "value": "s"
+        },
+        "D3": {
+          "value": "s"
+        },
+        "E3": {
+          "value": "s"
+        },
+        "F3": {
+          "value": "s"
+        },
+        "H3": {
+          "value": "龙机器"
+        },
+        "J3": {
+          "value": "higgs"
+        },
+        "Q3": {
+          "value": "higgs"
+        }
+      }
+    },
+    {
+      "row": 4,
+      "cells": {
+        "A4": {
+          "value": "bet等级"
+        },
+        "B4": {
+          "value": "2倍数制_1"
+        },
+        "C4": {
+          "value": "3倍数制_1.5"
+        },
+        "D4": {
+          "value": "33倍数制_1.65"
+        },
+        "E4": {
+          "value": "9倍数制_0.9"
+        },
+        "F4": {
+          "value": "35倍数制_1.75"
+        },
+        "G4": {
+          "value": "档位"
+        },
+        "H4": {
+          "value": "底注翻倍"
+        },
+        "I4": {
+          "value": "美金"
+        },
+        "J4": {
+          "value": "底注翻倍"
+        },
+        "K4": {
+          "value": "美金"
+        },
+        "M4": {
+          "value": "档位"
+        },
+        "N4": {
+          "value": "2倍数制_1"
+        },
+        "O4": {
+          "value": "底注翻倍"
+        },
+        "P4": {
+          "value": "美金"
+        },
+        "Q4": {
+          "value": "底注翻倍"
+        },
+        "R4": {
+          "value": "美金"
+        }
+      }
+    },
+    {
+      "row": 5,
+      "cells": {
+        "A5": {
+          "value": 1
+        },
+        "B5": {
+          "value": 200
+        },
+        "C5": {
+          "value": 300
+        },
+        "D5": {
+          "value": 330
+        },
+        "E5": {
+          "value": 360
+        },
+        "F5": {
+          "value": 700
+        },
+        "G5": {
+          "value": 1
+        },
+        "H5": {
+          "value": 1
+        },
+        "I5": {
+          "value": 0.0028,
+          "formula": "=F5/250000",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "I5:I14",
+            "si": "0"
+          }
+        },
+        "J5": {
+          "value": 1
+        },
+        "K5": {
+          "value": 0.0008
+        },
+        "M5": {
+          "value": 1
+        },
+        "N5": {
+          "value": 200
+        },
+        "O5": {
+          "value": 1
+        },
+        "P5": {
+          "value": 0.0008,
+          "formula": "=N5/250000",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "P5:P15",
+            "si": "1"
+          }
+        },
+        "Q5": {
+          "value": 1
+        },
+        "R5": {
+          "value": 0.0008
+        }
+      }
+    },
+    {
+      "row": 6,
+      "cells": {
+        "A6": {
+          "value": 2
+        },
+        "B6": {
+          "value": 400
+        },
+        "C6": {
+          "value": 600
+        },
+        "D6": {
+          "value": 660
+        },
+        "E6": {
+          "value": 720
+        },
+        "F6": {
+          "value": 1400
+        },
+        "G6": {
+          "value": 2
+        },
+        "H6": {
+          "value": 2,
+          "formula": "=F6/$F$5",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "H6:H14",
+            "si": "2"
+          }
+        },
+        "I6": {
+          "value": 0.0056,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J6": {
+          "value": 2.25
+        },
+        "K6": {
+          "value": 0.0018
+        },
+        "M6": {
+          "value": 2
+        },
+        "N6": {
+          "value": 400
+        },
+        "O6": {
+          "value": 2,
+          "formula": "=N6/$N$5",
+          "formula_attributes": {
+            "t": "shared",
+            "ref": "O6:O15",
+            "si": "3"
+          }
+        },
+        "P6": {
+          "value": 0.0016,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q6": {
+          "value": 2.25
+        },
+        "R6": {
+          "value": 0.0018
+        }
+      }
+    },
+    {
+      "row": 7,
+      "cells": {
+        "A7": {
+          "value": 3
+        },
+        "B7": {
+          "value": 800
+        },
+        "C7": {
+          "value": 1200
+        },
+        "D7": {
+          "value": 1320
+        },
+        "E7": {
+          "value": 1440
+        },
+        "F7": {
+          "value": 2800
+        },
+        "G7": {
+          "value": 3
+        },
+        "H7": {
+          "value": 4,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "I7": {
+          "value": 0.0112,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J7": {
+          "value": 4.75
+        },
+        "K7": {
+          "value": 0.0038
+        },
+        "M7": {
+          "value": 3
+        },
+        "N7": {
+          "value": 800
+        },
+        "O7": {
+          "value": 4,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P7": {
+          "value": 0.0032,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q7": {
+          "value": 4.75
+        },
+        "R7": {
+          "value": 0.0038
+        }
+      }
+    },
+    {
+      "row": 8,
+      "cells": {
+        "A8": {
+          "value": 4
+        },
+        "B8": {
+          "value": 2000
+        },
+        "C8": {
+          "value": 3000
+        },
+        "D8": {
+          "value": 3300
+        },
+        "E8": {
+          "value": 3600
+        },
+        "F8": {
+          "value": 7000
+        },
+        "G8": {
+          "value": 4
+        },
+        "H8": {
+          "value": 10,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "I8": {
+          "value": 0.028,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J8": {
+          "value": 8.5
+        },
+        "K8": {
+          "value": 0.0068
+        },
+        "M8": {
+          "value": 4
+        },
+        "N8": {
+          "value": 2000
+        },
+        "O8": {
+          "value": 10,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P8": {
+          "value": 0.008,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q8": {
+          "value": 8.5
+        },
+        "R8": {
+          "value": 0.0068
+        }
+      }
+    },
+    {
+      "row": 9,
+      "cells": {
+        "A9": {
+          "value": 5
+        },
+        "B9": {
+          "value": 4000
+        },
+        "C9": {
+          "value": 6000
+        },
+        "D9": {
+          "value": 6600
+        },
+        "E9": {
+          "value": 7200
+        },
+        "F9": {
+          "value": 14000
+        },
+        "G9": {
+          "value": 5
+        },
+        "H9": {
+          "value": 20,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "I9": {
+          "value": 0.056,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J9": {
+          "value": 11
+        },
+        "K9": {
+          "value": 0.0088
+        },
+        "M9": {
+          "value": 5
+        },
+        "N9": {
+          "value": 4000
+        },
+        "O9": {
+          "value": 20,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P9": {
+          "value": 0.016,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q9": {
+          "value": 11
+        },
+        "R9": {
+          "value": 0.0088
+        }
+      }
+    },
+    {
+      "row": 10,
+      "cells": {
+        "A10": {
+          "value": 6
+        },
+        "B10": {
+          "value": 10000
+        },
+        "C10": {
+          "value": 15000
+        },
+        "D10": {
+          "value": 16500
+        },
+        "E10": {
+          "value": 18000
+        },
+        "F10": {
+          "value": 35000
+        },
+        "G10": {
+          "value": 6
+        },
+        "H10": {
+          "value": 50,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "I10": {
+          "value": 0.14,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J10": {
+          "value": 22
+        },
+        "K10": {
+          "value": 0.0176
+        },
+        "M10": {
+          "value": 6
+        },
+        "N10": {
+          "value": 10000
+        },
+        "O10": {
+          "value": 50,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P10": {
+          "value": 0.04,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q10": {
+          "value": 22
+        },
+        "R10": {
+          "value": 0.0176
+        }
+      }
+    },
+    {
+      "row": 11,
+      "cells": {
+        "A11": {
+          "value": 7
+        },
+        "B11": {
+          "value": 20000
+        },
+        "C11": {
+          "value": 30000
+        },
+        "D11": {
+          "value": 33000
+        },
+        "E11": {
+          "value": 36000
+        },
+        "F11": {
+          "value": 70000
+        },
+        "G11": {
+          "value": 7
+        },
+        "H11": {
+          "value": 100,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "I11": {
+          "value": 0.28,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J11": {
+          "value": 55
+        },
+        "K11": {
+          "value": 0.044
+        },
+        "M11": {
+          "value": 7
+        },
+        "N11": {
+          "value": 20000
+        },
+        "O11": {
+          "value": 100,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P11": {
+          "value": 0.08,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q11": {
+          "value": 55
+        },
+        "R11": {
+          "value": 0.044
+        }
+      }
+    },
+    {
+      "row": 12,
+      "cells": {
+        "A12": {
+          "value": 8
+        },
+        "B12": {
+          "value": 40000
+        },
+        "C12": {
+          "value": 60000
+        },
+        "D12": {
+          "value": 66000
+        },
+        "E12": {
+          "value": 72000
+        },
+        "F12": {
+          "value": 140000
+        },
+        "G12": {
+          "value": 8
+        },
+        "H12": {
+          "value": 200,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "I12": {
+          "value": 0.56,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J12": {
+          "value": 77
+        },
+        "K12": {
+          "value": 0.0616
+        },
+        "M12": {
+          "value": 8
+        },
+        "N12": {
+          "value": 40000
+        },
+        "O12": {
+          "value": 200,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P12": {
+          "value": 0.16,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q12": {
+          "value": 77
+        },
+        "R12": {
+          "value": 0.0616
+        }
+      }
+    },
+    {
+      "row": 13,
+      "cells": {
+        "A13": {
+          "value": 9
+        },
+        "B13": {
+          "value": 80000
+        },
+        "C13": {
+          "value": 120000
+        },
+        "D13": {
+          "value": 132000
+        },
+        "E13": {
+          "value": 144000
+        },
+        "F13": {
+          "value": 280000
+        },
+        "G13": {
+          "value": 9
+        },
+        "H13": {
+          "value": 400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "I13": {
+          "value": 1.12,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J13": {
+          "value": 110
+        },
+        "K13": {
+          "value": 0.088
+        },
+        "M13": {
+          "value": 9
+        },
+        "N13": {
+          "value": 80000
+        },
+        "O13": {
+          "value": 400,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P13": {
+          "value": 0.32,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q13": {
+          "value": 110
+        },
+        "R13": {
+          "value": 0.088
+        }
+      }
+    },
+    {
+      "row": 14,
+      "cells": {
+        "A14": {
+          "value": 10
+        },
+        "B14": {
+          "value": 100000
+        },
+        "C14": {
+          "value": 150000
+        },
+        "D14": {
+          "value": 165000
+        },
+        "E14": {
+          "value": 180000
+        },
+        "F14": {
+          "value": 350000
+        },
+        "G14": {
+          "value": 10
+        },
+        "H14": {
+          "value": 500,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "2"
+          }
+        },
+        "I14": {
+          "value": 1.4,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "0"
+          }
+        },
+        "J14": {
+          "value": 165
+        },
+        "K14": {
+          "value": 0.132
+        },
+        "M14": {
+          "value": 10
+        },
+        "N14": {
+          "value": 100000
+        },
+        "O14": {
+          "value": 500,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P14": {
+          "value": 0.4,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q14": {
+          "value": 165
+        },
+        "R14": {
+          "value": 0.132
+        }
+      }
+    },
+    {
+      "row": 15,
+      "cells": {
+        "G15": {
+          "value": 11
+        },
+        "J15": {
+          "value": 220
+        },
+        "K15": {
+          "value": 0.176
+        },
+        "M15": {
+          "value": 11
+        },
+        "N15": {
+          "value": 250000
+        },
+        "O15": {
+          "value": 1250,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "3"
+          }
+        },
+        "P15": {
+          "value": 1,
+          "formula": "=",
+          "formula_attributes": {
+            "t": "shared",
+            "si": "1"
+          }
+        },
+        "Q15": {
+          "value": 220
+        },
+        "R15": {
+          "value": 0.176
+        }
+      }
+    }
+  ]
+}

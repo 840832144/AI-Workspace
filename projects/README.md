@@ -1,6 +1,8 @@
 # Game Project Standard
 
-`projects/` 是所有游戏策划项目的控制面索引，不保存业务实现。每个游戏项目必须从 `projects/TEMPLATE/` 建立统一结构，确保 ChatGPT、Codex 和 User 能从仓库独立恢复上下文。
+当前 CR 入口：[cr/README.md](cr/README.md)。其正式配置仍在公司 SVN；`cr/HuuugeCollector` 为历史参考副本。CR 与 101 的数据、配置及写入位置独立。
+
+`projects/` 是游戏策划项目的控制面索引；按 RFC-0005 同时承载 `cr/` 内已批准公开的策划资料与分析工具。每个游戏项目必须从 `projects/TEMPLATE/` 建立统一结构，确保 ChatGPT、Codex 和 User 能从仓库独立恢复上下文。
 
 ## 强制结构
 
@@ -53,4 +55,4 @@ projects/<project-slug>/
 
 - [`huuuge-android-research`](huuuge-android-research/README.md) — Huuuge Casino Android 游戏系统与数值研究控制面；外部仓库保留实现和证据真相源。
 
-登记项目不会迁移外部仓库。新增项目继续从 `projects/TEMPLATE/` 创建，并先通过对应 Review gate。
+常规登记不迁移外部仓库；CR 是 User 明确批准的保留历史 subtree 迁移。新增项目继续从 `projects/TEMPLATE/` 创建，并先通过对应 Review gate。

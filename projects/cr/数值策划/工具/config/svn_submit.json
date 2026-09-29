@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "forbidden_name_patterns": [
+    "~$*",
+    "*.pyc",
+    "*.log",
+    "*.tmp",
+    "*Spades*",
+    "*Bingo*",
+    "*101*",
+    "TexaPoker*"
+  ],
+  "validation_commands": [
+    [
+      "{python}",
+      "数值策划/工具/validate_repository.py",
+      "--root",
+      "{root}"
+    ]
+  ],
+  "max_display_paths": 80
+}

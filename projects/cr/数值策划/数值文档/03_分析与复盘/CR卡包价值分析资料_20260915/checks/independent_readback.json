@@ -1,0 +1,8 @@
+{
+  "independent_reader": "openpyxl 3.1.5 read_only/data_only",
+  "workbooks": 36,
+  "sample": "每表首/中/末数据行",
+  "sample_cells_checked": 1694,
+  "broken_markdown_links": [],
+  "xlsx_resaved": false
+}

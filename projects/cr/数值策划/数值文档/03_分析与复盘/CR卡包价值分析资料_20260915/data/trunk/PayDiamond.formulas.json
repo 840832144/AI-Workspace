@@ -1,0 +1,123 @@
+[
+  {
+    "sheet": "item",
+    "cell": "AK243",
+    "value": 200,
+    "formula": "=(J243+1)",
+    "formula_attributes": {
+      "t": "shared",
+      "ref": "AK243:AK254",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK244",
+    "value": 500,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK245",
+    "value": 1000,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK246",
+    "value": 2000,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK247",
+    "value": 5000,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK248",
+    "value": 10000,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK249",
+    "value": 200,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK250",
+    "value": 500,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK251",
+    "value": 1000,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK252",
+    "value": 2000,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK253",
+    "value": 5000,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "AK254",
+    "value": 10000,
+    "formula": "=",
+    "formula_attributes": {
+      "t": "shared",
+      "si": "0"
+    }
+  }
+]

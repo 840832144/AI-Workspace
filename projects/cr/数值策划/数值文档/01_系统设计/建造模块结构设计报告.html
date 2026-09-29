@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cash Royal · 建造模块结构设计报告</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #65717d;
+      --line: #dce2e6;
+      --paper: #fbfaf7;
+      --panel: #ffffff;
+      --navy: #17324d;
+      --navy-2: #244d70;
+      --teal: #138a80;
+      --teal-soft: #e8f6f3;
+      --gold: #c68a2b;
+      --gold-soft: #fbf2df;
+      --red: #b84a45;
+      --red-soft: #fff0ee;
+      --blue-soft: #edf4fa;
+      --shadow: 0 12px 32px rgba(23, 50, 77, .08);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 5% 0%, rgba(19, 138, 128, .08), transparent 28rem),
+        linear-gradient(180deg, #f4f2ed 0, var(--paper) 26rem);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.72;
+    }
+
+    a { color: var(--navy-2); text-decoration: none; }
+    a:hover { color: var(--teal); }
+    code, .mono {
+      font-family: Consolas, "SFMono-Regular", Menlo, monospace;
+      font-size: .93em;
+    }
+    code {
+      padding: .12rem .35rem;
+      color: #0d5b55;
+      background: var(--teal-soft);
+      border-radius: 5px;
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr);
+      max-width: 1520px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 34px 26px;
+      color: #eaf0f5;
+      background: var(--navy);
+      overflow: auto;
+    }
+    .brand {
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+    .brand .eyebrow {
+      color: #9fcac7;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .brand h2 {
+      margin: 7px 0 4px;
+      color: #fff;
+      font-family: Georgia, "STSong", serif;
+      font-size: 24px;
+      line-height: 1.28;
+    }
+    .brand p { margin: 0; color: #afbecb; font-size: 12px; }
+    nav { margin-top: 23px; }
+    nav a {
+      display: block;
+      margin: 3px 0;
+      padding: 9px 11px;
+      color: #bdc9d3;
+      border-left: 2px solid transparent;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      transition: .18s ease;
+    }
+    nav a:hover, nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,.07);
+      border-left-color: #5dc1b8;
+    }
+    .aside-foot {
+      margin-top: 25px;
+      padding: 15px;
+      color: #aebbc6;
+      background: rgba(0,0,0,.12);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      font-size: 11px;
+    }
+
+    main { min-width: 0; padding: 58px 64px 100px; }
+    .hero {
+      position: relative;
+      padding: 40px 42px;
+      color: #fff;
+      background:
+        linear-gradient(125deg, rgba(23,50,77,.97), rgba(24,91,103,.94)),
+        repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,.03) 12px 13px);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -65px;
+      bottom: -110px;
+      width: 320px;
+      height: 320px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+      box-shadow: 0 0 0 44px rgba(255,255,255,.035), 0 0 0 88px rgba(255,255,255,.025);
+    }
+    .hero .kicker {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 12px;
+      color: #92d7d0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0;
+      font-family: Georgia, "STSong", serif;
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -.02em;
+    }
+    .hero .lead {
+      position: relative;
+      z-index: 1;
+      max-width: 850px;
+      margin: 18px 0 0;
+      color: #d5e1e8;
+      font-size: 16px;
+    }
+    .meta-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 25px;
+    }
+    .pill {
+      padding: 5px 10px;
+      color: #dbe8ed;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    section { scroll-margin-top: 28px; margin-top: 58px; }
+    .section-head { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 22px; }
+    .section-no {
+      flex: 0 0 auto;
+      padding-top: 7px;
+      color: var(--teal);
+      font-family: Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    h2 {
+      margin: 0;
+      color: var(--navy);
+      font-family: Georgia, "STSong", serif;
+      font-size: 30px;
+      line-height: 1.25;
+    }
+    .section-head p { margin: 7px 0 0; color: var(--muted); font-size: 14px; }
+    h3 { margin: 28px 0 12px; color: var(--navy); font-size: 18px; }
+    p { margin: .7em 0; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .stat {
+      min-height: 132px;
+      padding: 20px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--teal);
+      border-radius: 13px;
+      box-shadow: 0 5px 16px rgba(23,50,77,.035);
+    }
+    .stat strong {
+      display: block;
+      color: var(--navy);
+      font-family: Georgia, serif;
+      font-size: 29px;
+      line-height: 1;
+    }
+    .stat span { display: block; margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .callout {
+      margin: 20px 0;
+      padding: 17px 20px;
+      background: var(--blue-soft);
+      border-left: 4px solid var(--navy-2);
+      border-radius: 0 10px 10px 0;
+    }
+    .callout.warn { background: var(--gold-soft); border-left-color: var(--gold); }
+    .callout.risk { background: var(--red-soft); border-left-color: var(--red); }
+    .callout strong { color: var(--navy); }
+
+    .loop {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(110px, 1fr));
+      align-items: stretch;
+      gap: 18px;
+      margin: 25px 0;
+    }
+    .node {
+      position: relative;
+      min-height: 142px;
+      padding: 15px 13px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--teal);
+      border-radius: 12px;
+      box-shadow: 0 7px 20px rgba(23,50,77,.05);
+    }
+    .node:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 49px;
+      right: -17px;
+      z-index: 2;
+      width: 16px;
+      color: var(--teal);
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .node .tag { color: var(--teal); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+    .node b { display: block; margin: 6px 0 7px; color: var(--navy); font-size: 14px; }
+    .node small { display: block; color: var(--muted); font-size: 11px; line-height: 1.55; }
+    .node.feedback { border-top-color: var(--gold); background: #fffdf8; }
+
+    .formula {
+      margin: 22px 0;
+      padding: 22px 24px;
+      color: #eaf3f4;
+      background: #102b3c;
+      border-radius: 13px;
+      box-shadow: var(--shadow);
+    }
+    .formula .label { color: #78cfc6; font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+    .formula pre {
+      margin: 10px 0 0;
+      white-space: pre-wrap;
+      color: #fff;
+      font: 600 15px/1.7 Consolas, monospace;
+    }
+    .formula .note { margin-top: 12px; color: #afc2cc; font-size: 12px; }
+
+    .table-wrap {
+      margin: 18px 0 26px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      box-shadow: 0 8px 22px rgba(23,50,77,.04);
+      overflow: auto;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; font-size: 13px; }
+    th {
+      padding: 12px 14px;
+      color: #fff;
+      background: var(--navy);
+      text-align: left;
+      white-space: nowrap;
+    }
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e8ecef;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr:nth-child(even) { background: #fafbf9; }
+    td:first-child { color: var(--navy); font-weight: 700; }
+    .status {
+      display: inline-block;
+      padding: 2px 8px;
+      color: #0d665f;
+      background: var(--teal-soft);
+      border-radius: 99px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+    .status.external { color: #76511a; background: var(--gold-soft); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+    .card {
+      padding: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 7px 22px rgba(23,50,77,.04);
+    }
+    .card .file { color: var(--teal); font: 700 12px Consolas, monospace; }
+    .card h3 { margin: 7px 0 10px; }
+    .card p { color: var(--muted); font-size: 13px; }
+    .fields { display: flex; flex-wrap: wrap; gap: 6px; margin: 13px 0; }
+    .fields code { font-size: 11px; }
+    .card ul, .clean-list { padding-left: 1.2rem; }
+    .card li, .clean-list li { margin: 6px 0; font-size: 13px; }
+
+    .steps { counter-reset: flow; display: grid; gap: 13px; }
+    .step {
+      position: relative;
+      padding: 18px 20px 18px 68px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .step::before {
+      counter-increment: flow;
+      content: counter(flow);
+      position: absolute;
+      left: 19px;
+      top: 19px;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      color: #fff;
+      background: var(--teal);
+      border-radius: 50%;
+      font-family: Georgia, serif;
+      font-weight: 700;
+    }
+    .step b { color: var(--navy); }
+    .step p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .checklist {
+      padding: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    .checklist h3 { margin-top: 0; }
+    .checklist ul { padding-left: 0; list-style: none; }
+    .checklist li {
+      position: relative;
+      margin: 10px 0;
+      padding-left: 27px;
+      color: #3f4b55;
+      font-size: 13px;
+    }
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      color: #fff;
+      background: var(--teal);
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 70px;
+      padding-top: 22px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 11px;
+    }
+
+    @media (max-width: 1180px) {
+      .loop { grid-template-columns: repeat(4, 1fr); }
+      .node:nth-child(4)::after { display: none; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 860px) {
+      .page { display: block; }
+      aside { position: relative; width: 100%; height: auto; padding: 22px; }
+      nav { display: flex; gap: 6px; overflow-x: auto; }
+      nav a { min-width: max-content; border-left: 0; border-bottom: 2px solid transparent; border-radius: 7px; }
+      nav a:hover, nav a.active { border-left: 0; border-bottom-color: #5dc1b8; }
+      .aside-foot { display: none; }
+      main { padding: 28px 20px 65px; }
+      .hero { padding: 30px 25px; }
+      .cards, .two-col { grid-template-columns: 1fr; }
+      .loop { grid-template-columns: 1fr 1fr; }
+      .node::after { display: none; }
+    }
+    @media (max-width: 520px) {
+      .summary-grid, .loop { grid-template-columns: 1fr; }
+      .section-head { gap: 10px; }
+      h2 { font-size: 25px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page { display: block; max-width: none; }
+      aside { display: none; }
+      main { padding: 0; }
+      .hero { color: #fff !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      section { page-break-inside: avoid; margin-top: 34px; }
+      .card, .stat, .table-wrap, .node, .formula { box-shadow: none; }
+      .loop { grid-template-columns: repeat(4, 1fr); }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside>
+      <div class="brand">
+        <div class="eyebrow">Cash Royal / Numerical Design</div>
+        <h2>建造模块<br>结构设计报告</h2>
+        <p>配置拆解 · 数据关系 · 运行链路</p>
+      </div>
+      <nav id="nav">
+        <a href="#overview">01 · 设计总览</a>
+        <a href="#loop">02 · 核心经济闭环</a>
+        <a href="#formula">03 · Spin 掉落公式</a>
+        <a href="#catalog">04 · 配置表目录</a>
+        <a href="#runtime">05 · 运行时流程</a>
+        <a href="#tuning">06 · 调参抓手</a>
+        <a href="#validation">07 · 校验与风险</a>
+        <a href="#version">08 · 版本与边界</a>
+      </nav>
+      <div class="aside-foot">
+        当前分析基线：测试服 dev 工作副本 r5359。报告只描述配置结构和已确认口径，不把 Sheet2、代码回退规则或未核实逻辑当作既定事实。
+      </div>
+    </aside>
+
+    <main>
+      <header class="hero">
+        <div class="kicker">SYSTEM DESIGN REPORT · 2026-07-30</div>
+        <h1>建造模块不是孤立消耗，<br>而是一条可循环的成长经济链。</h1>
+        <p class="lead">
+          本报告拆解建造币从初始化、老虎机掉落、Bet/等级/VIP 换算、翻地消耗，到经验、荣誉、宝箱、NPC 与建筑金币产出的完整配置关系，并给出策划可直接使用的调参与验收口径。
+        </p>
+        <div class="meta-row">
+          <span class="pill">适用项目：Cash Royal</span>
+          <span class="pill">配置基线：dev r5359</span>
+          <span class="pill">权威来源：正式配置制作/发布链路</span>
+          <span class="pill">输出格式：Standalone HTML</span>
+        </div>
+      </header>
+
+      <section id="overview">
+        <div class="section-head">
+          <div class="section-no">01</div>
+          <div>
+            <h2>设计总览</h2>
+            <p>先建立模块边界：哪里生产建设币、哪里消费、哪里推进成长、哪里把价值反馈回老虎机。</p>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="stat"><strong>90</strong><span>初始建设币<br><code>CommCfg.id = 293</code></span></div>
+          <div class="stat"><strong>613</strong><span>已配置翻地节点<br>覆盖 11 个建造关卡</span></div>
+          <div class="stat"><strong>798</strong><span>建设币换算记录<br>38 Bet × 21 等级断点</span></div>
+          <div class="stat"><strong>16</strong><span>VIP 系数列<br><code>vip_16_0 … vip_16_15</code></span></div>
+        </div>
+
+        <div class="callout">
+          <strong>一句话定义：</strong>
+          玩家用建筑与宝箱产出的金币启动老虎机；Spin 按概率产出“基础建设币个数”，再通过
+          <code>BuildCashCheatSheet</code> 按 Bet、玩家等级和 VIP 换算成实际建设币；建设币用于翻地，
+          翻地同时推进玩家经验、建造荣誉、NPC 储量和阶段宝箱，最终形成新的金币与建设币反馈。
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>配置层</th><th>解决的问题</th><th>主配置</th><th>设计原则</th></tr></thead>
+            <tbody>
+              <tr><td>初始化</td><td>新用户第一次进入建造时有多少建设币</td><td><code>CommCfg</code></td><td>只放全局启动参数，不承载成长曲线</td></tr>
+              <tr><td>生产</td><td>哪一次 Spin 掉、概率多少、基础个数多少</td><td><code>SpinDropBuildingCoins</code></td><td>概率与数量分离，保底规则显式配置</td></tr>
+              <tr><td>换算</td><td>相同基础个数在不同 Bet/等级/VIP 下值多少</td><td><code>BuildCashCheatSheet</code></td><td>二维键 + VIP 列，隔离老虎机膨胀</td></tr>
+              <tr><td>消费与成长</td><td>每块地消耗多少，并带来多少经验/荣誉</td><td><code>BuildLevelCfg</code></td><td>一个翻地节点一行，便于分段塑形</td></tr>
+              <tr><td>反馈</td><td>阶段宝箱、荣誉奖励、NPC、建筑金币</td><td><code>BuildBox</code> 等</td><td>奖励触发与消耗曲线解耦</td></tr>
+              <tr><td>表现与外部依赖</td><td>关卡名、物品、Bet 解锁、玩家升级</td><td><code>BuildLevelInfo</code> 等</td><td>展示、身份和跨系统规则不重复维护</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="loop">
+        <div class="section-head">
+          <div class="section-no">02</div>
+          <div>
+            <h2>核心经济闭环</h2>
+            <p>从零库存到可持续 Spin 的完整调用链；箭头表示资源或进度的主要流向。</p>
+          </div>
+        </div>
+
+        <div class="loop">
+          <div class="node">
+            <span class="tag">START</span>
+            <b>启动资金</b>
+            <small>建筑按生产速度给金币；建造宝箱也可能给美金金币。建设币初值来自 CommCfg。</small>
+          </div>
+          <div class="node">
+            <span class="tag">SPEND</span>
+            <b>老虎机 Spin</b>
+            <small>消耗金币选择 Bet；Bet 档位来自 SlotsCasinoBetList，并受等级解锁约束。</small>
+          </div>
+          <div class="node">
+            <span class="tag">ROLL</span>
+            <b>掉落判定</b>
+            <small>SpinDropBuildingCoins 按 spinnum 读取概率、基础个数和保底参数。</small>
+          </div>
+          <div class="node">
+            <span class="tag">SCALE</span>
+            <b>建设币换算</b>
+            <small>用 Bet levelId、玩家等级断点、VIP 列查 BuildCashCheatSheet。</small>
+          </div>
+          <div class="node">
+            <span class="tag">BUILD</span>
+            <b>翻地消耗</b>
+            <small>BuildLevelCfg.needCash 扣建设币；blockNum 决定当前节点。</small>
+          </div>
+          <div class="node feedback">
+            <span class="tag">PROGRESS</span>
+            <b>成长推进</b>
+            <small>同一翻地节点增加 expVal、honorVal，并改变 NPC 可积攒上限。</small>
+          </div>
+          <div class="node feedback">
+            <span class="tag">RETURN</span>
+            <b>奖励回流</b>
+            <small>宝箱、荣誉、NPC 与建筑生产返回金币/建设币，支持下一轮 Spin。</small>
+          </div>
+        </div>
+
+        <div class="callout warn">
+          <strong>关键解耦：</strong>
+          <code>SpinDropBuildingCoins</code> 决定“是否掉、掉几个基础单位”，
+          <code>BuildCashCheatSheet</code> 决定“每个基础单位在当前玩家状态下值多少”，
+          <code>BuildLevelCfg</code> 决定“建设币能推进多快”。三者应分别调节，避免同时改动后无法归因。
+        </div>
+      </section>
+
+      <section id="formula">
+        <div class="section-head">
+          <div class="section-no">03</div>
+          <div>
+            <h2>Spin 掉落公式</h2>
+            <p>公式按用户确认口径整理；期望值不含保底、取整、额外加成和代码回退。</p>
+          </div>
+        </div>
+
+        <div class="formula">
+          <div class="label">单次命中实际掉落</div>
+          <pre>实际建设币 = SpinDropBuildingCoins.buildingcoins
+             × BuildCashCheatSheet[Bet levelId, 玩家等级断点, VIP列]</pre>
+          <div class="note">其中 Bet levelId 对应 SlotsCasinoBetList.levelId；VIP 0 使用 vip_16_0，VIP 15 使用 vip_16_15。</div>
+        </div>
+
+        <div class="formula">
+          <div class="label">无保底理论期望</div>
+          <pre>E[每次 Spin 建设币] = probability ÷ 100
+                     × buildingcoins
+                     × 查表系数</pre>
+          <div class="note">若存在连续未掉落保底或按玩家建设币存量触发的保底，真实长期期望应在模拟器中加入状态机后计算。</div>
+        </div>
+
+        <h3>当前配置可复算样例</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>输入项</th><th>当前值</th><th>来源</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td>Spin 序号</td><td>6</td><td><code>SpinDropBuildingCoins.spinnum</code></td><td>仅作为示例行</td></tr>
+              <tr><td>掉落概率</td><td>35%</td><td><code>probability</code></td><td>百分制</td></tr>
+              <tr><td>基础建设币个数</td><td>500</td><td><code>buildingcoins</code></td><td>命中后参与倍率换算</td></tr>
+              <tr><td>Bet / 等级 / VIP</td><td>1 / 0 / 0</td><td>查表键</td><td>使用 <code>Id=1, level=0, vip_16_0</code></td></tr>
+              <tr><td>查表系数</td><td>336</td><td><code>BuildCashCheatSheet</code></td><td>当前 Sheet1 配置值</td></tr>
+              <tr><td>命中掉落</td><td><strong>168,000</strong></td><td>500 × 336</td><td>不含其他加成与取整</td></tr>
+              <tr><td>无保底期望</td><td><strong>58,800 / Spin</strong></td><td>35% × 168,000</td><td>仅理论小样本口径</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout risk">
+          <strong>不要把 VIP 列直接解释成“VIP 越高奖励越大”。</strong>
+          当前矩阵中不少相同 Bet/等级行随 VIP 提高而下降，更像对 VIP 可用 Bet、支付能力或经济膨胀的归一化系数。
+          其设计意图需结合 Bet 解锁和代码选择逻辑一起验证。
+        </div>
+      </section>
+
+      <section id="catalog">
+        <div class="section-head">
+          <div class="section-no">04</div>
+          <div>
+            <h2>配置表目录与字段职责</h2>
+            <p>按模块内主表、反馈表、跨系统依赖三组整理，便于策划定位修改入口。</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="file">CommCfg.xlsx · r5329</div>
+            <h3>全局初始化参数</h3>
+            <p>建造模块唯一不以 Build 开头的核心入口。当前已确认 <code>id=293</code>、<code>val=90</code>，描述为“初始建造币个数”。</p>
+            <div class="fields"><code>id</code><code>val</code><code>valStr</code><code>desc</code></div>
+            <ul>
+              <li><code>id=288</code>：建设币物品 ID，当前为 271001。</li>
+              <li><code>id=289</code>：建设币图标 ID，当前为 1801。</li>
+              <li><code>id=293</code>：初始建设币，当前为 90。</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="file">SpinDropBuildingCoins.xlsx · r5019</div>
+            <h3>Spin 掉落与保底</h3>
+            <p>按 Spin 次数配置建设币掉落概率、基础个数和保底规则。当前 Sheet1 有 20 条业务记录。</p>
+            <div class="fields"><code>spinnum</code><code>probability</code><code>guarantType</code><code>guarantVal</code><code>buildingcoins</code></div>
+            <ul>
+              <li><code>probability</code>：0–100 百分制。</li>
+              <li><code>guarantType=1</code>：连续未掉落次数；<code>2</code>：玩家建设币条件。</li>
+              <li>20 次之后的查找/回退规则需代码确认。</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="file">BuildCashCheatSheet.xlsx · r5331</div>
+            <h3>建设币膨胀换算矩阵</h3>
+            <p>把基础建设币单位换算成玩家当前状态下的实际建设币，是连接老虎机经济与建造消耗的关键桥表。</p>
+            <div class="fields"><code>Id</code><code>level</code><code>vip_16_0…15</code></div>
+            <ul>
+              <li><code>Id</code> 对应 <code>SlotsCasinoBetList.levelId</code>。</li>
+              <li>当前覆盖 38 个 Bet 档、21 个玩家等级断点、16 个 VIP 列，共 798 行。</li>
+              <li>等级断点为 0、10、20…1400，并非逐级配置。</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="file">BuildLevelCfg.xlsx · r5306</div>
+            <h3>翻地消耗与成长主表</h3>
+            <p>一个“关卡 × 翻地节点”一行，统一定义该次翻地的建设币消耗、经验、荣誉与 NPC 参数。</p>
+            <div class="fields"><code>level</code><code>blockNum</code><code>needCash</code><code>honorVal</code><code>expVal</code><code>npcMax</code><code>npcOne</code></div>
+            <ul>
+              <li><code>needCash</code>：本次翻地消耗，不是累计值。</li>
+              <li><code>expVal</code>：翻地增加玩家经验；玩家是否升级由 <code>LevelCfg</code> 判断。</li>
+              <li><code>honorVal</code>：增加建造荣誉；荣誉升级由 <code>BuildHonorLevel</code> 判断。</li>
+              <li><code>npcMax / npcOne</code>：NPC 建设币积攒上限与单次值。</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="file">BuildLevelInfo.xlsx · r5220</div>
+            <h3>建造关卡表现信息</h3>
+            <p>维护关卡 ID、语言键/名称和建筑介绍，当前 11 行，对应 11 个建造关卡。</p>
+            <div class="fields"><code>level</code><code>name</code><code>info</code></div>
+            <ul>
+              <li><code>level</code> 与 BuildLevelCfg.level 对接。</li>
+              <li>只负责标识与展示，不应复制消耗或奖励数值。</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="file">BuildHonorLevel.xlsx · r5109</div>
+            <h3>建造荣誉等级</h3>
+            <p>定义每级荣誉阈值、0 级初始点数和升级奖励。当前覆盖荣誉 0–10 级。</p>
+            <div class="fields"><code>id</code><code>levelUpPoints</code><code>initPoints</code><code>rewardType_2_*</code><code>rewardId_2_*</code><code>rewardNum_2_*</code></div>
+            <ul>
+              <li>当前 0 级初始点数为 20。</li>
+              <li>说明写明升级后积分清零；是否保留溢出需代码确认。</li>
+              <li>奖励支持美金金币与建设币等类型。</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="file">BuildBox.xlsx · r5106</div>
+            <h3>建造阶段与随机宝箱</h3>
+            <p>把完成度、逐地块概率和场景随机宝箱统一为规则表。当前 8 条规则、4 类已使用 type。</p>
+            <div class="fields"><code>type</code><code>levels</code><code>completionMin/Max</code><code>probability</code><code>rewardCount</code><code>rewardType/Id/Num</code></div>
+            <ul>
+              <li>支持进度到点、进度区间逐块触发、路边随机、飞艇宝箱。</li>
+              <li><code>rewardType=17</code> 为美金金币，<code>19</code> 为建设币。</li>
+              <li>建设币奖励使用 <code>rewardId=271001</code>。</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="file">BuildingProductChip.xlsx · r5318</div>
+            <h3>建筑金币生产速度</h3>
+            <p>按建筑与地图配置金币生产速度，当前覆盖地图 1 的 11 个建筑，<code>productionChip</code> 值为 6–12 秒。</p>
+            <div class="fields"><code>id</code><code>mapid</code><code>_name</code><code>productionChip</code></div>
+            <ul>
+              <li>构成新用户无初始金币时的启动资金来源之一。</li>
+              <li>字段注释仅明确“生产金币的速度（秒）”；单次产量、离线结算与容量需代码确认。</li>
+            </ul>
+          </article>
+        </div>
+
+        <h3>跨系统依赖</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>依赖</th><th>关联字段</th><th>在建造链中的作用</th><th>边界</th></tr></thead>
+            <tbody>
+              <tr><td><span class="status external">外部</span> Item.xlsx</td><td><code>itemID=271001</code></td><td>定义建设币物品；名称“建造币”，用途“翻地块消耗物”</td><td>物品身份与上限，不负责产销曲线</td></tr>
+              <tr><td><span class="status external">外部</span> SlotsCasinoBetList.xlsx</td><td><code>levelId</code></td><td>给 BuildCashCheatSheet 提供 Bet 主键；当前 38 档</td><td>老虎机 Bet 数值由老虎机系统维护</td></tr>
+              <tr><td><span class="status external">外部</span> SlotsCasinoBetUnlock.xlsx</td><td><code>level, betlevel</code></td><td>决定玩家等级下可使用的 Bet 档位</td><td>会间接改变可查到的建设币系数</td></tr>
+              <tr><td><span class="status external">外部</span> LevelCfg.xlsx</td><td><code>levelUpType, levelUpExp</code></td><td>把 BuildLevelCfg.expVal 转化为玩家升级</td><td>当前配置 1–5000 级；前 4 级为 Spin 次数升级</td></tr>
+              <tr><td><span class="status external">资源</span> BuildingLevel/Map*.json</td><td>建筑定义</td><td>BuildingProductChip 注释指定的建筑 ID 来源</td><td>地图结构资源，不在 Excel 数值表内重复定义</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="runtime">
+        <div class="section-head">
+          <div class="section-no">05</div>
+          <div>
+            <h2>运行时流程</h2>
+            <p>按一次新用户进入、Spin、获得建设币并翻地的顺序拆解。</p>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step"><b>初始化建造状态</b><p>读取 CommCfg：建设币 itemId、图标和初始个数；当前初始建设币为 90。初始化玩家当前关卡、地块进度、荣誉与 NPC 状态。</p></div>
+          <div class="step"><b>取得启动金币</b><p>玩家从已开放建筑的金币生产与可触发的 BuildBox 奖励获得金币。金币是 Spin 消耗，建设币不直接替代金币。</p></div>
+          <div class="step"><b>选择可用 Bet 并 Spin</b><p>玩家等级与 SlotsCasinoBetUnlock 共同限定 Bet；Bet 的 levelId 作为后续 BuildCashCheatSheet 第一维键。</p></div>
+          <div class="step"><b>判定建设币掉落</b><p>按 SpinDropBuildingCoins 的 spinnum 找到概率、基础个数与保底参数。先处理普通概率还是先处理保底，需要与代码保持一致。</p></div>
+          <div class="step"><b>计算实际建设币</b><p>用 Bet levelId、玩家等级断点与 VIP 列读取系数，将 buildingcoins × 系数加入玩家建设币库存。</p></div>
+          <div class="step"><b>执行翻地</b><p>按当前 BuildLevelCfg.level 与“已翻地块数 + 1”的 blockNum 找到记录；若足够则扣 needCash，推进地块。</p></div>
+          <div class="step"><b>结算成长与反馈</b><p>同一行增加 expVal、honorVal，更新 npcMax/npcOne；再检查玩家等级、荣誉等级、BuildBox 进度/概率和建筑开放/产出。</p></div>
+          <div class="step"><b>进入下一循环</b><p>新金币与建设币奖励降低下一阶段等待感；更高玩家等级可能开放更高 Bet，同时切换 BuildCashCheatSheet 等级断点。</p></div>
+        </div>
+      </section>
+
+      <section id="tuning">
+        <div class="section-head">
+          <div class="section-no">06</div>
+          <div>
+            <h2>策划调参抓手</h2>
+            <p>先选体验目标，再改最短链路上的参数；一次评审尽量只动一个层级。</p>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>体验目标</th><th>首选参数</th><th>次选参数</th><th>主要副作用</th><th>建议验收指标</th></tr></thead>
+            <tbody>
+              <tr><td>新手更快完成首块</td><td>CommCfg 初始建设币；首段 needCash</td><td>前几次 Spin 的 probability/buildingcoins</td><td>过高会跳过教学和首次宝箱节奏</td><td>首块耗时、首个 Spin 前等待、首日流失</td></tr>
+              <tr><td>整体建造时长缩短</td><td>BuildLevelCfg.needCash 分段压缩</td><td>BuildCashCheatSheet 等比抬升</td><td>换算表会影响所有关卡与玩家层</td><td>每章 Spin 数、中位完成时长、建设币溢出</td></tr>
+              <tr><td>等级提升更快</td><td>BuildLevelCfg.expVal</td><td>LevelCfg.levelUpExp</td><td>改 LevelCfg 会波及全项目所有经验来源</td><td>每章等级增量、每次升级平均翻地数</td></tr>
+              <tr><td>前快后难</td><td>同章 needCash 按 0–50% / 50–80% / 80–100% 塑形</td><td>阶段宝箱补给点</td><td>尾段过陡会形成资源墙</td><td>三段消耗占比、段间倍率、尾段退出率</td></tr>
+              <tr><td>降低随机挫败</td><td>guarantType / guarantVal</td><td>提高低概率行 probability</td><td>保底会抬高长期真实期望</td><td>P50/P90 连续未掉落次数、真实掉落均值</td></tr>
+              <tr><td>强化回流感</td><td>BuildBox 奖励与触发点</td><td>BuildHonorLevel 奖励</td><td>奖励叠加可能造成建设币溢出</td><td>宝箱覆盖消耗比、领奖后可翻地块数</td></tr>
+              <tr><td>提升离线启动能力</td><td>BuildingProductChip.productionChip</td><td>NPC npcMax / npcOne</td><td>需结合离线时长上限，防止回流爆仓</td><td>离线 1h/8h/24h 可 Spin 次数</td></tr>
+              <tr><td>控制 Bet 膨胀</td><td>BuildCashCheatSheet</td><td>SlotsCasinoBetUnlock</td><td>系数非单调会造成升 Bet 反而变慢</td><td>相邻 Bet 单位美金建设币、断点跳变</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <strong>推荐的体验模型：</strong>
+          以每 3 秒一次 Spin 为基准，按玩家分层模拟
+          “金币可支撑 Spin 数 → 每次 Spin 建设币期望 → 每段 needCash → 可翻地块数 → exp/honor/宝箱反馈”。
+          有保底时必须做带状态的 Monte Carlo；只用 <code>概率 × 数量</code> 会低估真实产出。
+        </div>
+      </section>
+
+      <section id="validation">
+        <div class="section-head">
+          <div class="section-no">07</div>
+          <div>
+            <h2>校验规则与已识别风险</h2>
+            <p>发布前同时检查结构完整性、数值连续性和代码边界。</p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="checklist">
+            <h3>自动化校验建议</h3>
+            <ul>
+              <li>CommCfg 的 288、289、293 唯一且值非空。</li>
+              <li>SpinDrop 的 spinnum 唯一，概率位于 0–100，基础个数非负。</li>
+              <li>保底类型合法；需要 guarantVal 的记录不得留空。</li>
+              <li>BuildCash 的 38 Bet × 21 等级断点组合完整，每行 16 个 VIP 值齐全。</li>
+              <li>BuildCash.Id 全部能在 SlotsCasinoBetList.levelId 找到。</li>
+              <li>BuildLevelCfg 的 level + blockNum 唯一，needCash/expVal/honorVal 非负。</li>
+              <li>BuildLevelInfo.level 覆盖 BuildLevelCfg 所有关卡。</li>
+              <li>BuildBox 概率和完成度在 0–100，奖励类型与 ID 匹配。</li>
+              <li>所有建设币奖励引用 Item 271001。</li>
+              <li>章节 50%、80% 分位附近检查突增率和累计消耗占比。</li>
+            </ul>
+          </div>
+          <div class="checklist">
+            <h3>需要程序确认的边界</h3>
+            <ul>
+              <li>同文件 Sheet1 与 Sheet2 同结构但数值不同，导出器实际读取范围是什么。</li>
+              <li>Spin 次数超过 SpinDrop 当前最大 spinnum=20 后采用哪条记录。</li>
+              <li>普通概率与保底的执行顺序；保底触发后是否重置计数。</li>
+              <li>玩家等级不等于配置断点时取精确、向下、向上还是最近值。</li>
+              <li>玩家等级超过 BuildCash 最大断点 1400 后如何回退。</li>
+              <li>查表乘法的整数溢出、取整时机和上限。</li>
+              <li>BuildLevelCfg 未找到 blockNum 时，注释“按最大算”的准确行为。</li>
+              <li>荣誉升级后溢出积分是否丢弃；一次可否连升多级。</li>
+              <li>BuildingProductChip 的生产单位、单次产量、容量和离线结算。</li>
+              <li>BuildBox 多条规则同次触发时是否可叠加。</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>当前配置结构风险</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>风险</th><th>证据</th><th>可能影响</th><th>处理建议</th></tr></thead>
+            <tbody>
+              <tr><td>多 Sheet 口径不唯一</td><td>SpinDrop、BuildCash、BuildLevelCfg 均存在同结构 Sheet1/Sheet2，值不同</td><td>策划查看值与程序导出值可能不一致</td><td>在源表增加“生效 Sheet / 环境 / 版本”说明，并由导出器校验</td></tr>
+              <tr><td>高等级查表覆盖有限</td><td>LevelCfg 到 5000 级，BuildCash 等级断点只到 1400</td><td>1400+ 玩家可能查不到或长期固定系数</td><td>确认回退策略；若取最大断点，文档化并加自动化测试</td></tr>
+              <tr><td>矩阵存在零值</td><td>Id=1、level=1400、VIP=15 的系数为 0</td><td>若该组合可达，命中建设币也会得到 0</td><td>确认是刻意禁用还是漏配，并加入非零白名单校验</td></tr>
+              <tr><td>VIP 系数呈反向变化</td><td>同 Bet/等级下 VIP 列常随 VIP 提高而下降</td><td>若设计意图未被 Bet 解锁抵消，可能产生负反馈</td><td>用“单位美金建设币”而非裸系数比较各 VIP 层</td></tr>
+              <tr><td>Spin 表只覆盖 20 行</td><td>当前最大 spinnum=20</td><td>长期循环完全依赖代码回退规则</td><td>把 20 次后的常驻规则显式配置或写入正式技术口径</td></tr>
+              <tr><td>第一关 blockNum 从 21 开始</td><td>BuildLevelCfg 第 1 关为 21–53</td><td>配置行数不等于地图总地块数，统计易误读</td><td>体验表区分“地图地块数”和“已配置翻地节点数”</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="version">
+        <div class="section-head">
+          <div class="section-no">08</div>
+          <div>
+            <h2>版本、来源与适用边界</h2>
+            <p>报告记录到文件级版本，便于后续策划复核配置是否已经变化。</p>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>配置</th><th>SVN 最后变更版本</th><th>本报告用途</th></tr></thead>
+            <tbody>
+              <tr><td>CommCfg.xlsx</td><td>r5329</td><td>初始建设币、物品与图标入口</td></tr>
+              <tr><td>SpinDropBuildingCoins.xlsx</td><td>r5019</td><td>Spin 概率、基础数量、保底</td></tr>
+              <tr><td>BuildCashCheatSheet.xlsx</td><td>r5331</td><td>Bet × 等级 × VIP 换算</td></tr>
+              <tr><td>BuildLevelCfg.xlsx</td><td>r5306</td><td>翻地消耗、经验、荣誉、NPC</td></tr>
+              <tr><td>BuildLevelInfo.xlsx</td><td>r5220</td><td>关卡标识与介绍</td></tr>
+              <tr><td>BuildHonorLevel.xlsx</td><td>r5109</td><td>荣誉阈值与奖励</td></tr>
+              <tr><td>BuildBox.xlsx</td><td>r5106</td><td>阶段/概率宝箱</td></tr>
+              <tr><td>BuildingProductChip.xlsx</td><td>r5318</td><td>建筑金币生产速度</td></tr>
+              <tr><td>SlotsCasinoBetList.xlsx</td><td>r5318</td><td>Bet 主键与实际 Bet</td></tr>
+              <tr><td>SlotsCasinoBetUnlock.xlsx</td><td>r4347</td><td>等级与 Bet 解锁</td></tr>
+              <tr><td>Item.xlsx</td><td>r5318</td><td>建设币物品定义</td></tr>
+              <tr><td>LevelCfg.xlsx</td><td>r2841</td><td>玩家升级需求</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warn">
+          <strong>来源口径：</strong>
+          本报告依据测试服 dev 配置工作副本更新到 r5359 后的 Excel 内容整理。
+          正式配置制作与发布链路优先于本报告；仓库中的“程序配置导出快照”只用于只读核对，不应直接修改。
+          报告未引用个人电脑绝对路径，其他策划可从项目相对目录和 SVN 配置链路继续维护。
+        </div>
+
+        <div class="footer">
+          Cash Royal 数值策划 · 建造模块结构设计报告 · 生成日期 2026-07-30<br>
+          文档定位：数值策划 / 数值文档 / 01_系统设计。建议每次改动 SpinDrop、BuildCashCheatSheet 或 BuildLevelCfg 后同步更新版本信息与风险项。
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const links = [...document.querySelectorAll("#nav a")];
+    const targets = links.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id));
+        }
+      });
+    }, { rootMargin: "-20% 0px -70% 0px", threshold: 0 });
+    targets.forEach(target => observer.observe(target));
+    if (links[0]) links[0].classList.add("active");
+  </script>
+</body>
+</html>

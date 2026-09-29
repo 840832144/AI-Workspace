@@ -51,7 +51,7 @@ flowchart TD
 
 1. Workspace 的默认领域是 Game Design；领域外对象不得进入默认模型。
 2. Capability 描述结果，Skill 描述方法，Workflow 描述编排，Implementation Binding 描述当前映射，Tool 描述执行接口，五者不得混用。
-3. Project 必须以 `projects/TEMPLATE/` 为结构基线，但不得把业务代码或敏感数据复制进 Workspace。
+3. Project 必须以 `projects/TEMPLATE/` 为结构基线，RFC-0005 批准的 CR 策划资料与分析工具可在 `projects/cr/` 维护；其他业务代码或未批准敏感数据不得复制进 Workspace。
 4. Memory 必须区分 Confirmed、Hypothesis 与 Decision；Status 只保存当前事实和下一动作。
 5. Agent 的权限来自角色规则和 User 授权，不因 Tool 可用而自动扩大。
 6. Capability Discovery 属于 Global Codex 层，AI-Workspace 提供 Catalog。Tool 的检查与选择只能在 Capability 确定后作为实现步骤发生。

@@ -1,0 +1,25 @@
+_excel_row,id,unlockType_4_0,param_4_0,unlockType_4_1,param_4_1,unlockType_4_2,param_4_2,unlockType_4_3,param_4_3,desc,icon,isShow
+5,1,,6,,,,,,,自由桌进入等级,customUnlock,0
+6,2,,4,,,,,,,大奖赛进入等级,challengeUnlock,0
+7,3,,5,,,,,,,钻石老虎机进入等级,diamondSlotsUnlock,0
+8,5,,5,,,,,,,pinball等级,pinballUnlock,0
+9,6,,4,,,,,,,牌局赢钱挑战解锁等级,winChallengeUnlock,0
+10,7,,5,,,,,,,限时锦标赛解锁等级,championShipUnlock,0
+11,8,,3,,,,,,,casino功能解锁等级,casinoUnlock,0
+12,9,,7,,,,,,,卡包,cardUnlock,1
+13,10,,0,,,,,,,戒指,ringUnlock,0
+14,11,1,1,2,1,,,,,挖宝quest,questUnlock,1
+15,12,,1,,,,,,,联赛,leagueUnlock,0
+16,13,,7,,,,,,,MISSION PASS,MISSION PASS,0
+17,14,,5,,,,,,,1+6礼包,onePlusSixUnlock,0
+18,15,,4,,,,,,,MVP,,0
+19,16,,10,,,,,,,贵宾室highroller解锁等级,funLoungeUnlock,0
+20,17,,4,,,,,,,疯狂探险,questFrenzyUnlock,1
+21,18,,30,,,,,,,薯片活动,,
+22,19,,30,,,,,,,777,,
+23,20,,30,,,,,,,拳击,boxingUnlock,0
+24,21,,30,,,,,,,宝藏矿工,minerUnlock,0
+25,22,,2,,,,,,,每日签到弹窗,,0
+26,23,,10,,,,,,,商店评分弹窗,,0
+27,24,0,10,,,,,,,Plinko弹球,plinkoBallUnlock,1
+28,25,1,1,2,0,,,,,药水,potionUnlock,0

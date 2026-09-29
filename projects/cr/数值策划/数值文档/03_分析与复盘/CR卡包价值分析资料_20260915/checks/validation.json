@@ -1,0 +1,1010 @@
+{
+  "verified_xlsx_files": 36,
+  "verified_csv_cells": 845935,
+  "environments": {
+    "trunk": {
+      "season_id": 2,
+      "season_day_domain": [
+        0,
+        59
+      ],
+      "unique_count_domain": [
+        0,
+        168
+      ],
+      "method": "闭区间筛选的等价状态区间代表点，含普通/高阶两种状态；不是玩家分布或实机模拟。",
+      "tested_pattern_states": 4290,
+      "no_positive_group_states": 0,
+      "empty_chapter_candidate_states": 0,
+      "candidate_shortage_states": 102,
+      "shortage_examples": [
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 15,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 30,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 31,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 15,
+          "progress": 0,
+          "prestige": true,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 30,
+          "progress": 0,
+          "prestige": true,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 31,
+          "progress": 0,
+          "prestige": true,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 3,
+          "day": 15,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 107,
+              "pack": 100004,
+              "slot": 2
+            },
+            {
+              "rule_id": 115,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 3,
+          "day": 30,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 107,
+              "pack": 100004,
+              "slot": 2
+            },
+            {
+              "rule_id": 115,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 3,
+          "day": 31,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 107,
+              "pack": 100004,
+              "slot": 2
+            },
+            {
+              "rule_id": 115,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 3,
+          "day": 15,
+          "progress": 0,
+          "prestige": true,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 107,
+              "pack": 100004,
+              "slot": 2
+            },
+            {
+              "rule_id": 115,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        }
+      ],
+      "affected_rule_slots": [
+        [
+          86,
+          100056,
+          2
+        ],
+        [
+          93,
+          100063,
+          2
+        ],
+        [
+          96,
+          100066,
+          2
+        ],
+        [
+          102,
+          100002,
+          2
+        ],
+        [
+          107,
+          100004,
+          2
+        ],
+        [
+          109,
+          100004,
+          1
+        ],
+        [
+          110,
+          100004,
+          4
+        ],
+        [
+          111,
+          100005,
+          2
+        ],
+        [
+          112,
+          100005,
+          3
+        ],
+        [
+          113,
+          100005,
+          2
+        ],
+        [
+          114,
+          100005,
+          3
+        ],
+        [
+          115,
+          100005,
+          2
+        ],
+        [
+          116,
+          100005,
+          3
+        ],
+        [
+          117,
+          100005,
+          3
+        ],
+        [
+          118,
+          100005,
+          2
+        ],
+        [
+          118,
+          100005,
+          5
+        ]
+      ],
+      "declared_card_count_mismatch_rule_ids": [],
+      "limits": "候选全集不足是确定性容量风险。未统计21次重抽耗尽概率、跨槽位候选重叠或玩家权重导致的实际少发概率。"
+    },
+    "dev": {
+      "season_id": 2,
+      "season_day_domain": [
+        0,
+        59
+      ],
+      "unique_count_domain": [
+        0,
+        168
+      ],
+      "method": "闭区间筛选的等价状态区间代表点，含普通/高阶两种状态；不是玩家分布或实机模拟。",
+      "tested_pattern_states": 4290,
+      "no_positive_group_states": 0,
+      "empty_chapter_candidate_states": 0,
+      "candidate_shortage_states": 102,
+      "shortage_examples": [
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 15,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 30,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 31,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 15,
+          "progress": 0,
+          "prestige": true,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 30,
+          "progress": 0,
+          "prestige": true,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 2,
+          "day": 31,
+          "progress": 0,
+          "prestige": true,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 86,
+              "pack": 100056,
+              "slot": 2
+            },
+            {
+              "rule_id": 93,
+              "pack": 100063,
+              "slot": 2
+            },
+            {
+              "rule_id": 96,
+              "pack": 100066,
+              "slot": 2
+            },
+            {
+              "rule_id": 102,
+              "pack": 100002,
+              "slot": 2
+            },
+            {
+              "rule_id": 109,
+              "pack": 100004,
+              "slot": 1
+            },
+            {
+              "rule_id": 111,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 113,
+              "pack": 100005,
+              "slot": 2
+            },
+            {
+              "rule_id": 118,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 3,
+          "day": 15,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 107,
+              "pack": 100004,
+              "slot": 2
+            },
+            {
+              "rule_id": 115,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 3,
+          "day": 30,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 107,
+              "pack": 100004,
+              "slot": 2
+            },
+            {
+              "rule_id": 115,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 3,
+          "day": 31,
+          "progress": 0,
+          "prestige": false,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 107,
+              "pack": 100004,
+              "slot": 2
+            },
+            {
+              "rule_id": 115,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        },
+        {
+          "type": 1,
+          "star": 2,
+          "group": 2002,
+          "num": 3,
+          "day": 15,
+          "progress": 0,
+          "prestige": true,
+          "candidate_count": 1,
+          "rule_slots": [
+            {
+              "rule_id": 107,
+              "pack": 100004,
+              "slot": 2
+            },
+            {
+              "rule_id": 115,
+              "pack": 100005,
+              "slot": 2
+            }
+          ]
+        }
+      ],
+      "affected_rule_slots": [
+        [
+          86,
+          100056,
+          2
+        ],
+        [
+          93,
+          100063,
+          2
+        ],
+        [
+          96,
+          100066,
+          2
+        ],
+        [
+          102,
+          100002,
+          2
+        ],
+        [
+          107,
+          100004,
+          2
+        ],
+        [
+          109,
+          100004,
+          1
+        ],
+        [
+          110,
+          100004,
+          4
+        ],
+        [
+          111,
+          100005,
+          2
+        ],
+        [
+          112,
+          100005,
+          3
+        ],
+        [
+          113,
+          100005,
+          2
+        ],
+        [
+          114,
+          100005,
+          3
+        ],
+        [
+          115,
+          100005,
+          2
+        ],
+        [
+          116,
+          100005,
+          3
+        ],
+        [
+          117,
+          100005,
+          3
+        ],
+        [
+          118,
+          100005,
+          2
+        ],
+        [
+          118,
+          100005,
+          5
+        ]
+      ],
+      "declared_card_count_mismatch_rule_ids": [],
+      "limits": "候选全集不足是确定性容量风险。未统计21次重抽耗尽概率、跨槽位候选重叠或玩家权重导致的实际少发概率。"
+    }
+  }
+}

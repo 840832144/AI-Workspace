@@ -1,0 +1,49 @@
+[
+  {
+    "sheet": "item",
+    "cell": "L75",
+    "value": 2592000,
+    "formula": "=864000*3"
+  },
+  {
+    "sheet": "item",
+    "cell": "L77",
+    "value": 2592000,
+    "formula": "=864000*3",
+    "formula_attributes": {
+      "t": "shared",
+      "ref": "L77",
+      "si": "0"
+    }
+  },
+  {
+    "sheet": "item",
+    "cell": "L264",
+    "value": 3600,
+    "formula": "=60*60*1"
+  },
+  {
+    "sheet": "item",
+    "cell": "L265",
+    "value": 3600,
+    "formula": "=60*60*1"
+  },
+  {
+    "sheet": "item",
+    "cell": "L266",
+    "value": 3600,
+    "formula": "=60*60*1"
+  },
+  {
+    "sheet": "item",
+    "cell": "L267",
+    "value": 3600,
+    "formula": "=60*60*1"
+  },
+  {
+    "sheet": "item",
+    "cell": "L268",
+    "value": 3600,
+    "formula": "=60*60*1"
+  }
+]

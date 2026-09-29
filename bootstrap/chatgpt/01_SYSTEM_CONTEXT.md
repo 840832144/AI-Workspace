@@ -1,5 +1,11 @@
 # 01 — System Context
 
+## CR 单仓库入口（TASK-0032）
+
+只克隆 AI-Workspace，即可读取 `bootstrap/AGENTS.md`、根 `AGENTS.md` 和 `projects/cr/AGENTS.md`。项目入口为 `projects/cr/README.md` / `STATUS.md` / `CONTEXT.md`；根 `.agents/skills/cr-project/SKILL.md` 路由到项目内五个唯一 Skill 正文，卡包资料由项目 README 定位。
+PR #5 已于2026-09-16按 User 授权合并并切换。当前从 AI-Workspace 最新 main 读取，建独立分支/PR 写入 `projects/cr/`，旧 CR Git 保留且不再双写；迁移候选仅作历史记录。正式配置仍以公司 SVN 的目标环境为准；CR 日期附件不能作为 101 配置，HuuugeCollector 副本不是当前开发/部署入口。
+公开范围含 User 明确批准的三个 Top Tycoon 工作簿及其原始记录历史（RFC-0005）；其他 Secrets、账号与私有 Registry 等限制继续适用。Context Pack 只增加 CR 入口摘要，不递归收录正文/工作簿，不自动上传或扩大飞书分享。具体迁移结果以最新 Task / PR 为准。
+
 ## 总体架构
 
 ```text
@@ -7,7 +13,8 @@ AI-Workspace（治理、Task、规则、Memory、Handoff）
         │
         ├── huuuge-android-research（采集器、研究实现、证据）
         ├── AI Document Assistant（公司文档读写 Provider）
-        ├── CR 等业务项目仓库（各自实现真相源）
+        ├── AI-Workspace/projects/cr（CR 策划资料、Skills、分析工具）
+        ├── 公司 SVN（CR 正式配置）及其他业务项目仓库（各自实现真相源）
         └── 公司 SVN（正式包和公司资源分发）
 ```
 
@@ -61,7 +68,7 @@ Collector 和报告生成是两个独立功能。AI Document Assistant 只负责
 - GitHub：`840832144/AI-Workspace`
 - 定位：Game Planner AI Workspace 的治理与任务真相源。
 - 保存：Capability Catalog、Workflow、Skill、标准、Product Roadmap、Project Control Plane、Task、ADR、Handoff、Bootstrap。
-- 不保存：业务代码、运行时 endpoint、Secret、原始采集数据、私有 Registry。
+- 保存 RFC-0005 批准的 CR 策划资料与分析工具；不保存其他业务实现、运行时 endpoint、Secret、私有 Registry 或未批准原始采集数据。
 
 ### huuuge-android-research
 

@@ -1,0 +1,113 @@
+{
+  "scope": {
+    "segment": "TT_NEW_01:x1",
+    "source": "/Users/mac/Documents/智囊团/outputs/019fcbfe-7040-7460-8bef-73ea098818dc/Top_Tycoon数值拆解/SpinLog_sample.csv",
+    "warning": "录屏小样本复算，不代表服务端配置；不含金币到能量的价值折算。"
+  },
+  "sample_summary": {
+    "n": 44,
+    "sample_gate": "direction_only",
+    "mean_energy_cost": 1.0,
+    "mean_energy_return": 0.7954545454545454,
+    "observed_energy_return_ratio": 0.7954545454545454,
+    "mean_coin_reward": 4042.931818181818,
+    "mean_progress_reward": 0.5454545454545454,
+    "probabilities": {
+      "Attack": {
+        "count": 3,
+        "observed_probability": 0.06818181818181818,
+        "wilson_95_low": 0.023458970172840127,
+        "wilson_95_high": 0.1822532133661719
+      },
+      "Credit Grab": {
+        "count": 1,
+        "observed_probability": 0.022727272727272728,
+        "wilson_95_low": 0.004023148385637013,
+        "wilson_95_high": 0.11807979131537633
+      },
+      "Shield": {
+        "count": 2,
+        "observed_probability": 0.045454545454545456,
+        "wilson_95_low": 0.012554846366981079,
+        "wilson_95_high": 0.15135271525303162
+      },
+      "大奖": {
+        "count": 1,
+        "observed_probability": 0.022727272727272728,
+        "wilson_95_low": 0.004023148385637013,
+        "wilson_95_high": 0.11807979131537633
+      },
+      "混合奖励": {
+        "count": 7,
+        "observed_probability": 0.1590909090909091,
+        "wilson_95_low": 0.07926576557718398,
+        "wilson_95_high": 0.29366490563782555
+      },
+      "空奖": {
+        "count": 2,
+        "observed_probability": 0.045454545454545456,
+        "wilson_95_low": 0.012554846366981079,
+        "wilson_95_high": 0.15135271525303162
+      },
+      "纯进度": {
+        "count": 1,
+        "observed_probability": 0.022727272727272728,
+        "wilson_95_low": 0.004023148385637013,
+        "wilson_95_high": 0.11807979131537633
+      },
+      "纯金币": {
+        "count": 27,
+        "observed_probability": 0.6136363636363636,
+        "wilson_95_low": 0.46623309846201666,
+        "wilson_95_high": 0.7427900111329802
+      }
+    }
+  },
+  "sensitivity": {
+    "minus_10pct": {
+      "trials": 10000,
+      "initial_energy": 1000.0,
+      "max_spins_cap": 10000,
+      "energy_return_multiplier": 0.9,
+      "mean_spins": 3519.6577,
+      "median_spins": 3457.0,
+      "p10_spins": 2759.0,
+      "p90_spins": 4357.0,
+      "mean_ending_energy": 0.2514,
+      "mean_coin_reward": 14224017.1115,
+      "mean_progress_reward": 1918.7022,
+      "capped_trial_rate": 0.0,
+      "interpretation": "depletion_observed_within_cap"
+    },
+    "baseline": {
+      "trials": 10000,
+      "initial_energy": 1000.0,
+      "max_spins_cap": 10000,
+      "energy_return_multiplier": 1.0,
+      "mean_spins": 4887.64,
+      "median_spins": 4740.0,
+      "p10_spins": 3540.0,
+      "p90_spins": 6410.0,
+      "mean_ending_energy": 0.1725,
+      "mean_coin_reward": 19758564.2969,
+      "mean_progress_reward": 2665.0574,
+      "capped_trial_rate": 0.0009,
+      "interpretation": "depletion_observed_within_cap"
+    },
+    "plus_10pct": {
+      "trials": 10000,
+      "initial_energy": 1000.0,
+      "max_spins_cap": 10000,
+      "energy_return_multiplier": 1.1,
+      "mean_spins": 7577.6412,
+      "median_spins": 7561.0,
+      "p10_spins": 5014.400000000001,
+      "p90_spins": 10000.0,
+      "mean_ending_energy": 52.7408,
+      "mean_coin_reward": 30632953.7531,
+      "mean_progress_reward": 4133.501,
+      "capped_trial_rate": 0.1998,
+      "interpretation": "non_depleting_or_sample_biased"
+    }
+  }
+}

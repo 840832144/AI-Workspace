@@ -1259,6 +1259,10 @@ def refresh_command(args: argparse.Namespace) -> int:
                 base = root / relative
                 if base.exists():
                     files.extend(path for path in base.rglob("*") if path.is_file() and "generated" not in path.parts)
+            # Only project entry points: never recursively include CR source data or archives.
+            cr_entries = [root / "projects/cr" / name for name in ("README.md", "AGENTS.md", "CONTEXT.md", "MEMORY.md", "WORKFLOW.md", "STATUS.md")]
+            cr_entries.append(root / ".agents/skills/cr-project/SKILL.md")
+            files.extend(path for path in cr_entries if path.is_file())
             files = sorted(set(files), key=lambda item: item.relative_to(root).as_posix())
             secret_issues = [
                 f"{path.relative_to(root)}:{','.join(scan_secrets(path.read_text(encoding='utf-8', errors='replace')))}"
@@ -1269,7 +1273,7 @@ def refresh_command(args: argparse.Namespace) -> int:
                 f'schema_version: "{SCHEMA_VERSION}"',
                 f'generated_at: "{generated_at}"',
                 f'memory_mode: "{mode}"',
-                'repository_scope: "public-control-plane"',
+                'repository_scope: "public-governance-and-project-entrypoints"',
                 f'repository_head: {json.dumps(repo_state["head"])}',
                 f'repository_branch: {json.dumps(repo_state["branch"])}',
                 f'repository_dirty_before_refresh: {str(repo_state["dirty"]).lower()}',
@@ -1298,9 +1302,12 @@ def refresh_command(args: argparse.Namespace) -> int:
                 root / "bootstrap" / "chatgpt" / "02_CURRENT_STATE.md",
                 root / "bootstrap" / "chatgpt" / "03_NEW_CHAT_BOOTSTRAP.md",
             ]
-            pack_lines = ["# ChatGPT Project Source Pack", "", f"Generated: {generated_at}", "", "本文件只组合 AI-Workspace 中已经审阅的 public control-plane sources；Git 仍是最新真相源。", ""]
+            cr_context = root / "projects/cr/CONTEXT.md"
+            if cr_context.is_file():
+                source_files.append(cr_context)
+            pack_lines = ["# ChatGPT Project Source Pack", "", f"Generated: {generated_at}", "", "本文件组合当前分支的公共治理与项目入口摘要；候选是否已通过 Review 以 Task / PR 为准，Git 仍是最新真相源。不递归收录 CR 正文、工作簿或采集数据。", ""]
             for path in source_files:
-                pack_lines.extend([f"<!-- SOURCE: {path.name} -->", path.read_text(encoding="utf-8").rstrip(), ""])
+                pack_lines.extend([f"<!-- SOURCE: {path.relative_to(root).as_posix()} -->", path.read_text(encoding="utf-8").rstrip(), ""])
             pack_path = root / "bootstrap" / "chatgpt" / "generated" / "PROJECT_SOURCE_PACK.md"
             atomic_write_text(pack_path, "\n".join(pack_lines).rstrip() + "\n")
             replacement_lines = [

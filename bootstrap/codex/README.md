@@ -1,5 +1,10 @@
 # Codex Subagent Bootstrap
 
+## CR 入口
+
+CR 资料现位于 `AI-Workspace/projects/cr/`，一次克隆即可使用。先读根 `AGENTS.md` 和 `bootstrap/AGENTS.md`，再读 `projects/cr/AGENTS.md`、`README.md`、`STATUS.md`。从 CR 子目录启动须向上两级读取根治理；专项 Skill 正文在项目 `.agents/skills/`，根 `.agents/skills/cr-project/SKILL.md` 只路由。TRAE 根入口为 `.trae/rules/cr-project.md`，子目录入口为 `projects/cr/.trae/rules/numerical-design.md`。
+根目录的上下文刷新工具仍是 `tools/memory/memory_cli.py refresh`；从 CR 调用用 `../../tools/memory/memory_cli.py refresh`。默认只生成本机派生产物，不传入 `--sync` 或私有 Registry 参数，不自动更新外部 Project Sources 或分享权限。
+
 本目录为 Codex 提供默认关闭、可手动开启、单写入者的子 Agent 试运行配置。它只管理 Codex Global 子 Agent，不修改 MCP、项目配置、Document Assistant、ChatGPT 或其他 Host。
 
 ## 模式
