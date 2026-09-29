@@ -6,7 +6,7 @@
 - 官方eds-aic/EdsAgent管理通道已验证；User授权既有OAuth Account，不重复RAM配置。Google内置三包启用回读，User登录后从Play新安装Huuuge，来源/12.09.27229/1789041595/ARM64已确认。认证无法读取，首页/搜索未单独验证。
 - User无探针游戏可玩但有图形异常；仅Huuuge启用内置ANGLE、显式BootActivity重启，运行日志确认；User“现在好了”。长期稳定性未测，无Frida。
 - 自行核实已有香港Linux与CloudAssistant，未改nginx/晨会。原私网TCP超时；User新建公网映射后API目标匹配，Linux→映射TCP成功。
-- User明确仅一次云端ADB验证，正常默认审批本次放行；官方Platform-Tools37.0.1安装于任务独立目录。首次启动参数问题未产生connect，修正localhost并实核回环后，一次connect/get-state返回unauthorized。已disconnect/停止专用server并独立回读进程不存在、监听0；现有手机绑定未变，未运行Frida/采集。下一步由User本人处理设备授权或受控配置现有绑定密钥，本轮不再连接。
+- User明确仅一次云端ADB验证，正常默认审批本次放行；官方Platform-Tools37.0.1安装于任务独立目录。首次启动参数问题未产生connect，修正localhost并实核回环后，一次connect/get-state返回unauthorized。已disconnect/停止专用server并独立回读进程不存在、监听0；现有手机绑定未变，未运行Frida/采集。User已指明本机候选文件；只读绑定核对及本机公钥指纹匹配通过。当前待受控云端私钥配置及另行明确单次复验；未传输/重连，不再要求重新绑定。
 - 浏览器自动化保持停止，不重放未知点击。真实新增解码、正常停止/保存仍未执行，计数unknown。原PR交增量Review；Registry19/0collision/valid，reservation pending-main；[当前Handoff](../../handoff/TASK-0031-HUUUGE-CLOUD.md)。Subagents: none。
 
 ## 2026-09-15 — 单实例云端准备
