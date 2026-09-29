@@ -2,11 +2,11 @@
 
 ## 2026-09-29 — TASK-0031 v2-GooglePlay 续接
 
-- [TASK-0031](../../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md)：In Progress；Google/Play 安装及无探针游戏已取得真实证据；云端一次 ADB 验证返回 unauthorized，已断开并停止专用 server；真实采集与停止保存未执行。原PR #11 / 5ff7190顺序与目标保留。
+- [TASK-0031](../../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md)：In Progress；Google/Play 安装及无探针游戏已取得真实证据；匹配密钥的云端ADB复验已通过，已断开并停止专用server；真实采集与停止保存未执行。原PR #11 / 5ff7190顺序与目标保留。
 - 官方eds-aic/EdsAgent管理通道已验证；User授权既有OAuth Account，不重复RAM配置。Google内置三包启用回读，User登录后从Play新安装Huuuge，来源/12.09.27229/1789041595/ARM64已确认。认证无法读取，首页/搜索未单独验证。
 - User无探针游戏可玩但有图形异常；仅Huuuge启用内置ANGLE、显式BootActivity重启，运行日志确认；User“现在好了”。长期稳定性未测，无Frida。
 - 自行核实已有香港Linux与CloudAssistant，未改nginx/晨会。原私网TCP超时；User新建公网映射后API目标匹配，Linux→映射TCP成功。
-- User明确仅一次云端ADB验证，正常默认审批本次放行；官方Platform-Tools37.0.1安装于任务独立目录。首次启动参数问题未产生connect，修正localhost并实核回环后，一次connect/get-state返回unauthorized。已disconnect/停止专用server并独立回读进程不存在、监听0；现有手机绑定未变，未运行Frida/采集。User已指明本机候选文件；只读绑定核对及本机公钥指纹匹配通过。当前待受控云端私钥配置及另行明确单次复验；未传输/重连，不再要求重新绑定。
+- User明确仅一次云端ADB验证，正常默认审批本次放行；官方Platform-Tools37.0.1安装于任务独立目录。首次启动参数问题未产生connect，修正localhost并实核回环后，一次connect/get-state返回unauthorized。已disconnect/停止专用server并独立回读进程不存在、监听0；现有手机绑定未变，未运行Frida/采集。User已指明本机候选文件；只读绑定核对及本机公钥指纹匹配通过。User随后委托Codex：Workbench通过CredentialsCmd复用OAuth并精确查询Linux；未创建会自动授权安全组的SSH会话。复用云助手下发CMS密文，云端配置匹配私钥并独立回读0600/0700、临时材料已清理、原任务key保留、原绑定/安全组不变、服务active、ADB进程/监听0。User随后明确允许新的一次复验；正常审批通过，connect1次成功/get-state=device，断开/停止均0；独立保存回读、PID不存在/监听0。后续持续连接与Frida/采集仍需明确范围，不再要求User上传或重绑。
 - 浏览器自动化保持停止，不重放未知点击。真实新增解码、正常停止/保存仍未执行，计数unknown。原PR交增量Review；Registry19/0collision/valid，reservation pending-main；[当前Handoff](../../handoff/TASK-0031-HUUUGE-CLOUD.md)。Subagents: none。
 
 ## 2026-09-15 — 单实例云端准备
