@@ -1,47 +1,36 @@
-# Huuuge 自助工作台 V1 — TASK-0037 执行交接
+# Huuuge V1 — TASK-0037 执行交接
 
-## 2026-09-30 Codex登记
+- Updated: 2026-09-30；Actor: Codex；Owner: User；Subagents: none。
+- Status: In Progress；唯一任务[TASK-0037](../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md)，后继TASK-0031 Accepted；不新建任务。
+- 唯一规格：[HUUUGE-SELF-SERVICE-V1-20260930.md](../docs/plans/HUUUGE-SELF-SERVICE-V1-20260930.md)。原来源PR12/a91bf39，本次User范围调整已就地同步，优先于旧内嵌方案。
 
-- Status: In Progress；Subagents: none。
-- 唯一正式任务：[TASK-0037](../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md)，后继于Accepted TASK-0031。
-- 已同步两仓及在途分支；独立worktree、remote-CAS分配通过，reservation pending-main。
-- 原评审已落库，旧结果不变；原PR只提交Accepted元数据。新功能独立分支，原PR未获授权合并。
-- 下一步：登记最终校验后，先实核官方Web SDK登录/旧会话撤销与常驻管理身份；并实现完整服务、面板、导出和验收。下文为规格提交时的原交接背景。
+## 当前决策
 
-- Date: 2026-09-30。
-- Actor: ChatGPT；Owner: User；下一执行者：原Codex。
-- Kind: approved-spec-handoff；不分配或冒用新Task编号。
-- User decision: Approved，现阶段全部产品内容完成才验收。
-- 唯一完整规格：[HUUUGE-SELF-SERVICE-V1-20260930.md](../docs/plans/HUUUGE-SELF-SERVICE-V1-20260930.md)。
+官方Web成员账号玩Huuuge＋独立采集小面板，允许分别登录。可信同事约定轮流，不强制手机控制交接、防重连或旧厂商凭证撤销；不要求Web SDK内嵌及统一登录。采集锁仅防重复采集，不能称为手机控制锁。
 
-## 已明确的决策
+保留基本鉴权、本人批次启停/下载权限、按批次与片段保存、重复请求保护、云端独立常驻、受保护连接、TLS及真实四态：开始灰、采集中绿、错误红、结束红；正常结束显示停止图标与“已保存”。正常结束下载脱敏含值AI包，用已有本地AI分析。本阶段全部完成才Review，不接其他游戏。
 
-一台现有云手机，固定Huuuge游戏账号、不切换；工作台使用者是独立身份，轮流排他操作。简单账号密码+记住登录作为默认方案，已有成熟受控免密可替代，不做匿名公网入口或让策划登录主云账号。
+## 已确认及证据边界
 
-一个网页包含游戏画面与实时面板，开始自动采集，结束停止并一键下载供本地AI读取的脱敏含值数据包。主状态严格为“开始采集灰、采集中绿、采集错误红、采集结束红”；结束用停止图标和已保存文案，不与错误混为一类。管理服务常驻、采集按研究会话启停，错误/断线/刷新/重复请求和下载失败都有恢复路径；正常使用无需Codex后台值守。
+- User成员账号实测通过：已创建成员账号并绑定现有云手机，官方Web成功登录，到Android桌面及Huuuge大厅。仅为User本人反馈；不是Codex独立复测、同事盲测、Android客户端或V1采集验收。
+- 原TASK-0031正式Accepted已落库，治理08ca95b/业务4572b78；312/312/0和8条Slots响应及原结果保留。原PR未获合并授权，新功能只在后继分支。
+- TASK-0037既有独立worktree、remote-CAS登记；reservation pending-main。当前Registry20/0/valid；Workspace Sync ON_DEMAND，provider unavailable、stale6、conflicts0，Git为真相源。不得再分配编号。
+- 已有登录/采集状态/面板/导出/片段编排及合成检查。旧SDK onConnected/断连后旧Ticket重连/2507是历史事实，不能改写成撤销通过，也不再阻塞V1。厂商咨询未发送且退出当前待办。
 
-账号进度共享是明确产品选择，数据仍按操作者/研究会话隔离；不把不同使用者的批次解释成独立游戏账号。下一阶段才接同手机的其他游戏和采集器；未来每人一台还没有资源采购授权。
+## 剩余工作与下一步
 
-## 实时来源与分工
+受保护管理连接、云运行适配、每批TLS自动准备/清理、容量保护、HTTPS面板入口及真实A—F尚待完成。原私网ADB检查超时，原公网ADB鉴权不等于传输加密；不能降低TLS/目标校验或依赖Owner本机持续运行。
 
-本轮读取治理main b0a36c8、原PR #4/head4a634f0、原Task/Handoff；业务PR #2/head52477c8。原TASK-0031 Round1已在Review中Accepted，但Task/Handoff仍显示Review，原两个PR尚OPEN未合并。先把评审原文按原收尾要求登记，不倒写旧312/312/0快照、不撤销Accepted或新增旧任务验收条件。
+先在已核验现有Linux和手机明确最小可实施保护路径；取消SDK后重新核定是否仍需云API身份，不先申请广泛权限。涉及新的身份、网络/IAM、公开入口、费用或共享服务时给出具体改动、影响、回滚并等Owner确认。已授权代码与任务独立服务准备继续，不等待撤销工单。
 
-本页对应新产品化范围，正式登记应与TASK-0031形成前后继依赖，不向旧试点PR直接追加新平台代码。新实现仍在huuuge-android-research；AI-Workspace只存治理和规格。使用独立分支保留别的Agent变更；尚未获合并授权时可明确基线/依赖，不自动合入或强推。
+实际验收包括官方Web＋面板的同事使用、两面板身份分别新批次、单采集任务防重复和下载归属、真实四态、正常停止/回读/下载与本地AI、断线恢复、退出Codex管理会话后仍可运行。User本次登录反馈只覆盖其本人入口，不勾选上述完整验收。
 
-当前容器git ls-remote因github.com DNS失败，未能运行Workspace Sync、Registry validator或remote-CAS。GitHub连接器读写可用，但不将API读取冒充本地最新main验证。此提交只增加规格和交接，不修改Task/Registry或声明分配成功。
+## 代码、发布和路线图
 
-## 原Codex的下一动作
+业务代码/部署/验收在huuuge-android-research；治理规格/Task/Status/Handoff及唯一Product Roadmap在AI-Workspace。两仓沿用codex/huuuge-self-service-v1；保留现有实现，不重写采集器或TASK-0031结果，不做本地安装包/SVN镜像。
 
-先做登记准备：安全同步最新两仓、任务目录、在途分支和Handoff，读完整规格，按既有validator/独立worktree/remote-CAS流程确认后继关系并登记唯一 `Project key: HUUUGE` 的正式Task；若已存在完全相同活动目标则续接，不重复创建。登记完成回填本页关联入口，然后按正式Task实施，不再让User重述范围。
+唯一Product Roadmap Current就地改为官方Web＋采集小面板；多游戏仍Backlog、每人独立手机仍Ideas，不自动创建后续Task。Git和正式文档发布证据分别记录，未回读的发布不得称为完成。
 
-实现前最早验证两项外部依赖：现有这台手机的Web SDK/便捷账号登录能否支持策划简单进入，以及旧控制会话能否被撤销以保证轮流使用。不要默认已开“免授权”或为此重建手机。厂商SDK只按许可在受控部署使用，不上传整包到public Git。
+本轮验证：小面板17/17合成检查，原采集器16通过/5项Linux专属跳过，JS语法通过；Registry20/0/valid。正式飞书路线图已定位原文档；企业内可编辑权限回读因本机lark-cli user返回token_missing未完成，因此本轮未改飞书正文或权限，正式同步仍待完成，不阻塞代码/云连接准备。不自动重新授权或切换身份。
 
-无新增权限/付费/公共入口时可做范围内代码与定向测试；真正需要开通SDK能力、云身份、HTTPS发布/共享nginx或网络修改时，给Owner一个具体变更与回滚确认，不把配置琐事转给策划。正常运行的密钥轮换、启停与打包必须自动化；旧试点的短时公网ADB限制不能直接当常驻安全结论。
-
-所有A—F验收均在本阶段完成，含未参与开发策划的真实使用、至少两个身份轮流采集、四态/故障显示、导出复下、现有本地AI离线读包及退出管理会话后的新一轮。合成检查与真人证据分列，不重用旧312条当本次产品化验收。
-
-## Idea Handoff / 路线图防重
-
-Codex登记时读取唯一 `docs/roadmaps/PRODUCT_ROADMAP.md`：将本阶段自助工作台作为已批准Current；复用已有 `One Research Environment → Multiple Games → Independent Evidence` 条目记下一阶段Backlog，具体游戏仍待下一阶段明确；每策划独立实例记未来Ideas。本交接不是第二路线图，不因已有未来条目自动执行别的游戏。
-
-完成实现后更新新正式Task/Status/Handoff/业务部署验收和变更记录，提交实际入口、可用演示、包内读数说明、真实验证和剩余限制，交ChatGPT Review。默认不自动合并，不启动下一阶段，不重新索要已配好的主机或密钥。
+业务已提交/推送9b6b21d（保留准备代码）及1c9c364（分离采集面板、停用SDK路径、既有Linux合成CI覆盖）；后续继续该分支。CaptureRuntime仍是未实现运行接入，勿误报生产可用或开启准入。

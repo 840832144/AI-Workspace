@@ -1,8 +1,8 @@
 # Huuuge Android Research — Project Status
 
-## 2026-09-30 — TASK-0037 自助工作台V1已登记
+## 2026-09-30 — TASK-0037 范围已调整
 
-[正式Task](../../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md) In Progress；PR12/a91bf39完整范围已批准，remote-CAS登记后实施，所有A—F验收完成才交Review。TASK-0031 Accepted及312/312/0不变；新分支明确依赖已审阅试点，不自动合并。Subagents: none。
+[正式Task](../../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md) In Progress。User成员账号已绑定现有手机并在官方Web进入Android桌面/Huuuge大厅，按本人反馈记通过；同事盲测、Android客户端及V1采集仍未验。V1改为官方Web游戏＋独立采集小面板，分别登录，可信同事约定轮流；不再要求内嵌SDK、统一登录、强制防重连/旧凭证撤销/控制交接。采集锁只防重复采集，基本鉴权、本人批次/下载权限保留。当前重点为受保护连接、云端常驻、真实四态/启停、结束下载和本地AI新包；SDK撤销工单退出前置。现有代码保留，TASK-0031 Accepted及原312/312/0不变。部署变更按原审批边界；无新增费用、IAM/网络/晨会改动。Subagents: none。
 
 ## 2026-09-30 正式评审收口
 

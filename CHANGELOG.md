@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-30 — TASK-0037 官方Web＋采集小面板范围调整
+
+按User新决定就地同步原规格/Task/Status/Handoff和唯一路线图；不新建Task。记录User成员账号官方Web到Android桌面/Huuuge大厅通过，限定本人反馈；不计同事盲测/Android客户端/V1采集。取消SDK内嵌/统一登录及强制防重连/旧凭证撤销/控制交接验收，保留单采集任务锁、鉴权、批次/下载权限与真实四态。原TASK-0031 Accepted和结果不变；受保护连接、云常驻及真实V1仍未验，部署审批边界不变。Subagents: none。
+
 ## 2026-09-30 — 登记TASK-0037 Huuuge自助V1
 
 按PR12/a91bf39完整规格，经独立worktree/Registry/remote-CAS登记后继TASK-0037，关联Accepted TASK-0031；保留旧快照与原PR边界。同步规格/交接/项目Status及唯一路线图Current、下一阶段多游戏Backlog、独立实例Ideas。所有A—F验收在本阶段完成才交Review。Subagents: none。
