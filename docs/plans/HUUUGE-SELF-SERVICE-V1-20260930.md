@@ -3,7 +3,7 @@
 - Kind: approved-execution-spec；不是已分配编号的 canonical Task。
 - Date / Updated: 2026-09-30。
 - User decision: Approved；User 已确认本页产品范围，要求开始出任务。
-- Registration: Pending；正式任务须经最新 Git、Registry validator 和 remote-CAS allocator 登记后才进入实现。
+- Registration: TASK-0037；[正式执行入口](../../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md)，由2026-09-30 remote-CAS实际分配。
 - Project key: HUUUGE。
 - Owner: User；设计与 Review：ChatGPT；实现、部署、验证和 Git：原 Codex 执行者。
 - Priority: P1 / 当前阶段唯一产品交付目标。

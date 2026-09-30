@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-30 — 登记TASK-0037 Huuuge自助V1
+
+按PR12/a91bf39完整规格，经独立worktree/Registry/remote-CAS登记后继TASK-0037，关联Accepted TASK-0031；保留旧快照与原PR边界。同步规格/交接/项目Status及唯一路线图Current、下一阶段多游戏Backlog、独立实例Ideas。所有A—F验收在本阶段完成才交Review。Subagents: none。
+
 ## 2026-09-30 正式评审收口
 
 TASK-0031 Round 1 **Accepted**，阻塞修改无；[正式评审](https://github.com/840832144/AI-Workspace/pull/4#pullrequestreview-5361181770)已落库。312/312/0、8条Slots响应及原结果快照保持不变，不重新采集。原PR待User决定合并，reservation pending-main；canonical进入main后才finalize并收口Complete。新自助V1另行登记后继Task，本试点不增加新功能。Subagents: none。

@@ -1,4 +1,12 @@
-# Huuuge 自助工作台 V1 — 登记前交接
+# Huuuge 自助工作台 V1 — TASK-0037 执行交接
+
+## 2026-09-30 Codex登记
+
+- Status: In Progress；Subagents: none。
+- 唯一正式任务：[TASK-0037](../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md)，后继于Accepted TASK-0031。
+- 已同步两仓及在途分支；独立worktree、remote-CAS分配通过，reservation pending-main。
+- 原评审已落库，旧结果不变；原PR只提交Accepted元数据。新功能独立分支，原PR未获授权合并。
+- 下一步：登记最终校验后，先实核官方Web SDK登录/旧会话撤销与常驻管理身份；并实现完整服务、面板、导出和验收。下文为规格提交时的原交接背景。
 
 - Date: 2026-09-30。
 - Actor: ChatGPT；Owner: User；下一执行者：原Codex。

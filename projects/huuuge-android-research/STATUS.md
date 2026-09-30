@@ -1,5 +1,9 @@
 # Huuuge Android Research — Project Status
 
+## 2026-09-30 — TASK-0037 自助工作台V1已登记
+
+[正式Task](../../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md) In Progress；PR12/a91bf39完整范围已批准，remote-CAS登记后实施，所有A—F验收完成才交Review。TASK-0031 Accepted及312/312/0不变；新分支明确依赖已审阅试点，不自动合并。Subagents: none。
+
 ## 2026-09-30 正式评审收口
 
 TASK-0031 Round 1 **Accepted**，阻塞修改无；[正式评审](https://github.com/840832144/AI-Workspace/pull/4#pullrequestreview-5361181770)已落库。312/312/0、8条Slots响应及原结果快照保持不变，不重新采集。原PR待User决定合并，reservation pending-main；canonical进入main后才finalize并收口Complete。新自助V1另行登记后继Task，本试点不增加新功能。Subagents: none。

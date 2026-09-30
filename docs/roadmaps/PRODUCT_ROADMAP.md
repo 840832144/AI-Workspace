@@ -1,6 +1,6 @@
 # AI Workspace｜产品路线图（Product Roadmap）
 
-> 更新时间：2026-09-16
+> 更新时间：2026-09-30
 > Git 真相源：`docs/roadmaps/PRODUCT_ROADMAP.md`
 > 适用范围：Game Planner AI Workspace 的长期产品方向
 
@@ -10,6 +10,12 @@
 
 ## 🔥 Current
 
+### Huuuge 自助研究工作台 V1
+
+- 已批准：[TASK-0037](../../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md)，规格PR12/a91bf39；后继于TASK-0031 Accepted。
+- 本阶段：现有单台手机、固定游戏账号，简单登录、轮流独占、自动采集、实时四态、结束下载和本地AI读脱敏含值包，全部完成才交Review。
+- 当前状态：正式登记并开始实施，未宣称产品验收完成；新增费用/公开入口/云权限或共享服务变更先经Owner确认。
+
 ### 【游戏】 Collector 1.0
 
 - 当前状态：TASK-0026 已完成 allocator finalize；Collector 1.0 实现已 push 到 `CF_collect@7c32877` 并进入 ChatGPT Review，未执行新的动态 Spin。
@@ -17,6 +23,12 @@
 - 下一动作：ChatGPT Review `codex/collector-1-engineering@7c32877` 的 Adapter contract、固定 artifacts、Sidecar allowlist 与部署兼容性；Review 前不合入正式仓库 main，不扩大字段或模块。
 
 ## 📋 Backlog
+
+### One Research Environment → Multiple Games → Independent Evidence
+
+- 下一阶段Backlog：复用原方向；本次TASK-0037仅Huuuge，完成V1后才按具体游戏复用采集器与独立证据。
+- 依据：PR12已批准路线图交接；RFC-0004仍Proposed，不自动授权其他游戏。
+- Gate：单活动Capture、前台包名校验、游戏级数据隔离和每个游戏真实可行性验证；不预建通用插件平台。
 
 ### Top Tycoon
 
@@ -41,11 +53,9 @@
 
 ## 💡 Ideas
 
-### One Research Environment → Multiple Games → Independent Evidence
+### 每位策划独立云手机
 
-- 设想：多个游戏可以复用受控 Research Runtime，但每个游戏的 Session、Capture、Manifest、Raw 与 Evidence 必须独立。
-- 当前依据：`RFC-0004-Research-Environment-Strategy.md` 仍为 Proposed。
-- 主要 Gate：单活动 Capture、前台包名校验、游戏级数据隔离和对现有独立环境决策的兼容性 Review。
+- 未来Ideas：每人独立实例/账号隔离尚无采购授权，本版固定一台共享体验账号，不扩资源。
 
 ## ✅ Done
 
