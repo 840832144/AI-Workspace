@@ -34,3 +34,5 @@
 本轮验证：小面板17/17合成检查，原采集器16通过/5项Linux专属跳过，JS语法通过；Registry20/0/valid。正式飞书路线图已定位原文档；企业内可编辑权限回读因本机lark-cli user返回token_missing未完成，因此本轮未改飞书正文或权限，正式同步仍待完成，不阻塞代码/云连接准备。不自动重新授权或切换身份。
 
 业务已提交/推送9b6b21d（保留准备代码）及1c9c364（分离采集面板、停用SDK路径、既有Linux合成CI覆盖）；后续继续该分支。CaptureRuntime仍是未实现运行接入，勿误报生产可用或开启准入。
+
+后续协作入口：[治理Draft PR #13](https://github.com/840832144/AI-Workspace/pull/13)、[业务Draft PR #3](https://github.com/840832144/huuuge-android-research/pull/3)。Linux合成CI run36682709050在1c9c364上42/42通过，无跳过；Windows记录和User本人入口反馈仍分别保留，不计真实云端采集。未请求完整Review或合并。

@@ -14,6 +14,7 @@
 - Source: [PR #12 / a91bf39](https://github.com/840832144/AI-Workspace/pull/12)；2026-09-30 User范围调整（官方Web＋独立小面板）。
 - Specification: [唯一完整规格](../docs/plans/HUUUGE-SELF-SERVICE-V1-20260930.md)
 - Handoff: [唯一执行交接](../handoff/HUUUGE-SELF-SERVICE-V1-20260930.md)
+- Draft PRs: [治理 #13](https://github.com/840832144/AI-Workspace/pull/13) / [业务 #3](https://github.com/840832144/huuuge-android-research/pull/3)；不是完整V1 Review。
 
 ## 登记与依赖
 
@@ -60,6 +61,7 @@
 - 下一步：在现有Linux/手机明确可部署的受保护采集通道及其最小身份需求，提交实际需要的精确变更与回滚；继续完成云端常驻/真实启停和新包验收。保持In Progress。
 - 验证：小面板17/17合成检查，原采集器16通过/5项Linux专属跳过，JS语法通过；不计云端V1验收。路线图Git已同步；正式飞书权限回读返回user token_missing，本轮未发布，不把文档授权作为采集实现前置。
 - 业务提交：9b6b21d保留原准备代码；1c9c364分离官方Web与采集面板并接入既有Linux合成CI。云运行绑定尚未实现；保持Draft准备，不作为完整Review。
+- Linux合成CI：[run36682709050](https://github.com/840832144/huuuge-android-research/actions/runs/36682709050)，源码1c9c364，controller21＋descriptor4＋panel17共42/42通过、无跳过；仍不计真实手机/V1验收。
 
 ## 交付与收尾
 
