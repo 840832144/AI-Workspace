@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-30 — TASK-0037 User实操370/370/0与短恢复
+
+记录User本人91秒Web保存下载、25对Spin/2对FreeSpin、本地AI及同包复下；按User决定取消追加三分钟测试而保留原断线宽限。真实API身份隔离/重复采集与worker故障恢复14/14/0通过，缺口不伪装完整。更新原任务/规格/Status/Handoff/路线图与脱敏回执，完整A—F余项仍待验。
+
 ## 2026-09-30 — TASK-0037获批部署与真实API冒烟
 
 同步原Task/Status/Handoff/规格/唯一路线图：已按User审批部署任务身份/受限SSH/常驻/HTTPS及续期；新采10/10/0正常结束和下载回读。User网页代理错误经单地址例外另行审批修正，完整网页、Slots含值AI、轮流与恢复验收继续，不标完整Review/Done。TASK-0031 Accepted原结果保持，飞书待授权。Subagents: none。
