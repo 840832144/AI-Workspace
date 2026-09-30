@@ -1,12 +1,23 @@
 # TASK-0031 — Huuuge 单实例云端游戏与采集闭环
 
-- Status: In Progress
+## 2026-09-30 — TASK-0031 真实云端闭环完成，交 Review
+
+- 本轮一台既有云手机、一个新批次；真实捕获 **312**、解码成功 **312**、失败 **0**。User 手动窗口内回读 **8 条 SlotsGameServer.Spin 响应**，业务字段非空；User 确认“操作完成，游戏正常”。
+- 采集时间 2026-09-30 10:59:50.285—11:03:22.133（UTC+8）；play-end/stop/子进程均 exit0，`finalized` / `ready-for-human-review`。清理后独立回读 index、Raw、JSON、manifest 与计数一致，无 active Session。
+- 实际运行源码 `03fb399201d08c878c74322347b652bc8e8a2414`；既有 Python3.11.13 独立 venv、Frida17.17.0、protobuf7.36.2、lz4 4.4.5，当前 APK 静态提取40-file descriptor。云端 Linux **24/24 合成检查**与上述真实采集分开记录。
+- 原 controller 最小适配显式公网 ADB + Frida TLS、准确包名/PID、当前 descriptor 预检与一次受限启动重试，目标/版本/ABI/Root/forward 校验保留。真实 TLS1.3、固定手机证书、错误证书/令牌拒绝及正确令牌鉴权通过。传统公网 ADB 本身仍未加密；业务数据由 Frida TLS 保护。
+- 首次 decoder 在创建 Session/挂接前因内置 descriptor 版本冲突退出；修复后只对同一已分配批次重试一次，保留原失败状态、日志及启动摘要。没有第二个采集批次，没有用旧结构替代当前结构。
+- 本次 Frida、采集进程、专用 ADB server 已退出，精确 forward 已移除，专用监听为0；临时 TLS 私钥/令牌已清理。原匹配 ADB key 保留；手机 RUNNING、绑定/公网映射及4条安全组入站规则未变，nginx/sshd active，系统 Python3.6.8 未替换。没有新增资源/费用、网络/IAM变更或晨会修改。
+- Google 三个内置包已按 Android 官方 pm enable 方法启用，User 登录并从 Play 安装 Huuuge；原无探针图形修复和可玩反馈保留。本轮 Huuuge12.09.27229/1789041595、Android12/ARM64；Play Protect 认证仍未确认，长期稳定性未测。
+- 当前无执行阻塞；等待原业务 PR #2 / 治理 PR #4 Review，不标 Complete/Accepted。真实数据、配置、地址与密钥只留受控环境；本机不持续采集。Subagents: none。
+
+- Status: Review
 - Project key: HUUUGE
 - Owner: User
 - Executor: Codex
 - Priority: P1 / bounded pilot
 - Date: 2026-09-15
-- Updated: 2026-09-29
+- Updated: 2026-09-30
 - User decision: Approved；按 PR #11 v2-GooglePlay 续接，由 Codex 准备谷歌环境，User 本人负责权限、身份登录和手动游戏操作
 - Allocation relationship: new
 - Related tasks: TASK-0027
@@ -16,7 +27,7 @@
 
 按 [采集器 Issue #1 v3](https://github.com/840832144/huuuge-android-research/issues/1) 跑通一台云端 Huuuge 环境：策划仅用厂商网页，游戏与采集/解码均在云端，真实新增数据可保存且正常结束。2026-09-15 的“资源未就绪，先准备”是历史状态；2026-09-29 按 [PR #11 v2 方案](https://github.com/840832144/AI-Workspace/blob/5ff7190137f1512f52cddacc0f5d17ce5cc4254e/tasks/support/TASK-0031/CLOUD_DEBUG_PLAN_20260929.md)及[对应交接](https://github.com/840832144/AI-Workspace/blob/5ff7190137f1512f52cddacc0f5d17ce5cc4254e/handoff/HUUUGE-CLOUD-DEBUG-20260929.md)续接，不新建 Task/PR，不接受准备代码作为真实验收。
 
-## 2026-09-29 续接实况
+## 2026-09-29 历史续接实况
 
 - 原 Task/PR 保留，按 PR #11 v2-GooglePlay / `5ff7190` 续接；业务 main `6cdb1d6`、治理 main `b0a36c8` 已同步。Registry 19 canonical / 0 collision / valid，reservation pending-main；Subagents: none。
 - User 已完成 official-cli OAuth，GetCallerIdentity=Account；User 明确“你先用这个调试”，继续使用已有授权身份，不再要求切换 RAM。未改 IAM。Workbench v1.0.1 与 Aliyun CLI v3.5.1 复用不重装；Workbench 已通过 CredentialsCmd 复用现有 OAuth 临时凭据并查询匹配Linux；未创建SSH会话，未用于云手机ID。
@@ -59,27 +70,16 @@ User随后明确允许新的一次ADB复验。正常工具审批通过，本次c
 
 不做多人、克隆、统一工作台、报告平台、本地安装包、历史数据搬迁或其他游戏；不修改晨会服务和共享主机全局环境。原始数据、标识和日志仅留受控云端；Git 只收代码、模板、计数和状态。
 
-## 验收
+## 验收与交付
 
-| 项目 | 必须证据 | 当前结果 |
-| --- | --- | --- |
-| Google Play/GMS 前置 | 组件前后状态、官方方法、User 登录、商店可用与认证状态 | 三核心包已启用并回读；User已登录；Play新安装已回读；认证无法读取/未确认 |
-| 网页游戏 | Google Play 获取/确认 Huuuge 后，User 无探针正常交互 | User可玩；应用ANGLE修复后User“现在好了”，长期稳定性未测 |
-| 真实采集解码 | 本轮新增、关联普通手动操作的成功业务解码样本 | 未执行；计数 unknown |
-| 正常结束保存 | Stop/flush、进程退出、结果仍可读、捕获/成功/失败数可核对 | 未执行；没有云端 Session |
+| 项目 | 当前结果 |
+| --- | --- |
+| Google/无探针网页基线 | 原Google内置组件启用、User登录、Play安装与ANGLE修复证据保留；认证未确认 |
+| 网页正常玩 | 本轮User大厅待命，READY后普通Slots，确认游戏正常 |
+| 新增采集解码 | 312捕获/312成功/0失败，手动窗口8条Slots响应 |
+| 正常停止与保存回读 | play-end/stop/子进程exit0，finalized；清理后独立文件回读一致 |
+| 清理与隔离 | 本次进程/forward/监听和临时秘密已清理；原绑定/映射/SG及既有服务保持 |
 
-静态和合成检查单列，仅支持准备工作 Review。云端闭环未通过时不标 Complete/Accepted。
+详细[部署说明](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-cloud-single-instance/deploy/cloud/TLS_TRANSPORT.md)、[真实验收记录](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-cloud-single-instance/deploy/cloud/ACCEPTANCE.md)与脱敏结果位于原业务仓库；原始数据/配置/地址/密钥不进公共治理仓库。
 
-## 交付与下一步
-
-原业务 [PR #2](https://github.com/840832144/huuuge-android-research/pull/2) / 治理 [PR #4](https://github.com/840832144/AI-Workspace/pull/4) 交本轮增量 Review，任务 In Progress，不是 Complete/Accepted。已有代码 `9bb241b` 和 Linux CI 14/14 仅为历史合成准备证据，本轮没有采集代码改动。
-
-**前次单次ADB验证授权**：User 当时授权仅限既有云端 Linux 独立目录安装官方 Android Platform-Tools，使用 User 已建且已核验的公网映射做一次 connect/get-state；server 仅回环，不覆盖共享工具/已有密钥，不替换手机绑定，保留鉴权。本轮禁止 Frida/采集、重启/清数据及资源/映射/安全组/防火墙/IAM/既有服务变更；需要授权/密钥配置交 User 本人。
-
-User委托Codex接手本地管理与云端密钥配置。Workbench经本机CredentialsCmd适配复用原OAuth临时STS，唯一Linux目标只读查询通过；未创建Workbench SSH会话。实际远程执行继续用ECS Cloud Assistant，OpenSSL CMS加密后只下发密文，云端公钥比较一致，匹配私钥已放入独立目录，0700/0600。
-
-User随后明确允许新的一次ADB复验。正常工具审批通过，本次connect实际1次成功，get-state=device/exit0；disconnect与专用server停止均exit0。独立回读保存结果、记录PID不存在/专用监听0；一次性传输材料已清理，原任务key保留、默认root key不存在，手机绑定/安全组规则未变，nginx/sshd仍active。无Frida/采集。
-
-本次连接验证已完成，无需User再找主机、上传密钥或重新绑定。下一阶段明确持续连接与Frida/真实采集范围后继续原验收目标；当前保持停止，真实新增解码、采集正常结束和保存结果回读仍未执行。
-
-无云端Session/真实解码计数。持续采集、正常stop/退出及保存结果回读仍待完成。reservation保持pending-main，Review后canonical合入共享main再finalize。浏览器自动化保持停止，官方API可继续使用；不恢复本机采集或SVN安装包。
+原业务[PR #2](https://github.com/840832144/huuuge-android-research/pull/2) / 治理[PR #4](https://github.com/840832144/AI-Workspace/pull/4)交Review；本轮执行目标已得到真实证据，正式Review未完成，不标Complete/Accepted。reservation保持pending-main，canonical合入共享main后再finalize。无新增Task；Subagents: none。
