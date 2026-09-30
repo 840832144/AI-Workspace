@@ -16,6 +16,17 @@
 - Handoff: [唯一执行交接](../handoff/HUUUGE-SELF-SERVICE-V1-20260930.md)
 - Draft PRs: [治理 #13](https://github.com/840832144/AI-Workspace/pull/13) / [业务 #3](https://github.com/840832144/huuuge-android-research/pull/3)；不是完整V1 Review。
 
+## 2026-09-30 — TASK-0037已批准部署，接续User Web验收
+
+Status: **In Progress / 云端已部署，完整V1待实操验收**。User已批准原具体部署清单及IP证书透明度记录，实际运行代码216b298。两个无sudo身份、限定回环SSH管理通道、独立Python与任务常驻服务、可信HTTPS及续期已上线。每片段TLS准备、错误token拒绝、准确目标与清理通过；原TASK-0031 Accepted/312/312/0保持，不新建Task。
+
+本轮API真实冒烟：**10捕获/10解码成功/0失败**，1段finalized，正常停止/保存后complete=1、lease=0，下载8文件ZIP并回读10行消息；专用Frida/ADB和转发已清理，常驻加密隧道保留。没有操作游戏；本地AI仅确认4对GetPlayerList、1对GetJackpotValues，无Spin，不能替代User Slots/含值分析验收。
+
+User首次网页报ERR_CONNECTION_CLOSED。同机系统代理路径复现，直连HTTPS及登录正常；User另行批准后只添加面板地址的系统代理例外，默认网络路径复测通过，其他代理设置不变。浏览器工具reset后仍nodeRepl.fetch request failed，已停止自动化，不冒称网页渲染通过。当前下一步：User刷新私有入口，双标签页普通Slots至少3分钟、结束下载；随后回读其新批次并完成轮流/异常/无管理会话A—F。仍不交完整Review。
+
+完整部署方法、影响、证据与回滚见[部署实况](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-self-service-v1/deploy/self-service/DEPLOY_RESULT_20260930.md)。入口/密码/真实目标/原始数据只留私有环境。Linux运行资源上限与容量保护生效，无新增费用/IAM/SG/防火墙/公网ADB映射，无重启/清数据或晨会变更。飞书待授权不阻塞，Subagents: none。
+
+
 ## 登记与依赖
 
 同步治理main b0a36c8、业务main6cdb1d6及在途分支；原TASK-0031正式Round1 Accepted已落库，原312/312/0快照保持。原PR未合并，不自动合并或finalize其reservation。业务新分支依赖受评52477c8及只含Accepted记录的4572b78；治理新分支依赖08ca95b，并引用PR12原规格a91bf39。新功能只在独立worktree/分支codex/huuuge-self-service-v1交付，不追加到旧试点PR。
@@ -67,7 +78,7 @@
 
 完整代码、独立部署与升级/回退入口、脱敏配置、中文使用页、维护说明、A—F实测记录与脱敏样例包；原Task/Status/Handoff和唯一Product Roadmap同步。所有验收完成才交ChatGPT Review，未完成保留In Progress并清楚记录缺口。合并仍由User决定；canonical进入main后finalize本reservation。
 
-## 2026-09-30 Runtime实现与具体部署待批准
+## 历史：2026-09-30部署批准前的Runtime准备
 
 沿用TASK-0037，原登记Registry20/0collision/valid；WorkspaceSync ON_DEMAND/provider unavailable/stale6/conflicts0。代码候选已补CaptureRuntime、每段Frida TLS/令牌、专用进程与转发收尾、运行容量保护及受鉴权SSE后台页连接，复用原采集器；清理未知不释放采集锁或发布ZIP，准备期停止不再启动decoder。
 

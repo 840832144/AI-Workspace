@@ -17,13 +17,15 @@
 - TASK-0037既有独立worktree、remote-CAS登记；reservation pending-main。当前Registry20/0/valid；Workspace Sync ON_DEMAND，provider unavailable、stale6、conflicts0，Git为真相源。不得再分配编号。
 - 已有登录/采集状态/面板/导出/片段编排及合成检查。旧SDK onConnected/断连后旧Ticket重连/2507是历史事实，不能改写成撤销通过，也不再阻塞V1。厂商咨询未发送且退出当前待办。
 
-## 剩余工作与下一步
+## 2026-09-30 — TASK-0037已批准部署，接续User Web验收
 
-受保护管理连接、云运行适配、每批TLS自动准备/清理、容量保护、HTTPS面板入口及真实A—F尚待完成。原私网ADB检查超时，原公网ADB鉴权不等于传输加密；不能降低TLS/目标校验或依赖Owner本机持续运行。
+Status: **In Progress / 云端已部署，完整V1待实操验收**。User已批准原具体部署清单及IP证书透明度记录，实际运行代码216b298。两个无sudo身份、限定回环SSH管理通道、独立Python与任务常驻服务、可信HTTPS及续期已上线。每片段TLS准备、错误token拒绝、准确目标与清理通过；原TASK-0031 Accepted/312/312/0保持，不新建Task。
 
-先在已核验现有Linux和手机明确最小可实施保护路径；取消SDK后重新核定是否仍需云API身份，不先申请广泛权限。涉及新的身份、网络/IAM、公开入口、费用或共享服务时给出具体改动、影响、回滚并等Owner确认。已授权代码与任务独立服务准备继续，不等待撤销工单。
+本轮API真实冒烟：**10捕获/10解码成功/0失败**，1段finalized，正常停止/保存后complete=1、lease=0，下载8文件ZIP并回读10行消息；专用Frida/ADB和转发已清理，常驻加密隧道保留。没有操作游戏；本地AI仅确认4对GetPlayerList、1对GetJackpotValues，无Spin，不能替代User Slots/含值分析验收。
 
-实际验收包括官方Web＋面板的同事使用、两面板身份分别新批次、单采集任务防重复和下载归属、真实四态、正常停止/回读/下载与本地AI、断线恢复、退出Codex管理会话后仍可运行。User本次登录反馈只覆盖其本人入口，不勾选上述完整验收。
+User首次网页报ERR_CONNECTION_CLOSED。同机系统代理路径复现，直连HTTPS及登录正常；User另行批准后只添加面板地址的系统代理例外，默认网络路径复测通过，其他代理设置不变。浏览器工具reset后仍nodeRepl.fetch request failed，已停止自动化，不冒称网页渲染通过。当前下一步：User刷新私有入口，双标签页普通Slots至少3分钟、结束下载；随后回读其新批次并完成轮流/异常/无管理会话A—F。仍不交完整Review。
+
+完整部署方法、影响、证据与回滚见[部署实况](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-self-service-v1/deploy/self-service/DEPLOY_RESULT_20260930.md)。入口/密码/真实目标/原始数据只留私有环境。Linux运行资源上限与容量保护生效，无新增费用/IAM/SG/防火墙/公网ADB映射，无重启/清数据或晨会变更。飞书待授权不阻塞，Subagents: none。
 
 ## 代码、发布和路线图
 
@@ -33,11 +35,11 @@
 
 本轮验证：小面板17/17合成检查，原采集器16通过/5项Linux专属跳过，JS语法通过；Registry20/0/valid。正式飞书路线图已定位原文档；企业内可编辑权限回读因本机lark-cli user返回token_missing未完成，因此本轮未改飞书正文或权限，正式同步仍待完成，不阻塞代码/云连接准备。不自动重新授权或切换身份。
 
-业务已提交/推送9b6b21d（保留准备代码）及1c9c364（分离采集面板、停用SDK路径、既有Linux合成CI覆盖）；后续继续该分支。CaptureRuntime现已实现候选，但未部署；最新状态见下方本轮部署审批段，勿开启准入或误报可用。
+业务已提交/推送9b6b21d（保留准备代码）及1c9c364（分离采集面板、停用SDK路径、既有Linux合成CI覆盖）；后续继续该分支。CaptureRuntime已在216b298真实部署并通过TLS/清理及API冒烟；准入已开启，最新边界见上方部署实况。
 
 后续协作入口：[治理Draft PR #13](https://github.com/840832144/AI-Workspace/pull/13)、[业务Draft PR #3](https://github.com/840832144/huuuge-android-research/pull/3)。Linux合成CI run36682709050在1c9c364上42/42通过，无跳过；Windows记录和User本人入口反馈仍分别保留，不计真实云端采集。未请求完整Review或合并。
 
-## 2026-09-30 Runtime实现与具体部署待批准
+## 历史：2026-09-30部署批准前的Runtime准备
 
 沿用TASK-0037，原登记Registry20/0collision/valid；WorkspaceSync ON_DEMAND/provider unavailable/stale6/conflicts0。代码候选已补CaptureRuntime、每段Frida TLS/令牌、专用进程与转发收尾、运行容量保护及受鉴权SSE后台页连接，复用原采集器；清理未知不释放采集锁或发布ZIP，准备期停止不再启动decoder。
 

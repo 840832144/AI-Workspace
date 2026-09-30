@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-30 — TASK-0037获批部署与真实API冒烟
+
+同步原Task/Status/Handoff/规格/唯一路线图：已按User审批部署任务身份/受限SSH/常驻/HTTPS及续期；新采10/10/0正常结束和下载回读。User网页代理错误经单地址例外另行审批修正，完整网页、Slots含值AI、轮流与恢复验收继续，不标完整Review/Done。TASK-0031 Accepted原结果保持，飞书待授权。Subagents: none。
+
 ## 2026-09-30 — TASK-0037 官方Web＋采集小面板范围调整
 
 按User新决定就地同步原规格/Task/Status/Handoff和唯一路线图；不新建Task。记录User成员账号官方Web到Android桌面/Huuuge大厅通过，限定本人反馈；不计同事盲测/Android客户端/V1采集。取消SDK内嵌/统一登录及强制防重连/旧凭证撤销/控制交接验收，保留单采集任务锁、鉴权、批次/下载权限与真实四态。原TASK-0031 Accepted和结果不变；受保护连接、云常驻及真实V1仍未验，部署审批边界不变。Subagents: none。
