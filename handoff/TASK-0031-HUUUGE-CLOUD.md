@@ -1,9 +1,13 @@
 # TASK-0031 — Huuuge 单实例云端执行交接
 
+## 2026-09-30 正式评审收口
+
+TASK-0031 Round 1 **Accepted**，阻塞修改无；[正式评审](https://github.com/840832144/AI-Workspace/pull/4#pullrequestreview-5361181770)已落库。312/312/0、8条Slots响应及原结果快照保持不变，不重新采集。原PR待User决定合并，reservation pending-main；canonical进入main后才finalize并收口Complete。新自助V1另行登记后继Task，本试点不增加新功能。Subagents: none。
+
 - Updated: 2026-09-30
 - Actor: Codex
 - Owner: User；本人负责权限、账号登录与手动游戏操作
-- Status: Review
+- Status: Accepted
 - Task: [TASK-0031](../tasks/TASK-0031-HUUUGE-CLOUD-SINGLE-INSTANCE.md)
 - Source: [Issue #1 v3](https://github.com/840832144/huuuge-android-research/issues/1)；[PR #11 v2-GooglePlay / 5ff7190](https://github.com/840832144/AI-Workspace/blob/5ff7190137f1512f52cddacc0f5d17ce5cc4254e/tasks/support/TASK-0031/CLOUD_DEBUG_PLAN_20260929.md)
 - Subagents: none
