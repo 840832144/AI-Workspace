@@ -14,7 +14,7 @@
 
 - 已批准：[TASK-0037](../../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md)，PR12/a91bf39及2026-09-30 User范围调整；后继TASK-0031 Accepted。
 - 本阶段：官方Web玩固定账号＋独立采集小面板，可信同事约定轮流；基本鉴权、单采集任务防重复、云端常驻/受保护连接、一键启停、真实四态、结束下载及本地AI读包。取消SDK内嵌、统一登录与强制手机控制交接/防重连/旧凭证撤销验收。
-- 当前：In Progress；User成员账号官方Web到Android桌面/Huuuge大厅通过，仅限本人反馈。已有代码与合成检查保留；受保护连接、常驻运行/面板HTTPS和真实A—F仍待完成，不计同事盲测/Android客户端/V1采集通过，不进入Done。费用/公开入口/云权限/共享服务变更先确认。
+- 当前：In Progress；User成员账号官方Web到Android桌面/Huuuge大厅通过，仅限本人反馈。CaptureRuntime/TLS清理/容量及后台页SSE候选已实现；具体受限SSH身份、systemd与既有IP HTTPS变更清单已备，待User确认后部署；实际保护通道、常驻/HTTPS和真实A—F仍待完成，不计同事盲测/Android客户端/V1采集通过，不进入Done。费用/公开入口/云权限/共享服务变更先确认。
 
 ### 【游戏】 Collector 1.0
 

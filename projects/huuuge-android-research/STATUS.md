@@ -1,8 +1,16 @@
 # Huuuge Android Research — Project Status
 
-## 2026-09-30 — TASK-0037 范围已调整
+## 2026-09-30 Runtime实现与具体部署待批准
 
-[正式Task](../../tasks/TASK-0037-HUUUGE-SELF-SERVICE-V1.md) In Progress。User成员账号已绑定现有手机并在官方Web进入Android桌面/Huuuge大厅，按本人反馈记通过；同事盲测、Android客户端及V1采集仍未验。V1改为官方Web游戏＋独立采集小面板，分别登录，可信同事约定轮流；不再要求内嵌SDK、统一登录、强制防重连/旧凭证撤销/控制交接。采集锁只防重复采集，基本鉴权、本人批次/下载权限保留。当前重点为受保护连接、云端常驻、真实四态/启停、结束下载和本地AI新包；SDK撤销工单退出前置。现有代码保留，TASK-0031 Accepted及原312/312/0不变。部署变更按原审批边界；无新增费用、IAM/网络/晨会改动。Subagents: none。
+沿用TASK-0037，原登记Registry20/0collision/valid；WorkspaceSync ON_DEMAND/provider unavailable/stale6/conflicts0。代码候选已补CaptureRuntime、每段Frida TLS/令牌、专用进程与转发收尾、运行容量保护及受鉴权SSE后台页连接，复用原采集器；清理未知不释放采集锁或发布ZIP，准备期停止不再启动decoder。
+
+环境只读回读：Linux OpenSSH8.0支持PermitListen；任务端口空闲、32.8GB可用；安全组已有22/80/443。有效nginx无TLS配置/443监听，纠正先前把注释当证书引用。手机Android12/ARM64、Huuuge当前版本运行，原官方Frida工具存在。尚未运行实际SSH隧道或新采集。
+
+[具体部署清单/影响/回滚](https://github.com/840832144/huuuge-android-research/blob/codex/huuuge-self-service-v1/deploy/self-service/DEPLOY_APPROVAL_20260930.md)：申请两个任务Linux身份、仅回环反向SSH管理通道及Match限制、独立systemd服务/容量上限、既有公网IP的HTTPS证书/续期和nginx精确配置。需要User确认后执行；IP证书公开透明度记录需一并接受。无新资源购买、IAM/安全组/防火墙/端口映射变更；不修改晨会。
+
+本地Windows48通过/6Linux跳过、JS通过；均为局部/合成证据，LinuxCI另记。无V1新包/新计数，真实双标签页、新包本地AI、轮流与异常恢复A—F均未验，不交完整Review。TASK-0031 Accepted及312/312/0保持；User成员登录仅本人实测。飞书待授权，不阻塞开发。Subagents: none。
+
+下一步：User批准具体部署单后由Codex部署与实测，审批拒绝按正常流程停止；手机SSH客户端兼容/host key/最小权限/实际保护路径先通过，随后可信HTTPS与真实新批次，不用原312条替代。
 
 ## 2026-09-30 正式评审收口
 
@@ -103,3 +111,5 @@ TASK-0031 Round 1 **Accepted**，阻塞修改无；[正式评审](https://github
 ## Exact Next Action
 
 ChatGPT performs Review Round 2 on `huuuge-android-research@4a5dddf7782307c6a8f368c9f1dc6390eec6f65b` and the original Feishu document, returning `Accepted` or specific changes. Do not start another Capture or modify Collector/CR before Review. TASK-0011 blind validation remains independently pending.
+
+Linux合成CI [run36686925269](https://github.com/840832144/huuuge-android-research/actions/runs/36686925269) 在业务代码5ef40531a2c8e268dce6e98b8fbd158f9f9a1b94通过：controller21＋descriptor4＋panel21＋Runtime8，共54/54、无跳过。包含真实Linux本地进程/回环socket的合成边界测试；不是目标云手机或V1验收。

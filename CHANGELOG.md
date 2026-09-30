@@ -1089,3 +1089,7 @@ TASK-0031 Round 1 **Accepted**，阻塞修改无；[正式评审](https://github
 - 未实现任何业务代码。
 - 未迁移或修改任何现有项目仓库。
 - 未修改 `feishu-doc-mcp` / `document-assistant`。
+
+## 2026-09-30 — TASK-0037 Runtime与部署审批同步
+
+原Task/Status/Handoff/规格/唯一路线图同步运行适配候选、局部证据及具体最小身份/SSH/HTTPS变更清单。修正旧nginx注释误判；无新增Task、无实际部署、无V1新包；TASK-0031 Accepted保持。飞书待授权不阻塞。Subagents: none。
