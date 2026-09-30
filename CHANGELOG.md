@@ -2,6 +2,30 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+
+## 2026-09-30 — TASK-0031 真实云端闭环交Review
+
+- 沿用原Task/PR，读取ADB阶段Review后按User新授权完成一轮云端Frida TLS采集。实际源码03fb399，真实312捕获/312成功/0失败、手动Slots响应8条；User确认游戏正常。
+- 正常停止exit0/finalized；清理后独立回读文件一致，本次进程/forward/监听和临时秘密已清理。绑定/映射/4条SG规则、系统Python与既有服务保持，未新增资源/网络/IAM变更。
+- 同步原Task=Review、项目Status/Handoff与业务部署/验收证据；合成24/24与真实结果分列，首次启动前失败及同ID一次重试保留。正式Review未完成，reservation pending-main。Subagents: none。
+
+## 2026-09-29 — TASK-0031 本地管理认证与云端密钥配置
+
+- User委托Codex接手本地连接准备；复用Workbench1.0.1，通过本机CredentialsCmd适配现有OAuth临时STS，唯一Linux目标只读查询通过；配置不保存凭据副本，未创建SSH会话或改安全组/IAM。
+- 继续既有ECS Cloud Assistant：标准OpenSSL CMS加密后仅下发密文，目标Linux解密、公钥比较一致，以不覆盖方式放入任务独立目录，0600/0700。一次性云端传输材料已清理；独立回读确认原任务key保留、默认root key不存在、手机绑定/安全组规则未变、nginx/sshd active、ADB进程/监听0。
+- 配置阶段未连接ADB；User随后明确允许一次复验，正常审批通过，connect成功/get-state=device，断开/停止均0。独立回读结果、PID不存在/监听0，无Frida/采集；原Task In Progress、原PR交增量Review，完整采集/解码/停止保存仍未验收。Subagents: none。
+
+## 2026-09-29 — TASK-0031 按 v2-GooglePlay 续接
+
+- 真实打通 eds-aic + EdsAgent；现有 OAuth Account 由 User 明确授权复用。启用镜像内置 Play/GMS/GSF并回读，User 登录后从 Play 新安装 Huuuge，来源/版本/ABI已验证。
+- 新增本轮真实部署记录：Huuuge 专属 ANGLE 设置、真实 BootActivity、回滚条件；日志确认驱动生效，User 确认画面恢复。没有改采集器。
+- 自行核实已有 Linux 与 Cloud Assistant；私网 ADB TCP 超时，User 新建公网映射后云端 TCP 成功。前次 ADB 下载/实连被自动审批拒绝属于历史，本次新授权与结果见下一条。
+- User明确一次云端ADB验证边界，正常默认审批本次放行；安装官方Platform-Tools37.0.1，修正启动监听参数后实核仅回环，一次connect/get-state返回unauthorized。已断开并停止专用server，独立回读结果/进程不存在/监听0、手机绑定未变；未运行Frida或采集。当前阻塞为需User本人处理的设备鉴权。
+- User指明既有密钥与本机位置后，只读核对绑定名称并以公钥指纹确认一份本机私钥匹配；不再要求重新绑定。澄清无影使用预配置密钥、非普通手机USB弹窗流程；当前待受控云端配置与新的单次复验，未传输私钥或重连。
+- 原 Task/Status/Handoff/验收同步真实状态，认证记录无法读取；保留未知浏览器命令及泛用 launcher 失败证据。原 PR 交增量 Review，未新增任务/付费资源、本机持续采集或晨会改动。
+
+- 继续原PR #2/#4；Registry19 canonical/0collision/valid，reservation pending-main；不新建任务或另建平台。
+
 ## 2026-09-17 — TASK-0035已合并并finalized
 
 - PR #8 merge commit `fde35b2f804e1f69bf02acc6d9581c5d009b118a`，canonical及Round 1 Accepted Review已进入最新main；既有工具使用原reservation返回finalized，未重新分配Task。
@@ -92,6 +116,12 @@
 - 使用非 squash subtree 原样导入 CR，13个来源提交和276个文件保留，直接 diff 为空；单独适配根/项目规则、四启动文件、ChatGPT/Codex/TRAE、唯一 Skill 路由、Context 与资料同步路径。
 - 默认目录/卡包检查不计算文件哈希；验证实际结构、内容及行为。SVN 工具要求明确提交根，历史 Collector 副本不启动、不自动同步。
 - 全新单仓克隆根/CR 两入口、14源表、36卡包附件与81项测试通过，提交 PR Review；未合并、切换或归档，未修改源表、权限、正式配置，未执行同步 apply、SVN 提交、采集或部署。Subagents: none。
+
+## 2026-09-15 — TASK-0031 单实例云端 Huuuge
+
+- 按 Issue #1 v3 与 User 授权，在独立 worktree 完成 scan/validate、防重及 remote-CAS 登记。资源未就绪，先做代码和部署准备；三项真实云端验收均待资源。
+- 业务实现保持在 huuuge-android-research；本仓库仅保存 Task、Status 和 Handoff。未改变晨会服务、本地采集部署或其他任务。
+- 准备代码已交业务 PR #2（`9bb241b`），Linux CI 14/14 合成检查通过。Task 标为准备 Review，真实三步仍待资源；reservation 保持 pending-main。
 
 ## 2026-09-09 — TASK-0029 有限文档试用 Accepted
 
