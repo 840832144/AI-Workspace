@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-09-30 — TASK-0037 User实操370/370/0与短恢复
+
+记录User本人91秒Web保存下载、25对Spin/2对FreeSpin、本地AI及同包复下；按User决定取消追加三分钟测试而保留原断线宽限。真实API身份隔离/重复采集与worker故障恢复14/14/0通过，缺口不伪装完整。更新原任务/规格/Status/Handoff/路线图与脱敏回执，完整A—F余项仍待验。
+
+## 2026-09-30 — TASK-0037获批部署与真实API冒烟
+
+同步原Task/Status/Handoff/规格/唯一路线图：已按User审批部署任务身份/受限SSH/常驻/HTTPS及续期；新采10/10/0正常结束和下载回读。User网页代理错误经单地址例外另行审批修正，完整网页、Slots含值AI、轮流与恢复验收继续，不标完整Review/Done。TASK-0031 Accepted原结果保持，飞书待授权。Subagents: none。
+
+## 2026-09-30 — TASK-0037 官方Web＋采集小面板范围调整
+
+按User新决定就地同步原规格/Task/Status/Handoff和唯一路线图；不新建Task。记录User成员账号官方Web到Android桌面/Huuuge大厅通过，限定本人反馈；不计同事盲测/Android客户端/V1采集。取消SDK内嵌/统一登录及强制防重连/旧凭证撤销/控制交接验收，保留单采集任务锁、鉴权、批次/下载权限与真实四态。原TASK-0031 Accepted和结果不变；受保护连接、云常驻及真实V1仍未验，部署审批边界不变。Subagents: none。
+
+## 2026-09-30 — 登记TASK-0037 Huuuge自助V1
+
+按PR12/a91bf39完整规格，经独立worktree/Registry/remote-CAS登记后继TASK-0037，关联Accepted TASK-0031；保留旧快照与原PR边界。同步规格/交接/项目Status及唯一路线图Current、下一阶段多游戏Backlog、独立实例Ideas。所有A—F验收在本阶段完成才交Review。Subagents: none。
+
 ## 2026-09-30 正式评审收口
 
 TASK-0031 Round 1 **Accepted**，阻塞修改无；[正式评审](https://github.com/840832144/AI-Workspace/pull/4#pullrequestreview-5361181770)已落库。312/312/0、8条Slots响应及原结果快照保持不变，不重新采集。原PR待User决定合并，reservation pending-main；canonical进入main后才finalize并收口Complete。新自助V1另行登记后继Task，本试点不增加新功能。Subagents: none。
@@ -1081,3 +1097,7 @@ TASK-0031 Round 1 **Accepted**，阻塞修改无；[正式评审](https://github
 - 未实现任何业务代码。
 - 未迁移或修改任何现有项目仓库。
 - 未修改 `feishu-doc-mcp` / `document-assistant`。
+
+## 2026-09-30 — TASK-0037 Runtime与部署审批同步
+
+原Task/Status/Handoff/规格/唯一路线图同步运行适配候选、局部证据及具体最小身份/SSH/HTTPS变更清单。修正旧nginx注释误判；无新增Task、无实际部署、无V1新包；TASK-0031 Accepted保持。飞书待授权不阻塞。Subagents: none。
