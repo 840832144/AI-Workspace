@@ -1,6 +1,12 @@
 # CR 当前状态
 
-## 2026-10-08 — TASK-0038 飞书原生交付完成，交轻量Review
+## 2026-10-08 — TASK-0038 制作人表达修订交轻量Review
+
+- [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)从Changes Requested回Review，已按[可读性与建议规格](REPORTS/CR-0930-LIVE-IMPACT-20261007/PLANNER_READABILITY_ACTIONS.md)原位修订[现有报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，保留个人位置和组织内链接权限。
+- 正文按玩家体验组织，四项改进仅为待验证建议；统计方法/证据/治理集中附录，4张图标签同步修订且删除重复图注。沿用原人数、分母、人群与10/6快照，不新查数或刷新D7。
+- 文档revision 13，460段文字回读一致、15表4图齐全，关键数字与云端图核对通过；权限前后一致，唯一导航revision 184回读通过。Task/Handoff/报告/Registry同步，PR #14不合并、不finalize。Workspace Sync受本机执行策略限制，不影响本Task独立CLI交付；Subagents: none。
+
+## 历史 — 2026-10-08 TASK-0038 飞书原生初版交付完成
 
 - [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)回Review。[制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)按User“先不放公司目录”的决定，由CLI user创建在个人文档空间；完整Excel仍留本机。
 - 已完成个人空间/既有登记查重、正文和表格412段回读一致、6章16表4图核对、4张云端图逐张视觉复核。权限回读tenant_readable，未修改共享设置或开公网；个人位置仍为组织内持链接可阅读。

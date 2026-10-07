@@ -1,8 +1,18 @@
 # TASK-0038 — CR 9.30线上效果复盘交接
 
-状态：Review（飞书原生交付及回读完成，待轻量Review）；Executor：Codex；Subagents: none。仅本任务，未改TASK-0036或其PR。
+状态：Review（制作人表达修订已回读，待轻量Review）；Executor：Codex；Subagents: none。仅本任务，未改TASK-0036或其PR。
 
-## 当前交付：飞书原生文档（2026-10-08）
+## 当前交付：制作人表达与建议
+
+已执行[PLANNER_READABILITY_ACTIONS](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/PLANNER_READABILITY_ACTIONS.md)及本轮User改写稿。[原报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)分章原位修订，6章15表4图；原人数、人群与边界保留，正文/图标题和轴标签改为策划语言，详细方法移附录。首局进入、成长衔接、余额压力、首付后体验四项建议都含动作/预期方向/观察指标与不成立时的处理，未授权实施。
+
+- 当前revision 13，460段正文/表格按顺序与本机源稿一致；107项数字片段及32个绘图值定向核对，4张云端图逐张查看。不是新增线上查询或对原模型的独立重跑。
+- 个人位置保留、权限前后相同，仍为tenant_readable；没有新建、移动或扩权。已有唯一导航条目已更新并独立回读（revision 184），标题/简介/Review及唯一链接正确。
+- 受控包保留更新前云端快照；其`readability_v2/`保存本轮XML、图及回读验证。初版`FEISHU_REPORT.md`与Excel保留历史，数值不动。公开Git仅规格、方法、脱敏验证与交接。
+- Task从Changes Requested回Review，待ChatGPT轻量复核。PR #14仍OPEN Draft，reservation pending-main；不新增查询、刷新D7、改配置、合并或finalize。
+- Workspace Sync入口被本机PowerShell执行策略阻止，未绕过或修改策略；本Task Git同步及独立飞书CLI回读成功，不代表Workspace云同步可用。
+
+## 历史交付：飞书原生文档初版（2026-10-08）
 
 - User已授权本Task以公司内部飞书原生云文档作为最终主交付；完整要求及受评51033ef的首轮轻量复核见[FEISHU_DELIVERY](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/FEISHU_DELIVERY.md)。不新建Task，不重新查询或扩大分析范围。
 - Excel继续为受控本机底稿。飞书不能只是Excel附件、在线表格或整页截图；采用可编辑结论/窄表与精选图表，读者无需下载Excel即可开会。

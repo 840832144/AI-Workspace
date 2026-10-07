@@ -4,11 +4,11 @@
 
 ## 当前飞书交付
 
-- 标题：CR 9.30更新效果复盘｜制作人版｜数据截至2026-10-06；[完整规格及首轮Review限制](FEISHU_DELIVERY.md)。
-- 本机展示源稿`FEISHU_REPORT.md`和CLI XML草稿已完成；6章、16张原生窄表、4张精选聚合图。固定首轮快照，没有重查D7或线上全量。
+- 标题：CR 9.30更新效果复盘｜制作人版｜数据截至2026-10-06；[完整交付规格](FEISHU_DELIVERY.md)与[本轮可读性及建议规格](PLANNER_READABILITY_ACTIONS.md)。
+- 当前本机展示源为`readability_v2/report.xml`及分章稿，6章15张原生表4张精选图；初版`FEISHU_REPORT.md`与原XML仍保留历史。正文按“发生什么→玩家含义→建议动作”改写，详细方法/证据/治理集中附录；四项建议只写预期方向与观察指标，不授权实施或承诺收益。
 - 原始/两套共同权重各写覆盖，成长保留阶段与完成者限定；旧比例区间重叠推理已删除。原Excel为首轮历史底稿，旧文字应结合当前展示修订阅读；未改原数值或重建工作簿。
 - User决定“先不放公司目录”，已用CLI user创建于个人文档空间。创建前个人空间与既有登记无同题；未声称全企业搜索。权限实际回读为tenant_readable，保留现有设置、未开公网或扩权；个人位置不等于仅本人可读。
-- 云端回读：revision 5，412段标题/正文/表格文字与源稿一致、16表4图齐全；4张云端图经CLI预览取回并逐张查看。[唯一导航中心](https://gfok27asqq.feishu.cn/docx/TXe8dulG3osX2kxJMK3cPiHWnHf)已登记，CLI回读确认本Task标题、Review与唯一链接（revision 182）。
+- 本轮原位更新：revision 5→13，460段标题/正文/表格与源稿逐段一致，15表4图齐全；107项原有数字单元格/片段及32个绘图值定向核对。4张云端图已逐张查看，标题/轴标签为策划语言且无重复图注。权限前后完整设置相同；[唯一导航中心](https://gfok27asqq.feishu.cn/docx/TXe8dulG3osX2kxJMK3cPiHWnHf)回读确认本Task新简介、Review及唯一链接（revision 184）。
 
 ## 本机受控交付
 
@@ -23,8 +23,9 @@
 |aggregate-results.controlled.json|完成的聚合与补充分层；完整响应另存受控工作目录|
 |report-model.controlled.json|Excel受控输入；不含真实UID/订单，但仍为经营资料|
 |VALIDATION.md / workbook-validation.json|数据、公式、文件和视觉核验及未验证项|
-|FEISHU_REPORT.md / CLI XML草稿|去敏原生正文的受控展示源，不进入public Git|
-|FEISHU_VALIDATION.local.json / 精选图|本轮定向验证与4张独立聚合图；非整页截图、非附件替代|
+|FEISHU_REPORT.md / 初版CLI XML草稿|飞书初版历史源，保持原样以便追溯|
+|readability_v2/report.xml / section-*.xml / charts/|当前策划语言展示源及4张改写标签图，不进入public Git|
+|readability_v2/final-validation.local.json / 云端回读|本轮关键数字、正文、图片、权限与唯一导航证据；非线上复跑|
 
 八页依次为：复盘总览、新增活跃、新增留存、付费留存、成长体验、经济与活动、异常与建议、口径与覆盖。简单派生保留公式；线上分位数/留存等依照查询证据，不声称Excel能重跑线上查询。D7未成熟为空，不绘成0。
 

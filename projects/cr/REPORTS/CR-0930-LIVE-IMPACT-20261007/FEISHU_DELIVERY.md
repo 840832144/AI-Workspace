@@ -124,3 +124,7 @@ ChatGPT已读取受评commit的canonical Task、CR Status、专属Handoff和METH
 - 既有register_document成功登记唯一[文档导航中心](https://gfok27asqq.feishu.cn/docx/TXe8dulG3osX2kxJMK3cPiHWnHf)，CLI独立回读revision 182确认本Task标题、Review状态及一条正确链接。未手工维护私有Registry或新建导航。
 - 原始/两套共同权重覆盖、完成者/阶段条件和区间重叠推理已按本规格修订；没有新的差值检验或经营查询。固定首轮10/6 UTC-5快照，Excel仍为本机历史底稿，D7不刷新；首轮ChatGPT未独立复跑线上证据限制不变。
 - Task回Review，等待轻量复核本次展示和回读；不预写Accepted/Complete。PR #14 OPEN Draft，reservation pending-main；无数数/SVN/游戏配置变更、合并或finalize。Subagents: none。
+
+## 10. 后续表达修订（2026-10-08）
+
+[PLANNER_READABILITY_ACTIONS](PLANNER_READABILITY_ACTIONS.md)及User本轮改写稿覆盖初版的正文表述要求。已原位分章更新原报告至revision 13，保留个人位置、权限及初版受控快照；本轮正文6章15表4图，详细统计/证据/治理移附录，新增四组待验证建议。完整回读结果见[VALIDATION](VALIDATION.md)当前段；Task回Review，未新增经营查询或刷新D7。上文revision 5及16表412段为初版历史，不是当前结构。
