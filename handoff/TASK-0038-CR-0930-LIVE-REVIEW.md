@@ -1,16 +1,31 @@
 # TASK-0038 — CR 9.30线上效果复盘交接
 
-状态：Review；Executor：Codex；Subagents: none。仅本任务，未改TASK-0036或其PR。
+状态：Changes Requested（补飞书正式交付与展示表述）；Executor：Codex；Subagents: none。仅本任务，未改TASK-0036或其PR。
+
+## 当前执行：最终以飞书云文档交付
+
+- User已授权本Task以公司内部飞书原生云文档作为最终主交付；完整要求及受评51033ef的首轮轻量复核见[FEISHU_DELIVERY](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/FEISHU_DELIVERY.md)。不新建Task，不重新查询或扩大分析范围。
+- Excel继续为受控本机底稿。飞书不能只是Excel附件、在线表格或整页截图；采用可编辑结论/窄表与精选图表，读者无需下载Excel即可开会。
+- 复用2026-10-06完整日快照及本机短报告、范围口径、聚合、证据与缺口；不自动刷新D7。原始和不同共同权重结果分别写覆盖，成长结论保留阶段/完成者限定；按规格移除仅凭两个比例区间重叠判断前后变化的表述。
+- 先准备本机去敏展示稿，再用已接入飞书CLI/Document能力防重并创建或更新本Task目标文档。沿用已批准的CR公司内部目录权限；不做公网分享、群推送或权限扩大。
+- 只有脱敏汇总结论、必要人数分母、精选图及导航登记获准进入内部飞书。完整经营明细、工作簿附件、SQL、查询响应、账号订单、逐笔余额、内部服务地址/本机路径和凭据不上传；真实展示稿/图也不进public Git。
+- 写后回读正文/表格/图/权限，通过既有register_document/导航生成流程登记唯一《AI Workspace｜文档导航中心》并回读。导航失败不算完成，不删已建文档、不重复新建。
+- 完成后同步Task、CR Status、报告README/METHODS中的当前交付范围及本Handoff；原来“不上传云文档”的首轮描述保留历史身份。Registry按现有工具重建，不手编。
+- 返回飞书链接、导航登记、回读/定向验证摘要和commit，再回Review；不预写Accepted/Complete。PR #14继续OPEN Draft、原reservation pending-main，不合并或finalize。
+
+## Review证据限制
+
+ChatGPT本轮读取上传Excel与Git方法，定向复算12行主比例/分母/百分点一致，检查常见公式错误并渲染总览。没有独立调用数数生产查询，也未读取仅在User本机的短报告、真实SQL或完整查询索引；不把Codex证据冒充ChatGPT线上复跑结果。整体分析尚未作最终Accepted。
 
 ## 来源与治理
 
-- 执行基线main：`b0a36c8e1b75299814b3354530a58bbf59518714`，交付前再次fetch未变化。
+- 首轮执行基线main：`b0a36c8e1b75299814b3354530a58bbf59518714`，首轮交付前再次fetch未变化。
 - 设计来源：`chatgpt/cr-0930-live-review-20261007@bd661e5424d5e3f68e8d8816217f56ac05154ba4`。
 - 首次任务登记commit：`b909a93`；[canonical Task](../tasks/TASK-0038-CR-9-30.md)。独立分支`codex/cr-0930-live-review-20261007`，原reservation pending-main，不重新分配、不finalize。
-- 交付commit `04fc4c6`已推送；[PR #14](https://github.com/840832144/AI-Workspace/pull/14)为OPEN Draft，仅脱敏Git内容。PR导航收口与该交付同属TASK-0038，完整结果仍留本机。
-- Workspace Sync：ON_DEMAND；provider unavailable，Git为当前真相源，未发布云文档。
+- 首轮交付commit `04fc4c6`、导航收口head `51033ef2e81d709b3831024a535be8832d5a7d77`已交本轮轻量Review；[PR #14](https://github.com/840832144/AI-Workspace/pull/14)为OPEN Draft，仅脱敏Git内容。后续补充提交以PR最新head为准。
+- Workspace Sync：ON_DEMAND；provider unavailable，Git为当前真相源；本轮尚未实际创建飞书文档，不声称云端已同步。
 
-## 已交付
+## 首轮已交付（保留历史）
 
 [脱敏导航](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/README.md)包含方法、生成器和验证。完整经营内容在User本机受控包`cr-0930-live-review-20261007/outputs/TASK-0038/`：八页Excel、短报告、范围口径、查询索引、聚合模型、SQL及验证。外部Reviewer若无受控访问，只能评审公开方法和治理，不能声称独立复跑真实线上结果。
 
@@ -18,7 +33,7 @@
 
 User已确认上线的是当时trunk；没有获得精确revision/分钟级时刻与后续变更证明，不再追问完整清单。客户端版本不能替代服务器数值版本。UTC-5完整日截至2026-10-06；更新后D7未成熟。统计结论仅为前后关联。
 
-## 验证及边界
+## 首轮验证及边界（Codex执行证据）
 
 - 原生D1与聚合整体/逐日一致；支付成功、订单去重、金额单位和注册时间转换已定向核对。
 - 8个可见页、5张可编辑折线图、412个公式；391项保存后派生计算一致，全部公式缓存存在且无错误，0外链、0冻结窗格。8页概览与5处明细渲染已复核；未使用Excel/WPS UI。
@@ -26,6 +41,6 @@ User已确认上线的是当时trunk；没有获得精确revision/分钟级时�
 - 继续保留的缺口：正式测试账号排除、D7、真实最低Bet/被迫停玩、混合奖励免费拆分、退款、完整会话、同局跨事件结算、当前活动资源/阶段映射、精确逐级解锁成本。均已注明影响和所需负责人，不拿未知当0。
 - 按既有工具重建并validate Registry；公开提交仅显式文件清单、定向链接/语法/diff检查。未重跑旧数值、catalog/全库校验或任何hash。
 
-## 下一步
+## 当前授权边界
 
-ChatGPT Review当前受控报告与方法；若需继续归因，优先补发布revision/后续改动与正式测试账号排除规则。不要自动建监控、重查未成熟D7或扩成技术审计。没有数数资产写入、SVN/数值修改、部署、权限变更、业务数据上传、合并或finalize授权。
+执行本文件顶部飞书交付步骤。没有数数资产写入、SVN/数值修改、部署、扩大权限、完整经营数据上传、合并或finalize授权。内部去敏复盘文档的写入/回读/导航登记已由本轮User明确批准；不自动建监控或重查未成熟D7。
