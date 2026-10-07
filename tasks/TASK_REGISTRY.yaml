@@ -349,7 +349,7 @@ entries:
     executor: "Codex"
     priority: "P1"
     created_date: "2026-10-07"
-    updated_date: "2026-10-07"
+    updated_date: "2026-10-08"
     related_tasks: ["TASK-0036"]
     kind: "canonical"
   - id: "TASK-0016"

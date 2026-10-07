@@ -100,7 +100,7 @@ ChatGPT已读取受评commit的canonical Task、CR Status、专属Handoff和METH
 
 不续TASK-0036；不修改数数资产、游戏配置、SVN或部署；不自动查询新的观察期、不建监控；不做额外hash、全库扫描或重复全量验收。User授权的是本Task汇总文档的内部展示，不是线上数值发布。
 
-## 7. Codex本轮执行记录（待登录续接）
+## 7. Codex本机准备记录（2026-10-07，登录阻塞已恢复）
 
 - 已完成本机受控`FEISHU_REPORT.md`、CLI XML及4张独立聚合图，采用上述六章结构、16张不超过6列的原生窄表，无Excel附件或整页截图替代。
 - 本机Draft Profile passed；28行选定人数/分母/派生差核对、图表4/4视觉复核、待上传正文和素材去敏检查通过。已有模型仅修订文字，数值字段未改；没有新增查询或D7刷新。
@@ -108,3 +108,9 @@ ChatGPT已读取受评commit的canonical Task、CR Status、专属Handoff和METH
 - 阻塞证据：飞书CLI指定隔离入口以user搜索同题、读取既有报告均返回`token_missing`，auth status实际验证为user missing。未改用bot，也未尝试创建或更改共享设置。Document Assistant登记侧同题搜索为空，但不能据此冒称用户目录查重已完成。
 - 尚未完成：用户目录查重、目标目录及内部权限确认、云端创建/更新、正文/图片/权限回读、唯一导航登记/回读。没有新云文档，故无链接；未重复创建或删除。CLI登录恢复后从这些步骤续接，不重做分析。
 - Task仍Changes Requested；PR #14 OPEN Draft、reservation pending-main。保持首轮Review证据限制，不预写Accepted、Complete或整个交付已通过。
+
+## 8. 当前续接状态（2026-10-08）
+
+- User授权后已完成登录；CLI user ready/valid/verified。旧报告和唯一导航中心正文可读，登录阻塞解除。
+- 历史目录列表被拒绝1061004、目录及既有报告权限读取被拒绝1063002；未扩权。已询问可用公司目录，或确认使用User个人文档空间，等待目录信息后继续。
+- 无云文档写入、图片上传、权限变更或导航登记；旧稿/4图继续有效，无新增线上查询。Task保持Changes Requested，不能将已恢复登录或能读旧正文当完整交付通过。
