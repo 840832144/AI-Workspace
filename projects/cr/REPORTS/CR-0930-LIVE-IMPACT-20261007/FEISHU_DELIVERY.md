@@ -109,8 +109,18 @@ ChatGPT已读取受评commit的canonical Task、CR Status、专属Handoff和METH
 - 尚未完成：用户目录查重、目标目录及内部权限确认、云端创建/更新、正文/图片/权限回读、唯一导航登记/回读。没有新云文档，故无链接；未重复创建或删除。CLI登录恢复后从这些步骤续接，不重做分析。
 - Task仍Changes Requested；PR #14 OPEN Draft、reservation pending-main。保持首轮Review证据限制，不预写Accepted、Complete或整个交付已通过。
 
-## 8. 当前续接状态（2026-10-08）
+## 8. 历史续接状态（2026-10-08，目录已由后续决定解决）
 
 - User授权后已完成登录；CLI user ready/valid/verified。旧报告和唯一导航中心正文可读，登录阻塞解除。
 - 历史目录列表被拒绝1061004、目录及既有报告权限读取被拒绝1063002；未扩权。已询问可用公司目录，或确认使用User个人文档空间，等待目录信息后继续。
 - 无云文档写入、图片上传、权限变更或导航登记；旧稿/4图继续有效，无新增线上查询。Task保持Changes Requested，不能将已恢复登录或能读旧正文当完整交付通过。
+
+## 9. 实际交付与轻量Review入口（2026-10-08）
+
+- User后续决定“先不放公司目录”，覆盖上文要求必须定位原公司目录的存放约束，其余去敏、权限、导航和回读要求不变。CLI user在个人文档空间创建[最终制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，没有将报告移入历史公司目录。
+- 创建前已查个人空间列表及既有登记，无本Task同题；这是有边界的查重，不声称全企业搜索。只创建一份，正文为6章16表4图，无附件或整页截图替代。
+- CLI全文回读revision 5：412段标题/正文/表格文字与源稿逐段一致，16张表和4张图片存在；云端4图经CLI预览取回逐张复核。创建无资源警告，源稿所选人数、比例、限制均保留。
+- 权限GET回读link_share_entity=tenant_readable；保持现有设置，无权限写入、无公网链接分享。个人文档位置仍允许组织内持链接阅读，不等于仅本人可读。
+- 既有register_document成功登记唯一[文档导航中心](https://gfok27asqq.feishu.cn/docx/TXe8dulG3osX2kxJMK3cPiHWnHf)，CLI独立回读revision 182确认本Task标题、Review状态及一条正确链接。未手工维护私有Registry或新建导航。
+- 原始/两套共同权重覆盖、完成者/阶段条件和区间重叠推理已按本规格修订；没有新的差值检验或经营查询。固定首轮10/6 UTC-5快照，Excel仍为本机历史底稿，D7不刷新；首轮ChatGPT未独立复跑线上证据限制不变。
+- Task回Review，等待轻量复核本次展示和回读；不预写Accepted/Complete。PR #14 OPEN Draft，reservation pending-main；无数数/SVN/游戏配置变更、合并或finalize。Subagents: none。

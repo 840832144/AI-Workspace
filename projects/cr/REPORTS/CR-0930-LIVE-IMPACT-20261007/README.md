@@ -1,14 +1,14 @@
 # CR 9.30线上效果复盘 — 脱敏交付导航
 
-[TASK-0038](../../../../tasks/TASK-0038-CR-9-30.md) / Changes Requested / 2026-10-07。此目录不保存经营结果。最终主交付已改为公司内部飞书原生文档，仅允许去敏汇总、必要分母和精选图；完整Excel继续留本机，经营结果不进public Git。首轮“不上传飞书”属于增补授权前的历史边界。
+[TASK-0038](../../../../tasks/TASK-0038-CR-9-30.md) / Review / 2026-10-08。此目录不保存经营结果。最终主交付为[飞书原生制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，仅含批准的去敏汇总、必要分母和精选图；完整Excel继续留本机，经营结果不进public Git。首轮“不上传飞书”属于增补授权前的历史边界。
 
 ## 当前飞书交付
 
 - 标题：CR 9.30更新效果复盘｜制作人版｜数据截至2026-10-06；[完整规格及首轮Review限制](FEISHU_DELIVERY.md)。
 - 本机展示源稿`FEISHU_REPORT.md`和CLI XML草稿已完成；6章、16张原生窄表、4张精选聚合图。固定首轮快照，没有重查D7或线上全量。
 - 原始/两套共同权重各写覆盖，成长保留阶段与完成者限定；旧比例区间重叠推理已删除。原Excel为首轮历史底稿，旧文字应结合当前展示修订阅读；未改原数值或重建工作簿。
-- 云文档链接：尚无。2026-10-08 CLI用户登录已恢复并验证有效，旧报告/导航正文可读；历史CR目录列表与权限设置返回1061004/1063002，等待User提供可用目录或确认个人文档空间。未改bot、创建副本或扩大权限。
-- 目录确认后依次完成查重、创建或更新、正文/图表/内部权限回读、唯一文档导航中心登记和回读。仅在整条流程完成后回Review；当前不冒称正式交付成功。
+- User决定“先不放公司目录”，已用CLI user创建于个人文档空间。创建前个人空间与既有登记无同题；未声称全企业搜索。权限实际回读为tenant_readable，保留现有设置、未开公网或扩权；个人位置不等于仅本人可读。
+- 云端回读：revision 5，412段标题/正文/表格文字与源稿一致、16表4图齐全；4张云端图经CLI预览取回并逐张查看。[唯一导航中心](https://gfok27asqq.feishu.cn/docx/TXe8dulG3osX2kxJMK3cPiHWnHf)已登记，CLI回读确认本Task标题、Review与唯一链接（revision 182）。
 
 ## 本机受控交付
 
@@ -43,4 +43,4 @@ python tools/verify_review_workbook.py <controlled-output-directory>
 
 适配器只解析传入的既有Node依赖目录，无需在Git工作区安装依赖。工具不连接数数、SVN或外部服务；输入必须为本任务已完成的受控模型，输出写到仓库外。查询或分析的复跑另需遵守当前数据权限与任务范围，不能把展示生成器当作线上分析本身。
 
-云端交付等待可写目录确认；当前Changes Requested，完成文档与导航回读后交ChatGPT轻量Review。真实配置发布、冻结、数数资产变更、PR合并与reservation finalize均未执行。Subagents: none。
+云端交付与必要回读完成，当前Review，等待ChatGPT轻量复核；不预写Accepted/Complete。真实配置发布、冻结、数数资产变更、PR合并与reservation finalize均未执行。Subagents: none。

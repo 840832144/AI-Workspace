@@ -1,6 +1,13 @@
 # CR 当前状态
 
-## 2026-10-08 — TASK-0038 登录恢复，等待可写目录
+## 2026-10-08 — TASK-0038 飞书原生交付完成，交轻量Review
+
+- [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)回Review。[制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)按User“先不放公司目录”的决定，由CLI user创建在个人文档空间；完整Excel仍留本机。
+- 已完成个人空间/既有登记查重、正文和表格412段回读一致、6章16表4图核对、4张云端图逐张视觉复核。权限回读tenant_readable，未修改共享设置或开公网；个人位置仍为组织内持链接可阅读。
+- 已登记唯一文档导航中心，并经CLI回读标题、Review状态及唯一链接。原始/两套共同权重各写覆盖、成长保留完成者/阶段条件、区间重叠推理已修订；沿用10/6 UTC-5快照，未重查D7或重跑线上分析。
+- Task/Status/Handoff/报告与Registry同步，PR #14保持OPEN Draft、原reservation pending-main，等待ChatGPT轻量Review。无数数/SVN/游戏配置写入、合并或finalize。下方登录/目录等待状态均为历史；Subagents: none。
+
+## 历史 — 2026-10-08 TASK-0038 登录恢复，等待可写目录
 
 - CLI用户身份已实测ready/valid/verified，唯一导航中心及旧CR报告正文可读。历史CR资料目录列表与权限读取被拒绝（1061004/1063002），尚不能确认可写位置及内部继承权限。
 - 已询问User本次报告存放目录，或确认个人文档空间；未创建云文档、上传图、扩权或改用bot。复用展示稿和定向验证，没有新增线上查询。

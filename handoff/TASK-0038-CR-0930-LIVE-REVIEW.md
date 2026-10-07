@@ -1,19 +1,19 @@
 # TASK-0038 — CR 9.30线上效果复盘交接
 
-状态：Changes Requested（补飞书正式交付与展示表述）；Executor：Codex；Subagents: none。仅本任务，未改TASK-0036或其PR。
+状态：Review（飞书原生交付及回读完成，待轻量Review）；Executor：Codex；Subagents: none。仅本任务，未改TASK-0036或其PR。
 
-## 当前执行：最终以飞书云文档交付
+## 当前交付：飞书原生文档（2026-10-08）
 
 - User已授权本Task以公司内部飞书原生云文档作为最终主交付；完整要求及受评51033ef的首轮轻量复核见[FEISHU_DELIVERY](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/FEISHU_DELIVERY.md)。不新建Task，不重新查询或扩大分析范围。
 - Excel继续为受控本机底稿。飞书不能只是Excel附件、在线表格或整页截图；采用可编辑结论/窄表与精选图表，读者无需下载Excel即可开会。
 - 复用2026-10-06完整日快照及本机短报告、范围口径、聚合、证据与缺口；不自动刷新D7。原始和不同共同权重结果分别写覆盖，成长结论保留阶段/完成者限定；按规格移除仅凭两个比例区间重叠判断前后变化的表述。
-- 先准备本机去敏展示稿，再用已接入飞书CLI/Document能力防重并创建或更新本Task目标文档。沿用已批准的CR公司内部目录权限；不做公网分享、群推送或权限扩大。
+- User最新决定“先不放公司目录”。已用CLI user在个人文档空间创建[制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，个人空间列表与既有登记查重无同题；未声称全企业搜索。未写历史公司目录、群推送或扩权。
 - 只有脱敏汇总结论、必要人数分母、精选图及导航登记获准进入内部飞书。完整经营明细、工作簿附件、SQL、查询响应、账号订单、逐笔余额、内部服务地址/本机路径和凭据不上传；真实展示稿/图也不进public Git。
-- 写后回读正文/表格/图/权限，通过既有register_document/导航生成流程登记唯一《AI Workspace｜文档导航中心》并回读。导航失败不算完成，不删已建文档、不重复新建。
-- 完成后同步Task、CR Status、报告README/METHODS中的当前交付范围及本Handoff；原来“不上传云文档”的首轮描述保留历史身份。Registry按现有工具重建，不手编。
-- 返回飞书链接、导航登记、回读/定向验证摘要和commit，再回Review；不预写Accepted/Complete。PR #14继续OPEN Draft、原reservation pending-main，不合并或finalize。
+- CLI回读revision 5：412段标题/正文/表格文字与源稿一致，6章、16表、4图齐全；4张云端图经CLI预览取回并逐张查看。权限回读为tenant_readable，保持现有设置，无权限写入或公网分享；个人位置不等于仅本人可读。
+- 既有register_document已登记唯一[文档导航中心](https://gfok27asqq.feishu.cn/docx/TXe8dulG3osX2kxJMK3cPiHWnHf)；CLI独立回读确认标题、Review状态与本Task唯一链接，导航revision 182。
+- Task、CR Status、报告导航与Registry同步为Review。未Accepted/Complete；PR #14继续OPEN Draft、原reservation pending-main，不合并或finalize。下一步仅ChatGPT轻量Review，现有经营快照和缺口不变。
 
-## 当前续接点：可写目录（2026-10-08）
+## 历史续接点：可写目录（2026-10-08，已按User决定改用个人空间）
 
 - 登录已恢复并实测user ready/valid/verified；旧报告和唯一导航中心正文可读。无需再次走登录流程。
 - 历史目录列表1061004、目录与既有报告权限回读1063002；实际为资源访问限制，不能报告目录已确认或内部权限已核验。未改用bot或扩权。
@@ -38,7 +38,7 @@ ChatGPT本轮读取上传Excel与Git方法，定向复算12行主比例/分母/�
 - 设计来源：`chatgpt/cr-0930-live-review-20261007@bd661e5424d5e3f68e8d8816217f56ac05154ba4`。
 - 首次任务登记commit：`b909a93`；[canonical Task](../tasks/TASK-0038-CR-9-30.md)。独立分支`codex/cr-0930-live-review-20261007`，原reservation pending-main，不重新分配、不finalize。
 - 首轮交付commit `04fc4c6`、导航收口head `51033ef2e81d709b3831024a535be8832d5a7d77`已交本轮轻量Review；[PR #14](https://github.com/840832144/AI-Workspace/pull/14)为OPEN Draft，仅脱敏Git内容。后续补充提交以PR最新head为准。
-- Workspace Sync：ON_DEMAND；provider unavailable，Git为当前真相源；本轮尚未实际创建飞书文档，不声称云端已同步。
+- Workspace Sync仍为ON_DEMAND，provider unavailable；本Task已独立通过CLI/Document能力完成云文档及导航回读，不代表整个Workspace云同步已可用。Git仍为Task和方法真相源。
 
 ## 首轮已交付（保留历史）
 
