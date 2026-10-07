@@ -2,6 +2,11 @@
 
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
+## 2026-10-07 — TASK-0038独立线上复盘交Review
+
+- 从最新main按allocator登记独立任务，只读完成有成熟期边界的线上复盘；TASK-0036及其PR保持原状。
+- 制作人Excel、短报告与经营证据仅受控本机；Git保留方法、生成器、脱敏验证及Task/Status/Handoff。同步沉淀显式UTC转换经验；不公开经营数据、不合并或finalize。
+
 ## 2026-09-17 — TASK-0035已合并并finalized
 
 - PR #8 merge commit `fde35b2f804e1f69bf02acc6d9581c5d009b118a`，canonical及Round 1 Accepted Review已进入最新main；既有工具使用原reservation返回finalized，未重新分配Task。
