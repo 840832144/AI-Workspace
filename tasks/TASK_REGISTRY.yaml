@@ -342,7 +342,7 @@ entries:
     canonical_file: "tasks/TASK-0038-CR-9-30.md"
     file: "tasks/TASK-0038-CR-9-30.md"
     title: "CR 9.30更新后线上效果复盘"
-    status: "Review"
+    status: "Changes Requested"
     project_key: "CR"
     human_alias: "CR 9.30更新后线上效果复盘——新增活跃留存、付费留存与数值体验"
     owner: "User"

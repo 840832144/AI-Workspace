@@ -99,3 +99,12 @@ ChatGPT已读取受评commit的canonical Task、CR Status、专属Handoff和METH
 ## 6. 不变边界
 
 不续TASK-0036；不修改数数资产、游戏配置、SVN或部署；不自动查询新的观察期、不建监控；不做额外hash、全库扫描或重复全量验收。User授权的是本Task汇总文档的内部展示，不是线上数值发布。
+
+## 7. Codex本轮执行记录（待登录续接）
+
+- 已完成本机受控`FEISHU_REPORT.md`、CLI XML及4张独立聚合图，采用上述六章结构、16张不超过6列的原生窄表，无Excel附件或整页截图替代。
+- 本机Draft Profile passed；28行选定人数/分母/派生差核对、图表4/4视觉复核、待上传正文和素材去敏检查通过。已有模型仅修订文字，数值字段未改；没有新增查询或D7刷新。
+- 原始和两套共同权重分别标前后覆盖；阶段达成与完成者成本分开。各比例Wilson区间仅保留为精度提示，删除区间重叠推理，未新增差值显著性/等效判断。原Excel保留首轮底稿，当前展示和短报告明确修订关系。
+- 阻塞证据：飞书CLI指定隔离入口以user搜索同题、读取既有报告均返回`token_missing`，auth status实际验证为user missing。未改用bot，也未尝试创建或更改共享设置。Document Assistant登记侧同题搜索为空，但不能据此冒称用户目录查重已完成。
+- 尚未完成：用户目录查重、目标目录及内部权限确认、云端创建/更新、正文/图片/权限回读、唯一导航登记/回读。没有新云文档，故无链接；未重复创建或删除。CLI登录恢复后从这些步骤续接，不重做分析。
+- Task仍Changes Requested；PR #14 OPEN Draft、reservation pending-main。保持首轮Review证据限制，不预写Accepted、Complete或整个交付已通过。

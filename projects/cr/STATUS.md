@@ -1,6 +1,13 @@
 # CR 当前状态
 
-## 2026-10-07 — TASK-0038 线上效果复盘交Review
+## 2026-10-07 — TASK-0038 飞书展示稿就绪，等待CLI用户登录
+
+- [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)当前Changes Requested；最终交付改为内部飞书原生正文。仅授权去敏汇总、必要人数和精选图；Excel与完整经营证据保留受控本机，不开公网或扩大权限。
+- 已完成6章、16张原生窄表、4张独立聚合图的受控稿；CLI Profile及定向数据/视觉检查通过。复用首轮截至2026-10-06 UTC-5快照，没有新增查询、D7刷新或全量重跑。共同权重覆盖、完成者条件和区间推理修订见[报告导航](REPORTS/CR-0930-LIVE-IMPACT-20261007/README.md)。
+- 实际阻塞是CLI user登录态missing，搜索/读取均token_missing；未改bot、未创建云文档或改权限。正文/图表/权限/唯一导航回读尚未执行，不能报告正式交付完成。
+- [专属Handoff](../../handoff/TASK-0038-CR-0930-LIVE-REVIEW.md)已记录登录恢复后的续接点。Task未预写Accepted/Complete；PR #14保持OPEN Draft、原reservation pending-main，不合并、不finalize。Subagents: none。
+
+## 历史 — 2026-10-07 TASK-0038 首轮Excel交Review
 
 - 独立[TASK-0038](../../tasks/TASK-0038-CR-9-30.md)，由最新main防重及allocator晋升；未续写TASK-0036或修改其PR。当前Review，原reservation pending-main。
 - 本机ae-cli只读生产数据，固定UTC-5及截至2026-10-06的完整日；User确认发布来源是当时trunk。具体revision/生效时刻未锁定，当前为日期观察，不宣称因果或配置验收。

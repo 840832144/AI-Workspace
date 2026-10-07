@@ -13,6 +13,15 @@
 - 完成后同步Task、CR Status、报告README/METHODS中的当前交付范围及本Handoff；原来“不上传云文档”的首轮描述保留历史身份。Registry按现有工具重建，不手编。
 - 返回飞书链接、导航登记、回读/定向验证摘要和commit，再回Review；不预写Accepted/Complete。PR #14继续OPEN Draft、原reservation pending-main，不合并或finalize。
 
+## 本轮续接点：飞书CLI用户登录
+
+- 原候选分支已安全同步至`6d9072e`，随后只更新本Task文档；没有重开或重跑TASK-0036。
+- 受控`FEISHU_REPORT.md`和CLI XML已就绪，6章/16窄表/4精选聚合图；Profile passed，28行选定比例派生和4图视觉检查通过。相对首轮仅修文字/展示，模型数值字段未改，原Excel仍为历史本机底稿。
+- 原始/两套共同权重各写覆盖，成长保留阶段/完成者条件；删去用两个比例区间重叠判变化的推理，不追加显著性或等效判断。已有Review证据限制不变。
+- 实际CLI user登录态缺失；同题搜索与已有文档读取均token_missing，auth status为user missing。未改用bot、创建文档、上传图或修改权限。登记侧搜索为空不算用户云空间查重完成。
+- 恢复登录后，保持原CLI隔离入口及`--as user`：先定位已批准目录/查重并核对权限，再使用现有受控草稿创建或更新；回读正文、16表、4图及权限；既有register_document登记唯一导航并回读。任何部分失败保留原文档，不重建。
+- 当前尚无新文档链接。Task维持Changes Requested，PR #14 OPEN Draft，reservation pending-main；云端全部完成才回Review。没有数数查询、SVN/游戏/数数配置写入、合并、finalize或hash。Subagents: none。
+
 ## Review证据限制
 
 ChatGPT本轮读取上传Excel与Git方法，定向复算12行主比例/分母/百分点一致，检查常见公式错误并渲染总览。没有独立调用数数生产查询，也未读取仅在User本机的短报告、真实SQL或完整查询索引；不把Codex证据冒充ChatGPT线上复跑结果。整体分析尚未作最终Accepted。
