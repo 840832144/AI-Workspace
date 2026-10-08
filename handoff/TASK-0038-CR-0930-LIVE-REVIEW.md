@@ -1,12 +1,21 @@
 # TASK-0038 — CR 9.30线上效果复盘交接
 
-状态：Changes Requested（User已批准美国买量留存分层、收益测算及分期路线）；Executor：Codex；Subagents: none。继续本任务/PR #14，不续TASK-0036，不新分配编号。
+状态：Review（美国广告新增分层、收益验证路线及原位飞书更新已交付）；Executor：Codex；Subagents: none。继续本任务/PR #14，不续TASK-0036，不新分配编号。
 
-## 当前执行：美国留存分层、改善收益与分期路线（2026-10-08）
+## 当前交付：美国广告新增分层与分期路线
+
+- 最新完整日T=2026-10-06（UTC-5，执行时10/7仍未结束）；D1/D3各自成熟分母，D7 N/A。10月6日首轮Excel/全地区结果、旧正文及图保留历史。本轮不是对旧单一广告组换标题，而是重新按主范围做有界汇总。
+- 互斥分层贡献加总、回访轨迹、D0特征/注册机会匹配、登录/Spin交集、首付独立窗口和单项/组合去重已核对。观察差异不是原因；触达、因果效果与组合交互未知，不承诺目标涨幅。
+- 仅只读核对trunk r7491相关8表的能力/开关，未改配置，未把表存在等同于线上开启。新机制仅有防重[Idea Handoff](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/US_RETENTION_IDEA_HANDOFF.md)进入Ideas流程，不进Current、不创建开发任务。
+- [原报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)revision 23，7章15表4图、344段回读一致；关键数字/云端四图/完整权限核对通过，个人位置和tenant_readable保持。唯一导航revision 186，本Task一个Review条目。导航登记首次网络请求失败，健康检查恢复后仅重试登记成功，未重复创建文档或绕过provider。
+- 受控轮次别名`cr-0930-live-review-20261007/us-retention-20261008/`，保存模型、聚合CSV、SQL/响应/配置能力证据、正文/图和回读；原Excel仍是首轮底稿。公开Git仅规格、[方法](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/US_RETENTION_SEGMENT_UPLIFT_METHODS.md)、去敏验证和治理。
+- 下一步ChatGPT Review本轮原生正文和方法；允许保留归因/测试排除/曝光领取/严格缺币/成熟D7及小样本缺口，不自行补造数据。没有数数资产、游戏/SVN/预算改动，未开发、实验、监控、合并或finalize。
+
+## 本轮执行规格：美国留存分层、改善收益与分期路线（2026-10-08）
 
 执行[canonical Task](../tasks/TASK-0038-CR-9-30.md)和[US_RETENTION_SEGMENT_UPLIFT_EXECUTION](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/US_RETENTION_SEGMENT_UPLIFT_EXECUTION.md)。来源讨论稿保留历史，不再把其“仅讨论/不查数”当当前限制。用户此次授权的是定向只读分析、能力核对与报告更新，不是调参、开发或实验实施。
 
-1. 先安全同步main/原任务分支，按现有工具同步CR Status与Registry。当前canonical已转Changes Requested；旧Status和报告导航的Review描述待此次启动同步，不手工编辑Registry，不重新申请reservation。
+1. 已安全fetch并快进原分支，最新main为当前分支祖先；CR Status已同步本轮Review，Registry按工具重建。启动时canonical为Changes Requested，交付后为Review；原飞书旧正文已保留历史；不手工编辑Registry，不重新申请reservation。
 2. 复用本机ae-cli、首轮最终有效事件/查询、有限聚合及图表工具。先检水位，固定执行时最近完整UTC-5业务日T；主注册范围2026-09-30至T，D1/D3/D7各用成熟分母。成熟D7本轮允许补查；未成熟不填0，不后台自动等待重查。
 3. 主分析美国广告新增，平台分开，自然量/未知辅助；重算本轮基线，不把首轮单一广告组或全地区结果直接冠以全美买量。按D0互斥状态输出人数、组内留存、整体贡献和回访组成，能加回同队列总量；次日Spin独立。
 4. 在同一D3成熟队列拆回访轨迹；只用结果之前的体验解释好/差留存，比较同来源/平台和观察机会，不用未来付款或等级泄漏结果。前20–30级只作解释，20–50级暂不判定卡点。

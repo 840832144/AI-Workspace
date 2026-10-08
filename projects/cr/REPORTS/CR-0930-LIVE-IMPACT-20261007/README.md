@@ -2,10 +2,18 @@
 
 [TASK-0038](../../../../tasks/TASK-0038-CR-9-30.md) / Review / 2026-10-08。此目录不保存经营结果。最终主交付为[飞书原生制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，仅含批准的去敏汇总、必要分母和精选图；完整Excel继续留本机，经营结果不进public Git。首轮“不上传飞书”属于增补授权前的历史边界。
 
-## 当前飞书交付
+## 当前：美国广告新增分层与收益路线
+
+- 执行[最新规格](US_RETENTION_SEGMENT_UPLIFT_EXECUTION.md)，当前Review；[方法](US_RETENTION_SEGMENT_UPLIFT_METHODS.md)及[验证](VALIDATION.md)含成熟分母、前置特征、回访轨迹、独立首付窗口、单项/组合收益与范围边界。
+- 固定T=2026-10-06 UTC-5：执行预检时10月7日仍未结束。只做本轮目标人群定向查询，成熟D7不存在时写N/A；不覆盖首轮历史Excel、全地区或不同共同权重结果。
+- 原飞书已到revision 23：7章15表4图、344段标题/正文/表格与源稿逐段一致；四张云端图已核对。个人位置及原组织内权限保留，唯一导航revision 186回读为一个Review条目。
+- 本轮受控材料在`cr-0930-live-review-20261007/us-retention-20261008/`：分析模型/匿名窗口汇总、聚合CSV、查询与能力证据、本轮正文/图/回读。原完整Excel继续作为首轮本机底稿，不上传附件或以整页截图代正文。
+- 无可靠因果效果时明确待验证，只给覆盖、所需改善门槛和含负作用的条件演算；不凑目标涨幅。只读现有能力，不实施调参、开发或实验。[Idea Handoff](US_RETENTION_IDEA_HANDOFF.md)已防重交Ideas流程，未启动机制开发。
+
+## 历史：制作人表达修订（revision 13）
 
 - 标题：CR 9.30更新效果复盘｜制作人版｜数据截至2026-10-06；[完整交付规格](FEISHU_DELIVERY.md)与[本轮可读性及建议规格](PLANNER_READABILITY_ACTIONS.md)。
-- 当前本机展示源为`readability_v2/report.xml`及分章稿，6章15张原生表4张精选图；初版`FEISHU_REPORT.md`与原XML仍保留历史。正文按“发生什么→玩家含义→建议动作”改写，详细方法/证据/治理集中附录；四项建议只写预期方向与观察指标，不授权实施或承诺收益。
+- 该轮本机展示源为`readability_v2/report.xml`及分章稿，6章15张原生表4张精选图；初版`FEISHU_REPORT.md`与原XML仍保留历史。正文按“发生什么→玩家含义→建议动作”改写，详细方法/证据/治理集中附录；四项建议只写预期方向与观察指标，不授权实施或承诺收益。
 - 原始/两套共同权重各写覆盖，成长保留阶段与完成者限定；旧比例区间重叠推理已删除。原Excel为首轮历史底稿，旧文字应结合当前展示修订阅读；未改原数值或重建工作簿。
 - User决定“先不放公司目录”，已用CLI user创建于个人文档空间。创建前个人空间与既有登记无同题；未声称全企业搜索。权限实际回读为tenant_readable，保留现有设置、未开公网或扩权；个人位置不等于仅本人可读。
 - 本轮原位更新：revision 5→13，460段标题/正文/表格与源稿逐段一致，15表4图齐全；107项原有数字单元格/片段及32个绘图值定向核对。4张云端图已逐张查看，标题/轴标签为策划语言且无重复图注。权限前后完整设置相同；[唯一导航中心](https://gfok27asqq.feishu.cn/docx/TXe8dulG3osX2kxJMK3cPiHWnHf)回读确认本Task新简介、Review及唯一链接（revision 184）。
@@ -24,8 +32,8 @@
 |report-model.controlled.json|Excel受控输入；不含真实UID/订单，但仍为经营资料|
 |VALIDATION.md / workbook-validation.json|数据、公式、文件和视觉核验及未验证项|
 |FEISHU_REPORT.md / 初版CLI XML草稿|飞书初版历史源，保持原样以便追溯|
-|readability_v2/report.xml / section-*.xml / charts/|当前策划语言展示源及4张改写标签图，不进入public Git|
-|readability_v2/final-validation.local.json / 云端回读|本轮关键数字、正文、图片、权限与唯一导航证据；非线上复跑|
+|readability_v2/report.xml / section-*.xml / charts/|历史策划语言展示源及4张改写标签图，不进入public Git|
+|readability_v2/final-validation.local.json / 云端回读|该轮关键数字、正文、图片、权限与唯一导航证据；非线上复跑|
 
 八页依次为：复盘总览、新增活跃、新增留存、付费留存、成长体验、经济与活动、异常与建议、口径与覆盖。简单派生保留公式；线上分位数/留存等依照查询证据，不声称Excel能重跑线上查询。D7未成熟为空，不绘成0。
 

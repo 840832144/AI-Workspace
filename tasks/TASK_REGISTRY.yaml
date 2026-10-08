@@ -344,7 +344,7 @@ entries:
     title: "CR 9.30更新后线上效果复盘"
     status: "Review"
     project_key: "CR"
-    human_alias: "CR 9.30更新后线上效果复盘——新增活跃留存、付费留存与数值体验"
+    human_alias: "美国买量留存分层、付费后留存与量化改善路线"
     owner: "User"
     executor: "Codex"
     priority: "P1"

@@ -1,6 +1,13 @@
 # CR 当前状态
 
-## 2026-10-08 — TASK-0038 制作人表达修订交轻量Review
+## 2026-10-08 — TASK-0038 美国广告新增分层与收益路线交Review
+
+- [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)为Review；原分支安全同步至`7af6492`，最新main`b0a36c8`为祖先，收口前fetch无新增并发。继续PR #14及原reservation，不新建Task。
+- 定向只读查询固定最新完整UTC-5日T=2026-10-06；主对象为美国明确广告新增，D1/D3成熟分母分别核对，D7仍N/A。10月6日首轮Excel/全地区快照保留；分层贡献、回访轨迹、可比首日体验、首付后独立窗口及组合收益方法均已交付，不把观察差距或30%–40%目标写成预测。
+- [原飞书](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)revision 23，7章15表4图、344段文字回读一致；四图已查看，原个人位置和组织内权限不变；唯一导航revision 186确认条目唯一且Review。[方法](REPORTS/CR-0930-LIVE-IMPACT-20261007/US_RETENTION_SEGMENT_UPLIFT_METHODS.md)/[验证](REPORTS/CR-0930-LIVE-IMPACT-20261007/VALIDATION.md)/[Idea Handoff](REPORTS/CR-0930-LIVE-IMPACT-20261007/US_RETENTION_IDEA_HANDOFF.md)已同步。
+- Registry通过既有工具生成/验证；无数数资产、游戏/SVN/预算写入，无开发、实验、监控、合并或finalize。Workspace Sync不可用边界保留；Subagents: none。
+
+## 历史 — 2026-10-08 TASK-0038 制作人表达修订交轻量Review
 
 - [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)从Changes Requested回Review，已按[可读性与建议规格](REPORTS/CR-0930-LIVE-IMPACT-20261007/PLANNER_READABILITY_ACTIONS.md)原位修订[现有报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，保留个人位置和组织内链接权限。
 - 正文按玩家体验组织，四项改进仅为待验证建议；统计方法/证据/治理集中附录，4张图标签同步修订且删除重复图注。沿用原人数、分母、人群与10/6快照，不新查数或刷新D7。
