@@ -2,7 +2,15 @@
 
 [TASK-0038](../../../../tasks/TASK-0038-CR-9-30.md) / Review / 2026-10-08。此目录不保存经营结果。最终主交付为[飞书原生制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，仅含批准的去敏汇总、必要分母和精选图；完整Excel继续留本机，经营结果不进public Git。首轮“不上传飞书”属于增补授权前的历史边界。
 
-## 当前：美国广告新增分层与收益路线
+## 当前：前5级事件路径与引导留存
+
+- User确认没有额外附件，以[增补规格](EARLY_PATH_GUIDE_RETENTION_EXECUTION.md)挂接本轮消息；[当前方法](EARLY_PATH_GUIDE_RETENTION_METHODS.md) / [脱敏验证](VALIDATION.md)。前轮[Accepted Review](../../../../reviews/TASK-0038-CHATGPT-US-RETENTION-CONTENT-REVIEW-1.md)保留，当前新范围Review。
+- 固定完整日T=2026-10-07 UTC-5，先事件目录/模块覆盖，再首段/末段及具体引导；只认已定义主动行为，成熟窗口和较晚返回分开。候选重新排序，不先锁升级奖励，不把关联当收益。
+- 原飞书revision 42，新六章十五原生表两图、446段文字/表格逐段一致；旧正文/十五表四图原样保留在历史区。个人位置/完整权限保留；唯一导航revision 188独立回读为一条Review。
+- 受控轮次`early-paths-20261008/`：`前5级路径与引导留存_20261007.md`、模型、P01–P07聚合/查询、十五张CSV、两图、`QUERY_EVIDENCE_INDEX.local.json`、`validation.local.json`和云端回读。完整经营数值/SQL/个体序列/正文图不进public Git。原Excel不重做。
+- 不改数数资产、游戏/SVN/预算，不补埋点、开发或开实验，不合并/finalize。下一步轻量内容Review；资格/跳过/展示领取、迟到与共同覆盖及真实效果仍有边界。
+
+## 历史Accepted：美国广告新增分层与收益路线
 
 - 执行[最新规格](US_RETENTION_SEGMENT_UPLIFT_EXECUTION.md)，当前Review；[方法](US_RETENTION_SEGMENT_UPLIFT_METHODS.md)及[验证](VALIDATION.md)含成熟分母、前置特征、回访轨迹、独立首付窗口、单项/组合收益与范围边界。
 - 固定T=2026-10-06 UTC-5：执行预检时10月7日仍未结束。只做本轮目标人群定向查询，成熟D7不存在时写N/A；不覆盖首轮历史Excel、全地区或不同共同权重结果。

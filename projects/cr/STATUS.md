@@ -1,6 +1,15 @@
 # CR 当前状态
 
-## 2026-10-08 — TASK-0038 美国广告新增分层与收益路线交Review
+## 2026-10-08 — TASK-0038 前5级路径与引导留存交Review
+
+- 当前Review；前轮[内容评审](../../reviews/TASK-0038-CHATGPT-US-RETENTION-CONTENT-REVIEW-1.md)Accepted保留。执行[增补规格](REPORTS/CR-0930-LIVE-IMPACT-20261007/EARLY_PATH_GUIDE_RETENTION_EXECUTION.md)，User确认没有额外附件。
+- 先实际事件目录与模块覆盖，再未Spin/未到5级路径、主动回访成熟窗口及引导资格/步骤/成功对照；不预锁升级奖励、不重做旧验收。仅只读分析与原飞书更新，不改配置/SVN/预算、不开发/实验，不合并/finalize。Subagents: none。
+
+
+- T=2026-10-07 UTC-5，七份有界聚合完成；首段/末段、模块继续、成熟主动回访、具体引导与成功对照、候选排序和条件收益门槛齐全；[方法](REPORTS/CR-0930-LIVE-IMPACT-20261007/EARLY_PATH_GUIDE_RETENTION_METHODS.md) / [验证](REPORTS/CR-0930-LIVE-IMPACT-20261007/VALIDATION.md)。数据/SQL/序列仅受控。
+- [原飞书](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)revision 42新增六章十五表两图，446段回读一致；历史图文保留。云图/完整权限/唯一导航回读通过（导航revision 188）。原PR #14 OPEN Draft，原reservation pending-main；无配置、开发、实验、合并或finalize。
+
+## 历史Accepted范围 — 2026-10-08 TASK-0038 美国广告新增分层与收益路线
 
 - [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)为Review；原分支安全同步至`7af6492`，最新main`b0a36c8`为祖先，收口前fetch无新增并发。继续PR #14及原reservation，不新建Task。
 - 定向只读查询固定最新完整UTC-5日T=2026-10-06；主对象为美国明确广告新增，D1/D3成熟分母分别核对，D7仍N/A。10月6日首轮Excel/全地区快照保留；分层贡献、回访轨迹、可比首日体验、首付后独立窗口及组合收益方法均已交付，不把观察差距或30%–40%目标写成预测。
