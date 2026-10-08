@@ -1,15 +1,30 @@
 # TASK-0038 — CR 9.30线上效果复盘交接
 
-状态：Review（制作人表达修订已回读，待轻量Review）；Executor：Codex；Subagents: none。仅本任务，未改TASK-0036或其PR。
+状态：Changes Requested（User已批准美国买量留存分层、收益测算及分期路线）；Executor：Codex；Subagents: none。继续本任务/PR #14，不续TASK-0036，不新分配编号。
 
-## 当前交付：制作人表达与建议
+## 当前执行：美国留存分层、改善收益与分期路线（2026-10-08）
+
+执行[canonical Task](../tasks/TASK-0038-CR-9-30.md)和[US_RETENTION_SEGMENT_UPLIFT_EXECUTION](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/US_RETENTION_SEGMENT_UPLIFT_EXECUTION.md)。来源讨论稿保留历史，不再把其“仅讨论/不查数”当当前限制。用户此次授权的是定向只读分析、能力核对与报告更新，不是调参、开发或实验实施。
+
+1. 先安全同步main/原任务分支，按现有工具同步CR Status与Registry。当前canonical已转Changes Requested；旧Status和报告导航的Review描述待此次启动同步，不手工编辑Registry，不重新申请reservation。
+2. 复用本机ae-cli、首轮最终有效事件/查询、有限聚合及图表工具。先检水位，固定执行时最近完整UTC-5业务日T；主注册范围2026-09-30至T，D1/D3/D7各用成熟分母。成熟D7本轮允许补查；未成熟不填0，不后台自动等待重查。
+3. 主分析美国广告新增，平台分开，自然量/未知辅助；重算本轮基线，不把首轮单一广告组或全地区结果直接冠以全美买量。按D0互斥状态输出人数、组内留存、整体贡献和回访组成，能加回同队列总量；次日Spin独立。
+4. 在同一D3成熟队列拆回访轨迹；只用结果之前的体验解释好/差留存，比较同来源/平台和观察机会，不用未来付款或等级泄漏结果。前20–30级只作解释，20–50级暂不判定卡点。
+5. 美国广告新增首付者单独分析首付后继续玩和复购，注册日起点与首付日起点分开；少样本保留范围，不借全地区凑数。
+6. 形成单项收益账及A/A+B/A+B+C组合情景：覆盖/触达、组内提升、整体百分点、每千新增额外回访、假设依据与负作用；处理重叠/迁移，不直接相加，不凑30%–40%。无合理效果依据的项给覆盖和验证门槛，不填虚假涨幅。
+7. 只读查现有实现/开关，区分配置或内容、小开发、新机制、分析基础四类投入；基础设施不直接算留存收益。给最小范围/角色/粗略依赖及实验样本/等待时间/停止条件，未核实现状不猜工作量。
+8. 原位更新既有飞书制作人报告，保留个人位置及组织内权限。备份前文，新正文与标题明确T，首轮10/6结果保留历史；用人话讲分层、差异、收益和路线。回读正文/关键数字/图表/权限及唯一导航，失败在原文档续修。
+
+本轮交付是“已观测分层＋有依据的规划测算＋待验证方案”，不冒称因果收益或实验成功。完整数据/SQL/用户/订单/逐笔余额只留受控本机；Git仅方法和去敏记录，飞书仅获准的必要汇总/精选图。不改数数资产、配置/SVN/预算/权限，不开实验或监控，不开发新功能，不重跑0036、hash或全地区全量。完成后同步Task/Status/Handoff/README/Registry，返回原飞书链接、T、摘要、缺口与commit交Review；PR #14保持OPEN Draft、不合并/finalize。
+
+## 历史交付：制作人表达与建议
 
 已执行[PLANNER_READABILITY_ACTIONS](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/PLANNER_READABILITY_ACTIONS.md)及本轮User改写稿。[原报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)分章原位修订，6章15表4图；原人数、人群与边界保留，正文/图标题和轴标签改为策划语言，详细方法移附录。首局进入、成长衔接、余额压力、首付后体验四项建议都含动作/预期方向/观察指标与不成立时的处理，未授权实施。
 
-- 当前revision 13，460段正文/表格按顺序与本机源稿一致；107项数字片段及32个绘图值定向核对，4张云端图逐张查看。不是新增线上查询或对原模型的独立重跑。
+- 当时revision 13，460段正文/表格按顺序与本机源稿一致；107项数字片段及32个绘图值定向核对，4张云端图逐张查看。不是新增线上查询或对原模型的独立重跑。
 - 个人位置保留、权限前后相同，仍为tenant_readable；没有新建、移动或扩权。已有唯一导航条目已更新并独立回读（revision 184），标题/简介/Review及唯一链接正确。
 - 受控包保留更新前云端快照；其`readability_v2/`保存本轮XML、图及回读验证。初版`FEISHU_REPORT.md`与Excel保留历史，数值不动。公开Git仅规格、方法、脱敏验证与交接。
-- Task从Changes Requested回Review，待ChatGPT轻量复核。PR #14仍OPEN Draft，reservation pending-main；不新增查询、刷新D7、改配置、合并或finalize。
+- 当时Task从Changes Requested回Review，待ChatGPT轻量复核。PR #14仍OPEN Draft，reservation pending-main；该轮不新增查询、刷新D7、改配置、合并或finalize。
 - Workspace Sync入口被本机PowerShell执行策略阻止，未绕过或修改策略；本Task Git同步及独立飞书CLI回读成功，不代表Workspace云同步可用。
 
 ## 历史交付：飞书原生文档初版（2026-10-08）
@@ -40,15 +55,15 @@
 
 ## Review证据限制
 
-ChatGPT本轮读取上传Excel与Git方法，定向复算12行主比例/分母/百分点一致，检查常见公式错误并渲染总览。没有独立调用数数生产查询，也未读取仅在User本机的短报告、真实SQL或完整查询索引；不把Codex证据冒充ChatGPT线上复跑结果。整体分析尚未作最终Accepted。
+ChatGPT首轮读取上传Excel与Git方法，定向复算12行主比例/分母/百分点一致，检查常见公式错误并渲染总览。没有独立调用数数生产查询，也未读取仅在User本机的短报告、真实SQL或完整查询索引；不把Codex证据冒充ChatGPT线上复跑结果。整体分析尚未作最终Accepted。以上只属于首轮证据，不等于本次美国分层或规划收益已验证。
 
 ## 来源与治理
 
 - 首轮执行基线main：`b0a36c8e1b75299814b3354530a58bbf59518714`，首轮交付前再次fetch未变化。
 - 设计来源：`chatgpt/cr-0930-live-review-20261007@bd661e5424d5e3f68e8d8816217f56ac05154ba4`。
 - 首次任务登记commit：`b909a93`；[canonical Task](../tasks/TASK-0038-CR-9-30.md)。独立分支`codex/cr-0930-live-review-20261007`，原reservation pending-main，不重新分配、不finalize。
-- 首轮交付commit `04fc4c6`、导航收口head `51033ef2e81d709b3831024a535be8832d5a7d77`已交本轮轻量Review；[PR #14](https://github.com/840832144/AI-Workspace/pull/14)为OPEN Draft，仅脱敏Git内容。后续补充提交以PR最新head为准。
-- Workspace Sync仍为ON_DEMAND，provider unavailable；本Task已独立通过CLI/Document能力完成云文档及导航回读，不代表整个Workspace云同步已可用。Git仍为Task和方法真相源。
+- 首轮交付commit `04fc4c6`、导航收口head `51033ef2e81d709b3831024a535be8832d5a7d77`已交首轮轻量Review；[PR #14](https://github.com/840832144/AI-Workspace/pull/14)为OPEN Draft，仅脱敏Git内容。后续补充提交以PR最新head为准。
+- Workspace Sync仍为ON_DEMAND，曾provider unavailable及执行策略阻塞；本Task独立CLI成功不代表整个Workspace云同步可用。Git仍为Task和方法真相源，本轮状态由执行时确认。
 
 ## 首轮已交付（保留历史）
 
@@ -56,7 +71,7 @@ ChatGPT本轮读取上传Excel与Git方法，定向复算12行主比例/分母/�
 
 14组最终成功SQL证据，另只读执行已有原生留存报表复核。原始值与共同国家/平台/渠道权重分开；新注册与历史首付人群分开；登录留存、Spin留存、再次付费和窗口复购分开。低余额后续及主要等级/Bet/VIP/机台只作定向解释，没有展开全库扫描。
 
-User已确认上线的是当时trunk；没有获得精确revision/分钟级时刻与后续变更证明，不再追问完整清单。客户端版本不能替代服务器数值版本。UTC-5完整日截至2026-10-06；更新后D7未成熟。统计结论仅为前后关联。
+User已确认上线的是当时trunk；没有获得精确revision/分钟级时刻与后续变更证明，不再追问完整清单。客户端版本不能替代服务器数值版本。UTC-5完整日截至2026-10-06；更新后D7在首轮未成熟。统计结论仅为前后关联。
 
 ## 首轮验证及边界（Codex执行证据）
 
@@ -68,4 +83,4 @@ User已确认上线的是当时trunk；没有获得精确revision/分钟级时�
 
 ## 当前授权边界
 
-执行本文件顶部飞书交付步骤。没有数数资产写入、SVN/数值修改、部署、扩大权限、完整经营数据上传、合并或finalize授权。内部去敏复盘文档的写入/回读/导航登记已由本轮User明确批准；不自动建监控或重查未成熟D7。
+执行本文件顶部美国留存分析步骤；允许一次新完整日快照及必要美区定向补查、成熟D7和首付随访，并更新原位飞书汇总。没有数数资产写入、SVN/数值/埋点修改、开发、实验分流、投放预算、部署、扩大权限、完整经营数据上传、合并或finalize授权。不自动建监控。旧轮仅文案/不查数限制不覆盖本次新批准范围，其他隐私与只读边界不变。
