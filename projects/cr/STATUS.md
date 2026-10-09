@@ -1,6 +1,12 @@
 # CR 当前状态
 
-## 2026-10-09 — TASK-0036 CF缺失段补至1500级
+## 2026-10-09 — TASK-0036 POP接入三方1500级对比
+
+- [最新交付/方法/验证](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_1500_COMPARISON.md)：CR固定trunk r7502、CF复用上一版；POP已知41级保留、42+经验与Bet分开拟合。VIP当前/历史/估算分列，金币倍率缺锚点保留N/A，不用经验增长冒充。
+- 受控三方Excel为13页/7图/1500明细/34概览；公式、已知段、前台接入、图表缓存与视觉通过，0错误/外链/冻结，未做WPS打开。完整商业数据只留本机。
+- Task Review，原PR #10 OPEN、reservation保留；Registry由CLI维护，无新任务、hash或无关全量扫描。未运行采集/购买，不改配置/SVN/TASK-0038，不冻结/发布/合并/finalize。Subagents: none。
+
+## 历史：2026-10-09 — TASK-0036 CF缺失段补至1500级
 
 - [当前交付](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_1500_COMPARISON.md)：CR trunk r7502与CF至1500级对比已交Review；CF优先9/22区间，旧正式表参考保留至300，缺失尾段才拟合，不称CF现行配置。
 - 6张折线图、完整逐级明细和解锁点概览已生成，公式/图表/视觉定向验证通过；完整数值仅在受控包。POP待User提供，不改配置/SVN，不合并PR #10或finalize。Subagents: none。

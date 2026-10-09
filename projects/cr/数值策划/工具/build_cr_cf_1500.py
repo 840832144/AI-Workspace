@@ -26,6 +26,67 @@ def save(path: Path, data: object) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
 
 
+def prepare_pop(baseline: Path, source: Path, history: Path, out: Path) -> dict:
+    """Append only the supplied POP evidence; preserve prepared CR/CF inputs."""
+    out.mkdir(parents=True, exist_ok=True)
+    data = read(baseline/'inputs.controlled.json')
+    expected = read(baseline/'expected.controlled.json')
+    raw = read(source/'PS_DATASET.json')
+    levels = raw['level_table']
+    assert [r['level'] for r in levels] == list(range(1,42))
+    assert all(r['next_xp']-r['start_xp']==r['span_xp'] for r in levels)
+    assert all(a['next_xp']==b['start_xp'] for a,b in zip(levels,levels[1:]))
+    anchors = {1: raw['bet_ladders']['MGM Grand MegaStars (20 lines)']['min']}
+    for r in levels:
+        if r['max_bet_per_line_after'] is not None:
+            anchors[r['level']] = r['max_bet_per_line_after']*20
+    rows = [[r['level'],r['start_xp'],r['next_xp'],r['span_xp'],
+             anchors[max(l for l in anchors if l<=r['level'])]] for r in levels]
+    # Anchored fits: XP uses the last observed regime; Bet includes its plateau.
+    xp_slope = sum((r[0]-41)*(r[3]-rows[-1][3]) for r in rows[29:])/sum((r[0]-41)**2 for r in rows[29:])
+    bet_slope = sum((r[0]-41)*(r[4]-rows[-1][4]) for r in rows[14:])/sum((r[0]-41)**2 for r in rows[14:])
+    assert xp_slope>0 and bet_slope>0
+    old_vip = read(history)['pop']
+    tiers = raw['vip']['tiers']
+    assert [r['tp_to_obtain'] for r in tiers]==old_vip[:len(tiers)]
+    vip = [[i+1,v, float(tiers[i]['chip_package_bonus'].strip('%'))/100 if i<len(tiers) else None,
+            '10/09界面' if i<len(tiers) else '历史正式截图'] for i,v in enumerate(old_vip)]
+    store = sorted([[s['usd'],s['coins']] for s in raw['store']['skus']])
+    data['pop'] = {'levels':rows,'vip':vip,'store':store,'bet_anchors':sorted(anchors),
+                   'xp_fit_window':[30,41],'bet_fit_window':[15,41],
+                   'xp_rounding':100000,'bet_step':50000,'historical_tp_usd':80,
+                   'source':'PS_DATASET.json / 2026-10-09 handoff',
+                   'xp_slope':xp_slope,'bet_slope':bet_slope}
+    data['book'] = 'CR_vs_CF_vs_POP_数值对比_1500级_trunk_r7502.xlsx'
+    data['overview'] = sorted(set(data['overview'])|set(anchors))
+    coin_low=store[0][1]/store[0][0]
+    coin_high=store[-1][1]/store[-1][0]
+    result=[]
+    cumulative=0
+    for level in range(1,1501):
+        if level<=41:
+            _,start,end,need,bet=rows[level-1]
+        else:
+            start=cumulative
+            need=math.floor((rows[-1][3]+xp_slope*(level-41))/100000+0.5)*100000
+            bet=math.floor((rows[-1][4]+bet_slope*(level-41))/50000)*50000
+            end=start+need
+        cumulative=end
+        result.append([level,bet,need,need/bet,need/coin_low,need/coin_high,
+                       need/rows[0][3],start,end,need/(bet if level<=41 else rows[-1][4])])
+    assert all(b[2]>=a[2] and b[1]>=a[1] for a,b in zip(result,result[1:]))
+    save(out/'inputs.controlled.json',data)
+    save(out/'expected.controlled.json',expected)
+    save(out/'pop-expected.controlled.json',result)
+    summary={'cr_cf_inputs_reused':True,'pop_observed_level_rows':41,'pop_fitted_level_rows':1459,
+             'pop_current_vip_tiers':4,'pop_historical_vip_tiers':6,
+             'pop_vip_bonus_fitted_tiers':6,'pop_currency_level_multiplier':'N/A',
+             'pop_spin_rule':'supplied standard paid-spin model; not independently observed',
+             'overview_rows':len(data['overview']),'configuration_write':False}
+    save(out/'preparation-validation.json',summary)
+    return summary
+
+
 def prepare(current: Path, history: Path, out: Path) -> dict:
     out.mkdir(parents=True, exist_ok=True)
     tables = read(current/'cr-current-tables.controlled.json')
@@ -140,15 +201,33 @@ def prepare(current: Path, history: Path, out: Path) -> dict:
 
 
 def verify(out: Path) -> dict:
-    sanitize(out,BOOK)
-    f = openpyxl.load_workbook(out/BOOK, read_only=False, data_only=False)
-    v = openpyxl.load_workbook(out/BOOK, read_only=False, data_only=True)
+    data=read(out/'inputs.controlled.json')
+    book=data.get('book',BOOK)
+    pop='pop' in data
+    core='CALC_CR_CF' if pop else '等级明细'
+    sanitize(out,book)
+    f = openpyxl.load_workbook(out/book, read_only=False, data_only=False)
+    v = openpyxl.load_workbook(out/book, read_only=False, data_only=True)
     expected = read(out/'expected.controlled.json')
     for row in expected:
         level = row[0]
-        got = [v['等级明细'].cell(level+5,c).value for c in range(1,11)]
+        got = [v[core].cell(level+5,c).value for c in range(1,11)]
         for a,b in zip(got,row):
             assert isinstance(a,(int,float)) and math.isclose(a,b,rel_tol=1e-9,abs_tol=1e-7),(level,a,b)
+    if pop:
+        for row in read(out/'pop-expected.controlled.json'):
+            level=row[0]
+            got=[v['POP模型'].cell(level+5,c).value for c in range(1,11)]
+            assert all(isinstance(a,(int,float)) and math.isclose(a,b,rel_tol=1e-9,abs_tol=1e-6) for a,b in zip(got,row)),(level,got,row)
+            base=expected[level-1]
+            front=[v['等级明细'].cell(level+5,c).value for c in range(1,14)]
+            want=[level,base[1],base[2],row[1],base[3],base[4],row[3],base[5],base[6],row[4],base[7],base[8],'N/A']
+            assert all(a==b if isinstance(b,str) else math.isclose(a,b,rel_tol=1e-9,abs_tol=1e-6) for a,b in zip(front,want)),level
+        for i,r in enumerate(data['pop']['vip']):
+            assert v['VIP门槛'].cell(i+6,7).value==r[1]
+            assert math.isclose(v['VIP门槛'].cell(i+6,8).value,r[1]/80)
+            bonus=r[2] if r[2] is not None else data['pop']['vip'][3][2]+(i-3)*(data['pop']['vip'][3][2]-data['pop']['vip'][2][2])
+            assert math.isclose(v['VIP倍率'].cell(i+7,5).value,1+bonus)
     errors = []
     for s in v:
         for row in s:
@@ -157,8 +236,8 @@ def verify(out: Path) -> dict:
     assert not errors,errors[:10]
     assert all(s.freeze_panes is None for s in f)
     charts = sum(len(s._charts) for s in f)
-    assert charts == 6,charts
-    with ZipFile(out/BOOK) as z:
+    assert charts == (7 if pop else 6),charts
+    with ZipFile(out/book) as z:
         assert not any(n.startswith('xl/externalLinks/') for n in z.namelist())
         ns={'c':'http://schemas.openxmlformats.org/drawingml/2006/chart'}
         pts=[]
@@ -177,10 +256,11 @@ def verify(out: Path) -> dict:
                         assert len(points)==len(source),(formula,len(points),len(source))
                         assert all(math.isclose(float(p.find('c:v',ns).text),source[int(p.attrib['idx'])],rel_tol=1e-12,abs_tol=1e-9) for p in points)
                 pts.append([int(p.attrib['val']) for p in root.findall('.//c:val//c:ptCount',ns)])
-        assert len(pts) == charts and sum(p == [1500]*len(p) for p in pts if p) == 4,pts
+        assert len(pts) == charts and sum(p == [1500]*len(p) for p in pts if p) == (5 if pop else 4),pts
     summary={'levels_checked':1500,'formula_errors':0,'charts':charts,
              'chart_point_counts':pts,'external_links':0,'frozen_panes':0,
-             'native_WPS_open':'not performed','model_is_current_CF_configuration':False}
+             'native_WPS_open':'not performed','model_is_current_CF_configuration':False,
+             'pop_model_verified':pop,'pop_high_level_is_observed':False}
     f.close();v.close();save(out/'validation-summary.json',summary)
     return summary
 
@@ -192,7 +272,7 @@ def cache_charts(out: Path) -> dict:
     style and worksheet parts are preserved; cached points come from the actual
     recalculated XLSX cells, never from a parallel business calculation.
     """
-    book=out/BOOK
+    book=out/read(out/'inputs.controlled.json').get('book',BOOK)
     values=openpyxl.load_workbook(book,read_only=False,data_only=True)
     namespace='http://schemas.openxmlformats.org/drawingml/2006/chart'
     ns={'c':namespace}
@@ -232,12 +312,15 @@ def cache_charts(out: Path) -> dict:
 
 def main() -> None:
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action',choices=['prepare','cache-charts','verify'])
+    parser.add_argument('action',choices=['prepare','prepare-pop','cache-charts','verify'])
+    parser.add_argument('--baseline',type=Path)
+    parser.add_argument('--pop-source',type=Path)
     parser.add_argument('--current',type=Path)
     parser.add_argument('--history',type=Path)
     parser.add_argument('--out',type=Path,required=True)
     args=parser.parse_args()
-    result=(prepare(args.current,args.history,args.out) if args.action=='prepare'
+    result=(prepare_pop(args.baseline,args.pop_source,args.history,args.out) if args.action=='prepare-pop'
+            else prepare(args.current,args.history,args.out) if args.action=='prepare'
             else cache_charts(args.out) if args.action=='cache-charts' else verify(args.out))
     print(json.dumps(result,ensure_ascii=False))
 

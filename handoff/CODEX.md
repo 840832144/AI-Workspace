@@ -1,6 +1,13 @@
 # Codex Handoff
 
-## 2026-10-09 — TASK-0036 至1500级CR/CF对比
+## 2026-10-09 — TASK-0036 POP已接入三方比较，等待Review
+
+- User提供POP交接包并允许缺失拟合；沿用原Task/PR，[最新方法与受控交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_1500_COMPARISON.md)。下方“等待POP”是历史状态。
+- CR继续固定trunk r7502，CF上一版保持；POP1–41级原值保留，42+分开拟合升级经验与Bet。当前VIP1–4、历史门槛5–10和高阶权益估算分列。POP经验跨度增长不等于等级金币倍率，后者N/A。
+- 受控`cr-cf-pop-comparison-20261009/outputs/threeway1500/`：13页、7张折线图、1500明细和34概览；公式/三方接入/图表缓存与视觉核对通过，未WPS原生打开。原cf1500工作簿及POP源包保留，不覆盖。
+- Registry由既有工具重建/validate；只提交生成器、方法与脱敏摘要。未采集、购买或写源配置，不改TASK-0038；不冻结/发布/合并/finalize，原PR #10 OPEN、reservation保留。Subagents: none。
+
+## 历史：2026-10-09 — TASK-0036 至1500级CR/CF对比
 
 - User追加允许51+参考已有资料、缺失拟合至1500级；已在原Task完成，[交付/口径/验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_1500_COMPARISON.md)。本节覆盖下方“尚无新工作簿”的历史状态。
 - CR输入仍为固定trunk r7502；CF实测44区间、旧表至300级、301+拟合分开；高阶Bet已有来源，无需拟合。倍率外推不是正式解锁配置，美元主列为毛下注名义价值。

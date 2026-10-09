@@ -2,10 +2,12 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {Workbook,SpreadsheetFile} from '@oai/artifact-tool';
+import {addPopComparison} from './render_pop_comparison.mjs';
 
 const out=process.argv[2], d=JSON.parse(await fs.readFile(path.join(out,'inputs.controlled.json'),'utf8'));
 const wb=Workbook.create();
-const names=['VIP门槛','VIP倍率','等级曲线','等级概览','等级明细','拟合说明','SRC_CR','SRC_CF','SRC_VIP'];
+const core=d.pop?'CALC_CR_CF':'等级明细';
+const names=['VIP门槛','VIP倍率','等级曲线','等级概览','等级明细',...(d.pop?['POP拟合说明','POP模型','CALC_CR_CF']:[]),'拟合说明','SRC_CR','SRC_CF','SRC_VIP',...(d.pop?['SRC_POP']:[])];
 for(const n of names)wb.worksheets.add(n);
 const sheet=n=>wb.worksheets.getItem(n);
 const col=n=>{let s='';for(;n;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s;};
@@ -90,7 +92,7 @@ write(s,'D6',[
  ['原始EXP单位不同，不直接比较高低；重点看同Bet或最大Bet的标准Spin。'],
  ['L49与L50附近有来源切换，保留接续差异，不强行平滑。'],
  ['免费Spin、经验加倍、首转特殊规则不混入标准升级曲线。'],
- ['POP Slots新资料待补，本轮只交CR与CF；不改配置。']]);
+ [d.pop?'POP已补入，独立口径见POP拟合说明；CR/CF规则沿用上轮，不改配置。':'POP Slots新资料待补，本轮只交CR与CF；不改配置。']]);
 write(s,'F18',[['拟合自变量','拟合因变量']]);
 write(s,'F20',Array.from({length:50},(_,i)=>{const l=251+i,r=l+5;return [`=SRC_CF!A${r}-$B$6`,`=SRC_CF!B${r}*SRC_CF!C${r}*$B$14-$B$7`];}));
 
@@ -109,11 +111,12 @@ for(let level=1;level<=1500;level++){
   `=SRC_CF!F${r}`,`=SRC_CF!G${r}`,`=SRC_CF!H${r}`,level<=4?'Spin次数':'经验',
   `=J${r}/(B${r}*'拟合说明'!$B$14)`]);
 }
-s=base('等级明细','逐级体验对比 1–1500','当前等级升到下一级；无经验加倍。美元主列按CF 500k基础场景。',1505,19);
+s=base(core,'CR/CF逐级模型 1–1500','当前等级升到下一级；沿用本轮已完成模型，CF美元主列为500k基础场景。',1505,19);
 table(s,5,detailHeads,rows,'LevelDetail');
 num(s,'B6:C1505','#,##0');num(s,'D6:G1505');num(s,'H6:L1505','#,##0');num(s,'M6:N1505');num(s,'S6:S1505');
 s.getRange('O:Q').format.columnWidth=28;s.getRange('J:J').format.columnWidth=21;
 s.getRange('F6:G1505').setNumberFormat('"$"#,##0.00');s.getRange('N6:N1505').setNumberFormat('"$"#,##0.00');
+if(!d.pop){
 s=base('等级概览','最大Bet解锁点概览','仅展示任一游戏最大Bet变化的等级，另保留1500级终点；完整逐级曲线见明细。',d.overview.length+5,10);
 table(s,5,[...detailHeads.slice(0,9),'CF升级依据'],d.overview.map(l=>[...Array.from({length:9},(_,i)=>`='等级明细'!${col(i+1)}${l+5}`),`='等级明细'!O${l+5}`]),'LevelOverview');
 num(s,`B6:C${d.overview.length+5}`,'#,##0');num(s,`D6:G${d.overview.length+5}`);num(s,`H6:I${d.overview.length+5}`,'#,##0');s.getRange('J:J').format.columnWidth=34;
@@ -128,22 +131,26 @@ s.charts.items[0].series.items.forEach((v,i)=>v.line={fill:['#2864AE','#D57B28',
 chart(s,'最大Bet下升级Spin（理论次数）','等级明细',['D','E'],['CR现值','CF参考及拟合'],1,1500,'A28','L47','0.0');
 chart(s,'升级毛下注（名义USD，CF基础500k）','等级明细',['F','G'],['CR现值','CF参考及拟合'],1,1500,'A50','L69','$#,##0');
 chart(s,'等级金币倍率（整数倍）','等级明细',['H','I'],['CR现值','CF参考及拟合'],1,1500,'A72','L91','0"倍"');
+}
 
 s=base('VIP门槛','VIP消费门槛（纯购买等值USD）','CF含免费VIP点来源，实际付费可更低；同编号VIP不代表权益相同。',45,10);
 header(s,5,['VIP','CR累计点','CR名义USD','CF累计点','CF最低USD','CF最高USD']);
 const vipRows=d.vip.map((v,i)=>{const r=i+6;return [v[0],`=SRC_VIP!B${r}`,`=B${r}/SRC_VIP!$B$25`,i<8?`=SRC_VIP!I${r}`:'N/A',i<8?`=D${r}/MAX(SRC_VIP!$P$6:$P$11)`:'N/A',i<8?`=D${r}/MIN(SRC_VIP!$P$6:$P$11)`:'N/A'];});
 write(s,'A6',vipRows);num(s,'B6:F20','#,##0');
-chart(s,'VIP1–8 累计消费等值（USD）','VIP门槛',['C','E','F'],['CR名义','CF纯购最低','CF纯购最高'],1,8,'A23','L43','$#,##0');
+if(!d.pop)chart(s,'VIP1–8 累计消费等值（USD）','VIP门槛',['C','E','F'],['CR名义','CF纯购最低','CF纯购最高'],1,8,'A23','L43','$#,##0');
 s=base('VIP倍率','商城金币倍率','CR按当前trunk同档VIP0作分母；CF为Coin Packages，VIP9无独立新门槛。',45,10);
 header(s,5,['VIP','CR金币倍率','CF金币倍率','CF说明']);
 write(s,'A6',d.cr_packages.map((v,i)=>[v[0],`=SRC_VIP!E${i+6}/SRC_VIP!F${i+6}`,i>=1&&i<=9?`=SRC_VIP!L${i+5}`:'N/A',i===9?'上限权益档，无独立新门槛':'']));
 num(s,'B6:C21','0.00"倍"');s.getRange('D:D').format.columnWidth=35;
 // VIP0 row6, VIP1 row7. chart helper uses positional indices2–10.
-chart(s,'同编号VIP金币倍率','VIP倍率',['B','C'],['CR现值','CF Coin Packages'],2,10,'A23','L43','0"倍"');
+if(!d.pop)chart(s,'同编号VIP金币倍率','VIP倍率',['B','C'],['CR现值','CF Coin Packages'],2,10,'A23','L43','0"倍"');
+
+if(d.pop)await addPopComparison({wb,d,base,write,header,table,num,chart,col,sheet,out});
 
 wb.recalculate();
 // Exercise the new tail dependency, then restore before export.
-const levelCheck=sheet('等级明细'),control=sheet('拟合说明');
+if(!d.pop){
+const levelCheck=sheet(core),control=sheet('拟合说明');
 const before=levelCheck.getRange('J1505').values[0][0];
 control.getRange('B8').formulas=[['=2*SUMPRODUCT(F20:F69,G20:G69)/SUMPRODUCT(F20:F69,F20:F69)']];wb.recalculate();
 const changed=levelCheck.getRange('J1505').values[0][0];
@@ -151,15 +158,17 @@ if(!(changed>before))throw new Error('Tail formula did not respond to fit slope'
 control.getRange('B8').formulas=[['=SUMPRODUCT(F20:F69,G20:G69)/SUMPRODUCT(F20:F69,F20:F69)']];wb.recalculate();
 if(Math.abs(levelCheck.getRange('J1505').values[0][0]-before)>1e-6)throw new Error('Fit slope restore failed');
 await fs.writeFile(path.join(out,'recalculation.json'),JSON.stringify({slope_input_changed:true,tail_responded:true,restored:true}));
+}
 const inspect=await wb.inspect({kind:'table',range:"'等级明细'!A1503:J1505",include:'values,formulas',tableMaxRows:3,tableMaxCols:10});
 await fs.writeFile(path.join(out,'inspect.local.ndjson'),inspect.ndjson);
-await (await SpreadsheetFile.exportXlsx(wb)).save(path.join(out,'CR_vs_CF_数值对比_1500级_trunk_r7502.xlsx'));
+const book=d.book??'CR_vs_CF_数值对比_1500级_trunk_r7502.xlsx';
+await (await SpreadsheetFile.exportXlsx(wb)).save(path.join(out,book));
 await fs.mkdir(path.join(out,'previews'),{recursive:true});
 for(const name of names){
- const ranges=name==='等级曲线'?['A1:L26','A27:L48','A49:L70','A71:L92']:name.startsWith('VIP')?['A1:L44']:name==='拟合说明'?['A1:L18']:['A1:J15'];
+ const ranges=name==='等级曲线'?['A1:L26','A27:L48','A49:L70','A71:L92',...(d.pop?['A94:L115']:[])]:name.startsWith('VIP')?['A1:L44']:name==='拟合说明'?['A1:L18']:name==='POP拟合说明'?['A1:L19','A21:L40']:name==='等级概览'||name==='等级明细'?['A1:M15']:['A1:J15'];
  for(let i=0;i<ranges.length;i++){
   const img=await wb.render({sheetName:name,range:ranges[i],scale:1.3,format:'png'});
   await fs.writeFile(path.join(out,'previews',`${name}-${i+1}.png`),new Uint8Array(await img.arrayBuffer()));
  }
 }
-console.log(JSON.stringify({book:'CR_vs_CF_数值对比_1500级_trunk_r7502.xlsx',sheets:names.length,charts:6,levels:1500}));
+console.log(JSON.stringify({book,sheets:names.length,charts:d.pop?7:6,levels:1500}));

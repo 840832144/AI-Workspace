@@ -1,20 +1,28 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: CR trunk r7502 / CF1500级对比已生成；缺失尾段按User授权拟合，定向公式/图表/视觉核对通过，等待ChatGPT Review及POP Slots资料；无配置写入
+- Execution status: CR trunk r7502 / CF / POP1500级三方对比已生成；POP已有段保留、缺失段拟合，公式/图表/视觉核对通过，等待ChatGPT Review；无配置写入
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-10-09
-- User decision: Approved（2026-10-09定位CR/CF对比后，User允许51级以后复用已有资料并拟合缺失部分至1500级；CR采用trunk r7502，POP Slots待提供；仅分析，不沿用历史dev提交授权）
+- User decision: Approved（2026-10-09允许竞品已有资料优先、缺失拟合至1500级；随后提供POP交接包并要求同样补齐缺失；CR固定trunk r7502；仅分析，不沿用历史dev提交授权）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；dev r7300等待User游戏检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-10-09 — CR/CF至1500级对比已交Review
+## 2026-10-09 — POP资料接入，三方1500级对比交Review
+
+- User新提供POP交接包并授权缺失拟合；本轮在原Task/PR追加，[方法与验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_1500_COMPARISON.md)。CR/CF复用上一版，前轮Accepted及Review历史保留。
+- POP当前1–41级原值保留，42+经验与Bet分别拟合；VIP1–4本轮证据、5–10门槛旧正式参考、缺失权益估算分开。升级经验增长不能替代等级金币倍率；后者无同口径锚点，保留N/A。
+- 受控`cr-cf-pop-comparison-20261009/outputs/threeway1500/`含13页/7图工作簿、1500级明细/34行概览、输入/复算/验证。完整商业数据不进Git，未执行采集包脚本或真实购买。
+- 定向公式、已知段保留、三方接入、图表缓存与视觉验证通过；0公式错误/外链/冻结。未做WPS原生打开。Registry由CLI重建并validate，无新编号、hash或无关全量扫描。
+- 原PR #10 OPEN、reservation保留，等待ChatGPT Review；不改TASK-0038、配置或SVN，不冻结/发布/合并/finalize。Subagents: none。
+
+## 历史：2026-10-09 — CR/CF至1500级对比已交Review
 
 - User后续范围覆盖：51+允许用已有资料和缺失拟合，先到1500级。方法、交付和验证见[CR_CF_1500_COMPARISON](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_1500_COMPARISON.md)。下方“尚未生成”是此前找回资料时的历史状态。
 - CR继续固定trunk r7502；CF保留9/22已确认区间，旧正式表到300级为历史参考，301–1500拟合。高阶Bet已有来源，不另造档位；倍率缺失单独估计，不以CR反填CF。来源切换处保留差异。
