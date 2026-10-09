@@ -1,5 +1,62 @@
 # CR 当前状态
 
+## 2026-10-09 — TASK-0038 制作人精简版交Review
+
+- [原飞书](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)原位更新至revision 61，四段阅读结构/三主图，实际云端导出3页并逐页复核；首页目标差距、两类前5级问题及优先动作。完整路径/目录/细表/方法移出主阅读流，受控底稿和前轮Accepted历史保留。
+- 截止日仍2026-10-07 UTC-5，未新增查询或刷新D7；正文19段、关键数字、云图、完整权限及唯一导航revision 190回读通过。个人空间和原权限不变。
+- [Task](../../tasks/TASK-0038-CR-9-30.md)/[交接](../../handoff/TASK-0038-CR-0930-LIVE-REVIEW.md)/[验证](REPORTS/CR-0930-LIVE-IMPACT-20261007/VALIDATION.md)已同步，Registry只经工具生成。原PR #14 OPEN Draft、reservation pending-main；仅交轻量Review，不调参、开发、改SVN、合并/finalize。Subagents: none。
+
+## 历史 — 2026-10-08 TASK-0038 前5级路径与引导留存交Review
+
+- 当前Review；前轮[内容评审](../../reviews/TASK-0038-CHATGPT-US-RETENTION-CONTENT-REVIEW-1.md)Accepted保留。执行[增补规格](REPORTS/CR-0930-LIVE-IMPACT-20261007/EARLY_PATH_GUIDE_RETENTION_EXECUTION.md)，User确认没有额外附件。
+- 先实际事件目录与模块覆盖，再未Spin/未到5级路径、主动回访成熟窗口及引导资格/步骤/成功对照；不预锁升级奖励、不重做旧验收。仅只读分析与原飞书更新，不改配置/SVN/预算、不开发/实验，不合并/finalize。Subagents: none。
+
+
+- T=2026-10-07 UTC-5，七份有界聚合完成；首段/末段、模块继续、成熟主动回访、具体引导与成功对照、候选排序和条件收益门槛齐全；[方法](REPORTS/CR-0930-LIVE-IMPACT-20261007/EARLY_PATH_GUIDE_RETENTION_METHODS.md) / [验证](REPORTS/CR-0930-LIVE-IMPACT-20261007/VALIDATION.md)。数据/SQL/序列仅受控。
+- [原飞书](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)revision 42新增六章十五表两图，446段回读一致；历史图文保留。云图/完整权限/唯一导航回读通过（导航revision 188）。原PR #14 OPEN Draft，原reservation pending-main；无配置、开发、实验、合并或finalize。
+
+## 历史Accepted范围 — 2026-10-08 TASK-0038 美国广告新增分层与收益路线
+
+- [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)为Review；原分支安全同步至`7af6492`，最新main`b0a36c8`为祖先，收口前fetch无新增并发。继续PR #14及原reservation，不新建Task。
+- 定向只读查询固定最新完整UTC-5日T=2026-10-06；主对象为美国明确广告新增，D1/D3成熟分母分别核对，D7仍N/A。10月6日首轮Excel/全地区快照保留；分层贡献、回访轨迹、可比首日体验、首付后独立窗口及组合收益方法均已交付，不把观察差距或30%–40%目标写成预测。
+- [原飞书](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)revision 23，7章15表4图、344段文字回读一致；四图已查看，原个人位置和组织内权限不变；唯一导航revision 186确认条目唯一且Review。[方法](REPORTS/CR-0930-LIVE-IMPACT-20261007/US_RETENTION_SEGMENT_UPLIFT_METHODS.md)/[验证](REPORTS/CR-0930-LIVE-IMPACT-20261007/VALIDATION.md)/[Idea Handoff](REPORTS/CR-0930-LIVE-IMPACT-20261007/US_RETENTION_IDEA_HANDOFF.md)已同步。
+- Registry通过既有工具生成/验证；无数数资产、游戏/SVN/预算写入，无开发、实验、监控、合并或finalize。Workspace Sync不可用边界保留；Subagents: none。
+
+## 历史 — 2026-10-08 TASK-0038 制作人表达修订交轻量Review
+
+- [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)从Changes Requested回Review，已按[可读性与建议规格](REPORTS/CR-0930-LIVE-IMPACT-20261007/PLANNER_READABILITY_ACTIONS.md)原位修订[现有报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，保留个人位置和组织内链接权限。
+- 正文按玩家体验组织，四项改进仅为待验证建议；统计方法/证据/治理集中附录，4张图标签同步修订且删除重复图注。沿用原人数、分母、人群与10/6快照，不新查数或刷新D7。
+- 文档revision 13，460段文字回读一致、15表4图齐全，关键数字与云端图核对通过；权限前后一致，唯一导航revision 184回读通过。Task/Handoff/报告/Registry同步，PR #14不合并、不finalize。Workspace Sync受本机执行策略限制，不影响本Task独立CLI交付；Subagents: none。
+
+## 历史 — 2026-10-08 TASK-0038 飞书原生初版交付完成
+
+- [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)回Review。[制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)按User“先不放公司目录”的决定，由CLI user创建在个人文档空间；完整Excel仍留本机。
+- 已完成个人空间/既有登记查重、正文和表格412段回读一致、6章16表4图核对、4张云端图逐张视觉复核。权限回读tenant_readable，未修改共享设置或开公网；个人位置仍为组织内持链接可阅读。
+- 已登记唯一文档导航中心，并经CLI回读标题、Review状态及唯一链接。原始/两套共同权重各写覆盖、成长保留完成者/阶段条件、区间重叠推理已修订；沿用10/6 UTC-5快照，未重查D7或重跑线上分析。
+- Task/Status/Handoff/报告与Registry同步，PR #14保持OPEN Draft、原reservation pending-main，等待ChatGPT轻量Review。无数数/SVN/游戏配置写入、合并或finalize。下方登录/目录等待状态均为历史；Subagents: none。
+
+## 历史 — 2026-10-08 TASK-0038 登录恢复，等待可写目录
+
+- CLI用户身份已实测ready/valid/verified，唯一导航中心及旧CR报告正文可读。历史CR资料目录列表与权限读取被拒绝（1061004/1063002），尚不能确认可写位置及内部继承权限。
+- 已询问User本次报告存放目录，或确认个人文档空间；未创建云文档、上传图、扩权或改用bot。复用展示稿和定向验证，没有新增线上查询。
+- TASK-0038仍Changes Requested；PR #14 OPEN Draft、reservation pending-main。下一步确认目录并完成原生正文、图表、权限、唯一导航回读。下方登录阻塞为历史。
+
+## 历史 — 2026-10-07 TASK-0038 飞书展示稿就绪，等待CLI用户登录
+
+- [TASK-0038](../../tasks/TASK-0038-CR-9-30.md)当前Changes Requested；最终交付改为内部飞书原生正文。仅授权去敏汇总、必要人数和精选图；Excel与完整经营证据保留受控本机，不开公网或扩大权限。
+- 已完成6章、16张原生窄表、4张独立聚合图的受控稿；CLI Profile及定向数据/视觉检查通过。复用首轮截至2026-10-06 UTC-5快照，没有新增查询、D7刷新或全量重跑。共同权重覆盖、完成者条件和区间推理修订见[报告导航](REPORTS/CR-0930-LIVE-IMPACT-20261007/README.md)。
+- 实际阻塞是CLI user登录态missing，搜索/读取均token_missing；未改bot、未创建云文档或改权限。正文/图表/权限/唯一导航回读尚未执行，不能报告正式交付完成。
+- [专属Handoff](../../handoff/TASK-0038-CR-0930-LIVE-REVIEW.md)已记录登录恢复后的续接点。Task未预写Accepted/Complete；PR #14保持OPEN Draft、原reservation pending-main，不合并、不finalize。Subagents: none。
+
+## 历史 — 2026-10-07 TASK-0038 首轮Excel交Review
+
+- 独立[TASK-0038](../../tasks/TASK-0038-CR-9-30.md)，由最新main防重及allocator晋升；未续写TASK-0036或修改其PR。当前Review，原reservation pending-main。
+- 本机ae-cli只读生产数据，固定UTC-5及截至2026-10-06的完整日；User确认发布来源是当时trunk。具体revision/生效时刻未锁定，当前为日期观察，不宣称因果或配置验收。
+- 八页制作人Excel、短报告、范围口径、实际查询证据及验证已保存在受控本机；经营数据不进public。Git仅[方法/生成器/脱敏验证](REPORTS/CR-0930-LIVE-IMPACT-20261007/README.md)。D7及其他明确缺口保留，不填0。
+- 实际验证：原生D1交叉复核一致；5张原生折线图、412个公式及391项独立派生计算核对，文件级与渲染检查通过；未运行原生Excel/WPS UI。
+- 下一步ChatGPT Review；[交接](../../handoff/TASK-0038-CR-0930-LIVE-REVIEW.md)。未改数数资产、SVN、游戏配置或权限，未发布/合并/finalize；Subagents: none。下方为既有历史记录。
+- 独立[PR #14](https://github.com/840832144/AI-Workspace/pull/14)保持OPEN Draft；交付commit `04fc4c6`，随后仅同步PR导航。受控经营产物未上传。
+
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
 - [TASK-0035](../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。
