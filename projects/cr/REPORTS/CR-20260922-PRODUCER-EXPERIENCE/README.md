@@ -1,5 +1,14 @@
 # CR 9.22 全项目数值体验与制作人汇报
 
+## 最新续接：CR/CF对比资料与当前trunk（2026-10-09）
+
+- 沿用TASK-0036，找回旧五页VIP/等级/Bet曲线与后续trunk r7321等级概览/5000明细；文件位置见canonical Task。它们是历史交付，不是今天的trunk结果。
+- 当前CR来源固定trunk r7502，2026-10-09 16:55北京时间只读导出7份相关配置。与可用r7321来源定向比较，等级门槛3格变化，Bet数值/解锁及金币换算表无值差异；无旧表的项目不宣称无变化。
+- CF只复用9/22已确认实测/服务器参考，未新采集；51+真实经验缺口与原证据限制保留，不混旧300级推算。CR现行VIP只取trunk，暂存POP调优候选不进入现值。
+- 受控别名`cr-cf-pop-comparison-20261009/`：来源锁定、配置输入、CF参考、版本差异和资料导航齐备；尚未生成新对比Excel，待User提供POP Slots材料后统一比较。完整数值不进Git；无配置修改/SVN提交、发布、合并或finalize。
+
+## 以下为历史交付
+
 [TASK-0036](../../../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md) · [PR #10](https://github.com/840832144/AI-Workspace/pull/10) OPEN · **数值报告Accepted；双版本Excel等待ChatGPT Review** · 2026-09-17 · Subagents: none。
 
 本页是可公开的脱敏汇报与复核入口。完整商业数值、场景明细和公式输入位于本机受控包，不随Git发布。9/21已按User新增授权仅将等级升级门槛提交dev r7237；VIP暂存，不覆盖r7013、不提交trunk、不冻结、不发布；TASK-0035历史候选保持原样。

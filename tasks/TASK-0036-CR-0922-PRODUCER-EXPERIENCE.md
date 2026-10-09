@@ -1,18 +1,28 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: 已按User授权提交dev r7300，5表远端回读差异0；102条经验比取整拟合，272+恢复原dev消耗；等待User游戏检查，VIP未提交
+- Execution status: CR/CF历史对比已定位；当前trunk r7502相关7表只读基线就绪，等待User提供POP Slots资料后统一对照；本轮尚未生成新对比Excel，无配置写入
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
-- Updated: 2026-09-22
-- User decision: Approved（2026-09-22最新明确授权“这版就直接提吧，我去dev检查”；只提交本轮5份等级/Bet/兑换配置到dev，VIP暂存；不提交trunk、冻结/发布、合并/finalize）
+- Updated: 2026-10-09
+- User decision: Approved（2026-10-09定位既有CR/CF数值对比，CR采用当前trunk；POP Slots等待User另行提供；本轮只读准备，不沿用历史dev提交授权执行新写入）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；dev r7300等待User游戏检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
+
+## 2026-10-09 — CR/CF对比资料定位与当前trunk准备
+
+- 沿用本Task，未改TASK-0038或新建编号。原分支2048767与远端一致，main b0a36c8为祖先；Task Registry validator有效，PR #10仍OPEN。
+- 找回两个受控入口：`outputs/task0036-cf-live-20260922/CR_vs_CF_最新实测_数值曲线.xlsx`含VIP门槛/倍率、等级成本/Bet/返还；`outputs/task0036-trunk-cf-level-curves-r7321/CR_vs_CF_等级体验曲线_trunk_r7321.xlsx`含概览和5000级明细。旧文件及缓存均保留历史身份。
+- 2026-10-09 16:55北京时间定向只读固定公司CR trunk r7502，导出VipCfg、LevelCfg、SlotsCasinoBetList、SlotsCasinoBetUnlock、SlotsCasinoBetShow、PriceCheatSheet、CommCfg，记录实际读取时间和每表最后修改revision；不读取dev或覆盖工作副本。
+- 与r7321可用源表定向比较：LevelCfg有3个目标字段格变化；BetList、BetUnlock、PriceCheatSheet无值差异。没有旧对照文件的表不宣称无变化。旧曲线不能直接改标题冒称当前结果。
+- CF采用已确认2026-09-22实测/服务器参考；51+真实升级门槛仍缺，不将旧300级数据、CR拟合或旧折扣当作当前CF实测。现行CR VIP取trunk，不混此前未提交的POP拟合候选。
+- 当前受控别名`cr-cf-pop-comparison-20261009/`保存来源锁定、7表提取、CF参考、版本差异和资料索引；完整值不进public Git。这里只完成输入准备，尚未重制曲线或获得POP新资料。
+- 后续范围：VIP门槛/金币倍率、等级膨胀、升级门槛/每Spin经验/Spin与成本、Bet金额和解锁；同Bet与最大Bet、名义价值与实付/毛下注/净耗分开。无SVN提交、采集、调参、发布、合并/finalize。Subagents: none。
 
 ## 2026-09-22 — 取整拟合与272级后恢复原难度，已提交dev r7300
 

@@ -1,5 +1,12 @@
 # Codex Handoff
 
+## 2026-10-09 — TASK-0036 CR/CF资料找回，待POP输入
+
+- User转回竞品数值对比，范围为VIP、等级膨胀、升级和Bet；本轮只读准备，未续写TASK-0038或新分配编号。[canonical Task](../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)及[报告入口](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/README.md)已同步。
+- 找回CF重基线五页工作簿及后续trunk r7321等级概览/5000明细；CR新输入固定trunk r7502、北京时间16:55读取的7份相关配置。可用r7321源表中，仅等级门槛有3格变化；不把旧Excel当最新版。
+- 受控`cr-cf-pop-comparison-20261009/`含配置来源、CF参考和资料索引；尚无新工作簿，等待User提供POP后统一制作。CF仍是9/22确认参考，51+实际经验缺口保留；CR VIP不使用此前暂存候选。
+- Registry按工具维护；原PR #10 OPEN、reservation保留。不调参、提交SVN、采集、发布、合并或finalize。Subagents: none。
+
 ## 2026-09-22 — TASK-0036 已按User授权提交dev r7300
 
 - [当前结果/复现/回退](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)。5个等级/Bet/兑换文件已提交dev r7300，远端逐格/公式差异0，中文日志和作者正确，隔离WC干净；User自行进游戏检查，不继续自动提交。

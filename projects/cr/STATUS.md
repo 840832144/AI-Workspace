@@ -1,5 +1,11 @@
 # CR 当前状态
 
+## 2026-10-09 — TASK-0036 竞品对比输入准备
+
+- [Task](../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)沿用原编号/PR #10，CR/CF旧工作簿已定位；当前CR只读基线为trunk r7502（7表，16:55北京时间读取），CF沿用已确认9/22参考并保留缺口。
+- [报告入口](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/README.md)区分历史五页对比、r7321等级曲线及当前输入；尚未生成新工作簿，待User提供POP资料。完整配置/差异仅受控保存，原VIP候选不混入现行CR。
+- 本轮没有配置/SVN写入、数数查询或采集，未发布、合并/finalize；Registry由工具更新。Subagents: none。
+
 ## 2026-09-22 — TASK-0036 等级修订已提交dev r7300
 
 - [当前提交/验证/受控文件](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_ALIGNMENT_CANDIDATE.md)：按User授权提交5表dev r7300，远端单元格/公式差异0，中文日志/作者及干净隔离WC核对通过；等待User进游戏检查。

@@ -335,8 +335,8 @@ entries:
     executor: "Codex"
     priority: "P1 / 9.22制作人汇报"
     created_date: "2026-09-17"
-    updated_date: "2026-09-22"
-    related_tasks: ["TASK-0033", "TASK-0034", "TASK-0035"]
+    updated_date: "2026-10-09"
+    related_tasks: ["TASK-0033", "TASK-0034", "TASK-0035", "TASK-0038"]
     kind: "canonical"
   - id: "TASK-0016"
     canonical_file: "tasks/TASK-0016-Automatic-Cross-Conversation-Memory-Curation.md"
