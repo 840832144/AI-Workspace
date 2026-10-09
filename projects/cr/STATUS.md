@@ -1,5 +1,10 @@
 # CR 当前状态
 
+## 2026-10-09 — TASK-0036 CF缺失段补至1500级
+
+- [当前交付](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_1500_COMPARISON.md)：CR trunk r7502与CF至1500级对比已交Review；CF优先9/22区间，旧正式表参考保留至300，缺失尾段才拟合，不称CF现行配置。
+- 6张折线图、完整逐级明细和解锁点概览已生成，公式/图表/视觉定向验证通过；完整数值仅在受控包。POP待User提供，不改配置/SVN，不合并PR #10或finalize。Subagents: none。
+
 ## 2026-10-09 — TASK-0036 竞品对比输入准备
 
 - [Task](../../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)沿用原编号/PR #10，CR/CF旧工作簿已定位；当前CR只读基线为trunk r7502（7表，16:55北京时间读取），CF沿用已确认9/22参考并保留缺口。

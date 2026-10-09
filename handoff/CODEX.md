@@ -1,5 +1,12 @@
 # Codex Handoff
 
+## 2026-10-09 — TASK-0036 至1500级CR/CF对比
+
+- User追加允许51+参考已有资料、缺失拟合至1500级；已在原Task完成，[交付/口径/验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_1500_COMPARISON.md)。本节覆盖下方“尚无新工作簿”的历史状态。
+- CR输入仍为固定trunk r7502；CF实测44区间、旧表至300级、301+拟合分开；高阶Bet已有来源，无需拟合。倍率外推不是正式解锁配置，美元主列为毛下注名义价值。
+- 受控`cr-cf-pop-comparison-20261009/outputs/cf1500/`已有工作簿/复算/验证；6图、1500明细、34概览，公式错误/外链/冻结0。已补原生图表缓存并回读，未做WPS打开。
+- 等待ChatGPT Review及POP新资料；不新增任务，不改TASK-0038，不改配置/SVN，不采集/发布/合并/finalize。Subagents: none。
+
 ## 2026-10-09 — TASK-0036 CR/CF资料找回，待POP输入
 
 - User转回竞品数值对比，范围为VIP、等级膨胀、升级和Bet；本轮只读准备，未续写TASK-0038或新分配编号。[canonical Task](../tasks/TASK-0036-CR-0922-PRODUCER-EXPERIENCE.md)及[报告入口](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/README.md)已同步。

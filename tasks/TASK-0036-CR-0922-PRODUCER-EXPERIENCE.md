@@ -1,20 +1,27 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: CR/CF历史对比已定位；当前trunk r7502相关7表只读基线就绪，等待User提供POP Slots资料后统一对照；本轮尚未生成新对比Excel，无配置写入
+- Execution status: CR trunk r7502 / CF1500级对比已生成；缺失尾段按User授权拟合，定向公式/图表/视觉核对通过，等待ChatGPT Review及POP Slots资料；无配置写入
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-10-09
-- User decision: Approved（2026-10-09定位既有CR/CF数值对比，CR采用当前trunk；POP Slots等待User另行提供；本轮只读准备，不沿用历史dev提交授权执行新写入）
+- User decision: Approved（2026-10-09定位CR/CF对比后，User允许51级以后复用已有资料并拟合缺失部分至1500级；CR采用trunk r7502，POP Slots待提供；仅分析，不沿用历史dev提交授权）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；dev r7300等待User游戏检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-10-09 — CR/CF对比资料定位与当前trunk准备
+## 2026-10-09 — CR/CF至1500级对比已交Review
+
+- User后续范围覆盖：51+允许用已有资料和缺失拟合，先到1500级。方法、交付和验证见[CR_CF_1500_COMPARISON](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_1500_COMPARISON.md)。下方“尚未生成”是此前找回资料时的历史状态。
+- CR继续固定trunk r7502；CF保留9/22已确认区间，旧正式表到300级为历史参考，301–1500拟合。高阶Bet已有来源，不另造档位；倍率缺失单独估计，不以CR反填CF。来源切换处保留差异。
+- 本机受控`cr-cf-pop-comparison-20261009/outputs/cf1500/`含新工作簿、输入、独立复算和验证摘要。6张折线图、1500逐级明细、34个解锁/终点概览；VIP读取当前trunk。完整数值不进Git。
+- 1500级对照/公式响应恢复/图表缓存及渲染通过；未做WPS原生打开。Registry通过工具维护。无配置或SVN写入、采集、发布、合并/finalize；等待ChatGPT Review及POP资料。Subagents: none。
+
+## 历史：2026-10-09 — CR/CF对比资料定位与当前trunk准备
 
 - 沿用本Task，未改TASK-0038或新建编号。原分支2048767与远端一致，main b0a36c8为祖先；Task Registry validator有效，PR #10仍OPEN。
 - 找回两个受控入口：`outputs/task0036-cf-live-20260922/CR_vs_CF_最新实测_数值曲线.xlsx`含VIP门槛/倍率、等级成本/Bet/返还；`outputs/task0036-trunk-cf-level-curves-r7321/CR_vs_CF_等级体验曲线_trunk_r7321.xlsx`含概览和5000级明细。旧文件及缓存均保留历史身份。
