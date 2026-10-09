@@ -1,8 +1,15 @@
 # CR 9.30线上效果复盘 — 脱敏交付导航
 
-[TASK-0038](../../../../tasks/TASK-0038-CR-9-30.md) / Review / 2026-10-08。此目录不保存经营结果。最终主交付为[飞书原生制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，仅含批准的去敏汇总、必要分母和精选图；完整Excel继续留本机，经营结果不进public Git。首轮“不上传飞书”属于增补授权前的历史边界。
+[TASK-0038](../../../../tasks/TASK-0038-CR-9-30.md) / Review / 2026-10-09。此目录不保存经营结果。最终主交付为[飞书原生制作人报告](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)，仅含批准的去敏汇总、必要分母和精选图；完整Excel继续留本机，经营结果不进public Git。首轮“不上传飞书”属于增补授权前的历史边界。
 
-## 当前：前5级事件路径与引导留存
+## 当前：制作人精简版
+
+- [最新表达规格](PLANNER_READABILITY_ACTIONS.md) / [验证](VALIDATION.md)：原位revision 61，四个阅读段落、三张主图、0细表；实际云端PDF导出为3页并逐页查看。结论与目标差距在首页，正文仅两类主要流失、关键证据和优先动作。
+- 截止日仍10/7 UTC-5，未新增取数。19段标题/正文、关键分母/判断边界、云端图片及完整权限通过；唯一导航revision 190为一个Review条目。个人位置和原标题/权限未改。
+- 受控`producer-brief-20261009/`保存精简稿/三图/图值/PDF/回读，`archive/README.md`指向最新云端修改前全文及6旧图、完整路径目录与细表、前轮Accepted结果和首轮Excel。旧证据不重算、不删除，不再全部塞入飞书主文。
+- 前轮Accepted及其独立验证限制保留；本轮只交轻量Review，原PR/reservation不变，不合并/finalize。
+
+## 历史：前5级事件路径与引导留存
 
 - User确认没有额外附件，以[增补规格](EARLY_PATH_GUIDE_RETENTION_EXECUTION.md)挂接本轮消息；[当前方法](EARLY_PATH_GUIDE_RETENTION_METHODS.md) / [脱敏验证](VALIDATION.md)。前轮[Accepted Review](../../../../reviews/TASK-0038-CHATGPT-US-RETENTION-CONTENT-REVIEW-1.md)保留，当前新范围Review。
 - 固定完整日T=2026-10-07 UTC-5，先事件目录/模块覆盖，再首段/末段及具体引导；只认已定义主动行为，成熟窗口和较晚返回分开。候选重新排序，不先锁升级奖励，不把关联当收益。

@@ -1,6 +1,21 @@
 # TASK-0038 脱敏验证摘要
 
-## 当前：2026-10-08 前5级事件路径与引导留存
+## 当前：2026-10-09 制作人精简版
+
+|检查|实际结果|边界|
+|---|---|---|
+|安全同步|原分支27f8fde与远端一致，main b0a36c8为祖先；首步Registry工具重建/validate有效|不新建Task或reservation，保留已有Accepted历史|
+|原位及并发|读取云端revision 57，与revision 42差异为User删改；先存档全文及6旧图，写前再次确认内容/版本|不复原User删掉的历史段落；旧细表/证据保留受控|
+|当前正文|revision 61，4个一级标题、2个动作小标题、19段标题/正文按序一致，3图、0明细表|主文原生可编辑，非整页截图或附件|
+|篇幅与视觉|CLI从实际云文档导出PDF为3页，逐页渲染查看；三图可读无裁切|云文档滚动布局随设备变化；3页指实际A4导出结果|
+|核心事实|复用既有保存结果，三图与正文分母/截止日/定义一致，关键发现及限制仍在|仅展示派生；未新取数、重跑分析或刷新D7；登录与主动行为不混用|
+|证据保留|修改前全文/旧图与目录索引齐全；完整事件路径/覆盖/细表/方法及历史Accepted模型未改|经营正文、图、PDF、真实聚合仍仅受控，不进public Git|
+|权限与导航|CLI独立回读完整权限前后相同；唯一导航revision 190为一个Review条目|原链接、个人位置及标题保持；未写权限或移动文档|
+|状态与边界|Task/Status/Handoff为Review；Registry工具生成/验证|不调参、开发、改SVN、合并或finalize；Subagents: none|
+
+受控别名`producer-brief-20261009/`：`presentation-validation.local.json`、`cloud-validation.local.json`、`archive/README.md`及实际导出PDF/渲染。第一排版稿导出2页后放大主图、拆分动作小标题，最终3页满足要求；未增加业务内容凑篇幅。
+
+## 历史：2026-10-08 前5级事件路径与引导留存
 
 当前Review；[前轮内容Review](../../../../reviews/TASK-0038-CHATGPT-US-RETENTION-CONTENT-REVIEW-1.md)的Accepted与未独立复跑限制保留，不重复验收旧经营结果。
 

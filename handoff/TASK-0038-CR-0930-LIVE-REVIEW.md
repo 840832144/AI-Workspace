@@ -1,8 +1,16 @@
 # TASK-0038 — CR 9.30线上效果复盘交接
 
-状态：Review（前轮内容Accepted保留；本轮前5级路径与引导留存交Review）；Executor：Codex；Subagents: none。继续本任务/PR #14，不续TASK-0036，不新分配编号。
+状态：Review（前轮内容Accepted保留；本轮制作人精简版交轻量Review）；Executor：Codex；Subagents: none。继续本任务/PR #14，不续TASK-0036，不新分配编号。
 
-## 当前交付：前5级事件路径与引导留存
+## 当前交付：制作人精简版（2026-10-09）
+
+- [原飞书](https://gfok27asqq.feishu.cn/docx/L3u9dI2wPoQmbuxwzW7cTUASnNc)已原位更新到revision 61：四段阅读结构、三张主图、无明细表；实际云端导出PDF为3页并逐页复核。首页先展示目标差距、两类前段问题和优先动作，不再堆叠历史正文。
+- 已读取User修订后的revision 57，29张表/6图及全文存入受控归档。完整事件路径、事件目录、细表和方法、前轮Accepted证据保持；不把精简正文当成撤回旧结论，也不把旧奖励优先方案重新写成当前决定。
+- 19段标题/正文按序一致；既有汇总中的成熟分母、登录/主动回访、关键发现与判断边界定向核对，未重查数数、刷新D7或重跑旧模型。3张云图、完整权限和唯一导航revision 190回读通过；个人位置/标题保持，无扩权。
+- 新受控轮次`producer-brief-20261009/`：`制作人精简稿.md`、`report.xml`、`chart-values.controlled.json`、`archive/README.md`、`pdf/producer-brief-final.pdf`、三张图和云端验证。旧`early-paths-20261008/`、`us-retention-20261008/`及首轮Excel均不覆盖。
+- 按既有工具首尾重建/验证Registry；原分支执行基线27f8fde、main b0a36c8。下一步仅ChatGPT轻量Review；PR #14 OPEN Draft、reservation pending-main，不合并/finalize。不调参、开发、改SVN或预算。Subagents: none。
+
+## 历史交付：前5级事件路径与引导留存
 
 按[增补规格](../projects/cr/REPORTS/CR-0930-LIVE-IMPACT-20261007/EARLY_PATH_GUIDE_RETENTION_EXECUTION.md)执行，User确认没有另附文件。前轮[内容Review](../reviews/TASK-0038-CHATGPT-US-RETENTION-CONTENT-REVIEW-1.md)Accepted及其证据限制保留。本轮先实际事件/模块覆盖，再首段与最后3–5步、主动回访轨迹、具体引导步骤与成功对照；不预锁奖励原因。安全同步到b773188，main仍b0a36c8，工作树原先干净。Registry首步工具重建/验证通过，未重新分配任务。
 
@@ -102,4 +110,4 @@ User已确认上线的是当时trunk；没有获得精确revision/分钟级时�
 
 ## 当前授权边界
 
-执行本文件顶部美国留存分析步骤；允许一次新完整日快照及必要美区定向补查、成熟D7和首付随访，并更新原位飞书汇总。没有数数资产写入、SVN/数值/埋点修改、开发、实验分流、投放预算、部署、扩大权限、完整经营数据上传、合并或finalize授权。不自动建监控。旧轮仅文案/不查数限制不覆盖本次新批准范围，其他隐私与只读边界不变。
+本轮仅复用截至10/7的受控结果，优化原飞书主阅读结构并回读；不新增取数、不刷新D7、不重跑分析。此前定向查询授权保留历史身份。没有数数资产写入、SVN/数值/埋点修改、开发、实验、预算、部署、扩大权限、完整经营数据上传、合并或finalize授权。
