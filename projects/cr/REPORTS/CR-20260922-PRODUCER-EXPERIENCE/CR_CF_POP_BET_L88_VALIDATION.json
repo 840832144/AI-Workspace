@@ -53,5 +53,16 @@
   "POP_cap_20_lines_is_conditional": true,
   "candidate_pool_membership": true,
   "no_rollback_floor_monotone": true,
-  "EXP_mode_level_gross_invariance": true
+  "EXP_mode_level_gross_invariance": true,
+  "wide_comparison": true,
+  "USD_display_decimals": 3,
+  "source_base_retained": true,
+  "CR_user_base_override": true,
+  "POP_user_anchor_fit": true,
+  "artifact_version": "wide-v2",
+  "no_new_source_queries": true,
+  "registry_canonical": 19,
+  "registry_errors": 0,
+  "registry_legacy_warnings": 6,
+  "visual_changed_views": "rendered and inspected; final workbook overview and CF imported independently"
 }

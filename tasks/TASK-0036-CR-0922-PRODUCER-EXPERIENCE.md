@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: POP L88三档Bet更新与CR最低档候选已完成，CR trunk r7529定向无相关变化；受控12页/7图/1500级交Review，无配置写入
+- Execution status: 三档Bet横向v2交Review；99段起始级唯一、CR User换算基准与不回退候选、POP新增锚点拟合、USD三位；仅受控分析，无配置写入
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -14,7 +14,15 @@
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-10-10 — POP L88三档Bet与消耗候选交Review
+## 2026-10-10 — 横向v2、User基准与POP后段拟合交Review
+
+- [当前交付与验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)。沿用原Task/PR；99段一行一段，指标按CR/CF/POP并排，三方1500级明细与7图保留，USD显示3位小数。
+- CR按本轮User基础币率与原等级倍率，主表用分段不回退最低Bet候选；原配置与原基准留来源页。本轮未读取新SVN来证明User输入已生效，不覆盖源值。
+- POP L50起最低档User确认；L75最高档级别估计、L100上限确认；中间分段拟合、100级以后末段斜率外推，明确非实测。推荐继续名义100美元余额情景。
+- 当前受控别名`outputs/l88-bet-20261010-v2/`；上一版保持历史。横向映射、候选、公式/图表和显示定向验证通过；原生WPS及游戏效果未验收。未重读原始流、重做已Accepted底稿、hash或全库扫描。
+- Registry由工具重建/validate；Task Review、PR #10 OPEN，未改配置/SVN、发布、合并/finalize。Subagents: none。
+
+## 历史：2026-10-10 — POP L88三档Bet与消耗候选交Review
 
 - [本轮方法、候选与边界](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)。沿用原Task/PR，前轮Accepted与历史结果保留。
 - CR相关七表r7502至最新trunk r7529无变化，复用固定源值；CF复用现有模型；POP已知1–88保留、89+拟合。新证据补充兑换两处变化，最早观测和前推/尾段延续情景分开。

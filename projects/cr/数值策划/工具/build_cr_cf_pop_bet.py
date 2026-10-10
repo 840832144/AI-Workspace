@@ -2,6 +2,7 @@
 
 prepare --baseline <threeway1500> --current <source-lock directory>
         --pop-source <PS_HANDOFF> --out <controlled output>
+revise --baseline <prior L88 output> --user-input <controlled JSON> --out <new output>
 cache-charts / verify --out <controlled output>
 No collector, game configuration, SVN write, or online analytics operation.
 """
@@ -143,6 +144,44 @@ def prepare(baseline: Path, current: Path, pop_source: Path, out: Path) -> dict:
     return {'revision':revision,'stages':len(data['stages']),'raw_level_events':sum(counts.values()),'ready':True}
 
 
+def revise(baseline: Path, user_input: Path, out: Path) -> dict:
+    """Reuse prior verified inputs; apply this round's explicit local assumptions."""
+    out.mkdir(parents=True,exist_ok=True)
+    d=read(baseline/'inputs.controlled.json');u=read(user_input)
+    prior=read(baseline/'bet-expected.controlled.json')
+    d['user_revision']=u;d['book']='CR_CF_POP_等级段横向对比_三档Bet_v2.xlsx'
+    d['controls']['cr_base_rate']=u['cr_base_coins_usd']
+    stages={v[0] for v in d['stages']}|{u['pop_min_from'],u['pop_max_estimated_level'],u['pop_max_confirmed_level'],1501}
+    d['stages']=[[a,b-1] for a,b in zip(sorted(stages),sorted(stages)[1:])]
+    expected=[];last_floor=0
+    for i,(source,previous) in enumerate(zip(d['level_inputs'],prior)):
+        lv=i+1;lo=u['pop_min_from'];mid=u['pop_max_estimated_level'];hi=u['pop_max_confirmed_level']
+        pmax=previous['models'][2][3]
+        if lo<lv<=mid:
+            start=prior[lo-1]['models'][2][3]
+            pmax=start+(u['pop_max_estimated']-start)*(lv-lo)/(mid-lo)
+        elif lv>mid:
+            pmax=u['pop_max_estimated']+(u['pop_max_confirmed']-u['pop_max_estimated'])*(lv-mid)/(hi-mid)
+        if lv>lo:pmax=math.floor(pmax/u['pop_max_round']+0.5)*u['pop_max_round']
+        pmin=d['controls']['pop_min'] if lv<lo else u['pop_min_high']
+        cr_rate=source[5]/d['level_inputs'][0][5]*u['cr_base_coins_usd']
+        rates=[cr_rate,previous['models'][1][13],previous['models'][2][13]]
+        pool=sorted({r[2] for r in d['bet_pool'] if r[0]==source[12]})
+        target=pmin/rates[2]*rates[0]
+        chosen=source[3] if lv<5 else next((v for v in pool if v>=target),pool[-1])
+        floor=min(source[4],max(chosen,last_floor));last_floor=floor
+        models=[]
+        for g,(minimum,maximum) in enumerate([(floor,source[4]),(d['controls']['cf_min'],source[6]),(pmin,pmax)]):
+            need=previous['models'][g][14]
+            bets=[minimum,max(minimum,min(maximum,rates[g]*d['controls']['balance_usd']/d['controls']['recommended_divisor'])),maximum]
+            spins=[need if g==0 and source[1]==1 else need/(bet*[1/10000,1/3,1][g]) for bet in bets]
+            models.append([lv,*bets,*[b/rates[g] for b in bets],*spins,*[n*b/rates[g] for n,b in zip(spins,bets)],rates[g],need])
+        expected.append({'models':models,'floor':chosen,'monotone_floor':floor,'target':target,'stage':source[12]})
+    save(out/'inputs.controlled.json',d);save(out/'bet-expected.controlled.json',expected)
+    save(out/'source-lock.local.json',read(baseline/'source-lock.local.json'))
+    return {'ready':True,'stage_count':len(d['stages']),'prior_inputs_reused':True,'new_raw_scan':False}
+
+
 def verify(out: Path) -> dict:
     d=read(out/'inputs.controlled.json');book=d['book'];sanitize(out,book)
     wb=openpyxl.load_workbook(out/book,data_only=True)
@@ -173,6 +212,18 @@ def verify(out: Path) -> dict:
         w=csv.writer(f);w.writerow(['方案','等级','当前解锁池阶段','候选最低Bet','保留BetID','限制BetID']);w.writerows(candidates)
     errors=[(s.title,c.coordinate,c.value) for s in wb for row in s for c in row if c.data_type=='e']
     assert not errors,errors[:10]
+    if d.get('user_revision'):
+        overview=wb['等级段对比'];starts=[overview.cell(r,1).value for r in range(6,overview.max_row+1) if isinstance(overview.cell(r,1).value,(int,float))]
+        assert starts==[a for a,b in d['stages']] and len(starts)==len(set(starts))
+        assert '游戏' not in [c.value for c in overview[5]]
+        for row,(a,b) in enumerate(d['stages'],6):
+            for metric,c in enumerate([1,2,3,4,5,6,10,11,12,13]):
+                for game in range(3):
+                    assert math.isclose(overview.cell(row,3+metric*3+game).value,expected[a-1]['models'][game][c],rel_tol=1e-9)
+        for name,areas in {'CR明细':['E6:G1505','K6:M1505','P6:R1505'],'CF明细':['E6:G1505','K6:M1505','P6:R1505'],'POP明细':['E6:G1505','K6:M1505','P6:R1505'],'VIP对比':['B6:E20'],'SRC_VIP':[f'N6:N{5+len(d["shops"])}'],'结论与参数':['B11:B11','B13:B13'],'等级段对比':[f'L6:AC{5+len(d["stages"])}',f'AH6:AJ{5+len(d["stages"])}']}.items():
+            for area in areas:
+                for row in form[name][area]:
+                    assert all(c.number_format=='"$"#,##0.000' for c in row)
     assert all(s.freeze_panes is None for s in form)
     charts=sum(len(s._charts) for s in form)
     assert charts==7,charts
@@ -196,7 +247,10 @@ def verify(out: Path) -> dict:
             'external_links':0,'freeze_panes':0,'native_WPS_open':False,'source_write':False,
             'recommended_is_scenario':True,'POP_cap_20_lines_is_conditional':True,
             'candidate_pool_membership':True,'no_rollback_floor_monotone':True,
-            'EXP_mode_level_gross_invariance':True}
+            'EXP_mode_level_gross_invariance':True,'wide_comparison':bool(d.get('user_revision')),
+            'USD_display_decimals':3 if d.get('user_revision') else 4,
+            'source_base_retained':True,'CR_user_base_override':bool(d.get('user_revision')),
+            'POP_user_anchor_fit':bool(d.get('user_revision'))}
     samples=[]
     for lv in [1,5,10,20,25,30,40,49,50,75,88,100,300,500,1000,1500]:
         r=lv+5;c=wb['CR调整候选'];models=expected[lv-1]['models']
@@ -212,13 +266,13 @@ def verify(out: Path) -> dict:
       '', '## 关键节点（USD为标准低档、VIP0、无促销的毛下注价值）','',
       '|等级|CR最低每转$|CF底档每转$|POP底档每转$|CR美元对齐Bet|CR不回退Bet|CR升级毛$|CF升级毛$|POP升级毛$|',
       '|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
-    for row in samples:lines.append('|'+ '|'.join(str(v) if j==0 else f'{v:,.0f}' if j in (4,5) else f'{v:,.4f}' for j,v in enumerate(row))+'|')
+    for row in samples:lines.append('|'+ '|'.join(str(v) if j==0 else f'{v:,.0f}' if j in (4,5) else f'{v:,.3f}' for j,v in enumerate(row))+'|')
     lines += ['', '## 建议如何落到Bet配置', '',
       '1. 保留1–4级。5级起按POP底档美元价值换算CR金币目标，再向上取当前解锁池已有档；先看现档跳幅是否可接受。',
       '2. 若不希望升到50/75级时最低Bet突然回退，使用不回退候选；它会高于POP的同价值目标，差额见工作簿。',
       '3. 配置落点是普通模式SlotsCasinoBetUnlock的可选池限制，按新边界复制当前适用阶段并保留所有非Bet字段；BetList数值/EXP、BetShow映射、机台换算系数及HighRoller池不变。普通机台共用池会影响其可选档，不能说其他机台体验完全不变。CSV只是逐级方案，不可直接导入。',
       '4. 推荐Bet目前是余额除数近似情景，不把37直接写进CommCfg。两个真实样本并不能证明精确取整或筛档算法；实际推荐还需独立核对。',
-      '5. 最大Bet维持CR当前值。POP新上限字段每线/总注未完全闭合，不能据此直接上调最大Bet。',
+      '5. 最大Bet维持CR当前值。POP早段字段保留每线/总注边界；User提供的后段上限作为总Bet，不再乘线数。',
       '6. 如目标改为每级更贵，需要另审每Spin经验与Bet或等级门槛的关系；这会改变已确认升级体验，本轮没有执行。',
       '', '## 证据边界', '',
       '- POP最低档只在早期20线机台有参考，高级别真实下限未确认；CF同样只是已知最低档延续。',
@@ -230,14 +284,18 @@ def verify(out: Path) -> dict:
       '', '## 验证与交付', '',
       '工作簿12页、7张原生折线图、99个等级段（每段三方各一行）、每款1500行明细；全部对应公式与独立计算。0公式错误/外链/冻结；WPS原生打开未执行。',
       '源数据、CR配置和SVN没有写入。CSV是受控提案，PR #10等待Review，不合并/finalize。']
+    if d.get('user_revision'):
+        lines=[l.replace('当前CR trunk r'+str(d['revision']),'CR沿用trunk r'+str(d['revision'])+'结构，基础按User本轮100万coins/USD口径').replace('POP最低档只在早期20线机台有参考，高级别真实下限未确认','POP50级起最低档按User确认，之后延续；75级最大Bet估计、100级最大Bet确认，缺失段拟合').replace('POP最大Bet以20线条件计算，可改首页线数看50线敏感性','POP50级原20线条件锚点保留，75级估计与100级确认锚点按总Bet，不能再乘线数').replace('99个等级段（每段三方各一行）',str(len(d['stages']))+'个等级段（每段一行，指标按CR/CF/POP并排）') for l in lines]
+        lines.insert(4,'主对比CR最低Bet使用“不回退候选”，原配置下限留在来源和候选页；未改源配置。75级与高等级外推仍为估算。')
     (out/'阅读与调整建议.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
     save(out/'validation-summary.json',result);wb.close();form.close();return result
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('action',choices=['prepare','cache-charts','verify'])
+    p.add_argument('action',choices=['prepare','revise','cache-charts','verify'])
     for n in ['baseline','current','pop-source','out']:p.add_argument('--'+n,type=Path,required=n=='out')
+    p.add_argument('--user-input',type=Path)
     a=p.parse_args()
-    r=prepare(a.baseline,a.current,a.pop_source,a.out) if a.action=='prepare' else cache_charts(a.out) if a.action=='cache-charts' else verify(a.out)
+    r=prepare(a.baseline,a.current,a.pop_source,a.out) if a.action=='prepare' else revise(a.baseline,a.user_input,a.out) if a.action=='revise' else cache_charts(a.out) if a.action=='cache-charts' else verify(a.out)
     print(json.dumps(r,ensure_ascii=False))

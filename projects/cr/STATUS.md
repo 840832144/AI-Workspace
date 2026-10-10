@@ -1,6 +1,12 @@
 # CR 当前状态
 
-## 2026-10-10 — TASK-0036 POP L88三档Bet与候选
+## 2026-10-10 — TASK-0036 三档Bet横向v2
+
+- [当前报告](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)：99段一行一段，三方并排；CR用User本轮基础币率和原倍率、最低Bet展示不回退候选；POP新增确认/估计锚点及后段拟合。美元统一3位小数。
+- 12页7图、三方1500级明细与原来源保留；受控目录`outputs/l88-bet-20261010-v2/`。公式/候选/横向映射/渲染定向通过，原生WPS未验收。
+- 只修改分析交付；没有新SVN读取、源配置写入或原始流重扫，前版为历史。Task Review、PR #10 OPEN，Registry工具维护，未合并/finalize。Subagents: none。
+
+## 历史：2026-10-10 — TASK-0036 POP L88三档Bet与候选
 
 - [本轮交付与边界](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)：CR trunk r7529相关七表无变，CF复用；POP已知1–88接入，缺失89+拟合，兑换两处变化与前推/延续情景分清。
 - 最小/推荐/最大Bet、每转与升级美元、名义100美元余额情景及CR最低档候选在受控12页/7图Excel；99段概览、三方1500级明细，完整数值不进Git。

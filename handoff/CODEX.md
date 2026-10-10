@@ -1,6 +1,13 @@
 # Codex Handoff
 
-## 2026-10-10 — TASK-0036 三档Bet与消耗候选待Review
+## 2026-10-10 — TASK-0036 横向v2等待Review
+
+- [本轮方法/交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)：原Task/PR；99段起始级唯一，指标按三方并排，USD统一3位。CR User基准与原配置分开，主表最低Bet为不回退候选。
+- POP L50起下限确认，L75上限级别估计、L100上限确认，中间分段拟合、后段延伸；不把全部1500级当实测。推荐余额情景不变，升级原模型复用。
+- 当前受控`cr-cf-pop-comparison-20261009/outputs/l88-bet-20261010-v2/`含工作簿、说明、CSV与验证；上一版保留。定向公式/图表/显示通过，WPS原生与游戏效果未验收。
+- Review重点：现有档位取整后的超额、最低档候选跳幅、后段外推边界。提高Bet与EXP同比时不提高理论单级毛下注。无配置/SVN/采集写入、无hash/全量扫描，不改TASK-0038，PR #10 OPEN、reservation不finalize。Subagents: none。
+
+## 历史：2026-10-10 — TASK-0036 三档Bet与消耗候选待Review
 
 - [本轮完整方法/交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)。沿用TASK-0036/PR #10；未改TASK-0038。CR最新trunk r7529相关七表无变化，CF模型复用；POP L88更新替换重叠历史拟合，89+估算至1500。
 - 受控`cr-cf-pop-comparison-20261009/outputs/l88-bet-20261010/`：12页7图Excel、99段对比、三款逐级明细、两种CR最低档候选与CSV及策划说明；User已选名义100美元余额，可改首页输入。源包和旧输出只读保留。
