@@ -1,6 +1,12 @@
 # CR 当前状态
 
-## 2026-10-09 — TASK-0036 POP接入三方1500级对比
+## 2026-10-10 — TASK-0036 POP L88三档Bet与候选
+
+- [本轮交付与边界](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)：CR trunk r7529相关七表无变，CF复用；POP已知1–88接入，缺失89+拟合，兑换两处变化与前推/延续情景分清。
+- 最小/推荐/最大Bet、每转与升级美元、名义100美元余额情景及CR最低档候选在受控12页/7图Excel；99段概览、三方1500级明细，完整数值不进Git。
+- 定向公式/候选/图表核对通过，原生WPS及游戏效果未验收；不把每转更贵等同单级更贵。Task Review、PR #10 OPEN、原reservation保留，未改配置/SVN、采集、发布、合并/finalize。Subagents: none。
+
+## 历史：2026-10-09 — TASK-0036 POP接入三方1500级对比
 
 - [最新交付/方法/验证](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_1500_COMPARISON.md)：CR固定trunk r7502、CF复用上一版；POP已知41级保留、42+经验与Bet分开拟合。VIP当前/历史/估算分列，金币倍率缺锚点保留N/A，不用经验增长冒充。
 - 受控三方Excel为13页/7图/1500明细/34概览；公式、已知段、前台接入、图表缓存与视觉通过，0错误/外链/冻结，未做WPS打开。完整商业数据只留本机。

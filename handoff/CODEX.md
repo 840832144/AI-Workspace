@@ -1,6 +1,13 @@
 # Codex Handoff
 
-## 2026-10-09 — TASK-0036 POP已接入三方比较，等待Review
+## 2026-10-10 — TASK-0036 三档Bet与消耗候选待Review
+
+- [本轮完整方法/交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)。沿用TASK-0036/PR #10；未改TASK-0038。CR最新trunk r7529相关七表无变化，CF模型复用；POP L88更新替换重叠历史拟合，89+估算至1500。
+- 受控`cr-cf-pop-comparison-20261009/outputs/l88-bet-20261010/`：12页7图Excel、99段对比、三款逐级明细、两种CR最低档候选与CSV及策划说明；User已选名义100美元余额，可改首页输入。源包和旧输出只读保留。
+- 下轮审重点：POP底档/最大档证据限制、兑换两处变化、推荐近似而非真实算法、取档超额和最低档不回退取舍。CR经验同比时提高Bet不提高理论单级毛下注；共享普通解锁池会影响其他普通机台可选档。
+- 公式/联动/图表定向验证通过；原生WPS及游戏效果未验证。完整数值不进Git，Registry工具维护，PR OPEN、reservation不finalize；无配置/SVN/发布/采集写入。Subagents: none。
+
+## 历史：2026-10-09 — TASK-0036 POP已接入三方比较，等待Review
 
 - User提供POP交接包并允许缺失拟合；沿用原Task/PR，[最新方法与受控交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_1500_COMPARISON.md)。下方“等待POP”是历史状态。
 - CR继续固定trunk r7502，CF上一版保持；POP1–41级原值保留，42+分开拟合升级经验与Bet。当前VIP1–4、历史门槛5–10和高阶权益估算分列。POP经验跨度增长不等于等级金币倍率，后者N/A。

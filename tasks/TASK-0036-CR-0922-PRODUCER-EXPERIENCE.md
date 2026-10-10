@@ -1,20 +1,28 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: CR trunk r7502 / CF / POP1500级三方对比已生成；POP已有段保留、缺失段拟合，公式/图表/视觉核对通过，等待ChatGPT Review；无配置写入
+- Execution status: POP L88三档Bet更新与CR最低档候选已完成，CR trunk r7529定向无相关变化；受控12页/7图/1500级交Review，无配置写入
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
-- Updated: 2026-10-09
-- User decision: Approved（2026-10-09允许竞品已有资料优先、缺失拟合至1500级；随后提供POP交接包并要求同样补齐缺失；CR固定trunk r7502；仅分析，不沿用历史dev提交授权）
+- Updated: 2026-10-10
+- User decision: Approved（POP更新至L88，最小/推荐/最大Bet、每转与升级美元及CR候选；推荐采用名义100美元余额情景；缺失拟合至1500级；仅分析，不沿用历史dev提交授权）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；dev r7300等待User游戏检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-10-09 — POP资料接入，三方1500级对比交Review
+## 2026-10-10 — POP L88三档Bet与消耗候选交Review
+
+- [本轮方法、候选与边界](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)。沿用原Task/PR，前轮Accepted与历史结果保留。
+- CR相关七表r7502至最新trunk r7529无变化，复用固定源值；CF复用现有模型；POP已知1–88保留、89+拟合。新证据补充兑换两处变化，最早观测和前推/尾段延续情景分开。
+- 受控`outputs/l88-bet-20261010/`包含12页/7图工作簿、99段概览、三款1500行明细、两列最低Bet候选、逐级ID提案和阅读说明。推荐为User批准的名义100美元余额近似情景，不冒称真实算法。
+- 三档美元/升级成本、候选取档、联动恢复与图表缓存定向验证通过；0公式错误/外链/冻结。视觉范围与原生应用未验证边界见报告。
+- 只形成候选，不写BetList/Unlock/Show/CommCfg或SVN；共享普通池的影响及单级成本不变限制显式保留。Registry由工具维护，PR #10 OPEN、reservation不finalize，等待ChatGPT Review。Subagents: none。
+
+## 历史：2026-10-09 — POP资料接入，三方1500级对比交Review
 
 - User新提供POP交接包并授权缺失拟合；本轮在原Task/PR追加，[方法与验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_1500_COMPARISON.md)。CR/CF复用上一版，前轮Accepted及Review历史保留。
 - POP当前1–41级原值保留，42+经验与Bet分别拟合；VIP1–4本轮证据、5–10门槛旧正式参考、缺失权益估算分开。升级经验增长不能替代等级金币倍率；后者无同口径锚点，保留N/A。

@@ -1,0 +1,57 @@
+{
+  "levels": 1500,
+  "games": 3,
+  "Bet_cases": 3,
+  "POP_source_rows": 88,
+  "POP_fit_rows": 1412,
+  "stage_count": 99,
+  "charts": 7,
+  "chart_points": [
+    [
+      1500,
+      1500,
+      1500
+    ],
+    [
+      1500,
+      1500,
+      1500
+    ],
+    [
+      1500,
+      1500,
+      1500
+    ],
+    [
+      1500,
+      1500,
+      1500
+    ],
+    [
+      1500,
+      1500,
+      1500
+    ],
+    [
+      15,
+      8,
+      8,
+      10
+    ],
+    [
+      15,
+      9,
+      10
+    ]
+  ],
+  "formula_errors": 0,
+  "external_links": 0,
+  "freeze_panes": 0,
+  "native_WPS_open": false,
+  "source_write": false,
+  "recommended_is_scenario": true,
+  "POP_cap_20_lines_is_conditional": true,
+  "candidate_pool_membership": true,
+  "no_rollback_floor_monotone": true,
+  "EXP_mode_level_gross_invariance": true
+}
