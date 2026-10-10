@@ -1,0 +1,62 @@
+{
+  "task": "TASK-0036",
+  "date": "2026-10-09",
+  "status": "Review",
+  "CR_revision": 7502,
+  "sheets": 13,
+  "levels": 1500,
+  "overview_rows": 34,
+  "POP_source_rows": 41,
+  "POP_fitted_rows": 1459,
+  "levels_checked": 1500,
+  "formula_errors": 0,
+  "charts": 7,
+  "chart_point_counts": [
+    [
+      15,
+      8,
+      8,
+      10
+    ],
+    [
+      15,
+      9,
+      10
+    ],
+    [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    [
+      1500,
+      1500,
+      1500
+    ],
+    [
+      1500,
+      1500,
+      1500
+    ],
+    [
+      1500,
+      1500
+    ],
+    [
+      1500
+    ]
+  ],
+  "external_links": 0,
+  "frozen_panes": 0,
+  "native_WPS_open": "not performed",
+  "model_is_current_CF_configuration": false,
+  "pop_model_verified": true,
+  "pop_high_level_is_observed": false,
+  "visual_review": "all 13 sheets key areas and all 7 charts; source width corrected",
+  "source_files_changed": false,
+  "collectors_started": false,
+  "SVN_write": false
+}
