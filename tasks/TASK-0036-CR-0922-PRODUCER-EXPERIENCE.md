@@ -1,7 +1,7 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: 三档Bet横向v2交Review；99段起始级唯一、CR User换算基准与不回退候选、POP新增锚点拟合、USD三位；仅受控分析，无配置写入
+- Execution status: 在User修订v2基础上追加推荐余额÷30与POP美元上限候选；原表保留、1500级新增公式验证完成，等待本轮Review；无配置写入
 - Project key: CR
 - Owner: User
 - Executor: Codex
@@ -14,7 +14,14 @@
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-10-10 — 横向v2、User基准与POP后段拟合交Review
+## 2026-10-10 — 在User修订版中追加推荐与最大Bet方案
+
+- [方法与受控交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_BET_RECOMMENDED_MAX_CANDIDATE.md)。User亲自修改后的v2为本轮输入，原表不重建；只增加原“CR调整候选”右侧Q:AM方案区。
+- User仅选推荐余额÷30；最大Bet按POP同级美元上限对标并不回退，先用全池已有档，缺档单列新增Bet/EXP。前四级推荐/上限保留；新区继承User最低档，原主表中CF引用不改写。
+- 1500级推荐/上限、美元/Spin/升级毛下注、提升比例和落表类型已复算；原单元格与不相关图表保留，金额三位。高阶外推及现档跳幅仅作候选，不能直接上线；WPS原生未验收。
+- 当前受控`outputs/l88-bet-20261010-v3-user/`保留User输入副本和扩展版；源v2不覆盖。Task Review、PR #10 OPEN、Registry工具维护，无SVN/配置/采集/发布/合并/finalize。Subagents: none。
+
+## 历史：2026-10-10 — 横向v2、User基准与POP后段拟合交Review
 
 - [当前交付与验证](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)。沿用原Task/PR；99段一行一段，指标按CR/CF/POP并排，三方1500级明细与7图保留，USD显示3位小数。
 - CR按本轮User基础币率与原等级倍率，主表用分段不回退最低Bet候选；原配置与原基准留来源页。本轮未读取新SVN来证明User输入已生效，不覆盖源值。

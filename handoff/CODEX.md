@@ -1,6 +1,12 @@
 # Codex Handoff
 
-## 2026-10-10 — TASK-0036 横向v2等待Review
+## 2026-10-10 — TASK-0036 User修订版追加推荐/最大Bet候选
+
+- [本轮方法与交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_BET_RECOMMENDED_MAX_CANDIDATE.md)：基于User修改后的v2，仅在CR调整候选Q:AM加入单一余额÷30方案及POP美元上限候选。继承User最低档；原公式、格式、图表和主对比保留，原文件不覆盖。
+- 1500级公式、提升比例、候选上下界、落表分类、USD三位与原区域保全通过。新增上限有拟合/跨档较大边界，未获配置实施授权；WPS原生未验收。
+- 受控`outputs/l88-bet-20261010-v3-user/`；Task Review、原PR #10 OPEN，Registry工具维护。无新Task、hash、源配置/SVN/采集写入，不改TASK-0038，不发布/合并/finalize。Subagents: none。
+
+## 历史：2026-10-10 — TASK-0036 横向v2等待Review
 
 - [本轮方法/交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_CF_POP_BET_L88.md)：原Task/PR；99段起始级唯一，指标按三方并排，USD统一3位。CR User基准与原配置分开，主表最低Bet为不回退候选。
 - POP L50起下限确认，L75上限级别估计、L100上限确认，中间分段拟合、后段延伸；不把全部1500级当实测。推荐余额情景不变，升级原模型复用。

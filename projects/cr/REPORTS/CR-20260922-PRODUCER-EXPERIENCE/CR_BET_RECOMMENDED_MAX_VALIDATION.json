@@ -1,0 +1,26 @@
+{
+  "levels": 1500,
+  "single_recommendation_scenario": true,
+  "user_original_cells_preserved": 24080,
+  "unrelated_xlsx_parts_preserved": 60,
+  "charts_preserved": 7,
+  "source_write": false,
+  "formula_errors_in_additions": 0,
+  "candidate_ordering_valid": true,
+  "EXP_mode_gross_unchanged": true,
+  "USD_decimals": 3,
+  "native_WPS_open": false,
+  "changed_parts": [
+    "xl/worksheets/sheet5.xml",
+    "xl/styles.xml",
+    "xl/tables/table3.xml"
+  ],
+  "User_original_file_unchanged": true,
+  "whole_book_cached_errors": 0,
+  "divisor_response_restored": true,
+  "visual_review": "added candidate regions rendered; final workbook readback inspected",
+  "registry_status": "valid",
+  "registry_canonical": 19,
+  "registry_errors": 0,
+  "registry_legacy_warnings": 6
+}
