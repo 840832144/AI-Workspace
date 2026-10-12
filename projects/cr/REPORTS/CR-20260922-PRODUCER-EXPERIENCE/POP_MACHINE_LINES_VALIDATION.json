@@ -4,7 +4,7 @@
   "user_non_POP_stage_cells_preserved": 2400,
   "CR_two_candidate_columns_updated": true,
   "CR_CF_source_values_preserved": true,
-  "unrelated_package_parts_identical": 49,
+  "unrelated_package_parts_identical": 52,
   "charts_total": 7,
   "charts_with_two_POP_series": 4,
   "CF_chart_series_identical": true,
@@ -22,23 +22,13 @@
     "xl/worksheets/sheet2.xml",
     "xl/worksheets/sheet3.xml",
     "xl/worksheets/sheet5.xml",
-    "xl/tables/table1.xml",
-    "xl/tables/table3.xml",
-    "xl/tables/table6.xml",
     "xl/charts/chart1.xml",
     "xl/charts/chart2.xml",
     "xl/charts/chart3.xml",
     "xl/charts/chart4.xml"
   ],
-  "special_lines_changed_and_restored": true,
-  "registry": {
-    "canonical_count": 19,
-    "collision_count": 0,
-    "errors": 0,
-    "status": "valid"
-  },
-  "source_configuration_write": false,
-  "collection_started": false,
-  "hash_checks": false,
-  "visual_review": "saved cell values/styles in focused slices, plus saved native chart-series plot; native WPS not opened"
+  "nearest_POP_rung_verified": true,
+  "nearest_CR_candidate_rung_verified": true,
+  "new_User_anchor_verified": true,
+  "post_anchor_bounds_carried_forward_not_observed": true
 }

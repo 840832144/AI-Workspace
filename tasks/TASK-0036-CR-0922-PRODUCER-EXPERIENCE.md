@@ -1,20 +1,27 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: User确认v3底稿，更新POP普通/特殊双列，并新增CR对标两类的双列候选；等待本轮Review，无配置写入
+- Execution status: 在v4续改POP百级特殊机锚点及后段边界，推荐按最近可用档；同步CR两套候选，等待Review，无配置写入
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-10-12
-- User decision: Approved（本轮接入POP等级窗口包，普通/特殊双列，并分别更新CR候选；候选推荐余额÷30，保留1500级拟合与User原表；仅分析，不沿用历史dev提交授权）
+- User decision: Approved（POP百级上下限确认属于特殊40线；推荐从列表取近似档。CR候选保留余额÷30目标并取档，原比较目标口径保留；仅分析，不沿用历史dev提交授权）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；dev r7300等待User游戏检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-10-12 — POP普通／特殊机台窗口更新，等待Review
+## 2026-10-12 — POP百级锚点及推荐取档续改，等待Review
+
+- 直接以v4为输入输出独立v5；保留User原修改、CR/CF主比较、VIP及历史候选，不从v3重新覆盖。
+- User确认百级特殊40线上下限，普通20线按共同每线窗口换算。最低档低于前个实测窗口，保留差异；两锚点之间上限衔接，后段按百级窗口延续估算，未称逐级实测。
+- POP情景及CR两套候选推荐均从允许列表取最近档，同距取低档；除法只产生目标。CR拟新增/提前解锁档继续单列，不冒充现行配置。经验与币率模型复用，美元三位。
+- 受控`outputs/pop-lines-20261012-v5/`；[本轮方法](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)。定向核对新锚点、取档与联动，原生WPS未打开。原Accepted历史保留，PR #10 OPEN；无新Task、SVN/采集/配置写入，不合并/finalize。Subagents: none。
+
+## 历史：2026-10-12 — POP普通／特殊机台窗口更新
 
 - [本轮交付、方法与边界](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)。User确认继续其v3文件；更新POP双列，并追加授权两套CR候选，独立输出v4、不覆盖原表。
 - 横向每项POP机台指标拆普通20线/特殊40线，保留99个等级段与1500级细节。已采窗口、默认总Bet与余额推荐情景分开；最低档中段断点未验证，后段拟合不写成实测。

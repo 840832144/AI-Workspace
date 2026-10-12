@@ -8,7 +8,7 @@ const pop=[5,8,11,14,17,20,23,26,29,32,36],map=n=>n+pop.filter(x=>x<n).length;
 const usd='"$"#,##0.000',P="'结论与参数'!",S="'SRC_POP'!";
 if(mode==='render-slices'){
  const views=JSON.parse(await fs.readFile(out+'/layout-preview.controlled.json','utf8'));
- for(const v of views){
+ for(const v of views.filter(v=>!process.argv[4]||v.label===process.argv[4])){
   const wb=Workbook.create(),s=wb.worksheets.add(v.source),last=col(v.cells[0].length);
   s.getRange(`A1:${last}${v.cells.length}`).format={font:{name:'Microsoft YaHei',size:11,color:'#273444'},columnWidth:v.width,verticalAlignment:'center'};
   s.getRange(`A1:${last}1`).format={wrapText:true,rowHeight:66};
@@ -192,6 +192,49 @@ if(input.dual_candidates){
  s.getRange('AN2:AW2').format.font={size:16,bold:true,color:'#183654'};
  set('结论与参数','A43','本轮增加CR双列候选：普通20线／特殊40线，推荐均余额÷30。原CR/CF主比较及User修改保持，v3候选隐藏作历史；新方案见候选页AN列后。');
  set('POP明细','A3','B:S隐藏保留旧POP历史；现对比从T列开始。CR本轮两套新候选引用新POP普通/特殊列。');
+}
+if(input.nearest_rung){
+ const n='POP明细',ladder=`${S}$V$6:$V$34`,cp='CR调整候选',pool="'SRC_档位'!$C$6:$C$798";
+ set('SRC_POP','X17','User百级最低总Bet换算');set('SRC_POP','X18','User百级最高总Bet换算');
+ set('SRC_POP','AA17','User确认特殊40线；普通按共同每线窗口换算。最低低于91级样本，保留差异。');
+ set('SRC_POP','AA18','User确认特殊40线；后续缺新窗口，延续估算，不代表逐级实测。');
+ set('SRC_POP','AA13','旧版上限外推参数；百级修订版停用，保留历史。');
+ column(n,'BB',rowforms.map((_,i)=>`=IF(A${i+6}>=${S}$Y$17,${S}$Z$17,IF(A${i+6}<${S}$Y$11,${S}$Z$6,IF(A${i+6}<${S}$Y$12,${S}$Z$11,${S}$Z$7)))`),true);
+ column(n,'BD',rowforms.map((_,i)=>`=IF(A${i+6}>${S}$Y$10,${S}$Z$10+(${S}$Z$18-${S}$Z$10)*(MIN(A${i+6},${S}$Y$18)-${S}$Y$10)/(${S}$Y$18-${S}$Y$10),${S}$Z$9+(${S}$Z$10-${S}$Z$9)*(A${i+6}-${S}$Y$9)/(${S}$Y$10-${S}$Y$9))`),true);
+ column(n,'BC',rowforms.map((_,i)=>`=IF(A${i+6}<=${S}$Y$9,'SRC_等级'!K${i+6},LOOKUP(BD${i+6},${ladder}))`),true);
+ for(let j=0;j<2;j++){
+  const t=col(57+j),lo=col(59+2*j),hi=col(60+2*j),lines=`${S}$V$${j+1}`;
+  set(n,t+'5',j?'特殊每线推荐目标':'普通每线推荐目标');set(n,lo+'5','目标下邻档');set(n,hi+'5','目标上邻档');
+  column(n,t,rowforms.map((_,i)=>`=(N${i+6}*${P}$B$11/${P}$B$12-${S}$V$3)/${lines}`),true);
+  column(n,lo,rowforms.map((_,i)=>`=MAX(BB${i+6},_xlfn.MAXIFS(${ladder},${ladder},">="&BB${i+6},${ladder},"<="&BC${i+6},${ladder},"<="&${t}${i+6}))`),true);
+  column(n,hi,rowforms.map((_,i)=>`=IF(COUNTIFS(${ladder},">="&BB${i+6},${ladder},"<="&BC${i+6},${ladder},">="&${t}${i+6})>0,_xlfn.MINIFS(${ladder},${ladder},">="&BB${i+6},${ladder},"<="&BC${i+6},${ladder},">="&${t}${i+6}),BC${i+6})`),true);
+  column(n,col(22+j),rowforms.map((_,i)=>`=IF(${t}${i+6}-${lo}${i+6}<=${hi}${i+6}-${t}${i+6},${lo}${i+6},${hi}${i+6})*${lines}+${S}$V$3`),true).setNumberFormat('#,##0');
+  const mn=col(40+j),mx=col(44+j),cl=col(73+2*j),ch=col(74+2*j);
+  set(cp,cl+'5','推荐下邻档');set(cp,ch+'5','推荐上邻档');
+  column(cp,cl,rowforms.map((_,i)=>`=MAX(${mn}${i+6},_xlfn.MAXIFS(${pool},${pool},">="&${mn}${i+6},${pool},"<="&${mx}${i+6},${pool},"<="&BT${i+6}))`),true);
+  column(cp,ch,rowforms.map((_,i)=>`=IF(COUNTIFS(${pool},">="&${mn}${i+6},${pool},"<="&${mx}${i+6},${pool},">="&BT${i+6})>0,_xlfn.MINIFS(${pool},${pool},">="&${mn}${i+6},${pool},"<="&${mx}${i+6},${pool},">="&BT${i+6}),${mx}${i+6})`),true);
+  column(cp,col(42+j),rowforms.map((_,i)=>`=IF(BT${i+6}-${cl}${i+6}<=${ch}${i+6}-BT${i+6},${cl}${i+6},${ch}${i+6})`),true).setNumberFormat('#,##0');
+ }
+ set(cp,'BT5','推荐连续目标');column(cp,'BT',rowforms.map((_,i)=>`=IF(A${i+6}<$V$1,R${i+6},C${i+6}*$AR$1/$AO$1)`),true);
+ column(n,'AT',rowforms.map((_,i)=>i+1>=input.anchor.level?(i+1===input.anchor.level?'User确认特殊40线上下限；普通按共同窗口换算；完整窗口未采':'百级上下限及母表窗口延续估算；非逐级实测'):i+1>91?'91至百级上限按新锚点衔接；最低沿91级样本':i+1===91?'普通/特殊窗口实测；后续User最低档不同，未覆盖本记录':i+1===25?'普通完整窗口实测；特殊同窗换算':i+1===50?'最高档实测；最低档拟合':'早段及中段窗口沿v4；推荐按已知母表近似取档'));
+ for(const[ref,value]of Object.entries({
+  A3:'沿用User v4，补充百级特殊40线确认；普通/特殊及CR两套候选同步。完整1500级。',
+  A8:'推荐按余额目标取最接近可用Bet档，相同距离取低档。POP沿原÷37情景，CR候选÷30；实测默认Bet另列。',
+  A36:'POP 91至100级最大Bet按新锚点衔接；100级以后上下限延续估算，不再沿旧斜率增加。未逐级采样。',
+  A37:`${input.anchor.level}级特殊${input.anchor.lines}线最低${input.anchor.minimum/10000}万、最高${input.anchor.maximum/1e8}亿；普通按共同窗口换算${input.anchor.minimum/2/10000}万至${input.anchor.maximum/2/1e8}亿。百级最低低于91级记录，保留两个样本差异。`,
+  A43:'CR两套候选按更新后POP美元上下限重算；推荐从候选可用档列表取最近值，新增/提前解锁档仍为待审方案。原CR/CF比较及User修改保留。',
+ }))set('结论与参数',ref,value);
+ set(n,'T2','推荐从可用每线母表取最近档；保留100美元余额÷37情景，实测默认Bet另列。');
+ set(n,'T3','百级特殊40线上下限User确认；后续延续估算。91级最低差异保留；中间窗口仍含拟合。');
+ set(cp,'AN2','两套候选：余额÷30为目标，推荐从候选可用Bet档取最近值');
+ set(cp,'AN3','原v3历史保留。前4级目标及边界继承；推荐也取档。候选新增档不代表当前已上线。');
+ set('等级段对比','A3','POP百级特殊上下限已更新；100级后延续估算。推荐均已取档，CR/CF原比较保持。');
+ set('Bet曲线','A3','POP百级锚点修订，后续边界延续估算；推荐取最近档。CR/CF原比较不变，候选见候选页。');
+ set('等级段对比','A111',input.anchor.level);
+ ['B','C'].forEach((c,j)=>set('等级段对比',c+'111',`=${S}$V$${j+1}`,true));
+ ['T','U','X','Y','AU','AV'].forEach((mc,i)=>set('等级段对比',col(i+4)+'111',`='POP明细'!${mc}${input.anchor.level+5}`,true));
+ set('等级段对比','J111','User确认特殊40线上下限；普通同窗换算，默认Bet未采。');
+ st.getRange('A111:I111').setNumberFormat('#,##0');
 }
 wb.recalculate();
 const before=model.getRange('U96').values[0][0];src.getRange('V2').values=[[input.controls.special_lines/2]];wb.recalculate();

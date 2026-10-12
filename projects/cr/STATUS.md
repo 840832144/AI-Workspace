@@ -1,6 +1,12 @@
 # CR 当前状态
 
-## 2026-10-12 — TASK-0036 POP普通／特殊对比待Review
+## 2026-10-12 — TASK-0036 百级窗口与推荐取档待Review
+
+- [本轮方法](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：在v4上更新User确认的POP百级特殊40线上下限，普通20线换算；后段延续估算，较前样本的最低档差异保留。
+- POP与CR两套候选推荐改为允许列表最近档，同距取低档。既定目标除数保留，除法结果不直接充当可选Bet；CR/CF原比较及User改动保留。
+- 当前受控`outputs/pop-lines-20261012-v5/`；Task Review，原PR #10 OPEN。公式/缓存定向复核，原生WPS未打开；无新Task、hash、配置/SVN/采集/发布写入，不合并/finalize。Subagents: none。
+
+## 历史：2026-10-12 — TASK-0036 POP普通／特殊对比
 
 - [本轮方法与受控交付](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：User确认v3，更新POP普通20线/特殊40线及CR对应两套新候选；99段和1500级保留。窗口实测、默认Bet与余额推荐情景分开，中段断点/后段拟合仍待证据。
 - CR/CF和原文件保留；原候选隐藏为历史，AN列后为本轮普通/特殊双列新候选，推荐均余额÷30。原概览用户公式迁移、两类公式及原包保全已核对，原生WPS未打开。

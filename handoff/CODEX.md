@@ -1,6 +1,12 @@
 # Codex Handoff
 
-## 2026-10-12 — TASK-0036 POP窗口续改交接
+## 2026-10-12 — TASK-0036 百级窗口与推荐取档交接
+
+- [本轮方法](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：User确认百级上下限属特殊40线；普通按共享窗口换算，后段延续估算。最低档较91级实测下降，保留两个来源，不自行抹平。
+- 从v4原位结构续改并另存v5，保留CR/CF和User原修改。POP推荐保留原情景，CR两套候选保留余额÷30目标，均从允许档列表取最近档、同距取低档；未把拟新增档称现行档。
+- 受控`outputs/pop-lines-20261012-v5/`；完整商业数据留本机。定向计算与保存回读，WPS原生未打开；Task Review、PR #10 OPEN，reservation pending-main。不改0038，不做新取数/采集/SVN/配置写入或合并/finalize。Subagents: none。
+
+## 历史：2026-10-12 — TASK-0036 POP窗口续改交接
 
 - [本轮方法与受控交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：User确认v3，更新POP普通20线/特殊40线及CR对应两套新候选；99段和1500级保留。窗口实测、默认Bet与余额推荐情景分开，中段断点/后段拟合仍待证据。
 - CR/CF和原文件保留；原候选隐藏为历史，AN列后为本轮普通/特殊双列新候选，推荐均余额÷30。原概览用户公式迁移、两类公式及原包保全已核对，原生WPS未打开。
