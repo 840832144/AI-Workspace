@@ -1,5 +1,11 @@
 # Codex Handoff
 
+## 2026-10-12 — TASK-0036 POP窗口续改交接
+
+- [本轮方法与受控交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：User确认v3，更新POP普通20线/特殊40线及CR对应两套新候选；99段和1500级保留。窗口实测、默认Bet与余额推荐情景分开，中段断点/后段拟合仍待证据。
+- CR/CF和原文件保留；原候选隐藏为历史，AN列后为本轮普通/特殊双列新候选，推荐均余额÷30。原概览用户公式迁移、两类公式及原包保全已核对，原生WPS未打开。
+- 当前受控`outputs/pop-lines-20261012-v4/`，完整商业值不进Git；Task Review、PR #10 OPEN。无新Task、SVN/配置/采集/发布写入，不改TASK-0038，不合并/finalize。Subagents: none。
+
 ## 2026-10-10 — TASK-0036 User修订版追加推荐/最大Bet候选
 
 - [本轮方法与交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/CR_BET_RECOMMENDED_MAX_CANDIDATE.md)：基于User修改后的v2，仅在CR调整候选Q:AM加入单一余额÷30方案及POP美元上限候选。继承User最低档；原公式、格式、图表和主对比保留，原文件不覆盖。

@@ -1,18 +1,25 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: 在User修订v2基础上追加推荐余额÷30与POP美元上限候选；原表保留、1500级新增公式验证完成，等待本轮Review；无配置写入
+- Execution status: User确认v3底稿，更新POP普通/特殊双列，并新增CR对标两类的双列候选；等待本轮Review，无配置写入
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
-- Updated: 2026-10-10
-- User decision: Approved（POP更新至L88，最小/推荐/最大Bet、每转与升级美元及CR候选；推荐采用名义100美元余额情景；缺失拟合至1500级；仅分析，不沿用历史dev提交授权）
+- Updated: 2026-10-12
+- User decision: Approved（本轮接入POP等级窗口包，普通/特殊双列，并分别更新CR候选；候选推荐余额÷30，保留1500级拟合与User原表；仅分析，不沿用历史dev提交授权）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；dev r7300等待User游戏检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
+
+## 2026-10-12 — POP普通／特殊机台窗口更新，等待Review
+
+- [本轮交付、方法与边界](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)。User确认继续其v3文件；更新POP双列，并追加授权两套CR候选，独立输出v4、不覆盖原表。
+- 横向每项POP机台指标拆普通20线/特殊40线，保留99个等级段与1500级细节。已采窗口、默认总Bet与余额推荐情景分开；最低档中段断点未验证，后段拟合不写成实测。
+- 原CR/CF模型、VIP及来源保全；原候选隐藏为历史，AN列后并排展示对标普通/特殊的两套新候选，推荐均余额÷30。用户概览公式包括WPS共享公式随新增列正确迁移；USD三位，四张受影响图保留CR/CF并增加第二POP系列。
+- 受控`outputs/pop-lines-20261012-v4/`；完整数值/输入副本/本轮包只留本机。Registry由原工具维护，19 canonical；PR #10 OPEN、reservation pending-main。未采集、调参、修改/提交SVN、发布、合并/finalize；Subagents: none。
 
 ## 2026-10-10 — 在User修订版中追加推荐与最大Bet方案
 
