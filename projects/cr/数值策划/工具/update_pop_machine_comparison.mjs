@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import {Workbook,SpreadsheetFile,FileBlob} from '@oai/artifact-tool';
 const out=process.argv[2],mode=process.argv[3]||'build';
 const input=JSON.parse(await fs.readFile(out+'/input.controlled.json','utf8'));
+const fitStep=input.anchor?.fit_step||0;
 const col=n=>{let s='';for(;n;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s;};
 const pop=[5,8,11,14,17,20,23,26,29,32,36],map=n=>n+pop.filter(x=>x<n).length;
 const usd='"$"#,##0.000',P="'结论与参数'!",S="'SRC_POP'!";
@@ -199,16 +200,24 @@ if(input.nearest_rung){
  set('SRC_POP','AA17','User确认特殊40线；普通按共同每线窗口换算。最低低于91级样本，保留差异。');
  set('SRC_POP','AA18','User确认特殊40线；后续缺新窗口，延续估算，不代表逐级实测。');
  set('SRC_POP','AA13','旧版上限外推参数；百级修订版停用，保留历史。');
- column(n,'BB',rowforms.map((_,i)=>`=IF(A${i+6}>=${S}$Y$17,${S}$Z$17,IF(A${i+6}<${S}$Y$11,${S}$Z$6,IF(A${i+6}<${S}$Y$12,${S}$Z$11,${S}$Z$7)))`),true);
+ const factor=r=>fitStep?`BK${r}`:'1';
+ if(fitStep){
+  set('SRC_POP','X19','后段拟合级距');set('SRC_POP','AA19','User指定：每个级距一次阶梯增长');
+  set('SRC_POP','X20','每级距最高每线增量');set('SRC_POP','Z20',`=(${S}$Z$18-${S}$Z$9)*${S}$Z$19/(${S}$Y$18-${S}$Y$9)`,true);
+  set('SRC_POP','AA20','沿50至100级上限作等差外推；下限及整段Bet列表同倍缩放，仅拟合');
+  set(n,'BK5','后段50级档位倍率');
+  column(n,'BK',rowforms.map((_,i)=>`=IF(A${i+6}<${S}$Y$18,1,1+INT((A${i+6}-${S}$Y$18)/${S}$Z$19)*${S}$Z$20/${S}$Z$18)`),true);
+ }
+ column(n,'BB',rowforms.map((_,i)=>`=IF(A${i+6}>=${S}$Y$17,${S}$Z$17*${factor(i+6)},IF(A${i+6}<${S}$Y$11,${S}$Z$6,IF(A${i+6}<${S}$Y$12,${S}$Z$11,${S}$Z$7)))`),true);
  column(n,'BD',rowforms.map((_,i)=>`=IF(A${i+6}>${S}$Y$10,${S}$Z$10+(${S}$Z$18-${S}$Z$10)*(MIN(A${i+6},${S}$Y$18)-${S}$Y$10)/(${S}$Y$18-${S}$Y$10),${S}$Z$9+(${S}$Z$10-${S}$Z$9)*(A${i+6}-${S}$Y$9)/(${S}$Y$10-${S}$Y$9))`),true);
- column(n,'BC',rowforms.map((_,i)=>`=IF(A${i+6}<=${S}$Y$9,'SRC_等级'!K${i+6},LOOKUP(BD${i+6},${ladder}))`),true);
+ column(n,'BC',rowforms.map((_,i)=>`=IF(A${i+6}<=${S}$Y$9,'SRC_等级'!K${i+6},LOOKUP(BD${i+6},${ladder})*${factor(i+6)})`),true);
  for(let j=0;j<2;j++){
   const t=col(57+j),lo=col(59+2*j),hi=col(60+2*j),lines=`${S}$V$${j+1}`;
   set(n,t+'5',j?'特殊每线推荐目标':'普通每线推荐目标');set(n,lo+'5','目标下邻档');set(n,hi+'5','目标上邻档');
-  column(n,t,rowforms.map((_,i)=>`=(N${i+6}*${P}$B$11/${P}$B$12-${S}$V$3)/${lines}`),true);
-  column(n,lo,rowforms.map((_,i)=>`=MAX(BB${i+6},_xlfn.MAXIFS(${ladder},${ladder},">="&BB${i+6},${ladder},"<="&BC${i+6},${ladder},"<="&${t}${i+6}))`),true);
-  column(n,hi,rowforms.map((_,i)=>`=IF(COUNTIFS(${ladder},">="&BB${i+6},${ladder},"<="&BC${i+6},${ladder},">="&${t}${i+6})>0,_xlfn.MINIFS(${ladder},${ladder},">="&BB${i+6},${ladder},"<="&BC${i+6},${ladder},">="&${t}${i+6}),BC${i+6})`),true);
-  column(n,col(22+j),rowforms.map((_,i)=>`=IF(${t}${i+6}-${lo}${i+6}<=${hi}${i+6}-${t}${i+6},${lo}${i+6},${hi}${i+6})*${lines}+${S}$V$3`),true).setNumberFormat('#,##0');
+  column(n,t,rowforms.map((_,i)=>`=(N${i+6}*${P}$B$11/${P}$B$12-${S}$V$3)/${lines}/${factor(i+6)}`),true);
+  column(n,lo,rowforms.map((_,i)=>`=MAX(BB${i+6}/${factor(i+6)},_xlfn.MAXIFS(${ladder},${ladder},">="&BB${i+6}/${factor(i+6)},${ladder},"<="&BC${i+6}/${factor(i+6)},${ladder},"<="&${t}${i+6}))`),true);
+  column(n,hi,rowforms.map((_,i)=>`=IF(COUNTIFS(${ladder},">="&BB${i+6}/${factor(i+6)},${ladder},"<="&BC${i+6}/${factor(i+6)},${ladder},">="&${t}${i+6})>0,_xlfn.MINIFS(${ladder},${ladder},">="&BB${i+6}/${factor(i+6)},${ladder},"<="&BC${i+6}/${factor(i+6)},${ladder},">="&${t}${i+6}),BC${i+6}/${factor(i+6)})`),true);
+  column(n,col(22+j),rowforms.map((_,i)=>`=IF(${t}${i+6}-${lo}${i+6}<=${hi}${i+6}-${t}${i+6},${lo}${i+6},${hi}${i+6})*${factor(i+6)}*${lines}+${S}$V$3`),true).setNumberFormat('#,##0');
   const mn=col(40+j),mx=col(44+j),cl=col(73+2*j),ch=col(74+2*j);
   set(cp,cl+'5','推荐下邻档');set(cp,ch+'5','推荐上邻档');
   column(cp,cl,rowforms.map((_,i)=>`=MAX(${mn}${i+6},_xlfn.MAXIFS(${pool},${pool},">="&${mn}${i+6},${pool},"<="&${mx}${i+6},${pool},"<="&BT${i+6}))`),true);
@@ -236,12 +245,35 @@ if(input.nearest_rung){
  set('等级段对比','J111','User确认特殊40线上下限；普通同窗换算，默认Bet未采。');
  st.getRange('A111:I111').setNumberFormat('#,##0');
 }
+if(fitStep){
+ set('SRC_POP','AA18','User确认特殊40线百级上限；其后每50级等差拟合，非实测');
+ set('结论与参数','A3','沿User v5修订后段：以百级为起点，每50级提高一次最低/最高Bet，覆盖1500级。');
+ set('结论与参数','A36','POP百级后每50级阶梯增长：上限沿50至100级等差趋势；下限和整段列表按相同比例放大。是拟合方案，不是服务器配置。');
+ set('结论与参数','A44','推荐按固定余额目标，在该等级拟合列表中取最近档；可因离散取档而小幅波动。最低/最高边界逐段增大，普通为20线、特殊40线。');
+ set('POP明细','T3','百级以上每50级拟合一次，区间内保持；同倍放大基础窗口。低等级记录及百级确认锚点保持。');
+ for(let lv=input.anchor.level+1;lv<=1500;lv++)set('POP明细','AT'+(lv+5),'100+每50级阶梯拟合；基础窗口同比放大，完整列表未实测');
+ set('等级段对比','A3','原User等级段保留；POP百级后每50级增长，全部节点见下方专项概览。推荐按拟合列表取档。');
+ set('Bet曲线','A3','POP百级以上每50级阶梯增长；推荐按对应列表最近档。原CR/CF主比较保持，CR两套候选已联动。');
+ set('等级段对比','A115','POP 每50级拟合节点（普通20线／特殊40线；最低及最高递增）');
+ const labels=['起始级','结束级','普通最小Bet','特殊最小Bet','普通推荐Bet','特殊推荐Bet','普通最大Bet','特殊最大Bet','普通最小USD','特殊最小USD','普通推荐USD','特殊推荐USD','普通最大USD','特殊最大USD','CR最低对标普通','CR最低对标特殊','CR推荐对标普通','CR推荐对标特殊','CR最大对标普通','CR最大对标特殊','依据'];
+ labels.forEach((v,i)=>set('等级段对比',col(i+1)+'116',v));
+ st.getRange('A116:U116').format={fill:'#207760',font:{color:'#FFFFFF',bold:true},wrapText:true,rowHeight:66};
+ for(let lv=input.anchor.level,r=117;lv<=1500;lv+=fitStep,r++){
+  set('等级段对比','A'+r,lv);set('等级段对比','B'+r,Math.min(lv+fitStep-1,1500));
+  ['T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE'].forEach((c,j)=>set('等级段对比',col(j+3)+r,`='POP明细'!${c}${lv+5}`,true));
+  ['AN','AO','AP','AQ','AR','AS'].forEach((c,j)=>set('等级段对比',col(j+15)+r,`='CR调整候选'!${c}${lv+5}`,true));
+  set('等级段对比','U'+r,lv===input.anchor.level?'特殊边界User确认，普通换算':'每50级拟合；非服务器实测');
+  st.getRange(`C${r}:T${r}`).setNumberFormat('#,##0');st.getRange(`I${r}:N${r}`).setNumberFormat(usd);
+ }
+}
 wb.recalculate();
+if(!fitStep){
 const before=model.getRange('U96').values[0][0];src.getRange('V2').values=[[input.controls.special_lines/2]];wb.recalculate();
 if(model.getRange('U96').values[0][0]!==before/2)throw Error('Special line count input did not recalculate');
 src.getRange('V2').values=[[input.controls.special_lines]];wb.recalculate();
 if(model.getRange('U96').values[0][0]!==before)throw Error('Line count restore failed');
+}
 await fs.writeFile(out+'/changed-cells.json',JSON.stringify(Object.fromEntries(Object.entries(changed).filter(([,r])=>r.length))));
-await fs.writeFile(out+'/recalculation.json',JSON.stringify({special_lines_changed_and_restored:true}));
+await fs.writeFile(out+'/recalculation.json',JSON.stringify({special_lines_changed_and_restored:!fitStep,fifty_level_fit_recalculated:!!fitStep}));
 await(await SpreadsheetFile.exportXlsx(wb)).save(out+'/delta.xlsx');
 console.log(JSON.stringify({authored_POP_delta:true,levels:1500,await_preservation_graft:true}));

@@ -1,6 +1,12 @@
 # CR 当前状态
 
-## 2026-10-12 — TASK-0036 百级窗口与推荐取档待Review
+## 2026-10-12 — TASK-0036 每50级递增拟合待Review
+
+- [当前方法](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：User要求百级后每50级递增，v6替换v5平直延续方案。普通/特殊及CR两套候选联动；原主比较与历史保留。
+- 上限沿已知较早至百级趋势作等差拟合，下限及列表同倍上移；29个节点、1500级明细，推荐从该段拟合列表取最近档。拟合与实测分开，USD三位。
+- 受控`outputs/pop-lines-20261012-v6/`，原PR #10 OPEN，等待Review；无配置、SVN、采集、发布写入，不合并/finalize。Subagents: none。
+
+## 历史：2026-10-12 — TASK-0036 百级窗口与推荐取档
 
 - [本轮方法](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：在v4上更新User确认的POP百级特殊40线上下限，普通20线换算；后段延续估算，较前样本的最低档差异保留。
 - POP与CR两套候选推荐改为允许列表最近档，同距取低档。既定目标除数保留，除法结果不直接充当可选Bet；CR/CF原比较及User改动保留。

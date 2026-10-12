@@ -61,6 +61,10 @@ def prepare(inp: Path, package: Path, out: Path, anchor: Path | None = None) -> 
         source.update(Y17=observation['level'],Z17=observation['minimum']/observation['lines'],
                       Y18=observation['level'],Z18=observation['maximum']/observation['lines'])
         assert source['Z17'] in d['mother_ladder_per_line'] and source['Z18'] in d['mother_ladder_per_line']
+        if observation.get('fit_step'):
+            source['Z19']=observation['fit_step']
+            source['Z20']=(source['Z18']-source['Z9'])*source['Z19']/(source['Y18']-source['Y9'])
+            assert source['Z19']>0 and source['Z20']>0
     rows=[]
     for level in range(1,1501):
         r=level+5; rate=w['POP明细'].cell(r,14).value;xp=w['POP明细'].cell(r,15).value
@@ -74,14 +78,18 @@ def prepare(inp: Path, package: Path, out: Path, anchor: Path | None = None) -> 
             if level>91:
                 raw=source['Z10']+(source['Z18']-source['Z10'])*min(level-91,observation['level']-91)/(observation['level']-91)
                 hi=max(b for b in d['mother_ladder_per_line'] if b<=raw)
+        factor=1
+        if observation and observation.get('fit_step') and level>=observation['level']:
+            factor=1+((level-observation['level'])//source['Z19'])*source['Z20']/source['Z18']
+            lo*=factor;hi*=factor
         low=[lo*x for x in line_groups];high=[hi*x for x in line_groups]
         rec=[max(low[i],min(high[i],rate*w['结论与参数']['B11'].value/w['结论与参数']['B12'].value)) for i in range(2)]
         if observation:
-            rec=[min([b*lines for b in d['mother_ladder_per_line'] if lo<=b<=hi],key=lambda b:(abs(b-rec[j]),b)) for j,lines in enumerate(line_groups)]
+            rec=[min([b*factor*lines for b in d['mother_ladder_per_line'] if lo/factor<=b<=hi/factor],key=lambda b:(abs(b-rec[j]),b)) for j,lines in enumerate(line_groups)]
         bets=low+rec+high
         rows.append({'level':level,'bets':bets,'usd':[b/rate for b in bets],
                      'spins':[xp/(b*w['结论与参数']['B28'].value) for b in bets],
-                     'cost':xp/(rate*w['结论与参数']['B28'].value),'lo':lo,'hi':hi})
+                     'cost':xp/(rate*w['结论与参数']['B28'].value),'lo':lo,'hi':hi,'fit_factor':factor})
     seeds={'结论与参数':{f'B{i}':w['结论与参数'].cell(i,2).value for i in [11,12,28]},
            'SRC_等级':{f'K{r}':w['SRC_等级'].cell(r,11).value for r in range(6,1506)},
            'POP明细':{f'{c}{r}':w['POP明细'][f'{c}{r}'].value for c in ['A','N','O'] for r in range(6,1506)},
@@ -180,7 +188,8 @@ def finish(out: Path) -> dict:
     changed=json.loads((out/'changed-cells.json').read_text(encoding='utf-8'))
     inputs=json.loads((out/'input.controlled.json').read_text(encoding='utf-8'))
     same=inputs.get('same_layout',False)
-    if same:BOOK=BOOK.replace('v4_POP普通特殊','v5_POP百级修订')
+    fit=inputs.get('anchor',{}).get('fit_step',0) if same else 0
+    if same:BOOK=BOOK.replace('v4_POP普通特殊','v6_POP每50级拟合' if fit else 'v5_POP百级修订')
     changes={};pairs={};allcells=[]
     for name,refs in changed.items():
         src=E.fromstring(base[sheet_part(base,name)]);ext=E.fromstring(art[sheet_part(art,name)])
@@ -262,6 +271,10 @@ def finish(out: Path) -> dict:
             for ref in ['A107:N107','J109:N109','J110:N110']:
                 if not any(m.get('ref')==ref for m in merges):E.SubElement(merges,T('mergeCell'),ref=ref)
             merges.set('count',str(len(merges)));rows[108].set('ht','55');rows[108].set('customHeight','1')
+            if fit:
+                if not any(m.get('ref')=='A115:U115' for m in merges):E.SubElement(merges,T('mergeCell'),ref='A115:U115')
+                merges.set('count',str(len(merges)));rows[116].set('ht','66');rows[116].set('customHeight','1')
+                src.find(T('dimension')).set('ref','A1:AU145')
         changes[sheet_part(base,name)]=E.tostring(src,xml_declaration=True,encoding='UTF-8',standalone=True)
     # Extend the existing overview's structured table without rebuilding user columns.
     av=openpyxl.load_workbook(out/'delta.xlsx',data_only=True)
@@ -391,10 +404,23 @@ def verify(out: Path, base: dict, changes: dict) -> dict:
         ladder=[controls[f'V{r}'] for r in range(6,35)]
         for x in expected:
             for j,lines in enumerate([controls['V1'],controls['V2']]):
-                assert x['bets'][2+j]/lines in ladder
+                assert x['bets'][2+j]/lines/x.get('fit_factor',1) in ladder
                 assert x['bets'][j]<=x['bets'][2+j]<=x['bets'][4+j]
         result.update(nearest_POP_rung_verified=True,nearest_CR_candidate_rung_verified=True,
                       new_User_anchor_verified=True,post_anchor_bounds_carried_forward_not_observed=True)
+        if inputs['anchor'].get('fit_step'):
+            start=inputs['anchor']['level'];step=inputs['anchor']['fit_step'];nodes=list(range(start,1501,step))
+            for i,lv in enumerate(nodes):
+                x=expected[lv-1]
+                if i:assert x['lo']>expected[nodes[i-1]-1]['lo'] and x['hi']>expected[nodes[i-1]-1]['hi']
+                assert all(y['lo']==x['lo'] and y['hi']==x['hi'] for y in expected[lv-1:min(lv-1+step,1500)])
+                r=117+i;assert w['等级段对比'].cell(r,1).value==lv
+                assert w['等级段对比'].cell(r,2).value==min(lv+step-1,1500)
+                for c,mc in enumerate(['T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE'],3):
+                    assert math.isclose(w['等级段对比'].cell(r,c).value,w['POP明细'][f'{mc}{lv+5}'].value,rel_tol=1e-9)
+            result.update(post_anchor_bounds_carried_forward_not_observed=False,
+                          fifty_level_increasing_fit_verified=True,fit_node_count=len(nodes),
+                          fitted_ladder_scaled_from_base_window=True)
     areas={'等级段对比':['A1:AU111'],'POP明细':['A1:BD1505'],'CR明细':['A6:S1505'],'CF明细':['A6:S1505'],
            'Bet曲线':['AA5:BB3010'],'结论与参数':['A1:L57'],'CR调整候选':['A1:BS1505']}
     dump(out/'render-caches.controlled.json',{n:[[rg,[[c.value for c in row] for row in w[n][rg]]] for rg in ranges] for n,ranges in areas.items()})
@@ -422,6 +448,11 @@ def verify(out: Path, base: dict, changes: dict) -> dict:
                                  'fill':'#'+color.rgb[-6:] if c.fill.patternType=='solid' and color.type=='rgb' else None})
                 values.append(line)
             views.append({'source':name,'label':label,'width':23,'cells':values})
+        if inputs['anchor'].get('fit_step'):
+            rows=[116,117,118,119,120,125,135,145];name='等级段对比'
+            views.append({'source':name,'label':'final-step-fit','width':23,'cells':[
+                [{'value':w[name].cell(r,c).value,'format':wf[name].cell(r,c).number_format,
+                  'fill':'#207760' if r==116 else None} for c in range(1,15)] for r in rows]})
         dump(out/'layout-preview.controlled.json',views)
     dump(out/'validation.json',result);old.close();oldf.close();w.close();wf.close();return result
 

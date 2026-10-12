@@ -1,6 +1,12 @@
 # Codex Handoff
 
-## 2026-10-12 — TASK-0036 百级窗口与推荐取档交接
+## 2026-10-12 — TASK-0036 每50级递增拟合交接
+
+- [当前方法](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：User要求百级之后每50级拟合且边界递增。v6以百级锚点、较早至百级上限等差趋势推后段；最低与列表同比上移，所有新增段标拟合。
+- 29个节点补在原99段下方；两类POP、CR两套候选和曲线联动，推荐仍取该段近档。原User文件与CR/CF主比较保留，美元分母/经验不改。
+- 受控`outputs/pop-lines-20261012-v6/`，Task Review、PR #10 OPEN；未打开原生WPS，不写配置/SVN、不采集、不发布/合并/finalize。Subagents: none。
+
+## 历史：2026-10-12 — TASK-0036 百级窗口与推荐取档交接
 
 - [本轮方法](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：User确认百级上下限属特殊40线；普通按共享窗口换算，后段延续估算。最低档较91级实测下降，保留两个来源，不自行抹平。
 - 从v4原位结构续改并另存v5，保留CR/CF和User原修改。POP推荐保留原情景，CR两套候选保留余额÷30目标，均从允许档列表取最近档、同距取低档；未把拟新增档称现行档。

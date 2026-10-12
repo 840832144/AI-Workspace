@@ -1,20 +1,27 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: 在v4续改POP百级特殊机锚点及后段边界，推荐按最近可用档；同步CR两套候选，等待Review，无配置写入
+- Execution status: 在v5续改百级后每50级递增拟合；同步普通/特殊及CR候选，推荐按段内列表取近档，等待Review，无配置写入
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
 - Updated: 2026-10-12
-- User decision: Approved（POP百级上下限确认属于特殊40线；推荐从列表取近似档。CR候选保留余额÷30目标并取档，原比较目标口径保留；仅分析，不沿用历史dev提交授权）
+- User decision: Approved（POP百级之后每50级拟合一次，最低/最高趋势递增；保留百级特殊40线锚点和最近档规则。CR两套候选联动，余额目标不变；仅分析，不沿用历史dev提交授权）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；dev r7300等待User游戏检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-10-12 — POP百级锚点及推荐取档续改，等待Review
+## 2026-10-12 — 百级后每50级递增拟合，等待Review
+
+- User要求取消v5的后段平直延续。从百级锚点起，上限按较早与百级已知断点的等差趋势逐50级外推，下限及窗口列表同比缩放；本轮为拟合方案，未新增实测证据。
+- 普通/特殊各保留1500级，推荐在各段拟合列表取最近档。原99段不动，同页下方补齐29个50级节点，含CR两套联动候选；经验及美元分母不变。
+- 受控`outputs/pop-lines-20261012-v6/`；[方法与验收](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)。仅核对50级边界、严格递增、段内保持、取档及相关结果；前轮Accepted历史保留。
+- Task Review、PR #10 OPEN；不改User源文件、配置/SVN或进行采集，不合并/finalize。Subagents: none。
+
+## 历史：2026-10-12 — POP百级锚点及推荐取档续改
 
 - 直接以v4为输入输出独立v5；保留User原修改、CR/CF主比较、VIP及历史候选，不从v3重新覆盖。
 - User确认百级特殊40线上下限，普通20线按共同每线窗口换算。最低档低于前个实测窗口，保留差异；两锚点之间上限衔接，后段按百级窗口延续估算，未称逐级实测。

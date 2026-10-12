@@ -30,5 +30,8 @@
   "nearest_POP_rung_verified": true,
   "nearest_CR_candidate_rung_verified": true,
   "new_User_anchor_verified": true,
-  "post_anchor_bounds_carried_forward_not_observed": true
+  "post_anchor_bounds_carried_forward_not_observed": false,
+  "fifty_level_increasing_fit_verified": true,
+  "fit_node_count": 29,
+  "fitted_ladder_scaled_from_base_window": true
 }
