@@ -1,0 +1,40 @@
+{
+  "task_id": "TASK-0036",
+  "status": "pass",
+  "evidence_revision": 6961,
+  "applicability_revision": 7013,
+  "source_changed_paths": 0,
+  "source_refreshes": 0,
+  "new_model_tests": {
+    "passed": 6,
+    "failed": 0
+  },
+  "output_checks": {
+    "spin_scenarios": 36,
+    "activity_rows": 72,
+    "card_exact_scenarios": 36,
+    "coverage_domains": 8,
+    "unknown_groups": 9,
+    "producer_report_sections": 10,
+    "scenario_unique": true,
+    "coin_accounting_and_single_shared_wager": "pass",
+    "probability_tolerance": 1e-09,
+    "max_probability_mass_error": 3.419486915845482e-13
+  },
+  "not_retested": [
+    "TASK-0033/0034/0035 Accepted inventory and acceptance",
+    "original XLSX/formula caches",
+    "full catalog/repository scan"
+  ],
+  "hash_checks": 0,
+  "source_writes": 0,
+  "subagents": "none",
+  "registry": {
+    "status": "valid",
+    "canonical_count": 19,
+    "collision_count": 0,
+    "task_status": "Review",
+    "reservation": "pending-main",
+    "latest_main": "b0a36c8e1b75299814b3354530a58bbf59518714"
+  }
+}
