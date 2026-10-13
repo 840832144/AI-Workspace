@@ -1,6 +1,10 @@
 # CR 9.22 全项目数值体验与制作人汇报
 
-## 最新交付：POP每50级递增拟合（2026-10-12）
+## 最新交付：DSH新增资料核对与飞书展示（2026-10-13）
+
+[本轮发现与验证](DSH_UPDATE_REVIEW.md) · [飞书入口](https://gfok27asqq.feishu.cn/docx/UUrud5pk9oOwl2xfWj4c89Ennkg) · [在线对比表](https://gfok27asqq.feishu.cn/sheets/MreNsX1lWh4usFtivmscmoq1nHb)。展示为v6快照，新证据差异单列；数值模型未改写，等待Review。仅组织内可读，原生正文/图片/表格及导航已回读。
+
+## 数值模型基线：POP每50级递增拟合（2026-10-12）
 
 [本轮方法](POP_MACHINE_LINES_UPDATE.md)。v6按User要求在百级后每50级递增，普通/特殊两类和CR两套候选联动；原99段保留，追加29个节点，推荐从拟合列表取近档。受控1500级、USD三位；仍为待Review方案，未写配置。
 

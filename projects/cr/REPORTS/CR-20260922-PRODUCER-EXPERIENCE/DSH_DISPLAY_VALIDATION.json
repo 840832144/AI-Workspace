@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "document_body_readback": true,
+  "key_numbers_readback": true,
+  "native_image_blocks": 1,
+  "spreadsheet_link_verified": true,
+  "navigation_exact_link_count": 1,
+  "permission_readbacks": [
+    {
+      "link_share_entity": "tenant_readable",
+      "external_access_entity": "closed"
+    },
+    {
+      "link_share_entity": "tenant_readable",
+      "external_access_entity": "closed"
+    }
+  ],
+  "cloud_sheets": 9,
+  "cloud_charts": 7,
+  "chart_series_cell_references_verified": 26,
+  "chart_source_values_compared": 28605,
+  "key_cells_compared": 222,
+  "web_visual_check": false,
+  "new_scopes_granted": false,
+  "numeric_model_changed": false
+}

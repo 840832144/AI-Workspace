@@ -1,20 +1,28 @@
 # TASK-0036 — CR 9.22 全项目数值体验与制作人汇报
 
 - Status: Review
-- Execution status: 在v5续改百级后每50级递增拟合；同步普通/特殊及CR候选，推荐按段内列表取近档，等待Review，无配置写入
+- Execution status: DSH新增证据定向核对及飞书展示已交付；v6数值模型未改写，列出待修订项，等待Review
 - Project key: CR
 - Owner: User
 - Executor: Codex
 - Priority: P1 / 9.22制作人汇报
 - Date: 2026-09-17
-- Updated: 2026-10-12
-- User decision: Approved（POP百级之后每50级拟合一次，最低/最高趋势递增；保留百级特殊40线锚点和最近档规则。CR两套候选联动，余额目标不变；仅分析，不沿用历史dev提交授权）
+- Updated: 2026-10-13
+- User decision: Approved（检查DSH新增采集资料对原表的影响，并将当前对比表上传云文档展示；没有新增配置/SVN或采集授权）
 - PR: [#10](https://github.com/840832144/AI-Workspace/pull/10)（OPEN；原数值报告Accepted；dev r7300等待User游戏检查及Review，未合并/finalize）
 - Allocation relationship: new
 - Related tasks: TASK-0033, TASK-0034, TASK-0035
 - Subagents: none
 
-## 2026-10-12 — 百级后每50级递增拟合，等待Review
+## 2026-10-13 — DSH新资料核对与飞书展示，等待Review
+
+- [本轮差异与交付](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/DSH_UPDATE_REVIEW.md)。只读核对既有整理文档、等级解锁摘要、经验跨度与选定机台模型；未运行采集脚本或无关全量扫描。
+- 识别上限断点、后段经验、独立档位机型及高等级证据边界四类需修订事项。原v6模型、CR/CF主比较与User拟合要求保留；本次为核对和展示，不称数值修订完成。
+- [飞书展示入口](https://gfok27asqq.feishu.cn/docx/UUrud5pk9oOwl2xfWj4c89Ennkg)链接[在线对比表](https://gfok27asqq.feishu.cn/sheets/MreNsX1lWh4usFtivmscmoq1nHb)。原生正文/表格/曲线图片，在线表9页与7图；不上传隐藏源配置、完整响应或本机路径。
+- 已回读正文、关键数字、图片、链接、导出表格及导航唯一链接；两个资源均为组织内可读、外部访问关闭。网页视觉未检查，保留明确边界。
+- 受控`outputs/dsh-review-20261013/`，正式方法和去敏验证落Git。沿用原Task/reservation/PR #10，前轮Accepted历史保留；无数值、SVN、采集、游戏发布、合并/finalize。Subagents: none。
+
+## 历史：2026-10-12 — 百级后每50级递增拟合，等待Review
 
 - User要求取消v5的后段平直延续。从百级锚点起，上限按较早与百级已知断点的等差趋势逐50级外推，下限及窗口列表同比缩放；本轮为拟合方案，未新增实测证据。
 - 普通/特殊各保留1500级，推荐在各段拟合列表取最近档。原99段不动，同页下方补齐29个50级节点，含CR两套联动候选；经验及美元分母不变。

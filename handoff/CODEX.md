@@ -1,5 +1,12 @@
 # Codex Handoff
 
+## 2026-10-13 — TASK-0036 DSH核对与展示交接
+
+- [差异与验收](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/DSH_UPDATE_REVIEW.md)。User本轮要求检查更新并展示现有表；识别四类需修订事项，原v6模型没有重算或覆盖。不能把展示完成说成模型更新完成。
+- [飞书说明](https://gfok27asqq.feishu.cn/docx/UUrud5pk9oOwl2xfWj4c89Ennkg)内含在线表链接与曲线预览；导出回读、关键格/图表源、正文/图片、组织内只读/外部关闭及唯一导航均核对。网页视觉未执行。
+- 受控`outputs/dsh-review-20261013/`。先处理事件等级偏移和机型适用范围，再定向修改POP及受影响CR候选；User每固定级距增长仍为拟合，不被新摘要冒称实测或永久封顶。
+- 原Task/PR #10保留、前轮Accepted保留；不写配置/SVN、不采集、不发布游戏、不合并/finalize。Subagents: none。
+
 ## 2026-10-12 — TASK-0036 每50级递增拟合交接
 
 - [当前方法](../projects/cr/REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：User要求百级之后每50级拟合且边界递增。v6以百级锚点、较早至百级上限等差趋势推后段；最低与列表同比上移，所有新增段标拟合。

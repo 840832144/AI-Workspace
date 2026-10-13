@@ -1,5 +1,11 @@
 # CR 当前状态
 
+## 2026-10-13 — TASK-0036 DSH差异核对与云端展示待Review
+
+- [本轮记录](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/DSH_UPDATE_REVIEW.md)：新增证据影响上限断点、后段经验、机型分类和拟合依据；原v6数值未改写，不能称修订完成。
+- [飞书入口](https://gfok27asqq.feishu.cn/docx/UUrud5pk9oOwl2xfWj4c89Ennkg)链接原生在线对比表，保留原等级段、明细、VIP和CR候选；已回读正文、图表源、权限及导航。组织内可读、外部关闭，网页视觉未检。
+- 原PR #10及reservation保留，Task Review；没有新Task、hash、无关全量、数值/SVN/采集或游戏发布写入，不合并/finalize。Subagents: none。
+
 ## 2026-10-12 — TASK-0036 每50级递增拟合待Review
 
 - [当前方法](REPORTS/CR-20260922-PRODUCER-EXPERIENCE/POP_MACHINE_LINES_UPDATE.md)：User要求百级后每50级递增，v6替换v5平直延续方案。普通/特殊及CR两套候选联动；原主比较与历史保留。
