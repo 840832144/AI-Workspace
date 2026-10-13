@@ -1,5 +1,9 @@
 # 101 卡包美元价值｜Codex 接管
 
+## 2026-10-13 正式登记
+
+[TASK-0040](../tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md) 已由本机 remote-CAS allocator 分配，状态 Ready；[当前状态](../tasks/support/TASK-0040/STATUS.md)。最新 main b0a36c8、完整 Registry scan/validate 与远端任务防重通过；独立分支 codex/101-card-pack-usd-20261013。Workspace Sync provider unavailable / stale 6 / conflicts 0，Git 为真相源。提交推送后直接执行，reservation 保持 pending-main。以下为规格原始交接历史。
+
 - Date: 2026-10-13。
 - User decision: Approved，计算 101 不同星级卡包对应的美金价值。
 - Document kind: Handoff for approved execution specification；不是 canonical Task。

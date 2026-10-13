@@ -8,7 +8,7 @@
 - Priority: P1 / User 当前明确请求；不覆盖其他任务的工作区、资源和发布授权。
 - Date: 2026-10-13。
 - User decision: Approved。目标是读取 User 指定的 101 本地 trunk 配置，计算不同星级卡包对应的美金价值。
-- Canonical task: 尚未分配；由 Codex 完成 Gate 0 后回填真实 Task 链接。
+- Canonical task: [TASK-0040](../../tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md)，2026-10-13 通过本机 Gate 0 和 remote-CAS 正式分配；执行状态以 Task 为准。
 - 配置入口：User 本轮执行话术提供的本机 101trunk 目录；此文不包含配置原值、私有仓库地址或凭据。
 - 操作等级：目标配置与相关实现只读；允许分析、测试、受控本机产物和脱敏治理文档；不授权修改游戏配置、SVN 提交、发布或真实购买。
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-13
+
+- 正式登记 TASK-0040：101 卡包美元价值只读计算，继承 PR #18 已批准规格；完整数值及实现留受控本机，独立分支交 ChatGPT Review，不自动合并。Subagents: none。
+
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
 ## 2026-09-17 — TASK-0035已合并并finalized
