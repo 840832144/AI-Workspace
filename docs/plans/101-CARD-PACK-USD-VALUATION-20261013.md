@@ -1,7 +1,7 @@
 # 101 卡包美元价值计算｜已批准执行规格
 
 - Document kind: User-approved execution specification；不是 canonical Task，不占用正式 Task ID。
-- Status: Approved scope / Pending canonical allocation。
+- Status: Approved scope / Canonical TASK-0040 allocated；执行交付进入 Review，详见 Task 与受控产物导航。
 - Project key: GAME-101（暂用合法项目键；登记时如已有 101 的 canonical project_key，沿用既有映射，不新建重复项目）。
 - Owner: User / ChatGPT。
 - Executor: Codex。

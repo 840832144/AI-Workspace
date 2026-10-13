@@ -1,5 +1,9 @@
 # Codex Handoff
 
+## 2026-10-13 — TASK-0040 101卡包美元价值进入Review
+
+已按PR #18批准规格完成正式分配和受控本机计算：[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)、[Task](../tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md)。29包、8个合成状态、2类权重；条件USD、内部面值、真实售价分列。独立复核与工作簿回读通过，原生Excel/WPS和线上行为未验证。完整数值与实现不进入Git。等待ChatGPT Review，不合并、不finalize。Subagents: none。
+
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
 - [TASK-0035](../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。

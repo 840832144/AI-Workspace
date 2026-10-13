@@ -1,6 +1,16 @@
 # 101 卡包美元价值｜Codex 接管
 
-## 2026-10-13 正式登记
+## 当前交付 — TASK-0040 等待 ChatGPT Review
+
+[Task](../tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md) 已实际实施，状态Review；[状态](../tasks/support/TASK-0040/STATUS.md)、[受控产物](../tasks/support/TASK-0040/ARTIFACTS.md)、[验证摘要](../tasks/support/TASK-0040/VALIDATION.json)。登记4f672ee之后只读101本机输入计算，没有使用CR原值。
+
+29个packId、80条规则、1—6显示档，8个合成状态及2类权重，464条条件结果，每组50,000样本。主值为单次领取窗口的新增奖励USD等价值；内部面值与真实售价缺证据为N/A，不以条件值冒充统一价。普通新册、进阶重置、季末缺卡和星星兑换边界均明确；6档Ace不等于6星卡。
+
+独立复核108项、141370字段位置、7个整包例子及5040概率边界。工作簿实际重算、1,972个关键数值/缓存回读、外链检查与7页签渲染；本机Excel/WPS原生打开、线上加载和实付未验证。完整数值及实现留受控本机，公共Git只有治理。
+
+下一步仅ChatGPT Review，重点核对条件模型用途和证据边界。分支codex/101-card-pack-usd-20261013，原规格PR #18保留，本交付另建Review PR；不自动合并或finalize，reservation pending-main。Subagents: none。
+
+## 历史 — 2026-10-13 正式登记
 
 [TASK-0040](../tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md) 已由本机 remote-CAS allocator 分配，状态 Ready；[当前状态](../tasks/support/TASK-0040/STATUS.md)。最新 main b0a36c8、完整 Registry scan/validate 与远端任务防重通过；独立分支 codex/101-card-pack-usd-20261013。Workspace Sync provider unavailable / stale 6 / conflicts 0，Git 为真相源。提交推送后直接执行，reservation 保持 pending-main。以下为规格原始交接历史。
 
