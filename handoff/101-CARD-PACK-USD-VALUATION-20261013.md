@@ -2,6 +2,8 @@
 
 ## 当前交付 — TASK-0040 等待 ChatGPT Review
 
+Review入口：[Draft PR #19](https://github.com/840832144/AI-Workspace/pull/19)，交付commit `04153ed`；完整数值按受控产物导航查阅。
+
 [Task](../tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md) 已实际实施，状态Review；[状态](../tasks/support/TASK-0040/STATUS.md)、[受控产物](../tasks/support/TASK-0040/ARTIFACTS.md)、[验证摘要](../tasks/support/TASK-0040/VALIDATION.json)。登记4f672ee之后只读101本机输入计算，没有使用CR原值。
 
 29个packId、80条规则、1—6显示档，8个合成状态及2类权重，464条条件结果，每组50,000样本。主值为单次领取窗口的新增奖励USD等价值；内部面值与真实售价缺证据为N/A，不以条件值冒充统一价。普通新册、进阶重置、季末缺卡和星星兑换边界均明确；6档Ace不等于6星卡。

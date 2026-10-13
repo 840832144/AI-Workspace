@@ -3,6 +3,7 @@
 - Date: 2026-10-13
 - Canonical: [TASK-0040](../../TASK-0040-101-CARD-PACK-USD-VALUATION.md)
 - Status: Review
+- Review PR: [#19](https://github.com/840832144/AI-Workspace/pull/19)（Draft）；交付commit `04153ed`，后续导航提交不改计算产物。
 - Scope: 只读 101 trunk，实际计算星级与 packId 的美元条件价值，受控本机交付。
 - Implementation route: 未发现已批准的 101 业务实现仓库，本轮脚本和完整数值留受控本机，不写入治理仓库。
 - Controlled artifacts: `%LOCALAPPDATA%/AI-Workspace/101-card-pack-usd-20261013/`。
