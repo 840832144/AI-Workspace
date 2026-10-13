@@ -1,5 +1,13 @@
 # Changelog
 
+
+## 2026-10-13 — TASK-0039 Round 1修改与两局定位证据
+
+- 唯一评审191914b原样纳入9153f37，继续原Task/PR #16/#17；状态经过Changes Requested/In Progress后回Review，未Accepted。
+- 实现b428c47：真实定位与来源绑定、生产批次来源隔离、过期点击取消；39项离线/入口集成回归通过。正式验收仍未启动。
+- 定位2/2消耗8票，有效受控差分1/2；正式率N/A。记录失败和版本边界，不增加额度、不挑成功局。Task/Status/Handoff/报告和Registry同步；原副本/采集器不动，不合并/发布/SVN/finalize。Subagents: none。
+
+
 ## 2026-10-13 — TASK-0039 Bingo 计量审计与局部修复候选
 
 - 通过linked worktree remote-CAS登记TASK-0039（BINGO-VOYAGE），Registry19 canonical/0冲突；reservation pending-main。

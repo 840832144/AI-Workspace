@@ -2,13 +2,13 @@
 
 - Date: 2026-10-13
 - Task: [TASK-0039](../../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)
-- Status: In Progress；Round 1 Needs changes 已经过 Changes Requested，继续原 TASK-0039 / PR #16/#17。完整任务未完成。
-- Review: [唯一 Round 1](../../tasks/support/TASK-0039/CHATGPT-REVIEW-1.md)，来源191914b；本轮先修R2/R3并补R1受控定位入口，实跑结果待更新。
-- Gate 0: main `b0a36c8`；remote-CAS 正式编号；reservation pending-main。
-- Gate 1: 旧 90.9% 已复现并被拒绝作为有效结果；包装误计解释了一部分，逐卡超额、填充语义、完整分母和整局关闭仍未闭合。
-- Gate 2–3: 局部修复代码 `5c643dc`；21项离线回归通过。生产语义 adapter、实时前台/布局循环、买卡结算续局与批次入口尚未完成，不能部署。
-- 真实验收: 定位0局、验收0局、资源消耗0；最低单局/加权值N/A，不挑成功局，也不伪造完整批次。
-- 资源: User 已委托判断；四卡、每局≤8票/300秒、最多2定位+10验收、总支出≤96票/总时长≤45分钟。当前押注/余额/消耗仍须结构化核对，不把额度当余额证明。
-- 实现 Review: [PR #16](https://github.com/840832144/AI-Workspace/pull/16)，base 为原实现分支；新增来源文档 `d5fb47c` 已只读检查，没有代码并发冲突，不合并来源分支。
-- 结果与下一步: [Review 摘要](REPORTS/TASK-0039-REVIEW.md)。同一 Task 保持未完成；先补证据及运行绑定，再做连续10局，不创建替代Task。
+- Status: Review；Round 1 Needs changes的本轮修改已交付，完整目标未完成，未Accepted。
+- Review: [唯一Round 1](../../tasks/support/TASK-0039/CHATGPT-REVIEW-1.md)从191914b原样纳入9153f37；原PR #16/#17继续，不新建任务。
+- Gate 0: main b0a36c8；Registry工具重建/验证；reservation pending-main，不release/finalize。
+- 实现: b428c47。R2来源/批次与R3过期点击取消39项回归通过；R1定位及来源门槛后的流程已接，完整确认/结算/续局未真机证明。
+- Gate 1: 消息ID、个人卡组、实际叫号、普通报价/实际支出和关闭来源已绑定；终态4×25/FREE/包装/特殊标记已分离。受控语义实验仅1/2成立，门槛未通过。
+- 真实执行: 定位2局，正式验收0/10，支出8票，控制运行309.061秒。第1局无控制输入且有来源不明客户端操作；第2局一次输入与客户端/终态同格，观察闭局，捕获错误0。
+- 正式指标: N/A；证据未证明，不是已完成十局但真实未达标；无成功局挑选。
+- 资源: 最多2定位+10验收，每局四卡≤8票/300秒，累计≤96票/45分钟；定位额度已用完。普通档实测4票，奖励不抵消支出。
+- [再次Review摘要与受控入口](REPORTS/TASK-0039-REVIEW.md)。候选未部署，原副本/采集器不动，不合并/发布/SVN/扩权/finalize。
 - Subagents: none

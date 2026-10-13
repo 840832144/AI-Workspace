@@ -1,6 +1,6 @@
 # TASK-0039 — Bingo Voyage 四卡自动玩可靠性修复
 
-- Status: In Progress
+- Status: Review
 - Project key: BINGO-VOYAGE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -35,13 +35,21 @@
 
 ## Validation
 
-### Round 1 继续实施
+### Round 1 修改后实际结果（当前）
+
+- 实现b428c47已推送原PR #16；评审原文接纳9153f37，原PR #17继续治理，未新建Task。
+- R2生产来源/批次与R3过期点击取消离线通过；R1真实定位及来源门槛后运行流程已接入，但完整真机确认/结算/续局仍未证明。39项离线/入口集成回归、编译/help通过；当前生产启动由来源重放得到1/2而拒绝，不是常量占位。
+- 定位2/2，消耗4+4=8票；控制运行309.061秒。第1局控制输入0、客户端ManualDaub2，来源未确认；第2局输入1、同格客户端/终态一致、捕获错误0并观察闭局。实际叫号/目标分别27/31、29/47。
+- 有效受控差分仅1局，尚未证明至少两个不同目标/独立局的语义。已到2局定位上限，因此正式验收0/10；最低局/加权/100%为N/A。证据未证明与真实未达标分开，不追加定位、不把失败局改名或挑成功局。
+- 完整修改、实际结果、运行版本限制与受控入口见[再次Review摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)。状态回Review等待ChatGPT，不自行Accepted；原副本、采集器不动，不合并/发布/SVN/扩权/finalize。
+
+### Round 1 继续实施（接纳记录）
 
 2026-10-13：[唯一 Round 1 评审](support/TASK-0039/CHATGPT-REVIEW-1.md) 从 `191914b7811658ddb7d17e95709703903f15863d` 原样纳入；状态 `Review → Changes Requested → In Progress`。R1 真实数据与运行绑定、R2 生产来源/批次校验、R3 过期点击取消继续在原 PR #16/#17 内完成，不新建 Task。附件三个纯合成反例已复现；不代表真实设备结果。沿用最多2定位+10验收、每局≤8票/300秒、累计≤96票/45分钟；所有启动与失败保留。main 已核对仍为 b0a36c8；不重新分配、不 release/finalize。
 
 2026-10-13 Gate 0：独立 linked worktree；scan/validate 18 canonical、0 collision/errors、6 个既有 legacy warning。main 安全同步；Bingo 关键词 PR 仅 #15，现有 canonical/candidate 无同目标；remote reservation 已检查并由 allocator 分配 TASK-0039。Workspace Sync ON_DEMAND、0 conflict、provider unavailable、6 stale；以 Git 为准。原实现工作树干净，当前仅采集桥与抓包进程，未发现自动玩控制器；任何实跑前再次核对唯一控制者。登记当时尚未实施，当前结果见下节。
 
-### 本轮实际结果（局部候选，不是完整目标完成）
+### 历史：首轮局部候选（已被Round 1要求修改）
 
 - 登记 commit `634fb56` 已推送后才修改实现。实现基线 `90e97cc`，修复代码 `5c643dc`，单独 [PR #16](https://github.com/840832144/AI-Workspace/pull/16) 以 `bingovoyage-autoplay` 为 base；不将探针树引入治理 main。
 - `python -m unittest discover -s tests -v`：21 项通过（exit 0），synthetic 故障回归；编译通过。检查、启动、真实旧证据结果入口均实调返回 Blocked/Invalid（exit 2），不是端到端成功。

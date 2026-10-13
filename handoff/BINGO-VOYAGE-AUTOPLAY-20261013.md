@@ -3,13 +3,19 @@
 - Kind: handoff
 - User decision: Confirmed；执行数据优先的四卡自动玩可靠性修复。
 - Canonical allocation: [TASK-0039](../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)，2026-10-13 由独立 linked worktree remote-CAS 分配；pending-main。
-- Implementation status: In Progress；Round 1 Needs changes，继续原 TASK-0039 / PR #16/#17。
+- Implementation status: Review；Round 1修改已提交，完整目标未完成；继续原TASK-0039 / PR #16/#17。
 
-## Round 1 继续入口
+## 当前：Round 1 修改后再次 Review
+
+实现b428c47已推送原PR #16；唯一评审191914b原文纳入9153f37，治理仍在PR #17。39项回归/实际入口集成、编译/help通过。定位2/2，正式验收0/10，支出8票、控制运行309.061秒；第1局控制输入0但客户端操作2次，第2局1次输入与同格记录/终态一致并观察闭局。有效受控差分仅1/2，不能追加定位或绕过语义门槛启动10局。正式率N/A，证据不足与真实未达标分开。
+
+R2/R3离线缺口已修；R1真实定位/数据绑定与后续流程代码已接，完整真机确认/结算/续局尚未证明。最终提交不同于定位时dirty迭代版本；实际覆盖边界见[当前Review摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)。受控入口为`%LOCALAPPDATA%\AI-Workspace\bingo-voyage-task0039\REVIEW_R1.md`。本Task回Review等待ChatGPT处理剩余证据/执行边界，不自行Accepted，不新建任务，不合并/发布/SVN/扩权/finalize。Subagents: none。
+
+## 历史：Round 1 接纳入口
 
 [唯一评审](../tasks/support/TASK-0039/CHATGPT-REVIEW-1.md) 原样来自191914b。Task经过Changes Requested后恢复In Progress；R1真实数据及运行、R2来源及批次、R3过期点击取消尚待本轮验证。附件三个合成反例本机复现，不当成真实设备证据。既有局部修复与原始受控样本保留，预算仍为2定位+10验收/96票/45分钟；不追加任务，不合并/发布/SVN。
 
-## Codex 当前交付（2026-10-13）
+## 历史：首轮Codex交付（2026-10-13）
 
 正式登记 `634fb56` 已推送；代码 `5c643dc`，[实现 PR #16](https://github.com/840832144/AI-Workspace/pull/16) 以原实现分支为base。[Review摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)记录完整结果、受控入口、未完成项及资源委托判断。Gate1语义/分母/关闭未通过，Gate2/3仅部分离线通过；真实启动当前返回Blocked，不是可部署自动玩。原来源新增 `d5fb47c` 仅含RUN_LIMITS，已只读复核，不合并分支。保持reservation pending-main，等待ChatGPT Review；同一Task继续补数据与实现，不能自行Accepted。
 
