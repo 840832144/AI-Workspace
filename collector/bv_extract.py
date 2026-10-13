@@ -34,7 +34,6 @@ CFG = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                  "config.json"), encoding="utf-8"))
 OUT = CFG["paths"]["out"]
 DATA = CFG["paths"]["data"]
-os.makedirs(DATA, exist_ok=True)
 
 
 # ---------- 通用 protobuf 取值 ----------
@@ -345,6 +344,7 @@ def extract_chat(body):
 # ---------- 主流程 ----------
 
 def main():
+    os.makedirs(DATA, exist_ok=True)
     ap = argparse.ArgumentParser()
     ap.add_argument("--full", action="store_true")
     a = ap.parse_args()

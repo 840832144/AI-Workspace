@@ -1,18 +1,20 @@
 """mitmproxy addon：HTTP + WebSocket 全量落盘（Bingo Voyage 采集器）。"""
 import base64, json, os, struct, time
+import uuid
+import datetime
 OUT = r"D:\BingoVoyageProbe\out"
-os.makedirs(OUT, exist_ok=True)
 JSONL = os.path.join(OUT, "bv_flows.jsonl")
 WS_JSONL = os.path.join(OUT, "bv_ws.jsonl")
 BODIES = os.path.join(OUT, "bv_bodies")
-os.makedirs(BODIES, exist_ok=True)
 _seq = [0]
+_RUN = uuid.uuid4().hex
 
 def _save(data, tag):
+    os.makedirs(BODIES, exist_ok=True)
     if not data: return None
     _seq[0] += 1
-    name = "%04d_%s.bin" % (_seq[0], tag)
-    with open(os.path.join(BODIES, name), "wb") as f: f.write(data)
+    name = "%s_%06d_%s.bin" % (_RUN, _seq[0], tag)
+    with open(os.path.join(BODIES, name), "xb") as f: f.write(data)
     return name
 
 def _msg(m):
@@ -27,6 +29,7 @@ def _msg(m):
             "b64": base64.b64encode(raw).decode() if raw else None}
 
 def response(flow):
+    os.makedirs(OUT, exist_ok=True)
     try:
         req, resp = flow.request, flow.response
         if resp is None: return
@@ -44,13 +47,19 @@ def response(flow):
         print("[ERR] %r" % (e,))
 
 def websocket_message(flow):
+    os.makedirs(OUT, exist_ok=True)
     ws = getattr(flow, "websocket", None)
     if ws is None or not ws.messages: return
     m = ws.messages[-1]
+    received_ns = time.time_ns()
+    received_mono_ns = time.monotonic_ns()
     rec = {"ts": time.strftime("%Y-%m-%d %H:%M:%S"),
            "dir": "C->S" if m.from_client else "S->C",
            "text": bool(m.is_text), "len": len(m.content),
            "url": flow.request.pretty_url if flow.request else ""}
+    rec.update(epoch=_RUN, connection=str(flow.id), received_ns=received_ns,
+               monotonic_ns=received_mono_ns,
+               ts_utc=datetime.datetime.fromtimestamp(received_ns/1e9, datetime.timezone.utc).isoformat())
     if m.content:
         rec["file"] = _save(m.content, "ws_cs" if m.from_client else "ws_sc")
         if len(m.content) >= 9:

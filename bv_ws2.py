@@ -19,7 +19,6 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"D:\BingoVoyageProbe")
 from bv_proto import render  # noqa
 
 OUT = r"D:\BingoVoyageProbe\out"
@@ -52,6 +51,8 @@ def parse_frame(b):
     flags = int.from_bytes(b[6:8], "little")
     cmd = b[8]
     ln, i = read_varint(b, 9)
+    if ln is None or i + ln > len(b):
+        return {"raw": b, "ok": False}
     topic = b""
     if ln:
         topic = b[i:i + ln]
