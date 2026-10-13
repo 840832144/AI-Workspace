@@ -328,7 +328,7 @@ entries:
     canonical_file: "tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md"
     file: "tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md"
     title: "Bingo Voyage 四卡自动玩可靠性修复"
-    status: "Ready"
+    status: "Review"
     project_key: "BINGO-VOYAGE"
     human_alias: ""
     owner: "User / ChatGPT"

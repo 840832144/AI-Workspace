@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-13 — TASK-0039 Bingo 计量审计与局部修复候选
+
+- 通过linked worktree remote-CAS登记TASK-0039（BINGO-VOYAGE），Registry19 canonical/0冲突；reservation pending-main。
+- 治理登记634fb56推送后修实现；代码5c643dc单独在原探针分支Review，不将探针树迁入main。21项离线回归通过，真实旧证据返回Invalid，不能沿用90.9%。
+- 完整目标未完成，定位0局/验收0局/消耗0；生产语义、关闭事件、押注消耗及完整运行绑定仍阻塞。Task/Status/Handoff同步Review局部候选，未部署/合并/发布/SVN/finalize。Subagents: none。
+
+
 本文件记录 AI-Workspace 治理结构、标准、工作流和协作行为的变化。
 
 ## 2026-09-17 — TASK-0035已合并并finalized

@@ -1,6 +1,6 @@
 # TASK-0039 — Bingo Voyage 四卡自动玩可靠性修复
 
-- Status: Ready
+- Status: Review
 - Project key: BINGO-VOYAGE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -35,7 +35,16 @@
 
 ## Validation
 
-2026-10-13 Gate 0：独立 linked worktree；scan/validate 18 canonical、0 collision/errors、6 个既有 legacy warning。main 安全同步；Bingo 关键词 PR 仅 #15，现有 canonical/candidate 无同目标；remote reservation 已检查并由 allocator 分配 TASK-0039。Workspace Sync ON_DEMAND、0 conflict、provider unavailable、6 stale；以 Git 为准。原实现工作树干净，当前仅采集桥与抓包进程，未发现自动玩控制器；任何实跑前再次核对唯一控制者。实施与实跑结果待填。
+2026-10-13 Gate 0：独立 linked worktree；scan/validate 18 canonical、0 collision/errors、6 个既有 legacy warning。main 安全同步；Bingo 关键词 PR 仅 #15，现有 canonical/candidate 无同目标；remote reservation 已检查并由 allocator 分配 TASK-0039。Workspace Sync ON_DEMAND、0 conflict、provider unavailable、6 stale；以 Git 为准。原实现工作树干净，当前仅采集桥与抓包进程，未发现自动玩控制器；任何实跑前再次核对唯一控制者。登记当时尚未实施，当前结果见下节。
+
+### 本轮实际结果（局部候选，不是完整目标完成）
+
+- 登记 commit `634fb56` 已推送后才修改实现。实现基线 `90e97cc`，修复代码 `5c643dc`，单独 [PR #16](https://github.com/840832144/AI-Workspace/pull/16) 以 `bingovoyage-autoplay` 为 base；不将探针树引入治理 main。
+- `python -m unittest discover -s tests -v`：21 项通过（exit 0），synthetic 故障回归；编译通过。检查、启动、真实旧证据结果入口均实调返回 Blocked/Invalid（exit 2），不是端到端成功。
+- 历史 90.9% 拒绝作为验收证明：包装误计已证实，剥离后逐卡 5/7/7/10 与可观察应填 8/7/6/12 仍有矛盾；原会话有 5 次 FIFO 兜配。填充语义、完整分母和整局关闭未证实，Unknown 33 不是已确认漏填 33。
+- 定位局 0、验收局 0、资源消耗 0；最低单局、整批加权率、单局 100% 次数均未建立。Gate 1 未通过；Gate 2/3 仅部分代码与离线行为通过，前台/布局实际采样、可靠确认、买卡结算续局及真实批次仍未完成。
+- User 后续明确让 Codex 自行判断资源。来源分支并发新增 `d5fb47c` 仅含 RUN_LIMITS，代码未变；引用其 ≤300秒/单局和四卡约8票边界。选定最多2局定位+10局验收、每局≤8票、累计支出≤96票、总时长≤45分钟；必须先核对当前押注与资源，不充值/Max Bet。此决定不关闭技术证据缺口，也不要求 User 重复批准规格。
+- 完整结果、十类回归覆盖及未完成项见 [Review 摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)。未部署、未重启采集器、未改 Root/CA/iptables、未合并/发布/SVN/finalize。
 
 ## Handoff
 
