@@ -1,12 +1,12 @@
 # TASK-0040 — 101 卡包美元价值计算
 
-- Status: Review
+- Status: Accepted
 - Project key: GAME-101
 - Owner: User / ChatGPT
 - Executor: Codex
 - Priority: P1 / User 已确认范围
 - Date: 2026-10-13
-- Updated: 2026-10-13
+- Updated: 2026-10-14
 - User decision: Approved
 - Allocation relationship: new
 - Subagents: none
@@ -29,7 +29,7 @@
 
 ## Acceptance / Validation
 
-逐项执行规格第 8 节：输入版本与缓存身份、完整 packId 覆盖、实际抽取规则、美元单位、奖励不重复计值、各星级及不同规则独立复核、模型误差、工作簿实际数值/缓存/布局、只读边界、Registry 与交接。条件与缺失单列。交付后状态进入 Review，等待 ChatGPT Review，不自动 Accepted/Complete、合并或 finalize。
+逐项执行规格第 8 节：输入版本与缓存身份、完整 packId 覆盖、实际抽取规则、美元单位、奖励不重复计值、各星级及不同规则独立复核、模型误差、工作簿实际数值/缓存/布局、只读边界、Registry 与交接。条件与缺失单列。Round 2已接受声明范围内的交付；Accepted不等于Git生命周期Complete，不授权合并或finalize。
 
 ## Gate 0
 
@@ -54,7 +54,15 @@
 
 ## Review 与剩余边界
 
-### Round 1 补充材料 — 2026-10-13
+### 当前 — Round 2 Accepted / R1 Closed
+
+- [Round 2评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)受评基线为`9ce1b6a9bbfa7e73e3946201aed9bb6649cbd94d`，结论Accepted、R1 Closed，无必须修改项。2026-10-14按User授权落Git；GitHub以COMMENTED承载该结论，不是平台APPROVED。
+- 评审方实际读取User上传的受控ZIP并运行复核入口，53/53通过、固定预期重放一致；另行独立完成43项检查，并将11条情景结果的220个字段与原工作簿读值对照一致。前轮2151个工作簿公式核对沿用原记录。本轮Codex只登记评审，不把审阅容器实跑写成本机再次验收。
+- 接受范围仍为已声明配置快照、合成持卡、币价基准及单次领取窗口的条件估值。不是固定售价、全服均价、统一内部面值或完整赛季价值，不支持把单包结果任意线性乘以连续发包数量；缺证据的面值/售价继续N/A。
+- 6008个源字段与冻结XLSX一致仍为Codex打包前证据，评审方未独立重验原22张源表真实性或切片完整性。线上加载、导出顺序、PRNG关联、商品可见性、实付、原生Excel/WPS及完整赛季模型保持未验证，不新增为阻塞项。
+- 本轮仅同步脱敏Review、Task/Status/Handoff/CHANGELOG、Registry及PR描述；不补包、不重算、不修改工作簿、币价或配置。首轮和补充评审原文保留。PR #19保持OPEN/Draft，未合并，reservation为pending-main，未finalize；Task为Accepted，Git生命周期未Complete。Subagents: none。
+
+### 历史 — Round 1 补充材料 — 2026-10-13
 
 - [首轮评审](../reviews/TASK-0040-CHATGPT-REVIEW-1.md)保存历史Needs changes依据；[补充评审5505803167](../reviews/TASK-0040-CHATGPT-REVIEW-1-SUPPLEMENT.md)覆盖其“未取得工作簿和说明”的前提，撤回已交付主表、截图、身份清单与币值算例的重复补包要求。补充评审记录工作簿层面2151个公式核对通过，剩余R1仅为核心模拟证据不足，不是已发现算法或价格错误。
 - 按User本轮授权沿用原分支与PR #19，仅整理`TASK-0040_核心计算复核包.zip`：原calculate.py、check_results.py和model_parameters.json保持原样；附最小字段切片、来源定位、必要Python依赖声明及窄范围入口。完整原表、游戏源码、账号和敏感日志不进入包或公共Git。
@@ -66,8 +74,8 @@
 
 交付 commit：`04153ed`；[Draft PR #19](https://github.com/840832144/AI-Workspace/pull/19)。PR仅包含规格及脱敏治理，完整产物按本机导航审阅；原规格PR #18保留。
 
-请ChatGPT核对条件价值是否满足本次策划用途，尤其是“单次领取窗口”与完整赛季预算的边界。完整赛季预算还需要明确后续获得包计划和兑换/交易策略；真实售价和统一内部面值分别需要对应依据。当前结果可用于已声明条件下的包间比较，不把这些缺口泛化为全部USD不可计算。
+Round 2已接受本次单次领取窗口用途。完整赛季预算还需要明确后续获得包计划和兑换/交易策略；真实售价和统一内部面值分别需要对应依据。当前结果可用于已声明条件下的包间比较，不把这些缺口泛化为全部USD不可计算。
 
 服务端时区、线上导出顺序、实际加载配置/代码版本与原生Excel/WPS未验证。6个本地生成描述类无独立SVN revision，已明确标注，不伪造一致性。星星箱共用冷却注释与按ID实现有差异，本窗口最多一次兑换不受多箱行为影响。
 
-唯一下一步：ChatGPT Review。本Task为Review，不自动Accepted/Complete、合并或finalize；reservation保持pending-main。Subagents: none。
+唯一下一步：等待User另行决定是否合并PR #19。本Task为Accepted、R1 Closed；当前PR保持OPEN，不自动合并或finalize，reservation保持pending-main，不标记Complete。Subagents: none。

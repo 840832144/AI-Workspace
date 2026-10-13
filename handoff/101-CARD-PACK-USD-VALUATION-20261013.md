@@ -1,6 +1,14 @@
 # 101 卡包美元价值｜Codex 接管
 
-## 当前补充 — 缩减R1核心复核包已备齐
+## 当前 — Round 2 Accepted / R1 Closed
+
+[评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)已接受受评基线`9ce1b6a`的声明范围内交付，R1 Closed，无必须修改项。评审方实际运行核心ZIP，53/53通过，另做43项独立核对并对照原工作簿220个字段一致；前轮2151公式核对沿用。首轮/补充评审原文保留，下方Review待办均为历史。
+
+接受的仍是指定持卡、单次领取窗口和币价下的条件Estimate；面值/售价缺证据为N/A。原始源表真实性及切片完整性未由评审方独立重验；线上加载、导出顺序、PRNG关联、商品可见性、实付、原生Excel/WPS和完整赛季价值等边界继续保留。
+
+2026-10-14按User授权仅做治理收口，同步Task/Status/Handoff/CHANGELOG/Registry与PR描述，不再补包、重算或改业务产物。沿用原分支和PR #19，Task为Accepted而非Complete；PR保持OPEN/Draft、未合并，reservation保持pending-main、未finalize。GitHub COMMENTED不是平台APPROVED。下一步等待User另行合并决定。Subagents: none。
+
+## 历史补充 — 缩减R1核心复核包已备齐
 
 [首轮评审](../reviews/TASK-0040-CHATGPT-REVIEW-1.md)与[补充评审5505803167](../reviews/TASK-0040-CHATGPT-REVIEW-1-SUPPLEMENT.md)均已落Git并记录覆盖关系：工作簿层面附件核对通过，不重复主表、截图、身份或币值材料；只补开包与持卡状态到新增奖励金币。
 
