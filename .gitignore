@@ -1,0 +1,18 @@
+# 原始数据与体积物一律不入库
+data/
+out/
+sessions/
+stalls/
+*.jsonl
+*.bin
+*.apk
+*.so
+*.png
+*.jpg
+*.log
+*.mitm
+.venv/
+__pycache__/
+*.pyc
+_tmp_push
+scripts/

@@ -1,0 +1,78 @@
+{
+  "name": "bingo_voyage",
+  "title": "Bingo Voyage 采集器",
+  "package": "com.bingo.cruise.free.best.top.game",
+  "activity": "core.platform.android.CoreAppActivity",
+  "device": {
+    "serial": "127.0.0.1:16384",
+    "adb": "C:\\platform-tools\\adb.exe",
+    "player": "MuMu Player Nx (Android 15, x86_64, adb root)",
+    "screen": {
+      "width": 900,
+      "height": 1600,
+      "density": 240
+    }
+  },
+  "capture": {
+    "proxy_host": "127.0.0.1",
+    "proxy_port": 8099,
+    "bridge_port": 9443,
+    "reserved_ports_note": "宿主 8080 被 llama-server 占用，不要用",
+    "http_api": "bingo2.superbgame.net",
+    "ws_endpoints": [
+      "bingo2.superbgame.net",
+      "bingo2-cf.voyage.bingo",
+      "bingo2.voyage.bingo",
+      "bingo2-alb.voyage.bingo"
+    ],
+    "cdn": "bingo2-cdn.superbgame.net",
+    "costume_cdn": "bingo2-clothes.voyage.bingo"
+  },
+  "frame": {
+    "header_len": 9,
+    "layout": "u32 pkt | u16 seq | u16 flags | u8 cmd | varint len | topic(len) | protobuf",
+    "pkt": {
+      "2": "client_request",
+      "3": "server_response",
+      "4": "variant",
+      "5": "server_push"
+    }
+  },
+  "commands": {
+    "101": "设备ID登录 (HTTP POST /)",
+    "2": "服务端错误/通知回执",
+    "74": "客户端埋点",
+    "78": "玩家/机器人档案查询：C->S 一串 playerId -> S->C 逐条 {1:id, 2:name, 4:{2:name, 4:level, 7:CHARACTER_n, 10:country}}",
+    "93": "客户端埋点/错误上报 {1:uuid, 2:<事件名，如 BUYCARD_LACK_TICKET / PROMO_PREDICT>}",
+    "146": "进入大厅 {hall, 4:1}",
+    "153/154": "订阅/退订主题",
+    "158": "大厅参数 {2:n}",
+    "167": "回合动作 {roundId, 2:{1:subtype}} subtype1=单格daub subtype9=整盘状态串",
+    "168": "回合查询 {roundId}",
+    "169": "★报号：{roundId, 2:[最近5个号码 uint8 滑动窗口], roomPath}",
+    "171": "回合事件 {roundId, 2:{1:26, 2:序号}}",
+    "179": "房间/特性列表 FEATURE_HALL_* / BINGO_HALL_*（双向）",
+    "202": "下注档选择 + BET_*_INFLATION 表",
+    "203": "表情/快捷语 [:BINGO][:HOT][:WOW][:ZZZ][:WHAT][:YEAH]",
+    "216": "聊天 1:{1:{1:playerId, 2:text, 3:ts_ms, 5:threadId}}",
+    "227": "玩家入座 {1:{1:roundId, 2:roomPath, 3:flag, 5:[{1:playerId, 2:state}]}}",
+    "166": "★买卡/入场：C->S {1:BET_NP_SYMBOL_n_INFLATION, 2:卡片数, 5:1} -> S->C {1:roundId, 2:[{1:seed, 2:{1:n}×25}]} 每卡25个数字按列序 B5 I5 N5 G5 O5，N列第3个渲染为 FREE"
+  },
+  "paths": {
+    "root": "D:\\BingoVoyageProbe",
+    "out": "D:\\BingoVoyageProbe\\out",
+    "ws_index": "D:\\BingoVoyageProbe\\out\\bv_ws.jsonl",
+    "http_index": "D:\\BingoVoyageProbe\\out\\bv_flows.jsonl",
+    "bodies": "D:\\BingoVoyageProbe\\out\\bv_bodies",
+    "data": "D:\\BingoVoyageProbe\\data",
+    "stalls": "D:\\BingoVoyageProbe\\stalls"
+  },
+  "cells": {
+    "per_card": 25,
+    "visible_per_card": 24,
+    "order": "column-major B5 I5 N5 G5 O5",
+    "free_index": 12,
+    "state_string_tokens": 97,
+    "note": "cmd167 subtype9 的状态串: split('|') -> 97 token; '@' 为卡片边界，每 24 个出现一次(24/48/72/96); token 顺序与卡面同列序并跳过 FREE"
+  }
+}
