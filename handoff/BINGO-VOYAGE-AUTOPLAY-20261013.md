@@ -3,7 +3,11 @@
 - Kind: handoff
 - User decision: Confirmed；执行数据优先的四卡自动玩可靠性修复。
 - Canonical allocation: [TASK-0039](../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)，2026-10-13 由独立 linked worktree remote-CAS 分配；pending-main。
-- Implementation status: 局部修复候选 Review，完整目标未完成；21项离线通过，旧90.9%不能作有效验收，真实定位/验收均0局。
+- Implementation status: In Progress；Round 1 Needs changes，继续原 TASK-0039 / PR #16/#17。
+
+## Round 1 继续入口
+
+[唯一评审](../tasks/support/TASK-0039/CHATGPT-REVIEW-1.md) 原样来自191914b。Task经过Changes Requested后恢复In Progress；R1真实数据及运行、R2来源及批次、R3过期点击取消尚待本轮验证。附件三个合成反例本机复现，不当成真实设备证据。既有局部修复与原始受控样本保留，预算仍为2定位+10验收/96票/45分钟；不追加任务，不合并/发布/SVN。
 
 ## Codex 当前交付（2026-10-13）
 

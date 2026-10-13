@@ -2,7 +2,8 @@
 
 - Date: 2026-10-13
 - Task: [TASK-0039](../../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)
-- Status: Review（局部修复候选）；完整任务未完成，真实验收 Blocked。
+- Status: In Progress；Round 1 Needs changes 已经过 Changes Requested，继续原 TASK-0039 / PR #16/#17。完整任务未完成。
+- Review: [唯一 Round 1](../../tasks/support/TASK-0039/CHATGPT-REVIEW-1.md)，来源191914b；本轮先修R2/R3并补R1受控定位入口，实跑结果待更新。
 - Gate 0: main `b0a36c8`；remote-CAS 正式编号；reservation pending-main。
 - Gate 1: 旧 90.9% 已复现并被拒绝作为有效结果；包装误计解释了一部分，逐卡超额、填充语义、完整分母和整局关闭仍未闭合。
 - Gate 2–3: 局部修复代码 `5c643dc`；21项离线回归通过。生产语义 adapter、实时前台/布局循环、买卡结算续局与批次入口尚未完成，不能部署。

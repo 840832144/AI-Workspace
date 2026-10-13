@@ -1,6 +1,6 @@
 # TASK-0039 — Bingo Voyage 四卡自动玩可靠性修复
 
-- Status: Review
+- Status: In Progress
 - Project key: BINGO-VOYAGE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -34,6 +34,10 @@
 只用已有明确授权实例及资源额度；读不到押注/总资源等上限时完成可独立实施和离线验证，实跑保持 Blocked。保全原分支/工作树/Raw；单控制者。公开 Git 不含真实卡面、账号、Raw、完整响应/日志、截图原件或凭据。
 
 ## Validation
+
+### Round 1 继续实施
+
+2026-10-13：[唯一 Round 1 评审](support/TASK-0039/CHATGPT-REVIEW-1.md) 从 `191914b7811658ddb7d17e95709703903f15863d` 原样纳入；状态 `Review → Changes Requested → In Progress`。R1 真实数据与运行绑定、R2 生产来源/批次校验、R3 过期点击取消继续在原 PR #16/#17 内完成，不新建 Task。附件三个纯合成反例已复现；不代表真实设备结果。沿用最多2定位+10验收、每局≤8票/300秒、累计≤96票/45分钟；所有启动与失败保留。main 已核对仍为 b0a36c8；不重新分配、不 release/finalize。
 
 2026-10-13 Gate 0：独立 linked worktree；scan/validate 18 canonical、0 collision/errors、6 个既有 legacy warning。main 安全同步；Bingo 关键词 PR 仅 #15，现有 canonical/candidate 无同目标；remote reservation 已检查并由 allocator 分配 TASK-0039。Workspace Sync ON_DEMAND、0 conflict、provider unavailable、6 stale；以 Git 为准。原实现工作树干净，当前仅采集桥与抓包进程，未发现自动玩控制器；任何实跑前再次核对唯一控制者。登记当时尚未实施，当前结果见下节。
 
