@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Bingo Voyage TASK-0039: bounded controller corrections and diagnostic checks.
-
-Live buy/settlement bindings and accepted-fill semantics remain unverified.
-The CLI fails closed; --check reports the missing gates, --results audits frozen
-evidence. No C->S observation is promoted to a success acknowledgement.
-"""
+"""TASK-0039 controller and governed runtime entry. Uplinks are observations."""
 import argparse
 import datetime
 import json
@@ -12,6 +7,8 @@ import os
 import subprocess
 import sys
 import time
+import threading
+from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from bv_evidence import RawTail, expected_cells
 
@@ -34,6 +31,22 @@ SESS = os.path.join(ROOT, "sessions")
 DEFAULT_ORDER = ["tl", "bl", "tr", "br"]
 
 
+def spawn_tap(x, y):
+    """The dispatch boundary. Waiting for ADB happens outside the state lock."""
+    return subprocess.Popen([ADB, "-s", DEV, "shell", "input", "tap", str(int(x)), str(int(y))],
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+
+def finish_tap(process):
+    try:
+        process.communicate(timeout=5)
+        return "executed" if process.returncode == 0 else "unknown"
+    except subprocess.TimeoutExpired:
+        process.kill()
+        process.communicate()
+        return "unknown"  # may already have reached Android
+
+
 def tap(x, y, hold=None):
     """点击。
 
@@ -54,7 +67,7 @@ def shot(path, tries=3):
     PIL 报 UnidentifiedImageError），所以校验 PNG 魔数并重试。"""
     for i in range(tries):
         r = subprocess.run([ADB, "-s", DEV, "exec-out", "screencap", "-p"],
-                           capture_output=True, timeout=60)
+                           capture_output=True, timeout=5)
         b = r.stdout or b""
         if b[:8] == b"\x89PNG\r\n\x1a\n" and len(b) > 4096:
             with open(path, "wb") as f:
@@ -146,11 +159,11 @@ class Reader:
 class AutoPlay:
     def __init__(self, a):
         self.a = a
-        self.sess = os.path.join(SESS, "autoplay_" + time.strftime("%Y%m%d_%H%M%S"))
-        self.sess += "_%d" % time.time_ns()
-        os.makedirs(self.sess, exist_ok=False)
+        supplied = getattr(a,"session_path",None)
+        self.sess = supplied or os.path.join(SESS, "autoplay_%d"%time.time_ns())
+        os.makedirs(self.sess, exist_ok=bool(supplied))
         self.act = open(os.path.join(self.sess, "actions.jsonl"), "w", encoding="utf-8")
-        self.reader = Reader(WS)
+        self.reader = Reader(getattr(a,"capture_index",WS), bodies=getattr(a,"bodies",None))
         self.rid = None
         self.cards = None
         self.grid = None
@@ -181,6 +194,48 @@ class AutoPlay:
         self.halted = False
         self.round_started = time.monotonic()
         self.closed = False
+        self.state_lock = threading.RLock()
+        self.foreground_ok = False
+        self.foreground_at = 0
+        self.generation = 0
+
+    def revoke(self, reason, halt=False):
+        with self.state_lock:
+            self.generation += 1
+            self.grid = self.layout_candidate = None
+            self.layout_samples = 0
+            self.layout_sample_at = None
+            self.halted = self.halted or halt
+            self.log(kind="input_revoked", reason=reason, generation=self.generation)
+
+    def stop_requested(self):
+        return Path(self.sess, "STOP").exists()
+
+    def execute_target(self, q):
+        with self.state_lock:
+            now = time.monotonic()
+            if (self.closed or self.halted or self.stop_requested() or q["round_id"] != self.rid
+                    or q["generation"] != self.generation or not self.grid
+                    or q["layout_version"] != self.layout_version or now-self.layout_at > 2.5
+                    or not self.foreground_ok or now-self.foreground_at > 2.5
+                    or q["due"] > now or q["ball"] not in self.first_seen
+                    or self.n_tap >= getattr(self.a,"max_dispatches",float("inf"))):
+                self.log(kind="cancelled_before_dispatch", slot=q["slot"], cell_index=q["c"]*5+q["r"])
+                return "cancelled"
+            # Coordinates are derived here, never captured by a deferred closure.
+            g = self.grid[q["slot"]]
+            x, y = g["cols"][q["c"]], g["rows"][q["r"]]
+            if self.a.dry:
+                return "dry"
+            sent_ns=time.time_ns()
+            process = spawn_tap(x, y)
+            if not hasattr(self,'dispatch_times'):self.dispatch_times={}
+            self.dispatch_times[(q['slot'],q['r'],q['c'])]=sent_ns
+            self.n_tap += 1
+            self.tapped.add((q["slot"], q["r"], q["c"]))
+            self.log(kind="input_dispatched", slot=q["slot"], cell_index=q["c"]*5+q["r"],
+                     x=x, y=y, layout_version=self.layout_version, dispatched_ns=sent_ns)
+        return finish_tap(process)
 
     def log(self, **kw):
         kw["ts"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
@@ -209,6 +264,10 @@ class AutoPlay:
     def setup_grid(self, nslots, det=None):
         """Require three fresh stable samples; failure revokes the layout."""
         det = self.detect_grid() if det is None else det
+        with self.state_lock:
+            return self._setup_grid(nslots, det)
+
+    def _setup_grid(self, nslots, det):
         try:
             now = time.monotonic()
             if nslots != 4 or len(det or []) != 4:
@@ -242,6 +301,7 @@ class AutoPlay:
             self.layout_sample_at = now
             self.layout_samples = self.layout_samples + 1 if stable else 1
             if not stable:
+                self.generation += 1
                 self.grid = None
                 self.layout_candidate = grid
             if self.layout_samples < 3:
@@ -252,6 +312,7 @@ class AutoPlay:
             self.layout_at = time.monotonic()
             return True
         except (ValueError, KeyError, TypeError):
+            self.generation += 1
             self.grid = None
             self.layout_candidate = None
             self.layout_samples = 0
@@ -278,10 +339,11 @@ class AutoPlay:
 
     def close_round(self, rid, verified=False):
         if rid == self.rid and verified:
-            self.closed = True
-            self.closed_rounds.add(rid)
-            self.pending.clear()
-            self.grid = None
+            with self.state_lock:
+                self.closed = True
+                self.closed_rounds.add(rid)
+                self.pending.clear()
+                self.revoke("round_closed")
             self.freeze_round("verified_close")
 
     def on_ball(self, ts, rid, ball):
@@ -291,8 +353,7 @@ class AutoPlay:
             return
         if self.rid and rid != self.rid:
             # A ball with another ID cannot authorize a round switch or buy cards.
-            self.halted = True
-            self.grid = None
+            self.revoke("round_identity_mismatch", halt=True)
             self.log(kind="round_identity_mismatch")
             return
         if self.rid is None:
@@ -361,7 +422,13 @@ class AutoPlay:
             q["input_outcome"] = outcome
             q["t"] = now
             q["status"] = "attempted_unconfirmed"
-            self.awaiting.append(q)
+            if outcome == "cancelled":
+                # Unsent targets retain their retry budget and can recover after calibration.
+                if q["round_id"] == self.rid and not self.closed and not self.halted:
+                    q["status"] = "pending"
+                    self.pending.append(q)
+            elif (q['slot'],q['r'],q['c']) not in self.done:
+                self.awaiting.append(q)
             self.input_future = self.input_target = None
             self.log(kind="input_finished", outcome=outcome, slot=q["slot"], cell_index=q["c"]*5+q["r"])
 
@@ -381,7 +448,7 @@ class AutoPlay:
                 self.giveup.add((q["slot"], q["r"], q["c"]))
                 self.n_giveup += 1
                 self.log(kind=q["status"], slot=q["slot"], cell_index=q["c"]*5+q["r"])
-        if self.input_future is not None or self.closed or self.halted or not self.grid or now-self.layout_at > 2.5:
+        if self.input_future is not None or self.closed or self.halted or self.stop_requested() or not self.grid or now-self.layout_at > 2.5 or self.n_tap >= getattr(self.a,"max_dispatches",float("inf")):
             return
         ready = [q for q in self.pending if q["due"] <= now and q["round_id"] == self.rid]
         # New targets before bounded retries; sparse observations never hold input slots.
@@ -390,88 +457,83 @@ class AutoPlay:
             return
         q = ready[0]
         self.pending.remove(q)
-        g = self.grid[q["slot"]]
-        x, y = g["cols"][q["c"]], g["rows"][q["r"]]
         q["layout_version"] = self.layout_version
-        self.tapped.add((q["slot"], q["r"], q["c"]))
-        self.log(kind="attempt", slot=q["slot"], cell_index=q["c"]*5+q["r"],
-                 layout_version=self.layout_version, x=x, y=y)
+        q["generation"] = self.generation
+        self.log(kind="queued", slot=q["slot"], cell_index=q["c"]*5+q["r"],
+                 layout_version=self.layout_version)
         self.input_target = q
-        def execute():
-            if self.closed or self.halted or q["round_id"] != self.rid:
-                return "not_executed"
-            return "dry" if self.a.dry else tap(x, y)
-        self.input_future = self.input_pool.submit(execute)
-        self.n_tap += int(not self.a.dry)
+        self.input_future = self.input_pool.submit(lambda: self.execute_target(q))
 
-    def go_next_round(self):
-        self.halted = True
-        self.grid = None
-        self.log(kind="blocked_navigation", reason="resource_and_round_close_binding_unverified")
-        return False
+    def accept_client_mark(self, event):
+        """Called only by the source-bound runtime after diagnostic qualification.
 
-    def run(self):
-        """Read-only diagnostic run; runtime limit is NOT a round-close event."""
-        t0 = time.monotonic()
-        try:
-            while time.monotonic()-t0 < self.a.seconds and not self.halted:
-                if os.path.exists(os.path.join(self.sess, "STOP")):
-                    break
-                balls, observations = self.reader.poll()
-                for ts, rid, ball in balls:
-                    self.on_ball(ts, rid, ball)
-                self.tick(observations)
-                time.sleep(.05)
-        finally:
-            self.halted = True
-            self.input_pool.shutdown(wait=True, cancel_futures=True)
-            self.freeze_round("stopped_or_timed_out_not_complete")
-            with open(os.path.join(self.sess, "events.jsonl"), "x", encoding="utf-8") as f:
-                for e in self.reader.events:
-                    f.write(json.dumps(e, ensure_ascii=False)+"\n")
-            with open(os.path.join(self.sess, "session.json"), "x", encoding="utf-8") as f:
-                json.dump({"complete": False, "reason": "no_verified_close_binding",
-                           "capture_errors": dict(self.reader.errors)}, f)
-            self.act.close()
-        return 2
-
-    # ---- 受控实验：反推卡位映射 ----
-    def probe_map(self):
-        raise RuntimeError("scoped_experiment_authorization_required")
+        A correctly identified mark can arrive after timeout or before ADB completion.
+        Its timestamp must follow an actual dispatch for that exact target.
+        """
+        slot,cell=event.get('card_id'),event.get('cell_index')
+        if event.get('round_id')!=self.rid or event.get('daub_type')!='Manual':return False
+        if type(slot)is not int or type(cell)is not int or not (1<=slot<=4 and 0<=cell<25) or cell==12:return False
+        key=(slot,*idx2rc(cell))
+        card=next((c for c in self.cards or [] if c['slot']==slot),None)
+        sent=getattr(self,'dispatch_times',{}).get(key)
+        if (not card or card['vals'][cell]!=event.get('ball') or event['ball'] not in self.first_seen
+                or sent is None or not sent<=event['at_ns']<=sent+10_000_000_000):return False
+        self.done.add(key);self.giveup.discard(key)
+        self.pending=[q for q in self.pending if (q['slot'],q['r'],q['c'])!=key]
+        self.awaiting=[q for q in self.awaiting if (q['slot'],q['r'],q['c'])!=key]
+        self.log(kind='client_accepted',slot=slot,cell_index=cell,source_ref=event['source_ref'])
+        return True
 
 
 def preflight():
-    return {"status": "Blocked", "live_ready": False,
-            "blockers": ["accepted_fill_semantics_unverified",
-                         "round_close_binding_unverified", "structured_bet_binding_unverified"],
-            "resource_decision": "User delegated conservative limits; no spend until bet and consumption are verifiable",
-            "offline_entry": "python -m unittest discover -s tests -v"}
+    from bv_live import preflight as live_preflight
+    return live_preflight()[0]
 
 
 def main():
-    ap = argparse.ArgumentParser(description="TASK-0039 安全检查与离线修复；真实自动玩尚被证据 Gate 阻塞")
+    ap = argparse.ArgumentParser(description="TASK-0039 受控定位、来源核验与自动玩入口")
     ap.add_argument("--check", action="store_true", help="只读检查；Blocked 返回 2")
-    ap.add_argument("--start", action="store_true", help="请求启动；先检查证据 Gate，当前版本返回 Blocked")
+    ap.add_argument("--start", action="store_true", help="正式验收启动；先核对当前数据和资源")
+    ap.add_argument("--diagnose", action="store_true", help="受控定位；结果不能作为正式验收")
+    ap.add_argument("--open-panel", action="store_true", help="定位时允许从已识别大厅打开选卡面板；不点击购买")
+    ap.add_argument("--diagnostic-round", action="store_true", help="定位时按结构化报价买四卡并作一次合法点击；最多两局")
+    ap.add_argument("--seconds", type=float, default=20, help="定位运行秒数，最多300")
+    ap.add_argument("--batch-results", metavar="BATCH", help="从预登记和冻结原始来源重建十局结果")
     ap.add_argument("--stop", metavar="SESSION", help="仅向指定本工具会话写 STOP，不停止采集器")
     ap.add_argument("--results", metavar="FROZEN", help="独立核验冻结证据")
     a = ap.parse_args()
     if a.stop:
-        from pathlib import Path
         target = Path(a.stop).resolve()
         root = Path(SESS).resolve()
-        if root not in target.parents or not target.name.startswith("autoplay_") or not target.is_dir():
+        from bv_live import CONTROL
+        owned = (root in target.parents and target.name.startswith("autoplay_")) or (target.parent==CONTROL.resolve() and target.name.startswith(("diagnostic_","batch_"))) or (CONTROL.resolve() in target.parents and target.name.startswith("acceptance_") and target.parent.name.startswith("batch_"))
+        if not owned or not target.is_dir():
             ap.error("只能停止本工作副本 sessions 中的指定 autoplay 会话")
         (target / "STOP").touch(exist_ok=True)
         print(json.dumps({"status": "stop_requested", "stopped_confirmed": False}))
         return 0
     if a.results:
-        from bv_evidence import measure
-        with open(a.results, encoding="utf-8") as f:
-            result = measure(json.load(f))
+        from bv_live import verify_round
+        result = verify_round(a.results)
         print(json.dumps(result, ensure_ascii=False))
-        return 0 if result["hard_pass"] else 2
-    print(json.dumps(preflight(), ensure_ascii=False))
-    return 2
+        return 0 if result["acceptance_pass"] else 2
+    if a.batch_results:
+        from bv_batch import verify_batch
+        result=verify_batch(Path(a.batch_results))
+        print(json.dumps(result,ensure_ascii=False))
+        return 0 if result["acceptance_pass"] else 2
+    if a.diagnose:
+        from bv_live import diagnose
+        if not 0<a.seconds<=300:ap.error("定位时长必须为0到300秒")
+        result=diagnose(a.seconds,a.open_panel,play_round=a.diagnostic_round)
+        print(json.dumps(result,ensure_ascii=False))
+        return 2 # diagnostic collection is never production acceptance
+    if a.start:
+        from bv_live import start_batch
+        result=start_batch();print(json.dumps(result,ensure_ascii=False))
+        return 0 if result["acceptance_pass"] else 2
+    result=preflight();print(json.dumps(result, ensure_ascii=False))
+    return 0 if result['live_ready'] else 2
 
 
 if __name__ == "__main__":

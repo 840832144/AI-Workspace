@@ -4,6 +4,7 @@ import importlib.util
 import json
 import tempfile
 import unittest
+import threading
 from concurrent.futures import Future
 from pathlib import Path
 from types import SimpleNamespace
@@ -35,6 +36,9 @@ def controller():
     c.order = list(ap.DEFAULT_ORDER)
     c.closed_rounds = set()
     c.closed = c.halted = c.repeat_safe = False
+    c.state_lock=threading.RLock();c.generation=0
+    c.foreground_ok=True;c.foreground_at=10
+    c.sess=str(Path(tempfile.gettempdir())/'task0039-test-no-session')
     c.pending = []; c.awaiting = []; c.called = []; c.first_seen = {}
     c.done = set(); c.tapped = set(); c.giveup = set(); c.observed_cells = set()
     c.layout_candidate = c.grid = None
@@ -69,9 +73,9 @@ def freeze(n=20, filled=19):
 def wire(window=(1, 2, 3), seq=1):
     rid = b"BINGO_HALL.synthetic.1"
     body = bytes([10, len(rid)]) + rid + bytes([18, len(window)]) + bytes(window)
-    data = (5).to_bytes(4, "little") + seq.to_bytes(2, "little") + b"\0\0" + bytes([169, 0]) + body
+    data = (5).to_bytes(4, "little") + seq.to_bytes(2, "little") + b"\x01\x86" + bytes([169, 0]) + body
     rec = {"file": "synthetic.bin", "len": len(data), "dir": "S->C", "ts": "2026-10-13 00:00:00",
-           "hdr": {"cmd": 169, "seq": seq, "flags": 0}}
+           "hdr": {"cmd": 169, "seq": seq, "flags": 34305}}
     return data, rec
 
 
@@ -85,18 +89,19 @@ class CountingTests(unittest.TestCase):
         self.assertEqual(measure(f)["N"],19)
 
     def test_thresholds_zero_and_weighting(self):
-        self.assertFalse(measure(freeze(filled=18))["hard_pass"])
-        self.assertTrue(measure(freeze(filled=19))["hard_pass"])
+        self.assertFalse(measure(freeze(filled=18))["arithmetic_pass"])
+        self.assertTrue(measure(freeze(filled=19))["arithmetic_pass"])
+        self.assertFalse(measure(freeze(filled=19))["acceptance_pass"])
         f=freeze();f["balls"]=[];f["verified_cells"]=[]
         self.assertEqual(measure(f)["status"],"N/A")
         # Aggregate arithmetic fixtures; synthetic sources cannot be live acceptance.
         rs=[measure(freeze()) for _ in range(10)]
         self.assertFalse(aggregate(rs)["qualified"])
         for r in rs:r["evidence_kind"]="observed-live"
-        self.assertTrue(aggregate(rs)["optimization_pass"])
+        self.assertFalse(aggregate(rs)["optimization_pass"])
         rs[-1].update(N=1,E=100,hard_pass=False)
         total=aggregate(rs)
-        self.assertEqual(total["weighted_rate"],172/280)
+        self.assertIsNone(total["weighted_rate"])
         self.assertFalse(total["hard_pass"])
         self.assertFalse(aggregate(rs[:-1])["qualified"])
 
@@ -180,8 +185,8 @@ class ControllerTests(unittest.TestCase):
         with patch.object(ap.time,"monotonic",return_value=12):
             stabilize(c,grid(8),start=10.8)
             c.tick([])
-            action=next(e for e in c.logs if e["kind"]=="attempt")
-            self.assertEqual(action["x"],88)
+            action=next(e for e in c.logs if e["kind"]=="queued")
+            self.assertNotIn("x",action)
             self.assertEqual(action["layout_version"],c.layout_version)
 
     def test_wrong_missing_fifo_and_uplink_never_success(self):
@@ -234,9 +239,13 @@ class ControllerTests(unittest.TestCase):
         self.assertNotIn(2,c.called)
 
     def test_resource_unknown_popup_navigation_is_blocked(self):
-        c=controller()
-        self.assertFalse(c.go_next_round());self.assertTrue(c.halted)
-        self.assertFalse(ap.preflight()["live_ready"])
+        from bv_live import Device
+        with patch.object(ap,'spawn_tap') as send:
+            self.assertEqual(Device().claim(dict(scene='unknown')),'not_executed')
+            self.assertEqual(Device().buy(dict(scene='unknown'),{}),'not_executed')
+            send.assert_not_called()
+        with patch('bv_live.preflight',return_value=({"live_ready":False},[])):
+            self.assertFalse(ap.preflight()["live_ready"])
         with patch.object(ap.subprocess,"run",return_value=SimpleNamespace(returncode=1)) as run:
             self.assertEqual(ap.tap(10,10),"unknown")
             self.assertEqual(run.call_count,1)

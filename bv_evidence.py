@@ -12,7 +12,7 @@ from pathlib import Path
 from bv_proto import parse
 from bv_ws2 import parse_frame
 
-VERSION = "task0039-v1"
+VERSION = "task0039-r1-v2"
 
 
 def fields(body):
@@ -50,21 +50,24 @@ def decode(data, rec, source):
             "epoch": rec.get("epoch"), "connection": rec.get("connection"),
             "sequence": frame["seq"], "direction": rec.get("dir"),
             "parser_version": VERSION, "evidence_level": "client_observation",
-            "cmd": frame["cmd"], "type": "frame"}
-    if frame["cmd"] not in (163, 166, 167, 169):
+            "cmd": frame["cmd"], "message_id":frame["message_id"], "type": "frame"}
+    if frame["message_id"] not in (100003,100006,100007,100009):
         return base
     body = frame["body"]
     rid = round_id(body)
     base["round_id"] = rid
     fs = fields(body)
-    if frame["cmd"] == 169 and rec.get("dir") == "S->C":
+    if frame["message_id"] == 100009 and rec.get("dir") == "S->C":
         windows = [list(c) for k, w, v, c in fs if k == 2 and w == 2]
+        if rid and (not windows or windows == [[]]):
+            base.update(type="empty_ball_window", window=[], evidence_level="server_observation")
+            return base  # repeated protobuf field omitted; not proof of round close
         if len(windows) != 1 or not rid or not windows[0] or any(
             not 1 <= n <= 75 for n in windows[0]
         ):
             raise ValueError("invalid_ball_window")
         base.update(type="balls", window=windows[0], evidence_level="server_observation")
-    elif frame["cmd"] == 167 and rec.get("dir") == "C->S":
+    elif frame["message_id"] == 100007 and rec.get("dir") == "C->S":
         envelopes = [c for k, w, v, c in fs if k == 2 and w == 2]
         if len(envelopes) != 1 or not rid:
             raise ValueError("ambiguous_action")
@@ -78,9 +81,13 @@ def decode(data, rec, source):
             if len(cells) != 1:
                 raise ValueError("ambiguous_cell")
             values = {k: v for k, w, v, c in cells[0] if w == 0}
-            if len(values) != len(cells[0]) or not {1, 2} <= set(values):
+            if len(values) != len(cells[0]) or not set(values) <= {1,2,3,4,5}:
                 raise ValueError("missing_cell_identity")
-            base.update(type="cell_observation", card_id=values[2] + 1, cell_index=values[1])
+            # Named client ActionReq logs independently expose omitted protobuf zeros.
+            # This only resolves identity, never promotes the request to accepted fill.
+            cell,card=values.get(1,0),values.get(2,0)
+            if not (0<=cell<25 and 0<=card<4):raise ValueError("cell_identity_out_of_range")
+            base.update(type="cell_observation", card_id=card + 1, cell_index=cell)
         elif subs[0] == 9:
             states = [c.decode("ascii") for k, w, v, c in inner if k == 2 and w == 2]
             if len(states) != 1:
@@ -227,10 +234,14 @@ def measure(frozen):
     status = "Invalid" if errors else ("N/A" if not d else
              "exact" if frozen.get("terminal_complete") and expected <= confirmed | unfilled
              else "verified_lower_bound")
-    return {"status": status, "evidence_kind": "synthetic" if synthetic else "observed-live",
+    arithmetic_pass = not errors and d > 0 and 10*n > 9*d
+    return {"status": status, "evidence_kind": "synthetic" if synthetic else "unqualified",
+            **{k: frozen.get(k) for k in ("batch_id", "instance", "session_id", "round_id",
+                "cardset_ref", "frozen_ref", "code_version", "parser_version", "metric_version", "start", "end")},
             "N": n, "E": d, "Unknown": len(expected - confirmed - unfilled),
             "confirmed_unfilled": len(unfilled), "errors": sorted(set(errors)),
-            "hard_pass": not errors and d > 0 and 10*n > 9*d,
+            "arithmetic_pass": arithmetic_pass,
+            "evidence_valid": False, "acceptance_pass": False, "hard_pass": False,
             "rate": n/d if not errors and d else None,
             "per_card": [{"card": i, "E": sum(k[0] == i for k in expected),
                           "N": sum(k[0] == i for k in expected & confirmed),
@@ -240,15 +251,11 @@ def measure(frozen):
 
 
 def aggregate(results, registered_count=10):
-    n, d = sum(r["N"] for r in results), sum(r["E"] for r in results)
-    qualified = len(results) == registered_count == 10 and all(
-        r["status"] in ("exact", "verified_lower_bound") and r["evidence_kind"] == "observed-live"
-        for r in results)
-    return {"started_rounds": len(results), "registered_rounds": registered_count,
-            "N": n, "E": d, "qualified": qualified,
-            "hard_pass": qualified and all(r["hard_pass"] for r in results),
-            "weighted_rate": n/d if qualified and d else None,
-            "minimum_rate": min(r["N"]/r["E"] for r in results) if qualified and all(r["E"] for r in results) else None,
-            "full_fill_rounds": sum(r["N"] == r["E"] and r["E"] > 0 for r in results) if qualified else 0,
-            "optimization_pass": qualified and d > 0 and 20*n >= 19*d,
-            "Unknown": sum(r["Unknown"] for r in results)}
+    """Production aggregation accepts a registered directory, never caller summaries."""
+    if isinstance(results, (str, Path)):
+        from bv_batch import verify_batch
+        return verify_batch(Path(results))
+    return {"status": "Invalid", "qualified": False, "hard_pass": False,
+            "acceptance_pass": False, "optimization_pass": False, "weighted_rate": None,
+            "errors": ["registered_batch_and_raw_sources_required"],
+            "started_rounds": len(results), "registered_rounds": registered_count}

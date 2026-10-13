@@ -13,7 +13,7 @@ import subprocess
 import sys
 import time
 
-sys.path.insert(0, r"D:\BingoVoyageProbe")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from PIL import Image  # noqa
 import bv_cardgrid  # noqa

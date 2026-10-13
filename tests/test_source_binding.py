@@ -1,0 +1,165 @@
+"""Synthetic files through the real replay/CLI chain; never ADB or production data."""
+import datetime as dt
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+
+import bv_autoplay as ap
+import bv_live as live
+from bv_verify import freeze,semantic_gate,replay,verify_round
+from bv_batch import verify_batch
+from bv_evidence import VERSION
+from test_reliability import cards,controller
+
+
+def varint(n):
+    out=bytearray()
+    while n>127:out.append((n&127)|128);n>>=7
+    out.append(n);return bytes(out)
+
+
+def field(k,v):
+    return varint(k*8)+varint(v) if isinstance(v,int) else varint(k*8+2)+varint(len(v))+v
+
+
+class Sources(unittest.TestCase):
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
+        self.root=Path(self.temp.name);self.source=self.root/'source';self.source.mkdir()
+        (self.source/'bv_bodies').mkdir();self.index=self.source/'bv_ws.jsonl';self.index.touch()
+        self.control=self.root/'control';self.control.mkdir()
+        self.enterContext(patch.object(live,'SOURCE',self.source))
+        self.enterContext(patch.object(live,'CONTROL',self.control))
+        self.enterContext(patch.object(live,'INSTANCE','synthetic-device'))
+        # Budget's existing default parameter is rebound explicitly in this isolated test.
+        budget=live.Budget
+        self.enterContext(patch.object(live,'Budget',side_effect=lambda root=None:budget(root or self.control)))
+        self.base=dt.datetime(2026,10,13,10,tzinfo=dt.timezone(dt.timedelta(hours=8)))
+        self.counter=0;self.round_counter=0
+
+    def raw(self,mid,body,at,direction='S->C'):
+        self.counter+=1;n=self.counter
+        data=b'\x05\0\0\0'+n.to_bytes(2,'little')+mid.to_bytes(3,'big')+b'\0'+body
+        name=f'synthetic_{n}.bin';(self.source/'bv_bodies'/name).write_bytes(data)
+        rec=dict(file=name,len=len(data),dir=direction,ts=at.isoformat(),
+                 hdr=dict(cmd=mid&255,seq=n,flags=int.from_bytes(data[6:8],'little')))
+        with self.index.open('a') as f:f.write(json.dumps(rec)+'\n')
+
+    def make_round(self,purpose,reg=None,ordinal=0,session=None):
+        self.round_counter+=1;n=self.round_counter
+        folder=Path(session) if session else (self.control/reg['batch_id'] if reg else self.control)/(purpose+f'_synthetic{n}')
+        folder.mkdir();rid=f'BINGO_HALL.synthetic.{n}';b=rid.encode()
+        t=self.base+dt.timedelta(seconds=n*30);ns=lambda seconds:int((t+dt.timedelta(seconds=seconds)).timestamp()*1e9)
+        selection=dict(CardCount=4,BetCount=1,LastBetTicket=4)
+        (folder/'selection.json').write_text(json.dumps(selection))
+        (folder/'base_bet_config.json').write_text(json.dumps([dict(id='BET_NP_SYMBOL_1',cost=1)]))
+        start=self.index.stat().st_size
+        selected=field(1,b'BET_NP_SYMBOL_1')+field(2,4)
+        self.raw(100042,field(2,selected),t+dt.timedelta(seconds=1),'C->S')
+        cs=b''.join(field(2,field(1,c['slot'])+b''.join(field(2,field(1,v)) for v in c['vals']))for c in cards())
+        self.raw(100003,field(1,field(4,field(1,cs+field(10,b)+field(11,selected)))),t+dt.timedelta(seconds=2))
+        self.raw(100009,field(1,b)+field(2,bytes(range(1,6))),t+dt.timedelta(seconds=3))
+        marked=[(1+(n-1)%2,0)] if purpose=='diagnostic' else [(slot,cell) for slot in range(1,5) for cell in range(5)][:-1]
+        lines=[(3,f'CardLayout StartGameLogic:layoutFrame round={rid} rule=STANDARD cards=4 layout=x'),
+               (1.5,'NotifyResources TICKET current=81 next=77 delta=-4')]
+        for i in range(5):lines.append((4+i,f'[BallCaller] cur 1 target 1 index {i}, num {i+1} diff 0'))
+        actions=[]
+        for slot,cell in marked:
+            when=4+cell+.2+slot*.01
+            lines.append((when,f'BingoLog: Daub Type Manual, Index: {slot-1}, {cell+1}, ({cell},0), Mod None'))
+            actions.append(dict(kind='input_dispatched',slot=slot,cell_index=cell,round_id=rid,dispatched_ns=ns(when-.1)))
+        lines.append((20.1,'BingoPlayView GameOver'))
+        text=''
+        for secs,value in sorted(lines):
+            stamp=(t+dt.timedelta(seconds=secs)).strftime('%y/%m/%d %H:%M:%S.%f')[:-3]
+            text+=f'I:1:2:{stamp} +08:00 {value}\n'
+        (folder/'client-during.log').write_text(text)
+        (folder/'actions.jsonl').write_text(''.join(json.dumps(a)+'\n' for a in actions))
+        blocks=[]
+        for slot in range(1,5):blocks.append('|'.join('1::' if k==12 or (slot,k) in marked else '' for k in range(25)))
+        state=blocks[0]+''.join('@#'+x for x in blocks[1:])+'@'
+        self.raw(100014,field(1,b),t+dt.timedelta(seconds=20))
+        self.raw(100007,field(1,b)+field(2,field(1,9)+field(2,state.encode())),t+dt.timedelta(seconds=21),'C->S')
+        identity=dict(instance='synthetic-device',code_version='fixed-test-code',parser_version=VERSION,metric_version=live.METRIC)
+        if reg:identity.update({k:reg[k]for k in ('batch_id','instance','code_version','parser_version','metric_version')})
+        frozen=freeze(folder,start,self.index.stat().st_size,purpose=purpose,session_id=folder.name,registered_ns=ns(0),ended_ns=ns(22),**identity)
+        budget=live.Budget()
+        with patch.object(live.time,'time_ns',return_value=ns(.5)):
+            budget.append('purchase_reserved',purpose=purpose,session_id=folder.name,
+                          reserved_tickets=4,batch_id=reg['batch_id']if reg else None)
+        if reg:
+            row=dict(identity,session_id=folder.name,ordinal=ordinal,started_ns=ns(0),source_start=start,
+                     frozen_ref=str(frozen.relative_to(folder.parent)))
+            with (folder.parent/'starts.jsonl').open('a')as f:f.write(json.dumps(row)+'\n')
+            budget.append('batch_round_start',**row)
+            (folder/'settlement.json').write_text(json.dumps(dict(navigation_ready=True)))
+        return frozen
+
+    def qualified_batch(self):
+        self.make_round('diagnostic');self.make_round('diagnostic')
+        self.assertTrue(semantic_gate()['qualified'])
+        batch=self.control/'batch_synthetic';batch.mkdir()
+        reg=dict(batch_id=batch.name,instance='synthetic-device',code_version='fixed-test-code',parser_version=VERSION,
+                 metric_version=live.METRIC,purpose='acceptance',planned_rounds=10,
+                 registered_ns=int((self.base+dt.timedelta(seconds=89)).timestamp()*1e9),source_start=self.index.stat().st_size)
+        (batch/'registration.json').write_text(json.dumps(reg));(batch/'starts.jsonl').touch()
+        live.Budget().append('batch_registered',**reg)
+        for i in range(10):self.make_round('acceptance',reg,i+1)
+        return batch
+
+    def test_real_verifier_and_cli_ten_raw_distinct_rounds_not_summary_flags(self):
+        batch=self.qualified_batch();r=verify_batch(batch)
+        self.assertTrue(r['acceptance_pass'],r['errors']);self.assertEqual((r['N'],r['E']),(190,200))
+        self.assertEqual(r['weighted_rate'],.95)
+        with patch.object(ap.sys,'argv',['bv_autoplay.py','--batch-results',str(batch)]),patch('builtins.print'):
+            self.assertEqual(ap.main(),0) # isolated, file-backed synthetic source binding only
+        lines=(batch/'starts.jsonl').read_text().splitlines();(batch/'starts.jsonl').write_text('\n'.join(lines[1:]))
+        self.assertFalse(verify_batch(batch)['acceptance_pass'])
+
+    def test_mutated_raw_body_and_label_cannot_promote_a_fixture(self):
+        f=self.make_round('diagnostic');self.assertTrue(replay(f)['controlled_differential'])
+        data=json.loads(f.read_text());data.update(purpose='acceptance',evidence_kind='observed-live')
+        f.write_text(json.dumps(data));self.assertFalse(verify_round(f)['evidence_valid'])
+        body=next((self.source/'bv_bodies').glob('*.bin'));body.write_bytes(body.read_bytes()+b'x')
+        with self.assertRaises(ValueError):replay(f)
+
+    def test_one_uncontrolled_diagnostic_cannot_unlock_start(self):
+        self.make_round('diagnostic')
+        with patch.object(live,'Device') as device,patch.object(ap.sys,'argv',['bv_autoplay.py','--start']),patch('builtins.print'):
+            self.assertEqual(ap.main(),2);device.assert_not_called()
+
+    def test_start_entry_registers_all_rounds_verifies_sources_and_settles(self):
+        self.base=dt.datetime.now(dt.timezone(dt.timedelta(hours=8)))
+        self.make_round('diagnostic');self.make_round('diagnostic')
+        class Navigation:
+            pending=False
+            claims=0
+            def sample(self,path):return dict(scene='congrats' if self.pending else 'lobby')
+            def claim(self,sample):self.pending=False;self.claims+=1;return 'executed'
+        nav=Navigation()
+        def round_source(*args,**kw):
+            batch=kw['batch'];self.make_round('acceptance',batch,batch['ordinal'],kw['session'])
+            nav.pending=True
+            return dict(rounds_started=1)
+        with patch.object(live,'Device',return_value=nav),patch.object(live,'clean_code',return_value=True),patch.object(live,'code_version',return_value='fixed-test-code'),patch.object(live,'diagnose',side_effect=round_source),patch.object(live.time,'sleep'),patch.object(ap.sys,'argv',['bv_autoplay.py','--start']),patch('builtins.print'):
+            self.assertEqual(ap.main(),0)
+        result=json.loads(next(self.control.glob('batch_*/result.json')).read_text())
+        self.assertTrue(result['acceptance_pass']);self.assertEqual(result['started_rounds'],10)
+        self.assertEqual(nav.claims,10)
+
+
+class RuntimeLimits(unittest.TestCase):
+    def test_client_confirm_requires_actual_same_target_and_late_confirm_stops_retry(self):
+        c=controller();c.first_seen[1]=1;c.dispatch_times={(1,0,0):100};c.giveup.add((1,0,0))
+        e=dict(round_id='round1',card_id=1,cell_index=0,ball=1,at_ns=101,daub_type='Manual',source_ref={})
+        self.assertTrue(c.accept_client_mark(e));self.assertIn((1,0,0),c.done);self.assertFalse(c.giveup)
+        e['card_id']=2;self.assertFalse(c.accept_client_mark(e))
+
+    def test_interrupted_runtime_and_actual_overspend_cannot_reset_budget(self):
+        with tempfile.TemporaryDirectory() as folder:
+            b=live.Budget(folder);b.append('runtime_start',session_id='crashed')
+            with patch.object(live.time,'time_ns',return_value=b.records()[0]['at_ns']+2701_000_000_000):
+                with self.assertRaisesRegex(ValueError,'task_resource_limit'):
+                    b.reserve('diagnostic',dict(source_ref='synthetic',tickets=4,cards=4,balance=100),'next')

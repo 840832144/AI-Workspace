@@ -59,6 +59,7 @@ def parse_frame(b):
         i += ln
     body = b[i:]
     return {"ok": True, "pkt": pkt, "seq": seq, "flags": flags, "cmd": cmd,
+            "message_id": int.from_bytes(b[6:9], "big"),
             "topic": topic.decode("utf-8", "replace"), "body": body,
             "raw": b}
 
