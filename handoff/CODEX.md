@@ -1,5 +1,9 @@
 # Codex Handoff
 
+## 2026-10-13 — TASK-0040 核心复核包已补齐
+
+已按补充评审5505803167收窄R1，保存首轮与补充的[覆盖关系及执行交接](101-CARD-PACK-USD-VALUATION-20261013.md)。受控ZIP独立解压运行53项检查通过；仅代表算例，不重跑全部抽样、不重建主表，不改口径、币价或源配置。沿用原Task/分支/PR #19，等待ChatGPT实际审阅，未Accepted，不合并、不finalize。Subagents: none。
+
 ## 2026-10-13 — TASK-0040 101卡包美元价值进入Review
 
 已按PR #18批准规格完成正式分配和受控本机计算：[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)、[Task](../tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md)。29包、8个合成状态、2类权重；条件USD、内部面值、真实售价分列。独立复核与工作簿回读通过，原生Excel/WPS和线上行为未验证。完整数值与实现不进入Git。等待ChatGPT Review，不合并、不finalize。Subagents: none。

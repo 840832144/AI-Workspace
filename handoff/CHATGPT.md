@@ -1,5 +1,9 @@
 # ChatGPT Handoff
 
+## 2026-10-13 — TASK-0040 缩减R1补充材料交Review
+
+以[补充评审5505803167](../reviews/TASK-0040-CHATGPT-REVIEW-1-SUPPLEMENT.md)覆盖首轮重复补包要求；[核心复核包交接](101-CARD-PACK-USD-VALUATION-20261013.md)已备齐。原脚本/参数、最小输入、7个既有整包例、5组有包/无包账本与固定路径，最终ZIP独立解压运行53项检查通过。主表和币值说明保持原样。请实际接收User提供的受控ZIP后继续核心金币链Review；Task仍Review，沿用PR #19，不自动Accepted、合并或finalize。Subagents: none。
+
 ## 2026-10-13 — 请Review TASK-0040
 
 [101卡包美元价值交接](101-CARD-PACK-USD-VALUATION-20261013.md)已记录实际计算、独立复核、受控产物位置与未验证边界。主值是单次领取窗口的条件USD等价值，不是统一面值/实际售价；请核对是否满足本次用途。完整数值只在User本机，公共摘要不替代独立数值Review。分支codex/101-card-pack-usd-20261013，Task状态Review，reservation pending-main；不自动合并或finalize。Subagents: none。

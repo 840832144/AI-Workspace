@@ -1,6 +1,14 @@
 # 101 卡包美元价值｜Codex 接管
 
-## 当前交付 — TASK-0040 等待 ChatGPT Review
+## 当前补充 — 缩减R1核心复核包已备齐
+
+[首轮评审](../reviews/TASK-0040-CHATGPT-REVIEW-1.md)与[补充评审5505803167](../reviews/TASK-0040-CHATGPT-REVIEW-1-SUPPLEMENT.md)均已落Git并记录覆盖关系：工作簿层面附件核对通过，不重复主表、截图、身份或币值材料；只补开包与持卡状态到新增奖励金币。
+
+沿用TASK-0040、原分支和[PR #19](https://github.com/840832144/AI-Workspace/pull/19)。受控本机`TASK-0040_核心计算复核包.zip`包含原计算/独立检查主体、完整原参数、最少字段与来源、7个旧整包例、5组有/无包账本及固定路径。已从ZIP独立解压按随包入口运行，53项检查通过；无全量抽样重跑、主表重建或估值口径/币价变更。见[产物导航](../tasks/support/TASK-0040/ARTIFACTS.md)和[本轮验证](../tasks/support/TASK-0040/CORE_REVIEW_VALIDATION.json)。
+
+下一步仅由User提供受控ZIP，交ChatGPT继续Review核心模拟。Codex自测不代表R1已Accepted；不合并、不finalize，reservation保持pending-main。Subagents: none。
+
+## 原交付 — TASK-0040 等待 ChatGPT Review
 
 Review入口：[Draft PR #19](https://github.com/840832144/AI-Workspace/pull/19)，交付commit `04153ed`；完整数值按受控产物导航查阅。
 
