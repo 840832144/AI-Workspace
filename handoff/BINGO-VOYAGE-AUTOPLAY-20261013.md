@@ -2,12 +2,12 @@
 
 - Kind: handoff
 - User decision: Confirmed；执行数据优先的四卡自动玩可靠性修复。
-- Canonical allocation: Pending；本页没有正式 Task ID，不是 Ready Task 的替代物。
+- Canonical allocation: [TASK-0039](../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)，2026-10-13 由独立 linked worktree remote-CAS 分配；pending-main。
 - Implementation status: 未在本会话实现或实跑；旧 90.9% 为待复核历史结果。
 
 ## 完整规格
 
-读取 [EXECUTION_SPEC.md](../tasks/support/bingo-voyage-autoplay-20261013/EXECUTION_SPEC.md)。范围已获 User 确认，Codex 无需重复询问是否执行；先完成规格 Gate 0，分配并推送真实 canonical Task 后实施。
+读取 [EXECUTION_SPEC.md](../tasks/support/bingo-voyage-autoplay-20261013/EXECUTION_SPEC.md)，批准版本 `1c3683f`。范围已获 User 确认；任务状态以 TASK-0039 和 [STATUS](../projects/bingo-voyage/STATUS.md) 为准。下文 ChatGPT 分配限制为历史记录。
 
 本规格硬要求数据驱动决策、独立证据核验；图像仅辅助导航与几何标定。验收为预登记连续 10 局四卡逐局填充率 >90%；整批加权 ≥95% 为优化目标，100% 不表示填满全卡或保证中奖。数据完整性/语义/局归属另设门槛，禁止假成功、跨局借帧与挑成功局。
 
