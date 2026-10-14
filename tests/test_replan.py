@@ -72,6 +72,13 @@ class ContinuousTargets(unittest.TestCase):
             stop=Path(folder)/'STOP';stop.touch();d.stop_paths=(stop,)
             with patch.object(d,'foreground',return_value=True),patch.object(ap,'spawn_tap') as send:
                 self.assertEqual(d.dismiss_reward(sample),'not_executed');send.assert_not_called()
+            im=Image.new('RGB',(900,1600));draw=ImageDraw.Draw(im)
+            draw.rectangle((330,80,580,350),fill=(250,200,50))
+            draw.rectangle((300,365,600,435),fill=(250,30,20))
+            draw.rectangle((280,790,640,830),fill='white');im.save(p)
+            with patch.object(d,'foreground',return_value=True),patch.object(ap,'shot',return_value=True):
+                level=d.sample(p)
+            self.assertEqual(level['scene'],'reward');self.assertEqual(level['button'],[450,820])
 
     def test_late_filled_bands_cannot_shrink_measured_card(self):
         import copy
@@ -143,6 +150,12 @@ class ContinuousTargets(unittest.TestCase):
             self.assertEqual(ledger.remaining_positions(),0)
             with self.assertRaisesRegex(ValueError,'round_count_limit'):
                 ledger.reserve('acceptance',q,'forbidden','extra')
+        with tempfile.TemporaryDirectory() as folder:
+            ledger=live.Budget(folder)
+            with patch.object(ledger,'elapsed',return_value=2401):
+                with self.assertRaisesRegex(ValueError,'remaining_time'):
+                    ledger.reserve('acceptance',q,'too_late','batch')
+            self.assertFalse(ledger.records())
 
     def test_old_target_not_starved_and_unknown_does_not_halt_other_cards(self):
         c=controller()

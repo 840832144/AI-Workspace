@@ -282,8 +282,17 @@ class Device:
         caption=pixels[980:1060,260:650]
         reward=(yellow_fraction((160,400,800,580))>.12 and
                 yellow_fraction((350,610,560,810))>.2 and (caption.min(axis=2)>235).mean()>.05)
-        scene="round" if raw_det else "reward" if reward else "betpanel" if panel else "congrats" if congrats else "lobby" if green and 120<green[0]<400 and green[1]>1200 else "unknown"
-        if scene=='reward':green=(450,1025,0)  # Observed non-consuming dismiss area.
+        banner=pixels[365:435,300:600];continue_caption=pixels[790:840,280:640]
+        level_up=(yellow_fraction((330,80,580,350))>.4 and
+                  ((banner[:,:,0]>200)&(banner[:,:,1]<100)&(banner[:,:,2]<100)).mean()>.4 and
+                  (continue_caption.min(axis=2)>235).mean()>.05)
+        reward=reward or level_up
+        rating=(near(im.getpixel((100,600)),BLUE,65) and
+                im.getpixel((800,510))[0]>180 and im.getpixel((800,510))[1]<100 and
+                min(im.getpixel((812,536)))>220)
+        scene="round" if raw_det else "reward" if reward or rating else "betpanel" if panel else "congrats" if congrats else "lobby" if green and 120<green[0]<400 and green[1]>1200 else "unknown"
+        if scene=='reward':green=(450,820 if level_up else 1025,0)  # Observed non-consuming dismiss area.
+        if rating:green=(812,533,0)  # Close the rating prompt; never select stars.
         return {"foreground":ok,"scene":scene,"grid":det,"button":list(green[:2]) if green else None,
                 "sampled_at":sampled_at}
 
@@ -441,6 +450,8 @@ class Budget:
         actual={r['session_id']:r['tickets'] for r in records if r['kind']=='resource_observed'}
         if sum(max(r['reserved_tickets'],actual.get(r['session_id'],0)) for r in purchases)+cost>96 or elapsed>=2700:
             raise ValueError("task_resource_limit")
+        if purpose=='acceptance' and elapsed+LIMITS['round_seconds']>LIMITS['total_seconds']:
+            raise ValueError('insufficient_remaining_time_for_full_round')
         self.append("purchase_reserved",purpose=purpose,session_id=session,reserved_tickets=cost,
                     quote_source=quote["source_ref"],batch_id=batch_id)
 
@@ -490,7 +501,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
     events=[];samples=[];opened=False;controller=None;paid=False;closed_at=None;client_offset=None
     client_chunks=[];client_future=None;client_pool=ThreadPoolExecutor(max_workers=1)
     quote=None;buy_at=None;round_id_bound=None;trace=None;native_events=[];history=[];tail=None;start=None
-    registration={};processed_calls=set();processed_marks=set();progress_at=0
+    registration={};processed_calls=set();processed_marks=set();progress_at=0;prepurchase_dismissals=0
     ledger.append('runtime_start',session_id=session.name)
     try:
         if play_round and not clean_code():raise ValueError('candidate_not_frozen')
@@ -555,7 +566,13 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                         if controller.grid:
                             controller.layout_at=sample['sampled_at'];controller.backfill()
                     elif not paid or sample["scene"]!="round":controller.revoke("not_visible_round")
-                if open_panel and not paid and not opened and check["diagnostic_navigation_ready"] and sample["scene"]=="lobby":
+                if (open_panel and not paid and sample['scene']=='reward' and prepurchase_dismissals<2
+                        and any(e['type']=='close_candidate' for e in history)):
+                    prepurchase_dismissals+=1
+                    outcome=device.dismiss_reward(sample)
+                    events.append(dict(type='reward_navigation',outcome=outcome,at_ns=time.time_ns()))
+                    time.sleep(1)
+                elif open_panel and not paid and not opened and check["diagnostic_navigation_ready"] and sample["scene"]=="lobby":
                     # Only a non-consuming navigation action. No fall-through to PLAY on the panel.
                     opened=True
                     outcome=device.open_panel(sample)
