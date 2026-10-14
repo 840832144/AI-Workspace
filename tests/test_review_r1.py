@@ -141,6 +141,14 @@ class EntryAndBudget(unittest.TestCase):
         self.assertEqual({k for k,v in decoded.items()if v['marked'] and k[1]!=12},{(1,15),(4,15)})
         self.assertFalse(decoded[(1,10)]['marked'])
         self.assertEqual(terminal_cells(state+'11.2.1,6.8.1,21.4.1'),decoded)
+        dotted=state.replace('1::','1:13.3:',1)
+        result=terminal_cells(dotted)
+        changed=[k for k in result if result[k]!=decoded[k]]
+        self.assertEqual(len(changed),1)
+        self.assertEqual(result[changed[0]],dict(marked=True,special=True))
+        for token in ['2::','1:13..3:','1:unknown:']:
+            with self.assertRaisesRegex(ValueError,'state_cell_semantics_unknown'):
+                terminal_cells(state.replace('1::',token,1))
         with self.assertRaisesRegex(ValueError,'state_card_boundaries'):
             terminal_cells(state+'unrecognized')
 

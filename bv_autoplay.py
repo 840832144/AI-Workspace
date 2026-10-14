@@ -297,6 +297,7 @@ class AutoPlay:
                 grid[slot]['input_ready']=c.get('input_ready',True)
                 grid[slot]['reachable_cells']=list(c.get('reachable_cells',range(25)))
                 grid[slot]['pause_reason']=c.get('pause_reason','not_ready')
+                grid[slot]['shape_history']=c.get('shape_history',[])
             # Four distinct nonoverlapping card rectangles, not four detections of one.
             for i in range(1, 5):
                 for j in range(i+1, 5):
@@ -318,7 +319,17 @@ class AutoPlay:
                 else:
                     count=track.get('count',0)+1 if stable else 1
                     tracks[slot]=dict(candidate=current,count=count,at=now)
-                current['input_ready']=ready and count>=3
+                # The production sampler already measures three independent
+                # shapes. Validate those measurements instead of waiting for
+                # three additional frames after a Bingo animation has ended.
+                measured=current['shape_history']
+                proven=(len(measured)==3 and all(type(m.get('at')) in (int,float) for m in measured)
+                        and 0<=now-measured[-1]['at']<=2.5
+                        and all(.4<=b['at']-a['at']<=2.5 for a,b in zip(measured,measured[1:])))
+                if proven:
+                    proven=all(len(m.get(a,[]))==5 and all(abs(m[a][k]-current[a][k])<=2
+                               for k in range(5)) for m in measured for a in ('cols','rows'))
+                current['input_ready']=ready and (count>=3 or proven)
                 current['sampled_at']=now
                 changed=(old.get('input_ready')!=current['input_ready'] or not old or
                          any(old.get(a)!=current[a] for a in ('cols','rows')) or

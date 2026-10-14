@@ -62,8 +62,14 @@ def row_runs(row, min_run=MIN_RUN):
 
 def components(mask, min_area=MIN_AREA, max_gap=2):
     comps = []
-    for y in range(mask.shape[0]):
-        for x0, x1 in row_runs(mask[y]):
+    # Enumerate the identical horizontal runs in NumPy, preserving row order.
+    # The former Python loop visited every pixel five times per screenshot and
+    # consumed much of the final ball's short input window.
+    edges=np.diff(np.pad(np.asarray(mask,dtype=np.int8),((0,0),(1,1))),axis=1)
+    ys,starts=np.nonzero(edges==1);_,ends=np.nonzero(edges==-1)
+    for y,x0,end in zip(ys,starts,ends):
+        if end-x0>=MIN_RUN:
+            y,x0,x1=int(y),int(x0),int(end)-1
             hit = False
             for c in comps:
                 if y - c[3] <= max_gap:
@@ -237,7 +243,7 @@ def refine_rows(img, card):
 def cell_geometry(img, card):
     """Measure cell shapes, never numbers or fill state.
 
-    Pale tiles and red round tokens both supply geometric edges. A Bingo paint
+    Pale/yellow tiles and red round tokens supply geometric edges. A Bingo paint
     change must not turn a visible row into a shorter card. At least four whole
     bands on each axis, including both ends, must independently fit five slots.
     Local face support gates each cell; a modal/animation is not click-through.
@@ -250,6 +256,7 @@ def cell_geometry(img, card):
     if not a.size:return None
     lo=a.min(axis=2);hi=a.max(axis=2)
     face=((lo>205)&(hi-lo<55))|((a[:,:,0]>200)&(a[:,:,1]<130)&(a[:,:,2]<130))
+    face|=(a[:,:,0]>210)&(a[:,:,1]>170)&(a[:,:,2]<150)&(a[:,:,0]>=a[:,:,1])
     def axis(frac, offset):
         runs=row_runs(frac>.25,min_run=max(20,int(.6*sp)))
         if not 4<=len(runs)<=5:return None
@@ -269,7 +276,14 @@ def cell_geometry(img, card):
             dx=(cols[-1]-cols[0])/4*.4;dy=(rows[-1]-rows[0])/4*.4
             patch=face[max(0,int(y-y0-dy)):int(y-y0+dy)+1,
                        max(0,int(x-x0-dx)):int(x-x0+dx)+1]
-            if patch.size and patch.mean()>=.35:reachable.append(col*5+row)
+            if patch.size:
+                # Numbers/icons can occupy the center while all four tile
+                # edges remain visible. Require support on every edge; a
+                # single exposed corner or a fully covered tile cannot pass.
+                edge=max(2,int(min(patch.shape)*.125))
+                sides=[patch[:edge,:],patch[-edge:,:],patch[:,:edge],patch[:,-edge:]]
+                perimeter=patch.mean()>=.25 and all(side.mean()>=.4 for side in sides)
+                if patch.mean()>=.35 or perimeter:reachable.append(col*5+row)
     return dict(cols=cols,rows=rows,reachable_cells=reachable,source='visible_cell_shapes')
 
 

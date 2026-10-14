@@ -426,10 +426,13 @@ class Device:
                 stable=previous is not None and max(abs(body[a][k]-previous[a][k])
                            for a in ('cols','rows') for k in range(5))<=2
                 count=old.get('count',0)+1 if stable else 1
-                tracks[index]=dict(body=copy.deepcopy(body),count=count)
+                measurement=dict(at=time.monotonic(),cols=list(body['cols']),rows=list(body['rows']))
+                history=(old.get('history',[]) if stable else [])+[measurement]
+                tracks[index]=dict(body=copy.deepcopy(body),count=count,history=history[-3:])
                 if count>=3:
                     c=copy.deepcopy(current);c.update(body,input_ready=True,observed=True,
-                                 row_mode='current_cell_shapes',pause_reason=None)
+                                 row_mode='current_cell_shapes',pause_reason=None,
+                                 shape_history=history[-3:])
                     reference[index]=copy.deepcopy(c)
                 else:c['pause_reason']='geometry_stabilizing'
             else:tracks.pop(index,None)

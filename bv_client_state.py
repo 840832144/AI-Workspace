@@ -63,7 +63,10 @@ def terminal_cells(state):
         parsed=[]
         for t in tokens:
             if t=='':parsed.append(dict(marked=False,special=False));continue
-            if not re.fullmatch(r'[01]?:[0-9]*:[0-9]*',t):
+            # Modifier payloads can be dotted numeric tuples (observed :13.3:).
+            # Their meaning remains unknown: never count these cells as an
+            # ordinary fill. Preserve the strict first-field and card mapping.
+            if not re.fullmatch(r'[01]?:(?:[0-9]+(?:\.[0-9]+)*)?:(?:[0-9]+(?:\.[0-9]+)*)?',t):
                 raise ValueError('state_cell_semantics_unknown')
             flag,modifier,extra=t.split(':')
             parsed.append(dict(marked=flag=='1',special=bool(modifier or extra)))
