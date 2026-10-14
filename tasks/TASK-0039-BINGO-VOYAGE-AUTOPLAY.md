@@ -1,5 +1,7 @@
 # TASK-0039 — Bingo Voyage 四卡自动玩可靠性修复
 
+> 2026-10-14后续：User明确放宽剩余时间并要求优先在线跑通。新版本execution-time-relaxed-20261014本轮保守封顶6000秒（原5400+最多600）；User未指定该数值，系实现自限。单局300秒、16票、累计96票/18位置/3历史定位不变；旧账本与授权保留。详见tasks/support/TASK-0039/TIME-RELAXATION-20261014.md。以下前次时长/余量为历史快照。
+
 - Status: In Progress
 - Project key: BINGO-VOYAGE
 - Owner: User / ChatGPT
