@@ -1,3 +1,19 @@
+## 2026-10-14 当前：DSH答复已复核，停止原emulated绑定
+
+原实例一次只读查询确认Android15/SDK35，新增0.407秒已记旧账本；无attach、点击或购买。直接失败点为NativeBridge加载返回空，namespace具体根因仍未证实；Frida16.7.19的emulated agent库无法通过该绑定卸载，停止脚本/detach不能等同库卸载。没有成功加载的证据，不宣称已经驻留，也不杀进程或重启清理。
+
+bv_observer.py普通CLI、内部worker及直接inspect/worker都在Frida导入、helper准备、输出目录、ADB与账本写入前停止，CLI exit2；无强制运行开关。既有实现保留供Review。92项离线/真实函数与CLI回归通过（unittest32.854秒、exit0），账本字节不变；新增3项核验停止入口及worker不能绕过。原有四卡、覆盖恢复、结算、STOP和预算回归保留，不等于真机交付。
+
+当前累计52票/2358.402秒/历史8位置，剩44票/3041.598秒/10位置，十局与收尾预留后准备11.598秒。新十局0/10，无面板字段、覆盖受理或自动续局新增证明；生产报价及资源时钟阻断保持。单局16票/300秒、累计96票/5400秒/18位置、历史3定位不变；第6位置失败与第8位置旧超限/接管保留。
+
+DSH答复中的Android12、SDK阈值即证明根因、0x310必为字段偏移、metadata单独给出物理偏移及所有授权路径不可能均未采纳。辅助二进制仅常量内19字节差异、四份helper一致已复核，只补齐helper维度，不追认整次运行冻结。离线DEX名称筛查未命中指定面板类型，不排除全部Java路径。
+
+详见[DSH答复独立复核与可转交问题](https://github.com/840832144/AI-Workspace/blob/codex/bingo-voyage-autoplay-20261013/tasks/support/TASK-0039/DSH-ANSWER-REVIEW-20261014.md)。受控入口execution16/hook/dsh-review/REVIEW.md；原答复和attempt不改。限定被动Hook授权仍有效，但当前绑定不可用；没有已验证替代，不更换实例、重打包、扩权或继续盲试。不合并/发布/SVN/finalize。Subagents: none。
+
+---
+
+## 历史：DSH答复接纳之前
+
 > 2026-10-14 最新：限定Hook已获准；真实ARM64观察组件加载失败，新十局0/10。89项离线回归通过，累计52票/2357.995秒。已按User要求整理DSH问题，见TASK0039_REVIEW.md。以下交接均为历史。
 
 > 2026-10-14 16票修订：资源/整批预算/扣费一致性已修，81项离线回归通过；主线尚未交付，生产观察待具体Hook授权。当前限制见RUN_LIMITS.md，下一步见TASK0039_SOURCE_PLAN.md，证据见TASK0039_REVIEW.md。以下Round 4及更早全部历史。

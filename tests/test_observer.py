@@ -4,12 +4,45 @@ import hashlib
 from pathlib import Path
 import tempfile
 import unittest
+import subprocess
+import sys
 from unittest.mock import patch
 
-from bv_observer import prepare_helper,inspect,summarize_observations
+from bv_observer import prepare_helper,inspect,summarize_observations,worker,EMULATED_BINDING_STOP
 
 
 class ObserverSafety(unittest.TestCase):
+    def test_stopped_inspect_has_no_helper_ledger_or_device_side_effects(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out=Path(tmp)/'absent'
+            with patch('bv_observer.prepare_helper') as prepare,patch('bv_live.Budget') as budget, \
+                    patch('subprocess.run') as run,patch('subprocess.Popen') as spawn:
+                with self.assertRaisesRegex(RuntimeError,EMULATED_BINDING_STOP):inspect('absent',out)
+                self.assertFalse(out.exists())
+                for mock in (prepare,budget,run,spawn):mock.assert_not_called()
+
+    def test_worker_cannot_bypass_stopped_binding(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out=Path(tmp)/'absent'
+            with patch.dict(sys.modules,{'frida':None}):
+                with self.assertRaisesRegex(RuntimeError,EMULATED_BINDING_STOP):
+                    worker('unused',0,out,1,bridge_diagnostic=True)
+            self.assertFalse(out.exists())
+
+    def test_actual_helper_and_worker_cli_stop_without_output_directory(self):
+        entry=Path(__file__).resolve().parents[1]/'bv_observer.py'
+        with tempfile.TemporaryDirectory() as tmp:
+            out=Path(tmp)/'absent'
+            for args in (['--helper','absent'],['--worker','unused','--pid','0','--bridge-diagnostic']):
+                with self.subTest(args=args):
+                    result=subprocess.run([sys.executable,str(entry),'--output',str(out),*args],
+                                          capture_output=True,text=True,timeout=5)
+                    self.assertEqual(result.returncode,2,result.stderr)
+                    report=json.loads(result.stdout)
+                    self.assertEqual(report['error'],EMULATED_BINDING_STOP)
+                    self.assertFalse(report['run_ready']);self.assertFalse(report['quote_source_available'])
+                    self.assertEqual(report['purchase_inputs'],0);self.assertFalse(out.exists())
+
     def helper(self,root):
         data=bytearray(64);data[:6]=b'\x7fELF\x02\x01';data[18:20]=b'\x3e\x00'
         data+=b'16.7.19\0/sys/fs/selinux/policy\0tail'
@@ -41,7 +74,8 @@ class ObserverSafety(unittest.TestCase):
     def test_no_device_access_when_ten_round_margin_insufficient(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);src=self.helper(root)
-            with patch('bv_live.Budget') as budget,patch('subprocess.run') as run:
+            # Isolate the historical lifecycle below the now-stopped binding.
+            with patch('bv_observer.require_emulated_binding'),patch('bv_live.Budget') as budget,patch('subprocess.run') as run:
                 budget.return_value.elapsed.return_value=2400
                 with self.assertRaisesRegex(ValueError,'insufficient_preparation_margin'):inspect(src,root/'output',12)
                 run.assert_not_called();budget.return_value.append.assert_not_called()
@@ -53,7 +87,7 @@ class ObserverSafety(unittest.TestCase):
             def adb(args,**kw):
                 if 'test -c /dev/null' in args[-1]:raise subprocess.TimeoutExpired(args,2)
                 return subprocess.CompletedProcess(args,0,stdout='Permissive\nabc  /sys/fs/selinux/policy\n18360\nHELPER_STOPPED\n',stderr='')
-            with patch('bv_live.Budget') as budget,patch('subprocess.run',side_effect=adb) as run, \
+            with patch('bv_observer.require_emulated_binding'),patch('bv_live.Budget') as budget,patch('subprocess.run',side_effect=adb) as run, \
                     patch('bv_observer.time.monotonic',side_effect=[1000,1000.25]):
                 budget.return_value.elapsed.return_value=2300;budget.return_value.gross.return_value=52
                 result=inspect(src,root/'output',12)
@@ -76,7 +110,7 @@ class ObserverSafety(unittest.TestCase):
         import subprocess
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);src=self.helper(root)
-            with patch('bv_live.Budget') as budget,patch('subprocess.run',side_effect=subprocess.TimeoutExpired('adb',2)):
+            with patch('bv_observer.require_emulated_binding'),patch('bv_live.Budget') as budget,patch('subprocess.run',side_effect=subprocess.TimeoutExpired('adb',2)):
                 budget.return_value.elapsed.return_value=2300;budget.return_value.gross.return_value=52
                 result=inspect(src,root/'output',12)
                 self.assertIn('runtime_session_open',result)

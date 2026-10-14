@@ -14,6 +14,17 @@ import time
 import uuid
 
 HELPER_SHA256='d27e9eba721e623e6b39186f98cf9f03f77be5ac0e3870edb158db62e24318eb'
+EMULATED_BINDING_STOP='emulated_binding_stopped_load_failure_and_unload_unavailable'
+
+
+def require_emulated_binding():
+    """This binding is stopped after three load failures and the unload audit.
+
+    Frida 16.7.19 leaves a successfully loaded emulated agent resident. Script
+    unload/detach is not library unload. No runtime flag re-enables this binding;
+    a compatible implementation with a reviewed lifecycle must replace it.
+    """
+    raise RuntimeError(EMULATED_BINDING_STOP)
 
 
 def prepare_helper(source, destination):
@@ -43,6 +54,7 @@ def prepare_helper(source, destination):
 
 
 def worker(address,pid,output,seconds,bridge_diagnostic=False):
+    require_emulated_binding()
     import frida
     import threading
     events=Path(output)/'observations.jsonl'
@@ -97,6 +109,7 @@ def worker(address,pid,output,seconds,bridge_diagnostic=False):
 
 
 def inspect(helper,output,seconds=12,bridge_diagnostic=False):
+    require_emulated_binding()
     from bv_live import Budget,LIMITS,BATCH_ROUNDS,BATCH_CLEANUP_SECONDS,PACKAGE
     from bv_autoplay import ADB,DEV
     if not 1<=seconds<=15:raise ValueError('bounded_inspection_required')
@@ -193,6 +206,11 @@ if __name__=='__main__':
     p.add_argument('--seconds',type=float,default=12);p.add_argument('--worker');p.add_argument('--pid',type=int)
     p.add_argument('--bridge-diagnostic',action='store_true')
     a=p.parse_args()
+    try:require_emulated_binding()
+    except RuntimeError as exc:
+        print(json.dumps(dict(status='Stopped binding',error=str(exc),run_ready=False,
+                              quote_source_available=False,purchase_inputs=0)))
+        sys.exit(2)
     if a.worker:worker(a.worker,a.pid,a.output,a.seconds,a.bridge_diagnostic)
     elif a.helper:
         print(json.dumps(inspect(a.helper,a.output,a.seconds,a.bridge_diagnostic),indent=2))
