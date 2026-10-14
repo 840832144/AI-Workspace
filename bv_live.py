@@ -746,7 +746,11 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                         closed_at=closed_at or time.monotonic()
                 # Exactly one dispatched ordinary target per diagnostic. No repetition/auto-powerup input.
                 controller.tick([e for e in newly if e["type"]=="cell_observation"])
-                if closed_at and time.monotonic()-closed_at>=10:break
+                if closed_at:
+                    terminal=any(e['type']=='state_observation' and e.get('round_id')==round_id_bound for e in events)
+                    # No more cell input after close. Keep observing the real
+                    # terminal upload, bounded by 45s and the same 300s cap.
+                    if terminal or time.monotonic()-closed_at>=45:break
                 if buy_at and time.monotonic()-buy_at>=LIMITS['round_seconds']:break
             if future is None:
                 future=pool.submit(device.sample,session/("navigation_%d.png"%len(samples)))
@@ -1028,7 +1032,7 @@ def start_batch(device=None,resume=None):
             # semantics cannot authorize another purchase, nor block safe close.
             nav0=time.monotonic();claimed=False;ready=False;rewards_dismissed=0
             ledger.append('runtime_start',session_id=session.name+'_settlement')
-            while (time.monotonic()-nav0<20 and time.monotonic()<device.round_deadline
+            while (time.monotonic()-nav0<60 and time.monotonic()<device.round_deadline
                    and ledger.elapsed()<LIMITS['total_seconds'] and not (batch/'STOP').exists()):
                 sample=device.sample(session/'settlement.png')
                 if time.monotonic()>=device.round_deadline or any(p.exists() for p in device.stop_paths):break

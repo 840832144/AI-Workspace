@@ -266,7 +266,10 @@ def cell_geometry(img, card):
         ids=[round((v-centers[0])/pitch) for v in centers]
         if len(set(ids))!=len(ids) or ids[0]!=0 or ids[-1]!=4:return None
         pitch,origin=np.polyfit(ids,centers,1)
-        if max(abs(origin+i*pitch-v) for i,v in zip(ids,centers))>2:return None
+        # Rounded/highlighted tile edges shift the measured center by up to
+        # three pixels. Independent rows and three temporal samples still
+        # must agree; this is far inside the separately checked cell face.
+        if max(abs(origin+i*pitch-v) for i,v in zip(ids,centers))>3:return None
         return [float(origin+i*pitch) for i in range(5)]
     rows=axis(face.mean(axis=1),y0);cols=axis(face.mean(axis=0),x0)
     if rows is not None and cols is None:
