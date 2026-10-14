@@ -1,6 +1,16 @@
 # Bingo Voyage 自动玩接管入口 — 2026-10-13
 
-## 当前执行：2026-10-14 Round 4 Needs changes
+## 当前交付：2026-10-14 Round 4修复后统一Review
+
+状态In Progress → Review，未Accepted。唯一Round 4 d58e4eb原文由5b1c8b3接纳，历史评审保留；沿用TASK-0039 / PR #16/#17，不新建任务。功能候选6488ee6实现逐卡重新标定/恢复补排、末球/闭局取消及同局300秒输入截止；报价身份/时效校验契约已回归，但生产实时面板reader及覆盖后实际点击受理仍未证明。
+
+71项离线/入口集成回归通过（23.097秒，exit0）。第4–7位置153格按结构化来源归因，确认未填3/0/4/5；新候选仅出现12个dry发送机会，不改写任何成绩。真实Device.sample以36张历史截图回放恢复链，无设备调用/输入。实际只读--check及四次--results均exit2，购买项不变；本轮未运行真实--start，明确不购买第9/10位置。
+
+原8个跨版本完整启动、3局定位、52票保留；累计控制运行2267.262秒。第6局上界88.57%是真实未达标，第8局12票超单局上限/User接管与证据不足分列。同版十局目标未完成。统一报告含最小只读观测缺口及新10局条件计划：若实时4票/局，需40票、累计92；建议累计完整启动上限18、时长90分钟。仅提案未授权执行，当前96票/2700秒/10位置代码不变。
+
+受控入口：`%LOCALAPPDATA%\AI-Workspace\bingo-voyage-task0039\round4\REVIEW_R4.md`与VALIDATION_R4.json，保留原冻结来源/账本。main安全核对898358f；Registry重建/validate、原reservation pending-main。Workspace Sync ON_DEMAND，0冲突、provider unavailable、6 stale，Git为准。不合并、发布、提交SVN、扩权或finalize。Subagents: none。
+
+## 历史：Round 4接纳及执行范围
 
 接纳d58e4eb的[唯一Round 4](../tasks/support/TASK-0039/CHATGPT-REVIEW-4.md)，保留全部历史评审。状态Review → Changes Requested → In Progress，继续TASK-0039 / PR #16/#17；6eba235完整重编稿仍为目标规范。
 
