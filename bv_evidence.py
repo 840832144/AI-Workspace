@@ -12,7 +12,7 @@ from pathlib import Path
 from bv_proto import parse
 from bv_ws2 import parse_frame
 
-VERSION = "task0039-r1-v2"
+VERSION = "task0039-r2-v3"
 
 
 def fields(body):
@@ -46,6 +46,7 @@ def decode(data, rec, source):
         raise ValueError("body_index_mismatch")
     base = {"source_ref": source, "source_file": rec["file"],
             "received_at": rec.get("ts_utc", rec.get("ts")),
+            "legacy_timezone": "+08:00" if 'ts_utc' not in rec else None,
             "received_ns": rec.get("received_ns"),
             "epoch": rec.get("epoch"), "connection": rec.get("connection"),
             "sequence": frame["seq"], "direction": rec.get("dir"),

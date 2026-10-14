@@ -192,7 +192,8 @@ class EntryAndBudget(unittest.TestCase):
             def route(seconds,open_panel,**kw):return original(seconds,open_panel,source=source,root=root/'run',device=FakeDevice(),**kw)
             check=dict(diagnostic_navigation_ready=True,purchase_ready=True,blockers=[],quote={'balance':81})
             process=SimpleNamespace(communicate=lambda **kw:None,returncode=0)
-            with patch.object(live,'preflight',return_value=(check,[dict(type='wallet_snapshot',account='synthetic')])),patch.object(live,'diagnose',side_effect=route),patch.object(ap,'spawn_tap',return_value=process)as send,patch.object(ap.sys,'argv',['bv_autoplay.py','--diagnose','--diagnostic-round','--seconds','2.6']),patch('builtins.print'):
+            wallet=dict(type='wallet_snapshot',account='synthetic',received_at='2026-10-13T19:00:00+08:00',currencies={'TICKET':81})
+            with patch.object(live,'clean_code',return_value=True),patch.object(live,'preflight',return_value=(check,[wallet])),patch.object(live,'diagnose',side_effect=route),patch.object(ap,'spawn_tap',return_value=process)as send,patch.object(ap.sys,'argv',['bv_autoplay.py','--diagnose','--diagnostic-round','--seconds','2.6']),patch('builtins.print'):
                 self.assertEqual(ap.main(),2)
             session=next((root/'run').glob('diagnostic_*'));r=json.loads((session/'result.json').read_text())
             self.assertTrue(r['round_bound']);self.assertEqual(r['input_dispatched'],1)
@@ -225,8 +226,9 @@ class EntryAndBudget(unittest.TestCase):
             with self.assertRaises(ValueError):b.reserve('diagnostic',None,'s')
             quote=dict(source_ref='synthetic',tickets=8,cards=4,balance=96)
             b.reserve('diagnostic',quote,'d1');b.reserve('diagnostic',quote,'d2')
-            with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('diagnostic',quote,'d3')
-            for i in range(10):b.reserve('acceptance',quote,str(i))
+            b.reserve('diagnostic',quote,'d3')
+            with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('diagnostic',quote,'d4')
+            for i in range(9):b.reserve('acceptance',quote,str(i))
             b.append('reward',tickets=100)
             with self.assertRaises(ValueError):b.reserve('acceptance',quote,'extra')
             self.assertEqual(sum(r.get('reserved_tickets',0) for r in b.records()),96)

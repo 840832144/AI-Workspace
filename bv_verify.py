@@ -14,7 +14,9 @@ def read_json(path):
 
 def timestamp(event):
     date=dt.datetime.fromisoformat(event['received_at'])
-    if date.tzinfo is None:date=date.replace(tzinfo=dt.timezone(dt.timedelta(hours=8)))
+    if date.tzinfo is None:
+        if event.get('legacy_timezone')!='+08:00':raise ValueError('timestamp_timezone_unknown')
+        date=date.replace(tzinfo=dt.timezone(dt.timedelta(hours=8)))
     return int(date.timestamp()*1e9)
 
 

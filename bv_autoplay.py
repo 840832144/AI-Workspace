@@ -209,7 +209,8 @@ class AutoPlay:
             self.log(kind="input_revoked", reason=reason, generation=self.generation)
 
     def stop_requested(self):
-        return Path(self.sess, "STOP").exists()
+        batch_stop=getattr(self.a,'batch_stop_path',None)
+        return Path(self.sess, "STOP").exists() or bool(batch_stop and Path(batch_stop).exists())
 
     def execute_target(self, q):
         with self.state_lock:
@@ -375,6 +376,7 @@ class AutoPlay:
             for k, number in enumerate(c["vals"]):
                 r, col = idx2rc(k)
                 key = (c["slot"], r, col)
+                if getattr(self.a,'diagnostic_slot',None) not in (None,c['slot']):continue
                 if number != ball or k == 12 or key in self.done:
                     continue
                 active = self.pending + self.awaiting + ([self.input_target] if self.input_target else [])
@@ -496,7 +498,7 @@ def main():
     ap.add_argument("--start", action="store_true", help="正式验收启动；先核对当前数据和资源")
     ap.add_argument("--diagnose", action="store_true", help="受控定位；结果不能作为正式验收")
     ap.add_argument("--open-panel", action="store_true", help="定位时允许从已识别大厅打开选卡面板；不点击购买")
-    ap.add_argument("--diagnostic-round", action="store_true", help="定位时按结构化报价买四卡并作一次合法点击；最多两局")
+    ap.add_argument("--diagnostic-round", action="store_true", help="定位时按结构化报价买四卡并作一次合法点击；任务累计最多三局")
     ap.add_argument("--seconds", type=float, default=20, help="定位运行秒数，最多300")
     ap.add_argument("--batch-results", metavar="BATCH", help="从预登记和冻结原始来源重建十局结果")
     ap.add_argument("--stop", metavar="SESSION", help="仅向指定本工具会话写 STOP，不停止采集器")

@@ -24,7 +24,7 @@ CONTROL = Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "AI-Workspace
 PACKAGE = "com.bingo.cruise.free.best.top.game"
 INSTANCE = 'mumu-authorized'
 METRIC = "set-intersection-r1-v2"
-LIMITS = {"diagnostic_rounds": 2, "acceptance_rounds": 10, "cards": 4,
+LIMITS = {"diagnostic_rounds": 3, "acceptance_rounds": 10, "cards": 4,
           "tickets_per_round": 8, "gross_tickets": 96, "round_seconds": 300, "total_seconds": 2700}
 
 
@@ -140,6 +140,15 @@ def recent_start(index):
 class Device:
     base = "/sdcard/Android/data/"+PACKAGE+"/files/"
 
+    def stopped(self):
+        return any(Path(p).exists() for p in getattr(self,'stop_paths',()))
+
+    def send(self,button):
+        from bv_autoplay import spawn_tap,finish_tap
+        # All possibly slow foreground/quote/sample reads precede this last check.
+        if self.stopped():return 'not_executed'
+        return finish_tap(spawn_tap(*button))
+
     def read_file(self,path,offset=0):
         from bv_autoplay import ADB,DEV
         if not path.startswith(self.base):raise ValueError("outside_game_data")
@@ -182,7 +191,7 @@ class Device:
         return {"tickets":cost,"cards":4,"bet_symbol":symbol,"gds_version":version,
                 "source_ref":str(folder/"selection.json"),"config_ref":str(folder/"base_bet_config.json"),
                 "log_path":logpath,"log_start":len(raw),"sampled_at":time.monotonic(),
-                "last_ticket_change":changes[-1] if changes else None}
+                "last_ticket_change":max(changes,key=lambda e:e['at_ns']) if changes else None}
 
     def foreground(self):
         from bv_autoplay import ADB, DEV
@@ -212,20 +221,26 @@ class Device:
     def claim(self,sample):
         from bv_autoplay import spawn_tap,finish_tap
         if sample['scene']!='congrats' or time.monotonic()-sample['sampled_at']>2.5 or not self.foreground():return 'not_executed'
-        return finish_tap(spawn_tap(*sample['button']))
+        return self.send(sample['button'])
 
     def open_panel(self, sample):
         from bv_autoplay import spawn_tap, finish_tap
         if sample["scene"]!="lobby" or time.monotonic()-sample["sampled_at"]>2.5 or not self.foreground():
             return "not_executed"
-        return finish_tap(spawn_tap(*sample["button"]))
+        return self.send(sample['button'])
 
     def buy(self,sample,quote):
         from bv_autoplay import spawn_tap,finish_tap
         if (sample["scene"]!="betpanel" or time.monotonic()-sample["sampled_at"]>2.5
                 or time.monotonic()-quote["sampled_at"]>10 or not self.foreground()):
             return "not_executed"
-        return finish_tap(spawn_tap(*sample["button"]))
+        return self.send(sample['button'])
+
+
+def ticket_balance(wallet,change):
+    from bv_verify import timestamp
+    when=timestamp(wallet)
+    return change['after'] if change and change['at_ns']>when else wallet['currencies']['TICKET']
 
 
 def preflight(source=SOURCE, device=None):
@@ -247,10 +262,7 @@ def preflight(source=SOURCE, device=None):
         try:
             folder=CONTROL/("check_"+uuid.uuid4().hex);folder.mkdir(parents=True)
             quote=device.context(wallets[-1]["account"],folder)
-            quote["balance"]=wallets[-1]["currencies"]["TICKET"]
-            change=quote.get("last_ticket_change")
-            wallet_time=datetime.datetime.fromisoformat(wallets[-1]["received_at"]).replace(tzinfo=datetime.timezone(datetime.timedelta(hours=8))).timestamp()
-            if change and change["at_ns"]/1e9>wallet_time:quote["balance"]=change["after"]
+            quote["balance"]=ticket_balance(wallets[-1],quote.get('last_ticket_change'))
         except (OSError,ValueError,KeyError,subprocess.TimeoutExpired) as exc:
             errors.append("quote_"+str(exc))
     buy_errors=list(errors)
@@ -297,7 +309,7 @@ class Budget:
         cost=quote["tickets"]
         if not 0<cost<=8 or quote.get("cards")!=4 or quote.get("balance",-1)<cost:
             raise ValueError("per_round_resource_limit")
-        limit=2 if purpose=="diagnostic" else 10 if purpose=="acceptance" else 0
+        limit=LIMITS.get(purpose+'_rounds',0)
         if sum(r["purpose"]==purpose for r in purchases)>=limit:raise ValueError("round_count_limit")
         actual={r['session_id']:r['tickets'] for r in records if r['kind']=='resource_observed'}
         if sum(max(r['reserved_tickets'],actual.get(r['session_id'],0)) for r in purchases)+cost>96 or elapsed>=2700:
@@ -335,6 +347,9 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
     session=Path(session) if session else root/(purpose+"_"+uuid.uuid4().hex)
     session.mkdir(exist_ok=bool(batch))
     ledger=Budget(root);t0=time.monotonic();device=device or Device()
+    stop_paths=(session/'STOP',Path(batch['folder'])/'STOP') if batch else (session/'STOP',)
+    device.stop_paths=stop_paths
+    stopped=lambda:any(p.exists() for p in stop_paths)
     source=Path(source);index=source/"bv_ws.jsonl"
     result={"status":"Insufficient evidence","purpose":purpose,"acceptance_pass":False,
             "session_id":session.name,"session_path":str(session),"rounds_started":0,"gross_tickets":0}
@@ -345,6 +360,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
     registration={};processed_calls=set();processed_marks=set()
     ledger.append('runtime_start',session_id=session.name)
     try:
+        if play_round and not clean_code():raise ValueError('candidate_not_frozen')
         if batch:
             from bv_verify import semantic_gate
             if not semantic_gate(root)['qualified']:raise ValueError('two_controlled_diagnostics_not_proven')
@@ -366,6 +382,8 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
             from types import SimpleNamespace
             controller=AutoPlay(SimpleNamespace(map=None,settle=1.8,retries=2,ack_wait=1.5,dry=False,
                          max_dispatches=96 if batch else 1,
+                         batch_stop_path=str(stop_paths[1]) if batch else None,
+                         diagnostic_slot=None if batch else 2,
                          session_path=str(session),capture_index=str(index),bodies=source/"bv_bodies"))
         while time.monotonic()-t0 < min(seconds,300) and ledger.elapsed()<2700 and not (session/"STOP").exists() and not (batch and (Path(batch['folder'])/'STOP').exists()):
             newly=[]
@@ -411,9 +429,11 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                 elif play_round and not paid and sample["scene"]=="betpanel" and check["purchase_ready"]:
                     account=next(e["account"] for e in reversed(history) if e["type"]=="wallet_snapshot")
                     quote=device.context(account,session)
-                    quote['balance']=quote['last_ticket_change']['after'] if quote.get('last_ticket_change') else check['quote']['balance']
+                    wallet=next(e for e in reversed(history) if e['type']=='wallet_snapshot')
+                    quote['balance']=ticket_balance(wallet,quote.get('last_ticket_change'))
                     # Re-sample after context IO, then re-check the just-read quote before dispatch.
                     fresh=device.sample(session/"before-buy.png")
+                    if stopped():break
                     if batch and (code_version()!=batch['code_version'] or not clean_code()):raise ValueError('code_changed_during_batch')
                     ledger.reserve(purpose,quote,session.name,batch['batch_id'] if batch else None)
                     paid=True;buy_at=time.monotonic();client_offset=quote["log_start"]
@@ -460,7 +480,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                       observed_commands=dict(Counter(str(e.get("cmd")) for e in events if "cmd" in e)),
                       scene=samples[-1]["scene"] if samples else "unknown", navigation_sent=opened,
                       source_start=start, source_end=tail.pos,
-                      stopped_confirmed=True, stop_requested=(session/"STOP").exists())
+                      stopped_confirmed=True, stop_requested=stopped())
         if controller:
             result.update(input_dispatched=controller.n_tap,round_bound=bool(round_id_bound),
                           close_candidate_observed=closed_at is not None)
@@ -538,6 +558,7 @@ def start_batch(device=None):
         for ordinal in range(1,11):
             if (batch/'STOP').exists() or ledger.elapsed()>=2700:break
             session=batch/('acceptance_'+uuid.uuid4().hex)
+            device.stop_paths=(session/'STOP',batch/'STOP')
             run=diagnose(300,True,source=SOURCE,root=CONTROL,device=device,play_round=True,batch=dict(registration,folder=str(batch),ordinal=ordinal),
                          session=session,lock_held=True)
             if run.get('errors') or run.get('rounds_started')!=1:break
@@ -550,6 +571,7 @@ def start_batch(device=None):
             ledger.append('runtime_start',session_id=session.name+'_settlement')
             while time.monotonic()-nav0<20 and ledger.elapsed()<2700 and not (batch/'STOP').exists():
                 sample=device.sample(session/'settlement.png')
+                if any(p.exists() for p in device.stop_paths):break
                 if sample['scene'] in ('lobby','betpanel'):
                     ready=True;break
                 if sample['scene']=='congrats' and not claimed:
