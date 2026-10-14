@@ -903,7 +903,11 @@ def start_batch(device=None,resume=None):
             if remaining<BATCH_ROUNDS:raise ValueError('insufficient_positions_for_new_ten_round_batch')
             prep_sid=batch.name+'_preflight';prep0=time.monotonic()
             ledger.append('runtime_start',session_id=prep_sid)
-            try:prepared=preflight(SOURCE,device,remaining_rounds=BATCH_ROUNDS)
+            try:
+                device.stop_paths=(batch/'STOP',)
+                prepare_panel=getattr(device,'prepare_panel',None)
+                if prepare_panel:prepare_panel(batch/'prepare-1.png')
+                prepared=preflight(SOURCE,device,remaining_rounds=BATCH_ROUNDS)
             finally:ledger.append('runtime_end',session_id=prep_sid,seconds=time.monotonic()-prep0)
             check,_=prepared
             if not check.get('run_ready',check.get('purchase_ready')):

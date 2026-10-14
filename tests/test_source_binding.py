@@ -240,7 +240,7 @@ class Sources(unittest.TestCase):
             self.assertTrue((batch/'starts.jsonl').read_bytes().startswith(original))
             self.assertEqual(len(list(self.control.glob('batch_*'))),1)
             self.assertEqual(len([r for r in live.Budget().records() if r['kind']=='batch_registered']),1)
-            self.assertEqual(nav.prepared,10)
+            self.assertEqual(nav.prepared,11)
 
     def test_replay_uses_prospective_positive_and_negative_clock_brackets(self):
         from bv_verify import content_digest
