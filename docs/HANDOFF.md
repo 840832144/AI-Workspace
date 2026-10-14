@@ -1,14 +1,16 @@
-## 2026-10-14 当前：DSH答复已复核，停止原emulated绑定
+## 2026-10-14 当前：原实例已读到面板字段，最终计价仍待合证
 
-原实例一次只读查询确认Android15/SDK35，新增0.407秒已记旧账本；无attach、点击或购买。直接失败点为NativeBridge加载返回空，namespace具体根因仍未证实；Frida16.7.19的emulated agent库无法通过该绑定卸载，停止脚本/detach不能等同库卸载。没有成功加载的证据，不宣称已经驻留，也不杀进程或重启清理。
+原有四卡、覆盖恢复、末球收尾、结算、STOP和预算修复保留。emulated观察绑定因重复加载失败及库卸载限制已在41dacf7停止，CLI/worker/直接调用在设备与账本操作前拒绝；没有重新尝试。原限定被动观察授权有效，不重复索权。
 
-bv_observer.py普通CLI、内部worker及直接inspect/worker都在Frida导入、helper准备、输出目录、ADB与账本写入前停止，CLI exit2；无强制运行开关。既有实现保留供Review。92项离线/真实函数与CLI回归通过（unittest32.854秒、exit0），账本字节不变；新增3项核验停止入口及worker不能绕过。原有四卡、覆盖恢复、结算、STOP和预算回归保留，不等于真机交付。
+已通过本地ARM64 ELF、v31 metadata、重定位及反汇编确定字段偏移与UIManager→BuyCardPanel对象路径；用原ADB权限定址读取，没有attach、装载agent、全堆扫描、调用方法或改安全设置。保留前三次失败/面板未开启结果；一次非消费导航打开选卡面板，随后2.375秒、52次ADB命令、846字节读取获得当前四卡、Bet索引0/最高可用索引0、基础每卡3票。未调整乘积12仍不是最终报价。TicketCost实际为GameObject，两个buff标志false不足以证明没有免费/折扣。
 
-当前累计52票/2358.402秒/历史8位置，剩44票/3041.598秒/10位置，十局与收尾预留后准备11.598秒。新十局0/10，无面板字段、覆盖受理或自动续局新增证明；生产报价及资源时钟阻断保持。单局16票/300秒、累计96票/5400秒/18位置、历史3定位不变；第6位置失败与第8位置旧超限/接管保留。
+新增bv_panel_fields.py纯字段解码器，返回候选数据而非PanelQuote；实际读取序列复放及四种变造拒绝、购买校验拒绝合计6项通过。此前92项离线/真实函数与CLI集成回归通过（32.854秒、exit0、账本不变），与6项受控复放分列；不把它们当作真实整局。离线枚举解码确认raw1=Bingo13，完整普通模式、最终价格与动态分派仍需绑定。
 
-DSH答复中的Android12、SDK阈值即证明根因、0x310必为字段偏移、metadata单独给出物理偏移及所有授权路径不可能均未采纳。辅助二进制仅常量内19字节差异、四份helper一致已复核，只补齐helper维度，不追认整次运行冻结。离线DEX名称筛查未命中指定面板类型，不排除全部Java路径。
+当前累计52票/2363.776秒/历史8完整位置及3定位；剩44票/3036.224秒/10位置，保留十局3000秒和30秒收尾后准备6.224秒。本轮仅一次非消费导航，无购买、填格或attach；新十局0/10。若最终普通四卡12票，十局需120票、较剩44票缺76票；条件测算不追加额度。单局16票/300秒、累计96票/5400秒/18位置均不变。第6位置真实失败、第8位置旧超限及接管保留。
 
-详见[DSH答复独立复核与可转交问题](https://github.com/840832144/AI-Workspace/blob/codex/bingo-voyage-autoplay-20261013/tasks/support/TASK-0039/DSH-ANSWER-REVIEW-20261014.md)。受控入口execution16/hook/dsh-review/REVIEW.md；原答复和attempt不改。限定被动Hook授权仍有效，但当前绑定不可用；没有已验证替代，不更换实例、重打包、扩权或继续盲试。不合并/发布/SVN/finalize。Subagents: none。
+生产Device.context尚无合格最终报价reader；价格影响完整性、动态分派、资源时钟及覆盖后真实受理未证明，购买继续阻断。DSH具体问题已聚焦上述语义，User已答复转述。受控execution16/hook/dsh-review/REVIEW.md、recompute.py与DSH-FOLLOWUP.md保留来源、失败、精确运行代码和复放。详见[实际进展与剩余阻塞](https://github.com/840832144/AI-Workspace/blob/codex/bingo-voyage-autoplay-20261013/tasks/support/TASK-0039/PANEL-FIELDS-PROGRESS-20261014.md)。
+
+继续TASK-0039与原PR #16/#17，Task In Progress，完整交付未完成；不混版、不挑局、不清账。不合并、发布、SVN、扩权或finalize。Subagents: none。
 
 ---
 
