@@ -1,6 +1,6 @@
 # TASK-0039 — Bingo Voyage 四卡自动玩可靠性修复
 
-- Status: Review
+- Status: In Progress
 - Project key: BINGO-VOYAGE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -8,6 +8,16 @@
 - Date: 2026-10-13
 - Specification: [EXECUTION_SPEC.md](support/bingo-voyage-autoplay-20261013/EXECUTION_SPEC.md)，固定批准版本 `1c3683fb1b2f51a77e02ba2aca3a8a78d99975da`。
 - Allocation: remote-CAS；pending-main，未 finalize。
+
+## 当前执行：2026-10-14完整自动玩重编
+
+依据6eba235的[AUTOPLAY-DELIVERY-REPLAN-20261014.md](support/TASK-0039/AUTOPLAY-DELIVERY-REPLAN-20261014.md)完整任务；Round3原文保留，但与重编稿冲突的单击前置顺序、禁止完整运行及否认闪动漏点的旧表述均为历史，不再生效。状态Review→Changes Requested→In Progress，仍为TASK-0039 / PR #16/#17。
+
+Goal/Scope：持续普通四卡全目标自动玩、安全补漏、合法窗口内收尾及自动结算续局。先做不消费票券的跨来源时间准备和完整模式入口回归，再使用剩余最多10个完整启动位置；不追加单击定位。run_ready决定可安全运行，metric_ready独立认证成功；跨局语义可以在预登记完整批次取得，不机械要求两局整局单击才能运行。
+
+Acceptance：同版连续十局、无人工纠错、每局严格>90%，争取加权≥95%；未知不计成功，保留独立来源、全部失败/接管、完整分母及整数判定。User反馈局末大量格闪动按明显漏点事实记录；精确率由结构化数据核验，不能用N/A否认。单击模式导致后续不填解释原因，不消除问题。
+
+Safety/Validation：共享账本历史12票/514.483秒保留并按实时核对；每局≤8票/300秒，任务累计≤96票/45分钟，含本轮只读设备准备与导航。当前最多10个完整启动，失败不替换、不清零、不另建purpose绕限。STOP、身份/报价/实际叫号、来源与资源核验不删除；图像仅导航标定。普通问题连续处理，不逐阶段等Review。统一交付实际逐局结果、代码/治理提交与受控复算；不自动合并、发布、SVN、扩权或finalize。Subagents: none。
 
 ## Goal
 
@@ -35,7 +45,7 @@
 
 ## Validation
 
-## 当前：2026-10-14 Round 2修改后统一Review
+## 历史：Round 2修改后统一Review
 
 TASK-0039回Review，未Accepted，继续原PR #16/#17。实现717d8dc（代码0f1475e；第3局实际运行8b1145c），47项离线/实际入口集成回归通过；B1批次STOP、B2时区排序、D1公开摘要及累计3局限制已修。main同步898358f，Registry工具重建/验证，原reservation pending-main，不finalize。
 

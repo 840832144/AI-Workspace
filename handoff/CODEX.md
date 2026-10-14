@@ -1,5 +1,10 @@
 # Codex Handoff
 
+## 2026-10-14 — TASK-0039重编后完整自动玩
+
+接纳6eba235的唯一Round3和完整重编稿，继续原Task/PR16/17，回In Progress。替代旧两局单击启动前置；run_ready与metric_ready分离，先时间/来源只读准备和整局回归，再用剩余最多10个完整启动位置。现场大量闪动按漏点反馈保留，精确计量单列；历史账本不清零，原96票/45分钟不增额。不逐阶段Review，不新建任务或finalize。Subagents: none。
+
+
 ## 2026-10-14 — TASK-0039 Round 2结果交Review
 
 B1/B2/D1和累计3局限制已修，47项离线/入口集成回归通过，实现717d8dc，代码0f1475e；第3局实际8b1145c。获准补局已运行并保留：设计单次点击，User确认后续手动补点；时间/消费绑定也不足。有效定位仍1局，定位3/3；累计记录扣减/预留12票、控制运行514.483秒，正式0/10、N/A，证据不足与真实低分分开。实际--start拒绝且零消费，未追加定位。详见[TASK-0039](../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)和[Bingo Review摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)。原PR #16/#17及两轮历史评审保留；main898358f，Registry重建/验证，Review非Accepted，不合并/发布/SVN/finalize。Subagents: none。
