@@ -241,7 +241,14 @@ class Device:
         proof=cost_proof(raw,symbol,cost)
         changes=[e for e in ClientTrace(folder/"client-before.log").feed(raw) if e["type"]=="ticket_change"]
         if any(e["before"]+e["delta"]!=e["after"] for e in changes):raise ValueError("ticket_delta_contradiction")
+        # buy_card_data.json is persisted state, not the live panel selection.
+        # Position 8 proved it can say Bet1/4 tickets while PLAY buys Bet3/12.
+        # PrepayCard is emitted after charging; it cannot authorize that charge.
+        # Keep these observations for audit, but no current approved source
+        # exposes a pre-purchase panel quote. Do not turn historical proof into one.
         return {"tickets":cost,"cards":4,"bet_symbol":symbol,"gds_version":version,
+                "price_scope":"persisted_selection_only",
+                "purchase_blocker":"current_panel_quote_unavailable",
                 "source_ref":str(folder/"selection.json"),"config_ref":str(folder/"base_bet_config.json"),"cost_semantics_ref":proof,
                 "log_path":logpath,"log_start":len(raw),"sampled_at":time.monotonic(),
                 "last_ticket_change":max(changes,key=lambda e:e['at_ns']) if changes else None}
@@ -353,6 +360,8 @@ class Device:
 
     def buy(self,sample,quote):
         from bv_autoplay import spawn_tap,finish_tap
+        if quote.get('price_scope')!='current_panel' or quote.get('purchase_blocker'):
+            return 'not_executed'
         if (sample["scene"]!="betpanel" or time.monotonic()-sample["sampled_at"]>2.5
                 or time.monotonic()-quote["sampled_at"]>10 or not self.foreground()):
             return "not_executed"
@@ -401,6 +410,7 @@ def preflight(source=SOURCE, device=None):
             errors.append("quote_"+str(exc))
     buy_errors=list(errors)
     if quote is None:buy_errors.append("current_ticket_quote_unverified")
+    elif quote.get('purchase_blocker'):buy_errors.append(quote['purchase_blocker'])
     if quality:buy_errors.append("capture_quality_errors")
     from bv_verify import semantic_gate
     gate=semantic_gate()
@@ -442,6 +452,8 @@ class Budget:
         elapsed=self.elapsed()
         if quote is None or quote.get("source_ref") is None or type(quote.get("tickets")) is not int:
             raise ValueError("verified_quote_required")
+        if quote.get('purchase_blocker') or quote.get('price_scope')=='persisted_selection_only':
+            raise ValueError('current_panel_quote_unavailable')
         cost=quote["tickets"]
         if not 0<cost<=8 or quote.get("cards")!=4 or quote.get("balance",-1)<cost:
             raise ValueError("per_round_resource_limit")

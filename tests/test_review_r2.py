@@ -31,7 +31,7 @@ class StopTests(unittest.TestCase):
                 sample=dict(scene=scene,sampled_at=time.monotonic(),button=[1,1])
                 def foreground():stop.touch();return True
                 with patch.object(device,'foreground',side_effect=foreground),patch.object(ap,'spawn_tap') as send:
-                    args=(sample,dict(sampled_at=time.monotonic())) if method=='buy' else (sample,)
+                    args=(sample,dict(sampled_at=time.monotonic(),price_scope='current_panel')) if method=='buy' else (sample,)
                     self.assertEqual(getattr(device,method)(*args),'not_executed');send.assert_not_called()
 
     def test_stop_during_quote_read_main_loop_never_reserves_or_buys(self):
