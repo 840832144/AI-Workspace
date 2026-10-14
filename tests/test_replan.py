@@ -45,6 +45,31 @@ class Clocks(unittest.TestCase):
 
 
 class ContinuousTargets(unittest.TestCase):
+    def test_animated_row_band_does_not_block_other_targets(self):
+        from bv_cardgrid import regular_rows
+        base=[965,1043,1120,1198,1275.5]
+        c=controller();c.on_ball('',c.rid,1)
+        for index,shift in enumerate((14.5,14,0,14.5)):
+            observed=list(base);observed[2]+=shift
+            fitted=regular_rows(observed)
+            self.assertIsNotNone(fitted)
+            self.assertLess(max(abs(a-b) for a,b in zip(fitted,base)),1)
+            geometry=grid();geometry[2]['rows']=fitted
+            with patch.object(ap.time,'monotonic',return_value=10+index*.5):
+                c.setup_grid(4,geometry)
+        self.assertIsNotNone(c.grid)
+        self.assertIsNone(regular_rows([965,1060,1134,1180,1275]))
+
+    def test_remaining_positions_keep_both_old_reservations(self):
+        with tempfile.TemporaryDirectory() as folder:
+            ledger=live.Budget(folder);q=dict(source_ref='synthetic',tickets=4,cards=4,balance=80)
+            for i in range(2):ledger.reserve('acceptance',q,'old'+str(i),'oldbatch')
+            self.assertEqual(ledger.remaining_positions(),8)
+            for i in range(8):ledger.reserve('acceptance',q,'new'+str(i),'newbatch')
+            self.assertEqual(ledger.remaining_positions(),0)
+            with self.assertRaisesRegex(ValueError,'round_count_limit'):
+                ledger.reserve('acceptance',q,'forbidden','extra')
+
     def test_old_target_not_starved_and_unknown_does_not_halt_other_cards(self):
         c=controller()
         with patch.object(ap.time,'monotonic',return_value=10):c.on_ball('',c.rid,1)

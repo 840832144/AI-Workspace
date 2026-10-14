@@ -384,6 +384,10 @@ class Budget:
         self.append("purchase_reserved",purpose=purpose,session_id=session,reserved_tickets=cost,
                     quote_source=quote["source_ref"],batch_id=batch_id)
 
+    def remaining_positions(self):
+        return max(0, LIMITS['acceptance_rounds']-sum(
+            r['kind']=='purchase_reserved' and r['purpose']=='acceptance' for r in self.records()))
+
 
 def code_version():
     r=subprocess.run(["git","rev-parse","HEAD"],cwd=Path(__file__).parent,capture_output=True,text=True,check=True)
@@ -627,17 +631,21 @@ def start_batch(device=None):
     batch=CONTROL/('batch_'+uuid.uuid4().hex);batch.mkdir()
     ledger=Budget();device=device or Device();result={};t0=time.monotonic()
     try:
+        remaining=ledger.remaining_positions()
+        if not remaining:raise ValueError('round_count_limit')
         registration=dict(batch_id=batch.name,instance=INSTANCE,code_version=code_version(),
                           parser_version=VERSION,metric_version=METRIC,purpose='acceptance',planned_rounds=10,
                           registered_ns=time.time_ns(),source_start=(SOURCE/'bv_ws.jsonl').stat().st_size,
-                          mode='full_autoplay',positions=list(range(1,11)),semantic_rule='two_source_bound_rounds_distinct_targets_v1')
+                          mode='full_autoplay',positions=list(range(11-remaining,11)),
+                          available_rounds=remaining,semantic_rule='two_source_bound_rounds_distinct_targets_v1')
         (batch/'registration.json').write_text(json.dumps(registration),encoding='utf-8')
         (batch/'starts.jsonl').touch()
         ledger.append('batch_registered',**registration)
-        for ordinal in range(1,11):
-            print(json.dumps(dict(mode='full_autoplay',round=ordinal,planned=10,status='starting',
-                  notice='持续填充四卡全部合法目标，User无需补点',stop_path=str(batch/'STOP')),ensure_ascii=False),flush=True)
+        for ordinal in range(1,remaining+1):
             if (batch/'STOP').exists() or ledger.elapsed()>=2700:break
+            print(json.dumps(dict(mode='full_autoplay',round=ordinal,planned=remaining,
+                  task_position=11-remaining+ordinal-1,status='starting',
+                  notice='持续填充四卡全部合法目标，User无需补点',stop_path=str(batch/'STOP')),ensure_ascii=False),flush=True)
             session=batch/('acceptance_'+uuid.uuid4().hex)
             device.stop_paths=(session/'STOP',batch/'STOP')
             run=diagnose(300,True,source=SOURCE,root=CONTROL,device=device,play_round=True,batch=dict(registration,folder=str(batch),ordinal=ordinal),

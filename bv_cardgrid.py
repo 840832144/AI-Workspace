@@ -135,6 +135,26 @@ def row_to_card(row, ytop, ybot):
             "header_x0": row[0][1], "header_x1": row[-1][2]}
 
 
+def regular_rows(centers):
+    """Fit observed row bands; one animated band may lose its upper/lower paint.
+
+    Four independent centers must support the same pitch within two pixels.
+    No fixed coordinates or acceptance of an entirely unobserved row extent.
+    """
+    if len(centers) != 5:
+        return None
+    fits = []
+    for omitted in range(5):
+        ids = [i for i in range(5) if i != omitted]
+        pitch, origin = np.polyfit(ids, [centers[i] for i in ids], 1)
+        predicted = [float(origin + i*pitch) for i in range(5)]
+        residual = max(abs(predicted[i]-centers[i]) for i in ids)
+        if (35 <= pitch <= 125 and residual <= 2
+                and abs(predicted[omitted]-centers[omitted]) <= pitch*.25):
+            fits.append((residual, predicted))
+    return min(fits, key=lambda item:item[0])[1] if fits else None
+
+
 def refine_rows(img, card):
     """用「卡体亮色区域」实测行区高度，再五等分。
 
@@ -183,7 +203,10 @@ def refine_rows(img, card):
             runs = sorted(sorted(runs, key=lambda x: -(x[1] - x[0]))[:5])
         else:
             runs.sort()
-        card["rows"] = [y0 + (s + e) / 2.0 for (s, e) in runs]
+        measured = [y0 + (s + e) / 2.0 for (s, e) in runs]
+        card["observed_rows"] = measured
+        fitted = regular_rows(measured)
+        card["rows"] = fitted or measured
         card["row_spacing"] = (card["rows"][-1] - card["rows"][0]) / 4.0
         card["cell_area"] = (y0 + runs[0][0], y0 + runs[-1][1])
         card["row_mode"] = "bands"
