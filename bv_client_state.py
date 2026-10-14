@@ -4,7 +4,7 @@ import re
 
 STAMP=re.compile(rb"^[A-Z]:\d+:-?\d+:(\d{2}/\d{2}/\d{2} \d{1,2}:\d{2}:\d{2}\.\d+) ([+-]\d{2}:\d{2}) ")
 CALL=re.compile(rb"\[BallCaller\].* index (\d+), num (\d+)")
-DAUB=re.compile(rb"BingoLog: Daub Type (\w+), Index: (\d+), (\d+), \((\d+),(\d+)\)")
+DAUB=re.compile(rb"BingoLog: Daub Type (\w+)(?: BoostID [A-Z_0-9]+)?, Index: (\d+), (\d+), \((\d+),(\d+)\)")
 TICKET=re.compile(rb"NotifyResources TICKET current=(\d+) next=(\d+) delta=(-?\d+)")
 
 
@@ -48,7 +48,9 @@ def terminal_cells(state):
     Qualification of that meaning is separate from this parser.
     """
     parts=state.split('@')
-    if len(parts)!=5 or parts[-1] not in ('','Z'):
+    # The final card can also carry the same numeric wrapper as cards 1..3.
+    # It has no following card, so there is no trailing '#'. Never count it as cells.
+    if len(parts)!=5 or not (parts[-1]=='Z' or re.fullmatch(r'[0-9.,:-]*',parts[-1])):
         raise ValueError('state_card_boundaries')
     cards=[]
     for i,part in enumerate(parts[:4]):

@@ -139,6 +139,9 @@ class EntryAndBudget(unittest.TestCase):
         self.assertEqual(len(decoded),100)
         self.assertEqual({k for k,v in decoded.items()if v['marked'] and k[1]!=12},{(1,15),(4,15)})
         self.assertFalse(decoded[(1,10)]['marked'])
+        self.assertEqual(terminal_cells(state+'11.2.1,6.8.1,21.4.1'),decoded)
+        with self.assertRaisesRegex(ValueError,'state_card_boundaries'):
+            terminal_cells(state+'unrecognized')
 
     def test_client_trace_partial_lines_call_and_accepted_mark_are_distinct(self):
         trace=ClientTrace('synthetic','r')
@@ -149,6 +152,8 @@ class EntryAndBudget(unittest.TestCase):
         mark=trace.feed(prefix+b'BingoLog: Daub Type Manual, Index: 0, 1, (0,0), Mod None\n')[0]
         self.assertEqual((mark['card_id'],mark['cell_index']),(1,0))
         self.assertEqual(mark['source_ref']['offset'],len(chunk))
+        power=trace.feed(prefix+b'BingoLog: Daub Type PowerUp BoostID B_DAUB_TWO, Index: 2, 51, (2,3), Mod DOUBLE_XP, 1\n')[0]
+        self.assertEqual((power['daub_type'],power['card_id'],power['cell_index']),('PowerUp',3,17))
 
     def test_actual_entry_buy_bind_wait_calibrate_dispatch_and_freeze(self):
         from test_reliability import cards

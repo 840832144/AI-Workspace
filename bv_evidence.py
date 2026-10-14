@@ -12,7 +12,7 @@ from pathlib import Path
 from bv_proto import parse
 from bv_ws2 import parse_frame
 
-VERSION = "task0039-replan-v1"
+VERSION = "task0039-replan-v2"
 
 
 def fields(body):

@@ -16,6 +16,17 @@ from test_source_binding import field
 
 
 class Clocks(unittest.TestCase):
+    def test_only_prospective_overlapping_brackets_are_intersected(self):
+        a=self.sample(0);b=dict(a)
+        b.update(host_before_ns=a['host_before_ns']+5_000_000,
+                 host_after_ns=a['host_after_ns']+5_000_000)
+        lo,hi=interval(a['device_ns']+1_000_000_000,[a,b])
+        self.assertGreater(lo,interval(a['device_ns']+1_000_000_000,[a])[0])
+        self.assertEqual(hi,interval(a['device_ns']+1_000_000_000,[a])[1])
+        bad=dict(b,host_before_ns=b['host_before_ns']+100_000_000,
+                 host_after_ns=b['host_after_ns']+100_000_000)
+        with self.assertRaisesRegex(ValueError,'disagree'):
+            interval(a['device_ns']+1_000_000_000,[a,bad])
     def sample(self,offset):
         return dict(host_before_ns=10_000_000_000,host_after_ns=10_020_000_000,
                     mono_before_ns=100_000_000_000,mono_after_ns=100_020_000_000,
@@ -45,6 +56,30 @@ class Clocks(unittest.TestCase):
 
 
 class ContinuousTargets(unittest.TestCase):
+    def test_late_filled_bands_cannot_shrink_measured_card(self):
+        import copy
+        device=live.Device();det=grid()
+        for c in det:
+            c.update(header_top=c['rows'][0]-60,header_bottom=c['rows'][0]-40,
+                     observed_rows=list(c['rows']),row_spacing=80,spacing=80,row_mode='bands')
+        for _ in range(3):baseline=device.calibrated_grid(det)
+        self.assertEqual(len(baseline),4)
+        damaged=copy.deepcopy(det)
+        for c in damaged:c.update(rows=[c['rows'][0]+i*45 for i in range(5)],row_mode='extent')
+        repaired=device.calibrated_grid(damaged)
+        self.assertEqual([c['rows']for c in repaired],[c['rows']for c in baseline])
+        damaged[0]['header_top']+=20
+        self.assertEqual(device.calibrated_grid(damaged),[])
+        self.assertEqual(device.calibrated_grid([]),[])
+
+    def test_structured_bingo_completing_target_gets_priority(self):
+        c=controller()
+        with patch.object(ap.time,'monotonic',return_value=10):c.on_ball('',c.rid,1)
+        c.special_observed={(2,0,col)for col in range(1,5)}
+        stabilize(c,grid(),start=11);c.foreground_at=13
+        with patch.object(ap.time,'monotonic',return_value=13):c.tick([])
+        self.assertEqual(c.input_target['slot'],2)
+        self.assertFalse(c.done)  # PowerUp evidence never becomes ordinary success.
     def test_panel_navigation_ignores_green_ad_below_modal(self):
         from PIL import Image,ImageDraw
         from bv_autobuy import BLUE,GREEN

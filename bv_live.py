@@ -264,6 +264,7 @@ class Device:
         with Image.open(path) as source:im=source.convert("RGB")
         if im.size!=(900,1600):return {"foreground":True,"scene":"bad_orientation","grid":None}
         det=bv_cardgrid.detect(im)
+        det=self.calibrated_grid(det)
         green=find_green(im)
         panel_anchor=near(im.getpixel((100,700)),BLUE,65)
         if panel_anchor:
@@ -276,6 +277,41 @@ class Device:
         scene="round" if len(det or [])==4 else "betpanel" if panel else "congrats" if congrats else "lobby" if green and 120<green[0]<400 and green[1]>1200 else "unknown"
         return {"foreground":ok,"scene":scene,"grid":det,"button":list(green[:2]) if green else None,
                 "sampled_at":sampled_at}
+
+    def calibrated_grid(self,det):
+        """Keep measured row geometry while fresh headers prove the same layout.
+
+        Filled/animated cells are not a new card extent. Never drive input from
+        the detector's shortened bright-extent or square-cell fallbacks.
+        """
+        import copy
+        from bv_cardgrid import regular_rows
+        if len(det or [])!=4:
+            self.grid_candidate=None;self.grid_count=0
+            return []
+        def distance(a,b):
+            return max(abs(x-y) for c,d in zip(a,b) for x,y in zip(
+                c['cols']+[c['header_top'],c['header_bottom']],
+                d['cols']+[d['header_top'],d['header_bottom']]))
+        reference=getattr(self,'grid_reference',None)
+        if reference is not None and distance(det,reference)<=4:
+            result=copy.deepcopy(det)
+            for c,r in zip(result,reference):
+                shift=(c['header_top']+c['header_bottom']-r['header_top']-r['header_bottom'])/2
+                c['rows']=[y+shift for y in r['rows']];c['row_mode']='fresh_header_measured_rows'
+            return result
+        if not all(c.get('row_mode')=='bands' and regular_rows(c.get('observed_rows',[]))
+                   and .8<=c['row_spacing']/c['spacing']<=1.2 for c in det):
+            self.grid_candidate=None;self.grid_count=0
+            return []
+        old=getattr(self,'grid_candidate',None)
+        stable=old is not None and distance(det,old)<=2 and max(
+            abs(x-y) for c,d in zip(det,old) for x,y in zip(c['rows'],d['rows']))<=2
+        self.grid_count=getattr(self,'grid_count',0)+1 if stable else 1
+        self.grid_candidate=copy.deepcopy(det)
+        if self.grid_count<3:return []
+        self.grid_reference=copy.deepcopy(det)
+        return det
 
     def claim(self,sample):
         from bv_autoplay import spawn_tap,finish_tap
@@ -424,6 +460,8 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
     session=Path(session) if session else root/(purpose+"_"+uuid.uuid4().hex)
     session.mkdir(exist_ok=bool(batch))
     ledger=Budget(root);t0=time.monotonic();device=device or Device()
+    # Reference geometry belongs to this one round, never a previous purchase.
+    device.grid_reference=None;device.grid_candidate=None;device.grid_count=0
     stop_paths=(session/'STOP',Path(batch['folder'])/'STOP') if batch else (session/'STOP',)
     device.stop_paths=stop_paths
     stopped=lambda:any(p.exists() for p in stop_paths)

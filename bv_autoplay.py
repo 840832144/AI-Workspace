@@ -400,6 +400,16 @@ class AutoPlay:
     def rescan(self):
         return self.backfill()
 
+    def completes_bingo(self,q):
+        # Standard 5x5 lines, based only on source-confirmed cell observations.
+        known=self.done | getattr(self,'special_observed',set()) | getattr(self,'uncertain_observed',set())
+        marked={(r,c) for slot,r,c in known if slot==q['slot']} | {(2,2)}
+        target=(q['r'],q['c'])
+        lines=[{(i,c) for c in range(5)} for i in range(5)]
+        lines += [{(r,i) for r in range(5)} for i in range(5)]
+        lines += [{(i,i) for i in range(5)},{(i,4-i) for i in range(5)}]
+        return any(target in line and line-marked=={target} for line in lines)
+
     def tick(self, observations):
         now = time.monotonic()
         for event in observations:
@@ -458,7 +468,8 @@ class AutoPlay:
         ready = [q for q in self.pending if q["due"] <= now and q["round_id"] == self.rid]
         # New targets before bounded retries; sparse observations never hold input slots.
         # Age eventually dominates new work; a bounded retry cannot starve forever.
-        ready.sort(key=lambda q: (self.first_seen[q['ball']]+q['tries']*2, q['slot']))
+        ready.sort(key=lambda q: (not self.completes_bingo(q),
+                                  self.first_seen[q['ball']]+q['tries']*2, q['slot']))
         if not ready:
             return
         q = ready[0]

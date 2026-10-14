@@ -24,11 +24,17 @@ def interval(event_ns, samples):
     # No extrapolation to historical rounds: only prospective samples within TTL.
     choices=[s for s in samples if 0<=event_ns-s['device_ns']<=TTL_NS]
     if not choices:raise ValueError('clock_evidence_not_current')
-    s=choices[-1];validate(s)
-    # 1ms native log precision + conservative 50ppm drift over the valid period.
-    error=1_000_000+int((event_ns-s['device_ns'])*.00005)
-    return [event_ns+s['host_before_ns']-s['device_ns']-error,
-            event_ns+s['host_after_ns']-s['device_ns']+error]
+    brackets=[]
+    for s in choices:
+        validate(s)
+        # Intersect only already-taken brackets, with each bracket's full error.
+        # No future sample, midpoint guess, or widening of the match window.
+        error=1_000_000+int((event_ns-s['device_ns'])*.00005)
+        brackets.append((event_ns+s['host_before_ns']-s['device_ns']-error,
+                         event_ns+s['host_after_ns']-s['device_ns']+error))
+    lo=max(a for a,b in brackets);hi=min(b for a,b in brackets)
+    if lo>hi:raise ValueError('clock_brackets_disagree')
+    return [lo,hi]
 
 
 def matched(event, sent_ns, window_ns=10_000_000_000):
