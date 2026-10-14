@@ -579,6 +579,7 @@ def main():
     ap = argparse.ArgumentParser(description="TASK-0039 受控定位、来源核验与自动玩入口")
     ap.add_argument("--check", action="store_true", help="只读检查；Blocked 返回 2")
     ap.add_argument("--start", action="store_true", help="正式验收启动；先核对当前数据和资源")
+    ap.add_argument("--resume", metavar="BATCH", help="仅恢复买前余额暂停的原批次；冻结版本必须完全相同")
     ap.add_argument("--diagnose", action="store_true", help="受控定位；结果不能作为正式验收")
     ap.add_argument("--open-panel", action="store_true", help="定位时允许从已识别大厅打开选卡面板；不点击购买")
     ap.add_argument("--diagnostic-round", action="store_true", help="定位时按结构化报价买四卡并作一次合法点击；任务累计最多三局")
@@ -613,9 +614,10 @@ def main():
         result=diagnose(a.seconds,a.open_panel,play_round=a.diagnostic_round)
         print(json.dumps(result,ensure_ascii=False))
         return 2 # diagnostic collection is never production acceptance
-    if a.start:
+    if a.start or a.resume:
         from bv_live import start_batch
-        result=start_batch();print(json.dumps(result,ensure_ascii=False))
+        result=start_batch(resume=a.resume) if a.resume else start_batch()
+        print(json.dumps(result,ensure_ascii=False))
         return 0 if result["acceptance_pass"] else 2
     result=preflight();print(json.dumps(result, ensure_ascii=False))
     return 0 if result['live_ready'] else 2

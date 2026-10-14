@@ -206,6 +206,42 @@ class Sources(unittest.TestCase):
         self.assertTrue(semantic_gate(batch_id=batch.name)['qualified'])
         self.assertTrue(verify_round(one)['evidence_valid'])
 
+    def test_actual_entry_pauses_before_wallet_purchase_and_resumes_same_frozen_ten(self):
+        self.base=dt.datetime.now(dt.timezone(dt.timedelta(hours=8)))
+        class Navigation:
+            prepared=0
+            def sample(self,path):return dict(scene='lobby')
+            def prepare_panel(self,path):self.prepared+=1
+        nav=Navigation()
+        def round_source(*args,**kw):
+            batch=kw['batch'];self.make_round('acceptance',batch,batch['ordinal'],kw['session'])
+            return dict(rounds_started=1)
+        ready=dict(run_ready=True,blockers=[],quote=synthetic_quote(balance=100))
+        pause=dict(run_ready=False,blockers=['batch_budget_insufficient'],
+                   budget_plan=dict(deficits=dict(wallet=4,tickets=0,seconds=0,positions=0)))
+        with patch.object(live,'clean_code',return_value=True),patch.object(live,'code_version',return_value='fixed-test-code'),patch.object(live,'diagnose',side_effect=round_source),patch('builtins.print'):
+            with patch.object(live,'preflight',side_effect=[(ready,[]),(ready,[]),(pause,[])]):
+                paused=live.start_batch(device=nav)
+            self.assertEqual(paused['status'],'Paused for wallet');self.assertEqual(paused['started_rounds'],2)
+            batch=Path(paused['batch_path']);original=(batch/'starts.jsonl').read_bytes()
+            reg=(batch/'registration.json').read_bytes()
+            with patch.object(live,'code_version',return_value='different'):
+                with self.assertRaisesRegex(ValueError,'resume_candidate_changed'):
+                    live.resume_registration(batch,live.Budget())
+            (batch/'STOP').touch()
+            with self.assertRaisesRegex(ValueError,'resume_requires_unstarted_wallet_pause'):
+                live.resume_registration(batch,live.Budget())
+            (batch/'STOP').unlink()
+            with patch.object(live,'preflight',return_value=(ready,[])):
+                result=live.start_batch(device=nav,resume=batch)
+            self.assertTrue(result['acceptance_pass'],result)
+            self.assertEqual(result['started_rounds'],10)
+            self.assertEqual((batch/'registration.json').read_bytes(),reg)
+            self.assertTrue((batch/'starts.jsonl').read_bytes().startswith(original))
+            self.assertEqual(len(list(self.control.glob('batch_*'))),1)
+            self.assertEqual(len([r for r in live.Budget().records() if r['kind']=='batch_registered']),1)
+            self.assertEqual(nav.prepared,10)
+
     def test_replay_uses_prospective_positive_and_negative_clock_brackets(self):
         from bv_verify import content_digest
         import re

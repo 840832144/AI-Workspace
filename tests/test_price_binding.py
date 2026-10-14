@@ -143,6 +143,10 @@ class PriceBinding(unittest.TestCase):
                 self.assertIsInstance(q,live.PanelQuote)
                 self.assertEqual(q['tickets'],12)
                 self.assertEqual(q['price_scope'],'current_panel')
+                frozen_selection=json.loads((root/'selection.json').read_text())
+                self.assertEqual((frozen_selection['CardCount'],frozen_selection['BetCount'],
+                                  frozen_selection['LastBetTicket']),(4,3,12))
+                self.assertEqual(frozen_selection['panel_identity'],q._identity)
                 # The old Bet1/4-ticket save is neither read nor used for price.
                 self.assertFalse(any('/save/' in str(c) for c in d.read_file.call_args_list))
                 with patch.object(d,'read_file',return_value=b'b'*32):

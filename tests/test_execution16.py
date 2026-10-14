@@ -25,6 +25,18 @@ def historical_budget(folder):
 
 
 class Execution16(unittest.TestCase):
+    def test_wallet_is_checked_per_purchase_and_future_gap_stays_visible(self):
+        with tempfile.TemporaryDirectory() as folder:
+            b=historical_budget(folder)
+            plan=b.batch_plan(synthetic_quote(tickets=12,balance=105))
+            self.assertTrue(plan['fits']);self.assertEqual(plan['future_wallet_gap'],15)
+            self.assertEqual(plan['required_tickets'],120)
+            before=b.path.read_bytes()
+            self.assertFalse(b.batch_plan(synthetic_quote(tickets=12,balance=11))['fits'])
+            with self.assertRaisesRegex(ValueError,'per_round_resource_limit'):
+                b.reserve('acceptance',synthetic_quote(tickets=12,balance=11),'cannot_buy')
+            self.assertEqual(before,b.path.read_bytes())
+
     def test_single_minimum_quote_12_and_16_reaches_final_buy(self):
         for cost in (12,16):
             with tempfile.TemporaryDirectory() as folder,contextlib.ExitStack() as stack:
@@ -54,15 +66,15 @@ class Execution16(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             b=historical_budget(folder);before=b.path.read_bytes()
             self.assertEqual((b.gross(),b.remaining_positions()),(52,10))
-            for cost,deficit in ((4,0),(8,36),(12,76),(16,116)):
+            for cost,deficit in ((4,0),(8,0),(12,0),(16,40)):
                 p=b.batch_plan(synthetic_quote(tickets=cost,balance=200))
                 self.assertEqual(p['deficits']['tickets'],deficit)
-                self.assertEqual(p['fits'],cost==4)
+                self.assertEqual(p['fits'],cost<=12)
                 self.assertEqual(p['required_seconds'],3030)
                 self.assertAlmostEqual(p['available_seconds'],live.LIMITS['total_seconds']-2267.262)
             self.assertEqual(b.path.read_bytes(),before)
             with self.assertRaisesRegex(ValueError,'batch_budget_insufficient'):
-                b.reserve('acceptance',synthetic_quote(tickets=12,balance=200),'new',remaining_rounds=10)
+                b.reserve('acceptance',synthetic_quote(tickets=16,balance=200),'new',remaining_rounds=10)
             self.assertEqual(b.path.read_bytes(),before)
 
     def test_total_time_gross_and_position_boundaries(self):
@@ -72,9 +84,9 @@ class Execution16(unittest.TestCase):
             self.assertEqual((b.gross(),b.remaining_positions()),(92,0))
             with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('acceptance',q,'position19')
         with tempfile.TemporaryDirectory() as folder:
-            b=live.Budget(folder);b.append('purchase_reserved',purpose='acceptance',session_id='history',reserved_tickets=92)
-            b.reserve('acceptance',q,'exact96')
-            with self.assertRaisesRegex(ValueError,'task_resource_limit'):b.reserve('acceptance',q,'over96')
+            b=live.Budget(folder);b.append('purchase_reserved',purpose='acceptance',session_id='history',reserved_tickets=live.LIMITS['gross_tickets']-4)
+            b.reserve('acceptance',q,'exact_cap')
+            with self.assertRaisesRegex(ValueError,'task_resource_limit'):b.reserve('acceptance',q,'over_cap')
         with tempfile.TemporaryDirectory() as folder:
             b=live.Budget(folder)
             with patch.object(b,'elapsed',return_value=live.LIMITS['total_seconds']):
@@ -88,7 +100,8 @@ class Execution16(unittest.TestCase):
     def test_time_extension_keeps_old_policy_and_all_other_caps(self):
         old=live.RESOURCE_POLICIES['execution-16t-20261014']
         self.assertEqual(old['total_seconds'],5400)
-        self.assertEqual(live.LIMITS,dict(old,total_seconds=6000))
+        self.assertEqual(live.RESOURCE_POLICIES['execution-time-relaxed-20261014'],dict(old,total_seconds=6000))
+        self.assertEqual(live.LIMITS,dict(old,total_seconds=6000,gross_tickets=172))
         self.assertEqual(live.frozen_ticket_limit(dict(
             resource_authorization='execution-16t-20261014',limits=dict(old))),16)
         with self.assertRaisesRegex(ValueError,'authorization_mismatch'):
@@ -97,7 +110,7 @@ class Execution16(unittest.TestCase):
     def test_start_entry_insufficient_total_has_no_registration_or_purchase(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);b=historical_budget(root);old=b.path.read_bytes()
-            cls=live.Budget;q=synthetic_quote(tickets=12,balance=200)
+            cls=live.Budget;q=synthetic_quote(tickets=16,balance=200)
             check=dict(run_ready=True,blockers=[],quote=q)
             with patch.object(live,'CONTROL',root),patch.object(live,'Budget',side_effect=lambda root=None:cls(root or folder)),patch.object(live,'clean_code',return_value=True),patch.object(live,'preflight',return_value=(check,[])),patch.object(live,'diagnose') as play:
                 r=live.start_batch(device=object())

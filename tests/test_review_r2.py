@@ -81,7 +81,7 @@ class TimeAndLimits(unittest.TestCase):
             self.assertTrue(b.path.read_bytes().startswith(before));self.assertAlmostEqual(b.elapsed(),309.061)
             with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('diagnostic',q,'forbidden4')
             self.assertEqual(sum(r.get('reserved_tickets',0) for r in b.records()),12)
-            self.assertEqual((live.LIMITS['gross_tickets'],live.LIMITS['total_seconds']),(96,6000))
+            self.assertEqual((live.LIMITS['gross_tickets'],live.LIMITS['total_seconds']),(172,6000))
 
 
 class SpecialObservations(unittest.TestCase):

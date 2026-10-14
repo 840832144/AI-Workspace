@@ -24,15 +24,19 @@ CONTROL = Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "AI-Workspace
 PACKAGE = "com.bingo.cruise.free.best.top.game"
 INSTANCE = 'mumu-authorized'
 METRIC = "automatic-set-intersection-replan-v1"
-RESOURCE_AUTHORIZATION = 'execution-time-relaxed-20261014'
+RESOURCE_AUTHORIZATION = 'execution-budget-relaxed-20261014'
 RESOURCE_POLICIES = {'execution-16t-20261014':
     {"diagnostic_rounds": 3, "acceptance_rounds": 18, "cards": 4,
      "tickets_per_round": 16, "gross_tickets": 96, "round_seconds": 300, "total_seconds": 5400}}
 # User relaxed remaining time on 2026-10-14. Use a conservative +600 second
 # implementation ceiling for this continuation, preserving every old policy and
 # ledger record. No ticket, position, diagnostic or per-round expansion.
-RESOURCE_POLICIES[RESOURCE_AUTHORIZATION] = dict(
+RESOURCE_POLICIES['execution-time-relaxed-20261014'] = dict(
     RESOURCE_POLICIES['execution-16t-20261014'], total_seconds=6000)
+# Later User ticket relaxation: 52 historical + 10 current 12-ticket rounds.
+# User replenishes the wallet; this code never purchases currency.
+RESOURCE_POLICIES[RESOURCE_AUTHORIZATION] = dict(
+    RESOURCE_POLICIES['execution-time-relaxed-20261014'], gross_tickets=172)
 LIMITS = RESOURCE_POLICIES[RESOURCE_AUTHORIZATION]
 BATCH_ROUNDS = 10
 BATCH_CLEANUP_SECONDS = 30
@@ -312,6 +316,12 @@ class Device:
                      config_ref=str(folder/'base_bet_config.json'),
                      log_path=logpath,log_start=len(raw),
                      last_ticket_change=max(changes,key=lambda e:e['at_ns']) if changes else None)
+        # Frozen replay consumes this selection. It comes from the real current
+        # panel binding, never the old persisted buy_card_data.json.
+        (folder/'selection.json').write_text(json.dumps(dict(
+            CardCount=quote['cards'],BetCount=int(quote['bet_symbol'].rsplit('_',1)[1]),
+            LastBetTicket=quote['tickets'],panel_identity=quote._identity,
+            panel_source=quote['source_ref'])),encoding='utf-8')
         return quote
 
     def panel_reader(self,folder):
@@ -321,6 +331,12 @@ class Device:
         reserve=0 if hasattr(self,'round_deadline') else BATCH_ROUNDS*LIMITS['round_seconds']+BATCH_CLEANUP_SECONDS
         if remaining-reserve<40:raise ValueError('panel_preparation_budget_insufficient')
         return ScopedPanelReader(self,folder)
+
+    def prepare_panel(self,path):
+        sample=self.sample(path)
+        if sample['scene']=='lobby':
+            if self.open_panel(sample)=='not_executed':raise ValueError('panel_navigation_cancelled')
+            time.sleep(1)
 
     def foreground(self):
         from bv_autoplay import ADB, DEV
@@ -544,11 +560,13 @@ class Budget:
         available_seconds=LIMITS['total_seconds']-self.elapsed()
         deficits=dict(positions=max(0,rounds-self.remaining_positions()),
                       tickets=max(0,required_tickets-available_tickets),
-                      wallet=max(0,required_tickets-quote.get('balance',-1)),
+                      wallet=max(0,quote['tickets']-quote.get('balance',-1)),
                       seconds=max(0,required_seconds-available_seconds))
         return dict(rounds=rounds,per_round_tickets=quote['tickets'],required_tickets=required_tickets,
                     available_tickets=available_tickets,required_seconds=required_seconds,
                     available_seconds=available_seconds,cleanup_seconds=BATCH_CLEANUP_SECONDS,
+                    future_wallet_gap=max(0,required_tickets-quote.get('balance',-1)),
+                    wallet_policy='each_purchase_user_replenishes_no_auto_topup',
                     deficits=deficits,fits=not any(deficits.values()))
 
     def reserve(self,purpose,quote,session,batch_id=None,remaining_rounds=None):
@@ -829,48 +847,110 @@ def verify_round(path):
     return verify(path)
 
 
-def start_batch(device=None):
+def resume_registration(batch, ledger):
+    """Only an authenticated pre-purchase wallet pause can resume the same candidate."""
+    from bv_batch import verify_batch
+    reg=json.loads((batch/'registration.json').read_text(encoding='utf-8'))
+    previous=json.loads((batch/'result.json').read_text(encoding='utf-8'))
+    starts=[json.loads(x) for x in (batch/'starts.jsonl').read_text(encoding='utf-8').splitlines()]
+    if ((batch/'STOP').exists() or previous.get('status')!='Paused for wallet'
+            or previous.get('next_ordinal')!=len(starts)+1 or len(starts)>=BATCH_ROUNDS):
+        raise ValueError('resume_requires_unstarted_wallet_pause')
+    expected=dict(code_version=code_version(),parser_version=VERSION,metric_version=METRIC,
+                  instance=INSTANCE,resource_authorization=RESOURCE_AUTHORIZATION,limits=dict(LIMITS))
+    if any(reg.get(k)!=v for k,v in expected.items()):raise ValueError('resume_candidate_changed')
+    records=ledger.records()
+    pauses=[r for r in records if r['kind']=='batch_wallet_pause' and r.get('batch_id')==batch.name]
+    if not pauses or pauses[-1]['next_ordinal']!=len(starts)+1:
+        raise ValueError('resume_pause_not_in_ledger')
+    purchases=[r for r in records if r['kind']=='purchase_reserved' and r.get('batch_id')==batch.name]
+    if len(purchases)!=len(starts) or {p['session_id'] for p in purchases}!={r['session_id'] for r in starts}:
+        raise ValueError('resume_purchase_history_mismatch')
+    verified=verify_batch(batch)
+    allowed={'all_ten_started_rounds_required','live_source_verification_failed'}
+    if set(verified.get('errors',[]))-allowed or len(verified.get('rounds',[]))!=len(starts):
+        raise ValueError('resume_history_invalid')
+    if any(not r.get('evidence_valid') or r.get('source_errors') for r in verified.get('rounds',[])):
+        raise ValueError('resume_history_sources_incomplete')
+    return reg,len(starts)+1
+
+
+def start_batch(device=None,resume=None):
     """One registered candidate, at most ten consecutive starts; no replacement rounds."""
     import msvcrt
     from bv_verify import semantic_gate
     from bv_batch import verify_batch
     if not clean_code():return dict(status='Blocked',acceptance_pass=False,errors=['candidate_not_frozen'])
+    if resume:
+        target=Path(resume).resolve()
+        if target.parent!=CONTROL.resolve() or not target.name.startswith('batch_') or not target.is_dir():
+            return dict(status='Blocked',acceptance_pass=False,errors=['resume_path_outside_control'])
     CONTROL.mkdir(parents=True,exist_ok=True)
     lock=(CONTROL/'controller.lock').open('a+b');lock.seek(0);lock.write(b'0');lock.flush();lock.seek(0)
     try:msvcrt.locking(lock.fileno(),msvcrt.LK_NBLCK,1)
     except OSError:
         lock.close();return dict(status='Blocked',acceptance_pass=False,errors=['controller_already_running'])
-    batch=CONTROL/('batch_'+uuid.uuid4().hex);batch.mkdir()
+    batch=Path(resume).resolve() if resume else CONTROL/('batch_'+uuid.uuid4().hex)
+    if not resume:batch.mkdir()
     ledger=Budget();device=device or Device();result={};run_errors=[];t0=time.monotonic()
     try:
-        remaining=ledger.remaining_positions()
-        if remaining<BATCH_ROUNDS:raise ValueError('insufficient_positions_for_new_ten_round_batch')
-        prep_sid=batch.name+'_preflight';prep0=time.monotonic()
-        ledger.append('runtime_start',session_id=prep_sid)
-        try:prepared=preflight(SOURCE,device,remaining_rounds=BATCH_ROUNDS)
-        finally:ledger.append('runtime_end',session_id=prep_sid,seconds=time.monotonic()-prep0)
-        check,_=prepared
-        if not check.get('run_ready',check.get('purchase_ready')):
-            result=dict(status='Blocked',acceptance_pass=False,started_rounds=0,
-                        errors=check['blockers'],run_errors=check['blockers'],budget_plan=check.get('budget_plan'))
-            return result
-        plan=ledger.batch_plan(check['quote'])
-        if not plan['fits']:
-            result=dict(status='Blocked',acceptance_pass=False,started_rounds=0,
-                        errors=['batch_budget_insufficient'],budget_plan=plan)
-            return result
-        used=LIMITS['acceptance_rounds']-remaining
-        registration=dict(batch_id=batch.name,instance=INSTANCE,code_version=code_version(),
-                          parser_version=VERSION,metric_version=METRIC,purpose='acceptance',planned_rounds=BATCH_ROUNDS,
-                          registered_ns=time.time_ns(),source_start=(SOURCE/'bv_ws.jsonl').stat().st_size,
-                          mode='full_autoplay',positions=list(range(used+1,used+BATCH_ROUNDS+1)),
-                          available_rounds=remaining,budget_plan=plan,limits=dict(LIMITS),resource_authorization=RESOURCE_AUTHORIZATION,
-                          semantic_rule='two_source_bound_rounds_distinct_targets_v1')
-        (batch/'registration.json').write_text(json.dumps(registration),encoding='utf-8')
-        (batch/'starts.jsonl').touch()
-        ledger.append('batch_registered',**registration)
-        for ordinal in range(1,BATCH_ROUNDS+1):
+        if resume:
+            registration,first_ordinal=resume_registration(batch,ledger)
+            used=registration['positions'][0]-1
+            prepared=None
+        else:
+            remaining=ledger.remaining_positions()
+            if remaining<BATCH_ROUNDS:raise ValueError('insufficient_positions_for_new_ten_round_batch')
+            prep_sid=batch.name+'_preflight';prep0=time.monotonic()
+            ledger.append('runtime_start',session_id=prep_sid)
+            try:prepared=preflight(SOURCE,device,remaining_rounds=BATCH_ROUNDS)
+            finally:ledger.append('runtime_end',session_id=prep_sid,seconds=time.monotonic()-prep0)
+            check,_=prepared
+            if not check.get('run_ready',check.get('purchase_ready')):
+                result=dict(status='Blocked',acceptance_pass=False,started_rounds=0,
+                            errors=check['blockers'],run_errors=check['blockers'],budget_plan=check.get('budget_plan'))
+                return result
+            plan=ledger.batch_plan(check['quote'])
+            if not plan['fits']:
+                result=dict(status='Blocked',acceptance_pass=False,started_rounds=0,
+                            errors=['batch_budget_insufficient'],budget_plan=plan)
+                return result
+            used=LIMITS['acceptance_rounds']-remaining
+            registration=dict(batch_id=batch.name,instance=INSTANCE,code_version=code_version(),
+                              parser_version=VERSION,metric_version=METRIC,purpose='acceptance',planned_rounds=BATCH_ROUNDS,
+                              registered_ns=time.time_ns(),source_start=(SOURCE/'bv_ws.jsonl').stat().st_size,
+                              mode='full_autoplay',positions=list(range(used+1,used+BATCH_ROUNDS+1)),
+                              available_rounds=remaining,budget_plan=plan,limits=dict(LIMITS),resource_authorization=RESOURCE_AUTHORIZATION,
+                              semantic_rule='two_source_bound_rounds_distinct_targets_v1')
+            (batch/'registration.json').write_text(json.dumps(registration),encoding='utf-8')
+            (batch/'starts.jsonl').touch()
+            ledger.append('batch_registered',**registration)
+            first_ordinal=1
+        for ordinal in range(first_ordinal,BATCH_ROUNDS+1):
             if (batch/'STOP').exists() or ledger.elapsed()>=LIMITS['total_seconds']:break
+            if prepared is None:
+                # Settlement may return to the lobby. Open only its known,
+                # non-consuming panel before reading the next real quote.
+                prep_sid=batch.name+'_prepare_'+uuid.uuid4().hex;prep0=time.monotonic()
+                ledger.append('runtime_start',session_id=prep_sid)
+                try:
+                    device.stop_paths=(batch/'STOP',)
+                    device.round_deadline=time.monotonic()+LIMITS['round_seconds']
+                    prepare_panel=getattr(device,'prepare_panel',None)
+                    if prepare_panel:prepare_panel(batch/f'prepare-{ordinal}.png')
+                    prepared=preflight(SOURCE,device,remaining_rounds=BATCH_ROUNDS-ordinal+1)
+                finally:ledger.append('runtime_end',session_id=prep_sid,seconds=time.monotonic()-prep0)
+                check,_=prepared
+                if not check.get('run_ready',check.get('purchase_ready')):
+                    plan=check.get('budget_plan') or {};deficits=plan.get('deficits',{})
+                    if (check.get('blockers')==['batch_budget_insufficient'] and deficits.get('wallet',0)>0
+                            and not any(v for k,v in deficits.items() if k!='wallet')):
+                        ledger.append('batch_wallet_pause',batch_id=batch.name,next_ordinal=ordinal,budget_plan=plan)
+                        result=verify_batch(batch)
+                        result.update(status='Paused for wallet',next_ordinal=ordinal,budget_plan=plan,
+                                      acceptance_pass=False,run_errors=['wallet_insufficient_before_purchase'])
+                        return result
+                    run_errors=check.get('blockers') or ['run_not_ready'];break
             print(json.dumps(dict(mode='full_autoplay',round=ordinal,planned=BATCH_ROUNDS,
                   task_position=used+ordinal,status='starting',
                   notice='持续填充四卡全部合法目标，User无需补点',stop_path=str(batch/'STOP')),ensure_ascii=False),flush=True)
@@ -879,7 +959,8 @@ def start_batch(device=None):
             # Purchase, play and settlement share the same per-round input cap.
             device.round_deadline=time.monotonic()+LIMITS['round_seconds']
             run=diagnose(LIMITS['round_seconds'],True,source=SOURCE,root=CONTROL,device=device,play_round=True,batch=dict(registration,folder=str(batch),ordinal=ordinal),
-                         session=session,lock_held=True,prepared=prepared if ordinal==1 else None)
+                         session=session,lock_held=True,prepared=prepared)
+            prepared=None
             if run.get('errors') or run.get('rounds_started')!=1:
                 run_errors=run.get('errors') or ['round_not_started']
                 break

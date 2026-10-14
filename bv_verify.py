@@ -114,6 +114,12 @@ def replay(frozen_path):
     unfilled=targets-confirmations-unknown
     selection,config=read_json(files[2]),read_json(files[3])
     symbol='BET_NP_SYMBOL_%d'%selection['BetCount']
+    if 'panel_identity' in selection:
+        panel=selection['panel_identity']
+        if (panel.get('cards')!=selection['CardCount'] or panel.get('bet_symbol')!=symbol
+                or panel.get('tickets')!=selection['LastBetTicket'] or panel.get('mode')!='ordinary'
+                or panel.get('price_effects')!=[] or not selection.get('panel_source')):
+            raise ValueError('frozen_panel_selection_mismatch')
     costs=[r['cost']*4 for r in config if r['id']==symbol]
     from bv_live import frozen_ticket_limit
     cap=frozen_ticket_limit(f)
