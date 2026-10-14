@@ -1,5 +1,22 @@
 # Codex Handoff
 
+## 2026-10-14 — TASK-0039 Round 2继续实施
+
+接纳3daf754评审与a74005d执行修订，原Task回In Progress。main同步898358f并保留并发TASK-0040记录。定位上限总计3局、最多新增1局，历史账本不清零，其余96票/45分钟不变；修STOP、时区及公开摘要后连续推进补证和十局验收，不逐阶段等待Review。原PR #16/#17保留，不合并/发布/SVN/finalize。
+
+
+## 2026-10-14 — TASK-0040 Accepted治理登记
+
+已将[Round 2评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)及[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)同步为Accepted、R1 Closed，保留首轮/补充历史和原证据边界。只执行治理校验、提交推送及PR描述更新，业务产物不动。沿用原Task/分支/PR #19；PR保持OPEN/Draft，未合并或finalize，reservation pending-main，未标记Complete。下一步等待User另行决定是否合并。Subagents: none。
+
+## 2026-10-13 — TASK-0040 核心复核包已补齐
+
+已按补充评审5505803167收窄R1，保存首轮与补充的[覆盖关系及执行交接](101-CARD-PACK-USD-VALUATION-20261013.md)。受控ZIP独立解压运行53项检查通过；仅代表算例，不重跑全部抽样、不重建主表，不改口径、币价或源配置。沿用原Task/分支/PR #19，等待ChatGPT实际审阅，未Accepted，不合并、不finalize。Subagents: none。
+
+## 2026-10-13 — TASK-0040 101卡包美元价值进入Review
+
+已按PR #18批准规格完成正式分配和受控本机计算：[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)、[Task](../tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md)。29包、8个合成状态、2类权重；条件USD、内部面值、真实售价分列。独立复核与工作簿回读通过，原生Excel/WPS和线上行为未验证。完整数值与实现不进入Git。等待ChatGPT Review，不合并、不finalize。Subagents: none。
+
 ## 2026-10-13 — TASK-0039 Round 1修改后再次Review
 
 [TASK-0039](../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)保持同一任务/PR #16/#17；唯一评审原文191914b已纳入9153f37。实现b428c47，39项回归与入口集成、编译/help通过；R2/R3离线修复，R1已接真实定位/来源及运行代码，完整真机流程仍未证明。定位2局支出8票，正式验收0/10，正式率N/A；只有1局受控差分有效，不能追加定位或跳过两局语义门槛。详见[当前摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)及[Bingo交接](BINGO-VOYAGE-AUTOPLAY-20261013.md)。原副本/采集器未改动；候选未部署，不合并/发布/SVN/扩权/finalize。Subagents: none。

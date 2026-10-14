@@ -1,0 +1,88 @@
+{
+  "task_id": "TASK-0040",
+  "date": "2026-10-13",
+  "status": "passed_with_explicit_unverified_boundaries",
+  "task_status": "Review",
+  "evidence_class": "sanitized_summary_of_local_execution",
+  "source": {
+    "configuration_revision": 15740,
+    "configuration_working_copy_clean": true,
+    "frozen_workbooks": 22,
+    "configuration_files_unchanged": true,
+    "related_implementation_files_unchanged": true,
+    "code_revision_separate_from_configuration": true,
+    "unversioned_generated_classes": 6
+  },
+  "calculation": {
+    "pack_count": 29,
+    "rule_count": 80,
+    "display_tiers": [1, 2, 3, 4, 5, 6],
+    "actual_card_stars": [1, 2, 3, 4, 5],
+    "season_pack_identities_retained": 116,
+    "synthetic_scenarios": 8,
+    "uid_weight_groups": 2,
+    "scenario_rows": 464,
+    "samples_per_row": 50000,
+    "weight_sensitivity_rows": 29,
+    "value_scope": "conditional_single_claim_window",
+    "internal_face_value_evidence": "unavailable",
+    "actual_pack_sale_price_evidence": "unavailable"
+  },
+  "independent_checks": {
+    "status": "passed",
+    "checks": 108,
+    "failed": 0,
+    "direct_source_field_positions": 141370,
+    "independent_whole_pack_examples": 7,
+    "day_progress_boundary_positions": 5040,
+    "coverage": [
+      "all_display_tiers_and_single_rule_variant",
+      "zero_candidates_and_insufficient_capacity",
+      "finite_retries_and_duplicate_stars",
+      "zero_increment_and_no_double_counting",
+      "exchange_threshold_and_cooldown",
+      "independent_usd_conversion_chain",
+      "uid_weight_equivalence_and_sample_stability"
+    ]
+  },
+  "workbook": {
+    "status": "passed",
+    "sheets": 7,
+    "checked_result_cells": 1972,
+    "result_differences": 0,
+    "formula_errors": 0,
+    "missing_formula_caches": 0,
+    "external_links": 0,
+    "price_input_recalculation": "passed",
+    "scenario_selector_recalculation": "passed",
+    "baseline_restored": true,
+    "rendered_and_reviewed_sheets": 7,
+    "final_changed_previews_reviewed": true
+  },
+  "delivery": {
+    "one_click_entry_executed": true,
+    "workbook_and_method_notes_generated": true,
+    "complete_inputs_values_and_scripts": "controlled_local_only",
+    "artifact_navigation": "ARTIFACTS.md",
+    "subagents": "none",
+    "source_or_svn_writes": false,
+    "purchases_or_business_publication": false
+  },
+  "governance": {
+    "registry_status": "valid",
+    "canonical_count": 19,
+    "collision_count": 0,
+    "audited_legacy_warnings": 6,
+    "allocation_status": "pending-main",
+    "registration_commit": "4f672ee5714c02126f6d0c4f3ac6036bd78b0227",
+    "branch": "codex/101-card-pack-usd-20261013"
+  },
+  "unverified": [
+    "native_Excel_or_WPS_open",
+    "live_game_export_order_and_loaded_configuration_or_code",
+    "server_timezone_and_PRNG_correlations",
+    "live_store_visibility_and_actual_payment",
+    "full_season_future_pack_plan_and_population_weighting"
+  ],
+  "next": "ChatGPT Review; no automatic merge, acceptance or allocator finalize"
+}

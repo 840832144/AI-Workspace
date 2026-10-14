@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-14 — TASK-0039 Round 2继续实施
+
+接纳3daf754评审与a74005d执行修订，原Task回In Progress。main同步898358f并保留并发TASK-0040记录。定位上限总计3局、最多新增1局，历史账本不清零，其余96票/45分钟不变；修STOP、时区及公开摘要后连续推进补证和十局验收，不逐阶段等待Review。原PR #16/#17保留，不合并/发布/SVN/finalize。
+
+
+## 2026-10-14
+
+- TASK-0040按ChatGPT Round 2评审5506462225（受评9ce1b6a）登记Accepted、R1 Closed，保留首轮及补充评审原文；同步Task/Status/Handoff、Registry与PR描述。仅治理收口，不补包、不重算或修改业务产物。PR #19保持OPEN，未合并或finalize，reservation pending-main；Accepted不等于Git生命周期Complete。Subagents: none。
+
+## 2026-10-13
+
+- TASK-0040按补充评审5505803167缩减R1，落Git保存首轮/补充评审覆盖关系；受控核心复核ZIP包含原脚本与最小输入，代表算例及有包/无包账本经独立解压运行验证。原主表与币价不变，沿用PR #19等待Review，不合并或finalize。
+- 正式登记 TASK-0040：101 卡包美元价值只读计算，继承 PR #18 已批准规格；完整数值及实现留受控本机，独立分支交 ChatGPT Review，不自动合并。Subagents: none。
+- TASK-0040已实际计算29包、80条规则、8种合成状态和2类权重，交付受控工作簿、口径说明与一键复算；条件USD与面值/售价分离，独立复核及工作簿验证完成。状态Review，原生Excel/WPS及线上验证未执行，等待ChatGPT Review。
+
 
 ## 2026-10-13 — TASK-0039 Round 1修改与两局定位证据
 
