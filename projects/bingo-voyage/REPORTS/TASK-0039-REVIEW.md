@@ -1,6 +1,22 @@
-# TASK-0039 限定观察实测与DSH交接
+# TASK-0039 面板实读、计价缺口与持续交付进展
 
-## 当前结果：限定Hook已获准，现有绑定在ARM64观察组件加载处失败
+## 当前结果：原实例已读到面板字段，最终计价仍待合证
+
+原有四卡、覆盖恢复、末球收尾、结算、STOP和预算修复保留。emulated观察绑定因重复加载失败及库卸载限制已在41dacf7停止，CLI/worker/直接调用在设备与账本操作前拒绝；没有重新尝试。原限定被动观察授权有效，不重复索权。
+
+已通过本地ARM64 ELF、v31 metadata、重定位及反汇编确定字段偏移与UIManager→BuyCardPanel对象路径；用原ADB权限定址读取，没有attach、装载agent、全堆扫描、调用方法或改安全设置。保留前三次失败/面板未开启结果；一次非消费导航打开选卡面板，随后2.375秒、52次ADB命令、846字节读取获得当前四卡、Bet索引0/最高可用索引0、基础每卡3票。未调整乘积12仍不是最终报价。TicketCost实际为GameObject，两个buff标志false不足以证明没有免费/折扣。
+
+原PR #16实现[83244dc](https://github.com/840832144/AI-Workspace/commit/83244dc920b550828302140ed370db3cbe3d8b80)新增bv_panel_fields.py纯字段解码器，返回候选数据而非PanelQuote；实际读取序列复放及四种变造拒绝、购买校验拒绝合计6项通过。此前92项离线/真实函数与CLI集成回归通过（32.854秒、exit0、账本不变），与6项受控复放分列；不把它们当作真实整局。离线枚举解码确认raw1=Bingo13，完整普通模式、最终价格与动态分派仍需绑定。
+
+当前累计52票/2363.776秒/历史8完整位置及3定位；剩44票/3036.224秒/10位置，保留十局3000秒和30秒收尾后准备6.224秒。本轮仅一次非消费导航，无购买、填格或attach；新十局0/10。若最终普通四卡12票，十局需120票、较剩44票缺76票；条件测算不追加额度。单局16票/300秒、累计96票/5400秒/18位置均不变。第6位置真实失败、第8位置旧超限及接管保留。
+
+生产Device.context尚无合格最终报价reader；价格影响完整性、动态分派、资源时钟及覆盖后真实受理未证明，购买继续阻断。DSH具体问题已聚焦上述语义，User已答复转述。受控execution16/hook/dsh-review/REVIEW.md、recompute.py与DSH-FOLLOWUP.md保留来源、失败、精确运行代码和复放。详见[实际进展与剩余阻塞](https://github.com/840832144/AI-Workspace/blob/codex/bingo-voyage-autoplay-20261013/tasks/support/TASK-0039/PANEL-FIELDS-PROGRESS-20261014.md)。
+
+继续TASK-0039与原PR #16/#17，Task In Progress，完整交付未完成；不混版、不挑局、不清账。不合并、发布、SVN、扩权或finalize。Subagents: none。
+
+最新main898358f已安全同步且为治理分支祖先；本次Registry scan --write-registry与validate通过：20 canonical、0 collision/error、6既有legacy警告，原reservation保持pending-main。
+
+## 历史：收到DSH答复前的观察准备
 
 实现提交[f33b6fb](https://github.com/840832144/AI-Workspace/commit/f33b6fb916af5a6df7fe5dfaaa06aebe96c95ae9)已推送原PR #16。User明确批准原面板/同局四卡限定被动Hook，治理授权4973baa；不再把这项权限列为待批。继续TASK-0039及原PR #16/#17，保留16票执行修订、Round 1–5和全部历史；Task仍In Progress，完整交付未完成。
 
