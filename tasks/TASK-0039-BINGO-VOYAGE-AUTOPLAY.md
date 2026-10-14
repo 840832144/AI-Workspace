@@ -9,7 +9,13 @@
 - Specification: [EXECUTION_SPEC.md](support/bingo-voyage-autoplay-20261013/EXECUTION_SPEC.md)，固定批准版本 `1c3683fb1b2f51a77e02ba2aca3a8a78d99975da`。
 - Allocation: remote-CAS；pending-main，未 finalize。
 
-## 当前进展：16票修订已实施，生产来源待具体授权
+## 2026-10-14 User批准限定被动Hook
+
+User在具体方案及权限问题之后明确回复“允许，继续吧”。授权仅覆盖SOURCE-OBSERVATION-SCOPE-20261014.md所列原游戏实例、当前买卡面板报价/选择/价格影响与同局四卡交互/覆盖/自然接受的进程内被动Hook。可以据此继续实施和验证，不再把该限定权限列为待批，也不逐阶段请求Review。
+
+不主动调用游戏业务方法，不改业务字段/返回值/协议，不新增Root、证书或网络权限，不读取无关账号/凭据/其他应用或完整内存。异常撤销、STOP、原来源和独立核验保留；资源仍单局16票/300秒、累计96票/5400秒/18完整位置、3历史定位不增加。批准前历史记录保留，观察成功与真实十局仍待实际证明；不合并/发布/SVN/finalize。Subagents: none。
+
+## 上一轮进展：16票修订已实施，生产来源待具体授权
 
 附件和649fcad唯一Round 5已由45d4c92原样接纳；本轮未找到或虚构所谓新附件commit。实现交付[588a1ec](https://github.com/840832144/AI-Workspace/commit/588a1ec581a651c9d23b66da1167826476785fbe)，功能代码1d2d694。原PR #16/#17继续Draft/Open，Task保持In Progress，完整目标未交付，未Accepted；不以局部回归进入完成状态。
 
