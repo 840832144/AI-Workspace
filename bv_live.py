@@ -24,7 +24,7 @@ CONTROL = Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "AI-Workspace
 PACKAGE = "com.bingo.cruise.free.best.top.game"
 INSTANCE = 'mumu-authorized'
 METRIC = "automatic-set-intersection-replan-v1"
-RESOURCE_AUTHORIZATION = 'execution-budget-relaxed-20261014'
+RESOURCE_AUTHORIZATION = 'execution-experiment-first-20261014'
 RESOURCE_POLICIES = {'execution-16t-20261014':
     {"diagnostic_rounds": 3, "acceptance_rounds": 18, "cards": 4,
      "tickets_per_round": 16, "gross_tickets": 96, "round_seconds": 300, "total_seconds": 5400}}
@@ -35,8 +35,13 @@ RESOURCE_POLICIES['execution-time-relaxed-20261014'] = dict(
     RESOURCE_POLICIES['execution-16t-20261014'], total_seconds=6000)
 # Later User ticket relaxation: 52 historical + 10 current 12-ticket rounds.
 # User replenishes the wallet; this code never purchases currency.
-RESOURCE_POLICIES[RESOURCE_AUTHORIZATION] = dict(
+RESOURCE_POLICIES['execution-budget-relaxed-20261014'] = dict(
     RESOURCE_POLICIES['execution-time-relaxed-20261014'], gross_tickets=172)
+# User accepted the bounded experiment plan: nine historical positions plus
+# at most twenty new purchases, including the final ten. Never reset history.
+RESOURCE_POLICIES[RESOURCE_AUTHORIZATION] = dict(
+    RESOURCE_POLICIES['execution-budget-relaxed-20261014'],
+    acceptance_rounds=29, gross_tickets=384, total_seconds=10800)
 LIMITS = RESOURCE_POLICIES[RESOURCE_AUTHORIZATION]
 BATCH_ROUNDS = 10
 BATCH_CLEANUP_SECONDS = 30
@@ -595,7 +600,7 @@ class Budget:
     def batch_plan(self,quote,rounds=BATCH_ROUNDS):
         validate_quote(quote)
         if type(rounds) is not int or not 1<=rounds<=BATCH_ROUNDS:raise ValueError('invalid_remaining_batch_rounds')
-        required_tickets=quote['tickets']*rounds
+        required_tickets=LIMITS['tickets_per_round']*rounds
         required_seconds=LIMITS['round_seconds']*rounds+BATCH_CLEANUP_SECONDS
         available_tickets=LIMITS['gross_tickets']-self.gross()
         available_seconds=LIMITS['total_seconds']-self.elapsed()
@@ -604,9 +609,11 @@ class Budget:
                       wallet=max(0,quote['tickets']-quote.get('balance',-1)),
                       seconds=max(0,required_seconds-available_seconds))
         return dict(rounds=rounds,per_round_tickets=quote['tickets'],required_tickets=required_tickets,
+                    reserved_per_round_tickets=LIMITS['tickets_per_round'],
+                    quoted_batch_tickets=quote['tickets']*rounds,
                     available_tickets=available_tickets,required_seconds=required_seconds,
                     available_seconds=available_seconds,cleanup_seconds=BATCH_CLEANUP_SECONDS,
-                    future_wallet_gap=max(0,required_tickets-quote.get('balance',-1)),
+                    future_wallet_gap=max(0,quote['tickets']*rounds-quote.get('balance',-1)),
                     wallet_policy='each_purchase_user_replenishes_no_auto_topup',
                     deficits=deficits,fits=not any(deficits.values()))
 

@@ -242,10 +242,10 @@ class EntryAndBudget(unittest.TestCase):
             b.reserve('diagnostic',quote,'d1');b.reserve('diagnostic',quote,'d2')
             b.reserve('diagnostic',quote,'d3')
             with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('diagnostic',quote,'d4')
-            for i in range(18):b.reserve('acceptance',quote,str(i))
+            for i in range(29):b.reserve('acceptance',quote,str(i))
             b.append('reward',tickets=100)
             with self.assertRaises(ValueError):b.reserve('acceptance',quote,'extra')
-            self.assertEqual(sum(r.get('reserved_tickets',0) for r in b.records()),168)
+            self.assertEqual(sum(r.get('reserved_tickets',0) for r in b.records()),256)
 
 
 if __name__=='__main__':unittest.main()

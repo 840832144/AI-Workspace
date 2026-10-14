@@ -148,8 +148,8 @@ class ContinuousTargets(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             ledger=live.Budget(folder);q=synthetic_quote(source_ref='synthetic',tickets=4,cards=4,balance=80)
             for i in range(2):ledger.reserve('acceptance',q,'old'+str(i),'oldbatch')
-            self.assertEqual(ledger.remaining_positions(),16)
-            for i in range(16):ledger.reserve('acceptance',q,'new'+str(i),'newbatch')
+            self.assertEqual(ledger.remaining_positions(),27)
+            for i in range(27):ledger.reserve('acceptance',q,'new'+str(i),'newbatch')
             self.assertEqual(ledger.remaining_positions(),0)
             with self.assertRaisesRegex(ValueError,'round_count_limit'):
                 ledger.reserve('acceptance',q,'forbidden','extra')

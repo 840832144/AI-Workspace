@@ -30,7 +30,7 @@ class Execution16(unittest.TestCase):
             b=historical_budget(folder)
             plan=b.batch_plan(synthetic_quote(tickets=12,balance=105))
             self.assertTrue(plan['fits']);self.assertEqual(plan['future_wallet_gap'],15)
-            self.assertEqual(plan['required_tickets'],120)
+            self.assertEqual(plan['required_tickets'],160);self.assertEqual(plan['quoted_batch_tickets'],120)
             before=b.path.read_bytes()
             self.assertFalse(b.batch_plan(synthetic_quote(tickets=12,balance=11))['fits'])
             with self.assertRaisesRegex(ValueError,'per_round_resource_limit'):
@@ -65,14 +65,16 @@ class Execution16(unittest.TestCase):
     def test_original_ledger_and_entire_batch_budget(self):
         with tempfile.TemporaryDirectory() as folder:
             b=historical_budget(folder);before=b.path.read_bytes()
-            self.assertEqual((b.gross(),b.remaining_positions()),(52,10))
-            for cost,deficit in ((4,0),(8,0),(12,0),(16,40)):
+            self.assertEqual((b.gross(),b.remaining_positions()),(52,21))
+            for cost,deficit in ((4,0),(8,0),(12,0),(16,0)):
                 p=b.batch_plan(synthetic_quote(tickets=cost,balance=200))
                 self.assertEqual(p['deficits']['tickets'],deficit)
-                self.assertEqual(p['fits'],cost<=12)
+                self.assertTrue(p['fits'])
                 self.assertEqual(p['required_seconds'],3030)
                 self.assertAlmostEqual(p['available_seconds'],live.LIMITS['total_seconds']-2267.262)
             self.assertEqual(b.path.read_bytes(),before)
+            b.append('purchase_reserved',purpose='acceptance',session_id='failed_budget',reserved_tickets=180)
+            before=b.path.read_bytes()
             with self.assertRaisesRegex(ValueError,'batch_budget_insufficient'):
                 b.reserve('acceptance',synthetic_quote(tickets=16,balance=200),'new',remaining_rounds=10)
             self.assertEqual(b.path.read_bytes(),before)
@@ -80,9 +82,9 @@ class Execution16(unittest.TestCase):
     def test_total_time_gross_and_position_boundaries(self):
         with tempfile.TemporaryDirectory() as folder:
             b=historical_budget(folder);q=synthetic_quote(balance=200)
-            for i in range(10):b.reserve('acceptance',q,f'new{i}')
-            self.assertEqual((b.gross(),b.remaining_positions()),(92,0))
-            with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('acceptance',q,'position19')
+            for i in range(21):b.reserve('acceptance',q,f'new{i}')
+            self.assertEqual((b.gross(),b.remaining_positions()),(136,0))
+            with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('acceptance',q,'position30')
         with tempfile.TemporaryDirectory() as folder:
             b=live.Budget(folder);b.append('purchase_reserved',purpose='acceptance',session_id='history',reserved_tickets=live.LIMITS['gross_tickets']-4)
             b.reserve('acceptance',q,'exact_cap')
@@ -101,7 +103,8 @@ class Execution16(unittest.TestCase):
         old=live.RESOURCE_POLICIES['execution-16t-20261014']
         self.assertEqual(old['total_seconds'],5400)
         self.assertEqual(live.RESOURCE_POLICIES['execution-time-relaxed-20261014'],dict(old,total_seconds=6000))
-        self.assertEqual(live.LIMITS,dict(old,total_seconds=6000,gross_tickets=172))
+        self.assertEqual(live.RESOURCE_POLICIES['execution-budget-relaxed-20261014'],dict(old,total_seconds=6000,gross_tickets=172))
+        self.assertEqual(live.LIMITS,dict(old,total_seconds=10800,gross_tickets=384,acceptance_rounds=29))
         self.assertEqual(live.frozen_ticket_limit(dict(
             resource_authorization='execution-16t-20261014',limits=dict(old))),16)
         with self.assertRaisesRegex(ValueError,'authorization_mismatch'):
@@ -109,7 +112,9 @@ class Execution16(unittest.TestCase):
 
     def test_start_entry_insufficient_total_has_no_registration_or_purchase(self):
         with tempfile.TemporaryDirectory() as folder:
-            root=Path(folder);b=historical_budget(root);old=b.path.read_bytes()
+            root=Path(folder);b=historical_budget(root)
+            b.append('purchase_reserved',purpose='acceptance',session_id='failed_budget',reserved_tickets=180)
+            old=b.path.read_bytes()
             cls=live.Budget;q=synthetic_quote(tickets=16,balance=200)
             check=dict(run_ready=True,blockers=[],quote=q)
             with patch.object(live,'CONTROL',root),patch.object(live,'Budget',side_effect=lambda root=None:cls(root or folder)),patch.object(live,'clean_code',return_value=True),patch.object(live,'preflight',return_value=(check,[])),patch.object(live,'diagnose') as play:
@@ -118,19 +123,21 @@ class Execution16(unittest.TestCase):
             self.assertFalse(r['acceptance_pass']);self.assertEqual(r['started_rounds'],0)
             self.assertIn('batch_budget_insufficient',r['errors'])
             self.assertFalse(list(root.glob('batch_*/registration.json')))
-            self.assertEqual(len([x for x in b.records() if x['kind']=='purchase_reserved']),11)
+            self.assertEqual(len([x for x in b.records() if x['kind']=='purchase_reserved']),12)
             self.assertTrue(b.path.read_bytes().startswith(old))
 
-    def test_new_ten_positions_are_9_through_18(self):
+    def test_new_ten_positions_are_10_through_19_after_preserved_ninth(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);b=historical_budget(root);cls=live.Budget
+            b.append('purchase_reserved',purpose='acceptance',session_id='p8',reserved_tickets=12)
+            self.assertEqual((b.gross(),b.remaining_positions()),(64,20))
             (root/'bv_ws.jsonl').touch()
             check=dict(run_ready=True,blockers=[],quote=synthetic_quote(balance=200))
             def stop(*args,**kw):return dict(rounds_started=0,errors=['synthetic_stop_before_purchase'])
             with patch.object(live,'CONTROL',root),patch.object(live,'SOURCE',root),patch.object(live,'Budget',side_effect=lambda root=None:cls(root or folder)),patch.object(live,'clean_code',return_value=True),patch.object(live,'preflight',return_value=(check,[])),patch.object(live,'diagnose',side_effect=stop),patch('builtins.print'):
                 live.start_batch(device=SimpleNamespace())
             r=json.loads(next(root.glob('batch_*/registration.json')).read_text())
-            self.assertEqual(r['positions'],list(range(9,19)))
+            self.assertEqual(r['positions'],list(range(10,20)))
             self.assertEqual(r['planned_rounds'],10)
 
     def test_spend_mismatch_both_directions_and_historical_cap(self):
