@@ -81,3 +81,18 @@ class TimeAndLimits(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('diagnostic',q,'forbidden4')
             self.assertEqual(sum(r.get('reserved_tickets',0) for r in b.records()),12)
             self.assertEqual((live.LIMITS['gross_tickets'],live.LIMITS['total_seconds']),(96,2700))
+
+
+class SpecialObservations(unittest.TestCase):
+    def test_powerup_cancels_queued_input_without_confirming_or_hiding_target(self):
+        c=r1.Dispatch().queued()
+        event=dict(round_id=c.rid,card_id=1,cell_index=0,ball=1,at_ns=1,daub_type='PowerUp',source_ref={})
+        self.assertTrue(c.accept_client_mark(event));self.assertFalse(c.done)
+        with patch.object(ap.time,'monotonic',return_value=12),patch.object(ap,'spawn_tap') as send:
+            result=c.input_pool.fn();self.assertEqual(result,'cancelled');send.assert_not_called()
+            c.input_future.set_result(result);c.tick([])
+        self.assertNotIn((1,0,0),{(q['slot'],q['r'],q['c']) for q in c.pending+c.awaiting})
+        self.assertEqual(len(__import__('bv_evidence').expected_cells(c.cards,[1])),4)
+        c.backfill();self.assertNotIn((1,0,0),{(q['slot'],q['r'],q['c']) for q in c.pending})
+        event['ball']=75;self.assertFalse(c.accept_client_mark(event))
+        event.update(ball=1,daub_type='Manual');self.assertFalse(c.accept_client_mark(event))

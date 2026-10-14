@@ -170,6 +170,7 @@ class AutoPlay:
         self.order = ([x.strip() for x in a.map.split(",")] if a.map else list(DEFAULT_ORDER))
         self.called = []
         self.done = set()
+        self.special_observed = set()  # Suppress re-input; never counts as confirmed fill.
         self.tapped = set()          # ★ 已经点过的格（每格只点一次）
         self.pending = []
         self.awaiting = []
@@ -220,6 +221,7 @@ class AutoPlay:
                     or q["layout_version"] != self.layout_version or now-self.layout_at > 2.5
                     or not self.foreground_ok or now-self.foreground_at > 2.5
                     or q["due"] > now or q["ball"] not in self.first_seen
+                    or (q['slot'],q['r'],q['c']) in self.done | getattr(self,'special_observed',set())
                     or self.n_tap >= getattr(self.a,"max_dispatches",float("inf"))):
                 self.log(kind="cancelled_before_dispatch", slot=q["slot"], cell_index=q["c"]*5+q["r"])
                 return "cancelled"
@@ -377,7 +379,7 @@ class AutoPlay:
                 r, col = idx2rc(k)
                 key = (c["slot"], r, col)
                 if getattr(self.a,'diagnostic_slot',None) not in (None,c['slot']):continue
-                if number != ball or k == 12 or key in self.done:
+                if number != ball or k == 12 or key in self.done | getattr(self,'special_observed',set()):
                     continue
                 active = self.pending + self.awaiting + ([self.input_target] if self.input_target else [])
                 if any((q["slot"], q["r"], q["c"]) == key for q in active):
@@ -426,10 +428,10 @@ class AutoPlay:
             q["status"] = "attempted_unconfirmed"
             if outcome == "cancelled":
                 # Unsent targets retain their retry budget and can recover after calibration.
-                if q["round_id"] == self.rid and not self.closed and not self.halted:
+                if q["round_id"] == self.rid and not self.closed and not self.halted and (q['slot'],q['r'],q['c']) not in getattr(self,'special_observed',set()):
                     q["status"] = "pending"
                     self.pending.append(q)
-            elif (q['slot'],q['r'],q['c']) not in self.done:
+            elif (q['slot'],q['r'],q['c']) not in self.done | getattr(self,'special_observed',set()):
                 self.awaiting.append(q)
             self.input_future = self.input_target = None
             self.log(kind="input_finished", outcome=outcome, slot=q["slot"], cell_index=q["c"]*5+q["r"])
@@ -473,10 +475,20 @@ class AutoPlay:
         Its timestamp must follow an actual dispatch for that exact target.
         """
         slot,cell=event.get('card_id'),event.get('cell_index')
-        if event.get('round_id')!=self.rid or event.get('daub_type')!='Manual':return False
+        if event.get('round_id')!=self.rid:return False
         if type(slot)is not int or type(cell)is not int or not (1<=slot<=4 and 0<=cell<25) or cell==12:return False
         key=(slot,*idx2rc(cell))
         card=next((c for c in self.cards or [] if c['slot']==slot),None)
+        if not card or card['vals'][cell]!=event.get('ball'):return False
+        if event.get('daub_type')=='PowerUp':
+            with self.state_lock:
+                if not hasattr(self,'special_observed'):self.special_observed=set()
+                self.special_observed.add(key);self.done.discard(key)
+                self.pending=[q for q in self.pending if (q['slot'],q['r'],q['c'])!=key]
+                self.awaiting=[q for q in self.awaiting if (q['slot'],q['r'],q['c'])!=key]
+                self.log(kind='special_unknown',slot=slot,cell_index=cell,source_ref=event['source_ref'])
+            return True  # Observation handled, not confirmation; verifier keeps Unknown.
+        if event.get('daub_type')!='Manual' or key in getattr(self,'special_observed',set()):return False
         sent=getattr(self,'dispatch_times',{}).get(key)
         if (not card or card['vals'][cell]!=event.get('ball') or event['ball'] not in self.first_seen
                 or sent is None or not sent<=event['at_ns']<=sent+10_000_000_000):return False

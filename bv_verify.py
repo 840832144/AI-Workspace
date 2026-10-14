@@ -75,6 +75,8 @@ def replay(frozen_path):
         key=e['card_id'],e['cell_index']
         if key not in cells or key[1]==12 or cards.get(key[0],[None]*25)[key[1]]!=e['ball']:
             errors.append('marked_identity_mismatch');continue
+        if e['daub_type']!='Manual':
+            special.add(key);continue  # Effects may precede a call; never ordinary C.
         if e['ball'] not in call_time or e['at_ns']<call_time[e['ball']]:
             errors.append('mark_before_call');continue
         if e['daub_type']=='Manual' and not cells[key]['special']:marked.add(key)
@@ -82,7 +84,7 @@ def replay(frozen_path):
     terminal={k for k,v in cells.items() if k[1]!=12 and v['marked']}
     if not marked<=terminal:errors.append('client_terminal_contradiction')
     targets=expected_cells(card['cards'],called)
-    confirmations=marked & terminal & targets
+    confirmations=(marked & terminal & targets)-special
     # Unknown modifiers/effects remain Unknown, including terminal-only marks.
     unknown={k for k in targets if cells[k]['special'] or k in special or k in terminal and k not in confirmations}
     unfilled=targets-confirmations-unknown
@@ -96,6 +98,8 @@ def replay(frozen_path):
             if (a['slot'],a['cell_index'])==(e['card_id'],e['cell_index']) and at<=e['at_ns']<=at+10_000_000_000:
                 matched.add(i);break
     unexplained=len(manual)!=len(matched)
+    if any((a['slot'],a['cell_index'])==(e['card_id'],e['cell_index']) for e in manual for a in dispatch) and not matched:
+        errors.append('manual_dispatch_time_binding_mismatch')
     selection,config=read_json(files[2]),read_json(files[3])
     symbol='BET_NP_SYMBOL_%d'%selection['BetCount']
     costs=[r['cost']*4 for r in config if r['id']==symbol]
@@ -123,7 +127,7 @@ def replay(frozen_path):
                               Unknown=sum(k[0]==i for k in unknown),confirmed_unfilled=sum(k[0]==i for k in unfilled)) for i in range(1,5)],
                 manual_takeover=unexplained,controlled_differential=controlled,
                 controlled_cell=list(next(iter(confirmations))) if controlled else None,
-                dispatches=len(dispatch),native_manual=len(manual),terminal_marks=len(terminal),
+                dispatches=len(dispatch),native_manual=len(manual),matched_dispatches=len(matched),terminal_marks=len(terminal),
                 gross_tickets=gross,quote_tickets=costs[0],parser_version=VERSION,
                 semantic_scope='ordinary Manual marks; modified cells Unknown; client acceptance, not server ACK')
 

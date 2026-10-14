@@ -482,8 +482,8 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                             if event['round_id']!=round_id_bound:continue
                             processed_marks.add(ref)
                             if not controller.accept_client_mark(event):
-                                controller.revoke('unmatched_or_special_client_mark',halt=True)
-                                result.setdefault('errors',[]).append('unmatched_or_special_client_mark')
+                                controller.revoke('unmatched_client_mark',halt=True)
+                                result.setdefault('errors',[]).append('unmatched_client_mark')
                     deltas=re.findall(rb"NotifyResources TICKET current=(\d+) next=(\d+) delta=(-?\d+)",b"".join(client_chunks))
                     gross=sum(-int(d) for a,b,d in deltas if int(d)<0)
                     if deltas:result["gross_tickets"]=gross

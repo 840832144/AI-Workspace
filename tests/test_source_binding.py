@@ -130,6 +130,24 @@ class Sources(unittest.TestCase):
         with patch.object(live,'Device') as device,patch.object(ap.sys,'argv',['bv_autoplay.py','--start']),patch('builtins.print'):
             self.assertEqual(ap.main(),2);device.assert_not_called()
 
+    def test_special_before_call_stays_unknown_and_dispatch_time_mismatch_fails(self):
+        from bv_verify import content_digest
+        p=self.make_round('diagnostic');f=json.loads(p.read_text());log=p.parent/f['client_ref']
+        # A real file-backed synthetic PowerUp before the first call, same cell.
+        lines=log.read_text().splitlines();manual=next(l for l in lines if 'Daub Type Manual' in l)
+        effect=manual.replace('Daub Type Manual','Daub Type PowerUp').replace('10:00:34.210','10:00:33.500')
+        log.write_text('\n'.join(sorted(lines+[effect]))+'\n')
+        events,_=live.scan_range(self.index,self.source/'bv_bodies',f['source']['start'],f['source']['end'])
+        files=[p.parent/f[k] for k in ('client_ref','actions_ref','selection_ref','config_ref')]
+        f['source_digest']=content_digest(f['source'],events,files);p.write_text(json.dumps(f))
+        r=replay(p);self.assertEqual(r['errors'],[]);self.assertEqual((r['N'],r['E'],r['Unknown']),(0,20,1))
+        self.assertFalse(r['controlled_differential'])
+        # Never widen the timestamp window to force a diagnostic to qualify.
+        a=p.parent/f['actions_ref'];rows=[json.loads(l) for l in a.read_text().splitlines()]
+        rows[0]['dispatched_ns']+=20_000_000_000;a.write_text(''.join(json.dumps(x)+'\n' for x in rows))
+        f['source_digest']=content_digest(f['source'],events,files);p.write_text(json.dumps(f))
+        self.assertIn('manual_dispatch_time_binding_mismatch',replay(p)['errors'])
+
     def test_restart_cost_proof_reuses_exact_replayed_symbol_cost_not_balance(self):
         p=self.make_round('diagnostic')
         self.assertEqual(live.cost_proof(b'', 'BET_NP_SYMBOL_1',4),str(p))

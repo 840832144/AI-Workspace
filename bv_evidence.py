@@ -12,7 +12,7 @@ from pathlib import Path
 from bv_proto import parse
 from bv_ws2 import parse_frame
 
-VERSION = "task0039-r2-v3"
+VERSION = "task0039-r2-v4"
 
 
 def fields(body):
