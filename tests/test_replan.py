@@ -45,6 +45,21 @@ class Clocks(unittest.TestCase):
 
 
 class ContinuousTargets(unittest.TestCase):
+    def test_panel_navigation_ignores_green_ad_below_modal(self):
+        from PIL import Image,ImageDraw
+        from bv_autobuy import BLUE,GREEN
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'synthetic.png';im=Image.new('RGB',(900,1600));draw=ImageDraw.Draw(im)
+            draw.rectangle((30,300,870,1250),fill=BLUE)
+            draw.rectangle((300,1140,600,1220),fill=GREEN)
+            draw.rectangle((480,1400,860,1580),fill=GREEN);im.save(path)
+            device=live.Device()
+            with patch.object(device,'foreground',return_value=True),patch.object(ap,'shot',return_value=True):
+                sample=device.sample(path)
+            self.assertEqual(sample['scene'],'betpanel')
+            self.assertLess(abs(sample['button'][0]-450),5)
+            self.assertLess(abs(sample['button'][1]-1180),5)
+
     def test_animated_row_band_does_not_block_other_targets(self):
         from bv_cardgrid import regular_rows
         base=[965,1043,1120,1198,1275.5]

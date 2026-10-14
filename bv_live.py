@@ -265,7 +265,13 @@ class Device:
         if im.size!=(900,1600):return {"foreground":True,"scene":"bad_orientation","grid":None}
         det=bv_cardgrid.detect(im)
         green=find_green(im)
-        panel=near(im.getpixel((100,700)),BLUE,65) and green and 400<green[0]<500 and 1100<green[1]<1230
+        panel_anchor=near(im.getpixel((100,700)),BLUE,65)
+        if panel_anchor:
+            # Event ads below the panel also use green. Calibrate the visible
+            # panel's action area only; no ticket/card values are read here.
+            local=find_green(im.crop((250,1090,650,1260)),yfrac=0)
+            green=(local[0]+250,local[1]+1090,local[2]) if local else None
+        panel=panel_anchor and green and 400<green[0]<500 and 1100<green[1]<1230
         congrats=near(im.getpixel((150,450)),ORANGE,70) and green and 350<green[0]<550 and 1200<green[1]<1400
         scene="round" if len(det or [])==4 else "betpanel" if panel else "congrats" if congrats else "lobby" if green and 120<green[0]<400 and green[1]>1200 else "unknown"
         return {"foreground":ok,"scene":scene,"grid":det,"button":list(green[:2]) if green else None,
