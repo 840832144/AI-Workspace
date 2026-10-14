@@ -1,3 +1,31 @@
+# TASK-0039 限定观察实测与DSH交接
+
+## 当前结果：限定Hook已获准，现有绑定在ARM64观察组件加载处失败
+
+实现提交[f33b6fb](https://github.com/840832144/AI-Workspace/commit/f33b6fb916af5a6df7fe5dfaaa06aebe96c95ae9)已推送原PR #16。User明确批准原面板/同局四卡限定被动Hook，治理授权4973baa；不再把这项权限列为待批。继续TASK-0039及原PR #16/#17，保留16票执行修订、Round 1–5和全部历史；Task仍In Progress，完整交付未完成。
+
+新增bv_observer.py/.js及有限辅助诊断：精确构建约束的Frida辅助程序禁用默认SELinux策略修改，只经Unix abstract socket/ADB本地转发，预算检查在连接前，独立截止与STOP、会话撤销、精确辅助进程清理、清理失败持续计时。自然回调候选也不会变成PanelQuote。最终入口保存自身源文件；原生产Device.context保持未知报价不购买。
+
+实际四次不消费观察准备：第一次3.625秒因ADB后台作业等待超时；修复为-D后第二次2.828秒进入emulated realm失败；第三次2.375秒、第四次2.750秒为原进程NativeBridge有限定位，仍返回ProtocolError:process is not using emulation。native realm连接/有限诊断脚本可建立，面板业务Hook没有装入，无真实字段/回调。第四次诊断错误指针不可读，未认定原因；该诊断getter已移除，最终版本未再上机。实际检查helper均已退出、原游戏PID存活、SELinux前后相同；原采集器未被本代码修改或重启。探索源版本未完整冻结，明确不作为正式版本绑定或验收成绩。
+
+最终89项离线与实际函数/CLI集成回归通过（31.844秒，exit0），其中8项针对新观察入口的辅助构建、预算拒绝、错误聚合、计时与清理失败。编译/JS语法/diff检查通过，整套测试前后正式账本字节不变。测试不证明真机面板、覆盖后受理或十局完成。
+
+最新账本52票/2357.995秒、历史8完整位置/3定位；两次环境读取0.312秒及上述11.578秒均记入，未清零。剩44票/3042.005秒/10位置，十局3000秒+30秒收尾预留后准备空间12.005秒。新十局0/10、零新增购买/游戏点击；真实报价、来源时钟、覆盖受理、完整结算续局仍未证明。历史第6位置真实未达标、第8位置旧限额下12>8及接管保留；12个dry机会不计成功。
+
+User要求整理问题交DSH答疑。具体环境、真实错误、上游加载分支、字段语义与最小恢复要求见原治理分支tasks/support/TASK-0039/DSH-QUESTIONS-20261014.md。当前绑定不可用不代表所有授权路径都不可能；不盲试更换设备/重打包/策略修改或继续无证据连接。得到具体兼容方案后先离线核验，再按最新原账本决定是否能验证；不会默认扩大时间、票额或技术权限。
+
+受控复算入口：%LOCALAPPDATA%\AI-Workspace\bingo-voyage-task0039\execution16\hook\REVIEW_HOOK.md；含recompute_hook.py、HOOK_RESULTS.json、attempt-1..4、tests-final.txt。原始资料留本机，不上传辅助二进制、账号、卡面、余额、完整日志。无新增对局结果，证据不足与旧真实未达标分列。
+
+不合并、发布、SVN或finalize。Subagents: none。
+
+最新main898358f已安全fetch并确认是治理分支祖先。Registry scan --write-registry与validate已通过：20 canonical、0 collision/error、6既有legacy警告。沿用原pending-main登记，更新原Task/Status/Handoff；本次不分配新编号。
+
+[给DSH的问题](../../../tasks/support/TASK-0039/DSH-QUESTIONS-20261014.md)。
+
+---
+
+## 历史报告
+
 # TASK-0039 16票修订阶段结果
 
 ## 当前进展：16票修订已实施，生产来源待具体授权

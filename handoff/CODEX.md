@@ -1,5 +1,11 @@
 # Codex Handoff
 
+## 2026-10-14 — TASK-0039 被动观察实测与DSH定位
+
+限定Hook由User明确批准，授权记录4973baa；实现f33b6fb916af5a6df7fe5dfaaa06aebe96c95ae9已推送原PR #16。四次不消费观察准备保留：启动等待问题已修，emulated realm仍在ARM64观察组件加载时失败；无真实面板字段。89项离线/入口回归通过，完整新十局0/10，零新购买/游戏点击。累计52票/2357.995秒，剩44票/3042.005秒/10位置；十局与收尾预留后准备12.005秒，不继续无依据连接。
+
+User要求交DSH答疑，问题稿tasks/support/TASK-0039/DSH-QUESTIONS-20261014.md列出真实错误、已查源码、未知项、字段语义及原授权边界。旧未授权表述仅历史；不重复索权，未Accepted。实际证据位于execution16/hook/REVIEW_HOOK.md（受控本机），旧账本/失败/评审保留。Task仍In Progress，继续原PR #16/#17；不merge/publish/SVN/finalize。Subagents: none。
+
 ## 2026-10-14 User批准限定被动Hook
 
 User在具体方案及权限问题之后明确回复“允许，继续吧”。授权仅覆盖SOURCE-OBSERVATION-SCOPE-20261014.md所列原游戏实例、当前买卡面板报价/选择/价格影响与同局四卡交互/覆盖/自然接受的进程内被动Hook。可以据此继续实施和验证，不再把该限定权限列为待批，也不逐阶段请求Review。

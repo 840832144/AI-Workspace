@@ -1,6 +1,6 @@
 # Bingo Voyage
 
-当前进展：16票资源入口已落实，81项离线回归通过，真实生产接入仍待限定观察授权；新十局0/10，Task In Progress。见[当前报告](REPORTS/TASK-0039-REVIEW.md)与[观察范围](../../tasks/support/TASK-0039/SOURCE-OBSERVATION-SCOPE-20261014.md)。
+当前进展：限定被动Hook已获User批准；现有Frida ARM64观察组件加载失败，已按User要求整理[DSH定位问题](../../tasks/support/TASK-0039/DSH-QUESTIONS-20261014.md)。89项离线回归通过，新十局0/10、零新增购买，Task In Progress。详见[当前报告](REPORTS/TASK-0039-REVIEW.md)。
 
 本目录只维护四卡自动玩任务的治理与脱敏证据入口。当前 [TASK-0039](../../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)；[状态](STATUS.md)；[完整规格](../../tasks/support/bingo-voyage-autoplay-20261013/EXECUTION_SPEC.md)。实现继续使用原交接来源的隔离分支，不迁移探针树。
 
