@@ -314,6 +314,7 @@ class Device:
         quote=PanelQuote(snapshot,json.loads(config),INSTANCE,version)
         quote.update(gds_version=version,price_scope='current_panel',
                      config_ref=str(folder/'base_bet_config.json'),
+                     client_before_ref=str(folder/'client-before.log'),
                      log_path=logpath,log_start=len(raw),
                      last_ticket_change=max(changes,key=lambda e:e['at_ns']) if changes else None)
         # Frozen replay consumes this selection. It comes from the real current
@@ -480,6 +481,43 @@ def ticket_balance(wallet,change,clocks=None):
     return change['after'] if change and change['at_ns']>when else wallet['currencies']['TICKET']
 
 
+def current_ticket_balance(wallet,quote,device):
+    try:
+        return ticket_balance(wallet,quote.get('last_ticket_change'),getattr(device,'clock_samples',None))
+    except ValueError as exc:
+        if str(exc)!='resource_clock_not_covered':raise
+    # A historical log event cannot use a new prospective clock bracket. Bind
+    # the exact server wallet response to its unique client receipt instead,
+    # then replay the contiguous resource change chain in that same log.
+    path=Path(quote['client_before_ref'])
+    raw=path.read_bytes()
+    if not raw.endswith(b'\n'):raise ValueError('wallet_log_incomplete_line')
+    payload=len(body_for(wallet));sequence=wallet['sequence']
+    pattern=rb'\[WebSocket\] RECEIVE Response\|\['+str(sequence).encode()+rb'\]\|301\|\|Payload:'+str(payload).encode()+rb' bytes\r?\n'
+    # Response sequences reset after reconnect. Restrict to the current
+    # connection epoch, not a matching sequence in an earlier connection.
+    connection=raw.rfind(b'[WebSocket] Socket Begin Connect')
+    if connection<0:raise ValueError('wallet_connection_epoch_missing')
+    anchors=list(re.finditer(pattern,raw[connection:]))
+    if len(anchors)!=1:raise ValueError('wallet_receipt_not_unique')
+    receipt_end=connection+anchors[0].end()
+    tail=raw[receipt_end:]
+    if re.search(rb'RECEIVE Response\|\[[0-9]+\]\|301\|',tail):
+        raise ValueError('wallet_receipt_superseded')
+    changes=[e for e in ClientTrace(path).feed(raw) if e['type']=='ticket_change'
+             and e['source_ref']['offset']>=receipt_end]
+    if len(changes)!=tail.count(b'NotifyResources TICKET '):raise ValueError('wallet_change_not_parsed')
+    balance=wallet['currencies']['TICKET']
+    for event in changes:
+        if event['before']!=balance or event['before']+event['delta']!=event['after'] or event['after']<0:
+            raise ValueError('wallet_change_chain_gap')
+        balance=event['after']
+    quote['balance_evidence']=dict(method='unique_response_and_contiguous_client_changes',
+        wallet_source=wallet['source_ref'],client_log=str(path),connection_start=connection,
+        receipt_end=receipt_end,changes=len(changes))
+    return balance
+
+
 def preflight(source=SOURCE, device=None,remaining_rounds=BATCH_ROUNDS):
     source=Path(source);index=source/"bv_ws.jsonl"
     errors=[];events=[];quality={}
@@ -499,7 +537,7 @@ def preflight(source=SOURCE, device=None,remaining_rounds=BATCH_ROUNDS):
         try:
             folder=CONTROL/("check_"+uuid.uuid4().hex);folder.mkdir(parents=True)
             quote=device.context(wallets[-1]["account"],folder)
-            quote["balance"]=ticket_balance(wallets[-1],quote.get('last_ticket_change'),getattr(device,'clock_samples',None))
+            quote["balance"]=current_ticket_balance(wallets[-1],quote,device)
         except (OSError,ValueError,KeyError,subprocess.TimeoutExpired) as exc:
             errors.append("quote_"+str(exc))
     buy_errors=list(errors)
@@ -725,7 +763,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                     account=next(e["account"] for e in reversed(history) if e["type"]=="wallet_snapshot")
                     quote=device.context(account,session)
                     wallet=next(e for e in reversed(history) if e['type']=='wallet_snapshot')
-                    quote['balance']=ticket_balance(wallet,quote.get('last_ticket_change'),getattr(device,'clock_samples',None))
+                    quote['balance']=current_ticket_balance(wallet,quote,device)
                     if stopped():break
                     if batch and (code_version()!=batch['code_version'] or not clean_code()):raise ValueError('code_changed_during_batch')
                     ledger.reserve(purpose,quote,session.name,batch['batch_id'] if batch else None,

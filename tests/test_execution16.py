@@ -113,7 +113,7 @@ class Execution16(unittest.TestCase):
             cls=live.Budget;q=synthetic_quote(tickets=16,balance=200)
             check=dict(run_ready=True,blockers=[],quote=q)
             with patch.object(live,'CONTROL',root),patch.object(live,'Budget',side_effect=lambda root=None:cls(root or folder)),patch.object(live,'clean_code',return_value=True),patch.object(live,'preflight',return_value=(check,[])),patch.object(live,'diagnose') as play:
-                r=live.start_batch(device=object())
+                r=live.start_batch(device=SimpleNamespace())
                 play.assert_not_called()
             self.assertFalse(r['acceptance_pass']);self.assertEqual(r['started_rounds'],0)
             self.assertIn('batch_budget_insufficient',r['errors'])
