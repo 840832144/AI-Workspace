@@ -720,7 +720,7 @@ def start_batch(device=None):
     except OSError:
         lock.close();return dict(status='Blocked',acceptance_pass=False,errors=['controller_already_running'])
     batch=CONTROL/('batch_'+uuid.uuid4().hex);batch.mkdir()
-    ledger=Budget();device=device or Device();result={};t0=time.monotonic()
+    ledger=Budget();device=device or Device();result={};run_errors=[];t0=time.monotonic()
     try:
         remaining=ledger.remaining_positions()
         if not remaining:raise ValueError('round_count_limit')
@@ -741,7 +741,9 @@ def start_batch(device=None):
             device.stop_paths=(session/'STOP',batch/'STOP')
             run=diagnose(300,True,source=SOURCE,root=CONTROL,device=device,play_round=True,batch=dict(registration,folder=str(batch),ordinal=ordinal),
                          session=session,lock_held=True)
-            if run.get('errors') or run.get('rounds_started')!=1:break
+            if run.get('errors') or run.get('rounds_started')!=1:
+                run_errors=run.get('errors') or ['round_not_started']
+                break
             checked=verify_round(session/'frozen.json')
             (session/'verification.json').write_text(json.dumps(checked,indent=2),encoding='utf-8')
             if not checked.get('sources_rebuilt') or checked.get('source_errors'):break
@@ -766,6 +768,9 @@ def start_batch(device=None):
             (session/'settlement.json').write_text(json.dumps(dict(claimed=claimed,navigation_ready=ready,rewards_dismissed=rewards_dismissed)),encoding='utf-8')
             if not ready:break
         result=verify_batch(batch)
+        if run_errors:
+            result['run_errors']=run_errors
+            result['errors']=sorted(set(result.get('errors',[])+run_errors))
     except (OSError,ValueError,KeyError,subprocess.TimeoutExpired) as exc:
         result=dict(status='Insufficient evidence',acceptance_pass=False,errors=[str(exc)])
     finally:

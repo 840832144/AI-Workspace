@@ -60,13 +60,18 @@ class PriceBinding(unittest.TestCase):
             self.assertFalse(checked['run_ready']);self.assertFalse(checked['purchase_ready'])
             self.assertTrue(checked['metric_ready'])
             self.assertIn('current_panel_quote_unavailable',checked['blockers'])
-            session=root/'acceptance_synthetic';batch=dict(batch_id='synthetic',code_version='synthetic',parser_version='synthetic',metric_version='synthetic',instance='synthetic',ordinal=1,folder=str(root))
-            # Real CLI -> real diagnose -> real preflight -> production context.
+            budget_class=live.Budget;actual_start=live.start_batch
+            stack.enter_context(patch.object(live,'Budget',side_effect=lambda root=root:budget_class(root)))
+            stack.enter_context(patch.object(live,'SOURCE',root))
+            stack.enter_context(patch.object(live,'code_version',return_value='synthetic'))
+            # Real CLI -> batch -> diagnose -> preflight -> production context.
             def entry():
-                r=live.diagnose(.1,True,source=root,root=root,device=d,play_round=True,batch=batch,session=session)
-                self.assertEqual(r['rounds_started'],0)
+                r=actual_start(device=d)
+                self.assertFalse(r['acceptance_pass'])
+                self.assertEqual(r['started_rounds'],0)
+                self.assertTrue(any('current_panel_quote_unavailable' in s for s in r['run_errors']))
                 self.assertTrue(any('current_panel_quote_unavailable' in s for s in r['errors']))
-                return dict(r,acceptance_pass=False)
+                return r
             with patch.object(live,'start_batch',side_effect=entry),patch.object(ap.sys,'argv',['bv_autoplay.py','--start']),patch('builtins.print'),patch.object(ap,'spawn_tap') as send:
                 self.assertEqual(ap.main(),2);send.assert_not_called()
             self.assertFalse(any(r['kind']=='purchase_reserved' for r in live.Budget(root).records()))
