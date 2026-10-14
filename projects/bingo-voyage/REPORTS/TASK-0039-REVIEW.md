@@ -28,7 +28,7 @@
 
 ## 版本与治理
 
-实现分支交付HEAD为717d8dc，代码修复提交0f1475e。执行修订a74005d及Round2原文3daf754进入原治理分支79398ae，Registry提交7b89150；Round1原文保留。main已安全同步898358f，TASK-0040并发记录保留。实现B1/B2/限制d279406，定位前导航/成本证明8b1145c，定位后离线补充0f1475e（parser task0039-r2-v4）；后者未买局实跑，不能写成定位运行版本。旧两局兼容性只读复核通过，但不升级失败局或抹掉dirty/posthoc。
+实现结果记录提交717d8dc，代码修复提交0f1475e；随后仅同步原base的祖先关系，文件树不变。执行修订a74005d及Round2原文3daf754进入原治理分支79398ae，Registry提交7b89150；Round1原文保留。main已安全同步898358f，TASK-0040并发记录保留。实现B1/B2/限制d279406，定位前导航/成本证明8b1145c，定位后离线补充0f1475e（parser task0039-r2-v4）；后者未买局实跑，不能写成定位运行版本。旧两局兼容性只读复核通过，但不升级失败局或抹掉dirty/posthoc。
 
 继续原PR #16/#17，Task回Review，未Accepted；Registry重建/验证，reservation pending-main，不重新分配或finalize。原工作副本/采集进程未修改或重启；曾普通重启游戏客户端恢复加载并进入既有房间，非消费导航已入共同账本。无Root/CA/iptables、充值、Max Bet、扩权、PR合并、发布或SVN。
 
