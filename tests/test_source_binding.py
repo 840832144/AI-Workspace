@@ -130,6 +130,12 @@ class Sources(unittest.TestCase):
         with patch.object(live,'Device') as device,patch.object(ap.sys,'argv',['bv_autoplay.py','--start']),patch('builtins.print'):
             self.assertEqual(ap.main(),2);device.assert_not_called()
 
+    def test_restart_cost_proof_reuses_exact_replayed_symbol_cost_not_balance(self):
+        p=self.make_round('diagnostic')
+        self.assertEqual(live.cost_proof(b'', 'BET_NP_SYMBOL_1',4),str(p))
+        with self.assertRaisesRegex(ValueError,'cost_semantics_not_crosschecked'):
+            live.cost_proof(b'', 'BET_NP_SYMBOL_1',8)
+
     def test_start_entry_registers_all_rounds_verifies_sources_and_settles(self):
         self.base=dt.datetime.now(dt.timezone(dt.timedelta(hours=8)))
         self.make_round('diagnostic');self.make_round('diagnostic')

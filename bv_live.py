@@ -137,6 +137,23 @@ def recent_start(index):
     return offset
 
 
+def cost_proof(raw,symbol,cost):
+    spent=re.findall(rb'PrepayCard resId TICKET baseCost (\d+) cardCount (\d+) amount (\d+) betID ([A-Z_0-9]+)',raw)
+    if any(int(a)*int(b)==int(c)==cost and b==b'4' and sym.decode()==symbol for a,b,c,sym in spent):return 'current_client_log'
+    # App restarts rotate native logs. Reuse bounded, independently replayed cost
+    # evidence for this exact ordinary symbol/cost, never a historical balance.
+    from bv_verify import replay,read_json
+    for p in CONTROL.glob('diagnostic_*/frozen.json'):
+        try:
+            f=read_json(p);old=read_json(p.parent/f['selection_ref']);config=read_json(p.parent/f['config_ref'])
+            if 'BET_NP_SYMBOL_%d'%old['BetCount']!=symbol:continue
+            if not any(c['id']==symbol and c['cost']*4==cost for c in config):continue
+            audit=replay(p)
+            if not audit['errors'] and audit['gross_tickets']==cost:return str(p)
+        except (OSError,KeyError,ValueError,TypeError):continue
+    raise ValueError('cost_semantics_not_crosschecked')
+
+
 class Device:
     base = "/sdcard/Android/data/"+PACKAGE+"/files/"
 
@@ -183,13 +200,11 @@ class Device:
         logpath=self.base+"client_logging_temp/"+names[0]
         raw=self.read_file(logpath)
         (folder/"client-before.log").write_bytes(raw)
-        spent=re.findall(rb"PrepayCard resId TICKET baseCost (\d+) cardCount (\d+) amount (\d+) betID ([A-Z_0-9]+)",raw)
-        if not any(int(a)*int(b)==int(c)==cost and b==b"4" and sym.decode()==symbol for a,b,c,sym in spent):
-            raise ValueError("cost_semantics_not_crosschecked")
+        proof=cost_proof(raw,symbol,cost)
         changes=[e for e in ClientTrace(folder/"client-before.log").feed(raw) if e["type"]=="ticket_change"]
         if any(e["before"]+e["delta"]!=e["after"] for e in changes):raise ValueError("ticket_delta_contradiction")
         return {"tickets":cost,"cards":4,"bet_symbol":symbol,"gds_version":version,
-                "source_ref":str(folder/"selection.json"),"config_ref":str(folder/"base_bet_config.json"),
+                "source_ref":str(folder/"selection.json"),"config_ref":str(folder/"base_bet_config.json"),"cost_semantics_ref":proof,
                 "log_path":logpath,"log_start":len(raw),"sampled_at":time.monotonic(),
                 "last_ticket_change":max(changes,key=lambda e:e['at_ns']) if changes else None}
 
@@ -214,7 +229,7 @@ class Device:
         green=find_green(im)
         panel=near(im.getpixel((100,700)),BLUE,65) and green and 400<green[0]<500 and 1100<green[1]<1230
         congrats=near(im.getpixel((150,450)),ORANGE,70) and green and 350<green[0]<550 and 1200<green[1]<1400
-        scene="round" if len(det or [])==4 else "betpanel" if panel else "congrats" if congrats else "lobby" if green and green[0]<400 and green[1]>1200 else "unknown"
+        scene="round" if len(det or [])==4 else "betpanel" if panel else "congrats" if congrats else "lobby" if green and 120<green[0]<400 and green[1]>1200 else "unknown"
         return {"foreground":ok,"scene":scene,"grid":det,"button":list(green[:2]) if green else None,
                 "sampled_at":sampled_at}
 
