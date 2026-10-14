@@ -1,6 +1,12 @@
 # 101 卡包美元价值｜Codex 接管
 
-## 当前 — Round 2 Accepted / R1 Closed
+## 当前 — PR #19已合并 / 原reservation已finalized
+
+2026-10-14按[User授权评论6159032032](https://github.com/840832144/AI-Workspace/pull/19#issuecomment-6159032032)完成最新main同步与Registry校验：valid、19 canonical、0 collision，6条既有legacy提示。核对head `7217681`后将PR #19转为Ready并用merge commit合入main：`898358ffccbfa4d9b909d43de48ae794a7129718`（北京时间09:56:27）。GitHub回读merged=true，本机确认canonical及三份评审在origin/main且与候选直接diff一致；原linked worktree快进后用原reservation执行既有finalize，返回finalized，远端及本机reservation均已移除。
+
+Task交付及原PR生命周期为Complete，Round 2维持Accepted / R1 Closed；Complete元数据在`codex/task-0040-git-closeout`单独候选PR中，尚未进入main。下一步仅Review该状态记录并等待User另行授权合并收尾PR。本轮不重算、不改业务产物，PR #18及原分支保留，不合并其他PR；下方OPEN / pending-main均为历史。GitHub statuses与PR触发workflow_runs为空，不记为CI通过。Workspace Sync provider unavailable / stale 6 / conflicts 0，以Git为准。Subagents: none。
+
+## 历史 — Round 2 Accepted / R1 Closed（合并前）
 
 [评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)已接受受评基线`9ce1b6a`的声明范围内交付，R1 Closed，无必须修改项。评审方实际运行核心ZIP，53/53通过，另做43项独立核对并对照原工作簿220个字段一致；前轮2151公式核对沿用。首轮/补充评审原文保留，下方Review待办均为历史。
 

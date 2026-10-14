@@ -328,7 +328,7 @@ entries:
     canonical_file: "tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md"
     file: "tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md"
     title: "101 卡包美元价值计算"
-    status: "Accepted"
+    status: "Complete"
     project_key: "GAME-101"
     human_alias: ""
     owner: "User / ChatGPT"

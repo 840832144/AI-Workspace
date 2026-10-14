@@ -1,6 +1,12 @@
 # ChatGPT Handoff
 
-## 2026-10-14 — TASK-0040 Round 2 Accepted / R1 Closed
+## 2026-10-14 — TASK-0040合并与finalize完成
+
+[PR #19](https://github.com/840832144/AI-Workspace/pull/19)按[授权评论6159032032](https://github.com/840832144/AI-Workspace/pull/19#issuecomment-6159032032)以merge commit `898358ffccbfa4d9b909d43de48ae794a7129718`进入main。canonical及三份评审直接核对一致，原linked worktree同步后用原reservation执行finalize返回finalized，远端及本机reservation已移除。Registry valid / 19 canonical / 0 collision；GitHub无statuses及PR触发workflow结果，不记为CI通过。
+
+[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)记录Complete（交付及原PR生命周期）与Accepted（Round 2 / R1 Closed）的区别。Complete元数据随`codex/task-0040-git-closeout`单独PR待Review，尚未进入main；请只复核本次状态记录，合并该PR仍需User另行授权。未重算或改业务产物，PR #18及原分支保留。下方OPEN / pending-main为历史。Subagents: none。
+
+## 历史 — 2026-10-14 TASK-0040 Round 2 Accepted / R1 Closed（合并前）
 
 [评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)已按受评基线`9ce1b6a`落Git，[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)记录接受范围和未验证边界。首轮及补充评审保留历史；本轮只更新治理和PR描述，不补包、不重算。Task为Accepted，PR #19保持OPEN/Draft，未合并、未finalize、reservation pending-main，Git生命周期未Complete。下一步等待User另行决定是否合并。Subagents: none。
 

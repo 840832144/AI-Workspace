@@ -1,6 +1,6 @@
 # TASK-0040 — 101 卡包美元价值计算
 
-- Status: Accepted
+- Status: Complete
 - Project key: GAME-101
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -29,7 +29,7 @@
 
 ## Acceptance / Validation
 
-逐项执行规格第 8 节：输入版本与缓存身份、完整 packId 覆盖、实际抽取规则、美元单位、奖励不重复计值、各星级及不同规则独立复核、模型误差、工作簿实际数值/缓存/布局、只读边界、Registry 与交接。条件与缺失单列。Round 2已接受声明范围内的交付；Accepted不等于Git生命周期Complete，不授权合并或finalize。
+逐项执行规格第 8 节：输入版本与缓存身份、完整 packId 覆盖、实际抽取规则、美元单位、奖励不重复计值、各星级及不同规则独立复核、模型误差、工作簿实际数值/缓存/布局、只读边界、Registry 与交接。条件与缺失单列。Round 2已接受声明范围内的交付；Accepted独立于Git生命周期，本次合并及finalize另有User明确授权，见下文。
 
 ## Gate 0
 
@@ -54,7 +54,16 @@
 
 ## Review 与剩余边界
 
-### 当前 — Round 2 Accepted / R1 Closed
+### 当前 — PR #19已合并 / 原reservation已finalized
+
+- 2026-10-14执行[User授权评论6159032032](https://github.com/840832144/AI-Workspace/pull/19#issuecomment-6159032032)，范围仅为TASK-0040 / PR #19及对应Git生命周期。未新建Task，不合并其他PR，不删除原分支。
+- 最新main同步及Registry校验通过：19 canonical、0 collision、valid，6条已审计legacy提示。候选head保持`721768188f7910014428272abb72e41f4602e6c1`；相对受评基线`9ce1b6a`只有治理记录变更。GitHub返回statuses和PR触发workflow_runs均为空，不记为CI通过。Workspace Sync为ON_DEMAND / provider unavailable / stale 6 / conflicts 0，以Git为准。
+- PR #19转为Ready后，按核对过的head使用merge commit于2026-10-14 09:56:27（北京时间）合入main：`898358ffccbfa4d9b909d43de48ae794a7129718`。GitHub回读merged=true；本机fetch后确认该提交在origin/main，canonical Task及三份Review与合并前候选直接diff一致。
+- 原linked worktree快进到该main后，以本机原reservation调用既有`task_cli.py finalize`，返回`status=finalized`、`task_id=TASK-0040`、`project_key=GAME-101`；远端reservation ref与本机reservation元数据均确认已移除。token未进入Git、评论或日志。
+- Task交付及原PR生命周期为Complete，Round 2仍为Accepted、R1 Closed。Complete状态记录随`codex/task-0040-git-closeout`单独候选PR提交；在该PR合并前，main中的Task状态文字仍为Accepted，不伪称Complete元数据已进入main。该收尾PR待Review及另行合并授权。
+- 本轮仅治理收尾；工作簿、复核包、币价、业务脚本和源配置不动，不重算。原PR #18及业务证据边界保留。Subagents: none。
+
+### 历史 — Round 2 Accepted / R1 Closed（合并前）
 
 - [Round 2评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)受评基线为`9ce1b6a9bbfa7e73e3946201aed9bb6649cbd94d`，结论Accepted、R1 Closed，无必须修改项。2026-10-14按User授权落Git；GitHub以COMMENTED承载该结论，不是平台APPROVED。
 - 评审方实际读取User上传的受控ZIP并运行复核入口，53/53通过、固定预期重放一致；另行独立完成43项检查，并将11条情景结果的220个字段与原工作簿读值对照一致。前轮2151个工作簿公式核对沿用原记录。本轮Codex只登记评审，不把审阅容器实跑写成本机再次验收。
@@ -72,10 +81,10 @@
 
 ### 原交付与持续边界
 
-交付 commit：`04153ed`；[Draft PR #19](https://github.com/840832144/AI-Workspace/pull/19)。PR仅包含规格及脱敏治理，完整产物按本机导航审阅；原规格PR #18保留。
+交付 commit：`04153ed`；[PR #19](https://github.com/840832144/AI-Workspace/pull/19)已合并。PR仅包含规格及脱敏治理，完整产物按本机导航审阅；原规格PR #18保留。
 
 Round 2已接受本次单次领取窗口用途。完整赛季预算还需要明确后续获得包计划和兑换/交易策略；真实售价和统一内部面值分别需要对应依据。当前结果可用于已声明条件下的包间比较，不把这些缺口泛化为全部USD不可计算。
 
 服务端时区、线上导出顺序、实际加载配置/代码版本与原生Excel/WPS未验证。6个本地生成描述类无独立SVN revision，已明确标注，不伪造一致性。星星箱共用冷却注释与按ID实现有差异，本窗口最多一次兑换不受多箱行为影响。
 
-唯一下一步：等待User另行决定是否合并PR #19。本Task为Accepted、R1 Closed；当前PR保持OPEN，不自动合并或finalize，reservation保持pending-main，不标记Complete。Subagents: none。
+唯一下一步：审阅`codex/task-0040-git-closeout`的Complete状态记录并由User另行决定是否合并该收尾PR；PR #19已合并、原reservation已finalized，不重复执行。Subagents: none。
