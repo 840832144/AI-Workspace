@@ -84,6 +84,19 @@ class Recovery(unittest.TestCase):
             with patch.object(ap.time,'monotonic',return_value=12):fresh.setup_grid(4,bad)
             self.assertFalse(any(g['input_ready'] for g in fresh.grid.values()))
 
+    def test_joined_bingo_paint_requires_two_independent_visible_rows(self):
+        c=measured()[0];im=Image.new('RGB',(900,1600),'#38719e');d=ImageDraw.Draw(im)
+        for x in c['cols']:
+            for y in c['rows']:
+                d.rounded_rectangle((x-34,y-34,x+34,y+34),radius=16,fill=(250,247,233))
+        for y in c['rows'][:3]:
+            d.rectangle((c['cols'][0]+30,y-30,c['cols'][1]-30,y+30),fill=(250,247,233))
+        body=cell_geometry(im,c);self.assertIsNotNone(body)
+        self.assertLess(max(abs(a-b) for a,b in zip(body['cols'],c['cols'])),2)
+        y=c['rows'][3]
+        d.rectangle((c['cols'][0]+30,y-30,c['cols'][1]-30,y+30),fill=(250,247,233))
+        self.assertIsNone(cell_geometry(im,c))
+
     def test_partial_header_new_layout_backlog_last_ball_and_close(self):
         d=live.Device();c=controller();c.special_observed=set();c.a.dry=False
         base=measured();attempts=[]

@@ -48,7 +48,7 @@ class Sources(unittest.TestCase):
                  hdr=dict(cmd=mid&255,seq=n,flags=int.from_bytes(data[6:8],'little')))
         with self.index.open('a') as f:f.write(json.dumps(rec)+'\n')
 
-    def make_round(self,purpose,reg=None,ordinal=0,session=None):
+    def make_round(self,purpose,reg=None,ordinal=0,session=None,terminal_delay=21,freeze_end=22):
         self.round_counter+=1;n=self.round_counter
         folder=Path(session) if session else (self.control/reg['batch_id'] if reg else self.control)/(purpose+f'_synthetic{n}')
         folder.mkdir();rid=f'BINGO_HALL.synthetic.{n}';b=rid.encode()
@@ -86,12 +86,12 @@ class Sources(unittest.TestCase):
         for slot in range(1,5):blocks.append('|'.join('1::' if k==12 or (slot,k) in marked else '' for k in range(25)))
         state=blocks[0]+''.join('@#'+x for x in blocks[1:])+'@'
         self.raw(100014,field(1,b),t+dt.timedelta(seconds=20))
-        self.raw(100007,field(1,b)+field(2,field(1,9)+field(2,state.encode())),t+dt.timedelta(seconds=21),'C->S')
+        self.raw(100007,field(1,b)+field(2,field(1,9)+field(2,state.encode())),t+dt.timedelta(seconds=terminal_delay),'C->S')
         identity=dict(instance='synthetic-device',code_version='fixed-test-code',parser_version=VERSION,metric_version=live.METRIC)
         if reg:identity.update({k:reg[k]for k in ('batch_id','instance','code_version','parser_version','metric_version')})
         policy={k:reg[k] for k in ('resource_authorization','limits') if reg and k in reg}
         identity.update(policy)
-        frozen=freeze(folder,start,self.index.stat().st_size,purpose=purpose,mode='full_autoplay' if purpose=='acceptance' else 'single_target_diagnostic',session_id=folder.name,registered_ns=ns(0),ended_ns=ns(22),**identity)
+        frozen=freeze(folder,start,self.index.stat().st_size,purpose=purpose,mode='full_autoplay' if purpose=='acceptance' else 'single_target_diagnostic',session_id=folder.name,registered_ns=ns(0),ended_ns=ns(freeze_end),**identity)
         budget=live.Budget()
         with patch.object(live.time,'time_ns',return_value=ns(.5)):
             budget.append('purchase_reserved',purpose=purpose,session_id=folder.name,
@@ -123,6 +123,34 @@ class Sources(unittest.TestCase):
         p=next(batch.glob('acceptance_*/frozen.json'));f=json.loads(p.read_text())
         f.pop('resource_authorization');f.pop('limits');p.write_text(json.dumps(f))
         self.assertIn('mixed_resource_authorization',verify_batch(batch)['errors'])
+
+    def test_delayed_terminal_binds_to_actual_closed_capture_not_ten_seconds(self):
+        p=self.make_round('diagnostic',terminal_delay=32,freeze_end=33)
+        self.assertEqual(replay(p)['errors'],[])
+        f=json.loads(p.read_text());f['ended_ns']-=2_000_000_000
+        p.write_text(json.dumps(f))
+        with self.assertRaisesRegex(ValueError,'terminal_state_outside_closed_capture'):replay(p)
+        self.assertTrue(replay(p,navigation_only=True)['closed_round_verified'])
+
+    def test_actual_entry_settles_verified_close_before_rejecting_metric_sources(self):
+        self.base=dt.datetime.now(dt.timezone(dt.timedelta(hours=8)))
+        class Navigation:
+            pending=False
+            claims=0
+            def sample(self,path):return dict(scene='congrats' if self.pending else 'lobby')
+            def claim(self,sample):self.pending=False;self.claims+=1;return 'executed'
+        nav=Navigation()
+        def round_source(*args,**kw):
+            batch=kw['batch'];self.make_round('acceptance',batch,batch['ordinal'],kw['session'])
+            nav.pending=True;return dict(rounds_started=1)
+        def metric(*args):
+            self.assertEqual(nav.claims,1)
+            return dict(sources_rebuilt=False,source_errors=['synthetic_metric_failure'])
+        check=dict(run_ready=True,purchase_ready=True,blockers=[],quote=synthetic_quote(balance=100))
+        with patch.object(live,'preflight',return_value=(check,[])),patch.object(live,'clean_code',return_value=True),patch.object(live,'code_version',return_value='fixed-test-code'),patch.object(live,'diagnose',side_effect=round_source),patch.object(live,'verify_round',side_effect=metric),patch.object(live.time,'sleep'),patch('builtins.print'):
+            result=live.start_batch(device=nav)
+        self.assertFalse(result['acceptance_pass']);self.assertEqual(result['started_rounds'],1)
+        self.assertEqual(nav.claims,1)
 
     def test_real_verifier_and_cli_ten_raw_distinct_rounds_not_summary_flags(self):
         batch=self.qualified_batch();r=verify_batch(batch)

@@ -1019,11 +1019,13 @@ def start_batch(device=None,resume=None):
             if run.get('errors') or run.get('rounds_started')!=1:
                 run_errors=run.get('errors') or ['round_not_started']
                 break
-            checked=verify_round(session/'frozen.json')
-            (session/'verification.json').write_text(json.dumps(checked,indent=2),encoding='utf-8')
-            if not checked.get('sources_rebuilt') or checked.get('source_errors'):break
-            # A verified low rate stays in the batch; it is never replaced with a success.
-            # Settlement navigation requires independently rebuilt close/terminal sources.
+            from bv_verify import replay
+            close=replay(session/'frozen.json',navigation_only=True)
+            (session/'close-verification.json').write_text(json.dumps(close,indent=2),encoding='utf-8')
+            if not close['closed_round_verified']:
+                run_errors=close['errors'];break
+            # Finish the already-closed round before metric certification. Cell
+            # semantics cannot authorize another purchase, nor block safe close.
             nav0=time.monotonic();claimed=False;ready=False;rewards_dismissed=0
             ledger.append('runtime_start',session_id=session.name+'_settlement')
             while (time.monotonic()-nav0<20 and time.monotonic()<device.round_deadline
@@ -1042,7 +1044,12 @@ def start_batch(device=None,resume=None):
                 time.sleep(.5)
             ledger.append('runtime_end',session_id=session.name+'_settlement',seconds=time.monotonic()-nav0)
             (session/'settlement.json').write_text(json.dumps(dict(claimed=claimed,navigation_ready=ready,rewards_dismissed=rewards_dismissed)),encoding='utf-8')
+            checked=verify_round(session/'frozen.json')
+            (session/'verification.json').write_text(json.dumps(checked,indent=2),encoding='utf-8')
             if not ready:break
+            if not checked.get('sources_rebuilt') or checked.get('source_errors'):break
+            if checked.get('manual_takeover'):
+                run_errors=['unmatched_manual_input'];break
         result=verify_batch(batch)
         if run_errors:
             result['run_errors']=run_errors

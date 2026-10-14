@@ -257,8 +257,8 @@ def cell_geometry(img, card):
     lo=a.min(axis=2);hi=a.max(axis=2)
     face=((lo>205)&(hi-lo<55))|((a[:,:,0]>200)&(a[:,:,1]<130)&(a[:,:,2]<130))
     face|=(a[:,:,0]>210)&(a[:,:,1]>170)&(a[:,:,2]<150)&(a[:,:,0]>=a[:,:,1])
-    def axis(frac, offset):
-        runs=row_runs(frac>.25,min_run=max(20,int(.6*sp)))
+    def axis(frac, offset, threshold=.25):
+        runs=row_runs(frac>threshold,min_run=max(20,int(.6*sp)))
         if not 4<=len(runs)<=5:return None
         centers=[(s+e)/2+offset for s,e in runs]
         pitch=(centers[-1]-centers[0])/4
@@ -269,6 +269,21 @@ def cell_geometry(img, card):
         if max(abs(origin+i*pitch-v) for i,v in zip(ids,centers))>2:return None
         return [float(origin+i*pitch) for i in range(5)]
     rows=axis(face.mean(axis=1),y0);cols=axis(face.mean(axis=0),x0)
+    if rows is not None and cols is None:
+        # Bingo paint can join adjacent columns in the full-height projection.
+        # Recover from at least two independently visible row bands. Each must
+        # still fit four/five whole cells including both ends; header/cached
+        # coordinates alone never authorize a target.
+        candidates=[]
+        half=(rows[-1]-rows[0])/4*.44
+        for y in rows:
+            strip=face[max(0,int(y-y0-half)):int(y-y0+half)+1]
+            for threshold in (.25,.35,.45):
+                fit=axis(strip.mean(axis=0),x0,threshold)
+                if fit is not None:
+                    candidates.append(fit);break
+        if len(candidates)>=2 and max(np.ptp(np.asarray(candidates),axis=0))<=2:
+            cols=np.mean(candidates,axis=0).tolist()
     if rows is None or cols is None:return None
     reachable=[]
     for col,x in enumerate(cols):

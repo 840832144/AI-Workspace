@@ -32,7 +32,7 @@ def content_digest(source,events,files):
     return h.hexdigest()
 
 
-def replay(frozen_path):
+def replay(frozen_path,navigation_only=False):
     from bv_live import scan_range,SOURCE
     path=Path(frozen_path).resolve();f=read_json(path);s=f['source']
     if Path(s['index']).resolve()!=(SOURCE/'bv_ws.jsonl').resolve():raise ValueError('source_not_authorized_capture')
@@ -74,9 +74,18 @@ def replay(frozen_path):
     if {n for e in windows for n in e['window']}!=called:errors.append('called_raw_union_mismatch')
     closes=[e for e in events if e['type']=='close_candidate' and e['round_id']==rid]
     if len(closes)!=1 or not end_lo-10_000_000_000<=timestamp(closes[0])<=end_hi+10_000_000_000:errors.append('close_sources_disagree')
-    states=[e for e in events if e['type']=='state_observation' and e['round_id']==rid and
-            end_lo-2_000_000_000<=timestamp(e)<=end_hi+10_000_000_000]
+    if navigation_only:
+        # Settlement depends on bound natural/server close, not cell scoring.
+        # The same frozen bytes, identity and clock checks remain mandatory.
+        return dict(closed_round_verified=not errors,errors=sorted(set(errors)),
+                    client_end_ns=end_hi,round_id=rid)
+    states=[e for e in events if e['type']=='state_observation' and e['round_id']==rid]
     if len(states)!=1:raise ValueError('unique_terminal_state_required')
+    # The client's terminal upload may follow the GameOver animation by more
+    # than ten seconds. Bind the unique same-round upload to the captured end,
+    # not an assumed animation duration; no source after freeze is admissible.
+    if not end_lo-2_000_000_000<=timestamp(states[0])<=f['ended_ns']:
+        raise ValueError('terminal_state_outside_closed_capture')
     cells=terminal_cells(states[0]['state'])
     marks=[e for e in native if e['type']=='client_marked']
     marked=set();special=set();call_time={e['ball']:e['at_ns'] for e in calls}
