@@ -263,8 +263,8 @@ class Device:
         if not ok or not shot(str(path),tries=1):return {"foreground":False,"scene":"unknown","grid":None}
         with Image.open(path) as source:im=source.convert("RGB")
         if im.size!=(900,1600):return {"foreground":True,"scene":"bad_orientation","grid":None}
-        det=bv_cardgrid.detect(im)
-        det=self.calibrated_grid(det)
+        raw_det=bv_cardgrid.detect(im)
+        det=self.calibrated_grid(raw_det)
         green=find_green(im)
         panel_anchor=near(im.getpixel((100,700)),BLUE,65)
         if panel_anchor:
@@ -274,7 +274,16 @@ class Device:
             green=(local[0]+250,local[1]+1090,local[2]) if local else None
         panel=panel_anchor and green and 400<green[0]<500 and 1100<green[1]<1230
         congrats=near(im.getpixel((150,450)),ORANGE,70) and green and 350<green[0]<550 and 1200<green[1]<1400
-        scene="round" if len(det or [])==4 else "betpanel" if panel else "congrats" if congrats else "lobby" if green and 120<green[0]<400 and green[1]>1200 else "unknown"
+        import numpy as np
+        pixels=np.asarray(im)
+        def yellow_fraction(box):
+            x0,y0,x1,y1=box;a=pixels[y0:y1,x0:x1]
+            return ((a[:,:,0]>220)&(a[:,:,1]>150)&(a[:,:,2]<130)).mean()
+        caption=pixels[980:1060,260:650]
+        reward=(yellow_fraction((160,400,800,580))>.12 and
+                yellow_fraction((350,610,560,810))>.2 and (caption.min(axis=2)>235).mean()>.05)
+        scene="round" if raw_det else "reward" if reward else "betpanel" if panel else "congrats" if congrats else "lobby" if green and 120<green[0]<400 and green[1]>1200 else "unknown"
+        if scene=='reward':green=(450,1025,0)  # Observed non-consuming dismiss area.
         return {"foreground":ok,"scene":scene,"grid":det,"button":list(green[:2]) if green else None,
                 "sampled_at":sampled_at}
 
@@ -294,11 +303,16 @@ class Device:
                 c['cols']+[c['header_top'],c['header_bottom']],
                 d['cols']+[d['header_top'],d['header_bottom']]))
         reference=getattr(self,'grid_reference',None)
-        if reference is not None and distance(det,reference)<=4:
-            result=copy.deepcopy(det)
-            for c,r in zip(result,reference):
-                shift=(c['header_top']+c['header_bottom']-r['header_top']-r['header_bottom'])/2
-                c['rows']=[y+shift for y in r['rows']];c['row_mode']='fresh_header_measured_rows'
+        if reference is not None:
+            result=copy.deepcopy(reference)
+            for c,current,r in zip(result,det,reference):
+                c['input_ready']=distance([current],[r])<=4
+                if c['input_ready']:
+                    shift=(current['header_top']+current['header_bottom']-r['header_top']-r['header_bottom'])/2
+                    c.update(cols=list(current['cols']),rows=[y+shift for y in r['rows']],
+                             row_mode='fresh_header_measured_rows')
+                # An unstable/covered card retains identity only; its coordinates
+                # cannot reach dispatch. Other independently visible cards run on.
             return result
         if not all(c.get('row_mode')=='bands' and regular_rows(c.get('observed_rows',[]))
                    and .8<=c['row_spacing']/c['spacing']<=1.2 for c in det):
@@ -316,6 +330,10 @@ class Device:
     def claim(self,sample):
         from bv_autoplay import spawn_tap,finish_tap
         if sample['scene']!='congrats' or time.monotonic()-sample['sampled_at']>2.5 or not self.foreground():return 'not_executed'
+        return self.send(sample['button'])
+
+    def dismiss_reward(self,sample):
+        if sample['scene']!='reward' or time.monotonic()-sample['sampled_at']>2.5 or not self.foreground():return 'not_executed'
         return self.send(sample['button'])
 
     def open_panel(self, sample):
@@ -537,7 +555,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                         if controller.grid:
                             controller.layout_at=sample['sampled_at'];controller.backfill()
                     elif not paid or sample["scene"]!="round":controller.revoke("not_visible_round")
-                if open_panel and not opened and check["diagnostic_navigation_ready"] and sample["scene"]=="lobby":
+                if open_panel and not paid and not opened and check["diagnostic_navigation_ready"] and sample["scene"]=="lobby":
                     # Only a non-consuming navigation action. No fall-through to PLAY on the panel.
                     opened=True
                     outcome=device.open_panel(sample)
@@ -700,7 +718,7 @@ def start_batch(device=None):
             if not checked.get('sources_rebuilt') or checked.get('source_errors'):break
             # A verified low rate stays in the batch; it is never replaced with a success.
             # Settlement navigation requires independently rebuilt close/terminal sources.
-            nav0=time.monotonic();claimed=False;ready=False
+            nav0=time.monotonic();claimed=False;ready=False;rewards_dismissed=0
             ledger.append('runtime_start',session_id=session.name+'_settlement')
             while time.monotonic()-nav0<20 and ledger.elapsed()<2700 and not (batch/'STOP').exists():
                 sample=device.sample(session/'settlement.png')
@@ -710,9 +728,13 @@ def start_batch(device=None):
                 if sample['scene']=='congrats' and not claimed:
                     claimed=True
                     if device.claim(sample)=='not_executed':break
+                if sample['scene']=='reward' and rewards_dismissed<2:
+                    rewards_dismissed+=1
+                    if device.dismiss_reward(sample)=='not_executed':break
+                    time.sleep(1)
                 time.sleep(.5)
             ledger.append('runtime_end',session_id=session.name+'_settlement',seconds=time.monotonic()-nav0)
-            (session/'settlement.json').write_text(json.dumps(dict(claimed=claimed,navigation_ready=ready)),encoding='utf-8')
+            (session/'settlement.json').write_text(json.dumps(dict(claimed=claimed,navigation_ready=ready,rewards_dismissed=rewards_dismissed)),encoding='utf-8')
             if not ready:break
         result=verify_batch(batch)
     except (OSError,ValueError,KeyError,subprocess.TimeoutExpired) as exc:

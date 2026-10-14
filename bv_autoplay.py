@@ -218,6 +218,7 @@ class AutoPlay:
             now = time.monotonic()
             if (self.closed or self.halted or self.stop_requested() or q["round_id"] != self.rid
                     or q["generation"] != self.generation or not self.grid
+                    or not self.grid[q['slot']].get('input_ready',True)
                     or q["layout_version"] != self.layout_version or now-self.layout_at > 2.5
                     or not self.foreground_ok or now-self.foreground_at > 2.5
                     or q["due"] > now or q["ball"] not in self.first_seen
@@ -289,6 +290,7 @@ class AutoPlay:
                 if slot in grid:
                     raise ValueError("duplicate_position")
                 grid[slot] = {a: list(c[a]) for a in ("cols", "rows")}
+                grid[slot]['input_ready']=c.get('input_ready',True)
             # Four distinct nonoverlapping card rectangles, not four detections of one.
             for i in range(1, 5):
                 for j in range(i+1, 5):
@@ -465,7 +467,8 @@ class AutoPlay:
                 self.log(kind=q["status"], slot=q["slot"], cell_index=q["c"]*5+q["r"])
         if self.input_future is not None or self.closed or self.halted or self.stop_requested() or not self.grid or now-self.layout_at > 2.5 or self.n_tap >= getattr(self.a,"max_dispatches",float("inf")):
             return
-        ready = [q for q in self.pending if q["due"] <= now and q["round_id"] == self.rid]
+        ready = [q for q in self.pending if q["due"] <= now and q["round_id"] == self.rid
+                 and self.grid[q['slot']].get('input_ready',True)]
         # New targets before bounded retries; sparse observations never hold input slots.
         # Age eventually dominates new work; a bounded retry cannot starve forever.
         ready.sort(key=lambda q: (not self.completes_bingo(q),

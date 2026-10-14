@@ -56,6 +56,23 @@ class Clocks(unittest.TestCase):
 
 
 class ContinuousTargets(unittest.TestCase):
+    def test_reward_modal_blocks_lobby_until_bounded_dismissal(self):
+        from PIL import Image,ImageDraw
+        from bv_autobuy import GREEN
+        with tempfile.TemporaryDirectory() as folder:
+            p=Path(folder)/'synthetic.png';im=Image.new('RGB',(900,1600));draw=ImageDraw.Draw(im)
+            draw.rectangle((100,1280,350,1390),fill=GREEN)
+            draw.rectangle((200,420,700,540),fill=(250,200,50))
+            draw.rectangle((380,650,530,780),fill=(250,200,50))
+            draw.rectangle((290,1000,600,1030),fill='white');im.save(p)
+            d=live.Device()
+            with patch.object(d,'foreground',return_value=True),patch.object(ap,'shot',return_value=True):
+                sample=d.sample(p)
+            self.assertEqual(sample['scene'],'reward')
+            stop=Path(folder)/'STOP';stop.touch();d.stop_paths=(stop,)
+            with patch.object(d,'foreground',return_value=True),patch.object(ap,'spawn_tap') as send:
+                self.assertEqual(d.dismiss_reward(sample),'not_executed');send.assert_not_called()
+
     def test_late_filled_bands_cannot_shrink_measured_card(self):
         import copy
         device=live.Device();det=grid()
@@ -69,7 +86,14 @@ class ContinuousTargets(unittest.TestCase):
         repaired=device.calibrated_grid(damaged)
         self.assertEqual([c['rows']for c in repaired],[c['rows']for c in baseline])
         damaged[0]['header_top']+=20
-        self.assertEqual(device.calibrated_grid(damaged),[])
+        partial=device.calibrated_grid(damaged)
+        self.assertFalse(partial[0]['input_ready'])
+        self.assertTrue(all(c['input_ready'] for c in partial[1:]))
+        c=controller()
+        with patch.object(ap.time,'monotonic',return_value=10):c.on_ball('',c.rid,1)
+        stabilize(c,partial,start=11);c.foreground_at=13
+        with patch.object(ap.time,'monotonic',return_value=13):c.tick([])
+        self.assertNotEqual(c.input_target['slot'],1)
         self.assertEqual(device.calibrated_grid([]),[])
 
     def test_structured_bingo_completing_target_gets_priority(self):
