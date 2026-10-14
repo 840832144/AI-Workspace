@@ -1,0 +1,62 @@
+{
+  "task_id": "TASK-0040",
+  "date": "2026-10-13",
+  "scope": "supplementary_review_5505803167_reduced_R1",
+  "evidence_class": "sanitized_summary_of_local_zip_execution",
+  "status": "passed",
+  "task_status": "Review",
+  "source_delivery_commit": "04153ed",
+  "source_reviewed_head": "26e991368140ec0510db8cfe71fb0b1106d086e7",
+  "archive": {
+    "name": "TASK-0040_核心计算复核包.zip",
+    "location": "controlled_local_only",
+    "files": 28,
+    "allowlist_and_zip_readback": "passed",
+    "original_workbooks_or_game_source_included": false,
+    "account_data_or_sensitive_logs_included": false
+  },
+  "inputs": {
+    "configuration_snapshot_revision": 15740,
+    "minimal_table_slices": 10,
+    "independently_checked_frozen_xlsx_fields": 6008,
+    "original_calculate_and_check_results_unchanged": true,
+    "original_model_parameters_unchanged": true,
+    "source_locations_included": true
+  },
+  "execution": {
+    "entry": "extracted ZIP / 运行复核.ps1",
+    "exit_code": 0,
+    "checks": 53,
+    "failed_checks": 0,
+    "existing_whole_pack_examples_replayed": 7,
+    "probability_examples": 7,
+    "same_state_with_and_without_pack_ledgers": 5,
+    "deterministic_path_examples": 5,
+    "frozen_expectations_verified": true,
+    "original_workbook_coin_positions_included": true,
+    "reads_package_json_slices_only": true,
+    "full_sampling_rerun": false
+  },
+  "preserved": {
+    "valuation_scope_and_currency_anchor": true,
+    "original_workbook_and_screenshots": true,
+    "source_configuration_and_svn": true,
+    "task_branch_and_pr_19": true,
+    "allocation_pending_main": true
+  },
+  "review_boundary": "Workbook-level verification belongs to ChatGPT supplementary review; core ZIP execution is Codex evidence, not ChatGPT acceptance.",
+  "registry": {
+    "status": "valid",
+    "canonical_count": 19,
+    "collision_count": 0,
+    "audited_legacy_warnings": 6,
+    "historical_review_decisions_preserved": "Needs changes"
+  },
+  "unverified": [
+    "ChatGPT receipt and independent review of this ZIP",
+    "all other dependency runtime versions",
+    "live game and native Excel/WPS behavior"
+  ],
+  "subagents": "none",
+  "next": "ChatGPT Review; no automatic merge or allocator finalize"
+}
