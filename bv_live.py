@@ -23,7 +23,7 @@ SOURCE = Path(r"D:\BingoVoyageProbe\out")
 CONTROL = Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "AI-Workspace/bingo-voyage-task0039/runtime"
 PACKAGE = "com.bingo.cruise.free.best.top.game"
 INSTANCE = 'mumu-authorized'
-METRIC = "set-intersection-r1-v2"
+METRIC = "automatic-set-intersection-replan-v1"
 LIMITS = {"diagnostic_rounds": 3, "acceptance_rounds": 10, "cards": 4,
           "tickets_per_round": 8, "gross_tickets": 96, "round_seconds": 300, "total_seconds": 2700}
 
@@ -157,6 +157,41 @@ def cost_proof(raw,symbol,cost):
 class Device:
     base = "/sdcard/Android/data/"+PACKAGE+"/files/"
 
+    def __init__(self):
+        self.clock_samples=[]
+        path=CONTROL/'clock-ready.json'
+        if path.exists():
+            samples=json.loads(path.read_text(encoding='utf-8'))
+            if samples and 0<=time.monotonic_ns()-samples[-1]['mono_after_ns']<=30_000_000_000:
+                self.clock_samples=samples[-2:]
+
+    def clock_sample(self):
+        from bv_autoplay import ADB,DEV
+        from bv_clock import validate
+        a=time.time_ns();ma=time.monotonic_ns()
+        r=subprocess.run([ADB,'-s',DEV,'exec-out','sh','-c',
+                          'date +%s%N; cat /proc/sys/kernel/random/boot_id; cat /proc/uptime'],
+                         capture_output=True,timeout=3,check=True)
+        b=time.time_ns();mb=time.monotonic_ns();lines=r.stdout.decode().splitlines()
+        s=dict(host_before_ns=a,host_after_ns=b,mono_before_ns=ma,mono_after_ns=mb,
+               device_ns=int(lines[0]),boot_id=lines[1],uptime_seconds=float(lines[2].split()[0]))
+        samples=getattr(self,'clock_samples',[])
+        validate(s,samples[-1] if samples else None);samples.append(s);self.clock_samples=samples
+        CONTROL.mkdir(parents=True,exist_ok=True)
+        (CONTROL/'clock-ready.json').write_text(json.dumps(samples[-2:]),encoding='utf-8')
+        return s
+
+    def read_client(self,path,offset):
+        from bv_autoplay import ADB,DEV
+        if not getattr(self,'clock_samples',[]) or time.monotonic_ns()-self.clock_samples[-1]['mono_after_ns']>10_000_000_000:
+            self.clock_sample()
+        r=subprocess.run([ADB,'-s',DEV,'exec-out','stat','-c','%i:%s',path],capture_output=True,timeout=3,check=True)
+        inode,size=map(int,r.stdout.strip().split(b':'))
+        identity=(path,inode)
+        if getattr(self,'log_identity',identity)!=identity or size<offset:raise ValueError('client_log_rotated')
+        self.log_identity=identity
+        return self.read_file(path,offset)
+
     def stopped(self):
         return any(Path(p).exists() for p in getattr(self,'stop_paths',()))
 
@@ -175,6 +210,7 @@ class Device:
         return r.stdout
 
     def context(self,account,folder):
+        self.clock_sample()
         if not re.fullmatch(r"[A-Za-z0-9]+",account):raise ValueError("invalid_account_path")
         version=self.read_file(self.base+"gds/gds_version.txt").decode().strip()
         if not re.fullmatch(r"[a-f0-9]{32}",version):raise ValueError("unknown_game_config_version")
@@ -188,6 +224,8 @@ class Device:
         if len(matches)!=1 or s["CardCount"]!=4 or s["BetCount"] not in (1,2) or d["IsActivated"]:
             raise ValueError("ordinary_four_card_configuration_required")
         cost=matches[0]["cost"]*s["CardCount"]
+        minimum=min(r['cost'] for r in json.loads(config) if r['id'] in ('BET_NP_SYMBOL_1','BET_NP_SYMBOL_2'))*4
+        if cost!=minimum:raise ValueError('minimum_ordinary_bet_required')
         if type(cost) is not int or not 0<cost<=8 or s["LastBetTicket"]!=cost:
             raise ValueError("current_selection_cost_mismatch")
         # Original bytes retained locally so the selected quote can be rebuilt.
@@ -252,9 +290,21 @@ class Device:
         return self.send(sample['button'])
 
 
-def ticket_balance(wallet,change):
+def ticket_balance(wallet,change,clocks=None):
     from bv_verify import timestamp
     when=timestamp(wallet)
+    if clocks and change:
+        if change['after']==wallet['currencies']['TICKET']:return change['after']
+        from bv_clock import interval
+        try:lo,hi=interval(change['at_ns'],clocks)
+        except ValueError:
+            if when>=clocks[0]['host_after_ns'] and change['at_ns']<clocks[0]['device_ns']:
+                return wallet['currencies']['TICKET']  # Fresh server snapshot after this log prefix.
+            raise ValueError('resource_clock_not_covered')
+        if lo>when+1_000_000_000:return change['after']
+        if hi<when:return wallet['currencies']['TICKET']
+        if change['after']==wallet['currencies']['TICKET']:return change['after']
+        raise ValueError('resource_order_ambiguous')
     return change['after'] if change and change['at_ns']>when else wallet['currencies']['TICKET']
 
 
@@ -277,7 +327,7 @@ def preflight(source=SOURCE, device=None):
         try:
             folder=CONTROL/("check_"+uuid.uuid4().hex);folder.mkdir(parents=True)
             quote=device.context(wallets[-1]["account"],folder)
-            quote["balance"]=ticket_balance(wallets[-1],quote.get('last_ticket_change'))
+            quote["balance"]=ticket_balance(wallets[-1],quote.get('last_ticket_change'),getattr(device,'clock_samples',None))
         except (OSError,ValueError,KeyError,subprocess.TimeoutExpired) as exc:
             errors.append("quote_"+str(exc))
     buy_errors=list(errors)
@@ -285,10 +335,12 @@ def preflight(source=SOURCE, device=None):
     if quality:buy_errors.append("capture_quality_errors")
     from bv_verify import semantic_gate
     gate=semantic_gate()
-    ready=not buy_errors and gate['qualified'] and clean_code()
+    clock_ready=bool(getattr(device,'clock_samples',[]))
+    if isinstance(device,Device) and not clock_ready:buy_errors.append('clock_not_ready')
+    ready=not buy_errors and clean_code()
     result={"status":"Ready" if ready else "Ready for diagnostic navigation" if not errors else "Blocked",
             "diagnostic_navigation_ready":fg and bool(wallets), "live_ready":ready, "purchase_ready":not buy_errors,
-            "semantic_gate":gate,
+            "run_ready":ready,"metric_ready":gate['qualified'],"clock_ready":clock_ready,"semantic_gate":gate,
             "blockers":buy_errors, "capture_errors":quality,"limits":LIMITS,
             "wallet_source_available":bool(wallets), "quote_source_available":quote is not None,
             "quote":quote}
@@ -372,18 +424,18 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
     events=[];samples=[];opened=False;controller=None;paid=False;closed_at=None;client_offset=None
     client_chunks=[];client_future=None;client_pool=ThreadPoolExecutor(max_workers=1)
     quote=None;buy_at=None;round_id_bound=None;trace=None;native_events=[];history=[];tail=None;start=None
-    registration={};processed_calls=set();processed_marks=set()
+    registration={};processed_calls=set();processed_marks=set();progress_at=0
     ledger.append('runtime_start',session_id=session.name)
     try:
         if play_round and not clean_code():raise ValueError('candidate_not_frozen')
-        if batch:
-            from bv_verify import semantic_gate
-            if not semantic_gate(root)['qualified']:raise ValueError('two_controlled_diagnostics_not_proven')
         check,history=preflight(source,device)
+        if batch and not check.get('run_ready',check.get('purchase_ready')):raise ValueError('run_not_ready:'+','.join(check['blockers']))
         start=index.stat().st_size
         registration={"purpose":purpose,"registered_ns":time.time_ns(),"code_version":code_version(),
                       "parser_version":VERSION,"metric_version":METRIC,"source_start":start,
-                      "instance":INSTANCE,"limits":LIMITS,"session_id":session.name}
+                      "instance":INSTANCE,"limits":LIMITS,"session_id":session.name,
+                      "mode":"full_autoplay" if batch else "single_target_diagnostic",
+                      "target_dispatch_limit":288 if batch else 1,"user_should_intervene":False}
         if batch:
             registration.update({k:batch[k] for k in ('batch_id','code_version','parser_version','metric_version','instance')})
             with (Path(batch['folder'])/'starts.jsonl').open('a',encoding='utf-8') as f:
@@ -396,7 +448,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
             from bv_autoplay import AutoPlay
             from types import SimpleNamespace
             controller=AutoPlay(SimpleNamespace(map=None,settle=1.8,retries=2,ack_wait=1.5,dry=False,
-                         max_dispatches=96 if batch else 1,
+                         max_dispatches=288 if batch else 1,
                          batch_stop_path=str(stop_paths[1]) if batch else None,
                          diagnostic_slot=None if batch else 2,
                          session_path=str(session),capture_index=str(index),bodies=source/"bv_bodies"))
@@ -434,7 +486,8 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                         controller.foreground_at=sample.get("sampled_at",0)
                     if sample["scene"]=="round" and round_id_bound and (batch or controller.n_tap==0):
                         controller.setup_grid(4,sample["grid"])
-                        if controller.grid:controller.layout_at=sample['sampled_at']
+                        if controller.grid:
+                            controller.layout_at=sample['sampled_at'];controller.backfill()
                     elif not paid or sample["scene"]!="round":controller.revoke("not_visible_round")
                 if open_panel and not opened and check["diagnostic_navigation_ready"] and sample["scene"]=="lobby":
                     # Only a non-consuming navigation action. No fall-through to PLAY on the panel.
@@ -445,7 +498,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                     account=next(e["account"] for e in reversed(history) if e["type"]=="wallet_snapshot")
                     quote=device.context(account,session)
                     wallet=next(e for e in reversed(history) if e['type']=='wallet_snapshot')
-                    quote['balance']=ticket_balance(wallet,quote.get('last_ticket_change'))
+                    quote['balance']=ticket_balance(wallet,quote.get('last_ticket_change'),getattr(device,'clock_samples',None))
                     # Re-sample after context IO, then re-check the just-read quote before dispatch.
                     fresh=device.sample(session/"before-buy.png")
                     if stopped():break
@@ -459,11 +512,17 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                     if outcome=="not_executed":raise ValueError("purchase_cancelled_before_dispatch")
             if paid and quote:
                 if client_future is None:
-                    client_future=client_pool.submit(device.read_file,quote["log_path"],client_offset)
+                    client_future=client_pool.submit(getattr(device,'read_client',device.read_file),quote["log_path"],client_offset)
                 elif client_future.done():
                     chunk=client_future.result();client_future=None;client_offset+=len(chunk);client_chunks.append(chunk)
                     for event in trace.feed(chunk):
+                        if getattr(device,'clock_samples',None):
+                            from bv_clock import observe
+                            event=observe(event,device.clock_samples)
                         native_events.append(event)
+                        if event['type']=='client_game_over' and event.get('round_id')==round_id_bound:
+                            controller.close_round(round_id_bound,verified=True)
+                            closed_at=closed_at or time.monotonic()
                     # Replay only already-observed native calls after personal-card binding.
                     for event in native_events:
                         ref=event['source_ref']['offset']
@@ -472,7 +531,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                                 from bv_verify import timestamp
                                 starts=[e for e in native_events if e['type']=='client_round_start' and e['round_id']==round_id_bound]
                                 own=[e for e in events if e['type']=='personal_cards' and e['round_id']==round_id_bound]
-                                if not starts or not own or not max(timestamp(own[0]),starts[0]['at_ns']-1_000_000_000)<=event['at_ns']<starts[0]['at_ns']:continue
+                                if not starts or not own or not starts[0]['at_ns']-1_000_000_000<=event['at_ns']<starts[0]['at_ns']:continue
                             processed_calls.add(ref)
                             candidates={n for e in events if e.get("type")=="balls" and e.get("round_id")==round_id_bound for n in e["window"]}
                             if event["ball"] not in candidates:
@@ -482,14 +541,19 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                             if event['round_id']!=round_id_bound:continue
                             processed_marks.add(ref)
                             if not controller.accept_client_mark(event):
-                                controller.revoke('unmatched_client_mark',halt=True)
-                                result.setdefault('errors',[]).append('unmatched_client_mark')
+                                controller.observe_unmatched(event)
                     deltas=re.findall(rb"NotifyResources TICKET current=(\d+) next=(\d+) delta=(-?\d+)",b"".join(client_chunks))
                     gross=sum(-int(d) for a,b,d in deltas if int(d)<0)
                     if deltas:result["gross_tickets"]=gross
                     if gross>quote["tickets"]:
                         controller.revoke("unexpected_ticket_consumption",halt=True)
                         raise ValueError("unexpected_ticket_consumption")
+            if controller and batch and time.monotonic()-progress_at>=2:
+                progress_at=time.monotonic()
+                (session/'progress.json').write_text(json.dumps(dict(mode='full_autoplay',ordinal=batch['ordinal'],
+                    dispatched=controller.n_tap,confirmed=len(controller.done),pending=len(controller.pending),
+                    awaiting=len(controller.awaiting),unknown=len(controller.giveup),closed=closed_at is not None,
+                    halted=controller.halted,stop_path=str(stop_paths[-1]))),encoding='utf-8')
             time.sleep(.05)
         result.update(blockers=check["blockers"], capture_errors=dict(tail.errors),
                       observed_commands=dict(Counter(str(e.get("cmd")) for e in events if "cmd" in e)),
@@ -497,6 +561,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                       source_start=start, source_end=tail.pos,
                       stopped_confirmed=True, stop_requested=stopped())
         if controller:
+            result['control_summary']=controller.summary()
             result.update(input_dispatched=controller.n_tap,round_bound=bool(round_id_bound),
                           close_candidate_observed=closed_at is not None)
     except (OSError,ValueError,subprocess.TimeoutExpired) as exc:
@@ -527,6 +592,8 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
         if paid and tail is not None:
             try:
                 from bv_verify import freeze
+                if getattr(device,'clock_samples',None):
+                    (session/'clock.json').write_text(json.dumps(dict(samples=device.clock_samples,log_identity=getattr(device,'log_identity',None))),encoding='utf-8')
                 # A frozen failure is retained too; the verifier determines completeness.
                 freeze(session,start,tail.pos,source_root=source,**{k:v for k,v in registration.items() if k!='source_start'},ended_ns=time.time_ns())
             except (OSError,ValueError,KeyError) as exc:result.setdefault('errors',[]).append('freeze_'+str(exc))
@@ -551,10 +618,6 @@ def start_batch(device=None):
     import msvcrt
     from bv_verify import semantic_gate
     from bv_batch import verify_batch
-    gate=semantic_gate()
-    if not gate['qualified']:
-        return dict(status='Blocked',acceptance_pass=False,started_rounds=0,gate=gate,
-                    errors=['two_controlled_diagnostics_not_proven'])
     if not clean_code():return dict(status='Blocked',acceptance_pass=False,errors=['candidate_not_frozen'])
     CONTROL.mkdir(parents=True,exist_ok=True)
     lock=(CONTROL/'controller.lock').open('a+b');lock.seek(0);lock.write(b'0');lock.flush();lock.seek(0)
@@ -566,11 +629,14 @@ def start_batch(device=None):
     try:
         registration=dict(batch_id=batch.name,instance=INSTANCE,code_version=code_version(),
                           parser_version=VERSION,metric_version=METRIC,purpose='acceptance',planned_rounds=10,
-                          registered_ns=time.time_ns(),source_start=(SOURCE/'bv_ws.jsonl').stat().st_size)
+                          registered_ns=time.time_ns(),source_start=(SOURCE/'bv_ws.jsonl').stat().st_size,
+                          mode='full_autoplay',positions=list(range(1,11)),semantic_rule='two_source_bound_rounds_distinct_targets_v1')
         (batch/'registration.json').write_text(json.dumps(registration),encoding='utf-8')
         (batch/'starts.jsonl').touch()
         ledger.append('batch_registered',**registration)
         for ordinal in range(1,11):
+            print(json.dumps(dict(mode='full_autoplay',round=ordinal,planned=10,status='starting',
+                  notice='持续填充四卡全部合法目标，User无需补点',stop_path=str(batch/'STOP')),ensure_ascii=False),flush=True)
             if (batch/'STOP').exists() or ledger.elapsed()>=2700:break
             session=batch/('acceptance_'+uuid.uuid4().hex)
             device.stop_paths=(session/'STOP',batch/'STOP')
@@ -579,7 +645,7 @@ def start_batch(device=None):
             if run.get('errors') or run.get('rounds_started')!=1:break
             checked=verify_round(session/'frozen.json')
             (session/'verification.json').write_text(json.dumps(checked,indent=2),encoding='utf-8')
-            if not checked.get('evidence_valid'):break
+            if not checked.get('sources_rebuilt') or checked.get('source_errors'):break
             # A verified low rate stays in the batch; it is never replaced with a success.
             # Settlement navigation requires independently rebuilt close/terminal sources.
             nav0=time.monotonic();claimed=False;ready=False

@@ -222,6 +222,7 @@ class AutoPlay:
                     or not self.foreground_ok or now-self.foreground_at > 2.5
                     or q["due"] > now or q["ball"] not in self.first_seen
                     or (q['slot'],q['r'],q['c']) in self.done | getattr(self,'special_observed',set())
+                    or (q['slot'],q['r'],q['c']) in getattr(self,'uncertain_observed',set())
                     or self.n_tap >= getattr(self.a,"max_dispatches",float("inf"))):
                 self.log(kind="cancelled_before_dispatch", slot=q["slot"], cell_index=q["c"]*5+q["r"])
                 return "cancelled"
@@ -456,7 +457,8 @@ class AutoPlay:
             return
         ready = [q for q in self.pending if q["due"] <= now and q["round_id"] == self.rid]
         # New targets before bounded retries; sparse observations never hold input slots.
-        ready.sort(key=lambda q: (q["tries"], -self.first_seen[q["ball"]], q["slot"]))
+        # Age eventually dominates new work; a bounded retry cannot starve forever.
+        ready.sort(key=lambda q: (self.first_seen[q['ball']]+q['tries']*2, q['slot']))
         if not ready:
             return
         q = ready[0]
@@ -491,17 +493,50 @@ class AutoPlay:
         if event.get('daub_type')!='Manual' or key in getattr(self,'special_observed',set()):return False
         sent=getattr(self,'dispatch_times',{}).get(key)
         if (not card or card['vals'][cell]!=event.get('ball') or event['ball'] not in self.first_seen
-                or sent is None or not sent<=event['at_ns']<=sent+10_000_000_000):return False
+                or sent is None):return False
+        from bv_clock import matched
+        if not matched(event,sent):return False
         self.done.add(key);self.giveup.discard(key)
+        getattr(self,'uncertain_observed',set()).discard(key)
         self.pending=[q for q in self.pending if (q['slot'],q['r'],q['c'])!=key]
         self.awaiting=[q for q in self.awaiting if (q['slot'],q['r'],q['c'])!=key]
         self.log(kind='client_accepted',slot=slot,cell_index=cell,source_ref=event['source_ref'])
         return True
 
+    def observe_unmatched(self,event):
+        """One uncertain confirmation must not halt unrelated safe first attempts."""
+        slot,cell=event.get('card_id'),event.get('cell_index')
+        if event.get('round_id')!=self.rid or type(slot)is not int or type(cell)is not int:return
+        card=next((c for c in self.cards or [] if c['slot']==slot),None)
+        if not card or not 0<=cell<25 or card['vals'][cell]!=event.get('ball'):
+            self.revoke('unmatched_mark_identity',halt=True);return
+        key=(slot,*idx2rc(cell))
+        with self.state_lock:
+            if not hasattr(self,'uncertain_observed'):self.uncertain_observed=set()
+            self.uncertain_observed.add(key)
+            self.giveup.add(key)
+            self.pending=[q for q in self.pending if (q['slot'],q['r'],q['c'])!=key]
+            self.awaiting=[q for q in self.awaiting if (q['slot'],q['r'],q['c'])!=key]
+            self.log(kind='unmatched_mark_unknown',slot=slot,cell_index=cell,source_ref=event.get('source_ref'))
+
+    def summary(self):
+        targets={(c['slot'],*idx2rc(k)) for c in self.cards or [] for k,n in enumerate(c['vals']) if k!=12 and n in self.called}
+        special=getattr(self,'special_observed',set())
+        unknown=(self.giveup|special|self.tapped)-self.done
+        return dict(targets=len(targets),dispatched=self.n_tap,confirmed=len(self.done),
+                    unattempted=len(targets-self.tapped-special),unknown=len(targets&unknown),
+                    pending=len(self.pending),awaiting=len(self.awaiting),retries=self.n_retry,
+                    target_states=[dict(slot=k[0],cell_index=k[2]*5+k[1],
+                      status='confirmed' if k in self.done else 'special_unknown' if k in special else
+                      'attempted_unknown' if k in self.tapped else 'unattempted') for k in sorted(targets)])
+
 
 def preflight():
-    from bv_live import preflight as live_preflight
-    return live_preflight()[0]
+    from bv_live import preflight as live_preflight,Budget
+    b=Budget();sid='readonly_check_'+str(time.time_ns());start=time.monotonic()
+    b.append('runtime_start',session_id=sid)
+    try:return live_preflight()[0]
+    finally:b.append('runtime_end',session_id=sid,seconds=time.monotonic()-start)
 
 
 def main():

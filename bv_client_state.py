@@ -2,7 +2,7 @@
 import datetime as dt
 import re
 
-STAMP=re.compile(rb"^[A-Z]:\d+:-?\d+:(\d{2}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}\.\d+) ([+-]\d{2}:\d{2}) ")
+STAMP=re.compile(rb"^[A-Z]:\d+:-?\d+:(\d{2}/\d{2}/\d{2} \d{1,2}:\d{2}:\d{2}\.\d+) ([+-]\d{2}:\d{2}) ")
 CALL=re.compile(rb"\[BallCaller\].* index (\d+), num (\d+)")
 DAUB=re.compile(rb"BingoLog: Daub Type (\w+), Index: (\d+), (\d+), \((\d+),(\d+)\)")
 TICKET=re.compile(rb"NotifyResources TICKET current=(\d+) next=(\d+) delta=(-?\d+)")

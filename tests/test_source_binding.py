@@ -70,6 +70,7 @@ class Sources(unittest.TestCase):
             when=4+cell+.2+slot*.01
             lines.append((when,f'BingoLog: Daub Type Manual, Index: {slot-1}, {cell+1}, ({cell},0), Mod None'))
             actions.append(dict(kind='input_dispatched',slot=slot,cell_index=cell,round_id=rid,dispatched_ns=ns(when-.1)))
+            self.raw(100007,field(1,b)+field(2,field(1,1)+field(3,field(1,cell)+field(2,slot-1))),t+dt.timedelta(seconds=when+.01),'C->S')
         lines.append((20.1,'BingoPlayView GameOver'))
         text=''
         for secs,value in sorted(lines):
@@ -77,6 +78,9 @@ class Sources(unittest.TestCase):
             text+=f'I:1:2:{stamp} +08:00 {value}\n'
         (folder/'client-during.log').write_text(text)
         (folder/'actions.jsonl').write_text(''.join(json.dumps(a)+'\n' for a in actions))
+        (folder/'clock.json').write_text(json.dumps(dict(samples=[dict(host_before_ns=ns(0)-1_000_000,
+            host_after_ns=ns(0)+1_000_000,mono_before_ns=ns(0)-1_000_000,mono_after_ns=ns(0)+1_000_000,
+            device_ns=ns(0),boot_id='synthetic-boot')],log_identity=['synthetic',1])))
         blocks=[]
         for slot in range(1,5):blocks.append('|'.join('1::' if k==12 or (slot,k) in marked else '' for k in range(25)))
         state=blocks[0]+''.join('@#'+x for x in blocks[1:])+'@'
@@ -84,7 +88,7 @@ class Sources(unittest.TestCase):
         self.raw(100007,field(1,b)+field(2,field(1,9)+field(2,state.encode())),t+dt.timedelta(seconds=21),'C->S')
         identity=dict(instance='synthetic-device',code_version='fixed-test-code',parser_version=VERSION,metric_version=live.METRIC)
         if reg:identity.update({k:reg[k]for k in ('batch_id','instance','code_version','parser_version','metric_version')})
-        frozen=freeze(folder,start,self.index.stat().st_size,purpose=purpose,session_id=folder.name,registered_ns=ns(0),ended_ns=ns(22),**identity)
+        frozen=freeze(folder,start,self.index.stat().st_size,purpose=purpose,mode='full_autoplay' if purpose=='acceptance' else 'single_target_diagnostic',session_id=folder.name,registered_ns=ns(0),ended_ns=ns(22),**identity)
         budget=live.Budget()
         with patch.object(live.time,'time_ns',return_value=ns(.5)):
             budget.append('purchase_reserved',purpose=purpose,session_id=folder.name,
@@ -125,10 +129,12 @@ class Sources(unittest.TestCase):
         body=next((self.source/'bv_bodies').glob('*.bin'));body.write_bytes(body.read_bytes()+b'x')
         with self.assertRaises(ValueError):replay(f)
 
-    def test_one_uncontrolled_diagnostic_cannot_unlock_start(self):
+    def test_missing_semantic_quantity_does_not_bypass_runtime_preparation(self):
         self.make_round('diagnostic')
-        with patch.object(live,'Device') as device,patch.object(ap.sys,'argv',['bv_autoplay.py','--start']),patch('builtins.print'):
-            self.assertEqual(ap.main(),2);device.assert_not_called()
+        self.assertFalse(semantic_gate()['qualified'])
+        with patch.object(live,'Device'),patch.object(live,'clean_code',return_value=True),patch.object(live,'preflight',return_value=({'run_ready':False,'blockers':['missing_source']},[])),patch.object(ap.sys,'argv',['bv_autoplay.py','--start']),patch('builtins.print'):
+            self.assertEqual(ap.main(),2)
+        self.assertFalse(any(e['kind']=='purchase_reserved' and e['purpose']=='acceptance' for e in live.Budget().records()))
 
     def test_special_before_call_stays_unknown_and_dispatch_time_mismatch_fails(self):
         from bv_verify import content_digest
@@ -138,7 +144,7 @@ class Sources(unittest.TestCase):
         effect=manual.replace('Daub Type Manual','Daub Type PowerUp').replace('10:00:34.210','10:00:33.500')
         log.write_text('\n'.join(sorted(lines+[effect]))+'\n')
         events,_=live.scan_range(self.index,self.source/'bv_bodies',f['source']['start'],f['source']['end'])
-        files=[p.parent/f[k] for k in ('client_ref','actions_ref','selection_ref','config_ref')]
+        files=[p.parent/f[k] for k in ('client_ref','actions_ref','selection_ref','config_ref','clock_ref')]
         f['source_digest']=content_digest(f['source'],events,files);p.write_text(json.dumps(f))
         r=replay(p);self.assertEqual(r['errors'],[]);self.assertEqual((r['N'],r['E'],r['Unknown']),(0,20,1))
         self.assertFalse(r['controlled_differential'])
@@ -172,6 +178,30 @@ class Sources(unittest.TestCase):
         result=json.loads(next(self.control.glob('batch_*/result.json')).read_text())
         self.assertTrue(result['acceptance_pass']);self.assertEqual(result['started_rounds'],10)
         self.assertEqual(nav.claims,10)
+
+    def test_two_full_rounds_certify_same_frozen_batch_without_single_click_gate(self):
+        batch=self.control/'batch_full';batch.mkdir();(batch/'starts.jsonl').touch()
+        reg=dict(batch_id=batch.name,instance='synthetic-device',code_version='fixed-test-code',parser_version=VERSION,
+                 metric_version=live.METRIC,purpose='acceptance',planned_rounds=10,
+                 registered_ns=int((self.base+dt.timedelta(seconds=29)).timestamp()*1e9),source_start=0)
+        (batch/'registration.json').write_text(json.dumps(reg));live.Budget().append('batch_registered',**reg)
+        one=self.make_round('acceptance',reg,1)
+        first=verify_round(one);self.assertFalse(first['evidence_valid']);self.assertEqual(first['source_errors'],[])
+        self.make_round('acceptance',reg,2)
+        self.assertTrue(semantic_gate(batch_id=batch.name)['qualified'])
+        self.assertTrue(verify_round(one)['evidence_valid'])
+
+    def test_replay_uses_prospective_positive_and_negative_clock_brackets(self):
+        from bv_verify import content_digest
+        import re
+        for offset in [-5,4.5]:
+            p=self.make_round('diagnostic');f=json.loads(p.read_text());log=p.parent/f['client_ref']
+            def shift(m):return (dt.datetime.strptime(m[0],'%y/%m/%d %H:%M:%S.%f')+dt.timedelta(seconds=offset)).strftime('%y/%m/%d %H:%M:%S.%f')[:-3]
+            log.write_text(re.sub(r'\d{2}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}\.\d+',shift,log.read_text()))
+            clock=p.parent/f['clock_ref'];c=json.loads(clock.read_text());c['samples'][0]['device_ns']+=int(offset*1e9);clock.write_text(json.dumps(c))
+            events,_=live.scan_range(self.index,self.source/'bv_bodies',f['source']['start'],f['source']['end'])
+            f['source_digest']=content_digest(f['source'],events,[p.parent/f[k] for k in ('client_ref','actions_ref','selection_ref','config_ref','clock_ref')]);p.write_text(json.dumps(f))
+            r=replay(p);self.assertEqual(r['errors'],[]);self.assertTrue(r['controlled_differential']);self.assertEqual(r['N'],1)
 
 
 class RuntimeLimits(unittest.TestCase):

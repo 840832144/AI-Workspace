@@ -86,7 +86,7 @@ def verify_batch(folder):
                 raise ValueError("frozen_path_outside_batch")
             verified=verify_round(ref)
             verified['frozen_ref']=str(ref.relative_to(folder))
-            settlement=json.loads((ref.parent/'settlement.json').read_text(encoding='utf-8'))
+            settlement=json.loads((ref.parent/'settlement.json').read_text(encoding='utf-8')) if (ref.parent/'settlement.json').exists() else {}
             if settlement.get('navigation_ready') is not True:
                 verified.update(status='Insufficient evidence',evidence_valid=False)
             rounds.append(verified)
