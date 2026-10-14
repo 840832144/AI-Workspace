@@ -24,10 +24,15 @@ CONTROL = Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "AI-Workspace
 PACKAGE = "com.bingo.cruise.free.best.top.game"
 INSTANCE = 'mumu-authorized'
 METRIC = "automatic-set-intersection-replan-v1"
-RESOURCE_AUTHORIZATION = 'execution-16t-20261014'
-RESOURCE_POLICIES = {RESOURCE_AUTHORIZATION:
+RESOURCE_AUTHORIZATION = 'execution-time-relaxed-20261014'
+RESOURCE_POLICIES = {'execution-16t-20261014':
     {"diagnostic_rounds": 3, "acceptance_rounds": 18, "cards": 4,
      "tickets_per_round": 16, "gross_tickets": 96, "round_seconds": 300, "total_seconds": 5400}}
+# User relaxed remaining time on 2026-10-14. Use a conservative +600 second
+# implementation ceiling for this continuation, preserving every old policy and
+# ledger record. No ticket, position, diagnostic or per-round expansion.
+RESOURCE_POLICIES[RESOURCE_AUTHORIZATION] = dict(
+    RESOURCE_POLICIES['execution-16t-20261014'], total_seconds=6000)
 LIMITS = RESOURCE_POLICIES[RESOURCE_AUTHORIZATION]
 BATCH_ROUNDS = 10
 BATCH_CLEANUP_SECONDS = 30

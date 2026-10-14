@@ -59,7 +59,7 @@ class Execution16(unittest.TestCase):
                 self.assertEqual(p['deficits']['tickets'],deficit)
                 self.assertEqual(p['fits'],cost==4)
                 self.assertEqual(p['required_seconds'],3030)
-                self.assertAlmostEqual(p['available_seconds'],3132.738)
+                self.assertAlmostEqual(p['available_seconds'],live.LIMITS['total_seconds']-2267.262)
             self.assertEqual(b.path.read_bytes(),before)
             with self.assertRaisesRegex(ValueError,'batch_budget_insufficient'):
                 b.reserve('acceptance',synthetic_quote(tickets=12,balance=200),'new',remaining_rounds=10)
@@ -77,13 +77,22 @@ class Execution16(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'task_resource_limit'):b.reserve('acceptance',q,'over96')
         with tempfile.TemporaryDirectory() as folder:
             b=live.Budget(folder)
-            with patch.object(b,'elapsed',return_value=5400):
+            with patch.object(b,'elapsed',return_value=live.LIMITS['total_seconds']):
                 with self.assertRaisesRegex(ValueError,'task_resource_limit'):b.reserve('acceptance',q,'time')
-            with patch.object(b,'elapsed',return_value=5400-300+1):
+            with patch.object(b,'elapsed',return_value=live.LIMITS['total_seconds']-300+1):
                 with self.assertRaisesRegex(ValueError,'remaining_time'):b.reserve('acceptance',q,'time')
-            with patch.object(b,'elapsed',return_value=5400-3030+1):
+            with patch.object(b,'elapsed',return_value=live.LIMITS['total_seconds']-3030+1):
                 self.assertEqual(b.batch_plan(q)['deficits']['seconds'],1)
             self.assertFalse(b.records())
+
+    def test_time_extension_keeps_old_policy_and_all_other_caps(self):
+        old=live.RESOURCE_POLICIES['execution-16t-20261014']
+        self.assertEqual(old['total_seconds'],5400)
+        self.assertEqual(live.LIMITS,dict(old,total_seconds=6000))
+        self.assertEqual(live.frozen_ticket_limit(dict(
+            resource_authorization='execution-16t-20261014',limits=dict(old))),16)
+        with self.assertRaisesRegex(ValueError,'authorization_mismatch'):
+            live.frozen_ticket_limit(dict(resource_authorization='execution-16t-20261014',limits=dict(live.LIMITS)))
 
     def test_start_entry_insufficient_total_has_no_registration_or_purchase(self):
         with tempfile.TemporaryDirectory() as folder:
