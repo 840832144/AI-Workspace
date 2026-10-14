@@ -34,7 +34,12 @@ class Recovery(unittest.TestCase):
         with TemporaryDirectory() as folder,patch.object(d,'read_file',return_value=b'{"Auto":false}'),patch.object(d,'send') as send:
             self.assertTrue(d.configure_powerup(sample,'synthetic',Path(folder)));send.assert_not_called()
         with TemporaryDirectory() as folder,patch.object(live.time,'monotonic',return_value=11),patch.object(d,'foreground',return_value=True),patch.object(d,'read_file',return_value=b'{"Auto":true}'),patch.object(d,'send',return_value='not_executed'):
-            with self.assertRaisesRegex(ValueError,'powerup_toggle_not_confirmed'):d.configure_powerup(sample,'synthetic',Path(folder))
+            self.assertTrue(d.configure_powerup(sample,'synthetic',Path(folder)))
+            self.assertEqual(json.loads((Path(folder)/'powerup-mode.json').read_text())['status'],'input_unconfirmed')
+        with TemporaryDirectory() as folder,patch.object(live.time,'monotonic',side_effect=[11,11,13]),patch.object(d,'foreground',return_value=True),patch.object(d,'read_file',return_value=b'{"Auto":true}'),patch.object(d,'send',return_value='executed') as send:
+            self.assertTrue(d.configure_powerup(sample,'synthetic',Path(folder)))
+            self.assertEqual(json.loads((Path(folder)/'powerup-mode.json').read_text())['status'],'save_readback_unconfirmed')
+            send.assert_called_once()
 
     def test_next_panel_waits_through_flyout_and_opens_only_once(self):
         d=live.Device()

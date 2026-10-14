@@ -354,10 +354,12 @@ class Device:
         raise ValueError('panel_navigation_cancelled' if self.stopped() else 'panel_navigation_not_ready')
 
     def configure_powerup(self,sample,account,folder):
-        """Use the normal toggle, then read the current account's saved preference.
+        """Attempt the normal toggle once; record confirmation separately.
 
         Never write the save, call a game method, or infer Auto from pixels.
-        This runs before any cell dispatch, once per newly bound round.
+        Save flushing can lag the actual UI. An unconfirmed optional setting
+        must not block independently legal cell input. Effects remain Unknown
+        in the verifier; this result never authorizes a fill or score.
         """
         if not re.fullmatch(r'[A-Za-z0-9]+',account):raise ValueError('invalid_account_path')
         path=self.base+'save/'+account+'/gameplay_powerup_prefs.json'
@@ -368,18 +370,23 @@ class Device:
         before=read();record=dict(before=before,input_sent=False)
         evidence=folder/'powerup-mode.json'
         evidence.write_text(json.dumps(record),encoding='utf-8')
-        if not before['auto']:return True
+        if not before['auto']:
+            record['status']='saved_preference_off';evidence.write_text(json.dumps(record),encoding='utf-8');return True
         if (sample['scene']!='round' or not sample.get('powerup_toggle')
-                or time.monotonic()-sample['sampled_at']>2.5 or not self.foreground()):return False
+                or time.monotonic()-sample['sampled_at']>2.5 or not self.foreground()):
+            record['status']='not_attempted_no_current_toggle';evidence.write_text(json.dumps(record),encoding='utf-8');return True
         outcome=self.send(sample['powerup_toggle'])
         record.update(input_sent=True,outcome=outcome);evidence.write_text(json.dumps(record),encoding='utf-8')
-        if outcome!='executed':raise ValueError('powerup_toggle_not_confirmed')
-        deadline=time.monotonic()+5
+        if outcome!='executed':
+            record['status']='input_unconfirmed';evidence.write_text(json.dumps(record),encoding='utf-8');return True
+        deadline=time.monotonic()+1
         while time.monotonic()<deadline and not self.stopped():
             after=read();record['after']=after;evidence.write_text(json.dumps(record),encoding='utf-8')
-            if not after['auto']:return True
+            if not after['auto']:
+                record['status']='saved_preference_off';evidence.write_text(json.dumps(record),encoding='utf-8');return True
             time.sleep(.25)
-        raise ValueError('powerup_off_not_confirmed')
+        record['status']='save_readback_unconfirmed';evidence.write_text(json.dumps(record),encoding='utf-8')
+        return True
 
     def foreground(self):
         from bv_autoplay import ADB, DEV
@@ -1028,7 +1035,7 @@ def start_batch(device=None,resume=None):
                               parser_version=VERSION,metric_version=METRIC,purpose='acceptance',planned_rounds=BATCH_ROUNDS,
                               registered_ns=time.time_ns(),source_start=(SOURCE/'bv_ws.jsonl').stat().st_size,
                               mode='full_autoplay',positions=list(range(used+1,used+BATCH_ROUNDS+1)),
-                              powerup_mode='off_via_normal_ui_before_first_cell',
+                              powerup_mode='normal_ui_off_attempt_once_no_effect_credit',
                               available_rounds=remaining,budget_plan=plan,limits=dict(LIMITS),resource_authorization=RESOURCE_AUTHORIZATION,
                               semantic_rule='two_source_bound_rounds_distinct_targets_v1')
             (batch/'registration.json').write_text(json.dumps(registration),encoding='utf-8')
