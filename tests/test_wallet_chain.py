@@ -18,6 +18,10 @@ class WalletChain(unittest.TestCase):
             connect=b'[WebSocket] Socket Begin Connect\n'
             p.write_bytes(connect+receipt+one+two)
             self.assertEqual(live.current_ticket_balance(wallet,q,SimpleNamespace()),113)
+            # A resumed socket need not resend 301; the continuous ledger still
+            # binds to the latest wallet-bearing connection, never an old one.
+            p.write_bytes(connect+receipt+one+connect+two)
+            self.assertEqual(live.current_ticket_balance(wallet,q,SimpleNamespace()),113)
             for raw in [receipt+two,receipt+receipt+one+two,receipt+one+two[:-1],
                         receipt.replace(b'[2]',b'[3]')+one+two,
                         receipt+one+two+b'RECEIVE Response|[4]|301||Payload:2 bytes\n',

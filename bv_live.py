@@ -502,9 +502,12 @@ def current_ticket_balance(wallet,quote,device):
     if not raw.endswith(b'\n'):raise ValueError('wallet_log_incomplete_line')
     payload=len(body_for(wallet));sequence=wallet['sequence']
     pattern=rb'\[WebSocket\] RECEIVE Response\|\['+str(sequence).encode()+rb'\]\|301\|\|Payload:'+str(payload).encode()+rb' bytes\r?\n'
-    # Response sequences reset after reconnect. Restrict to the current
-    # connection epoch, not a matching sequence in an earlier connection.
-    connection=raw.rfind(b'[WebSocket] Socket Begin Connect')
+    # Reconnect can resume without a wallet snapshot. Use the connection that
+    # contains the latest wallet receipt, then require an unbroken change chain
+    # across any later reconnects. Never match a superseded wallet receipt.
+    receipts=list(re.finditer(rb'RECEIVE Response\|\[[0-9]+\]\|301\|',raw))
+    if not receipts:raise ValueError('wallet_receipt_not_unique')
+    connection=raw.rfind(b'[WebSocket] Socket Begin Connect',0,receipts[-1].start())
     if connection<0:raise ValueError('wallet_connection_epoch_missing')
     anchors=list(re.finditer(pattern,raw[connection:]))
     if len(anchors)!=1:raise ValueError('wallet_receipt_not_unique')
