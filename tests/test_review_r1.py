@@ -11,6 +11,7 @@ from concurrent.futures import Future
 
 import bv_autoplay as ap
 import bv_live as live
+from test_price_binding import synthetic_quote
 from bv_batch import check_batch,verify_batch,IDENTITY
 from bv_evidence import aggregate,measure,decode
 from test_reliability import controller,stabilize,grid,freeze,wire
@@ -52,7 +53,7 @@ class Dispatch(unittest.TestCase):
                 if reason=='round':c.rid='other'
                 elif reason=='stop':Path(folder,'STOP').touch()
                 elif reason=='foreground':c.foreground_ok=False
-                elif reason=='version':c.layout_version+=1
+                elif reason=='version':c.grid[c.input_target['slot']]['version']+=1
                 with patch.object(ap,'spawn_tap') as send,patch.object(ap.time,'monotonic',return_value=20 if reason=='expired' else 12):
                     self.assertEqual(c.input_pool.fn(),'cancelled',reason);send.assert_not_called()
 
@@ -179,7 +180,7 @@ class EntryAndBudget(unittest.TestCase):
                     return dict(foreground=True,scene='round' if self.purchased else 'betpanel',
                                 grid=grid() if self.purchased else [],sampled_at=time.monotonic(),button=[447,1180])
                 def context(self,account,folder):
-                    return dict(source_ref='synthetic',tickets=4,cards=4,balance=81,log_path='synthetic',
+                    return synthetic_quote(source_ref='synthetic',tickets=4,cards=4,balance=81,log_path='synthetic',
                                 log_start=0,sampled_at=time.monotonic())
                 def buy(self,sample,quote):
                     self.purchased=True
@@ -229,7 +230,7 @@ class EntryAndBudget(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             b=live.Budget(folder)
             with self.assertRaises(ValueError):b.reserve('diagnostic',None,'s')
-            quote=dict(source_ref='synthetic',tickets=8,cards=4,balance=96)
+            quote=synthetic_quote(source_ref='synthetic',tickets=8,cards=4,balance=96)
             b.reserve('diagnostic',quote,'d1');b.reserve('diagnostic',quote,'d2')
             b.reserve('diagnostic',quote,'d3')
             with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('diagnostic',quote,'d4')

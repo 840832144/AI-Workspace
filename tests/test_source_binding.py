@@ -8,6 +8,7 @@ from unittest.mock import patch
 
 import bv_autoplay as ap
 import bv_live as live
+from test_price_binding import synthetic_quote
 from bv_verify import freeze,semantic_gate,replay,verify_round
 from bv_batch import verify_batch
 from bv_evidence import VERSION
@@ -216,4 +217,4 @@ class RuntimeLimits(unittest.TestCase):
             b=live.Budget(folder);b.append('runtime_start',session_id='crashed')
             with patch.object(live.time,'time_ns',return_value=b.records()[0]['at_ns']+2701_000_000_000):
                 with self.assertRaisesRegex(ValueError,'task_resource_limit'):
-                    b.reserve('diagnostic',dict(source_ref='synthetic',tickets=4,cards=4,balance=100),'next')
+                    b.reserve('diagnostic',synthetic_quote(source_ref='synthetic',tickets=4,cards=4,balance=100),'next')

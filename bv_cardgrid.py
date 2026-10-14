@@ -234,6 +234,45 @@ def refine_rows(img, card):
     return card
 
 
+def cell_geometry(img, card):
+    """Measure cell shapes, never numbers or fill state.
+
+    Pale tiles and red round tokens both supply geometric edges. A Bingo paint
+    change must not turn a visible row into a shorter card. At least four whole
+    bands on each axis, including both ends, must independently fit five slots.
+    Local face support gates each cell; a modal/animation is not click-through.
+    """
+    a = np.asarray(img.convert('RGB')).astype(np.int16)
+    sp = card['spacing']; h, w = a.shape[:2]
+    x0=max(0,int(card['header_x0']-4));x1=min(w,int(card['header_x1']+5))
+    y0=max(0,int(card['header_bottom']+2));y1=min(h,int(y0+5.4*sp))
+    a=a[y0:y1,x0:x1]
+    if not a.size:return None
+    lo=a.min(axis=2);hi=a.max(axis=2)
+    face=((lo>205)&(hi-lo<55))|((a[:,:,0]>200)&(a[:,:,1]<130)&(a[:,:,2]<130))
+    def axis(frac, offset):
+        runs=row_runs(frac>.25,min_run=max(20,int(.6*sp)))
+        if not 4<=len(runs)<=5:return None
+        centers=[(s+e)/2+offset for s,e in runs]
+        pitch=(centers[-1]-centers[0])/4
+        if not .8*sp<=pitch<=1.2*sp:return None
+        ids=[round((v-centers[0])/pitch) for v in centers]
+        if len(set(ids))!=len(ids) or ids[0]!=0 or ids[-1]!=4:return None
+        pitch,origin=np.polyfit(ids,centers,1)
+        if max(abs(origin+i*pitch-v) for i,v in zip(ids,centers))>2:return None
+        return [float(origin+i*pitch) for i in range(5)]
+    rows=axis(face.mean(axis=1),y0);cols=axis(face.mean(axis=0),x0)
+    if rows is None or cols is None:return None
+    reachable=[]
+    for col,x in enumerate(cols):
+        for row,y in enumerate(rows):
+            dx=(cols[-1]-cols[0])/4*.4;dy=(rows[-1]-rows[0])/4*.4
+            patch=face[max(0,int(y-y0-dy)):int(y-y0+dy)+1,
+                       max(0,int(x-x0-dx)):int(x-x0+dx)+1]
+            if patch.size and patch.mean()>=.35:reachable.append(col*5+row)
+    return dict(cols=cols,rows=rows,reachable_cells=reachable,source='visible_cell_shapes')
+
+
 def detect(img, dbg=False):
     cards = group_cards(find_bands(img))
     # 视觉顺序：先上后下、先左后右

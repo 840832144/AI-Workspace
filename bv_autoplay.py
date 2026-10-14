@@ -206,12 +206,14 @@ class AutoPlay:
             self.grid = self.layout_candidate = None
             self.layout_samples = 0
             self.layout_sample_at = None
+            self.layout_tracks = {}
             self.halted = self.halted or halt
             self.log(kind="input_revoked", reason=reason, generation=self.generation)
 
     def stop_requested(self):
         batch_stop=getattr(self.a,'batch_stop_path',None)
-        return Path(self.sess, "STOP").exists() or bool(batch_stop and Path(batch_stop).exists())
+        return (time.monotonic()>=getattr(self.a,'round_deadline',float('inf'))
+                or Path(self.sess, "STOP").exists() or bool(batch_stop and Path(batch_stop).exists()))
 
     def execute_target(self, q):
         with self.state_lock:
@@ -219,7 +221,9 @@ class AutoPlay:
             if (self.closed or self.halted or self.stop_requested() or q["round_id"] != self.rid
                     or q["generation"] != self.generation or not self.grid
                     or not self.grid[q['slot']].get('input_ready',True)
-                    or q["layout_version"] != self.layout_version or now-self.layout_at > 2.5
+                    or q["layout_version"] != self.grid[q["slot"]].get("version",self.layout_version)
+                    or now-self.grid[q["slot"]].get("sampled_at",self.layout_at) > 2.5
+                    or q["c"]*5+q["r"] not in self.grid[q["slot"]].get("reachable_cells",range(25))
                     or not self.foreground_ok or now-self.foreground_at > 2.5
                     or q["due"] > now or q["ball"] not in self.first_seen
                     or (q['slot'],q['r'],q['c']) in self.done | getattr(self,'special_observed',set())
@@ -239,7 +243,7 @@ class AutoPlay:
             self.n_tap += 1
             self.tapped.add((q["slot"], q["r"], q["c"]))
             self.log(kind="input_dispatched", slot=q["slot"], cell_index=q["c"]*5+q["r"],
-                     x=x, y=y, layout_version=self.layout_version, dispatched_ns=sent_ns)
+                     x=x, y=y, layout_version=q["layout_version"], dispatched_ns=sent_ns)
         return finish_tap(process)
 
     def log(self, **kw):
@@ -291,6 +295,8 @@ class AutoPlay:
                     raise ValueError("duplicate_position")
                 grid[slot] = {a: list(c[a]) for a in ("cols", "rows")}
                 grid[slot]['input_ready']=c.get('input_ready',True)
+                grid[slot]['reachable_cells']=list(c.get('reachable_cells',range(25)))
+                grid[slot]['pause_reason']=c.get('pause_reason','not_ready')
             # Four distinct nonoverlapping card rectangles, not four detections of one.
             for i in range(1, 5):
                 for j in range(i+1, 5):
@@ -298,31 +304,42 @@ class AutoPlay:
                     if not (x["cols"][-1] < y["cols"][0] or y["cols"][-1] < x["cols"][0] or
                             x["rows"][-1] < y["rows"][0] or y["rows"][-1] < x["rows"][0]):
                         raise ValueError("overlap")
-            stable = self.layout_candidate is not None and max(
-                abs(grid[i][a][k]-self.layout_candidate[i][a][k])
-                for i in grid for a in ("cols", "rows") for k in range(5)) <= 4
-            previous_at = getattr(self, "layout_sample_at", None)
-            if stable and previous_at is not None and now-previous_at < .4:
-                return False
-            self.layout_sample_at = now
-            self.layout_samples = self.layout_samples + 1 if stable else 1
-            if not stable:
-                self.generation += 1
-                self.grid = None
-                self.layout_candidate = grid
-            if self.layout_samples < 3:
-                return False
-            if self.grid != grid:
-                self.layout_version += 1
-            self.grid = grid
-            self.layout_at = time.monotonic()
-            return True
+            tracks=getattr(self,'layout_tracks',{});previous=self.grid or {};result={}
+            for slot,current in grid.items():
+                old=previous.get(slot,{});track=tracks.get(slot,{})
+                candidate=track.get('candidate')
+                stable=candidate is not None and max(abs(current[a][k]-candidate[a][k])
+                    for a in ('cols','rows') for k in range(5))<=4
+                ready=current['input_ready']
+                if not ready:
+                    tracks.pop(slot,None);count=0
+                elif stable and now-track.get('at',0)<.4:
+                    count=track['count']
+                else:
+                    count=track.get('count',0)+1 if stable else 1
+                    tracks[slot]=dict(candidate=current,count=count,at=now)
+                current['input_ready']=ready and count>=3
+                current['sampled_at']=now
+                changed=(old.get('input_ready')!=current['input_ready'] or not old or
+                         any(old.get(a)!=current[a] for a in ('cols','rows')) or
+                         old.get('reachable_cells')!=current.get('reachable_cells'))
+                current['version']=old.get('version',0)+int(changed)
+                if changed:
+                    self.layout_version+=1
+                    self.log(kind='card_layout',slot=slot,ready=current['input_ready'],
+                             version=current['version'],reason=current.get('pause_reason') if not ready else
+                             ('reacquired' if current['input_ready'] else 'geometry_stabilizing'))
+                result[slot]=current
+            self.layout_tracks=tracks;self.layout_candidate=grid;self.grid=result
+            self.layout_at=now
+            return any(c['input_ready'] for c in result.values())
         except (ValueError, KeyError, TypeError):
             self.generation += 1
             self.grid = None
             self.layout_candidate = None
             self.layout_samples = 0
             self.layout_sample_at = None
+            self.layout_tracks = {}
             return False
 
     @staticmethod
@@ -468,7 +485,9 @@ class AutoPlay:
         if self.input_future is not None or self.closed or self.halted or self.stop_requested() or not self.grid or now-self.layout_at > 2.5 or self.n_tap >= getattr(self.a,"max_dispatches",float("inf")):
             return
         ready = [q for q in self.pending if q["due"] <= now and q["round_id"] == self.rid
-                 and self.grid[q['slot']].get('input_ready',True)]
+                 and self.grid[q['slot']].get('input_ready',True)
+                 and now-self.grid[q['slot']].get('sampled_at',self.layout_at)<=2.5
+                 and q['c']*5+q['r'] in self.grid[q['slot']].get('reachable_cells',range(25))]
         # New targets before bounded retries; sparse observations never hold input slots.
         # Age eventually dominates new work; a bounded retry cannot starve forever.
         ready.sort(key=lambda q: (not self.completes_bingo(q),
@@ -477,10 +496,10 @@ class AutoPlay:
             return
         q = ready[0]
         self.pending.remove(q)
-        q["layout_version"] = self.layout_version
+        q["layout_version"] = self.grid[q["slot"]].get("version",self.layout_version)
         q["generation"] = self.generation
         self.log(kind="queued", slot=q["slot"], cell_index=q["c"]*5+q["r"],
-                 layout_version=self.layout_version)
+                 layout_version=q["layout_version"])
         self.input_target = q
         self.input_future = self.input_pool.submit(lambda: self.execute_target(q))
 
@@ -541,6 +560,9 @@ class AutoPlay:
                     unattempted=len(targets-self.tapped-special),unknown=len(targets&unknown),
                     pending=len(self.pending),awaiting=len(self.awaiting),retries=self.n_retry,
                     target_states=[dict(slot=k[0],cell_index=k[2]*5+k[1],
+                      input_ready=bool(self.grid and self.grid[k[0]].get('input_ready')),
+                      blocked_reason=(self.grid[k[0]].get('pause_reason') if self.grid and not self.grid[k[0]].get('input_ready') else
+                          'cell_not_reachable' if self.grid and k[2]*5+k[1] not in self.grid[k[0]].get('reachable_cells',range(25)) else None),
                       status='confirmed' if k in self.done else 'special_unknown' if k in special else
                       'attempted_unknown' if k in self.tapped else 'unattempted') for k in sorted(targets)])
 

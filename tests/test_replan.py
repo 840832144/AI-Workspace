@@ -10,6 +10,7 @@ from unittest.mock import patch
 
 import bv_autoplay as ap
 import bv_live as live
+from test_price_binding import synthetic_quote
 from bv_clock import interval,matched,validate
 from test_reliability import controller,grid,stabilize,cards
 from test_source_binding import field
@@ -85,7 +86,8 @@ class ContinuousTargets(unittest.TestCase):
         device=live.Device();det=grid()
         for c in det:
             c.update(header_top=c['rows'][0]-60,header_bottom=c['rows'][0]-40,
-                     observed_rows=list(c['rows']),row_spacing=80,spacing=80,row_mode='bands')
+                     observed_rows=list(c['rows']),row_spacing=80,spacing=80,row_mode='bands',
+                     cell_geometry=dict(cols=list(c['cols']),rows=list(c['rows']),reachable_cells=list(range(25))))
         for _ in range(3):baseline=device.calibrated_grid(det)
         self.assertEqual(len(baseline),4)
         damaged=copy.deepcopy(det)
@@ -93,6 +95,7 @@ class ContinuousTargets(unittest.TestCase):
         repaired=device.calibrated_grid(damaged)
         self.assertEqual([c['rows']for c in repaired],[c['rows']for c in baseline])
         damaged[0]['header_top']+=20
+        damaged[0]['cell_geometry']=None
         partial=device.calibrated_grid(damaged)
         self.assertFalse(partial[0]['input_ready'])
         self.assertTrue(all(c['input_ready'] for c in partial[1:]))
@@ -143,7 +146,7 @@ class ContinuousTargets(unittest.TestCase):
 
     def test_remaining_positions_keep_both_old_reservations(self):
         with tempfile.TemporaryDirectory() as folder:
-            ledger=live.Budget(folder);q=dict(source_ref='synthetic',tickets=4,cards=4,balance=80)
+            ledger=live.Budget(folder);q=synthetic_quote(source_ref='synthetic',tickets=4,cards=4,balance=80)
             for i in range(2):ledger.reserve('acceptance',q,'old'+str(i),'oldbatch')
             self.assertEqual(ledger.remaining_positions(),8)
             for i in range(8):ledger.reserve('acceptance',q,'new'+str(i),'newbatch')
@@ -187,7 +190,7 @@ class ContinuousTargets(unittest.TestCase):
                 def context(self,account,folder):
                     (folder/'selection.json').write_text(json.dumps(dict(CardCount=4,BetCount=1,LastBetTicket=4)))
                     (folder/'base_bet_config.json').write_text(json.dumps([dict(id='BET_NP_SYMBOL_1',cost=1)]))
-                    return dict(source_ref='synthetic',tickets=4,cards=4,balance=80,log_path='synthetic',log_start=0,sampled_at=time.monotonic())
+                    return synthetic_quote(source_ref='synthetic',tickets=4,cards=4,balance=80,log_path='synthetic',log_start=0,sampled_at=time.monotonic())
                 def buy(self,*args):
                     self.purchased=True;self.started=time.monotonic()
                     selected=field(1,b'BET_NP_SYMBOL_1')+field(2,4)

@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 import bv_autoplay as ap
 import bv_live as live
+from test_price_binding import synthetic_quote
 from bv_verify import timestamp
 import test_review_r1 as r1
 
@@ -31,7 +32,7 @@ class StopTests(unittest.TestCase):
                 sample=dict(scene=scene,sampled_at=time.monotonic(),button=[1,1])
                 def foreground():stop.touch();return True
                 with patch.object(device,'foreground',side_effect=foreground),patch.object(ap,'spawn_tap') as send:
-                    args=(sample,dict(sampled_at=time.monotonic(),price_scope='current_panel')) if method=='buy' else (sample,)
+                    args=(sample,synthetic_quote()) if method=='buy' else (sample,)
                     self.assertEqual(getattr(device,method)(*args),'not_executed');send.assert_not_called()
 
     def test_stop_during_quote_read_main_loop_never_reserves_or_buys(self):
@@ -73,7 +74,7 @@ class TimeAndLimits(unittest.TestCase):
 
     def test_existing_ledger_allows_third_but_not_fourth_without_reset(self):
         with tempfile.TemporaryDirectory() as folder:
-            b=live.Budget(folder);q=dict(source_ref='synthetic',tickets=4,cards=4,balance=100)
+            b=live.Budget(folder);q=synthetic_quote(source_ref='synthetic',tickets=4,cards=4,balance=100)
             b.reserve('diagnostic',q,'old1');b.reserve('diagnostic',q,'old2')
             b.append('runtime_start',session_id='old');b.append('runtime_end',session_id='old',seconds=309.061)
             before=b.path.read_bytes();b.reserve('diagnostic',q,'new3')

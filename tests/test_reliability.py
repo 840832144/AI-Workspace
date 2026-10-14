@@ -187,7 +187,7 @@ class ControllerTests(unittest.TestCase):
             c.tick([])
             action=next(e for e in c.logs if e["kind"]=="queued")
             self.assertNotIn("x",action)
-            self.assertEqual(action["layout_version"],c.layout_version)
+            self.assertEqual(action["layout_version"],c.grid[action["slot"]]["version"])
 
     def test_wrong_missing_fifo_and_uplink_never_success(self):
         c=controller();c.awaiting=[{"round_id":"round1","slot":1,"r":0,"c":0,"t":10,"tries":0}]

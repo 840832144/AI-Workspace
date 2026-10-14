@@ -28,6 +28,59 @@ LIMITS = {"diagnostic_rounds": 3, "acceptance_rounds": 10, "cards": 4,
           "tickets_per_round": 8, "gross_tickets": 96, "round_seconds": 300, "total_seconds": 2700}
 
 
+class PanelQuote(dict):
+    """In-memory binding to a live observer, never a serialized verification tag.
+
+    No production observer is currently available. The positive contract is
+    exercised only with isolated synthetic readers; Device.context stays blocked.
+    A future approved reader must supply the actual panel snapshot, not save data.
+    """
+    identity_fields=('instance','epoch','panel_id','revision','config_version','mode','cards',
+                     'bet_symbol','tickets','price_effects','available_bets')
+
+    def __init__(self,read_snapshot,config,instance,config_version):
+        import copy
+        self._read_snapshot=read_snapshot;self._config=copy.deepcopy(config)
+        self._instance=instance;self._config_version=config_version
+        s=self._snapshot();self._identity={k:copy.deepcopy(s[k]) for k in self.identity_fields}
+        self._issued_mono=time.monotonic()
+        super().__init__(tickets=s['tickets'],cards=s['cards'],bet_symbol=s['bet_symbol'],
+                         source_ref=s['source_ref'],sampled_at=self._issued_mono,
+                         panel_id=s['panel_id'],revision=s['revision'],config_version=config_version)
+
+    def _snapshot(self):
+        s=self._read_snapshot()
+        if (s.get('active') is not True or s.get('instance')!=self._instance or not s.get('epoch')
+                or not s.get('panel_id') or type(s.get('revision')) is not int
+                or s.get('config_version')!=self._config_version or not s.get('source_ref')
+                or type(s.get('observed_mono')) not in (int,float)
+                or not 0<=time.monotonic()-s.get('observed_mono',float('-inf'))<=2):
+            raise ValueError('panel_snapshot_not_current')
+        choices=s.get('available_bets',[])
+        costs={c['id']:c['cost'] for c in self._config if c['id'] in choices
+               and re.fullmatch(r'BET_NP_SYMBOL_[0-9]+',c['id'])}
+        if (s.get('mode')!='ordinary' or s.get('price_effects')!=[] or not costs or len(costs)!=len(choices)
+                or type(s.get('cards')) is not int or s['cards']!=4
+                or s.get('bet_symbol') not in costs or costs[s['bet_symbol']]!=min(costs.values())
+                or type(s.get('tickets')) is not int or s['tickets']!=costs[s['bet_symbol']]*s['cards']
+                or not 0<s['tickets']<=LIMITS['tickets_per_round']):
+            raise ValueError('current_panel_configuration_or_price_invalid')
+        return s
+
+    def recheck(self):
+        s=self._snapshot()
+        if (any(s[k]!=v for k,v in self._identity.items())
+                or any(self.get(k)!=self._identity[k] for k in ('cards','tickets','bet_symbol','panel_id','revision','config_version'))
+                or self.get('sampled_at')!=self._issued_mono
+                or not 0<=time.monotonic()-self._issued_mono<=2):
+            raise ValueError('panel_quote_changed_or_expired')
+
+
+def validate_quote(quote):
+    if not isinstance(quote,PanelQuote):raise ValueError('current_panel_quote_unavailable')
+    quote.recheck()
+
+
 def nodes(body, path):
     current = [body]
     for key in path:
@@ -193,7 +246,8 @@ class Device:
         return self.read_file(path,offset)
 
     def stopped(self):
-        return any(Path(p).exists() for p in getattr(self,'stop_paths',()))
+        return (time.monotonic()>=getattr(self,'round_deadline',float('inf'))
+                or any(Path(p).exists() for p in getattr(self,'stop_paths',())))
 
     def send(self,button):
         from bv_autoplay import spawn_tap,finish_tap
@@ -271,6 +325,8 @@ class Device:
         with Image.open(path) as source:im=source.convert("RGB")
         if im.size!=(900,1600):return {"foreground":True,"scene":"bad_orientation","grid":None}
         raw_det=bv_cardgrid.detect(im)
+        for card in raw_det:
+            card['cell_geometry']=bv_cardgrid.cell_geometry(im,card)
         det=self.calibrated_grid(raw_det)
         green=find_green(im)
         panel_anchor=near(im.getpixel((100,700)),BLUE,65)
@@ -304,44 +360,50 @@ class Device:
                 "sampled_at":sampled_at}
 
     def calibrated_grid(self,det):
-        """Keep measured row geometry while fresh headers prove the same layout.
+        """Pause and reacquire each card from current cell shapes, not old paint.
 
-        Filled/animated cells are not a new card extent. Never drive input from
-        the detector's shortened bright-extent or square-cell fallbacks.
+        Missing records carry identity only, explicitly unobserved/unusable.
+        No cached coordinates may authorize a click. New geometry requires three
+        stable independent measurements; a single-card change cannot halt peers.
         """
         import copy
-        from bv_cardgrid import regular_rows
-        if len(det or [])!=4:
-            self.grid_candidate=None;self.grid_count=0
+        if not det or len(det)>4:
+            self.grid_reference=None;self.grid_tracks={}
             return []
-        def distance(a,b):
-            return max(abs(x-y) for c,d in zip(a,b) for x,y in zip(
-                c['cols']+[c['header_top'],c['header_bottom']],
-                d['cols']+[d['header_top'],d['header_bottom']]))
         reference=getattr(self,'grid_reference',None)
-        if reference is not None:
-            result=copy.deepcopy(reference)
-            for c,current,r in zip(result,det,reference):
-                c['input_ready']=distance([current],[r])<=4
-                if c['input_ready']:
-                    shift=(current['header_top']+current['header_bottom']-r['header_top']-r['header_bottom'])/2
-                    c.update(cols=list(current['cols']),rows=[y+shift for y in r['rows']],
-                             row_mode='fresh_header_measured_rows')
-                # An unstable/covered card retains identity only; its coordinates
-                # cannot reach dispatch. Other independently visible cards run on.
-            return result
-        if not all(c.get('row_mode')=='bands' and regular_rows(c.get('observed_rows',[]))
-                   and .8<=c['row_spacing']/c['spacing']<=1.2 for c in det):
-            self.grid_candidate=None;self.grid_count=0
-            return []
-        old=getattr(self,'grid_candidate',None)
-        stable=old is not None and distance(det,old)<=2 and max(
-            abs(x-y) for c,d in zip(det,old) for x,y in zip(c['rows'],d['rows']))<=2
-        self.grid_count=getattr(self,'grid_count',0)+1 if stable else 1
-        self.grid_candidate=copy.deepcopy(det)
-        if self.grid_count<3:return []
-        self.grid_reference=copy.deepcopy(det)
-        return det
+        if reference is None:
+            if len(det)!=4:return []
+            reference=copy.deepcopy(det);self.grid_reference=reference;self.grid_tracks={}
+        matches={}
+        for current in det:
+            # Header is an identity/region anchor only. Coordinates come from
+            # independently observed cell shapes, including after an 8px move.
+            distances=[max(abs(sum(current['cols'])/5-sum(r['cols'])/5),
+                           abs(current['header_bottom']-r['header_bottom'])) for r in reference]
+            index=min(range(4),key=lambda i:distances[i])
+            if distances[index]>reference[index]['spacing']*.5 or index in matches:
+                self.grid_reference=None;self.grid_tracks={};return []
+            matches[index]=current
+        tracks=getattr(self,'grid_tracks',{});result=[]
+        for index,r in enumerate(reference):
+            current=matches.get(index);body=current.get('cell_geometry') if current else None
+            c=copy.deepcopy(r);c.update(input_ready=False,observed=current is not None,
+                                      pause_reason='cell_shapes_unavailable' if current else 'header_missing')
+            if body:
+                old=tracks.get(index,{});previous=old.get('body')
+                stable=previous is not None and max(abs(body[a][k]-previous[a][k])
+                           for a in ('cols','rows') for k in range(5))<=2
+                count=old.get('count',0)+1 if stable else 1
+                tracks[index]=dict(body=copy.deepcopy(body),count=count)
+                if count>=3:
+                    c=copy.deepcopy(current);c.update(body,input_ready=True,observed=True,
+                                 row_mode='current_cell_shapes',pause_reason=None)
+                    reference[index]=copy.deepcopy(c)
+                else:c['pause_reason']='geometry_stabilizing'
+            else:tracks.pop(index,None)
+            result.append(c)
+        self.grid_tracks=tracks
+        return result
 
     def claim(self,sample):
         from bv_autoplay import spawn_tap,finish_tap
@@ -360,11 +422,11 @@ class Device:
 
     def buy(self,sample,quote):
         from bv_autoplay import spawn_tap,finish_tap
-        if quote.get('price_scope')!='current_panel' or quote.get('purchase_blocker'):
-            return 'not_executed'
         if (sample["scene"]!="betpanel" or time.monotonic()-sample["sampled_at"]>2.5
-                or time.monotonic()-quote["sampled_at"]>10 or not self.foreground()):
+                or not self.foreground()):
             return "not_executed"
+        try:validate_quote(quote)
+        except (ValueError,KeyError,TypeError):return 'not_executed'
         return self.send(sample['button'])
 
 
@@ -410,7 +472,9 @@ def preflight(source=SOURCE, device=None):
             errors.append("quote_"+str(exc))
     buy_errors=list(errors)
     if quote is None:buy_errors.append("current_ticket_quote_unverified")
-    elif quote.get('purchase_blocker'):buy_errors.append(quote['purchase_blocker'])
+    else:
+        try:validate_quote(quote)
+        except (ValueError,KeyError,TypeError) as exc:buy_errors.append(str(exc))
     if quality:buy_errors.append("capture_quality_errors")
     from bv_verify import semantic_gate
     gate=semantic_gate()
@@ -452,8 +516,7 @@ class Budget:
         elapsed=self.elapsed()
         if quote is None or quote.get("source_ref") is None or type(quote.get("tickets")) is not int:
             raise ValueError("verified_quote_required")
-        if quote.get('purchase_blocker') or quote.get('price_scope')=='persisted_selection_only':
-            raise ValueError('current_panel_quote_unavailable')
+        validate_quote(quote)
         cost=quote["tickets"]
         if not 0<cost<=8 or quote.get("cards")!=4 or quote.get("balance",-1)<cost:
             raise ValueError("per_round_resource_limit")
@@ -465,7 +528,7 @@ class Budget:
         if purpose=='acceptance' and elapsed+LIMITS['round_seconds']>LIMITS['total_seconds']:
             raise ValueError('insufficient_remaining_time_for_full_round')
         self.append("purchase_reserved",purpose=purpose,session_id=session,reserved_tickets=cost,
-                    quote_source=quote["source_ref"],batch_id=batch_id)
+                    quote_source=quote["source_ref"],quote_identity=quote._identity,batch_id=batch_id)
 
     def remaining_positions(self):
         return max(0, LIMITS['acceptance_rounds']-sum(
@@ -501,6 +564,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
     session=Path(session) if session else root/(purpose+"_"+uuid.uuid4().hex)
     session.mkdir(exist_ok=bool(batch))
     ledger=Budget(root);t0=time.monotonic();device=device or Device()
+    device.round_deadline=min(t0+min(seconds,300),getattr(device,'round_deadline',float('inf'))) if batch else t0+min(seconds,300)
     # Reference geometry belongs to this one round, never a previous purchase.
     device.grid_reference=None;device.grid_candidate=None;device.grid_count=0
     stop_paths=(session/'STOP',Path(batch['folder'])/'STOP') if batch else (session/'STOP',)
@@ -537,11 +601,11 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
             from bv_autoplay import AutoPlay
             from types import SimpleNamespace
             controller=AutoPlay(SimpleNamespace(map=None,settle=1.8,retries=2,ack_wait=1.5,dry=False,
-                         max_dispatches=288 if batch else 1,
+                         max_dispatches=288 if batch else 1,round_deadline=device.round_deadline,
                          batch_stop_path=str(stop_paths[1]) if batch else None,
                          diagnostic_slot=None if batch else 2,
                          session_path=str(session),capture_index=str(index),bodies=source/"bv_bodies"))
-        while time.monotonic()-t0 < min(seconds,300) and ledger.elapsed()<2700 and not (session/"STOP").exists() and not (batch and (Path(batch['folder'])/'STOP').exists()):
+        while time.monotonic()<device.round_deadline and ledger.elapsed()<2700 and not (session/"STOP").exists() and not (batch and (Path(batch['folder'])/'STOP').exists()):
             newly=[]
             for event in tail.poll():
                 try:
@@ -739,6 +803,8 @@ def start_batch(device=None):
                   notice='持续填充四卡全部合法目标，User无需补点',stop_path=str(batch/'STOP')),ensure_ascii=False),flush=True)
             session=batch/('acceptance_'+uuid.uuid4().hex)
             device.stop_paths=(session/'STOP',batch/'STOP')
+            # Purchase, play and settlement share the same per-round input cap.
+            device.round_deadline=time.monotonic()+LIMITS['round_seconds']
             run=diagnose(300,True,source=SOURCE,root=CONTROL,device=device,play_round=True,batch=dict(registration,folder=str(batch),ordinal=ordinal),
                          session=session,lock_held=True)
             if run.get('errors') or run.get('rounds_started')!=1:
@@ -751,9 +817,10 @@ def start_batch(device=None):
             # Settlement navigation requires independently rebuilt close/terminal sources.
             nav0=time.monotonic();claimed=False;ready=False;rewards_dismissed=0
             ledger.append('runtime_start',session_id=session.name+'_settlement')
-            while time.monotonic()-nav0<20 and ledger.elapsed()<2700 and not (batch/'STOP').exists():
+            while (time.monotonic()-nav0<20 and time.monotonic()<device.round_deadline
+                   and ledger.elapsed()<2700 and not (batch/'STOP').exists()):
                 sample=device.sample(session/'settlement.png')
-                if any(p.exists() for p in device.stop_paths):break
+                if time.monotonic()>=device.round_deadline or any(p.exists() for p in device.stop_paths):break
                 if sample['scene'] in ('lobby','betpanel'):
                     ready=True;break
                 if sample['scene']=='congrats' and not claimed:
