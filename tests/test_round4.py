@@ -1,5 +1,8 @@
 """Synthetic geometry/dispatch integration. No ADB, spending or real scores."""
 import copy
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from concurrent.futures import Future
 from types import SimpleNamespace
 import unittest
@@ -22,6 +25,26 @@ def measured():
 
 
 class Recovery(unittest.TestCase):
+    def test_powerup_normal_toggle_requires_structured_readback_and_cancels(self):
+        d=live.Device();sample=dict(scene='round',powerup_toggle=[450,1556],sampled_at=10)
+        with TemporaryDirectory() as folder,patch.object(live.time,'monotonic',return_value=11),patch.object(d,'foreground',return_value=True),patch.object(d,'stopped',return_value=False),patch.object(d,'read_file',side_effect=[b'{"Auto":true}',b'{"Auto":false}']),patch.object(d,'send',return_value='executed') as send:
+            self.assertTrue(d.configure_powerup(sample,'synthetic',Path(folder)))
+            send.assert_called_once_with([450,1556])
+            self.assertFalse(json.loads((Path(folder)/'powerup-mode.json').read_text())['after']['auto'])
+        with TemporaryDirectory() as folder,patch.object(d,'read_file',return_value=b'{"Auto":false}'),patch.object(d,'send') as send:
+            self.assertTrue(d.configure_powerup(sample,'synthetic',Path(folder)));send.assert_not_called()
+        with TemporaryDirectory() as folder,patch.object(live.time,'monotonic',return_value=11),patch.object(d,'foreground',return_value=True),patch.object(d,'read_file',return_value=b'{"Auto":true}'),patch.object(d,'send',return_value='not_executed'):
+            with self.assertRaisesRegex(ValueError,'powerup_toggle_not_confirmed'):d.configure_powerup(sample,'synthetic',Path(folder))
+
+    def test_next_panel_waits_through_flyout_and_opens_only_once(self):
+        d=live.Device()
+        with patch.object(d,'sample',side_effect=[dict(scene=s) for s in ('unknown','lobby','lobby','unknown','betpanel')]),patch.object(d,'open_panel',return_value='executed') as send,patch.object(d,'stopped',return_value=False),patch.object(live.time,'sleep'):
+            d.prepare_panel('unused.png')
+            self.assertEqual(send.call_count,1)
+        with patch.object(d,'sample',return_value=dict(scene='lobby')),patch.object(d,'open_panel') as send,patch.object(d,'stopped',side_effect=[False,True,True]),patch.object(live.time,'sleep'):
+            with self.assertRaisesRegex(ValueError,'panel_navigation_cancelled'):d.prepare_panel('unused.png')
+            send.assert_not_called()
+
     def test_vectorized_runs_preserve_component_merging(self):
         import numpy as np
         from bv_cardgrid import components,row_runs

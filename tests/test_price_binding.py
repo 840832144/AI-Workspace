@@ -161,6 +161,9 @@ class PriceBinding(unittest.TestCase):
             self.assertTrue(checked['metric_ready'])
             self.assertTrue(any('current_panel_quote_unavailable' in b for b in checked['blockers']))
             budget_class=live.Budget;actual_start=live.start_batch
+            # Navigation is ready; the live quote binding must still reject
+            # the persisted selection at the actual production context.
+            stack.enter_context(patch.object(d,'sample',return_value=dict(scene='betpanel')))
             stack.enter_context(patch.object(live,'Budget',side_effect=lambda root=root:budget_class(root)))
             stack.enter_context(patch.object(live,'SOURCE',root))
             stack.enter_context(patch.object(live,'code_version',return_value='synthetic'))

@@ -339,10 +339,47 @@ class Device:
         return ScopedPanelReader(self,folder)
 
     def prepare_panel(self,path):
-        sample=self.sample(path)
-        if sample['scene']=='lobby':
-            if self.open_panel(sample)=='not_executed':raise ValueError('panel_navigation_cancelled')
-            time.sleep(1)
+        # A closed round can briefly expose the lobby before a reward flyout.
+        # Wait for a fresh recognizable scene; never click an unknown overlay
+        # or mistake a still-loading panel for a missing quote source.
+        deadline=time.monotonic()+30;opened=False
+        while time.monotonic()<deadline and not self.stopped():
+            sample=self.sample(path)
+            if self.stopped():break
+            if sample['scene']=='betpanel':return
+            if sample['scene']=='lobby' and not opened:
+                if self.open_panel(sample)=='not_executed':raise ValueError('panel_navigation_cancelled')
+                opened=True
+            time.sleep(.5)
+        raise ValueError('panel_navigation_cancelled' if self.stopped() else 'panel_navigation_not_ready')
+
+    def configure_powerup(self,sample,account,folder):
+        """Use the normal toggle, then read the current account's saved preference.
+
+        Never write the save, call a game method, or infer Auto from pixels.
+        This runs before any cell dispatch, once per newly bound round.
+        """
+        if not re.fullmatch(r'[A-Za-z0-9]+',account):raise ValueError('invalid_account_path')
+        path=self.base+'save/'+account+'/gameplay_powerup_prefs.json'
+        def read():
+            state=json.loads(self.read_file(path))
+            if type(state.get('Auto')) is not bool:raise ValueError('powerup_preference_unknown')
+            return dict(auto=state['Auto'],at_ns=time.time_ns())
+        before=read();record=dict(before=before,input_sent=False)
+        evidence=folder/'powerup-mode.json'
+        evidence.write_text(json.dumps(record),encoding='utf-8')
+        if not before['auto']:return True
+        if (sample['scene']!='round' or not sample.get('powerup_toggle')
+                or time.monotonic()-sample['sampled_at']>2.5 or not self.foreground()):return False
+        outcome=self.send(sample['powerup_toggle'])
+        record.update(input_sent=True,outcome=outcome);evidence.write_text(json.dumps(record),encoding='utf-8')
+        if outcome!='executed':raise ValueError('powerup_toggle_not_confirmed')
+        deadline=time.monotonic()+5
+        while time.monotonic()<deadline and not self.stopped():
+            after=read();record['after']=after;evidence.write_text(json.dumps(record),encoding='utf-8')
+            if not after['auto']:return True
+            time.sleep(.25)
+        raise ValueError('powerup_off_not_confirmed')
 
     def foreground(self):
         from bv_autoplay import ADB, DEV
@@ -393,7 +430,12 @@ class Device:
         scene="round" if raw_det else "reward" if reward or rating else "betpanel" if panel else "congrats" if congrats else "lobby" if green and 120<green[0]<400 and green[1]>1200 else "unknown"
         if scene=='reward':green=(450,820 if level_up else 1025,0)  # Observed non-consuming dismiss area.
         if rating:green=(812,533,0)  # Close the rating prompt; never select stars.
+        # Only locate the known non-consuming toggle. Its business state comes
+        # from the account-bound preference, never ON/OFF text or image color.
+        toggle=pixels[1537:1575,400:502]
+        toggle_visible=((toggle[:,:,1]>toggle[:,:,0]*1.25)&(toggle[:,:,1]>80)).mean()>.15 and (toggle.min(axis=2)>200).mean()>.1
         return {"foreground":ok,"scene":scene,"grid":det,"button":list(green[:2]) if green else None,
+                "powerup_toggle":[450,1556] if scene=='round' and toggle_visible else None,
                 "sampled_at":sampled_at}
 
     def calibrated_grid(self,det):
@@ -696,6 +738,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
     client_chunks=[];client_future=None;client_pool=ThreadPoolExecutor(max_workers=1)
     quote=None;buy_at=None;round_id_bound=None;trace=None;native_events=[];history=[];tail=None;start=None
     registration={};processed_calls=set();processed_marks=set();progress_at=0;prepurchase_dismissals=0
+    powerup_configured=False;account=None
     ledger.append('runtime_start',session_id=session.name)
     try:
         if play_round and not clean_code():raise ValueError('candidate_not_frozen')
@@ -756,9 +799,15 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                 future=pool.submit(device.sample,session/("navigation_%d.png"%len(samples)))
             elif future.done():
                 sample=future.result();samples.append(sample);future=None
+                if paid and batch and round_id_bound and sample['scene']=='round' and not powerup_configured:
+                    configure=getattr(device,'configure_powerup',None)
+                    powerup_configured=configure(sample,account,session) if configure else True
+                    # The setting read/toggle may outlive this screenshot.
+                    # Reacquire geometry/foreground before the first cell input.
+                    continue
                 if controller:
                     with controller.state_lock:
-                        controller.foreground_ok=sample["foreground"] and sample["scene"]=="round"
+                        controller.foreground_ok=sample["foreground"] and sample["scene"]=="round" and (not batch or powerup_configured)
                         controller.foreground_at=sample.get("sampled_at",0)
                     if sample["scene"]=="round" and round_id_bound and (batch or controller.n_tap==0):
                         controller.setup_grid(4,sample["grid"])
@@ -979,6 +1028,7 @@ def start_batch(device=None,resume=None):
                               parser_version=VERSION,metric_version=METRIC,purpose='acceptance',planned_rounds=BATCH_ROUNDS,
                               registered_ns=time.time_ns(),source_start=(SOURCE/'bv_ws.jsonl').stat().st_size,
                               mode='full_autoplay',positions=list(range(used+1,used+BATCH_ROUNDS+1)),
+                              powerup_mode='off_via_normal_ui_before_first_cell',
                               available_rounds=remaining,budget_plan=plan,limits=dict(LIMITS),resource_authorization=RESOURCE_AUTHORIZATION,
                               semantic_rule='two_source_bound_rounds_distinct_targets_v1')
             (batch/'registration.json').write_text(json.dumps(registration),encoding='utf-8')
