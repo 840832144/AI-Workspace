@@ -3,3 +3,5 @@
 本目录只维护四卡自动玩任务的治理与脱敏证据入口。当前 [TASK-0039](../../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)；[状态](STATUS.md)；[完整规格](../../tasks/support/bingo-voyage-autoplay-20261013/EXECUTION_SPEC.md)。实现继续使用原交接来源的隔离分支，不迁移探针树。
 
 当前执行以[完整重编稿](../../tasks/support/TASK-0039/AUTOPLAY-DELIVERY-REPLAN-20261014.md)为准；旧附件冲突前置顺序仅保留历史。
+
+当前统一交付：[Review摘要](REPORTS/TASK-0039-REVIEW.md)。8个购买位置，未达标；第8位置报价失效超单局额度、User接管。当前购买阻断，63项离线通过不替代十局验收。

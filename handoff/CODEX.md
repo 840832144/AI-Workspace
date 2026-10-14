@@ -1,5 +1,12 @@
 # Codex Handoff
 
+## 2026-10-14 — TASK-0039完整运行结果交Review，未达标
+
+实现1c43e6a（代码171cf41）已推送原PR #16；63项离线/实际入口回归通过，购买8/10位置，无同版十局通过。第6局可信下界77.14%、即使Unknown全成功也未达90%；第8局旧存档4票与实际12票不符，超8票单局上限后停控，自动0次，User确认接管。当前预检/预留/买卡拒绝旧存档报价，真实--start exit2且零新增购买，非已可持续代玩。
+
+累计52票/2244.981秒，三局历史定位、所有失败及未购买尝试保留；剩2位置不自动追加。详见[统一Review摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)及[Bingo交接](BINGO-VOYAGE-AUTOPLAY-20261013.md)。受控REVIEW_REPLAN.md/recompute_replan.py已实调复算，原始来源不上Git。原Task/PR #16/#17，状态Review未Accepted；main898358f、Registry重建/验证，旧Review保留。无合并/发布/SVN/扩权/finalize。Subagents: none。
+
+
 ## 2026-10-14 — TASK-0039重编后完整自动玩
 
 接纳6eba235的唯一Round3和完整重编稿，继续原Task/PR16/17，回In Progress。替代旧两局单击启动前置；run_ready与metric_ready分离，先时间/来源只读准备和整局回归，再用剩余最多10个完整启动位置。现场大量闪动按漏点反馈保留，精确计量单列；历史账本不清零，原96票/45分钟不增额。不逐阶段Review，不新建任务或finalize。Subagents: none。
