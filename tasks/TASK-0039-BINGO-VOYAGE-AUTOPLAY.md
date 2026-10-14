@@ -1,6 +1,6 @@
 # TASK-0039 — Bingo Voyage 四卡自动玩可靠性修复
 
-- Status: Review
+- Status: In Progress
 - Project key: BINGO-VOYAGE
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -9,7 +9,21 @@
 - Specification: [EXECUTION_SPEC.md](support/bingo-voyage-autoplay-20261013/EXECUTION_SPEC.md)，固定批准版本 `1c3683fb1b2f51a77e02ba2aca3a8a78d99975da`。
 - Allocation: remote-CAS；pending-main，未 finalize。
 
-## 当前交付：2026-10-14 Round 4修复后统一Review
+## 当前执行：2026-10-14 单局16票修订
+
+接纳User本机附件TASK-0039-16T-Execution.md（原样保存为EXECUTION-16T-20261014.md），以及其引用的649fcad唯一Round 5原文。不存在本次额度修订的先前Git提交；附件自述“尚未写入Git”保留为历史来源说明。状态Review → Changes Requested → In Progress，继续原TASK-0039 / PR #16/#17，不新建任务或重新分配。
+
+当前向后生效的限制：单局≤16票，仍选当前最低普通档；每局购买/填充/结算输入共用300秒截止；累计完整位置≤18、定位仍3、总票额≤96、控制运行≤5400秒。原8个跨版本位置、3定位、52票/2267.262秒账本保留。新16票不追认第8局当时12>8违规，也不容许报价与实际支出失配。
+
+连续推进生产面板与交互状态接入、覆盖卡补排、局末收尾和结算续局。保留已修成果；先核对全部实际入口和旧硬编码、离线回归及既有权限内只读来源，再以最新报价/账本核对完整十局预算并冻结候选。验收仍十局，不是18局；旧8局不拼入。当前44票仅在真实四卡最低价为4票时可覆盖十局；90分钟余量紧凑，不试购、追加定位、挑局或改版拼接。
+
+本次只调整资源授权，不批准新增进程内Hook等技术方式；具体只读新增范围确有必要时另行明确。正常实际受理在后续完整批次中验证，不增加单击定位前置。业务判断/成绩依结构化来源，图像仅导航/标定。
+
+main核对898358f；Workspace Sync ON_DEMAND、0冲突、provider unavailable、6 stale，Git为准。Registry重建/validate后提交推送，原reservation pending-main。统一交付真实结果和受控复算入口等待Review；不合并、发布、提交SVN、扩权或finalize。Subagents: none。
+
+[16票执行修订](support/TASK-0039/EXECUTION-16T-20261014.md) · [Round 5](support/TASK-0039/CHATGPT-REVIEW-5.md)。
+
+## 历史交付：Round 4（新资源值以上文为准）
 
 状态In Progress → Review，未Accepted。唯一Round 4 d58e4eb原文由5b1c8b3接纳，历史评审保留；沿用TASK-0039 / PR #16/#17，不新建任务。功能候选6488ee6实现逐卡重新标定/恢复补排、末球/闭局取消及同局300秒输入截止；报价身份/时效校验契约已回归，但生产实时面板reader及覆盖后实际点击受理仍未证明。
 
