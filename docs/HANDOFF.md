@@ -1,3 +1,5 @@
+> 2026-10-14当前：TASK-0039统一Review，8个购买位置，无连续十局达标；第8局错误报价导致12票超单局上限，User接管。当前购买入口已阻断。见[TASK0039_REVIEW.md](TASK0039_REVIEW.md)与[RUN_LIMITS.md](RUN_LIMITS.md)。以下全部为历史，不可据旧报价/Max Bet/90.9%运行。
+
 > TASK-0039当前候选：[Round 1修改与验证](TASK0039_REVIEW.md)。下文是原来源历史，不能覆盖当前资源/来源门槛或把旧90.9%当验收结果。原运行副本未部署本候选。
 
 # Bingo Voyage 逆向工程 移交说明（HANDOFF）
