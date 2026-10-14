@@ -76,7 +76,8 @@ class ObserverSafety(unittest.TestCase):
             root=Path(tmp);src=self.helper(root)
             # Isolate the historical lifecycle below the now-stopped binding.
             with patch('bv_observer.require_emulated_binding'),patch('bv_live.Budget') as budget,patch('subprocess.run') as run:
-                budget.return_value.elapsed.return_value=2400
+                from bv_live import LIMITS,BATCH_ROUNDS,BATCH_CLEANUP_SECONDS
+                budget.return_value.elapsed.return_value=LIMITS['total_seconds']-BATCH_ROUNDS*LIMITS['round_seconds']-BATCH_CLEANUP_SECONDS-16
                 with self.assertRaisesRegex(ValueError,'insufficient_preparation_margin'):inspect(src,root/'output',12)
                 run.assert_not_called();budget.return_value.append.assert_not_called()
 

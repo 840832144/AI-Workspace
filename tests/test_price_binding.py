@@ -71,13 +71,30 @@ class PriceBinding(unittest.TestCase):
             self.assertEqual(d.buy(dict(scene='betpanel',sampled_at=time.monotonic(),button=[1,1]),q),'not_executed')
             send.assert_not_called()
 
+    def test_slow_quote_read_cancels_expired_button_calibration(self):
+        now=[10.0];d=live.Device()
+        with patch.object(live.time,'monotonic',side_effect=lambda:now[0]):
+            q=synthetic_quote(balance=80);original=q._read_snapshot
+            def delayed():
+                now[0]=13.0
+                return original()
+            q._read_snapshot=delayed
+            with patch.object(d,'foreground',return_value=True),patch.object(ap,'spawn_tap') as send:
+                self.assertEqual(d.buy(dict(scene='betpanel',sampled_at=10,button=[1,1]),q),'not_executed')
+                send.assert_not_called()
+
     def test_snapshot_lifetime_and_quote_mutation(self):
         q=synthetic_quote(balance=80)
         q['tickets']=8
         with self.assertRaisesRegex(ValueError,'changed_or_expired'):q.recheck()
         q=synthetic_quote(balance=80)
+        stale=q._read_snapshot()
+        q._read_snapshot=lambda:stale
         with patch.object(live.time,'monotonic',return_value=q['sampled_at']+3):
-            with self.assertRaisesRegex(ValueError,'changed_or_expired'):q.recheck()
+            with self.assertRaisesRegex(ValueError,'panel_snapshot_not_current'):q.recheck()
+        q=synthetic_quote(balance=80)
+        with patch.object(live.time,'monotonic',return_value=q['sampled_at']+3):
+            q.recheck()  # Newly read unchanged state is usable; stale bytes aren't.
 
     def fixture(self, stack, root):
         d=live.Device()
@@ -92,6 +109,7 @@ class PriceBinding(unittest.TestCase):
         stack.enter_context(patch.object(d,'clock_sample'))
         stack.enter_context(patch.object(d,'foreground',return_value=True))
         stack.enter_context(patch.object(d,'read_file',side_effect=lambda p:files[p.rsplit('/',1)[-1]]))
+        stack.enter_context(patch.object(d,'panel_reader',side_effect=ValueError('current_panel_quote_unavailable')))
         stack.enter_context(patch.object(live.subprocess,'run',return_value=SimpleNamespace(stdout=b'2026_10_14.txt\n',returncode=0)))
         stack.enter_context(patch.object(live,'cost_proof',return_value='historical_Bet1_cost_4'))
         stack.enter_context(patch.object(live,'clean_code',return_value=True))
@@ -104,15 +122,31 @@ class PriceBinding(unittest.TestCase):
     def test_persisted_quote_never_reserves_or_reaches_final_tap(self):
         with tempfile.TemporaryDirectory() as tmp,contextlib.ExitStack() as stack:
             root=Path(tmp);d=self.fixture(stack,root)
-            q=d.context('synthetic',root);q['balance']=80
-            self.assertEqual(q['tickets'],4)
-            self.assertEqual(q['price_scope'],'persisted_selection_only')
             with self.assertRaisesRegex(ValueError,'current_panel_quote_unavailable'):
-                live.Budget(root).reserve('acceptance',q,'would_buy_12')
+                d.context('synthetic',root)
             self.assertFalse(live.Budget(root).records())
             with patch.object(ap,'spawn_tap') as send:
-                self.assertEqual(d.buy(dict(scene='betpanel',sampled_at=time.monotonic(),button=[1,1]),q),'not_executed')
+                self.assertEqual(d.buy(dict(scene='betpanel',sampled_at=time.monotonic(),button=[1,1]),
+                                       dict(tickets=4,price_scope='persisted_selection_only')),'not_executed')
                 send.assert_not_called()
+
+    def test_context_uses_live_panel_and_rechecks_config(self):
+        with tempfile.TemporaryDirectory() as tmp,contextlib.ExitStack() as stack:
+            root=Path(tmp);d=self.fixture(stack,root)
+            def snapshot(version,instance):
+                return dict(instance=instance,epoch='synthetic',panel_id='panel',revision=1,
+                    config_version=version,mode='ordinary',cards=4,bet_symbol='BET_NP_SYMBOL_3',tickets=12,
+                    price_effects=[],available_bets=['BET_NP_SYMBOL_3'],active=True,
+                    observed_mono=time.monotonic(),source_ref='synthetic')
+            with patch.object(d,'panel_reader',return_value=SimpleNamespace(snapshot=snapshot)):
+                q=d.context('synthetic',root)
+                self.assertIsInstance(q,live.PanelQuote)
+                self.assertEqual(q['tickets'],12)
+                self.assertEqual(q['price_scope'],'current_panel')
+                # The old Bet1/4-ticket save is neither read nor used for price.
+                self.assertFalse(any('/save/' in str(c) for c in d.read_file.call_args_list))
+                with patch.object(d,'read_file',return_value=b'b'*32):
+                    with self.assertRaisesRegex(ValueError,'panel_config_version_changed'):q.recheck()
 
     def test_real_preflight_and_cli_full_entry_refuse_stale_selection(self):
         with tempfile.TemporaryDirectory() as tmp,contextlib.ExitStack() as stack:
@@ -121,7 +155,7 @@ class PriceBinding(unittest.TestCase):
             checked,_=live.preflight(root,d)
             self.assertFalse(checked['run_ready']);self.assertFalse(checked['purchase_ready'])
             self.assertTrue(checked['metric_ready'])
-            self.assertIn('current_panel_quote_unavailable',checked['blockers'])
+            self.assertTrue(any('current_panel_quote_unavailable' in b for b in checked['blockers']))
             budget_class=live.Budget;actual_start=live.start_batch
             stack.enter_context(patch.object(live,'Budget',side_effect=lambda root=root:budget_class(root)))
             stack.enter_context(patch.object(live,'SOURCE',root))

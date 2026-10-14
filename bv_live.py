@@ -50,9 +50,8 @@ def frozen_ticket_limit(metadata):
 class PanelQuote(dict):
     """In-memory binding to a live observer, never a serialized verification tag.
 
-    No production observer is currently available. The positive contract is
-    exercised only with isolated synthetic readers; Device.context stays blocked.
-    A future approved reader must supply the actual panel snapshot, not save data.
+    The scoped production observer supports the studied build's ordinary panel
+    with inactive price effects. Unsupported or changed state fails closed.
     """
     identity_fields=('instance','epoch','panel_id','revision','config_version','mode','cards',
                      'bet_symbol','tickets','price_effects','available_bets')
@@ -91,8 +90,13 @@ class PanelQuote(dict):
         if (any(s[k]!=v for k,v in self._identity.items())
                 or any(self.get(k)!=self._identity[k] for k in ('cards','tickets','bet_symbol','panel_id','revision','config_version'))
                 or self.get('sampled_at')!=self._issued_mono
-                or not 0<=time.monotonic()-self._issued_mono<=2):
+                or time.monotonic()<self._issued_mono):
             raise ValueError('panel_quote_changed_or_expired')
+        # _snapshot just obtained a fresh bounded observation of the identical
+        # state. Renew its timestamp/evidence, never the lifetime of cached data.
+        # Otherwise two real ~1.2s reads expired a quote while revalidating it.
+        self._issued_mono=time.monotonic()
+        self['sampled_at']=self._issued_mono;self['source_ref']=s['source_ref']
 
 
 def validate_quote(quote):
@@ -287,23 +291,8 @@ class Device:
         if not re.fullmatch(r"[A-Za-z0-9]+",account):raise ValueError("invalid_account_path")
         version=self.read_file(self.base+"gds/gds_version.txt").decode().strip()
         if not re.fullmatch(r"[a-f0-9]{32}",version):raise ValueError("unknown_game_config_version")
-        path=self.base+"save/"+account+"/"
-        selection=self.read_file(path+"buy_card_data.json")
-        discount=self.read_file(path+"discount_buff_local_data.json")
         config=self.read_file(self.base+"gds/"+version+"/BaseBetConfig.json")
-        s=json.loads(selection);d=json.loads(discount)
-        symbol="BET_NP_SYMBOL_%d"%s["BetCount"]
-        matches=[r for r in json.loads(config) if r["id"]==symbol]
-        if len(matches)!=1 or s["CardCount"]!=LIMITS['cards'] or not re.fullmatch(r'BET_NP_SYMBOL_[0-9]+',symbol) or d["IsActivated"]:
-            raise ValueError("ordinary_four_card_configuration_required")
-        cost=matches[0]["cost"]*s["CardCount"]
-        # Persisted selection is audit material, not proof of currently available
-        # minimum bets. Only PanelQuote checks the live panel's available choices.
-        if type(cost) is not int or not 0<cost<=LIMITS['tickets_per_round'] or s["LastBetTicket"]!=cost:
-            raise ValueError("current_selection_cost_mismatch")
-        # Original bytes retained locally so the selected quote can be rebuilt.
-        for name,b in (("selection.json",selection),("discount.json",discount),("base_bet_config.json",config)):
-            (folder/name).write_bytes(b)
+        (folder/"base_bet_config.json").write_bytes(config)
         from bv_autoplay import ADB,DEV
         r=subprocess.run([ADB,"-s",DEV,"exec-out","ls",self.base+"client_logging_temp"],capture_output=True,timeout=5,check=True)
         names=[n for n in r.stdout.decode().splitlines() if re.fullmatch(r"[0-9_-]+\.txt",n)]
@@ -311,20 +300,27 @@ class Device:
         logpath=self.base+"client_logging_temp/"+names[0]
         raw=self.read_file(logpath)
         (folder/"client-before.log").write_bytes(raw)
-        proof=cost_proof(raw,symbol,cost)
         changes=[e for e in ClientTrace(folder/"client-before.log").feed(raw) if e["type"]=="ticket_change"]
         if any(e["before"]+e["delta"]!=e["after"] for e in changes):raise ValueError("ticket_delta_contradiction")
-        # buy_card_data.json is persisted state, not the live panel selection.
-        # Position 8 proved it can say Bet1/4 tickets while PLAY buys Bet3/12.
-        # PrepayCard is emitted after charging; it cannot authorize that charge.
-        # Keep these observations for audit, but no current approved source
-        # exposes a pre-purchase panel quote. Do not turn historical proof into one.
-        return {"tickets":cost,"cards":4,"bet_symbol":symbol,"gds_version":version,
-                "price_scope":"persisted_selection_only",
-                "purchase_blocker":"current_panel_quote_unavailable",
-                "source_ref":str(folder/"selection.json"),"config_ref":str(folder/"base_bet_config.json"),"cost_semantics_ref":proof,
-                "log_path":logpath,"log_start":len(raw),"sampled_at":time.monotonic(),
-                "last_ticket_change":max(changes,key=lambda e:e['at_ns']) if changes else None}
+        reader=self.panel_reader(folder/('panel_'+uuid.uuid4().hex))
+        def snapshot():
+            if self.read_file(self.base+"gds/gds_version.txt").decode().strip()!=version:
+                raise ValueError('panel_config_version_changed')
+            return reader.snapshot(version,INSTANCE)
+        quote=PanelQuote(snapshot,json.loads(config),INSTANCE,version)
+        quote.update(gds_version=version,price_scope='current_panel',
+                     config_ref=str(folder/'base_bet_config.json'),
+                     log_path=logpath,log_start=len(raw),
+                     last_ticket_change=max(changes,key=lambda e:e['at_ns']) if changes else None)
+        return quote
+
+    def panel_reader(self,folder):
+        from bv_panel_observer import ScopedPanelReader
+        # Preparation must leave the full ten-round envelope and cleanup intact.
+        remaining=LIMITS['total_seconds']-Budget().elapsed()
+        reserve=0 if hasattr(self,'round_deadline') else BATCH_ROUNDS*LIMITS['round_seconds']+BATCH_CLEANUP_SECONDS
+        if remaining-reserve<40:raise ValueError('panel_preparation_budget_insufficient')
+        return ScopedPanelReader(self,folder)
 
     def foreground(self):
         from bv_autoplay import ADB, DEV
@@ -446,6 +442,7 @@ class Device:
             return "not_executed"
         try:validate_quote(quote)
         except (ValueError,KeyError,TypeError):return 'not_executed'
+        if time.monotonic()-sample['sampled_at']>2.5:return 'not_executed'
         return self.send(sample['button'])
 
 
@@ -557,10 +554,10 @@ class Budget:
     def reserve(self,purpose,quote,session,batch_id=None,remaining_rounds=None):
         records=self.records()
         purchases=[r for r in records if r["kind"]=="purchase_reserved"]
-        elapsed=self.elapsed()
         if quote is None or quote.get("source_ref") is None or type(quote.get("tickets")) is not int:
             raise ValueError("verified_quote_required")
         validate_quote(quote)
+        elapsed=self.elapsed()  # A real quote refresh is not instantaneous.
         cost=quote["tickets"]
         if not 0<cost<=LIMITS['tickets_per_round'] or quote.get("cards")!=LIMITS['cards'] or quote.get("balance",-1)<cost:
             raise ValueError("per_round_resource_limit")
@@ -711,8 +708,6 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                     quote=device.context(account,session)
                     wallet=next(e for e in reversed(history) if e['type']=='wallet_snapshot')
                     quote['balance']=ticket_balance(wallet,quote.get('last_ticket_change'),getattr(device,'clock_samples',None))
-                    # Re-sample after context IO, then re-check the just-read quote before dispatch.
-                    fresh=device.sample(session/"before-buy.png")
                     if stopped():break
                     if batch and (code_version()!=batch['code_version'] or not clean_code()):raise ValueError('code_changed_during_batch')
                     ledger.reserve(purpose,quote,session.name,batch['batch_id'] if batch else None,
@@ -720,6 +715,9 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                     paid=True;buy_at=time.monotonic();client_offset=quote["log_start"]
                     trace=ClientTrace(str(session/"client-during.log"))
                     result.update(rounds_started=1,reserved_tickets=quote["tickets"],gross_tickets=None)
+                    # Reservation includes real quote IO. Calibrate afterward so
+                    # that final quote recheck does not use a pre-reservation image.
+                    fresh=device.sample(session/"before-buy.png")
                     outcome=device.buy(fresh,quote)
                     events.append({"type":"purchase_input","outcome":outcome,"at_ns":time.time_ns(),"quote":quote})
                     if outcome=="not_executed":raise ValueError("purchase_cancelled_before_dispatch")
