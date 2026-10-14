@@ -1,6 +1,12 @@
 # Codex Handoff
 
-## 2026-10-14 — TASK-0040 Accepted治理登记
+## 2026-10-14 — TASK-0040合并与finalize完成
+
+执行[授权评论6159032032](https://github.com/840832144/AI-Workspace/pull/19#issuecomment-6159032032)，核对head `7217681`并完成Registry valid / 19 canonical / 0 collision后，[PR #19](https://github.com/840832144/AI-Workspace/pull/19)以merge commit `898358ffccbfa4d9b909d43de48ae794a7129718`合入main。GitHub及本机origin/main均回读确认，canonical与三份评审和候选直接diff一致；原linked worktree快进后以原reservation执行finalize，返回finalized，远端及本机reservation已移除。GitHub无statuses及PR触发workflow结果，不记为CI通过。
+
+[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)及Task/Status/CHANGELOG/Registry登记Complete事实，Round 2仍Accepted、R1 Closed。Complete元数据随`codex/task-0040-git-closeout`单独PR待Review，尚未进入main，未获该收尾PR合并授权。不重复finalize或新分配Task，不重算、不改业务产物，不合并PR #18或其他PR、不删除原分支；下方OPEN / pending-main为历史。Subagents: none。
+
+## 历史 — 2026-10-14 TASK-0040 Accepted治理登记（合并前）
 
 已将[Round 2评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)及[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)同步为Accepted、R1 Closed，保留首轮/补充历史和原证据边界。只执行治理校验、提交推送及PR描述更新，业务产物不动。沿用原Task/分支/PR #19；PR保持OPEN/Draft，未合并或finalize，reservation pending-main，未标记Complete。下一步等待User另行决定是否合并。Subagents: none。
 

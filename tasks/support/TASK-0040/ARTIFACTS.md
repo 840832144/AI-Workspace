@@ -14,4 +14,4 @@
 
 主表展示明确基准的单次领取窗口条件估值，内含全部目标包及变体，不提供未经确认的统一面值或真实售价。合成玩家状态、统计误差、结构上不可能事件、未来收益边界分别标注。没有真实购买或线上开包证据。
 
-公共仓库不包含业务脚本、源表、源码摘录、价格明细、原始日志或私有地址。[Round 2](../../../reviews/TASK-0040-CHATGPT-REVIEW-2.md)已实际读取并运行User提供的本ZIP，独立复核核心金币链，结论Accepted、R1 Closed；接受范围及未验证事项以该评审为准。本轮只更新治理导航，不修改或重建上述受控产物；PR仍OPEN、未合并或finalize，未Complete。Subagents: none。
+公共仓库不包含业务脚本、源表、源码摘录、价格明细、原始日志或私有地址。[Round 2](../../../reviews/TASK-0040-CHATGPT-REVIEW-2.md)已实际读取并运行User提供的本ZIP，独立复核核心金币链，结论Accepted、R1 Closed；接受范围及未验证事项以该评审为准。本轮只更新治理导航，不修改或重建上述受控产物；PR #19已合入main（898358f），原reservation已finalized，Complete元数据随单独收尾PR待Review，尚未进入main。Subagents: none。
