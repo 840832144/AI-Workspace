@@ -1,6 +1,26 @@
 # Bingo Voyage 自动玩接管入口 — 2026-10-13
 
-## 当前执行：2026-10-14 单局16票修订
+## 当前进展：16票修订已实施，生产来源待具体授权
+
+附件和649fcad唯一Round 5已由45d4c92原样接纳；本轮未找到或虚构所谓新附件commit。实现交付[588a1ec](https://github.com/840832144/AI-Workspace/commit/588a1ec581a651c9d23b66da1167826476785fbe)，功能代码1d2d694。原PR #16/#17继续Draft/Open，Task保持In Progress，完整目标未交付，未Accepted；不以局部回归进入完成状态。
+
+当前代码统一单局16票/300秒、累计18个完整位置/5400秒/96票，定位仍3。批次固定新10局，不将18个位置当成18局验收；前8个位置不拼入。整批预算先过再登记，每次预留重算剩余局数，额外预留30秒保存/收尾空间；不是新增额度。报价与扣费少扣/多扣均停止后续消费。新授权绑定预留、冻结及批次核验，历史8票判据仍保留。
+
+81项离线/实际函数与CLI集成回归通过（31.424秒，exit0），编译/diff通过。真实只读--check exit2：run_ready=false、metric_ready=true，阻断为quote_resource_clock_not_covered/current_panel_quote_unavailable。新限制真实回读正确，但没有实时当前面板来源、没有新增Hook、没有真实--start、零购买/零游戏输入。新十局0/10，填充率未产生；不是已运行十局未达标。
+
+原账本最新累计**52票/2346.105秒、8个历史完整位置和3局定位**。本次只读检查78.828秒计入；旧离线单测曾追加0.015秒正式计时，记录保留并修正该单测隔离，最终整套回归后正式账本字节不变。剩44票/3053.895秒/10位置；按十局3000秒与收尾30秒，准备余量仅23.895秒，不重复设备检查。当前真实最低价未知；4票场景十局可覆盖，8/12/16票场景总额分别差36/76/116票，不能以16票单局合法先买。
+
+已有第4–7位置实际--results均exit2，复算E/N/U/未填保持35/28/4/3、37/30/7/0、35/27/4/4、46/28/13/5。第6位置上界88.57%是真实未达标，第8位置当时12>8违规和User接管保留；12个dry补排机会不计成功。旧阈值/旧禁购顺序下方仅为历史，不覆盖本次资源授权与新十局顺序。
+
+本地静态字段映射定位到BuyCardPanel卡数/Bet/价格影响、BetAddView可选范围、BaseBingoCardView禁点/覆盖、BingoPlayView闭局/暂停及自然Daub候选；字段token不是运行时地址或真实快照。既有存档/协议/扣费后日志/历史UI层级不足以绑定当前面板。下一步仅请求原实例当前面板与同局四卡的限定进程内被动Hook；User明确“额度调整不授予新增技术权限”，尚未执行。具体对象、更新点、排除路径、STOP/异常撤销及不调用业务方法/不改状态或协议/不新增Root证书网络权限，见下列方案。不是重新请求已批准额度，也不额外买定位局。
+
+受控复算入口：%LOCALAPPDATA%\AI-Workspace\bingo-voyage-task0039\execution16\REVIEW_16T.md，含ENTRY_CHECKS.json、RECOMPUTED.json、tests-final.txt、map_metadata.py/static-observation-map.json、recompute.py。原始卡面、账号、逐次余额、完整日志/协议不上Git。生产读取与覆盖后真实受理、完整结算续局和同版连续十局仍待完成。
+
+main安全同步并确认898358f为祖先；Registry重建/validate，原reservation pending-main；Workspace Sync ON_DEMAND、0冲突、provider unavailable、6 stale，Git为准。完成真实主线后再统一Review；不合并、发布、提交SVN、扩权或finalize。Subagents: none。
+
+[执行修订](../tasks/support/TASK-0039/EXECUTION-16T-20261014.md) · [Round 5](../tasks/support/TASK-0039/CHATGPT-REVIEW-5.md) · [具体观察方案（未授权）](../tasks/support/TASK-0039/SOURCE-OBSERVATION-SCOPE-20261014.md)。
+
+## 本轮接纳记录：16票执行修订
 
 接纳User本机附件TASK-0039-16T-Execution.md（原样保存为EXECUTION-16T-20261014.md），以及其引用的649fcad唯一Round 5原文。不存在本次额度修订的先前Git提交；附件自述“尚未写入Git”保留为历史来源说明。状态Review → Changes Requested → In Progress，继续原TASK-0039 / PR #16/#17，不新建任务或重新分配。
 

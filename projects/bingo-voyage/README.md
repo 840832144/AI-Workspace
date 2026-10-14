@@ -1,5 +1,7 @@
 # Bingo Voyage
 
+当前进展：16票资源入口已落实，81项离线回归通过，真实生产接入仍待限定观察授权；新十局0/10，Task In Progress。见[当前报告](REPORTS/TASK-0039-REVIEW.md)与[观察范围](../../tasks/support/TASK-0039/SOURCE-OBSERVATION-SCOPE-20261014.md)。
+
 本目录只维护四卡自动玩任务的治理与脱敏证据入口。当前 [TASK-0039](../../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)；[状态](STATUS.md)；[完整规格](../../tasks/support/bingo-voyage-autoplay-20261013/EXECUTION_SPEC.md)。实现继续使用原交接来源的隔离分支，不迁移探针树。
 
 当前资源和实施顺序以[16票执行修订](../../tasks/support/TASK-0039/EXECUTION-16T-20261014.md)为准；完整目标沿用[完整重编稿](../../tasks/support/TASK-0039/AUTOPLAY-DELIVERY-REPLAN-20261014.md)为准；旧附件冲突前置顺序仅保留历史。
