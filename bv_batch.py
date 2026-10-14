@@ -14,6 +14,11 @@ def check_batch(registration, starts, rounds):
         errors.append("all_ten_started_rounds_required")
     if any(not registration.get(k) for k in IDENTITY):
         errors.append("registration_identity_missing")
+    policy_keys = ("resource_authorization", "limits")
+    if registration.get('resource_authorization') is not None:
+        from bv_live import frozen_ticket_limit
+        try: frozen_ticket_limit(registration)
+        except ValueError: errors.append('batch_resource_authorization_invalid')
     seen_rounds, seen_sessions, seen_refs = set(), set(), set()
     last_end = registration.get("registered_ns", -1)
     last_source_end = registration.get("source_start", -1)
@@ -22,6 +27,8 @@ def check_batch(registration, starts, rounds):
             errors.append("started_round_order_or_gap")
         if any(r.get(k) != registration.get(k) or start.get(k) != registration.get(k) for k in IDENTITY):
             errors.append("mixed_version_or_instance")
+        if any(r.get(k) != registration.get(k) or start.get(k) != registration.get(k) for k in policy_keys):
+            errors.append('mixed_resource_authorization')
         for key, seen in (("round_id", seen_rounds), ("session_id", seen_sessions), ("frozen_ref", seen_refs)):
             value = r.get(key)
             if not value or value in seen:

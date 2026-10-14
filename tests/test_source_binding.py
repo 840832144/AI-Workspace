@@ -89,11 +89,13 @@ class Sources(unittest.TestCase):
         self.raw(100007,field(1,b)+field(2,field(1,9)+field(2,state.encode())),t+dt.timedelta(seconds=21),'C->S')
         identity=dict(instance='synthetic-device',code_version='fixed-test-code',parser_version=VERSION,metric_version=live.METRIC)
         if reg:identity.update({k:reg[k]for k in ('batch_id','instance','code_version','parser_version','metric_version')})
+        policy={k:reg[k] for k in ('resource_authorization','limits') if reg and k in reg}
+        identity.update(policy)
         frozen=freeze(folder,start,self.index.stat().st_size,purpose=purpose,mode='full_autoplay' if purpose=='acceptance' else 'single_target_diagnostic',session_id=folder.name,registered_ns=ns(0),ended_ns=ns(22),**identity)
         budget=live.Budget()
         with patch.object(live.time,'time_ns',return_value=ns(.5)):
             budget.append('purchase_reserved',purpose=purpose,session_id=folder.name,
-                          reserved_tickets=4,batch_id=reg['batch_id']if reg else None)
+                          reserved_tickets=4,batch_id=reg['batch_id']if reg else None,**policy)
         if reg:
             row=dict(identity,session_id=folder.name,ordinal=ordinal,started_ns=ns(0),source_start=start,
                      frozen_ref=str(frozen.relative_to(folder.parent)))
@@ -102,17 +104,25 @@ class Sources(unittest.TestCase):
             (folder/'settlement.json').write_text(json.dumps(dict(navigation_ready=True)))
         return frozen
 
-    def qualified_batch(self):
+    def qualified_batch(self,policy=None):
         self.make_round('diagnostic');self.make_round('diagnostic')
         self.assertTrue(semantic_gate()['qualified'])
         batch=self.control/'batch_synthetic';batch.mkdir()
         reg=dict(batch_id=batch.name,instance='synthetic-device',code_version='fixed-test-code',parser_version=VERSION,
                  metric_version=live.METRIC,purpose='acceptance',planned_rounds=10,
                  registered_ns=int((self.base+dt.timedelta(seconds=89)).timestamp()*1e9),source_start=self.index.stat().st_size)
+        reg.update(policy or {})
         (batch/'registration.json').write_text(json.dumps(reg));(batch/'starts.jsonl').touch()
         live.Budget().append('batch_registered',**reg)
         for i in range(10):self.make_round('acceptance',reg,i+1)
         return batch
+
+    def test_new_resource_policy_bound_to_frozen_source_and_ledger(self):
+        batch=self.qualified_batch(dict(resource_authorization=live.RESOURCE_AUTHORIZATION,limits=dict(live.LIMITS)))
+        self.assertTrue(verify_batch(batch)['acceptance_pass'])
+        p=next(batch.glob('acceptance_*/frozen.json'));f=json.loads(p.read_text())
+        f.pop('resource_authorization');f.pop('limits');p.write_text(json.dumps(f))
+        self.assertIn('mixed_resource_authorization',verify_batch(batch)['errors'])
 
     def test_real_verifier_and_cli_ten_raw_distinct_rounds_not_summary_flags(self):
         batch=self.qualified_batch();r=verify_batch(batch)
@@ -174,11 +184,15 @@ class Sources(unittest.TestCase):
             batch=kw['batch'];self.make_round('acceptance',batch,batch['ordinal'],kw['session'])
             nav.pending=True
             return dict(rounds_started=1)
-        with patch.object(live,'Device',return_value=nav),patch.object(live,'clean_code',return_value=True),patch.object(live,'code_version',return_value='fixed-test-code'),patch.object(live,'diagnose',side_effect=round_source),patch.object(live.time,'sleep'),patch.object(ap.sys,'argv',['bv_autoplay.py','--start']),patch('builtins.print'):
+        check=dict(run_ready=True,purchase_ready=True,blockers=[],quote=synthetic_quote(balance=100))
+        with patch.object(live,'preflight',return_value=(check,[])),patch.object(live,'Device',return_value=nav),patch.object(live,'clean_code',return_value=True),patch.object(live,'code_version',return_value='fixed-test-code'),patch.object(live,'diagnose',side_effect=round_source),patch.object(live.time,'sleep'),patch.object(ap.sys,'argv',['bv_autoplay.py','--start']),patch('builtins.print'):
             self.assertEqual(ap.main(),0)
         result=json.loads(next(self.control.glob('batch_*/result.json')).read_text())
         self.assertTrue(result['acceptance_pass']);self.assertEqual(result['started_rounds'],10)
         self.assertEqual(nav.claims,10)
+        registration=json.loads(next(self.control.glob('batch_*/registration.json')).read_text())
+        self.assertEqual(registration['positions'],list(range(1,11)))
+        self.assertEqual(registration['limits'],live.LIMITS)
 
     def test_two_full_rounds_certify_same_frozen_batch_without_single_click_gate(self):
         batch=self.control/'batch_full';batch.mkdir();(batch/'starts.jsonl').touch()
@@ -215,6 +229,6 @@ class RuntimeLimits(unittest.TestCase):
     def test_interrupted_runtime_and_actual_overspend_cannot_reset_budget(self):
         with tempfile.TemporaryDirectory() as folder:
             b=live.Budget(folder);b.append('runtime_start',session_id='crashed')
-            with patch.object(live.time,'time_ns',return_value=b.records()[0]['at_ns']+2701_000_000_000):
+            with patch.object(live.time,'time_ns',return_value=b.records()[0]['at_ns']+(live.LIMITS['total_seconds']+1)*10**9):
                 with self.assertRaisesRegex(ValueError,'task_resource_limit'):
                     b.reserve('diagnostic',synthetic_quote(source_ref='synthetic',tickets=4,cards=4,balance=100),'next')

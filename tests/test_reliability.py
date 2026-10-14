@@ -239,12 +239,12 @@ class ControllerTests(unittest.TestCase):
         self.assertNotIn(2,c.called)
 
     def test_resource_unknown_popup_navigation_is_blocked(self):
-        from bv_live import Device
+        from bv_live import Device,Budget
         with patch.object(ap,'spawn_tap') as send:
             self.assertEqual(Device().claim(dict(scene='unknown')),'not_executed')
             self.assertEqual(Device().buy(dict(scene='unknown'),{}),'not_executed')
             send.assert_not_called()
-        with patch('bv_live.preflight',return_value=({"live_ready":False},[])):
+        with tempfile.TemporaryDirectory() as folder,patch('bv_live.Budget',return_value=Budget(folder)),patch('bv_live.preflight',return_value=({"live_ready":False},[])):
             self.assertFalse(ap.preflight()["live_ready"])
         with patch.object(ap.subprocess,"run",return_value=SimpleNamespace(returncode=1)) as run:
             self.assertEqual(ap.tap(10,10),"unknown")

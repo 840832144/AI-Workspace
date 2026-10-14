@@ -24,8 +24,22 @@ CONTROL = Path(os.environ.get("LOCALAPPDATA", str(Path.home()))) / "AI-Workspace
 PACKAGE = "com.bingo.cruise.free.best.top.game"
 INSTANCE = 'mumu-authorized'
 METRIC = "automatic-set-intersection-replan-v1"
-LIMITS = {"diagnostic_rounds": 3, "acceptance_rounds": 10, "cards": 4,
-          "tickets_per_round": 8, "gross_tickets": 96, "round_seconds": 300, "total_seconds": 2700}
+RESOURCE_AUTHORIZATION = 'execution-16t-20261014'
+RESOURCE_POLICIES = {RESOURCE_AUTHORIZATION:
+    {"diagnostic_rounds": 3, "acceptance_rounds": 18, "cards": 4,
+     "tickets_per_round": 16, "gross_tickets": 96, "round_seconds": 300, "total_seconds": 5400}}
+LIMITS = RESOURCE_POLICIES[RESOURCE_AUTHORIZATION]
+BATCH_ROUNDS = 10
+BATCH_CLEANUP_SECONDS = 30
+
+
+def frozen_ticket_limit(metadata):
+    """New permission is prospective; old captures retain their old 8-ticket cap."""
+    version=metadata.get('resource_authorization')
+    if version is None:return 8  # Historical TASK-0039 authorization, never current runtime.
+    policy=RESOURCE_POLICIES.get(version)
+    if policy is None or metadata.get('limits')!=policy:raise ValueError('resource_authorization_mismatch')
+    return policy['tickets_per_round']
 
 
 class PanelQuote(dict):
@@ -275,12 +289,12 @@ class Device:
         s=json.loads(selection);d=json.loads(discount)
         symbol="BET_NP_SYMBOL_%d"%s["BetCount"]
         matches=[r for r in json.loads(config) if r["id"]==symbol]
-        if len(matches)!=1 or s["CardCount"]!=4 or s["BetCount"] not in (1,2) or d["IsActivated"]:
+        if len(matches)!=1 or s["CardCount"]!=LIMITS['cards'] or not re.fullmatch(r'BET_NP_SYMBOL_[0-9]+',symbol) or d["IsActivated"]:
             raise ValueError("ordinary_four_card_configuration_required")
         cost=matches[0]["cost"]*s["CardCount"]
-        minimum=min(r['cost'] for r in json.loads(config) if r['id'] in ('BET_NP_SYMBOL_1','BET_NP_SYMBOL_2'))*4
-        if cost!=minimum:raise ValueError('minimum_ordinary_bet_required')
-        if type(cost) is not int or not 0<cost<=8 or s["LastBetTicket"]!=cost:
+        # Persisted selection is audit material, not proof of currently available
+        # minimum bets. Only PanelQuote checks the live panel's available choices.
+        if type(cost) is not int or not 0<cost<=LIMITS['tickets_per_round'] or s["LastBetTicket"]!=cost:
             raise ValueError("current_selection_cost_mismatch")
         # Original bytes retained locally so the selected quote can be rebuilt.
         for name,b in (("selection.json",selection),("discount.json",discount),("base_bet_config.json",config)):
@@ -448,7 +462,7 @@ def ticket_balance(wallet,change,clocks=None):
     return change['after'] if change and change['at_ns']>when else wallet['currencies']['TICKET']
 
 
-def preflight(source=SOURCE, device=None):
+def preflight(source=SOURCE, device=None,remaining_rounds=BATCH_ROUNDS):
     source=Path(source);index=source/"bv_ws.jsonl"
     errors=[];events=[];quality={}
     device=device or Device()
@@ -471,9 +485,13 @@ def preflight(source=SOURCE, device=None):
         except (OSError,ValueError,KeyError,subprocess.TimeoutExpired) as exc:
             errors.append("quote_"+str(exc))
     buy_errors=list(errors)
+    plan=None
     if quote is None:buy_errors.append("current_ticket_quote_unverified")
     else:
-        try:validate_quote(quote)
+        try:
+            validate_quote(quote)
+            plan=Budget(CONTROL).batch_plan(quote,remaining_rounds)
+            if not plan['fits']:buy_errors.append('batch_budget_insufficient')
         except (ValueError,KeyError,TypeError) as exc:buy_errors.append(str(exc))
     if quality:buy_errors.append("capture_quality_errors")
     from bv_verify import semantic_gate
@@ -484,7 +502,7 @@ def preflight(source=SOURCE, device=None):
     result={"status":"Ready" if ready else "Ready for diagnostic navigation" if not errors else "Blocked",
             "diagnostic_navigation_ready":fg and bool(wallets), "live_ready":ready, "purchase_ready":not buy_errors,
             "run_ready":ready,"metric_ready":gate['qualified'],"clock_ready":clock_ready,"semantic_gate":gate,
-            "blockers":buy_errors, "capture_errors":quality,"limits":LIMITS,
+            "blockers":buy_errors, "capture_errors":quality,"limits":LIMITS,"budget_plan":plan,
             "wallet_source_available":bool(wallets), "quote_source_available":quote is not None,
             "quote":quote}
     return result,events
@@ -510,7 +528,28 @@ class Budget:
         return sum(ends[r['session_id']]['seconds'] if r['session_id'] in ends else
                    max(0,(time.time_ns()-r['at_ns'])/1e9) for r in records if r['kind']=='runtime_start')
 
-    def reserve(self,purpose,quote,session,batch_id=None):
+    def gross(self):
+        records=self.records()
+        actual={r['session_id']:r['tickets'] for r in records if r['kind']=='resource_observed'}
+        return sum(max(r['reserved_tickets'],actual.get(r['session_id'],0)) for r in records if r['kind']=='purchase_reserved')
+
+    def batch_plan(self,quote,rounds=BATCH_ROUNDS):
+        validate_quote(quote)
+        if type(rounds) is not int or not 1<=rounds<=BATCH_ROUNDS:raise ValueError('invalid_remaining_batch_rounds')
+        required_tickets=quote['tickets']*rounds
+        required_seconds=LIMITS['round_seconds']*rounds+BATCH_CLEANUP_SECONDS
+        available_tickets=LIMITS['gross_tickets']-self.gross()
+        available_seconds=LIMITS['total_seconds']-self.elapsed()
+        deficits=dict(positions=max(0,rounds-self.remaining_positions()),
+                      tickets=max(0,required_tickets-available_tickets),
+                      wallet=max(0,required_tickets-quote.get('balance',-1)),
+                      seconds=max(0,required_seconds-available_seconds))
+        return dict(rounds=rounds,per_round_tickets=quote['tickets'],required_tickets=required_tickets,
+                    available_tickets=available_tickets,required_seconds=required_seconds,
+                    available_seconds=available_seconds,cleanup_seconds=BATCH_CLEANUP_SECONDS,
+                    deficits=deficits,fits=not any(deficits.values()))
+
+    def reserve(self,purpose,quote,session,batch_id=None,remaining_rounds=None):
         records=self.records()
         purchases=[r for r in records if r["kind"]=="purchase_reserved"]
         elapsed=self.elapsed()
@@ -518,17 +557,19 @@ class Budget:
             raise ValueError("verified_quote_required")
         validate_quote(quote)
         cost=quote["tickets"]
-        if not 0<cost<=8 or quote.get("cards")!=4 or quote.get("balance",-1)<cost:
+        if not 0<cost<=LIMITS['tickets_per_round'] or quote.get("cards")!=LIMITS['cards'] or quote.get("balance",-1)<cost:
             raise ValueError("per_round_resource_limit")
         limit=LIMITS.get(purpose+'_rounds',0)
         if sum(r["purpose"]==purpose for r in purchases)>=limit:raise ValueError("round_count_limit")
-        actual={r['session_id']:r['tickets'] for r in records if r['kind']=='resource_observed'}
-        if sum(max(r['reserved_tickets'],actual.get(r['session_id'],0)) for r in purchases)+cost>96 or elapsed>=2700:
+        if self.gross()+cost>LIMITS['gross_tickets'] or elapsed>=LIMITS['total_seconds']:
             raise ValueError("task_resource_limit")
         if purpose=='acceptance' and elapsed+LIMITS['round_seconds']>LIMITS['total_seconds']:
             raise ValueError('insufficient_remaining_time_for_full_round')
+        if remaining_rounds is not None and not self.batch_plan(quote,remaining_rounds)['fits']:
+            raise ValueError('batch_budget_insufficient')
         self.append("purchase_reserved",purpose=purpose,session_id=session,reserved_tickets=cost,
-                    quote_source=quote["source_ref"],quote_identity=quote._identity,batch_id=batch_id)
+                    quote_source=quote["source_ref"],quote_identity=quote._identity,batch_id=batch_id,
+                    resource_authorization=RESOURCE_AUTHORIZATION,limits=dict(LIMITS))
 
     def remaining_positions(self):
         return max(0, LIMITS['acceptance_rounds']-sum(
@@ -546,8 +587,14 @@ def clean_code():
     return not result.stdout.strip()
 
 
+def validate_spend(quote_tickets,gross):
+    if type(gross) is not int or not 0<gross<=LIMITS['tickets_per_round']:
+        raise ValueError('actual_spend_outside_round_limit')
+    if gross!=quote_tickets:raise ValueError('actual_spend_mismatch')
+
+
 def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,play_round=False,
-             batch=None,session=None,lock_held=False):
+             batch=None,session=None,lock_held=False,prepared=None):
     """Actual bounded source/UI loop. Diagnostic evidence can never pass acceptance."""
     import msvcrt
     root=Path(root);root.mkdir(parents=True,exist_ok=True)
@@ -564,7 +611,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
     session=Path(session) if session else root/(purpose+"_"+uuid.uuid4().hex)
     session.mkdir(exist_ok=bool(batch))
     ledger=Budget(root);t0=time.monotonic();device=device or Device()
-    device.round_deadline=min(t0+min(seconds,300),getattr(device,'round_deadline',float('inf'))) if batch else t0+min(seconds,300)
+    device.round_deadline=min(t0+min(seconds,LIMITS['round_seconds']),getattr(device,'round_deadline',float('inf'))) if batch else t0+min(seconds,LIMITS['round_seconds'])
     # Reference geometry belongs to this one round, never a previous purchase.
     device.grid_reference=None;device.grid_candidate=None;device.grid_count=0
     stop_paths=(session/'STOP',Path(batch['folder'])/'STOP') if batch else (session/'STOP',)
@@ -581,12 +628,13 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
     ledger.append('runtime_start',session_id=session.name)
     try:
         if play_round and not clean_code():raise ValueError('candidate_not_frozen')
-        check,history=preflight(source,device)
+        check,history=prepared if prepared is not None else preflight(source,device,
+            remaining_rounds=batch['planned_rounds']-batch['ordinal']+1 if batch else 1)
         if batch and not check.get('run_ready',check.get('purchase_ready')):raise ValueError('run_not_ready:'+','.join(check['blockers']))
         start=index.stat().st_size
         registration={"purpose":purpose,"registered_ns":time.time_ns(),"code_version":code_version(),
                       "parser_version":VERSION,"metric_version":METRIC,"source_start":start,
-                      "instance":INSTANCE,"limits":LIMITS,"session_id":session.name,
+                      "instance":INSTANCE,"limits":dict(LIMITS),"resource_authorization":RESOURCE_AUTHORIZATION,"session_id":session.name,
                       "mode":"full_autoplay" if batch else "single_target_diagnostic",
                       "target_dispatch_limit":288 if batch else 1,"user_should_intervene":False}
         if batch:
@@ -605,7 +653,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                          batch_stop_path=str(stop_paths[1]) if batch else None,
                          diagnostic_slot=None if batch else 2,
                          session_path=str(session),capture_index=str(index),bodies=source/"bv_bodies"))
-        while time.monotonic()<device.round_deadline and ledger.elapsed()<2700 and not (session/"STOP").exists() and not (batch and (Path(batch['folder'])/'STOP').exists()):
+        while time.monotonic()<device.round_deadline and ledger.elapsed()<LIMITS['total_seconds'] and not (session/"STOP").exists() and not (batch and (Path(batch['folder'])/'STOP').exists()):
             newly=[]
             for event in tail.poll():
                 try:
@@ -628,7 +676,7 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                 # Exactly one dispatched ordinary target per diagnostic. No repetition/auto-powerup input.
                 controller.tick([e for e in newly if e["type"]=="cell_observation"])
                 if closed_at and time.monotonic()-closed_at>=10:break
-                if buy_at and time.monotonic()-buy_at>=300:break
+                if buy_at and time.monotonic()-buy_at>=LIMITS['round_seconds']:break
             if future is None:
                 future=pool.submit(device.sample,session/("navigation_%d.png"%len(samples)))
             elif future.done():
@@ -662,7 +710,8 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                     fresh=device.sample(session/"before-buy.png")
                     if stopped():break
                     if batch and (code_version()!=batch['code_version'] or not clean_code()):raise ValueError('code_changed_during_batch')
-                    ledger.reserve(purpose,quote,session.name,batch['batch_id'] if batch else None)
+                    ledger.reserve(purpose,quote,session.name,batch['batch_id'] if batch else None,
+                                   remaining_rounds=batch['planned_rounds']-batch['ordinal']+1 if batch else None)
                     paid=True;buy_at=time.monotonic();client_offset=quote["log_start"]
                     trace=ClientTrace(str(session/"client-during.log"))
                     result.update(rounds_started=1,reserved_tickets=quote["tickets"],gross_tickets=None)
@@ -704,9 +753,11 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
                     deltas=re.findall(rb"NotifyResources TICKET current=(\d+) next=(\d+) delta=(-?\d+)",b"".join(client_chunks))
                     gross=sum(-int(d) for a,b,d in deltas if int(d)<0)
                     if deltas:result["gross_tickets"]=gross
-                    if gross>quote["tickets"]:
-                        controller.revoke("unexpected_ticket_consumption",halt=True)
-                        raise ValueError("unexpected_ticket_consumption")
+                    if gross:
+                        try:validate_spend(quote['tickets'],gross)
+                        except ValueError:
+                            controller.revoke('actual_spend_mismatch',halt=True)
+                            raise
             if controller and batch and time.monotonic()-progress_at>=2:
                 progress_at=time.monotonic()
                 (session/'progress.json').write_text(json.dumps(dict(mode='full_autoplay',ordinal=batch['ordinal'],
@@ -738,6 +789,9 @@ def diagnose(seconds=20,open_panel=False,source=SOURCE,root=CONTROL,device=None,
             (session/"client-during.log").write_bytes(b"".join(client_chunks))
             deltas=re.findall(rb'NotifyResources TICKET current=(\d+) next=(\d+) delta=(-?\d+)',b''.join(client_chunks))
             result['gross_tickets']=sum(-int(d) for a,b,d in deltas if int(d)<0) if deltas else None
+            if paid:
+                try:validate_spend(quote['tickets'],result['gross_tickets'])
+                except ValueError as exc:result.setdefault('errors',[]).append(str(exc))
         pool.shutdown(wait=True,cancel_futures=True)
         for name,data in (("history.json",history),("events.json",events),("samples.json",samples),("native-events.json",native_events)):
             (session/name).write_text(json.dumps(data),encoding='utf-8')
@@ -787,26 +841,42 @@ def start_batch(device=None):
     ledger=Budget();device=device or Device();result={};run_errors=[];t0=time.monotonic()
     try:
         remaining=ledger.remaining_positions()
-        if not remaining:raise ValueError('round_count_limit')
+        if remaining<BATCH_ROUNDS:raise ValueError('insufficient_positions_for_new_ten_round_batch')
+        prep_sid=batch.name+'_preflight';prep0=time.monotonic()
+        ledger.append('runtime_start',session_id=prep_sid)
+        try:prepared=preflight(SOURCE,device,remaining_rounds=BATCH_ROUNDS)
+        finally:ledger.append('runtime_end',session_id=prep_sid,seconds=time.monotonic()-prep0)
+        check,_=prepared
+        if not check.get('run_ready',check.get('purchase_ready')):
+            result=dict(status='Blocked',acceptance_pass=False,started_rounds=0,
+                        errors=check['blockers'],run_errors=check['blockers'],budget_plan=check.get('budget_plan'))
+            return result
+        plan=ledger.batch_plan(check['quote'])
+        if not plan['fits']:
+            result=dict(status='Blocked',acceptance_pass=False,started_rounds=0,
+                        errors=['batch_budget_insufficient'],budget_plan=plan)
+            return result
+        used=LIMITS['acceptance_rounds']-remaining
         registration=dict(batch_id=batch.name,instance=INSTANCE,code_version=code_version(),
-                          parser_version=VERSION,metric_version=METRIC,purpose='acceptance',planned_rounds=10,
+                          parser_version=VERSION,metric_version=METRIC,purpose='acceptance',planned_rounds=BATCH_ROUNDS,
                           registered_ns=time.time_ns(),source_start=(SOURCE/'bv_ws.jsonl').stat().st_size,
-                          mode='full_autoplay',positions=list(range(11-remaining,11)),
-                          available_rounds=remaining,semantic_rule='two_source_bound_rounds_distinct_targets_v1')
+                          mode='full_autoplay',positions=list(range(used+1,used+BATCH_ROUNDS+1)),
+                          available_rounds=remaining,budget_plan=plan,limits=dict(LIMITS),resource_authorization=RESOURCE_AUTHORIZATION,
+                          semantic_rule='two_source_bound_rounds_distinct_targets_v1')
         (batch/'registration.json').write_text(json.dumps(registration),encoding='utf-8')
         (batch/'starts.jsonl').touch()
         ledger.append('batch_registered',**registration)
-        for ordinal in range(1,remaining+1):
-            if (batch/'STOP').exists() or ledger.elapsed()>=2700:break
-            print(json.dumps(dict(mode='full_autoplay',round=ordinal,planned=remaining,
-                  task_position=11-remaining+ordinal-1,status='starting',
+        for ordinal in range(1,BATCH_ROUNDS+1):
+            if (batch/'STOP').exists() or ledger.elapsed()>=LIMITS['total_seconds']:break
+            print(json.dumps(dict(mode='full_autoplay',round=ordinal,planned=BATCH_ROUNDS,
+                  task_position=used+ordinal,status='starting',
                   notice='持续填充四卡全部合法目标，User无需补点',stop_path=str(batch/'STOP')),ensure_ascii=False),flush=True)
             session=batch/('acceptance_'+uuid.uuid4().hex)
             device.stop_paths=(session/'STOP',batch/'STOP')
             # Purchase, play and settlement share the same per-round input cap.
             device.round_deadline=time.monotonic()+LIMITS['round_seconds']
-            run=diagnose(300,True,source=SOURCE,root=CONTROL,device=device,play_round=True,batch=dict(registration,folder=str(batch),ordinal=ordinal),
-                         session=session,lock_held=True)
+            run=diagnose(LIMITS['round_seconds'],True,source=SOURCE,root=CONTROL,device=device,play_round=True,batch=dict(registration,folder=str(batch),ordinal=ordinal),
+                         session=session,lock_held=True,prepared=prepared if ordinal==1 else None)
             if run.get('errors') or run.get('rounds_started')!=1:
                 run_errors=run.get('errors') or ['round_not_started']
                 break
@@ -818,7 +888,7 @@ def start_batch(device=None):
             nav0=time.monotonic();claimed=False;ready=False;rewards_dismissed=0
             ledger.append('runtime_start',session_id=session.name+'_settlement')
             while (time.monotonic()-nav0<20 and time.monotonic()<device.round_deadline
-                   and ledger.elapsed()<2700 and not (batch/'STOP').exists()):
+                   and ledger.elapsed()<LIMITS['total_seconds'] and not (batch/'STOP').exists()):
                 sample=device.sample(session/'settlement.png')
                 if time.monotonic()>=device.round_deadline or any(p.exists() for p in device.stop_paths):break
                 if sample['scene'] in ('lobby','betpanel'):

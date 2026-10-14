@@ -47,7 +47,7 @@ class StopTests(unittest.TestCase):
                     return dict(tickets=4,cards=4,source_ref='synthetic',log_path='synthetic',log_start=0)
                 def read_file(self,*args):return b''
                 def buy(self,*args):raise AssertionError('STOP must cancel before buy')
-            metadata=dict(batch_id=batch.name,code_version='test',parser_version='test',metric_version='test',instance='test',ordinal=1,folder=str(batch))
+            metadata=dict(batch_id=batch.name,code_version='test',parser_version='test',metric_version='test',instance='test',ordinal=1,folder=str(batch),planned_rounds=10)
             wallet=dict(type='wallet_snapshot',account='synthetic',received_at='2026-10-14T00:00:00Z',currencies={'TICKET':80})
             check=dict(purchase_ready=True,diagnostic_navigation_ready=True,blockers=[],quote={'balance':80})
             with patch.object(live,'clean_code',return_value=True),patch('bv_verify.semantic_gate',return_value={'qualified':True}),patch.object(live,'preflight',return_value=(check,[wallet])):
@@ -81,7 +81,7 @@ class TimeAndLimits(unittest.TestCase):
             self.assertTrue(b.path.read_bytes().startswith(before));self.assertAlmostEqual(b.elapsed(),309.061)
             with self.assertRaisesRegex(ValueError,'round_count_limit'):b.reserve('diagnostic',q,'forbidden4')
             self.assertEqual(sum(r.get('reserved_tickets',0) for r in b.records()),12)
-            self.assertEqual((live.LIMITS['gross_tickets'],live.LIMITS['total_seconds']),(96,2700))
+            self.assertEqual((live.LIMITS['gross_tickets'],live.LIMITS['total_seconds']),(96,5400))
 
 
 class SpecialObservations(unittest.TestCase):

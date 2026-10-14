@@ -608,8 +608,8 @@ def main():
         print(json.dumps(result,ensure_ascii=False))
         return 0 if result["acceptance_pass"] else 2
     if a.diagnose:
-        from bv_live import diagnose
-        if not 0<a.seconds<=300:ap.error("定位时长必须为0到300秒")
+        from bv_live import diagnose,LIMITS
+        if not 0<a.seconds<=LIMITS['round_seconds']:ap.error("定位时长超过单局限制")
         result=diagnose(a.seconds,a.open_panel,play_round=a.diagnostic_round)
         print(json.dumps(result,ensure_ascii=False))
         return 2 # diagnostic collection is never production acceptance

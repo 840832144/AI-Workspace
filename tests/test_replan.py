@@ -148,14 +148,14 @@ class ContinuousTargets(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             ledger=live.Budget(folder);q=synthetic_quote(source_ref='synthetic',tickets=4,cards=4,balance=80)
             for i in range(2):ledger.reserve('acceptance',q,'old'+str(i),'oldbatch')
-            self.assertEqual(ledger.remaining_positions(),8)
-            for i in range(8):ledger.reserve('acceptance',q,'new'+str(i),'newbatch')
+            self.assertEqual(ledger.remaining_positions(),16)
+            for i in range(16):ledger.reserve('acceptance',q,'new'+str(i),'newbatch')
             self.assertEqual(ledger.remaining_positions(),0)
             with self.assertRaisesRegex(ValueError,'round_count_limit'):
                 ledger.reserve('acceptance',q,'forbidden','extra')
         with tempfile.TemporaryDirectory() as folder:
             ledger=live.Budget(folder)
-            with patch.object(ledger,'elapsed',return_value=2401):
+            with patch.object(ledger,'elapsed',return_value=live.LIMITS['total_seconds']-live.LIMITS['round_seconds']+1):
                 with self.assertRaisesRegex(ValueError,'remaining_time'):
                     ledger.reserve('acceptance',q,'too_late','batch')
             self.assertFalse(ledger.records())
@@ -210,7 +210,7 @@ class ContinuousTargets(unittest.TestCase):
                         self.closed=True;self.line('BingoPlayView GameOver');raw(100014,field(1,rid.encode()))
                     return self.logs[offset:]
             device=Device();actual=live.diagnose
-            meta=dict(batch_id=batch.name,folder=str(batch),ordinal=1,code_version='synthetic',parser_version='synthetic',metric_version='synthetic',instance='synthetic')
+            meta=dict(batch_id=batch.name,folder=str(batch),ordinal=1,code_version='synthetic',parser_version='synthetic',metric_version='synthetic',instance='synthetic',planned_rounds=10)
             def entry():return actual(6.3,True,source=source,root=root,device=device,play_round=True,batch=meta,session=batch/'acceptance_test')
             wallet=dict(type='wallet_snapshot',account='synthetic',received_at=dt.datetime.now(dt.timezone.utc).isoformat(),currencies={'TICKET':80})
             check=dict(run_ready=True,purchase_ready=True,diagnostic_navigation_ready=True,blockers=[],quote={'balance':80})

@@ -115,7 +115,9 @@ def replay(frozen_path):
     selection,config=read_json(files[2]),read_json(files[3])
     symbol='BET_NP_SYMBOL_%d'%selection['BetCount']
     costs=[r['cost']*4 for r in config if r['id']==symbol]
-    if len(costs)!=1 or selection['CardCount']!=4 or costs[0]!=selection['LastBetTicket'] or not 0<costs[0]<=8:
+    from bv_live import frozen_ticket_limit
+    cap=frozen_ticket_limit(f)
+    if len(costs)!=1 or selection['CardCount']!=4 or costs[0]!=selection['LastBetTicket'] or not 0<costs[0]<=cap:
         raise ValueError('ordinary_quote_mismatch')
     buys=[e for e in events if e['type']=='buy_request']
     if len(buys)!=1 or buys[0]['card_count']!=4 or buys[0]['bet_symbol']!=symbol or card['bet_symbol']!=symbol:
@@ -206,6 +208,8 @@ def verify_round(path):
         reservations=[x for x in Budget().records() if x['kind']=='purchase_reserved' and x['purpose']=='acceptance' and
                       x['session_id']==f['session_id'] and x.get('batch_id')==f['batch_id']]
         if len(reservations)!=1 or reservations[0]['reserved_tickets']!=r['gross_tickets']:raise ValueError('live_budget_registration_missing')
+        if f.get('resource_authorization') is not None and any(reservations[0].get(k)!=f.get(k) for k in ('resource_authorization','limits')):
+            raise ValueError('frozen_resource_authorization_mismatch')
         if not (f['registered_ns']<=reservations[0]['at_ns']<=r['purchase_ns']+2_000_000_000 and
                 f['registered_ns']<=r['purchase_ns'] and f['ended_ns']>=r['client_end_ns']):
             raise ValueError('registration_not_before_live_sources')
@@ -214,7 +218,8 @@ def verify_round(path):
         if not r['clock_bound']:errors.append('prospective_clock_evidence_required')
         if r['manual_takeover']:errors.append('unmatched_manual_input')
         valid=not errors
-        return {**r,**identity,'frozen_ref':str(path),'evidence_valid':valid,'errors':errors,
+        policy={k:f[k] for k in ('resource_authorization','limits') if k in f}
+        return {**r,**identity,**policy,'frozen_ref':str(path),'evidence_valid':valid,'errors':errors,
                 'status':('verified_lower_bound' if r['Unknown'] else 'exact') if valid else 'Insufficient evidence',
                 'rate':r['N']/r['E'] if valid and r['E'] else None,
                 'acceptance_pass':valid and 10*r['N']>9*r['E'],

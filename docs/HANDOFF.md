@@ -1,3 +1,5 @@
+> 2026-10-14 16票修订：资源/整批预算/扣费一致性已修，81项离线回归通过；主线尚未交付，生产观察待具体Hook授权。当前限制见RUN_LIMITS.md，下一步见TASK0039_SOURCE_PLAN.md，证据见TASK0039_REVIEW.md。以下Round 4及更早全部历史。
+
 > 2026-10-14 Round 4：功能代码6488ee6，71项回归通过；第4–7位置153格归因、12个dry补排机会不升级历史成绩。实时报价生产reader及覆盖后真实受理未证明，零新购买，累计52票/2267.262秒。见[TASK0039_REVIEW.md](TASK0039_REVIEW.md)及[RUN_LIMITS.md](RUN_LIMITS.md)，等待统一Review；下文全部历史。
 
 > 2026-10-14当前：TASK-0039统一Review，8个购买位置，无连续十局达标；第8局错误报价导致12票超单局上限，User接管。当前购买入口已阻断。见[TASK0039_REVIEW.md](TASK0039_REVIEW.md)与[RUN_LIMITS.md](RUN_LIMITS.md)。以下全部为历史，不可据旧报价/Max Bet/90.9%运行。
