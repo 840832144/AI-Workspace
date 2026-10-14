@@ -62,8 +62,14 @@ def row_runs(row, min_run=MIN_RUN):
 
 def components(mask, min_area=MIN_AREA, max_gap=2):
     comps = []
-    for y in range(mask.shape[0]):
-        for x0, x1 in row_runs(mask[y]):
+    # Enumerate the identical horizontal runs in NumPy, preserving row order.
+    # The former Python loop visited every pixel five times per screenshot and
+    # consumed much of the final ball's short input window.
+    edges=np.diff(np.pad(np.asarray(mask,dtype=np.int8),((0,0),(1,1))),axis=1)
+    ys,starts=np.nonzero(edges==1);_,ends=np.nonzero(edges==-1)
+    for y,x0,end in zip(ys,starts,ends):
+        if end-x0>=MIN_RUN:
+            y,x0,x1=int(y),int(x0),int(end)-1
             hit = False
             for c in comps:
                 if y - c[3] <= max_gap:
@@ -135,6 +141,26 @@ def row_to_card(row, ytop, ybot):
             "header_x0": row[0][1], "header_x1": row[-1][2]}
 
 
+def regular_rows(centers):
+    """Fit observed row bands; one animated band may lose its upper/lower paint.
+
+    Four independent centers must support the same pitch within two pixels.
+    No fixed coordinates or acceptance of an entirely unobserved row extent.
+    """
+    if len(centers) != 5:
+        return None
+    fits = []
+    for omitted in range(5):
+        ids = [i for i in range(5) if i != omitted]
+        pitch, origin = np.polyfit(ids, [centers[i] for i in ids], 1)
+        predicted = [float(origin + i*pitch) for i in range(5)]
+        residual = max(abs(predicted[i]-centers[i]) for i in ids)
+        if (35 <= pitch <= 125 and residual <= 2
+                and abs(predicted[omitted]-centers[omitted]) <= pitch*.25):
+            fits.append((residual, predicted))
+    return min(fits, key=lambda item:item[0])[1] if fits else None
+
+
 def refine_rows(img, card):
     """用「卡体亮色区域」实测行区高度，再五等分。
 
@@ -183,7 +209,10 @@ def refine_rows(img, card):
             runs = sorted(sorted(runs, key=lambda x: -(x[1] - x[0]))[:5])
         else:
             runs.sort()
-        card["rows"] = [y0 + (s + e) / 2.0 for (s, e) in runs]
+        measured = [y0 + (s + e) / 2.0 for (s, e) in runs]
+        card["observed_rows"] = measured
+        fitted = regular_rows(measured)
+        card["rows"] = fitted or measured
         card["row_spacing"] = (card["rows"][-1] - card["rows"][0]) / 4.0
         card["cell_area"] = (y0 + runs[0][0], y0 + runs[-1][1])
         card["row_mode"] = "bands"
@@ -209,6 +238,71 @@ def refine_rows(img, card):
     card["cell_area"] = (top, bot)
     card["row_mode"] = "extent"
     return card
+
+
+def cell_geometry(img, card):
+    """Measure cell shapes, never numbers or fill state.
+
+    Pale/yellow tiles and red round tokens supply geometric edges. A Bingo paint
+    change must not turn a visible row into a shorter card. At least four whole
+    bands on each axis, including both ends, must independently fit five slots.
+    Local face support gates each cell; a modal/animation is not click-through.
+    """
+    a = np.asarray(img.convert('RGB')).astype(np.int16)
+    sp = card['spacing']; h, w = a.shape[:2]
+    x0=max(0,int(card['header_x0']-4));x1=min(w,int(card['header_x1']+5))
+    y0=max(0,int(card['header_bottom']+2));y1=min(h,int(y0+5.4*sp))
+    a=a[y0:y1,x0:x1]
+    if not a.size:return None
+    lo=a.min(axis=2);hi=a.max(axis=2)
+    face=((lo>205)&(hi-lo<55))|((a[:,:,0]>200)&(a[:,:,1]<130)&(a[:,:,2]<130))
+    face|=(a[:,:,0]>210)&(a[:,:,1]>170)&(a[:,:,2]<150)&(a[:,:,0]>=a[:,:,1])
+    def axis(frac, offset, threshold=.25):
+        runs=row_runs(frac>threshold,min_run=max(20,int(.6*sp)))
+        if not 4<=len(runs)<=5:return None
+        centers=[(s+e)/2+offset for s,e in runs]
+        pitch=(centers[-1]-centers[0])/4
+        if not .8*sp<=pitch<=1.2*sp:return None
+        ids=[round((v-centers[0])/pitch) for v in centers]
+        if len(set(ids))!=len(ids) or ids[0]!=0 or ids[-1]!=4:return None
+        pitch,origin=np.polyfit(ids,centers,1)
+        # Rounded/highlighted tile edges shift the measured center by up to
+        # three pixels. Independent rows and three temporal samples still
+        # must agree; this is far inside the separately checked cell face.
+        if max(abs(origin+i*pitch-v) for i,v in zip(ids,centers))>3:return None
+        return [float(origin+i*pitch) for i in range(5)]
+    rows=axis(face.mean(axis=1),y0);cols=axis(face.mean(axis=0),x0)
+    if rows is not None and cols is None:
+        # Bingo paint can join adjacent columns in the full-height projection.
+        # Recover from at least two independently visible row bands. Each must
+        # still fit four/five whole cells including both ends; header/cached
+        # coordinates alone never authorize a target.
+        candidates=[]
+        half=(rows[-1]-rows[0])/4*.44
+        for y in rows:
+            strip=face[max(0,int(y-y0-half)):int(y-y0+half)+1]
+            for threshold in (.25,.35,.45):
+                fit=axis(strip.mean(axis=0),x0,threshold)
+                if fit is not None:
+                    candidates.append(fit);break
+        if len(candidates)>=2 and max(np.ptp(np.asarray(candidates),axis=0))<=2:
+            cols=np.mean(candidates,axis=0).tolist()
+    if rows is None or cols is None:return None
+    reachable=[]
+    for col,x in enumerate(cols):
+        for row,y in enumerate(rows):
+            dx=(cols[-1]-cols[0])/4*.4;dy=(rows[-1]-rows[0])/4*.4
+            patch=face[max(0,int(y-y0-dy)):int(y-y0+dy)+1,
+                       max(0,int(x-x0-dx)):int(x-x0+dx)+1]
+            if patch.size:
+                # Numbers/icons can occupy the center while all four tile
+                # edges remain visible. Require support on every edge; a
+                # single exposed corner or a fully covered tile cannot pass.
+                edge=max(2,int(min(patch.shape)*.125))
+                sides=[patch[:edge,:],patch[-edge:,:],patch[:,:edge],patch[:,-edge:]]
+                perimeter=patch.mean()>=.25 and all(side.mean()>=.4 for side in sides)
+                if patch.mean()>=.35 or perimeter:reachable.append(col*5+row)
+    return dict(cols=cols,rows=rows,reachable_cells=reachable,source='visible_cell_shapes')
 
 
 def detect(img, dbg=False):

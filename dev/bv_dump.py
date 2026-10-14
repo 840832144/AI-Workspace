@@ -10,29 +10,30 @@ import base64
 import json
 import os
 import time
+import uuid
+import datetime
 
 OUT = r"D:\BingoVoyageProbe\out"
-os.makedirs(OUT, exist_ok=True)
 JSONL = os.path.join(OUT, "bv_flows.jsonl")
 WS_JSONL = os.path.join(OUT, "bv_ws.jsonl")
 BODIES = os.path.join(OUT, "bv_bodies")
-os.makedirs(BODIES, exist_ok=True)
 
 _seq = [0]
 # ★ 关键：文件名必须全局唯一。
 # 原来只用自增计数器（006_ws_sc.bin），addon 一重启计数器就归零，
 # 后来的抓包会直接覆盖早先的 body 文件 —— 旧 jsonl 记录于是指向了别人的内容
 # （实测 70683 条记录只有 65254 个文件，5355 个文件名被复用、10784 条记录受污染）。
-_RUN = time.strftime("%m%d_%H%M%S", time.localtime())
+_RUN = uuid.uuid4().hex
 
 
 def _save_blob(data, tag):
+    os.makedirs(BODIES, exist_ok=True)
     if not data:
         return None
     _seq[0] += 1
     name = "%s_%06d_%s.bin" % (_RUN, _seq[0], tag)
     p = os.path.join(BODIES, name)
-    with open(p, "wb") as f:
+    with open(p, "xb") as f:
         f.write(data)
     return name
 
@@ -58,6 +59,7 @@ def request(flow):
 
 
 def response(flow):
+    os.makedirs(OUT, exist_ok=True)
     try:
         req, resp = flow.request, flow.response
         if resp is None:
@@ -111,7 +113,7 @@ def _ws_log(flow, direction, content, kind):
     h = rec.get("hdr")
     print("[WS %s] %s %dB %s" % (
         direction, kind, len(content),
-        ("cmd=%d type=%d payload=%dB" % (h["cmd"], h["a"], h["payload_len"])) if h else ""))
+        ("cmd=%d type=%d payload=%dB" % (h["cmd"], h["a"], h.get("payload_len", max(0, len(content)-9)))) if h else ""))
 
 
 def _ws_data(flow):
@@ -128,10 +130,13 @@ def websocket_started(flow):
 
 
 def websocket_message(flow):
+    os.makedirs(OUT, exist_ok=True)
     ws = _ws_data(flow)
     if ws is None or not ws.messages:
         return
     m = ws.messages[-1]
+    received_ns = time.time_ns()
+    received_mono_ns = time.monotonic_ns()
     content = m.content
     direction = "C->S" if m.from_client else "S->C"
     rec = {
@@ -141,6 +146,9 @@ def websocket_message(flow):
         "len": len(content),
         "url": flow.request.pretty_url if flow.request else "",
     }
+    rec.update(epoch=_RUN, connection=str(flow.id), received_ns=received_ns,
+               monotonic_ns=received_mono_ns,
+               ts_utc=datetime.datetime.fromtimestamp(received_ns/1e9, datetime.timezone.utc).isoformat())
     if content:
         rec["file"] = _save_blob(content, "ws_" + direction.replace("->", "").lower())
         # 正确帧结构：u32 pkt | u16 seq | u16 flags | u8 cmd | varint len | topic | protobuf
@@ -159,7 +167,7 @@ def websocket_message(flow):
     h = rec.get("hdr")
     print("[WS %s] %dB %s" % (
         direction, len(content),
-        ("cmd=%d pkt=%d payload=%dB" % (h["cmd"], h["pkt"], h["payload_len"])) if h else ""))
+        ("cmd=%d pkt=%d payload=%dB" % (h["cmd"], h["pkt"], h.get("payload_len", max(0, len(content)-9)))) if h else ""))
 
 
 def websocket_end(flow):
