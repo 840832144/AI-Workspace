@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-15
+
+- TASK-0041经remote-CAS登记并验证推送后实施；独立本地C#核心、服务和临时试玩包完成阶段实测。User接手普通试玩，Unity安装/原生构建仍进行中，状态In Progress；不冒充最终交付。TASK-0039暂停在原分支af46b8b同步，旧账本保留。Subagents: none。
+
 ## 2026-10-14
 
 - TASK-0040按ChatGPT Round 2评审5506462225（受评9ce1b6a）登记Accepted、R1 Closed，保留首轮及补充评审原文；同步Task/Status/Handoff、Registry与PR描述。仅治理收口，不补包、不重算或修改业务产物。PR #19保持OPEN，未合并或finalize，reservation pending-main；Accepted不等于Git生命周期Complete。Subagents: none。

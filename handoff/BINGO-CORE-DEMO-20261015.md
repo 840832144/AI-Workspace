@@ -7,7 +7,11 @@
 
 ## 2026-10-15 Codex正式登记
 
-remote-CAS已分配[TASK-0041](../tasks/TASK-0041-BINGO-CORE-DEMO.md)，Ready；登记校验推送后连续实施。独立业务路径D:\BingoCoreDemo，规则/服务/Unity不入公共治理树。User已批准安装缺失Unity。原TASK-0039暂停记录在原PR #17，不继承线上预算。
+remote-CAS已分配[TASK-0041](../tasks/TASK-0041-BINGO-CORE-DEMO.md)，最初Ready登记，现In Progress；登记校验d65039f推送后已实施。独立业务路径D:\BingoCoreDemo，规则/服务/Unity不入公共治理树。User已批准安装缺失Unity。原TASK-0039暂停记录在原PR #17，不继承线上预算。
+
+## 2026-10-15 实施与试玩交接
+
+见[阶段实测](../tasks/support/bingo-core-demo-20261015/IMPLEMENTATION-PROGRESS-20261015.md)：C#规则46项、实际服务39项及120条操作复算通过；有明确标注的临时浏览器包。Unity Editor安装/原生构建仍未完成，User接手普通试玩，Codex继续专业测试。原TASK-0039暂停已推af46b8b。
 
 ## 唯一执行正文
 

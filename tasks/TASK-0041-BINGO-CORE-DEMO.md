@@ -1,6 +1,6 @@
 # TASK-0041 — Bingo核心玩法本地Demo
 
-- Status: Ready
+- Status: In Progress
 - Project key: BINGO-CORE-DEMO
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -34,11 +34,13 @@
 
 ## Safety
 
-只使用本地测试资源和自制合成场景；本地服只监听回环。不调用原游戏、不消费线上票券、不带入Raw/账号/二进制。治理在AI-Workspace，业务工程拟建独立本地Git `D:\BingoCoreDemo`，未批准业务远端前仅本地提交。不合并、发布、SVN、强推或finalize。Subagents: none。
+只使用本地测试资源和自制合成场景；本地服只监听回环。不调用原游戏、不消费线上票券、不带入Raw/账号/二进制。治理在AI-Workspace，业务工程已建独立本地Git `D:\BingoCoreDemo`，未批准业务远端前仅本地提交。不合并、发布、SVN、强推或finalize。Subagents: none。
 
 ## Validation
 
 登记前完整scan/validate通过：19 canonical、0collision/error、6既有legacy警告；main898358f为祖先，remote-CAS实际分配TASK-0041。登记后重建Registry并验证、推送再实施。开发按规则单测、实际服务集成、真实客户端与包启动分别取证；未知原规则采用显式DemoAssumption，不冒称OriginalConfirmed。
+
+阶段结果见[实施进度](support/bingo-core-demo-20261015/IMPLEMENTATION-PROGRESS-20261015.md)：46项核心、39项实际HTTP和120条复算通过；临时浏览器包可玩，Unity安装/原生构建和User试玩待验证。
 
 ## Handoff
 
