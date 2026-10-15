@@ -1,5 +1,116 @@
 # ChatGPT Handoff
 
+## 2026-10-15 后续：原实例启动崩溃，新十局尚未登记
+
+User报告已返回大厅，并要求沿用原TASK-0039冻结f95ba94、预登记位置14–23。实时只读检查发现游戏进程已退出、前台为Google Play；控制锁可取得，无自动玩或观察器进程，原采集器仍在。f95ba94工作树干净、原109项回归有效，没有改候选或因新回合重跑计量。
+
+通过包管理器给出的原Launcher组件正常启动一次，未force-stop、清数据或修改安全设置；游戏约2秒后原生崩溃，未进入大厅。系统另有此前同类崩溃记录。当前版本仍1.58.3/393，最后更新时间2026-10-13；堆栈含libpairipcore.so+0x4ae38与翻译执行区，SIGSEGV/SEGV_ACCERR。仅凭这些证据不能判定保护拒绝或ARM翻译故障，未修改保护组件或恢复已停止的emulated路线。
+
+本次新增0登记/0购买/0填格，原累计13位置/112毛票/3933.070主动秒，剩16位置/272票/6866.930秒。设备只读和一次正常启动均记入原账本，历史不清零。位置14–23仍是待执行计划，不能冒称已正式预登记或游戏成绩。原运行入口f95ba94保留；恢复大厅、来源、实时价格/钱包和整批预算后直接继续，不逐局等Review。
+
+已形成受控DSH-STARTUP-CRASH-20261015.md并请求User转述DSH：只问可证实原因、最小原权限内恢复或0票取证、停止判据；若涉及重启实例及临时挂载/采集连接影响，须明确范围，不推定授权。未重启模拟器或采集器、换实例、重装/重打包、扩权或自动充值。
+
+受控目录：%LOCALAPPDATA%\AI-Workspace\bingo-voyage-task0039\execution16\hook\dsh-review；experiment6-return-check.json、experiment6-restored.json、experiment6-exit.txt、experiment6-native-crash.txt、experiment6-environment.json及控制进程清单。原件不上Git。Task In Progress，当前阻塞是游戏启动失败；真实十局仍未交付，不把0购买称为失败十局。原PR #16/#17、历史Review和pending-main保留，不合并、发布、SVN或finalize。Subagents: none。
+
+
+## 2026-10-15 当前f95ba94：修复已推送，等待超时局人工收尾
+
+75f5aa4新增位置13实际报价/扣减12票，正常UI开关已点击，但5秒内存档Auto仍true；候选在首次填格前错误退出，0次自动填格，冻结缺少完整闭局/终态，不给填充率。闭局后同一文件自然变为Auto=false。失败来源与版本完整保留，不追认成功；退款界面不冲减累计毛消费或位置。
+
+已修复并推送[f95ba94](https://github.com/840832144/AI-Workspace/commit/f95ba94)：可选自动道具配置最多一次正常UI尝试和1秒读回，未确认单列记录，不阻断独立合法的格子输入，不触发重试开关。未直接写存档/内存、调用业务方法或发协议；设置状态不进入计分，PowerUp仍Unknown，既有价格、来源、STOP和300秒校验保留。109项完整回归通过（30.254秒、exit0、正式账本不变），含存档迟到不阻断与不重复点击。新候选尚未购买。
+
+本轮5次入口尝试、4次新增购买共48票；累计13位置/112毛票/3904.975主动秒，剩16位置/272票/6895.025秒，仍能预留位置14–23的新十局。原3定位保留。当前停控，上一局超过300秒后停在ROUND REFUND领取提示，已请求User手动领取回大厅；不得代点超时收尾，不因等待清零账本。收到返回后沿用原任务连续推进，不额外请求整任务或额度批准。
+
+受控入口：%LOCALAPPDATA%\AI-Workspace\bingo-voyage-task0039\execution16\hook\dsh-review\CURRENT-EXPERIMENT-6.md；recompute_experiments.py已真实复跑，EXPERIMENTS-RECOMPUTED.json分列原候选结果与当前解析研究复算。05c5d6e零购买；3d8d9a3研究37/45/U6/未填2；f9d6a39原终态缺失且User最后两格介入；c6a8e74原31/37/U6/未填0；75f5aa4闭局不完整。所有原批均1/10或未登记，不能拼版、挑局或称正式通过。Task In Progress，未交付完整十局。
+
+最新main898358f安全同步、原pending-main保留；本次继续原PR #16/#17并验证Registry。尚未请求最终Review，不合并、发布、SVN、扩权或finalize。Subagents: none。
+
+
+## 2026-10-15 当前候选75f5aa4：完整运行继续
+
+实验额度接纳0e1a3c5保持有效，原PR #16/#17、历史Review和所有失败批次保留。本轮三次完整购买均12票，候选3d8d9a3、f9d6a39、c6a8e74各1局，不能拼成同版成绩。f9d6a39最后两个格User介入，原冻结终态不足；c6a8e74修复后终态及独立闭局通过、自然回大厅，31次自动输入均有自然受理，E37/N31/Unknown6/确认未填0，下界83.78%，六格均PowerUp且不计自动贡献。下一局遇奖励飞行动画，买前拒绝、无第二次购买。
+
+新候选[75f5aa4](https://github.com/840832144/AI-Workspace/commit/75f5aa4)保留Bingo覆盖恢复、末球补排、闭局等待真实终态、评分前安全结算；新增最多30秒等待大厅/面板动画，最多打开面板一次。首次填格前读取当前账号Auto偏好，需要时通过原游戏开关关闭自动道具并回读Auto=false，之后重新标定。不写存档、内存、返回值或协议，不调用游戏方法，不扩大技术权限；历史PowerUp继续Unknown，分母/计量不变。
+
+109项离线与实际函数/CLI集成回归通过（31.262秒，exit0，正式账本不变），不是十局实测。最新启动前账本100票/3826.054秒/12位置，含一段取消的本地全历史只读扫描墙钟保守计时；剩17位置/284票/6973.946秒。正按冻结75f5aa4预登记新十局位置13–22。实际结果统一更新，当前未达成十局目标。
+
+受控入口：%LOCALAPPDATA%\AI-Workspace\bingo-voyage-task0039\execution16\hook\dsh-review\CURRENT-EXPERIMENT-5.md，实际入口production-experiment-start-2..5、tests-powerup-panel-final.txt、原账本runtime/budget.jsonl。源日志/账号/余额/卡面/内存仅受控本机。最新main898358f安全fetch且为祖先；沿用原pending-main，不新建任务、不finalize。Subagents: none。
+
+
+## 2026-10-14 当前：接纳实验优先修订，直接推进完整运行
+
+User已确认首轮累计19位置/184票计划，并在本轮消息明确采用有界余量：最多20个新增购买，累计29位置/384票/10800秒，单局仍16票/300秒，历史3定位不增加。资源版本execution-experiment-first-20261014；历史账本64票/2807.870秒/9位置完整保留，新剩余20位置/320票/7992.130秒。按单局16票为剩余整批预留资源，实际每次仍取最低普通档实时报价，钱包逐次核验，不足买前暂停且不自动充值。
+
+附件原样接纳至tasks/support/TASK-0039/EXPERIMENT-FIRST-20261014.md。附件描述的上游Git写入未成功保留为历史，本次是当前User授权下的正常治理接纳，不寻找或虚构新任务commit，不绕过平台拦截。旧第19位置待批、18/172/6000停止点明确失效；下方均为历史。已有实际第9位置和所有失败批次保留，不拼入修正版成绩。
+
+优先当前黄色格/末球/终态修正版，针对政策和恢复回归后冻结并预登记完整十局。普通缺陷可在共同余量内修复、保留失败批次后新登记；不逐阶段等待Review。最终同版十局逐局严格>90%，争取加权>=95%；达标即停止新增购买。已有来源、STOP、16票/300秒、单控制者和技术权限范围保留。Task In Progress，沿用PR #16/#17，不合并、发布、SVN、扩权或finalize。Subagents: none。
+
+main898358f安全fetch并确认是治理祖先；Workspace Sync ON_DEMAND、0冲突、provider unavailable、6 stale，Git为准。Registry使用现有工具重建与验证，原pending-main登记保留。
+
+## 历史记录（不覆盖上文当前执行修订）
+
+## 2026-10-14 — TASK-0039 实际整局与修正版
+
+User票额放宽已登记225215a。真实候选2898c4c以12票完成原预登记新批次首局，旧终态解析器拒绝复合修饰值，1/10后停止。修正版d37dee9离线逐格复算E27/N25/Unknown2、下界92.59%，同批跨局认证不足，未正式达标；104项回归通过，账本不变。修复黄色格/四边标定、重复三帧等待和检测耗时；最后一球仍须新版本实际验证。
+
+累计64票/2807.870秒、9完整位置/3定位；当前上限172票/6000秒/18位置。修正版完整十局最少累计19位置/184票，第19位置待User确认，不混版、不清账。沿用PR #16/#17、Task In Progress；不合并/发布/SVN/扩权/finalize。Subagents: none。[详细结果](https://github.com/840832144/AI-Workspace/blob/codex/bingo-voyage-autoplay-20261013/tasks/support/TASK-0039/LIVE-ROUND-9-AND-FIXES-20261014.md)。
+
+## 2026-10-14 — TASK-0039 面板实读与计价语义补证
+
+原PR #16实现83244dc920b550828302140ed370db3cbe3d8b80增加纯字段解码器，41dacf7停止原emulated绑定。沿用原ADB权限通过有限对象链读到当前四卡、Bet索引0、基础每卡3票；一次非消费导航，无购买/填格/attach。原始乘积12不是最终报价；生产reader仍阻断，DSH问题改为免费/折扣、动态分派及计价完成语义，User表示将转述。
+
+92项既有离线/入口回归通过，新增6项受控复放通过；不替代整局交付。累计52票/2363.776秒，十局及收尾预留后准备6.224秒，新十局0/10。若最终每局12票，十局120票比剩44票缺76票，仅条件测算；未扩额。原评审与第6/8位置结论保留。详见tasks/support/TASK-0039/PANEL-FIELDS-PROGRESS-20261014.md及受控dsh-review/REVIEW.md、DSH-FOLLOWUP.md。继续原Task/PR #16/#17，Registry校验、pending-main、不finalize。Subagents: none。
+
+## 2026-10-14 — TASK-0039 被动观察实测与DSH定位
+
+限定Hook由User明确批准，授权记录4973baa；实现f33b6fb916af5a6df7fe5dfaaa06aebe96c95ae9已推送原PR #16。四次不消费观察准备保留：启动等待问题已修，emulated realm仍在ARM64观察组件加载时失败；无真实面板字段。89项离线/入口回归通过，完整新十局0/10，零新购买/游戏点击。累计52票/2357.995秒，剩44票/3042.005秒/10位置；十局与收尾预留后准备12.005秒，不继续无依据连接。
+
+User要求交DSH答疑，问题稿tasks/support/TASK-0039/DSH-QUESTIONS-20261014.md列出真实错误、已查源码、未知项、字段语义及原授权边界。旧未授权表述仅历史；不重复索权，未Accepted。实际证据位于execution16/hook/REVIEW_HOOK.md（受控本机），旧账本/失败/评审保留。Task仍In Progress，继续原PR #16/#17；不merge/publish/SVN/finalize。Subagents: none。
+
+## 2026-10-14 User批准限定被动Hook
+
+User在具体方案及权限问题之后明确回复“允许，继续吧”。授权仅覆盖SOURCE-OBSERVATION-SCOPE-20261014.md所列原游戏实例、当前买卡面板报价/选择/价格影响与同局四卡交互/覆盖/自然接受的进程内被动Hook。可以据此继续实施和验证，不再把该限定权限列为待批，也不逐阶段请求Review。
+
+不主动调用游戏业务方法，不改业务字段/返回值/协议，不新增Root、证书或网络权限，不读取无关账号/凭据/其他应用或完整内存。异常撤销、STOP、原来源和独立核验保留；资源仍单局16票/300秒、累计96票/5400秒/18完整位置、3历史定位不增加。批准前历史记录保留，观察成功与真实十局仍待实际证明；不合并/发布/SVN/finalize。Subagents: none。
+
+## 2026-10-14 — TASK-0039 16票入口落实，生产接入未完成
+
+实现588a1ec581a651c9d23b66da1167826476785fbe（功能1d2d694），原PR #16/#17不变。81项离线/入口回归通过，真实只读--check exit2、零购买/输入；资源已统一16票/18位置/5400秒，96票与300秒不变，历史不重算。累计52票/2346.105秒；新十局0/10，原第6位置未达标/第8位置超限及接管保留。限定面板及同局卡片被动Hook仍须明确授权，具体范围见tasks/support/TASK-0039/SOURCE-OBSERVATION-SCOPE-20261014.md；静态字段定位不冒充生产reader。Task保持In Progress，最终完整交付待后续统一Review；不merge/publish/SVN/finalize。Subagents: none。
+
+## 2026-10-14 — TASK-0039接纳16票执行修订与Round 5
+
+User附件EXECUTION-16T-20261014及其引用649fcad唯一Round5原样纳入；原Task回In Progress，保留历史评审。单局上限16、最低普通档、累计完整位置18、总时长5400秒、总票额96、单局300秒、定位3；账本52票/2267.262秒与旧8个完整位置不清零，不追认第8局旧超限。先同步全部实际入口和整批预算，再在已授权真实来源和安全条件满足后冻结新十局；不追加单击定位，不混版。额度变化不授予新增Hook；不合并/发布/SVN/finalize。Subagents: none。
+
+## 2026-10-14 — TASK-0039 Round 4修复统一Review
+
+功能6488ee6，71项离线/入口回归通过；逐卡新标定、积压恢复、末球/闭局取消及300秒共同截止已验证。第4–7位置153格逐格归因，12个旧漏格只得到dry补排机会，未升级历史成绩；36张历史截图通过实际Device.sample恢复链。实时报价生产reader及覆盖后实际受理尚未证明，购买保持关闭。唯一Round4原文d58e4eb已由5b1c8b3纳入，历史保留。
+
+本轮零购买/输入，未购买9/10位置。累计52票/2267.262秒，历史8个跨版本位置及3定位保留；真实--check和4次--results均exit2。第6局真实未达标和第8局12票超单局上限/User接管单列。统一报告提供新10局条件资源提案及最小只读观测缺口，不自动应用：实时4票时需40票、累计92；启动累计18、时长90分钟须User另行决定。受控round4/REVIEW_R4.md、VALIDATION_R4.json与原证据可复算。
+
+原Task/PR #16/#17回Review未Accepted；main898358f、Registry重建验证、reservation pending-main。不合并、发布、提交SVN、扩权或finalize。Subagents: none。
+
+## 2026-10-14 — TASK-0039完整运行结果交Review，未达标
+
+实现1c43e6a（代码171cf41）已推送原PR #16；63项离线/实际入口回归通过，购买8/10位置，无同版十局通过。第6局可信下界77.14%、即使Unknown全成功也未达90%；第8局旧存档4票与实际12票不符，超8票单局上限后停控，自动0次，User确认接管。当前预检/预留/买卡拒绝旧存档报价，真实--start exit2且零新增购买，非已可持续代玩。
+
+累计52票/2244.981秒，三局历史定位、所有失败及未购买尝试保留；剩2位置不自动追加。详见[统一Review摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)及[Bingo交接](BINGO-VOYAGE-AUTOPLAY-20261013.md)。受控REVIEW_REPLAN.md/recompute_replan.py已实调复算，原始来源不上Git。原Task/PR #16/#17，状态Review未Accepted；main898358f、Registry重建/验证，旧Review保留。无合并/发布/SVN/扩权/finalize。Subagents: none。
+
+
+## 2026-10-14 — TASK-0039重编后完整自动玩
+
+接纳6eba235的唯一Round3和完整重编稿，继续原Task/PR16/17，回In Progress。替代旧两局单击启动前置；run_ready与metric_ready分离，先时间/来源只读准备和整局回归，再用剩余最多10个完整启动位置。现场大量闪动按漏点反馈保留，精确计量单列；历史账本不清零，原96票/45分钟不增额。不逐阶段Review，不新建任务或finalize。Subagents: none。
+
+
+## 2026-10-14 — TASK-0039 Round 2结果交Review
+
+B1/B2/D1和累计3局限制已修，47项离线/入口集成回归通过，实现717d8dc，代码0f1475e；第3局实际8b1145c。获准补局已运行并保留：设计单次点击，User确认后续手动补点；时间/消费绑定也不足。有效定位仍1局，定位3/3；累计记录扣减/预留12票、控制运行514.483秒，正式0/10、N/A，证据不足与真实低分分开。实际--start拒绝且零消费，未追加定位。详见[TASK-0039](../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)和[Bingo Review摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)。原PR #16/#17及两轮历史评审保留；main898358f，Registry重建/验证，Review非Accepted，不合并/发布/SVN/finalize。Subagents: none。
+
+
+## 2026-10-14 — TASK-0039 Round 2继续实施
+
+接纳3daf754评审与a74005d执行修订，原Task回In Progress。main同步898358f并保留并发TASK-0040记录。定位上限总计3局、最多新增1局，历史账本不清零，其余96票/45分钟不变；修STOP、时区及公开摘要后连续推进补证和十局验收，不逐阶段等待Review。原PR #16/#17保留，不合并/发布/SVN/finalize。
+
+
 ## 2026-10-14 — TASK-0040 Round 2 Accepted / R1 Closed
 
 [评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)已按受评基线`9ce1b6a`落Git，[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)记录接受范围和未验证边界。首轮及补充评审保留历史；本轮只更新治理和PR描述，不补包、不重算。Task为Accepted，PR #19保持OPEN/Draft，未合并、未finalize、reservation pending-main，Git生命周期未Complete。下一步等待User另行决定是否合并。Subagents: none。
@@ -11,6 +122,16 @@
 ## 2026-10-13 — 请Review TASK-0040
 
 [101卡包美元价值交接](101-CARD-PACK-USD-VALUATION-20261013.md)已记录实际计算、独立复核、受控产物位置与未验证边界。主值是单次领取窗口的条件USD等价值，不是统一面值/实际售价；请核对是否满足本次用途。完整数值只在User本机，公共摘要不替代独立数值Review。分支codex/101-card-pack-usd-20261013，Task状态Review，reservation pending-main；不自动合并或finalize。Subagents: none。
+
+## 2026-10-13 — TASK-0039 Round 1修改后再次Review
+
+[TASK-0039](../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md)保持同一任务/PR #16/#17；唯一评审原文191914b已纳入9153f37。实现b428c47，39项回归与入口集成、编译/help通过；R2/R3离线修复，R1已接真实定位/来源及运行代码，完整真机流程仍未证明。定位2局支出8票，正式验收0/10，正式率N/A；只有1局受控差分有效，不能追加定位或跳过两局语义门槛。详见[当前摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md)及[Bingo交接](BINGO-VOYAGE-AUTOPLAY-20261013.md)。原副本/采集器未改动；候选未部署，不合并/发布/SVN/扩权/finalize。Subagents: none。
+
+
+## 2026-10-13 — TASK-0039 局部候选待 Review，完整目标未完成
+
+[TASK-0039](../tasks/TASK-0039-BINGO-VOYAGE-AUTOPLAY.md) 已正式登记并推送后实施；[Bingo交接](BINGO-VOYAGE-AUTOPLAY-20261013.md) 和 [结果摘要](../projects/bingo-voyage/REPORTS/TASK-0039-REVIEW.md) 为本次入口。登记634fb56，修复代码5c643dc；21项离线回归通过，旧90.9%被拒绝作验收证明，定位0局/验收0局/消耗0。Gate1与实际运行绑定仍未完成，CLI拒绝真实启动。User已委托资源判断，不重复要求范围确认。等待ChatGPT Review；不合并、发布、SVN或finalize，Subagents: none。
+
 
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
