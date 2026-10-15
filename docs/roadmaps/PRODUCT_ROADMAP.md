@@ -10,6 +10,14 @@
 
 ## 🔥 Current
 
+### Bingo核心玩法本地试玩版
+
+- 当前状态：2026-10-15 User明确要求作为独立新任务优先推进，暂停原TASK-0039；新正式编号登记和Unity构建环境评估待Codex完成，不冒称已经实现。
+- 价值：把Bingo研究转成可独立游玩、可配置、可重复验证、可移交Unity团队的核心玩法原型。
+- 范围：大厅、选卡/Bet、开局、填格、Normal/Rare/Epic九道具、Bingo剩余计数、结束及返回大厅；默认1卡，暂定1/2/4/6卡，Bet仅影响本地测试体力，未知原随机策略先用固定卡面和出球；不做多人信息、成长与局外奖励发放。
+- 当前依据：[最新规则与Unity路线评估](../proposals/BINGO-CORE-DEMO-RULES-AND-UNITY-20261015.md)。User规则经dsh二次核验，无法验证则明确按User暂定规则实现；旧[方案讨论稿](../proposals/BINGO-CORE-DEMO-CANDIDATE-20261015.md)保留为历史。
+- 下一动作：完成新任务注册和团队模板/构建短检查，优先Unity客户端＋可复用C#规则内核＋本地服务，先交付单卡完整循环，再补齐多卡和九道具。最终路线由实际环境与评估结果确定，不同时开发两套规则。
+
 ### 【游戏】 Collector 1.0
 
 - 当前状态：TASK-0026 已完成 allocator finalize；Collector 1.0 实现已 push 到 `CF_collect@7c32877` 并进入 ChatGPT Review，未执行新的动态 Spin。
@@ -17,6 +25,12 @@
 - 下一动作：ChatGPT Review `codex/collector-1-engineering@7c32877` 的 Adapter contract、固定 artifacts、Sidecar allowlist 与部署兼容性；Review 前不合入正式仓库 main，不扩大字段或模块。
 
 ## 📋 Backlog
+
+### Bingo Voyage 原客户端自动玩（User暂停）
+
+- 当前决定：2026-10-15 User明确暂停TASK-0039，优先本地核心玩法Demo；不因原实例恢复而自动续跑。
+- 保留：原PR #16/#17、全部历史实现/失败/账本/登记，原目标未Accepted、不取消或finalize。本轮已回写暂停指令；canonical Task/Status/Handoff由Codex按现有工具同步。
+- 恢复条件：User再次明确切回该目标；与新Demo任务、未来GM工具分开，不继承线上额度给新任务。来源见[优先级与范围](../proposals/BINGO-CORE-DEMO-RULES-AND-UNITY-20261015.md)。
 
 ### Top Tycoon
 
@@ -41,13 +55,19 @@
 
 ## 💡 Ideas
 
-### Bingo核心玩法本地试玩版
+### Bingo本地Auto Play / GM工具
 
-- 讨论日期：2026-10-15；状态为Candidate / Decision proposal，未批准实施。
-- 价值：将现有Bingo研究转化为可独立试玩、可配置、可重复验证的核心玩法原型。
-- 范围：自研客户端与本地规则服，还原大厅、门票选择、开局、填格、局内道具、Bingo、结束和返回大厅；不做多人信息、成长或局外奖励发放。
-- 来源：[方案讨论稿](../proposals/BINGO-CORE-DEMO-CANDIDATE-20261015.md)及User本轮讨论。复用TASK-0039研究，不扩大或替代其自动玩目标。
-- 进入Current的条件：User确认参考房间、客户端路线和道具覆盖；核对既有实现后按正式Task流程立项。未证实规则与Demo替代参数必须区分；不以协议可解析等同于玩法全部还原。
+- 状态：2026-10-15 User明确要求只记录、不启动；不创建执行子任务。
+- 价值：在自研规则服上通过同一动作合同执行策略、场景重放和数值实验，不依赖原客户端外部坐标点击。
+- 前置：核心Demo与可复用规则内核完成，另行确认GM范围和验收；本Demo普通单元测试/固定案例不等同于GM产品。
+- 来源：[最新补充规则与后续里程碑](../proposals/BINGO-CORE-DEMO-RULES-AND-UNITY-20261015.md)。
+
+### Bingo原客户端本地兼容里程碑
+
+- 状态：保留为后续可行性候选；User看重该里程碑，但不把它作为自研Demo交付前置。
+- 评估范围：可用原工程/测试构建、受支持的服务配置入口、核心初始化/资源依赖，以及同一本地规则服的兼容适配成本。已有局内协议不等于完整启动链可用。
+- 边界：当前不启动原APK改接或保护组件修改，不扩展旧研究权限；确定可行性与范围后再申请执行。
+- 来源：[路线比较](../proposals/BINGO-CORE-DEMO-RULES-AND-UNITY-20261015.md)。
 
 ### One Research Environment → Multiple Games → Independent Evidence
 
@@ -59,7 +79,7 @@
 
 ### CR 单仓策划入口
 
-- 已交付：public AI-Workspace/projects/cr 的资料、唯一 Skills 与分析工具；User 明确批准三个 Top Tycoon 工作簿及原始记录历史。
+- 已交付：public AI-Workspace/projects/cr 的资料、唯一 Skills 与分析工具；User 明确批准三个 Top Tycoon 工作簿及原始记录历史（RFC-0005）。
 - 完成依据：TASK-0032 全新单仓候选验收、[ChatGPT Round 1 Accepted](../../reviews/TASK-0032-CHATGPT-REVIEW-1.md)，以及 User 最终授权后 PR #5 merge commit `3c214e2`、最新 main 入口/祖先核验与原 reservation finalized。评审未独立复跑测试的限制保留。
 - 当前边界：CR 日常只写 AI-Workspace/projects/cr；公司 SVN 正式配置不变，旧库保留不双写，暂不归档、不删除。来源、[RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md) 与[迁移报告](../migrations/CR-MIGRATION-20260916.md)可追溯。本次仅更新 Git，未发布飞书或扩大分享。
 
