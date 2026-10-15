@@ -79,7 +79,7 @@
 
 ### CR 单仓策划入口
 
-- 已交付：public AI-Workspace/projects/cr 的资料、唯一 Skills 与分析工具；User 明确批准三个 Top Tycoon 工作簿及原始记录历史（RFC-0005）。
+- 已交付：public AI-Workspace/projects/cr 的资料、唯一 Skills 与分析工具；User 明确批准三个 Top Tycoon 工作簿及原始记录历史。
 - 完成依据：TASK-0032 全新单仓候选验收、[ChatGPT Round 1 Accepted](../../reviews/TASK-0032-CHATGPT-REVIEW-1.md)，以及 User 最终授权后 PR #5 merge commit `3c214e2`、最新 main 入口/祖先核验与原 reservation finalized。评审未独立复跑测试的限制保留。
 - 当前边界：CR 日常只写 AI-Workspace/projects/cr；公司 SVN 正式配置不变，旧库保留不双写，暂不归档、不删除。来源、[RFC-0005](../rfc/RFC-0005-CR-Subtree-Public-Migration.md) 与[迁移报告](../migrations/CR-MIGRATION-20260916.md)可追溯。本次仅更新 Git，未发布飞书或扩大分享。
 
