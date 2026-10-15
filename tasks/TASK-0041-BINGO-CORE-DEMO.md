@@ -44,4 +44,6 @@
 
 ## Handoff
 
+原生包启动实测已补：旧包服务占端口导致新包拒绝启动，按User要求经自有Stop/Launch入口切换后，Unity窗口正常响应、服务Lobby且客户端持续读状态。已交User试玩，完整体验仍待反馈；业务仍fefe61a。证据入口native-startup-handoff.json见项目Status。
+
 [原接管入口](../handoff/BINGO-CORE-DEMO-20261015.md)；[项目状态](../projects/bingo-core-demo/STATUS.md)。保留PR #21规格历史，本地治理分支codex/bingo-core-demo-20261015推送到原chatgpt/bingo-core-demo-candidate-20261015。TASK-0039暂停在其原治理分支/PR #17单独记录。登记推送后连续实施，不等待再次开工批准。

@@ -15,6 +15,10 @@ remote-CAS已分配[TASK-0041](../tasks/TASK-0041-BINGO-CORE-DEMO.md)，最初Re
 
 ## 唯一执行正文
 
+### 原生窗口已交User试玩
+
+User反馈0.2.0启动失败并要求直接打开。真实复现为旧0.1.0浏览器包仍占端口，新包拒绝跨包接管；不是Unity编译失败。核对旧进程路径/启动时间/instance及Result相位后，通过旧包Stop关闭自有服务，保留运行记录；新包Launch退出0，Bingo Core Demo原生窗口存在且响应，Check为ready/Lobby，客户端已请求session/catalog并持续读state。未改代码、未误杀其他程序，已交User操作；完整玩法体验仍待反馈。受控结果：D:\BingoCoreDemo\artifacts\evidence\native-startup-handoff.json。
+
 读取[完整EXECUTION_SPEC.md](../tasks/support/bingo-core-demo-20261015/EXECUTION_SPEC.md)，规格提交`330f754bc55f9487a37a796e26a6b87c32ecdada`。三份旧讨论稿仅供溯源，与本规格冲突的“目标不足整卡不执行”“buff可放已有buff格”“使用补填道具直接加次数”等内容均失效。
 
 最新规则：双格填充只剩1格仍填1格；新增buff仅选未填、非FREE、无buff格；无目标不放置但道具已使用，不退回或重抽；补填改为每卡放补填buff，填中才累积结算补填次数。不能只复制旧提案开工。

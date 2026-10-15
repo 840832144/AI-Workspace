@@ -18,3 +18,4 @@
 
 - 最新环境实测：Hub3.22.3.65535保留；旧6.3下载已以curl56停止且未安装，User另在Hub安装的6000.6.5f1已通过CLI结构检查和真实构建。官方Unity CLI1.0.0-beta.13已安装，构建脚本按项目版本查询已安装Editor，未重复下载/安装。首次CLI许可查询失败，但随后Editor实际取得许可并退出0，不再将许可证作为当前阻塞。
 - 原生试玩入口：D:\BingoCoreDemo\artifacts\packages\BingoCoreDemo-0.2.0-unity-preview.zip（fefe61a）；独立于此前浏览器包，人工体验待反馈。受控证据见业务artifacts/evidence/unity-cli-build-summary.json及unity-build.log。没有安装Pipeline/MCP/全局Agent插件，没有创建Unity Cloud项目。
+- User反馈启动失败后，实测复现旧0.1.0服务占用18741，新包按预期拒绝接管。旧局已在Result；按User“起开然后我玩”通过旧包Stop入口关闭自有服务，再用0.2.0 Launch入口启动成功，原生窗口存在且响应、健康检查Lobby、客户端持续请求状态。已交User试玩，不再操作对局；不计完整人工验收。证据：artifacts/evidence/native-startup-handoff.json。
