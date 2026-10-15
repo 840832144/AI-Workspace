@@ -3,7 +3,11 @@
 - Kind: handoff。
 - User decision: Confirmed；2026-10-15明确要求“现在任务正式开始吧”。
 - Project key: BINGO-CORE-DEMO；独立新任务，不使用TASK-0039编号。
-- 当前阶段：TASK-0041 Review；User已试玩0.2.1并要求整理交ChatGPT，初步无明显问题；完整边界验收缺口仍保留，未Accepted。
+- 当前阶段：TASK-0041 In Progress，Round 1结论Needs changes；R1/R2已改代码，User要求先跳过验证，R3暂缓；未Accepted。
+
+## 2026-10-16 Round 1修订入口（当前）
+
+先读[唯一评审](../tasks/support/TASK-0041/CHATGPT-REVIEW-1.md)与[修订交接](../tasks/support/TASK-0041/R1-FIX-HANDOFF-20261016.md)。业务82c2dd9仅完成源码修复，未构建/测试/出新可玩包；旧0.2.1继续作为历史候选。DSH材料已收到但部分待补证，旧“尚无返回”失效；User采用规则未变。原客户端兼容单列下一步方案，TASK-0039仍暂停。下文为前轮历史，冲突以本节及最新User指令为准。
 
 ## 2026-10-16 当前Review入口
 

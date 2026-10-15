@@ -342,7 +342,7 @@ entries:
     canonical_file: "tasks/TASK-0041-BINGO-CORE-DEMO.md"
     file: "tasks/TASK-0041-BINGO-CORE-DEMO.md"
     title: "Bingo核心玩法本地Demo"
-    status: "Review"
+    status: "In Progress"
     project_key: "BINGO-CORE-DEMO"
     human_alias: ""
     owner: "User / ChatGPT"

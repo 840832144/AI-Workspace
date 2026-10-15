@@ -2,6 +2,8 @@
 
 ## 2026-10-16
 
+- TASK-0041纳入052bdaa唯一Round 1评审，结论Needs changes，Task按Registry合法状态回到In Progress；业务82c2dd9修复客户端旧快照覆盖与干净构建restore前置。按User最新要求先跳过验证，不出新可玩包或关闭R3。DSH改记已收到、部分待补证；原客户端兼容单列下一步方案，未执行。
+
 - TASK-0041原生0.2.1／业务08529d8已实际连接并由User初步试玩，反馈无明显问题；49条实际记录复算一致。整理受控源码/证据与Review交接，Task转Review；47项规则、Unity验证与历史39项HTTP分列，未覆盖项和原版暂定规则保留。不合并、发布、SVN或finalize，TASK-0039继续暂停。Subagents: none。
 
 ## 2026-10-15
