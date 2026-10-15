@@ -10,6 +10,10 @@
 - User decision: Confirmed；2026-10-15正式启动，随后明确授权本机缺少Unity时安装。
 - Reservation: remote-CAS pending-main；独立linked worktree分配，未finalize。
 
+## Goal
+
+交付可独立游玩的本地Bingo完整核心循环，并将规则、协议、配置和核心包移交Unity团队；不依赖原客户端或线上资源。
+
 ## Scope
 
 唯一正文为[完整执行规格](support/bingo-core-demo-20261015/EXECUTION_SPEC.md)，来源f42e249/330f754；本机附件已逐段核对。覆盖冲突旧提案，尤其双格可部分执行、放buff排除已有buff、无目标仍已使用、补填先放buff且填中才赚次数。
