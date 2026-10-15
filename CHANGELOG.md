@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-16
+
+- TASK-0041原生0.2.1／业务08529d8已实际连接并由User初步试玩，反馈无明显问题；49条实际记录复算一致。整理受控源码/证据与Review交接，Task转Review；47项规则、Unity验证与历史39项HTTP分列，未覆盖项和原版暂定规则保留。不合并、发布、SVN或finalize，TASK-0039继续暂停。Subagents: none。
+
 ## 2026-10-15
 
 - TASK-0041经remote-CAS登记并验证推送后实施；独立本地C#核心、服务和临时试玩包完成阶段实测。User接手普通试玩，Unity安装/原生构建仍进行中，状态In Progress；不冒充最终交付。TASK-0039暂停在原分支af46b8b同步，旧账本保留。Subagents: none。

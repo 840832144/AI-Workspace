@@ -1,5 +1,9 @@
 # Codex Handoff
 
+## 2026-10-16 — TASK-0041 首版Unity候选，等待ChatGPT Review
+
+[TASK-0041](../tasks/TASK-0041-BINGO-CORE-DEMO.md)转Review，沿用PR #21；[本轮交接](../tasks/support/bingo-core-demo-20261015/CHATGPT-REVIEW-HANDOFF-20261016.md)为当前入口。业务08529d8仅本地Git，0.2.1原生包已修复系统代理导致的本地连接失败；47项规则、Unity同核心导入/Windows构建和真实启动通过。User试玩反馈“看起来没啥太大问题”；本次1卡手动结束局49条记录复算一致，不推广为多卡/全部九道具人工验收。受控Review包含源码、最小证据与离线复算；最新完整HTTP、断外网、其余原生端到端和dsh核验仍待补。旧TASK-0039暂停，不挪额度，不合并、发布、SVN或finalize。Subagents: none。
+
 ## 2026-10-14 — TASK-0040 Accepted治理登记
 
 已将[Round 2评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)及[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)同步为Accepted、R1 Closed，保留首轮/补充历史和原证据边界。只执行治理校验、提交推送及PR描述更新，业务产物不动。沿用原Task/分支/PR #19；PR保持OPEN/Draft，未合并或finalize，reservation pending-main，未标记Complete。下一步等待User另行决定是否合并。Subagents: none。

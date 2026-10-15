@@ -3,7 +3,11 @@
 - Kind: handoff。
 - User decision: Confirmed；2026-10-15明确要求“现在任务正式开始吧”。
 - Project key: BINGO-CORE-DEMO；独立新任务，不使用TASK-0039编号。
-- 当前阶段：TASK-0041 In Progress；正式登记已完成，规则/服务及Unity原生候选已实现，等待新版完整入口与人工试玩证据。
+- 当前阶段：TASK-0041 Review；User已试玩0.2.1并要求整理交ChatGPT，初步无明显问题；完整边界验收缺口仍保留，未Accepted。
+
+## 2026-10-16 当前Review入口
+
+优先读取[首版交付与Review交接](../tasks/support/bingo-core-demo-20261015/CHATGPT-REVIEW-HANDOFF-20261016.md)，以及User手动上传的TASK-0041-Review-0.2.1-20261016.zip。业务08529d8，原生0.2.1；47项规则、Unity导入/构建、真实启动和49条User试玩复算通过。User原话“看起来没啥太大问题”只计初步体验；新版完整HTTP、其他卡数UI/返回再开、断外网、dsh核验仍待补。未附源码ZIP时不能声称已Review业务代码。下文为历史过程，冲突状态以本节为准；继续原PR #21，不新任务、不合并或finalize。
 
 ## 2026-10-15 Codex正式登记
 

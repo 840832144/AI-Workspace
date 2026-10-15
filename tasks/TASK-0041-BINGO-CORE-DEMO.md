@@ -1,6 +1,6 @@
 # TASK-0041 — Bingo核心玩法本地Demo
 
-- Status: In Progress
+- Status: Review
 - Project key: BINGO-CORE-DEMO
 - Owner: User / ChatGPT
 - Executor: Codex
@@ -40,10 +40,10 @@
 
 登记前完整scan/validate通过：19 canonical、0collision/error、6既有legacy警告；main898358f为祖先，remote-CAS实际分配TASK-0041。登记后重建Registry并验证、推送再实施。开发按规则单测、实际服务集成、真实客户端与包启动分别取证；未知原规则采用显式DemoAssumption，不冒称OriginalConfirmed。
 
-阶段结果见[实施进度](support/bingo-core-demo-20261015/IMPLEMENTATION-PROGRESS-20261015.md)：最新业务fefe61a已接入官方Unity CLI和User安装的6000.6.5f1；47项核心、Unity/.NET同核心导入结果一致及Windows原生构建通过。新版原生试玩包已生成，窗口内与包入口验收待User接手。此前c31f0c8的39项实际HTTP通过，新版HTTP重跑被自动审批拒绝仍待验证；426b145已重放原120条输入。不同版本成绩分列，Task继续In Progress。
+本轮提交[Review交接](support/bingo-core-demo-20261015/CHATGPT-REVIEW-HANDOFF-20261016.md)：业务08529d8、原生包0.2.1；47项核心、Unity/.NET同核心一致性、Windows构建及真实客户端启动通过。User初步试玩反馈“看起来没啥太大问题”；本次1卡手动结束局的49条记录复算一致，未冒称多卡/九道具全量人工验收。历史c31f0c8的39项HTTP和120条复算单列，新版完整HTTP、断外网及其余Unity端到端覆盖仍待补；dsh核验/团队模板仍待返回。Review不是Accepted，完整进程与失败记录见原[实施进度](support/bingo-core-demo-20261015/IMPLEMENTATION-PROGRESS-20261015.md)。
 
 ## Handoff
 
-原生包启动实测已补：先前只凭窗口响应/服务Lobby误判客户端就绪，已撤回；真实故障还包括Unity请求走系统代理。业务08529d8改为仅回环直连并验证客户端READY。0.2.1真实Launch/Check退出0，session/catalog及持续state请求实证，已留给User试玩；未代开局，完整体验待反馈。失败native-startup-handoff.json与成功native-startup-fixed.json分列，见项目Status。
+User于2026-10-16要求整理汇报ChatGPT，当前等待统一Review。已准备受控Review ZIP，含冻结源码、规格、证据、实际试玩快照与离线复算入口；普通初步体验反馈已收到，但逐项验收缺口不自动关闭。原生启动早期误判已撤回，0.2.0失败与0.2.1成功证据均保留。
 
 [原接管入口](../handoff/BINGO-CORE-DEMO-20261015.md)；[项目状态](../projects/bingo-core-demo/STATUS.md)。保留PR #21规格历史，本地治理分支codex/bingo-core-demo-20261015推送到原chatgpt/bingo-core-demo-candidate-20261015。TASK-0039暂停在其原治理分支/PR #17单独记录。登记推送后连续实施，不等待再次开工批准。
