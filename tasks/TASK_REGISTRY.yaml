@@ -336,7 +336,7 @@ entries:
     priority: "P0"
     created_date: "2026-10-13"
     updated_date: "2026-10-13"
-    related_tasks: []
+    related_tasks: ["TASK-0041"]
     kind: "canonical"
   - id: "TASK-0040"
     canonical_file: "tasks/TASK-0040-101-CARD-PACK-USD-VALUATION.md"
