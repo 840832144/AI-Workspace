@@ -17,7 +17,9 @@ remote-CAS已分配[TASK-0041](../tasks/TASK-0041-BINGO-CORE-DEMO.md)，最初Re
 
 ### 原生窗口已交User试玩
 
-User反馈0.2.0启动失败并要求直接打开。真实复现为旧0.1.0浏览器包仍占端口，新包拒绝跨包接管；不是Unity编译失败。核对旧进程路径/启动时间/instance及Result相位后，通过旧包Stop关闭自有服务，保留运行记录；新包Launch退出0，Bingo Core Demo原生窗口存在且响应，Check为ready/Lobby，客户端已请求session/catalog并持续读state。未改代码、未误杀其他程序，已交User操作；完整玩法体验仍待反馈。受控结果：D:\BingoCoreDemo\artifacts\evidence\native-startup-handoff.json。
+User反馈0.2.0启动失败并要求直接打开。旧0.1.0占端口已通过自有Stop入口关闭且保留记录。但随后“窗口响应/服务Lobby等于客户端已连接”的判断错误：零session/catalog请求、Unity连到系统代理29290及User截图证明连接失败，撤回ce87d64的客户端成功结论，保留native-startup-handoff.json。
+
+已在业务08529d8修复Unity本地直连，并让Launch/Check验证当前自有客户端完成session/catalog/state，未改系统代理。0.2.1新包真实Launch/Check退出0，客户端READY Lobby、服务记录1次session/1次catalog/167次state，窗口存在且响应，已留给User试玩。没有替User开局；完整玩法体验仍待反馈。受控结果D:\BingoCoreDemo\artifacts\evidence\native-startup-fixed.json；试玩包BingoCoreDemo-0.2.1-unity-preview.zip，源码BingoCoreDemo-source-08529d8.zip。47项规则、Unity一致性及原生构建重新通过。
 
 读取[完整EXECUTION_SPEC.md](../tasks/support/bingo-core-demo-20261015/EXECUTION_SPEC.md)，规格提交`330f754bc55f9487a37a796e26a6b87c32ecdada`。三份旧讨论稿仅供溯源，与本规格冲突的“目标不足整卡不执行”“buff可放已有buff格”“使用补填道具直接加次数”等内容均失效。
 

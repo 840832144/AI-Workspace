@@ -51,3 +51,11 @@ User随后在Hub安装Unity6.6.5f1，并要求核对CLI接入。旧6.3续传已�
 原生候选包：D:\BingoCoreDemo\artifacts\packages\BingoCoreDemo-0.2.0-unity-preview.zip；87,290,883字节，186个条目，版本绑定fefe61a，主要exe/启停入口存在，无运行中会话日志或.runtime。源码归档BingoCoreDemo-source-fefe61a.zip。证据入口为artifacts/evidence/unity-cli-build-summary.json、unity-build.log、unity-interop.txt及rules-tests.txt；均受控本地，不上传完整日志。此前c31f0c8浏览器包未覆盖。
 
 本轮main仍898358f且为当前治理分支祖先。Workspace Sync的Windows PowerShell脚本入口被本机执行策略拒绝，未宣称同步成功；Git直接fetch/祖先检查与Registry单独验证。Subagents: none；TASK仍In Progress，沿用PR #21，不合并、发布、SVN或finalize。
+
+## 原生启动实跑修复
+
+User反馈启动失败并要求直接打开。首次旧0.1.0占端口已安全关闭，但0.2.0窗口响应与服务Lobby被错误当作客户端就绪；后续零session/catalog请求、Unity TCP连向本机系统代理29290和User截图证实客户端仍失败，撤回ce87d64相应结论并保留失败证据。Computer Use窗口截图连续两次因SetIsBorderRequired接口不支持失败，未伪称取得画面；故障画面来自User附件。
+
+业务08529d86be775ab4588bd7633ba3178b5d0a107f：Unity本地HTTP后台任务显式Proxy=null、禁重定向，继续限制127.0.0.1/http；主线程解析，不改系统代理。Launch等待客户端实际完成session/catalog/state才报告成功，Check同时验证同包实例和客户端所有权。重新47项核心、Unity/.NET一致性及Windows构建通过，构建报告95,941,456字节。新包0.2.1经真实Stop/Launch/Check路径启动，退出均0，客户端READY Lobby，服务记录1次session、1次catalog、167次state，窗口存在且响应。没有发送玩法动作，已交User试玩；完整人工验收与此前被拒绝的其他专业回归仍分开。
+
+受控证据artifacts/evidence/native-startup-fixed.json；失败保留native-startup-handoff.json。新包BingoCoreDemo-0.2.1-unity-preview.zip和源码BingoCoreDemo-source-08529d8.zip；未覆盖0.2.0旧包。原TASK-0039保持暂停。
