@@ -1,5 +1,11 @@
 # CR 当前状态
 
+## 2026-10-15 — 火车 Bonus V0.4 方案已发布待 Review
+
+- [TASK-0042](../../tasks/TASK-0042-CR-TRAIN-BONUS-V04.md)由既有 allocator 分配，Review；[主文与技术附件 A/B](REPORTS/CR-TRAIN-BONUS-V04/README.md)已通过飞书 CLI 创建并完成正文／链接回读。
+- 三份均已设置组织内链接可编辑，关闭外部分享／邀请并回读；未进行普通员工账号实测。按 User 本轮决定独立创建，跳过待审批搜索／目录权限及唯一导航登记，无本轮发布阻塞。
+- 本轮只交可共同评审的方案；未开发、产库、仿真或修改游戏／SVN，未合并或 finalize。Subagents: none。
+
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
 - [TASK-0035](../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。

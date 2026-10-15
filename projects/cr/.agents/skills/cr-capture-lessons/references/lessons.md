@@ -495,6 +495,15 @@
 - 后续动作：待飞书实现暴露Hub登记工具后，补登记文档 `BbuAdgmDioLaRyxH2cicjNC9nzh`，不重新创建。
 - 证据：飞书健康检查通过；文档 `BbuAdgmDioLaRyxH2cicjNC9nzh` 创建、企业可编辑权限和正文回读均成功；当前飞书工具清单不含 `register_document`。
 
+### 2026-10-15 补充：CLI 权限与导航登记是不同结果
+
+- 场景：TASK-0042 发布一份方案和两份技术子文档，User 指定 CLI，后明确独立创建、暂不管项目位置。
+- 事实与结果：搜索缺 `search:docs:read`、空间列表缺 `wiki:space:retrieve`，审批尚未完成；现有 user 授权仍可创建、读正文和设置权限。三份文档实际创建与完整回读成功；分别设置 `tenant_editable` 并关闭 `external_access`／`invite_external`，回读一致。不能把发现权限缺口扩大成全部发布不可用，也不能用默认权限或写入成功代替权限回读。
+- 导航边界：现有 CLI 没有唯一 Hub 的自动登记绑定；User 对此单独明确选择本轮跳过。没有擅自换 provider 或手工编辑 Hub，没有将未登记表述成已登记。此例外只适用本轮，不修改正式文档的长期规则。
+- 验证：原生标题、正文、表格与六个互相链接回读；主文和子文档权限逐份 GET。未做普通员工身份实测，不把创建者可读冒称全员实测。无重复创建、全量哈希或原始包上传。
+- 状态：本轮文档交付已解决；搜索／空间授权仍待审批，非本轮阻塞。后续如需要项目归档或导航登记，沿用已创建资源，先取得当轮范围授权再做未完成步骤。
+- 证据：Workspace 根 `tasks/TASK-0042-CR-TRAIN-BONUS-V04.md`、`projects/cr/REPORTS/CR-TRAIN-BONUS-V04/README.md`。Subagents: none。
+
 ## CR-2026-08-28-001 SVN工作副本上传Git前必须导出白名单并扫描示例凭据
 
 - 日期：2026-08-28
