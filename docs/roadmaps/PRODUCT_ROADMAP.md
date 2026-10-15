@@ -41,6 +41,14 @@
 
 ## 💡 Ideas
 
+### Bingo核心玩法本地试玩版
+
+- 讨论日期：2026-10-15；状态为Candidate / Decision proposal，未批准实施。
+- 价值：将现有Bingo研究转化为可独立试玩、可配置、可重复验证的核心玩法原型。
+- 范围：自研客户端与本地规则服，还原大厅、门票选择、开局、填格、局内道具、Bingo、结束和返回大厅；不做多人信息、成长或局外奖励发放。
+- 来源：[方案讨论稿](../proposals/BINGO-CORE-DEMO-CANDIDATE-20261015.md)及User本轮讨论。复用TASK-0039研究，不扩大或替代其自动玩目标。
+- 进入Current的条件：User确认参考房间、客户端路线和道具覆盖；核对既有实现后按正式Task流程立项。未证实规则与Demo替代参数必须区分；不以协议可解析等同于玩法全部还原。
+
 ### One Research Environment → Multiple Games → Independent Evidence
 
 - 设想：多个游戏可以复用受控 Research Runtime，但每个游戏的 Session、Capture、Manifest、Raw 与 Evidence 必须独立。
@@ -63,12 +71,12 @@
 
 ### Documentation Hub
 
-- 已交付：唯一《AI Workspace｜文档导航中心》、八分类、自动登记、回读和防重复治理。
+- 已交付：唯一《AI Workspace｜文档导航中心》、八分类、自动登记和防重复治理。
 - 完成依据：TASK-0021 / ADR-0007 已 Accepted。
 
 ### Workspace Sync
 
-- 已交付：Git-authoritative Context 的 `ON_DEMAND` 同步、冲突模型、local pack 与 Host bindings。
+- 已交付：`ON_DEMAND` 同步、冲突模型、local pack 与 Host bindings。
 - 完成依据：TASK-0021 已 Accepted；生产 `WATCH` 仍未启用。
 
 ### Task Governance
