@@ -1,6 +1,6 @@
 # AI Workspace｜产品路线图（Product Roadmap）
 
-> 更新时间：2026-09-16
+> 更新时间：2026-10-15
 > Git 真相源：`docs/roadmaps/PRODUCT_ROADMAP.md`
 > 适用范围：Game Planner AI Workspace 的长期产品方向
 
@@ -71,12 +71,12 @@
 
 ### Documentation Hub
 
-- 已交付：唯一《AI Workspace｜文档导航中心》、八分类、自动登记和防重复治理。
+- 已交付：唯一《AI Workspace｜文档导航中心》、八分类、自动登记、回读和防重复治理。
 - 完成依据：TASK-0021 / ADR-0007 已 Accepted。
 
 ### Workspace Sync
 
-- 已交付：`ON_DEMAND` 同步、冲突模型、local pack 与 Host bindings。
+- 已交付：Git-authoritative Context 的 `ON_DEMAND` 同步、冲突模型、local pack 与 Host bindings。
 - 完成依据：TASK-0021 已 Accepted；生产 `WATCH` 仍未启用。
 
 ### Task Governance
