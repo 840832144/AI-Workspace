@@ -40,7 +40,7 @@
 
 登记前完整scan/validate通过：19 canonical、0collision/error、6既有legacy警告；main898358f为祖先，remote-CAS实际分配TASK-0041。登记后重建Registry并验证、推送再实施。开发按规则单测、实际服务集成、真实客户端与包启动分别取证；未知原规则采用显式DemoAssumption，不冒称OriginalConfirmed。
 
-阶段结果见[实施进度](support/bingo-core-demo-20261015/IMPLEMENTATION-PROGRESS-20261015.md)：最新426b145的47项核心及原120条重放通过；此前c31f0c8的39项实际HTTP通过（新版重跑被自动审批拒绝，仍待验证）；临时浏览器包可玩，Unity安装/原生构建和User试玩待验证。
+阶段结果见[实施进度](support/bingo-core-demo-20261015/IMPLEMENTATION-PROGRESS-20261015.md)：最新业务fefe61a已接入官方Unity CLI和User安装的6000.6.5f1；47项核心、Unity/.NET同核心导入结果一致及Windows原生构建通过。新版原生试玩包已生成，窗口内与包入口验收待User接手。此前c31f0c8的39项实际HTTP通过，新版HTTP重跑被自动审批拒绝仍待验证；426b145已重放原120条输入。不同版本成绩分列，Task继续In Progress。
 
 ## Handoff
 

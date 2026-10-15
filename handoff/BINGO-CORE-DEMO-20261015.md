@@ -3,7 +3,7 @@
 - Kind: handoff。
 - User decision: Confirmed；2026-10-15明确要求“现在任务正式开始吧”。
 - Project key: BINGO-CORE-DEMO；独立新任务，不使用TASK-0039编号。
-- 当前阶段：已批准执行规格入Git，正式编号及本机实施由Codex首步完成。不是待User再次确认的方案讨论。
+- 当前阶段：TASK-0041 In Progress；正式登记已完成，规则/服务及Unity原生候选已实现，等待新版完整入口与人工试玩证据。
 
 ## 2026-10-15 Codex正式登记
 
@@ -11,7 +11,7 @@ remote-CAS已分配[TASK-0041](../tasks/TASK-0041-BINGO-CORE-DEMO.md)，最初Re
 
 ## 2026-10-15 实施与试玩交接
 
-见[阶段实测](../tasks/support/bingo-core-demo-20261015/IMPLEMENTATION-PROGRESS-20261015.md)：最新C#规则47项及原120条重放通过；此前版本实际服务39项通过，新版HTTP回归被自动审批拒绝，未混版计通过；有明确标注的临时浏览器包。Unity Editor安装/原生构建仍未完成，User接手普通试玩，Codex继续专业测试。原TASK-0039暂停已推af46b8b。
+见[阶段实测](../tasks/support/bingo-core-demo-20261015/IMPLEMENTATION-PROGRESS-20261015.md)：最新业务fefe61a，官方Unity CLI已接入，User安装的6000.6.5f1实际完成47项核心测试、Unity/.NET导入一致性及Windows构建。原生候选包0.2.0已整理，User接手普通窗口试玩；此前浏览器包和39项HTTP成绩保留，新版HTTP回归被自动审批拒绝，未混版计通过。原TASK-0039暂停已推af46b8b，不恢复。
 
 ## 唯一执行正文
 
@@ -27,7 +27,7 @@ remote-CAS已分配[TASK-0041](../tasks/TASK-0041-BINGO-CORE-DEMO.md)，最初Re
 4. dsh优先核验现有资料；建立唯一RULES.md/QUESTIONS.md。未考证规则用User暂定值或明确标注的工程临时值；真正需User回答的分歧集中列出，其余开发不停。没有直接dsh入口则准备DSH-VERIFY.md交接，不假称已联系或收到结果。
 5. 完成后交付真实Task、治理/业务commit、可玩包、九道具和各卡数测试、原版已确认与Demo暂定差异、回滚和Review入口。原客户端兼容、特效迁移与数字Auto Play/GM只记录，不启动；不自动合并、发布、提交SVN或finalize。
 
-## 当前在线核对与本会话限制
+## 规格交接时的历史核对与限制
 
 本轮main=`898358ffccbfa4d9b909d43de48ae794a7129718`；旧实现PR #16=`f95ba94ad56c49a271ab6d6d99d295ebd8f7df46`；旧治理PR #17=`62db0f832120adc128139557ff3639131e21fc4b`。旧canonical仍是自动玩记录，不能当新Demo Task。
 

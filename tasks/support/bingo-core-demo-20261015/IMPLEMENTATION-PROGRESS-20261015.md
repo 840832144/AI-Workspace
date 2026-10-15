@@ -39,3 +39,15 @@ Unity最小工程/表现层及导入一致性脚本已写；未找到团队模�
 User确认已有Unity账号、许可证未知；Hub安装完成后由User登录核对，不代购或假定Personal资格。Editor下载超时且续传未完成；WinGet远程MSIX安装停在下载阶段，已取消该尝试，改为从同一官方URL下载完整签名包再本地安装，不调整系统代理/安全设置。当前还没有Unity Editor或原生包通过证据。
 
 最新安装结果：Unity Hub官方MSIX已完整下载并通过WinGet声明SHA256与Authenticode Valid/Unity Technologies签名校验，本地Add-AppxPackage成功，3.22.3.65535状态Ok。Editor授权安装继续在后台进行单次有界续传，最多14400秒；只有完整长度和官方签名通过才静默安装到D:\Apps\Unity\6000.3.25f1。状态文件D:\Apps\BingoBuildDownloads\unity-install-status.json，启动PID44780（需现场复核，不凭历史PID停止）。许可证和构建仍未验证，User被请到Hub登录查看，不索取密码。最新源码归档BingoCoreDemo-source-426b145.zip，业务Git干净。
+
+## CLI接入及首次Unity原生构建（取代上文安装中状态）
+
+User随后在Hub安装Unity6.6.5f1，并要求核对CLI接入。旧6.3续传已以curl56停止，状态明确未运行安装器；未恢复旧下载或重复安装。官方Unity CLI通过WinGet安装为1.0.0-beta.13，版本、已安装列表与editors verify通过。Hub包内受保护二进制不能直接运行，未改ACL；采用官方独立CLI的标准安装入口。
+
+业务提交fefe61a79d47e58f40c1ecec27ff947261ca51cd：Build.ps1通过CLI按ProjectVersion.txt匹配精确Editor版本，沿用User的6000.6.5f1；保留显式-Unity路径。编译仍调用既有BingoBuild.Windows的batchmode，未安装Pipeline/MCP/Agent插件，未创建Cloud项目，未改变业务规则。Unity生成的工程设置、场景、meta与packages-lock纳入本地源码。
+
+真实Build.ps1退出0；47项规则测试通过，Unity JsonUtility配置加载与同一核心运行结果逐字等于.NET期望，Windows构建成功（报告95,940,944字节）。最初CLI许可查询报LICENSING_CLIENT_UNAVAILABLE，随后Editor实际取得许可并完成构建；这是查询入口与构建证据的区别，不报告无许可证。原生窗口点击/包启动尚未验证，User接手普通体验；最新HTTP未通过证据仍保留，不用构建或旧版39项成绩替代。
+
+原生候选包：D:\BingoCoreDemo\artifacts\packages\BingoCoreDemo-0.2.0-unity-preview.zip；87,290,883字节，186个条目，版本绑定fefe61a，主要exe/启停入口存在，无运行中会话日志或.runtime。源码归档BingoCoreDemo-source-fefe61a.zip。证据入口为artifacts/evidence/unity-cli-build-summary.json、unity-build.log、unity-interop.txt及rules-tests.txt；均受控本地，不上传完整日志。此前c31f0c8浏览器包未覆盖。
+
+本轮main仍898358f且为当前治理分支祖先。Workspace Sync的Windows PowerShell脚本入口被本机执行策略拒绝，未宣称同步成功；Git直接fetch/祖先检查与Registry单独验证。Subagents: none；TASK仍In Progress，沿用PR #21，不合并、发布、SVN或finalize。
