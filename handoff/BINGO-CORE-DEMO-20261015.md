@@ -5,6 +5,10 @@
 - Project key: BINGO-CORE-DEMO；独立新任务，不使用TASK-0039编号。
 - 当前阶段：已批准执行规格入Git，正式编号及本机实施由Codex首步完成。不是待User再次确认的方案讨论。
 
+## 2026-10-15 Codex正式登记
+
+remote-CAS已分配[TASK-0041](../tasks/TASK-0041-BINGO-CORE-DEMO.md)，Ready；登记校验推送后连续实施。独立业务路径D:\BingoCoreDemo，规则/服务/Unity不入公共治理树。User已批准安装缺失Unity。原TASK-0039暂停记录在原PR #17，不继承线上预算。
+
 ## 唯一执行正文
 
 读取[完整EXECUTION_SPEC.md](../tasks/support/bingo-core-demo-20261015/EXECUTION_SPEC.md)，规格提交`330f754bc55f9487a37a796e26a6b87c32ecdada`。三份旧讨论稿仅供溯源，与本规格冲突的“目标不足整卡不执行”“buff可放已有buff格”“使用补填道具直接加次数”等内容均失效。
