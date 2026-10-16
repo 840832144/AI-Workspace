@@ -31,6 +31,8 @@ latest main898358f为祖先；登记前完整scan/validate为19 canonical、0冲
 
 ## 2026-10-16 离线修复与测试交接
 
+User对当前dfd312c恢复样件试玩反馈：“流程没啥问题”。记录为结果B流程暂无明显问题，不扩大为逐项边界、编辑保存重开、原版视觉或结果A通过；没有新增代码或重跑测试。后续仍由User测试，Task保持In Progress。
+
 已接纳[卡点Review 6211006045](support/TASK-0043/CHATGPT-BLOCKER-REVIEW-20261016.md)，结论Needs changes，Task保持In Progress。沿c3bc731分工与513f5da/d35c8a0基线继续；dsh优先研究已认证到大厅的整组初始化/SyncCache，并行补实际组件→Sprite→布局映射。七类请求只是起点，不默认全空、不重挖地址和Backpack。Codex推进现有恢复工程及有依据的离线适配；当前未收到新初始化合同，不声明已接入。
 
 业务dfd312c已修CardCandidate普通输入与补填的唯一充能路径、运行时道具绑定、合法Bingo、结束/重置再玩；保留原层次，对已知错图作明确占位，原版呈现仍待实际引用映射。Windows试玩程序已构建。User改变测试分工前18项组件/保存重开检查通过，仍只是局部历史证据；实际鼠标验证因捕获接口失败后User按Esc停止，尚未完成。
