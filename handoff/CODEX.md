@@ -1,5 +1,9 @@
 # Codex Handoff
 
+## 2026-10-16 — TASK-0043离线修复，User接管测试
+
+接纳6211006045卡点Review（Needs changes），原PR #23继续、Task In Progress。业务dfd312c修CardCandidate正常输入/唯一充能/道具/Bingo/结束重置并构建Windows程序；18项组件回归为User接手前的历史，真实鼠标未验证。最新User决定后续测试全部由User负责，Codex只继续开发/打包/交接，不再自动回归或操作试玩。dsh负责初始化/SyncCache整组合同及P11映射研究，原客户端设备停止仍有效；就绪后一次提出含实际写盘的复验计划，由User决定恢复。原数据权限/15分钟同点规则/旧任务暂停暂缓不变。见[当前交接](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。Subagents: none。
+
 ## 2026-10-16 — TASK-0043工程接管与有界调试
 
 原PR #23接纳f1a4a4b/c3bc731：Codex统一结果A/B工程，dsh主责研究取证。CardCandidate冻结工程已接收并纳入受控本地基线d35c8a0，原件保留，未另造Demo。业务513f5da实证原客户端本地认证/令牌续接/六条初始化，75项服务局部回归通过；后续资料初始化未闭合，尚未大厅/完整一局。B的交互/重置/引用/布局/屏幕输入仍待完成。按User普通单点约15分钟约束停止当前初始化卡点，汇报整模块证据并等User讨论决策。环境已回收自有隔离/reverse、测试游戏/服务已停止。Task In Progress，历史评审与旧任务暂停/暂缓保留，无合并/发布/SVN/finalize。见[当前交接](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。Subagents: none。

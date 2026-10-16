@@ -10,7 +10,19 @@
 
 remote-CAS已分配[TASK-0043](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)，Project key BINGO-CLIENT-COMPAT。治理独立linked worktree D:\AI-Workspace-bingo-client-local-round，沿用PR #23；登记校验推送后直接实施。main898358f已同步，登记前19 canonical/0冲突错误；旧任务状态按各自原分支保留。当前[项目状态](../projects/bingo-client-compat/STATUS.md)。Subagents: none。
 
-## 2026-10-16 分工接管与当前检查点
+## 2026-10-16 离线修复与测试交接
+
+已接纳[卡点Review 6211006045](../tasks/support/TASK-0043/CHATGPT-BLOCKER-REVIEW-20261016.md)，结论Needs changes，Task保持In Progress。沿c3bc731分工与513f5da/d35c8a0基线继续；dsh优先研究已认证到大厅的整组初始化/SyncCache，并行补实际组件→Sprite→布局映射。七类请求只是起点，不默认全空、不重挖地址和Backpack。Codex推进现有恢复工程及有依据的离线适配；当前未收到新初始化合同，不声明已接入。
+
+业务dfd312c已修CardCandidate普通输入与补填的唯一充能路径、运行时道具绑定、合法Bingo、结束/重置再玩；保留原层次，对已知错图作明确占位，原版呈现仍待实际引用映射。Windows试玩程序已构建。User改变测试分工前18项组件/保存重开检查通过，仍只是局部历史证据；实际鼠标验证因捕获接口失败后User按Esc停止，尚未完成。
+
+**最新User决定：后续测试全部由User承担；Codex负责开发、打包和交接，不再自动运行功能/回归测试或操作试玩。** 成功验收只按实际User反馈登记。试玩入口D:\BingoClientLocalRound\artifacts\card-recovery\BingoCardRecovery.exe；短流程说明在工程PLAY.md和包内试玩说明.md。此候选不等于原版呈现或结果A完整一局通过。
+
+原客户端设备试错仍停止。研究与离线版本就绪后，一次提交复验依据/版本/检查点、明确时长、失败判据与恢复步骤，必须含客户端实际Logout/写盘，由User决定恢复并测试。普通同一卡点约15分钟约束继续，不能换topic/换人重置。既有C4排除项、旧任务暂停/暂缓与不合并/发布/SVN/finalize不变。
+
+本次仅记录开发和交接，无新增测试；Registry身份/Status/Project key未变，最近有效校验仍为ef1839d前的20 canonical、0冲突/错误、6既有legacy警告，不冒称本轮重跑。Subagents: none。
+
+## 历史：ef1839d分工接管检查点
 
 已接纳[f1a4a4b成品收口要求](../tasks/support/TASK-0043/DSH-DELIVERABLE-FIRST-20261016.md)与[c3bc731分工调整](../tasks/support/TASK-0043/ROLE-SPLIT-20261016.md)。**Codex统一负责结果A/B工程实现、UI、交互、测试与打包；dsh主责研究取证和提取/解析/验证脚本。** 旧dsh结果B工程负责人安排仅作历史；两项产品标准与限定C4边界不变。
 
