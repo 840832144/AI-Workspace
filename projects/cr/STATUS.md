@@ -1,5 +1,19 @@
 # CR 当前状态
 
+- 2026-10-16 TASK-0042补充：独立[火车三行五列调整方案](https://gfok27asqq.feishu.cn/docx/H9lcdQCtCoq92Dxy5NncUpIBnTd)待Review；画面及模拟／策略／结果集改动范围已列清，正文和公司内编辑权限已回读。未改原V0.6协作正文、SVN或任何正式结果；当前仅方案阶段。
+
+## 2026-10-16 — TASK-0042 V0.6 云端整合待 Review
+
+- 原主文和附件A/B已原位更新V0.6，新增可编辑机器人表及协议／非生产示例入口，见[当前导航](REPORTS/CR-TRAIN-BONUS-V04/README.md)。未先发布V0.5，不另建Task。
+- 十五节正文、13条确认、R01～R04、原图、原评论精确位置和同事历史附件已回读；八页云表内容／公式与源表一致，正式空值和停用状态保留。
+- 七资源组织内链接编辑、外部关闭、可下载；未做普通员工实测。发布无阻塞，未开发、产正式库、仿真或改SVN/配置；原PR #22保持Draft/OPEN，等待Review，不合并或finalize。Subagents: none。
+
+## 2026-10-15 — 火车 Bonus V0.4 方案已发布待 Review
+
+- [TASK-0042](../../tasks/TASK-0042-CR-TRAIN-BONUS-V04.md)由既有 allocator 分配，Review；[主文与技术附件 A/B](REPORTS/CR-TRAIN-BONUS-V04/README.md)已通过飞书 CLI 创建并完成正文／链接回读。
+- 三份均已设置组织内链接可编辑，关闭外部分享／邀请并回读；未进行普通员工账号实测。按 User 本轮决定独立创建，跳过待审批搜索／目录权限及唯一导航登记，无本轮发布阻塞。
+- 本轮只交可共同评审的方案；未开发、产库、仿真或修改游戏／SVN，未合并或 finalize。Subagents: none。
+
 ## 2026-09-17 — TASK-0035合并与finalize完成
 
 - [TASK-0035](../../tasks/TASK-0035-CR-0922-SNACK-777-FREEZE-PREP.md)治理状态Complete；[PR #8](https://github.com/840832144/AI-Workspace/pull/8)已合并，merge commit及本次同步main为`fde35b2f804e1f69bf02acc6d9581c5d009b118a`。

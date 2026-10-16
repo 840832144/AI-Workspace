@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-16
+
+- TASK-0042补独立火车三行六列改三行五列云端提案，正文及组织内编辑权限回读通过；只读目标配置，未实施游戏或数值生成。
+
+- TASK-0042原位更新飞书V0.6主文与附件，保留评论及历史附件，补可编辑机器人表与协议下载；七资源组织内权限、正文、原图、云表内容和附件下载已回读。R01～R04保留，未发布V0.5、未实现游戏或产库，等待Review。
+
+## 2026-10-15
+
+- TASK-0042 火车 Bonus V0.4 主文及两份技术附件通过既有飞书 CLI 发布，公司内部链接可编辑、外部分享关闭，正文与相互链接已回读；等待 Review。User 明确独立创建并跳过本轮唯一导航登记，权限审批不阻塞核心文档交付。只提交脱敏治理，不开发游戏、不改配置／SVN、不合并或 finalize。
+
 ## 2026-10-14
 
 - TASK-0040按ChatGPT Round 2评审5506462225（受评9ce1b6a）登记Accepted、R1 Closed，保留首轮及补充评审原文；同步Task/Status/Handoff、Registry与PR描述。仅治理收口，不补包、不重算或修改业务产物。PR #19保持OPEN，未合并或finalize，reservation pending-main；Accepted不等于Git生命周期Complete。Subagents: none。
