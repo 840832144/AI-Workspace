@@ -1,10 +1,10 @@
 # Codex Handoff
 
-## 2026-10-16 — TASK-0043 Bingo原客户端本地一局
+## 2026-10-16 — TASK-0043 C4与两条交付线继续实施
 
-实施更新：治理288ebb0已推送，业务79ca1c2，本任务In Progress。服务侧46项回归通过，历史帧200/200和19条CallBall已解码；当前原客户端尚未接通，未可玩。User选定现有MuMu index0/Android15，取代未执行的新实例提案；只读确认、不改变原数据或环境。共同目录D:\DSH_work\bingo-local-round已建立INTEGRATION.md，dsh双向ACK待收。继续原协议初始化、局内适配及具体接入诊断；不以局部测试提交最终Review。
+沿用PR #23，接纳10e6aa5及User后续抄送；[Task](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)仍In Progress。业务8f5d0af实际把隔离原客户端推进至Login as Guest，原生登录topic101到本地；未大厅/完整一局。服务52项局部回归通过，归档连续500帧通过；旧200/19来源绑定撤回，失败/Unknown保留，受控DEVELOPMENT-RESULT.md有复现。
 
-[TASK-0043](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)已remote-CAS登记，沿用PR #23及[完整接管](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。登记校验推送后，Codex负责独立服务/整合，dsh继续协议/接入研究，共同目录候选D:\DSH_work\bingo-local-round。唯一交付是实际一局闭环，不是报告或JSON样件。原TASK-0039暂停；原TASK-0041业务82c2dd9已改代码、验证暂缓，旧包0.2.1不含修订。新增环境权限未批准前不操作，其他开发继续。Subagents: none。
+Codex继续结果A原客户端完整一局；dsh并行结果B单卡可编辑可交互Unity样件，原层次引用优先、显式重建，不以资源数量替代。两个启动请求已在共同目录ACK-006直接答复。限定C4已授权执行、实例单控制者可明确换手，不逐微步骤待批；TLS/CA/代理/APK/保护代码等排除项不变。原TASK-0039暂停、TASK-0041验证暂缓，不挪旧额度。当前仍未最终Review、无合并/发布/SVN/finalize。Subagents: none。见[完整交接](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。
 
 ## 2026-10-14 — TASK-0040 Accepted治理登记
 

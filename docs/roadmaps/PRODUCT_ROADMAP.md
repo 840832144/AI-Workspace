@@ -1,6 +1,6 @@
 # AI Workspace｜产品路线图（Product Roadmap）
 
-> 更新时间：2026-09-16
+> 更新时间：2026-10-16
 > Git 真相源：`docs/roadmaps/PRODUCT_ROADMAP.md`
 > 适用范围：Game Planner AI Workspace 的长期产品方向
 
@@ -14,9 +14,9 @@
 
 - 来源：沿用PR #21@7f9729f已有同名Idea；2026-10-16 User批准为独立可玩目标，remote-CAS登记TASK-0043，不新增同义方向。
 - 交付：原客户端大厅→单卡持续游玩→基础道具→合法Bingo→正常结束返回并可再次入局。
-- 当前状态：登记后开始协议/兼容服/独立环境接入并行整合，尚未接通客户端。完整依据为[执行规格](../../tasks/support/bingo-client-local-round-20261016/EXECUTION_SPEC.md)。
+- 当前状态：TASK-0043业务8f5d0af已实证原客户端本地启动至Guest界面，尚未完整一局；dsh并行单卡可编辑恢复样件，未以资源导出计完成。完整依据为[执行规格](../../tasks/support/bingo-client-local-round-20261016/EXECUTION_SPEC.md)。
 - 边界：原TASK-0039暂停，TASK-0041验证暂缓，不挪旧预算/规则，不据目标批准推定新增环境权限。不做全部房间、数字Auto Play或GM。
-- 后续扩展：同一方向下保留多卡/完整道具池/Bet表和移交表现增强，须另行确认，不挤占本轮一局交付。本次仅更新Git，未发布云文档。
+- 后续扩展：同一方向下保留多卡/完整道具池/Bet表和移交表现增强，须另行确认，不挤占本轮一局交付。最小可编辑恢复样件按[10e6aa5](../../tasks/support/TASK-0043/DSH-CONTINUATION-AND-REUSE-20261016.md)纳入本轮并行研究；整个核心工程产品化移交仍为本方向Backlog，未承诺原始源码齐全或全游戏重建。本次仅更新Git，未发布云文档。
 
 ### 【游戏】 Collector 1.0
 

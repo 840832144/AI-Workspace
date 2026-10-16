@@ -10,26 +10,18 @@
 
 remote-CAS已分配[TASK-0043](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)，Project key BINGO-CLIENT-COMPAT。治理独立linked worktree D:\AI-Workspace-bingo-client-local-round，沿用PR #23；登记校验推送后直接实施。main898358f已同步，登记前19 canonical/0冲突错误；旧任务状态按各自原分支保留。当前[项目状态](../projects/bingo-client-compat/STATUS.md)。Subagents: none。
 
-## 唯一目标
+## 当前结果、授权与继续动作
 
-当前实施：Gate 0治理288ebb0已推送；业务79ca1c2在D:\BingoClientLocalRound，Task In Progress。真实服务局部回归46项通过、历史帧200/200及CallBall 19条解码；未连接当前原客户端，未提供PLAY成品，不把局部结果作为一局验收。受控复现入口DEVELOPMENT-RESULT.md、artifacts/evidence、runs；旧失败与Unknown保留。
+业务8f5d0af，D:\BingoClientLocalRound独立本地Git，无远端。原客户端实际完成本地性能/热更/GDS加载，进入Login as Guest；原生topic101已到服务，认证仍明确未实现。服务52项局部回归通过，原mitm连续500帧500/500（35 CallBall、2 State、2 Join）。这些不替代结果A完整一局；尚未可玩或最终Review。
 
-User最新指定使用现有MuMu index0/Android15，覆盖未执行的新建实例提案。保留原账号/数据/旧账本；仅只读检查，未启动游戏、Root、网络/CA/Hook。实际接入及本地合成身份/无原服回退仍待诊断，具体新增权限按§6处理。
+来源纠正：旧编号body被后续采集覆盖，旧200/200、19 CallBall、第166帧归因撤回并保留历史。当前ArchiveFrames.py直接从原归档顺序导出；未知字段保留。原始证据和版本/失败入口在受控DEVELOPMENT-RESULT.md、artifacts/evidence、runs。
 
-共同目录D:\DSH_work\bingo-local-round已可用；Codex维护INTEGRATION.md/codex-out，dsh专属research-dsh保持只读，尚未收到双向ACK。下一步连续补初始化与局内适配，dsh优先地址/身份隔离、判型与道具消费者依据；不再重复已恢复的帧头。
+已接纳[10e6aa5补充](../tasks/support/TASK-0043/DSH-CONTINUATION-AND-REUSE-20261016.md)与后续User抄送，覆盖旧待批说法。同实例独立Android测试用户已运行；限定C4只用于Root、隔离/reverse和必要地址/启动配置路由。实际进程内地址字符串修改有对象绑定，不修改玩法结果；无Frida、CA、TLS/签名/完整性/保护组件改动。原用户、旧账本保持，不联网原服或消费。
 
-原客户端＋本地兼容服，完成一个普通单卡局：大厅→选票→开局→持续叫号/手动填格→至少一种基础局内道具→合法Bingo→正常结束→回大厅；返回后可再次进入新局。正式消息、Schema和必要初始化按实际依赖恢复，不锁死旧消息清单。
+Codex负责结果A：原客户端大厅→单卡选择取消/确认→持续叫号手填→基础道具→合法Bingo→正常结果返回→新局。继续合成认证User、WS初始化与所缺必要适配，不等待dsh所有研究齐备。自研样件/合成HTTP不替代原客户端。
 
-## 分工与连续执行
+dsh负责持续支撑A，并完成结果B：b4 SAMPLE-RUN.md报告场景生成、重载与16项直接方法自检通过，Codex未独立复跑；按评论6209187825保留骨架，继续原层次、来源文件/PPtr依赖、关键Sprite与必要布局恢复，并补真实UI点击和可见属性保存重开。恢复/重建/原本纯色/缺失分别记录；COIN_SQUARE与单格填充、充能阈值未证实部分仅列预览采用规则。TypeTree和实际代码载体并行判断，不静默删缺组件、不生成几千空壳、不再等stub策略批准。
 
-Codex首步按最新main、完整Registry和remote-CAS流程登记独立任务，负责服务实现、整合、Git与交付；dsh负责协议/客户端研究、接入诊断和获准环境中的联调支持。dsh可继续既有静态工作，不把TASK-0041验收通过当依赖。
+共同受控目录D:\DSH_work\bingo-local-round。Codex唯一维护INTEGRATION.md/codex-out，dsh写research-dsh；b2/b3材料已收，两个启动链问题已答复ACK-006。静态SocketConnect基线不等于当前连接成功。Codex协调实例，可按补充§3完整窗口交给dsh；显式交出/接回，不自动抢占，窗口内不并发改服务/实例。无需User重复批准同范围。
 
-双方一次核实共同受控交换目录，Codex维护唯一INTEGRATION.md，dsh专属目录交付研究合同；一批可用即整合，不等待全部消息齐全，不让User转译字段。各自独立工作树，同实例单控制者。
-
-前轮v2的M1–M3作为内部修复一并完成；Schema恢复、最小服务、接入准备和实际联调连续推进，不逐步等待Review。普通错误自行修复并保留记录，最后交可玩结果与必要证据统一Review。
-
-具体新增DNS/hosts/CA/Hook/独立实例等权限在开工时尽早集中列一次，未获授权不实施；这不阻止已有静态分析和本地服务开发。不能把目标授权当作无限系统权限，也不能把每个Unknown都升级给User。
-
-TASK-0039继续暂停；TASK-0041保留代码修订、验证暂缓，原PR #21不合并、不Accepted。新任务自己的必要测试不受旧Demo暂缓验证指令替代。
-
-本次已正式登记TASK-0043；保留完整规格的历史候选说明，不重新分配。不开新账号、不线上消费、不自动发布、合并、SVN或finalize。
+TASK-0039继续暂停；TASK-0041验证暂缓；新任务必要测试继续。保留原件受控本机，无公网业务源码或资源上传。不合并、发布、SVN、finalize。Subagents: none；dsh为User已有独立会话。

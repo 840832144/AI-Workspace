@@ -1,12 +1,10 @@
 # Bingo原客户端本地一局状态
 
-- Task: [TASK-0043](../../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)
-- Status: In Progress；Gate 0治理288ebb0已登记校验推送。
-- Spec: [完整执行规格](../../tasks/support/bingo-client-local-round-20261016/EXECUTION_SPEC.md)，09f6112/76b6b6c。
-- 目标：原客户端单卡持续游玩、基础道具、合法Bingo、正常结束返回并可再开；未接通，不计完成。
-- 交换目录：D:\DSH_work\bingo-local-round；Codex维护INTEGRATION.md/codex-out，research-dsh只读，尚未收到双向ACK。
-- 业务目录：D:\BingoClientLocalRound，独立本地Git79ca1c2，无远端。服务构建与HTTP/WebSocket 46项通过；历史前200帧200/200、19条CallBall解码、来源归属7项通过，均不替代当前原客户端验收。
-- 待完成：原版初始化/动作/道具/判型/正常结束适配、接入与隔离方案、实际一局及复玩入口；当前未可玩，未最终Review。
-- 当前实例：User指定现有MuMu index0/Android15，取代未执行的新实例提案。仅只读核对，原账号数据保留；Root/网络/CA/Hook等不由复用实例推定批准。
-- 旧任务：TASK-0039暂停；TASK-0041验证暂缓，不覆盖代码/规则/预算。
-- Subagents: none。
+- Task: [TASK-0043](../../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)，In Progress；原PR #23仍Draft，reservation pending-main，不finalize。
+- 正文：[完整规格](../../tasks/support/bingo-client-local-round-20261016/EXECUTION_SPEC.md)；[10e6aa5补充](../../tasks/support/TASK-0043/DSH-CONTINUATION-AND-REUSE-20261016.md)已接纳，限定C4与可交接的单控制者生效。
+- 结果A：原客户端已实际完成本地启动配置与GDS加载、显示Login as Guest，原生登录topic101到达；尚未大厅/玩法/结束返回。业务8f5d0af，不是可玩交付。
+- 结果B：已收到dsh b4的SAMPLE-RUN.md：报告Unity场景生成、重载及16项直接方法自检通过，Codex未独立复跑；保留现有骨架。按评论6209187825继续原层次、来源文件/PPtr依赖与关键Sprite引用恢复，并补真实UI点击、可见属性修改保存重开。COIN_SQUARE与单格填充、充能阈值尚待消费者证据，暂列预览采用规则，不覆盖其他工程。
+- 局部证据：服务52项通过；原mitm连续500帧500/500，35 CallBall/2 State/2 Join。旧200/19及第166帧因来源body被覆盖撤回；未知和失败保留，详见受控DEVELOPMENT-RESULT.md。
+- 当前边界：同一MuMu中隔离Android测试用户，Root/专属网络隔离/必要地址配置修改已授权执行，原用户未启动；不改TLS/CA/代理/APK/保护组件，不线上消费。
+- 协作：共同目录D:\DSH_work\bingo-local-round，Codex维护INTEGRATION.md/codex-out，research-dsh只读；ACK/READY已收，两个启动请求已直接答复。实例明确交接，不让User转字段。
+- 旧任务：TASK-0039暂停，TASK-0041验证暂缓，不覆盖代码/规则/预算。原资产仅受控本机；未合并/发布/SVN/finalize。Subagents: none。
