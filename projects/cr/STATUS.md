@@ -1,5 +1,7 @@
 # CR 当前状态
 
+- 2026-10-16 TASK-0042补充：独立[火车三行五列调整方案](https://gfok27asqq.feishu.cn/docx/H9lcdQCtCoq92Dxy5NncUpIBnTd)待Review；画面及模拟／策略／结果集改动范围已列清，正文和公司内编辑权限已回读。未改原V0.6协作正文、SVN或任何正式结果；当前仅方案阶段。
+
 ## 2026-10-16 — TASK-0042 V0.6 云端整合待 Review
 
 - 原主文和附件A/B已原位更新V0.6，新增可编辑机器人表及协议／非生产示例入口，见[当前导航](REPORTS/CR-TRAIN-BONUS-V04/README.md)。未先发布V0.5，不另建Task。

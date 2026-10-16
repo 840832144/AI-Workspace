@@ -1,5 +1,7 @@
 # CR 火车 Bonus V0.6 交接
 
+- 2026-10-16临时补充：[火车三行六列改三行五列调整提案](https://gfok27asqq.feishu.cn/docx/H9lcdQCtCoq92Dxy5NncUpIBnTd)已独立创建并回读，8节9表全文一致，公司内可编辑、外部关闭。User已确认原三行六列与目标三行五列；配置字段对应关系由开发核对。原V0.6及评论未改；只交方案，未修改SVN或生成结果。后续Review同一Task，先锁定投放对象及五列数值规则再安排实施。
+
 - Canonical：[TASK-0042](../tasks/TASK-0042-CR-TRAIN-BONUS-V04.md)，Review；沿用 PR #22 / codex/cr-train-bonus-v04，不新建、不合并、不 finalize。
 - 当前唯一入口：[V0.6 主文、附件、机器人表及协议下载](../projects/cr/REPORTS/CR-TRAIN-BONUS-V04/README.md)。原三文档已更新至 revision 28/19/8，V0.5未发布。
 - 内容来自本轮交付包。主文十五节；退出分场景、比例恢复、期限内已结束静默到账、单层等概率样本池已整合。13条回复为已答，R01～R04仍醒目标注；不自行改变规则。

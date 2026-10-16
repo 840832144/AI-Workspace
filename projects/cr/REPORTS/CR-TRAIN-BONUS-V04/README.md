@@ -10,6 +10,12 @@
 - [SaloonBonusCs.proto](https://gfok27asqq.feishu.cn/file/Fhsnbo4KQoHFapxYDmpcjklznKb)
 - [协议、字段字典与非生产示例附件包](https://gfok27asqq.feishu.cn/file/RQgKbfF0EoI1roxQo4ZceXBnnOd)
 
+## 独立调整提案 — 2026-10-16
+
+[火车三行六列改三行五列｜画面与数值生成调整方案 V0.1](https://gfok27asqq.feishu.cn/docx/H9lcdQCtCoq92Dxy5NncUpIBnTd)。User确认目标15格，配置行数字段由开发核对。提案列出画面改动、新规则模拟、策略表／结果集重新生成及验收；不改变V0.6独立4v4的规则，也不直接授权落配置。当前机台或新版火车的投放对象、五列判奖／赔付候选与正式生成入口留待实施前锁定。
+
+CLI正文回读revision3，8节／9表，全文一致、缺段0；组织内链接编辑，外部访问关闭，无员工身份实测。只读trunk r7753，无游戏／SVN／数值生成变更；原三份V0.6文档保持同事最新内容。导航登记仍未执行，保留已有临时独立交付边界。
+
 ## 回读结果
 
 主文／A／B revision 28/19/8，全文来源段落无缺项，主文十五节与十张原生表格，原棋盘图、相互链接、R01～R04高亮已回读。保留原第八节评论及精确引用位置，保留同事上传的历史研究附件；旧包不作为当前规则，不在本轮重复上传。
