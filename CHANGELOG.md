@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-17
+
+- TASK-0043选择性接纳18c9361，按M1/M2推进；业务19287fe实现六类新增初始化与源素材卡面恢复包。M1恢复合同仍待ErrResp纠正，M2新包待User测试；本轮仅编译/静态核对，无产品测试或设备操作。同步原Task/Status/Handoff/Roadmap，Registry20 canonical、0冲突错误、6既有警告，沿PR #23待Review。
+
 ## 2026-10-16
 
 - TASK-0043纳入卡点Review 6211006045（Needs changes），业务dfd312c保留CardCandidate基线完成输入/充能/道具/Bingo/结束重置修复与Windows构建。User接手后续全部测试，18项组件回归仅作先前历史；设备停止保持，初始化整组合同和P11继续研究，沿原PR #23同步。

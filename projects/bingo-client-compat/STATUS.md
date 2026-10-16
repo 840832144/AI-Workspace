@@ -12,3 +12,21 @@
 - TASK-0039暂停；TASK-0041验证暂缓。原件与恢复素材仅受控本机；未合并/发布/SVN/finalize。Subagents: none。
 
 本轮未重跑测试或Registry验证；Task身份/状态未变，最近Registry有效结果沿用ef1839d检查点，不记为新通过。
+
+## 2026-10-17 M1/M2执行补充
+
+已选择性接纳18c9361的M1-M2-CONTINUE-20261017.md及评论6219590601，保留历史并覆盖旧零散推进安排。M1为P0：官方客户端＋本地服完整一局；M2沿CardCandidate恢复真实素材、布局与核心表现。dsh研究取证，Codex统一工程实现/编译/打包，User负责成品测试，ChatGPT Review。
+
+dsh的INIT-CONTRACT-ACK011、消费者原件、CARD-MAPPING-HANDOFF及结构化映射已收到；接入前逐项区分已证与推断。ToBytes跨工具结果支持现有10字节头；ParseBytes函数边界仍待dsh纠正。离线元数据已发现回调第一参数为ErrResp，不能把错误分支解释为回放帧；集合defaultValue空数组不等于客户端非null构造。整组纠正交共同目录ACK-013，不拆七个任务。
+
+本轮仅离线开发、静态核对、编译和打包；不运行产品功能/回归、鼠标试玩或模拟器。研究与完整初始化候选就绪后一次提出M1复验方案，含时长、隔离/恢复与客户端实际写盘，由User决定恢复。原15分钟同一卡点规则、旧任务暂停/暂缓及C4排除项不变。未新增Task、未merge/release/SVN/finalize。
+
+### 本批实际交付（业务19287fe，2026-10-17）
+
+M1：已在真实WebSocket入口接入338/2601/2324/2403/1001/1205六类初始化，按GDS真实配置引用构造本地档案/角色/服装，保留原认证与Backpack；服务Windows编译成功，未启动。完整初始化候选仍未就绪：七个回调第一参数实为ErrResp，203分支201明确对应ERR_LOGIN_SYNC_CACHE；dsh R2的“回放帧/时钟topic”解释仍不成立。203当前明确不确认恢复；间接消费者与完整缓存顺序/重启合同需dsh成组纠正，ACK-013已直接交接。本卡点停止，不恢复设备试错。
+
+M2：保留已接管CardCandidate，按CAB/PPtr/Atlas接入15张素材；补读SymmetricSlicedImage的真实卡框引用，恢复标题、FREE、白底格与130/133设计坐标，增加状态/末球预览/结算表现。Windows新包artifacts/card-recovery-m2/BingoCardRecovery.exe已构建，旧包保留；原锚点填格动画、叫号/道具皮肤、字体/背景及完整局末表现仍有差异。User提供的Desktop/pop_gpt两份录像已离线抽帧，确认是四卡，不能替代单卡同模式验收。
+
+本轮只做静态核对、场景编辑、编译和打包，没有运行产品功能/回归、鼠标试玩、服务或模拟器；旧18项检查和User“流程没啥问题”不继承为新版通过。交付/受控复算入口D:\BingoClientLocalRound\M1-M2-DELIVERY-20261017.md、unity-recovered/PLAY.md、artifacts/evidence。M1复验方案保留为条件未满足草案，包含12分钟窗口、隔离/恢复和客户端实际写盘；不申请本轮现场恢复。
+
+Registry本轮已按既有工具重建并validate：20 canonical、0冲突/错误、6既有legacy警告。原Task/PR、pending-main与In Progress不变。Subagents: none；未merge/release/SVN/finalize。
