@@ -1,6 +1,11 @@
 # Codex Handoff
 
-## 2026-10-16 — TASK-0043 C4与两条交付线继续实施
+## 2026-10-16 — TASK-0043工程接管与有界调试
+
+原PR #23接纳f1a4a4b/c3bc731：Codex统一结果A/B工程，dsh主责研究取证。CardCandidate冻结工程已接收并纳入受控本地基线d35c8a0，原件保留，未另造Demo。业务513f5da实证原客户端本地认证/令牌续接/六条初始化，75项服务局部回归通过；后续资料初始化未闭合，尚未大厅/完整一局。B的交互/重置/引用/布局/屏幕输入仍待完成。按User普通单点约15分钟约束停止当前初始化卡点，汇报整模块证据并等User讨论决策。环境已回收自有隔离/reverse、测试游戏/服务已停止。Task In Progress，历史评审与旧任务暂停/暂缓保留，无合并/发布/SVN/finalize。见[当前交接](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。Subagents: none。
+
+
+## 历史 — TASK-0043 8f5d0af检查点
 
 沿用PR #23，接纳10e6aa5及User后续抄送；[Task](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)仍In Progress。业务8f5d0af实际把隔离原客户端推进至Login as Guest，原生登录topic101到本地；未大厅/完整一局。服务52项局部回归通过，归档连续500帧通过；旧200/19来源绑定撤回，失败/Unknown保留，受控DEVELOPMENT-RESULT.md有复现。
 

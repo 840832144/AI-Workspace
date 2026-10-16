@@ -2,6 +2,8 @@
 
 ## 2026-10-16
 
+- TASK-0043接纳f1a4a4b/c3bc731，Codex接管CardCandidate工程（本地d35c8a0），dsh研究取证；业务513f5da完成本地原生认证续接和六条初始化，75项局部回归通过，完整一局未完成。同步单一卡点约15分钟停止汇报约束，当前初始化卡点停止、临时运行环境回收，Task/Status/Handoff与Registry沿原PR #23更新。
+
 - TASK-0043接纳10e6aa5限定C4与dsh可编辑样件补充，原PR #23继续。业务8f5d0af实际原客户端至Guest界面、原生登录到本地；未完整一局。服务52项通过，历史来源修正后原mitm连续500帧通过；旧200/19来源归因撤回。同步Task/Status/Handoff/同一Roadmap与Registry，旧任务暂停/暂缓及不发布等边界保持。
 
 - TASK-0043进入In Progress，业务79ca1c2完成独立服务与部分原线协议恢复，实际服务局部回归46项通过；原客户端未接通。User改为使用现有MuMu实例，新建实例提案退出；保留账号与旧账本，不推定Root/网络/CA/Hook授权。同步Task/Status/Handoff与Registry，继续PR #23。

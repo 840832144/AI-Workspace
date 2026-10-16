@@ -10,7 +10,19 @@
 
 remote-CAS已分配[TASK-0043](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)，Project key BINGO-CLIENT-COMPAT。治理独立linked worktree D:\AI-Workspace-bingo-client-local-round，沿用PR #23；登记校验推送后直接实施。main898358f已同步，登记前19 canonical/0冲突错误；旧任务状态按各自原分支保留。当前[项目状态](../projects/bingo-client-compat/STATUS.md)。Subagents: none。
 
-## 当前结果、授权与继续动作
+## 2026-10-16 分工接管与当前检查点
+
+已接纳[f1a4a4b成品收口要求](../tasks/support/TASK-0043/DSH-DELIVERABLE-FIRST-20261016.md)与[c3bc731分工调整](../tasks/support/TASK-0043/ROLE-SPLIT-20261016.md)。**Codex统一负责结果A/B工程实现、UI、交互、测试与打包；dsh主责研究取证和提取/解析/验证脚本。** 旧dsh结果B工程负责人安排仅作历史；两项产品标准与限定C4边界不变。
+
+dsh已冻结并交出CardCandidate完整工程，295条目包级核对通过；Codex在原客户端停止的检查点接收为受控工作副本，业务基线d35c8a0，原ZIP及dsh原目录保留。未另起Demo。随包15项自检/重开/双视口渲染为dsh证据，尚未由Codex完整复跑；普通点击充能绑定、道具监听、结束重置、屏幕输入及精确图片/布局仍待修复，旧“已收口”结论不采用。
+
+业务当前513f5da：本地合成认证、保存令牌续接及六条初始化应答已被原客户端实际接受；Backpack非空修复后实际发出GetProfileState等后续初始化。服务75项局部HTTP/WebSocket回归通过，当前原客户端仍停在加载页，未大厅/一局/结束返回。后续初始化模块及重连缓存消费者尚未闭合；不能以空响应或局部测试冒充完整结果。服务与测试游戏已停，临时隔离/reverse已按owner回收，返回原Android用户且未启动原游戏。受控结果/失败/复现入口D:\BingoClientLocalRound\DEVELOPMENT-RESULT.md与共同目录INTEGRATION.md。
+
+User新增执行约束：普通单一卡点约15分钟未解决即停止该点，报告已试方法、证据与待决策项，等待User Review讨论后决定继续修改或先由dsh研究；不按微步骤改名延长同一阻塞，提前批准测试按约定时长。当前登录初始化卡点已停止并准备整模块研究清单，后续实施等User讨论决策；这是本轮调试约束，不重置原Task/进度或新增阶段审批。
+
+研究增量直接进入research-dsh；正式工程与INTEGRATION/codex-out由Codex写入。REA说明已收到、CLI实测6.5.0；未新装或注册MCP，未将未配置的IDA反编译声称可用。TASK-0039暂停、TASK-0041验证暂缓；不扩权、不合并/发布/SVN/finalize。Subagents: none。
+
+## 历史：8f5d0af结果与旧分工
 
 业务8f5d0af，D:\BingoClientLocalRound独立本地Git，无远端。原客户端实际完成本地性能/热更/GDS加载，进入Login as Guest；原生topic101已到服务，认证仍明确未实现。服务52项局部回归通过，原mitm连续500帧500/500（35 CallBall、2 State、2 Join）。这些不替代结果A完整一局；尚未可玩或最终Review。
 
