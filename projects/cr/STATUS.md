@@ -1,5 +1,11 @@
 # CR 当前状态
 
+## 2026-10-16 — TASK-0042 V0.6 云端整合待 Review
+
+- 原主文和附件A/B已原位更新V0.6，新增可编辑机器人表及协议／非生产示例入口，见[当前导航](REPORTS/CR-TRAIN-BONUS-V04/README.md)。未先发布V0.5，不另建Task。
+- 十五节正文、13条确认、R01～R04、原图、原评论精确位置和同事历史附件已回读；八页云表内容／公式与源表一致，正式空值和停用状态保留。
+- 七资源组织内链接编辑、外部关闭、可下载；未做普通员工实测。发布无阻塞，未开发、产正式库、仿真或改SVN/配置；原PR #22保持Draft/OPEN，等待Review，不合并或finalize。Subagents: none。
+
 ## 2026-10-15 — 火车 Bonus V0.4 方案已发布待 Review
 
 - [TASK-0042](../../tasks/TASK-0042-CR-TRAIN-BONUS-V04.md)由既有 allocator 分配，Review；[主文与技术附件 A/B](REPORTS/CR-TRAIN-BONUS-V04/README.md)已通过飞书 CLI 创建并完成正文／链接回读。
