@@ -342,7 +342,7 @@ entries:
     canonical_file: "tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md"
     file: "tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md"
     title: "Bingo原客户端与本地服一局可玩闭环"
-    status: "Ready"
+    status: "In Progress"
     project_key: "BINGO-CLIENT-COMPAT"
     human_alias: ""
     owner: "User / ChatGPT"

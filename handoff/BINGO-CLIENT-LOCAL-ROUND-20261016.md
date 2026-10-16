@@ -12,6 +12,12 @@ remote-CAS已分配[TASK-0043](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)�
 
 ## 唯一目标
 
+当前实施：Gate 0治理288ebb0已推送；业务79ca1c2在D:\BingoClientLocalRound，Task In Progress。真实服务局部回归46项通过、历史帧200/200及CallBall 19条解码；未连接当前原客户端，未提供PLAY成品，不把局部结果作为一局验收。受控复现入口DEVELOPMENT-RESULT.md、artifacts/evidence、runs；旧失败与Unknown保留。
+
+User最新指定使用现有MuMu index0/Android15，覆盖未执行的新建实例提案。保留原账号/数据/旧账本；仅只读检查，未启动游戏、Root、网络/CA/Hook。实际接入及本地合成身份/无原服回退仍待诊断，具体新增权限按§6处理。
+
+共同目录D:\DSH_work\bingo-local-round已可用；Codex维护INTEGRATION.md/codex-out，dsh专属research-dsh保持只读，尚未收到双向ACK。下一步连续补初始化与局内适配，dsh优先地址/身份隔离、判型与道具消费者依据；不再重复已恢复的帧头。
+
 原客户端＋本地兼容服，完成一个普通单卡局：大厅→选票→开局→持续叫号/手动填格→至少一种基础局内道具→合法Bingo→正常结束→回大厅；返回后可再次进入新局。正式消息、Schema和必要初始化按实际依赖恢复，不锁死旧消息清单。
 
 ## 分工与连续执行
@@ -26,4 +32,4 @@ Codex首步按最新main、完整Registry和remote-CAS流程登记独立任务�
 
 TASK-0039继续暂停；TASK-0041保留代码修订、验证暂缓，原PR #21不合并、不Accepted。新任务自己的必要测试不受旧Demo暂缓验证指令替代。
 
-本次Git支持稿不是已分配的canonical编号；编号由Codex登记，不猜号。不开新账号、不线上消费、不自动发布、合并、SVN或finalize。
+本次已正式登记TASK-0043；保留完整规格的历史候选说明，不重新分配。不开新账号、不线上消费、不自动发布、合并、SVN或finalize。

@@ -1,6 +1,6 @@
 # TASK-0043 — Bingo原客户端与本地服一局可玩闭环
 
-- Status: Ready
+- Status: In Progress
 - Project key: BINGO-CLIENT-COMPAT
 - Owner: User / ChatGPT
 - Executor: Codex；研究协作dsh
@@ -27,4 +27,14 @@ TASK-0039仍User暂停；TASK-0041验证仍暂缓，业务82c2dd9和旧包0.2.1�
 
 latest main898358f为祖先；登记前完整scan/validate为19 canonical、0冲突/错误，6既有legacy警告。remote-CAS实际返回TASK-0043，不复用其他分支的TASK-0041/0042。登记后重建Registry校验并推送，再实施。Workspace Sync已运行，ON_DEMAND/provider不可用、6 stale/0 conflict；以本轮Git/附件为准。
 
-[共同接管](../handoff/BINGO-CLIENT-LOCAL-ROUND-20261016.md)；[项目状态](../projects/bingo-client-compat/STATUS.md)。独立治理工作树D:\AI-Workspace-bingo-client-local-round，沿用PR #23。业务拟建D:\BingoClientLocalRound，发现既有目录则先核对，不覆盖旧工程。Subagents: none；dsh为User已有并行研究会话，不由本任务创建。
+[共同接管](../handoff/BINGO-CLIENT-LOCAL-ROUND-20261016.md)；[项目状态](../projects/bingo-client-compat/STATUS.md)。独立治理工作树D:\AI-Workspace-bingo-client-local-round，沿用PR #23。业务D:\BingoClientLocalRound已建独立本地Git，无远端。Subagents: none；dsh为User已有并行研究会话，不由本任务创建。
+
+## 2026-10-16 实施进度与当前决定
+
+Gate 0治理288ebb0已校验推送。业务79ca1c2完成本地C#宿主、受控启停、单卡规则复用、M1合同与M2来源修复、原帧头与19类ProtoMember/3枚举恢复；M3实际入口已拒绝非法填格消息，原版Join/State绑定及动作闭环仍待实现。
+
+实际服务HTTP/WebSocket回归46项通过；连续前200历史帧200/200，其中19条CallBall由当前protobuf-net解码。来源关联7项测试通过，12181历史帧中9541有归属、2640 Unknown。这些是局部/历史证据，当前原客户端尚未连接，未交付可玩包，未进入最终Review。证据与失败记录在受控业务工程artifacts/evidence及runs；细节见DEVELOPMENT-RESULT.md。
+
+User最新指定“就用现在这个mumu实例”，覆盖未执行的新实例提案：使用现有MuMu index0/Android15，保留原账号、数据与旧账本。只读核对shell uid2000、无游戏进程、launcher、无系统代理；未启动游戏或改环境。Root、网络路由、证书、Hook仍按明确授权处理，不推定原账号/原服访问获准。
+
+共同目录D:\DSH_work\bingo-local-round，Codex可读写并维护INTEGRATION.md/codex-out；不覆盖research-dsh。dsh当前双向ACK尚未收到，接入/身份隔离方案和判型/道具消费者依据待补；其余服务和静态开发继续。

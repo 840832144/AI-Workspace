@@ -2,6 +2,8 @@
 
 ## 2026-10-16
 
+- TASK-0043进入In Progress，业务79ca1c2完成独立服务与部分原线协议恢复，实际服务局部回归46项通过；原客户端未接通。User改为使用现有MuMu实例，新建实例提案退出；保留账号与旧账本，不推定Root/网络/CA/Hook授权。同步Task/Status/Handoff与Registry，继续PR #23。
+
 - 经remote-CAS为Bingo原客户端＋本地服一局可玩闭环分配TASK-0043，独立PR #23；登记后连续开发，原TASK-0039暂停、TASK-0041验证暂缓。未接通客户端、未实施新增环境权限。Subagents: none。
 
 ## 2026-10-14

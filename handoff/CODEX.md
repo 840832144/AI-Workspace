@@ -2,6 +2,8 @@
 
 ## 2026-10-16 — TASK-0043 Bingo原客户端本地一局
 
+实施更新：治理288ebb0已推送，业务79ca1c2，本任务In Progress。服务侧46项回归通过，历史帧200/200和19条CallBall已解码；当前原客户端尚未接通，未可玩。User选定现有MuMu index0/Android15，取代未执行的新实例提案；只读确认、不改变原数据或环境。共同目录D:\DSH_work\bingo-local-round已建立INTEGRATION.md，dsh双向ACK待收。继续原协议初始化、局内适配及具体接入诊断；不以局部测试提交最终Review。
+
 [TASK-0043](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)已remote-CAS登记，沿用PR #23及[完整接管](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。登记校验推送后，Codex负责独立服务/整合，dsh继续协议/接入研究，共同目录候选D:\DSH_work\bingo-local-round。唯一交付是实际一局闭环，不是报告或JSON样件。原TASK-0039暂停；原TASK-0041业务82c2dd9已改代码、验证暂缓，旧包0.2.1不含修订。新增环境权限未批准前不操作，其他开发继续。Subagents: none。
 
 ## 2026-10-14 — TASK-0040 Accepted治理登记
