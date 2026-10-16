@@ -1,5 +1,9 @@
 # Codex Handoff
 
+## 2026-10-16 — TASK-0043 Bingo原客户端本地一局
+
+[TASK-0043](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)已remote-CAS登记，沿用PR #23及[完整接管](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。登记校验推送后，Codex负责独立服务/整合，dsh继续协议/接入研究，共同目录候选D:\DSH_work\bingo-local-round。唯一交付是实际一局闭环，不是报告或JSON样件。原TASK-0039暂停；原TASK-0041业务82c2dd9已改代码、验证暂缓，旧包0.2.1不含修订。新增环境权限未批准前不操作，其他开发继续。Subagents: none。
+
 ## 2026-10-14 — TASK-0040 Accepted治理登记
 
 已将[Round 2评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)及[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)同步为Accepted、R1 Closed，保留首轮/补充历史和原证据边界。只执行治理校验、提交推送及PR描述更新，业务产物不动。沿用原Task/分支/PR #19；PR保持OPEN/Draft，未合并或finalize，reservation pending-main，未标记Complete。下一步等待User另行决定是否合并。Subagents: none。

@@ -6,6 +6,10 @@
 - User已批准改为单一可玩交付目标；不再只交Schema、样件或可行性报告。
 - 完整正文：`tasks/support/bingo-client-local-round-20261016/EXECUTION_SPEC.md`。
 
+## Codex正式登记
+
+remote-CAS已分配[TASK-0043](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)，Project key BINGO-CLIENT-COMPAT。治理独立linked worktree D:\AI-Workspace-bingo-client-local-round，沿用PR #23；登记校验推送后直接实施。main898358f已同步，登记前19 canonical/0冲突错误；旧任务状态按各自原分支保留。当前[项目状态](../projects/bingo-client-compat/STATUS.md)。Subagents: none。
+
 ## 唯一目标
 
 原客户端＋本地兼容服，完成一个普通单卡局：大厅→选票→开局→持续叫号/手动填格→至少一种基础局内道具→合法Bingo→正常结束→回大厅；返回后可再次进入新局。正式消息、Schema和必要初始化按实际依赖恢复，不锁死旧消息清单。
