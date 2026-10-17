@@ -1,5 +1,20 @@
 # Codex Handoff
 
+## 2026-10-16 — TASK-0043离线修复，User接管测试
+
+接纳6211006045卡点Review（Needs changes），原PR #23继续、Task In Progress。业务dfd312c修CardCandidate正常输入/唯一充能/道具/Bingo/结束重置并构建Windows程序；18项组件回归为User接手前的历史，真实鼠标未验证。最新User决定后续测试全部由User负责，Codex只继续开发/打包/交接，不再自动回归或操作试玩。dsh负责初始化/SyncCache整组合同及P11映射研究，原客户端设备停止仍有效；就绪后一次提出含实际写盘的复验计划，由User决定恢复。原数据权限/15分钟同点规则/旧任务暂停暂缓不变。见[当前交接](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。Subagents: none。
+
+## 2026-10-16 — TASK-0043工程接管与有界调试
+
+原PR #23接纳f1a4a4b/c3bc731：Codex统一结果A/B工程，dsh主责研究取证。CardCandidate冻结工程已接收并纳入受控本地基线d35c8a0，原件保留，未另造Demo。业务513f5da实证原客户端本地认证/令牌续接/六条初始化，75项服务局部回归通过；后续资料初始化未闭合，尚未大厅/完整一局。B的交互/重置/引用/布局/屏幕输入仍待完成。按User普通单点约15分钟约束停止当前初始化卡点，汇报整模块证据并等User讨论决策。环境已回收自有隔离/reverse、测试游戏/服务已停止。Task In Progress，历史评审与旧任务暂停/暂缓保留，无合并/发布/SVN/finalize。见[当前交接](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。Subagents: none。
+
+
+## 历史 — TASK-0043 8f5d0af检查点
+
+沿用PR #23，接纳10e6aa5及User后续抄送；[Task](../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)仍In Progress。业务8f5d0af实际把隔离原客户端推进至Login as Guest，原生登录topic101到本地；未大厅/完整一局。服务52项局部回归通过，归档连续500帧通过；旧200/19来源绑定撤回，失败/Unknown保留，受控DEVELOPMENT-RESULT.md有复现。
+
+Codex继续结果A原客户端完整一局；dsh并行结果B单卡可编辑可交互Unity样件，原层次引用优先、显式重建，不以资源数量替代。两个启动请求已在共同目录ACK-006直接答复。限定C4已授权执行、实例单控制者可明确换手，不逐微步骤待批；TLS/CA/代理/APK/保护代码等排除项不变。原TASK-0039暂停、TASK-0041验证暂缓，不挪旧额度。当前仍未最终Review、无合并/发布/SVN/finalize。Subagents: none。见[完整交接](BINGO-CLIENT-LOCAL-ROUND-20261016.md)。
+
 ## 2026-10-14 — TASK-0040 Accepted治理登记
 
 已将[Round 2评审5506462225](../reviews/TASK-0040-CHATGPT-REVIEW-2.md)及[当前交接](101-CARD-PACK-USD-VALUATION-20261013.md)同步为Accepted、R1 Closed，保留首轮/补充历史和原证据边界。只执行治理校验、提交推送及PR描述更新，业务产物不动。沿用原Task/分支/PR #19；PR保持OPEN/Draft，未合并或finalize，reservation pending-main，未标记Complete。下一步等待User另行决定是否合并。Subagents: none。

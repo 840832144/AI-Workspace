@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-10-17
+
+- TASK-0043选择性接纳支持提交e124b86的完整M1专项执行单，M1为唯一开发焦点，M2冻结保留；同步Task/Status/Handoff/Roadmap和共同目录ACK-014。静态核对确认现有服务可复用但原生回合未绑定，共享目录尚无修正203及下游消费者的新合同；未按旧R2错误解释补实现。仅指令接纳/静态核对/交接，无新增业务代码、编译、产品功能或设备测试；保留In Progress/Draft、原生停止及不合并/发布/finalize边界。
+
+- TASK-0043选择性接纳18c9361，按M1/M2推进；业务19287fe实现六类新增初始化与源素材卡面恢复包。M1恢复合同仍待ErrResp纠正，M2新包待User测试；本轮仅编译/静态核对，无产品测试或设备操作。同步原Task/Status/Handoff/Roadmap，Registry20 canonical、0冲突错误、6既有警告，沿PR #23待Review。
+
+## 2026-10-16
+
+- TASK-0043纳入卡点Review 6211006045（Needs changes），业务dfd312c保留CardCandidate基线完成输入/充能/道具/Bingo/结束重置修复与Windows构建。User接手后续全部测试，18项组件回归仅作先前历史；设备停止保持，初始化整组合同和P11继续研究，沿原PR #23同步。
+
+- TASK-0043接纳f1a4a4b/c3bc731，Codex接管CardCandidate工程（本地d35c8a0），dsh研究取证；业务513f5da完成本地原生认证续接和六条初始化，75项局部回归通过，完整一局未完成。同步单一卡点约15分钟停止汇报约束，当前初始化卡点停止、临时运行环境回收，Task/Status/Handoff与Registry沿原PR #23更新。
+
+- TASK-0043接纳10e6aa5限定C4与dsh可编辑样件补充，原PR #23继续。业务8f5d0af实际原客户端至Guest界面、原生登录到本地；未完整一局。服务52项通过，历史来源修正后原mitm连续500帧通过；旧200/19来源归因撤回。同步Task/Status/Handoff/同一Roadmap与Registry，旧任务暂停/暂缓及不发布等边界保持。
+
+- TASK-0043进入In Progress，业务79ca1c2完成独立服务与部分原线协议恢复，实际服务局部回归46项通过；原客户端未接通。User改为使用现有MuMu实例，新建实例提案退出；保留账号与旧账本，不推定Root/网络/CA/Hook授权。同步Task/Status/Handoff与Registry，继续PR #23。
+
+- 经remote-CAS为Bingo原客户端＋本地服一局可玩闭环分配TASK-0043，独立PR #23；登记后连续开发，原TASK-0039暂停、TASK-0041验证暂缓。未接通客户端、未实施新增环境权限。Subagents: none。
+
 ## 2026-10-14
 
 - TASK-0040按ChatGPT Round 2评审5506462225（受评9ce1b6a）登记Accepted、R1 Closed，保留首轮及补充评审原文；同步Task/Status/Handoff、Registry与PR描述。仅治理收口，不补包、不重算或修改业务产物。PR #19保持OPEN，未合并或finalize，reservation pending-main；Accepted不等于Git生命周期Complete。Subagents: none。
