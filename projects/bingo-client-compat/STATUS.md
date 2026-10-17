@@ -1,5 +1,14 @@
 # Bingo原客户端本地一局状态
 
+## 当前：2026-10-17 M1-only 接纳检查点
+
+- 已选择性接纳 `e124b86` 的[M1 专项执行单](../../tasks/support/TASK-0043/M1-ONLY-IMPLEMENTATION-20261017.md)。M1 为唯一开发焦点，M2 冻结原工程与包；下方旧并行安排不再作为当前指令。User 的“功能基本正常、效果差距非常大”不等于 M2 原版验收通过。
+- 治理基线 5175359、业务仍 19287fe。已核对现有认证/Backpack/WS/初始化及核心实现；203 明确拒绝、原生回合未绑定，尚未大厅/完整一局。没有新增代码或构建结果。
+- 研究阻塞：当前共享目录仍为旧 R2，未收到 ACK-013 后修订的 M1 合同。203 ErrResp/缓存恢复解释错误，1001/2403/1205 下游与单卡必要协议待成组闭合。已通过 ACK-014 和 INTEGRATION 直接交接 dsh；新组可用后 Codex 沿现有服务接入，不逐字段试错、不另起服务。
+- Codex 仅离线开发、静态核对、编译/打包；全部产品功能/设备测试由 User 承担。整组候选未就绪，不申请现场复验；停止状态、旧任务与安全排除项保持。Task In Progress / PR #23 Draft / pending-main；未合并、发布或 finalize。Subagents: none。
+
+## 保留历史
+
 - Task: [TASK-0043](../../tasks/TASK-0043-BINGO-CLIENT-LOCAL-ROUND.md)，In Progress；沿用PR #23，pending-main，不finalize。
 - 已接纳[成品要求f1a4a4b](../../tasks/support/TASK-0043/DSH-DELIVERABLE-FIRST-20261016.md)与[分工c3bc731](../../tasks/support/TASK-0043/ROLE-SPLIT-20261016.md)。Codex统一工程实现；dsh主责研究取证，不再并发改成品场景/交互。
 - 结果A：业务513f5da，原客户端实际接受本地合成认证、保存令牌续接、六条初始化；空Backpack修复后进入后续资料初始化，仍未大厅/完整一局。服务75项局部回归通过，不冒充原客户端验收。

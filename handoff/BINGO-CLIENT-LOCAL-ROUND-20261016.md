@@ -1,5 +1,15 @@
 # Bingo原客户端本地一局闭环 — dsh / Codex共同接管
 
+## 最新交接：2026-10-17 M1-only
+
+已选择性接纳 `e124b86` 的[完整专项执行单](../tasks/support/TASK-0043/M1-ONLY-IMPLEMENTATION-20261017.md)，原 Task/PR #23 不变。M1 为唯一开发焦点；M2 原工程、包、素材及差异记录冻结，旧视觉/功能研究要求暂停。User 最新反馈是基本功能正常但原版效果差距非常大，不是验收通过。
+
+已核对业务 19287fe 的真实入口；既有认证、Backpack、WS、初始化和核心实现继续复用。203 仍明确拒绝，局内请求只有结构解码、没有原生回合绑定。当前 research-dsh 尚无 ACK-013 后的新 M1 合同，旧 R2 的 ErrResp/201 误释未修。已在共同目录 `codex-out/ACK-014-M1-ONLY-CONTRACT.md` 给出实际代码接入点和整组合同缺口，并更新 INTEGRATION；dsh 在同一 M1-CONSUMER-CONTRACT 修 203、1001/2403/1205 及普通单卡必要链，Codex 按可用组接入。
+
+本检查点只完成指令接纳、静态核对和交接，没有新增业务代码/编译/产品测试/设备操作；M2 无改动，原生实验停止保持。下一步唯一依赖是收到 dsh 可复算的新合同组；不使用旧解释或空成功绕过。完整候选就绪后一次提交隔离/时长/失败停止/写盘恢复及回滚复验方案，由 User 确认并测试。保留原权限、旧任务暂停/暂缓、In Progress/Draft/pending-main；不合并、发布、SVN 或 finalize。Subagents: none。
+
+## 以下为保留历史
+
 - Kind: handoff。
 - Date: 2026-10-16。
 - Project key: BINGO-CLIENT-COMPAT。

@@ -9,6 +9,18 @@
 - User decision: Confirmed；按完整规格连续实施，不逐微步骤等待Review。
 - Reservation: remote-CAS pending-main；独立linked worktree正式分配，未finalize。
 
+## 当前执行范围：2026-10-17 M1-only
+
+已按 User 直接指令选择性接纳支持分支 `chatgpt/task-0043-dsh-reuse-20261016@e124b86` 的完整[专项执行单](support/TASK-0043/M1-ONLY-IMPLEMENTATION-20261017.md)，未合并支持分支或改动其他任务。**M1 是本任务唯一 Current 开发焦点；M2 冻结，保留现有工程、包、资源及差异记录。** M2 最新评价“功能基本正常，但与原版效果相差非常大”只作为 User 反馈，不标原版验收通过。下方 M1/M2 并行安排为历史，被本节覆盖。
+
+本安全点核对治理 5175359 / 业务 19287fe；原认证、Backpack、WebSocket、新增初始化及 Bingo.Core 均复用。正式入口目前仍拒绝 203，100007 仅结构解码后因原生回合未绑定拒绝；大厅/单卡完整状态机未接入，未伪装成可玩。共同目录仍是旧 R2 合同，203 仍误读 ErrResp.Code=201，1001/2403/1205 下游及序号/恢复未闭合；未收到 ACK-013 后的新 M1-CONSUMER-CONTRACT。
+
+已直接在既有共同目录交付 ACK-014，明确现有代码接入点与整组缺口：dsh 先修 203、初始化消费者，再延伸普通单卡入局、叫号、手填、基础道具、Bingo、阶段/结算/离局与再入局；提供来源、证据等级、机读映射和可复算脚本。Codex 收到可用的一组后接入现有工程，不等研究全量完毕，但不猜未知语义、不重新开发服务、不转做 M2。ACK 落盘不等于 dsh 已执行或已交付。
+
+本轮仅范围接纳、静态调用链核对及直接交接，**无新增业务行为、编译、产品功能/回归或设备测试**；未重复构建未变代码冒充进展。原生实验停止保持，所有成品测试由 User 承担。完整离线候选就绪后才一次提出含隔离、时长、失败停止、Logout 实际写盘、缓存/重启与回滚的复验方案，等待 User 确认。旧 C4 排除、约15分钟同一卡点、TASK-0039 暂停/TASK-0041 验证暂缓、不 merge/release/SVN/finalize 均不变。
+
+Task 保持 In Progress / PR #23 Draft / reservation pending-main。Subagents: none。
+
 ## Goal
 
 完整执行正文为[EXECUTION_SPEC.md](support/bingo-client-local-round-20261016/EXECUTION_SPEC.md)，来源09f6112/76b6b6c，与User附件逐字一致。交付原客户端大厅→单卡选票→持续叫号/手动填格→至少一种局内道具→合法Bingo→正常结束回大厅→可再次入局；自制合成牌面/本地票，不用JSON样件或自研Unity界面代替。
